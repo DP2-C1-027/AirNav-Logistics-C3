@@ -22,6 +22,8 @@
 <address>
   <strong><acme:print code="master.company.name"/></strong> <br/>
   <span class="fas fa-map-marker"> &nbsp; </span><acme:print code="master.company.address"/> <br/>
+  <span class="fas fa-map-marker"> &nbsp; </span><acme:print code="master.company.address2"/> <br/>
+  <span class="fas fa-map-marker"> &nbsp; </span><acme:print code="master.company.address3"/> <br/>
   <span class="fa fa-phone"></span> &nbsp; <acme:print code="master.company.phone"/><br/>
   <span class="fa fa-at"></span> &nbsp; <a href="mailto:<acme:print code="master.company.email"/>"><acme:print code="master.company.email"/></a> <br/>
 </address>

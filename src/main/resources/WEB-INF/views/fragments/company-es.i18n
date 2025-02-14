@@ -2,18 +2,21 @@
 #
 # Copyright (C) 2012-2025 Rafael Corchuelo.
 #
-# In keeping with the traditional purpose of furthering education and research, it is
-# the policy of the copyright owner to permit non-commercial use and redistribution of
-# this software. It has been tested carefully, but it is not guaranteed for any particular
-# purposes.  The copyright owner does not offer any warranties or representations, nor do
-# they accept any liabilities with respect to them.
+# Siguiendo el propósito tradicional de fomentar la educación e investigación, es
+# política del propietario de los derechos de autor permitir el uso y redistribución
+# no comercial de este software. Ha sido probado cuidadosamente, pero no se garantiza
+# para ningún propósito en particular. El propietario de los derechos de autor no ofrece
+# garantías ni representaciones, ni acepta ninguna responsabilidad con respecto a ellos.
 
-master.company.title = La empresa
+master.company.title = La compañía
 master.company.text = \
-	Hello World, S.A. es una empresa ficticia que ofrece un proyecto starter para los \
-	estudiantes de la asignatura Diseño y Pruebas de la titulación de \
-	Ingeniería del Software en la Universidad de Seville. 
-master.company.name = Acme, Inc.
-master.company.address = 01 Acme Drive, Wondercity, Wonderland
-master.company.phone = +1 000 111 222
-master.company.email = contact@acme.com
+	AirNav es una aerolínea internacional líder con centros de operaciones en las principales ciudades del mundo. \
+	Estamos comprometidos a brindar experiencias de viaje aéreo excepcionales mientras mantenemos un fuerte \
+	compromiso con la sostenibilidad ambiental. A través de la innovación y las iniciativas ecológicas, \
+	nos esforzamos por reducir nuestra huella de carbono y contribuir a un futuro más verde.
+master.company.name = AirNav
+master.company.address = 500 Plaza de Aviación, Nueva York, EE.UU.
+master.company.address2 = 120 Torre Aérea, Londres, Reino Unido
+master.company.address3 = 88 Centro Horizonte, Tokio, Japón
+master.company.phone = +1 555 987 6543
+master.company.email = contacto@airnav.com

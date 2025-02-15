@@ -22,6 +22,7 @@
 			<acme:menu-suboption code="master.menu.anonymous.favourite-link" action="http://www.example.com/"/>
 			<acme:menu-suboption code="master.menu.anonymous.nico" action="https://www.albumoftheyear.org//"/>
 			<acme:menu-suboption code="master.menu.anonymous.mannizcob" action="https://refactoring.guru/"/>
+			<acme:menu-suboption code="master.menu.anonymous.norapfr" action="https://clubalgoritmiaus.es/"/>
 		</acme:menu-option>
 
 		<acme:menu-option code="master.menu.administrator" access="hasRealm('Administrator')">

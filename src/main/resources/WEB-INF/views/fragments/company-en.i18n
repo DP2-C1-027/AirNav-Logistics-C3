@@ -10,11 +10,13 @@
 
 master.company.title = The company
 master.company.text = \
-	Hello World, Inc. is a fictitious company that provides a starter \
-	project for the students of the Design and Testing subject of the \
-	Software Engineering Curriculum of the University of Seville.
-master.company.name = Acme, Inc.
-master.company.address = 01 Acme Drive, Wondercity, Wonderland
-master.company.phone = +1 000 111 222
-master.company.email = contact@acme.com
-
+	AirNav is a leading international airline with hubs in major cities worldwide. \
+	We are dedicated to providing exceptional air travel experiences while maintaining a strong \
+	commitment to environmental sustainability. Through innovation and eco-friendly initiatives, \
+	we strive to reduce our carbon footprint and contribute to a greener future.
+master.company.name = AirNav
+master.company.address = 500 Aviation Plaza, New York, USA
+master.company.address2 = 120 SkyTower, London, UK
+master.company.address3 = 88 Horizon Hub, Tokyo, Japan
+master.company.phone = +1 555 987 6543
+master.company.email = contact@airnav.com

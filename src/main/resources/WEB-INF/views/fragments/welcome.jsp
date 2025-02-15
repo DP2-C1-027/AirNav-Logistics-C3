@@ -15,7 +15,14 @@
 <%@taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
-<div class="jumbotron">
-	<h1><acme:print code="master.welcome.title"/></h1>
-	<acme:print code="master.welcome.text"/>
+
+
+<div class="container">
+    <div class="text-container">
+        <h1><acme:print code="master.welcome.title"/></h1>
+        <acme:print code="master.welcome.text"/>
+    </div>
+    <div class="image-container">
+        <img src="images/publicidad1.png" alt="Publicidad 1"/>
+    </div>
 </div>

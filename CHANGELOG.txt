@@ -8,6 +8,11 @@
 # purposes.  The copyright owner does not offer any warranties or representations, nor do
 # they accept any liabilities with respect to them.
 
+** AirNav-Logistics
+
+25.1.0 this is the first version of AirNav-Logistics
+
+
 ** Year 2025
 
 25.1.0	Upgraded to the new version of the Acme framework. Fixed a bug that allowed

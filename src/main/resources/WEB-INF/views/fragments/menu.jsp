@@ -52,4 +52,3 @@
 		</acme:menu-option>
 	</acme:menu-right>
 </acme:menu-bar>
-

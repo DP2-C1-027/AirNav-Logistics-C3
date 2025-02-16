@@ -18,7 +18,7 @@
 
 <acme:menu-bar>
 	<acme:menu-left>
-		<acme:menu-option code="master.menu.anonymous" access="isAnonymous()">H
+		<acme:menu-option code="master.menu.anonymous" access="isAnonymous()">
 			<acme:menu-suboption code="master.menu.anonymous.favourite-link" action="http://www.example.com/"/>
 			<acme:menu-suboption code="master.menu.anonymous.nico" action="https://www.albumoftheyear.org//"/>
 			<acme:menu-suboption code="master.menu.anonymous.mannizcob" action="https://refactoring.guru/"/>

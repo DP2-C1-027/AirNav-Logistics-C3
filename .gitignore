@@ -30,3 +30,6 @@ nbdist/
 mvnw
 
 mvnw\.cmd
+
+### Ignore those files ###
+.project

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>Acme-ANS-D01-25.1.0</name>
+	<name>Acme-ANS-D01</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -43,7 +43,7 @@
 		<link>
 			<name>target/classes</name>
 			<type>2</type>
-			<location>//C:/Users/nikol/Documents/444_US/DP2/EV/Workspace-25/Projects/DP2-C1.027/target/classes/</location>
+			<location>//E:/Workspace-25/Projects/Acme-ANS-D01/target/classes/</location>
 		</link>
 
 	</linkedResources>

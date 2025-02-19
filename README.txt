@@ -52,6 +52,14 @@ Important Notes
 - The copyright owner does not offer warranties, representations, or accept any liabilities related to the software.
 
 
+Link to our dashboard:
+-->Group:
+-->Jose:
+-->Nora: https://github.com/orgs/DP2-C1-027/projects/1/views/13
+-->Manuel:
+-->Nicolas:
+-->Lucia:
+
 Credits
 This application was developed using the Acme framework, created by Rafael Corchuelo. We acknowledge his valuable contribution to the development community.
 

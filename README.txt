@@ -54,7 +54,7 @@ Important Notes
 
 Link to our dashboard:
 -->Group:
--->Jose:
+-->Jose: https://github.com/orgs/DP2-C1-027/projects/1/views/15 
 -->Nora: https://github.com/orgs/DP2-C1-027/projects/1/views/13
 -->Manuel:
 -->Nicolas:

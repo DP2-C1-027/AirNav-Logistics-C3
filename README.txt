@@ -53,10 +53,10 @@ Important Notes
 
 
 Link to our dashboard:
--->Group:
+-->Group: https://github.com/orgs/DP2-C1-027/projects/1/views/1
 -->Jose: https://github.com/orgs/DP2-C1-027/projects/1/views/15 
 -->Nora: https://github.com/orgs/DP2-C1-027/projects/1/views/13
--->Manuel:
+-->Manuel: https://github.com/orgs/DP2-C1-027/projects/1/views/14
 -->Nicolas: https://github.com/orgs/DP2-C1-027/projects/1/views/11
 -->Lucia: https://github.com/orgs/DP2-C1-027/projects/1/views/16
 

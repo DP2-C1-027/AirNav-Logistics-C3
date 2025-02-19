@@ -58,7 +58,7 @@ Link to our dashboard:
 -->Nora: https://github.com/orgs/DP2-C1-027/projects/1/views/13
 -->Manuel:
 -->Nicolas: https://github.com/orgs/DP2-C1-027/projects/1/views/11
--->Lucia:
+-->Lucia: https://github.com/orgs/DP2-C1-027/projects/1/views/16
 
 Credits
 This application was developed using the Acme framework, created by Rafael Corchuelo. We acknowledge his valuable contribution to the development community.

@@ -57,7 +57,7 @@ Link to our dashboard:
 -->Jose: https://github.com/orgs/DP2-C1-027/projects/1/views/15 
 -->Nora: https://github.com/orgs/DP2-C1-027/projects/1/views/13
 -->Manuel:
--->Nicolas:
+-->Nicolas: https://github.com/orgs/DP2-C1-027/projects/1/views/11
 -->Lucia:
 
 Credits

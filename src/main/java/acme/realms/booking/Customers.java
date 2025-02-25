@@ -1,5 +1,5 @@
 
-package acme.entities.booking;
+package acme.realms.booking;
 
 import javax.persistence.Entity;
 

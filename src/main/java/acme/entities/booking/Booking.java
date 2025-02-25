@@ -15,6 +15,7 @@ import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoment;
 import acme.constraints.ValidLastNibble;
 import acme.constraints.ValidLocatorCode;
+import acme.realms.booking.Customers;
 import lombok.Getter;
 import lombok.Setter;
 

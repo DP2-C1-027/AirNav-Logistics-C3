@@ -1,5 +1,5 @@
 /*
- * Worker.java
+ * Consumer.java
  *
  * Copyright (C) 2012-2025 Rafael Corchuelo.
  *
@@ -13,11 +13,15 @@
 package acme.realms;
 
 import javax.persistence.Entity;
+import javax.validation.constraints.Past;
 
 import acme.client.components.basis.AbstractRole;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
-import acme.client.components.validation.ValidCreditCard;
+import acme.client.components.validation.Optional;
+import acme.client.components.validation.ValidString;
+import acme.client.components.validation.ValidUrl;
+import acme.constraints.ValidManagerCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -33,20 +37,23 @@ public class AirlineManager extends AbstractRole {
 	// Attributes -------------------------------------------------------------
 
 	@Mandatory
+	@ValidString
+	@ValidManagerCode
 	@Automapped
-	private String				qualifications;
+	private String				managerCode;
 
 	@Mandatory
 	@Automapped
-	private String				skills;
+	private Integer				yearsOfService;
 
 	@Mandatory
-	@ValidCreditCard
+	@Past
 	@Automapped
-	private String				creditCard;
+	private java.util.Date		birthDate;
 
-	// Derived attributes -----------------------------------------------------
-
-	// Relationships ----------------------------------------------------------
+	@Optional
+	@ValidUrl
+	@Automapped
+	private String				photoLink;
 
 }

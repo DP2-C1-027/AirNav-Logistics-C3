@@ -1,16 +1,20 @@
 
 package acme.entities.booking;
 
-import javax.persistence.Entity;
+import java.util.Date;
 
-import acme.client.components.basis.AbstractRealm;
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.validation.Valid;
+
+import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
-import acme.constraints.ValidCustomersIdentifier;
-import acme.constraints.ValidEarnedPoints;
+import acme.client.components.validation.ValidEmail;
+import acme.client.components.validation.ValidMoment;
 import acme.constraints.ValidLongText;
-import acme.constraints.ValidPhoneNumber;
+import acme.constraints.ValidPassportNumber;
 import acme.constraints.ValidShortText;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,7 +22,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class Customers extends AbstractRealm {
+public class Passenger extends AbstractEntity {
 
 	// Serialisation version --------------------------------------------------
 	private static final long	serialVersionUID	= 1L;
@@ -26,37 +30,40 @@ public class Customers extends AbstractRealm {
 	// Attributes -------------------------------------------------------------
 
 	@Mandatory
-	@ValidCustomersIdentifier
-	@Automapped
-	private String				identifier;
-
-	@Mandatory
-	@ValidPhoneNumber
-	@Automapped
-	private String				phone;
-
-	@Mandatory
 	@ValidLongText
 	@Automapped
-	private String				physicalAddress;
+	private String				locatorCode;
+
+	@Mandatory
+	@ValidEmail
+	@Automapped
+	private String				email;
 
 	@Mandatory
 	@Automapped
-	@ValidShortText
-	private String				city;
+	private TravelClass			travelClass;
 
 	@Mandatory
 	@Automapped
-	@ValidShortText
-	private String				country;
+	@ValidPassportNumber
+	private String				passportNumber;
+
+	@Mandatory
+	@Automapped
+	@ValidMoment
+	private Date				dateOfBirth;
 
 	@Optional
 	@Automapped
-	@ValidEarnedPoints
-	private Integer				earnedPoints;
+	@ValidShortText
+	private String				specialNeeds;
 
 	// Derived attributes -----------------------------------------------------
 
 	// Relationships ----------------------------------------------------------
 
+	@ManyToOne
+	@Valid
+	@Mandatory
+	private Booking				booking;
 }

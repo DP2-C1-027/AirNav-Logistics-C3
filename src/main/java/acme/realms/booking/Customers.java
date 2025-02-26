@@ -1,6 +1,7 @@
 
 package acme.realms.booking;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 
 import acme.client.components.basis.AbstractRealm;
@@ -27,6 +28,7 @@ public class Customers extends AbstractRealm {
 
 	@Mandatory
 	@ValidCustomersIdentifier
+	@Column(unique = true)
 	@Automapped
 	private String				identifier;
 

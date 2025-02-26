@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1">
+  <help_text>&lt;&lt;Constraint&gt;&gt;
+ValidLastNibble
+--
++ Length(min=4, max=4)
+bg=RED</help_text>
+  <zoom_level>7</zoom_level>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>238</x>
+      <y>91</y>
+      <w>392</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>constraints.uxf
+
+Copyright (C) 2012-2025 Rafael Corchuelo.
+
+In keeping with the traditional purpose of furthering education and research, it is
+the policy of the copyright owner to permit non-commercial use and redistribution of
+this software. It has been tested carefully, but it is not guaranteed for any particular
+purposes. The copyright owner does not offer any warranties or representations, nor do
+they accept any liabilities with respect to them.
+bg=#f3fdff</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>196</x>
+      <y>245</y>
+      <w>182</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Constraint&gt;&gt;
+ValidCustomersIdentifier
+--
++  NotBlank
++ Pattern(regexp="^[A-Z]{2,3}\\d{6}$")
+bg=RED</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>413</x>
+      <y>238</y>
+      <w>168</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Constraint&gt;&gt;
+ValidPhoneNumber
+--
++ Pattern(regexp="^\\+?\\d{6,15}$")
+bg=RED</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>609</x>
+      <y>224</y>
+      <w>147</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Constraint&gt;&gt;
+ValidEarnedPoints
+--
++ Min(0)
++ Max(500000)
+bg=RED</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>245</x>
+      <y>336</y>
+      <w>168</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Constraint&gt;&gt;
+ValidLocatorCode
+--
++  NotBlank
++ Pattern(regexp= "^[A-Z0-9]{6,8}$")
+bg=RED</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>448</x>
+      <y>322</y>
+      <w>147</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Constraint&gt;&gt;
+ValidLastNibble
+--
++ Length(min=4, max=4)
+bg=RED</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>623</x>
+      <y>301</y>
+      <w>147</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Constraint&gt;&gt;
+ValidShortText
+--
++ NotBlank
++ Length(min=1, max=50)
+bg=RED</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>441</x>
+      <y>392</y>
+      <w>147</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Constraint&gt;&gt;
+ValidIATAcode
+--
++ NotBlank
++ Pattern(regexp="^[A-Z]{3}$")
+bg=RED</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>616</x>
+      <y>378</y>
+      <w>168</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Constraint&gt;&gt;
+ValidLongText
+--
++ Length(min = 1, max = 255)
+bg=RED</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>259</x>
+      <y>420</y>
+      <w>147</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Constraint&gt;&gt;
+ValidPassportNumber
+--
++ NotBlank
++ Pattern(regexp = "^[A-Z0-9]{6,9}$")
+bg=RED</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>623</x>
+      <y>462</y>
+      <w>189</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Constraint&gt;&gt;
+ValidEmployeeCode
+--
++ Pattern(regexp = "^[A-Z]{2,3}\\d{6}$")
+bg=RED</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>413</x>
+      <y>476</y>
+      <w>189</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Constraint&gt;&gt;
+ValidManagerCode
+--
++ Pattern(regexp = "^[A-Z]{2-3}\\d{6}$")
+bg=RED</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

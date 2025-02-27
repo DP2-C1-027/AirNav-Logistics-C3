@@ -16,6 +16,7 @@ import org.hibernate.validator.constraints.Length;
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = {})
 @ReportAsSingleViolation
+
 @Length(min = 4, max = 4)
 public @interface ValidLastNibble {
 

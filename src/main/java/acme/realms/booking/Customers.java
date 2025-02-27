@@ -1,9 +1,10 @@
 
 package acme.realms.booking;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 
-import acme.client.components.basis.AbstractRealm;
+import acme.client.components.basis.AbstractRole;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
@@ -18,7 +19,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class Customers extends AbstractRealm {
+public class Customers extends AbstractRole {
 
 	// Serialisation version --------------------------------------------------
 	private static final long	serialVersionUID	= 1L;
@@ -27,6 +28,7 @@ public class Customers extends AbstractRealm {
 
 	@Mandatory
 	@ValidCustomersIdentifier
+	@Column(unique = true)
 	@Automapped
 	private String				identifier;
 

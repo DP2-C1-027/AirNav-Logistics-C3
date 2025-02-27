@@ -3,8 +3,11 @@ package acme.entities.booking;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
 
@@ -32,21 +35,25 @@ public class Booking extends AbstractEntity {
 	@Mandatory
 	@ValidLocatorCode
 	@Automapped
+	@Column(unique = true)
 	private String				locatorCode;
 
 	@Mandatory
 	//valid en el pasado
 	@ValidMoment
+	@Temporal(TemporalType.TIMESTAMP)
 	@Automapped
 	private Date				purchaseMoment;
 
 	@Mandatory
 	@Automapped
+	@Valid
 	private TravelClass			travelClass;
 
 	@Mandatory
 	@Automapped
 	@Min(0)
+	@Valid
 	private Double				price;
 
 	@Optional
@@ -58,12 +65,12 @@ public class Booking extends AbstractEntity {
 
 	// Relationships ----------------------------------------------------------
 
-	@ManyToOne
+	@ManyToOne(optional = false)
 	@Mandatory
 	@Valid
 	private Customers			customer;
 
-	//@ManyToOne
+	//@ManyToOne(optional = false)
 	//@Valid
 	//@Mandatory
 	//private Flight flight;

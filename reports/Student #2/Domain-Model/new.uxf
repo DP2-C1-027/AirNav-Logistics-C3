@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1">
+  <zoom_level>6</zoom_level>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>198</x>
+      <y>36</y>
+      <w>342</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>entities.uxf
+
+Copyright (C) 2012-2025 Rafael Corchuelo.
+
+In keeping with the traditional purpose of furthering education and research, it is
+the policy of the copyright owner to permit non-commercial use and redistribution of
+this software. It has been tested carefully, but it is not guaranteed for any particular
+purposes. The copyright owner does not offer any warranties or representations, nor do
+they accept any liabilities with respect to them.
+bg=#f3fdff</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>222</x>
+      <y>162</y>
+      <w>264</w>
+      <h>78</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Entity&gt;&gt;
+Airport
+--
++ moment: Date {Mandatory, ValidMoment(past=true), Automapped}
++ title: String {Mandatory, ValidShortText, Automapped}
++ status: AnnouncementStatus {Mandatory, Valid, Automapped}
++ text: String {Mandatory, ValidLongText, Automapped}
++ moreInfo: String {Mandatory, ValidUrl, Automapped}
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>498</x>
+      <y>168</y>
+      <w>264</w>
+      <h>78</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Entity&gt;&gt;
+Announcement
+--
++ moment: Date {Mandatory, ValidMoment(past=true), Automapped}
++ title: String {Mandatory, ValidShortText, Automapped}
++ status: AnnouncementStatus {Mandatory, Valid, Automapped}
++ text: String {Mandatory, ValidLongText, Automapped}
++ moreInfo: String {Mandatory, ValidUrl, Automapped}
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>192</x>
+      <y>276</y>
+      <w>264</w>
+      <h>78</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Entity&gt;&gt;
+Announcement
+--
++ moment: Date {Mandatory, ValidMoment(past=true), Automapped}
++ title: String {Mandatory, ValidShortText, Automapped}
++ status: AnnouncementStatus {Mandatory, Valid, Automapped}
++ text: String {Mandatory, ValidLongText, Automapped}
++ moreInfo: String {Mandatory, ValidUrl, Automapped}
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>468</x>
+      <y>270</y>
+      <w>264</w>
+      <h>78</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Entity&gt;&gt;
+Announcement
+--
++ moment: Date {Mandatory, ValidMoment(past=true), Automapped}
++ title: String {Mandatory, ValidShortText, Automapped}
++ status: AnnouncementStatus {Mandatory, Valid, Automapped}
++ text: String {Mandatory, ValidLongText, Automapped}
++ moreInfo: String {Mandatory, ValidUrl, Automapped}
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>246</x>
+      <y>360</y>
+      <w>264</w>
+      <h>78</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Entity&gt;&gt;
+Announcement
+--
++ moment: Date {Mandatory, ValidMoment(past=true), Automapped}
++ title: String {Mandatory, ValidShortText, Automapped}
++ status: AnnouncementStatus {Mandatory, Valid, Automapped}
++ text: String {Mandatory, ValidLongText, Automapped}
++ moreInfo: String {Mandatory, ValidUrl, Automapped}
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

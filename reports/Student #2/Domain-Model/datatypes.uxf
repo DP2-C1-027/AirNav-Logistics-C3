@@ -29,6 +29,7 @@ bg=yellow</panel_attributes>
     <panel_attributes>&lt;&lt;Datatype&gt;&gt;
 UserIdentity
 --
+
 bg=LIGHT_GRAY</panel_attributes>
     <additional_attributes/>
   </element>
@@ -66,34 +67,16 @@ bg=#f3fdff</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>660</x>
-      <y>240</y>
-      <w>160</w>
-      <h>100</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;Enum&gt;&gt;
-OperationalScope
---
-+ INTERNATIONAL
-+ DOMESTIC
-+ REGIONAL
-bg=LIGHT_GRAY</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>560</x>
+      <x>590</x>
       <y>360</y>
       <w>160</w>
       <h>100</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Enum&gt;&gt;
-Type
+TravelClass
 --
-+ LUXURY
-+ STANDARD
-+ LOW-COST
++ ECONOMY
++ BUSINESS
 bg=LIGHT_GRAY</panel_attributes>
     <additional_attributes/>
   </element>

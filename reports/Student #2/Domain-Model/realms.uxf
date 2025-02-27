@@ -24,32 +24,20 @@ bg=#f3fdff</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>246</x>
-      <y>246</y>
-      <w>252</w>
-      <h>66</h>
+      <x>282</x>
+      <y>240</y>
+      <w>372</w>
+      <h>90</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Role&gt;&gt;
-Consumer
+Customers
 --
-+ company: String {Mandatory, ValidString, Automapped}
-+ sector: String {Mandatory, ValidString, Automapped}
-bg=pink</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>246</x>
-      <y>324</y>
-      <w>252</w>
-      <h>66</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;Role&gt;&gt;
-Provider
---
-+ company: String {Mandatory, ValidString, Automapped}
-+ sector: String {Mandatory, ValidString, Automapped}
++ identifier: String {Mandatory, ValidCustomersIdentifier, Column(unique = true), Automapped}
++ phone: String {Mandatory, ValidPhoneNumber, Automapped}
++ physicalAddress: String {Mandatory, ValidLongText, Automapped}
++ city: String {Mandatory, ValidShortText, Automapped}
++ country: String {Mandatory, ValidShortText, Automapped}
++ earnedPoints: Integer {Optionaly, ValidEarnedPoints, Automapped}
 bg=pink</panel_attributes>
     <additional_attributes/>
   </element>

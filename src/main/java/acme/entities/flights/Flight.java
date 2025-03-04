@@ -44,28 +44,39 @@ public class Flight extends AbstractEntity {
 	@Automapped
 	private String				description;
 
-	@Mandatory
-	@Automapped
-	private java.util.Date		scheduledDeparture;
-
-	@Mandatory
-	@Automapped
-	private java.util.Date		scheduledArrival;
-
-	@Mandatory
-	@ValidShortText
-	@Automapped
-	private String				departureCity;
-
-	@Mandatory
-	@ValidShortText
-	@Automapped
-	private String				arrivalCity;
-
-	@Mandatory
-	@Automapped
-	private Integer				layovers;
-
+	/*
+	 * Debería ser Transient casi seguro
+	 * 
+	 * @Mandatory
+	 * 
+	 * @Automapped
+	 * private java.util.Date scheduledDeparture;
+	 * 
+	 * @Mandatory
+	 * 
+	 * @Automapped
+	 * private java.util.Date scheduledArrival;
+	 * 
+	 * 
+	 * @Mandatory
+	 * 
+	 * @ValidShortText
+	 * 
+	 * @Automapped
+	 * private String departureCity;
+	 * 
+	 * @Mandatory
+	 * 
+	 * @ValidShortText
+	 * 
+	 * @Automapped
+	 * private String arrivalCity;
+	 * 
+	 * @Mandatory
+	 * 
+	 * @Automapped
+	 * private Integer layovers;
+	 */
 	// Derived attributes -----------------------------------------------------
 
 	// Relationships ----------------------------------------------------------

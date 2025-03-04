@@ -1,31 +1,24 @@
 
-package acme.entities.booking;
-
-import java.util.Date;
+package acme.entities.legs;
 
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
-import acme.client.components.validation.Optional;
-import acme.client.components.validation.ValidEmail;
-import acme.client.components.validation.ValidMoment;
-import acme.constraints.ValidLongText;
-import acme.constraints.ValidPassportNumber;
 import acme.constraints.ValidShortText;
+import acme.entities.airport.Airport;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
-public class Passenger extends AbstractEntity {
+public class Leg extends AbstractEntity {
 
 	// Serialisation version --------------------------------------------------
 	private static final long	serialVersionUID	= 1L;
@@ -33,38 +26,39 @@ public class Passenger extends AbstractEntity {
 	// Attributes -------------------------------------------------------------
 
 	@Mandatory
-	@ValidLongText
-	@Automapped
-	private String				fullName;
-
-	@Mandatory
-	@ValidEmail
-	@Automapped
-	private String				email;
-
-	@Mandatory
-	@Automapped
-	@ValidPassportNumber
-	private String				passportNumber;
-
-	@Mandatory
-	@Automapped
-	@ValidMoment(past = true)
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date				dateOfBirth;
-
-	@Optional
-	@Automapped
 	@ValidShortText
-	private String				specialNeeds;
+	@Automapped
+	private String				tag;
+
+	@Mandatory
+	@Automapped
+	@Temporal(TemporalType.TIMESTAMP)
+	private java.util.Date		scheduledDeparture;
+
+	@Mandatory
+	@Automapped
+	@Temporal(TemporalType.TIMESTAMP)
+	private java.util.Date		scheduledArrival;
+
+	@Mandatory
+	@Automapped
+	private Airport				departureAirport;
+
+	@Mandatory
+	@Automapped
+	private Airport				arrivalAirport;
+
+	@Mandatory
+	@Automapped
+	private Integer				duration;
+
+	@Mandatory
+	@Enumerated(EnumType.STRING)
+	@Automapped
+	private LegStatus			status;
 
 	// Derived attributes -----------------------------------------------------
 
 	// Relationships ----------------------------------------------------------
 
-	@ManyToOne(optional = false)
-	@Valid
-	@Mandatory
-	@NotNull
-	private Booking				booking;
 }

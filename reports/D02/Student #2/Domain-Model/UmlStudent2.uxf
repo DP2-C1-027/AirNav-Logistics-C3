@@ -4,7 +4,7 @@
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>217</x>
+      <x>210</x>
       <y>0</y>
       <w>399</w>
       <h>112</h>
@@ -24,7 +24,7 @@ bg=#f3fdff</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>133</x>
+      <x>126</x>
       <y>455</y>
       <w>469</w>
       <h>91</h>
@@ -35,7 +35,7 @@ Passenger
 + fullName: String {Mandatory, ValidLongText, Automapped}
 + email: String {Mandatory, ValidEmail, Automapped}
 + passportNumber: String {Mandatory, ValidPassportNumber, Automapped}
-+ dateOfBirth: Date {Mandatory, ValidMoment, Temporal(TemporalType.TIMESTAMP), Automapped}
++ dateOfBirth: Date {Mandatory, ValidMoment(past=true), Temporal(TemporalType.TIMESTAMP), Automapped}
 + specialNeeds: String {Optional, ValidShortText, Automapped}
 bg=green</panel_attributes>
     <additional_attributes/>
@@ -43,7 +43,7 @@ bg=green</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>140</x>
+      <x>133</x>
       <y>294</y>
       <w>469</w>
       <h>91</h>
@@ -52,7 +52,7 @@ bg=green</panel_attributes>
 Booking
 --
 + locatorCode: String {Mandatory,ValidLocatorCode, Automapped,Column(unique = true)}
-+ purchaseMoment: Date {Mandatory, ValidMoment, Temporal(TemporalType.TIMESTAMP, Automapped}
++ purchaseMoment: Date {Mandatory, ValidMoment(past=true), Temporal(TemporalType.TIMESTAMP, Automapped}
 + travelClass: TravelClass {Mandatory, Valid, Automapped}
 + price: Double {Mandatory,Min(0),Valid Automapped}
 + lastNibble: String {Optional, ValidLastNibble, Automapped}
@@ -62,7 +62,7 @@ bg=green</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>602</x>
+      <x>595</x>
       <y>329</y>
       <w>119</w>
       <h>42</h>
@@ -70,7 +70,7 @@ bg=green</panel_attributes>
     <panel_attributes>Booked by &gt;
 lt=&lt;-x
 m1=1
-m2=*
+m2=0..*
 
 </panel_attributes>
     <additional_attributes>150.0;20.0;10.0;20.0</additional_attributes>
@@ -78,7 +78,7 @@ m2=*
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>707</x>
+      <x>700</x>
       <y>329</y>
       <w>77</w>
       <h>28</h>
@@ -91,7 +91,7 @@ bg=pink</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>357</x>
+      <x>350</x>
       <y>378</y>
       <w>70</w>
       <h>91</h>
@@ -99,7 +99,7 @@ bg=pink</panel_attributes>
     <panel_attributes>  includes ^
 lt=&lt;-x
 m1=1
-m2=*
+m2=0..*
 bg=green
 
 </panel_attributes>
@@ -108,7 +108,7 @@ bg=green
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>371</x>
+      <x>364</x>
       <y>231</y>
       <w>49</w>
       <h>77</h>
@@ -116,7 +116,7 @@ bg=green
     <panel_attributes>  has ^
 lt=&lt;-x
 m1=1
-m2=*
+m2=0..*
 bg=green
 
 </panel_attributes>
@@ -125,7 +125,7 @@ bg=green
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>350</x>
+      <x>343</x>
       <y>203</y>
       <w>63</w>
       <h>35</h>

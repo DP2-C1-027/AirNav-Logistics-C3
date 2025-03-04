@@ -6,3 +6,5 @@ user-account-provider-01,true,"UserIdentity{name: 'Laurel', surname: 'Provider',
 user-account-provider-02,true,"UserIdentity{name: 'Martina', surname: 'коза თხა', email: 'martina@acme.com'}",provider2,provider2
 user-account-provider-03,true,"UserIdentity{name: 'Antonia', surname: 'אבטיח Æløzå', email: 'antonia@acme.com'}",provider3,provider3
 user-account-agent-01,true,"UserIdentity{name: 'Lurel', surname: 'Agent', email: 'lurel@acme.com'}",agent1,agent1
+user-account-agent-02,true,"UserIdentity{name: 'Lorel', surname: '之乎', email: 'll@acme.com'}",agent2,agent2
+

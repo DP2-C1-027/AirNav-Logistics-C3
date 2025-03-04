@@ -8,6 +8,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
@@ -48,7 +49,7 @@ public class Passenger extends AbstractEntity {
 
 	@Mandatory
 	@Automapped
-	@ValidMoment
+	@ValidMoment(past = true)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date				dateOfBirth;
 
@@ -64,5 +65,6 @@ public class Passenger extends AbstractEntity {
 	@ManyToOne(optional = false)
 	@Valid
 	@Mandatory
+	@NotNull
 	private Booking				booking;
 }

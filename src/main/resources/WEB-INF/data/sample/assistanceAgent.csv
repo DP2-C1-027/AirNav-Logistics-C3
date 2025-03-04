@@ -1,0 +1,4 @@
+key,employeeCode,spokenLanguages,startDate,bio,salary,photoLink,userAccountKey
+agent-01,EMP001,"English, Spanish",2023-01-15,"Experienced assistance agent with 5 years of experience.",50000.00 USD,https://example.com/photo1.jpg,agent1
+agent-02,EMP002,"French, German",2023-03-20,"New assistance agent with strong communication skills.",45000.00 USD,https://example.com/photo2.jpg,agent2
+agent-03,EMP003,"Italian, Portuguese",2023-05-10,"Manager with no associated data.",60000.00 USD,https://example.com/photo3.jpg,manager3

@@ -13,6 +13,7 @@ import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.constraints.ValidLongText;
+import acme.realms.AssistanceAgent;
 import lombok.Getter;
 import lombok.Setter;
 

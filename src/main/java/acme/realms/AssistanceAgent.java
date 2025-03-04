@@ -1,7 +1,9 @@
 
-package acme.entities.claims;
+package acme.realms;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.validation.Valid;
 import javax.validation.constraints.Past;
 
 import acme.client.components.basis.AbstractEntity;
@@ -13,7 +15,7 @@ import acme.client.components.validation.ValidMoney;
 import acme.client.components.validation.ValidUrl;
 import acme.constraints.ValidEmployeeCode;
 import acme.constraints.ValidLongText;
-// import acme.entities.airline.Airline;
+import acme.entities.airline.Airline;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -60,12 +62,10 @@ public class AssistanceAgent extends AbstractEntity {
 	// Derived attributes -----------------------------------------------------
 
 	// Relationships ----------------------------------------------------------
-	/*
-	 * @Mandatory
-	 * 
-	 * @ManyToOne
-	 * 
-	 * @Valid
-	 * private Airline airline;
-	 */
+
+	@ManyToOne(optional = false)
+	@Mandatory
+	@Valid
+	private Airline				airline;
+
 }

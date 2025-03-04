@@ -2,6 +2,7 @@
 package acme.entities.airline;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.validation.constraints.Past;
@@ -16,6 +17,12 @@ import acme.constraints.ValidIATAcode;
 import acme.constraints.ValidPhoneNumber;
 import acme.constraints.ValidShortText;
 import acme.entities.airport.OperationalScope;
+import lombok.Getter;
+import lombok.Setter;
+
+@Entity
+@Getter
+@Setter
 
 public class Airline extends AbstractEntity {
 

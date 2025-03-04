@@ -24,7 +24,7 @@
 			<acme:menu-suboption code="master.menu.anonymous.mannizcob" action="https://refactoring.guru/"/>
 			<acme:menu-suboption code="master.menu.anonymous.norapfr" action="https://clubalgoritmiaus.es/"/>
 			<acme:menu-suboption code="master.menu.anonymous.HHV4884-ETSII" action="https://astralshiftpro.com/"/>
-			<acme:menu-suboption code="master.menu.anonymous.jose" action="https://clubalgoritmia.us.es"/>
+			<acme:menu-suboption code="master.menu.anonymous.jose" action="https://codeforces.com/problemset"/>
 		</acme:menu-option>
 
 		<acme:menu-option code="master.menu.administrator" access="hasRealm('Administrator')">

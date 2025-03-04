@@ -10,6 +10,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
@@ -39,8 +40,7 @@ public class Booking extends AbstractEntity {
 	private String				locatorCode;
 
 	@Mandatory
-	//valid en el pasado
-	@ValidMoment
+	@ValidMoment(past = true)
 	@Temporal(TemporalType.TIMESTAMP)
 	@Automapped
 	private Date				purchaseMoment;
@@ -67,12 +67,14 @@ public class Booking extends AbstractEntity {
 
 	@ManyToOne(optional = false)
 	@Mandatory
+	@NotNull  //deberia poner notnull
 	@Valid
 	private Customers			customer;
 
 	//@ManyToOne(optional = false)
 	//@Valid
 	//@Mandatory
+	//@NotNull
 	//private Flight flight;
 
 }

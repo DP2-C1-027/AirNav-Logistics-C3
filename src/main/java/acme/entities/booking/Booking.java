@@ -67,7 +67,7 @@ public class Booking extends AbstractEntity {
 
 	@ManyToOne(optional = false)
 	@Mandatory
-	@NotNull  //deberia poner notnull
+	@NotNull
 	@Valid
 	private Customers			customer;
 

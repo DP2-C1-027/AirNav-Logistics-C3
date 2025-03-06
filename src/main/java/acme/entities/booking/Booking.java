@@ -55,6 +55,7 @@ public class Booking extends AbstractEntity {
 	@Mandatory
 	@Automapped
 	@Min(0)
+	@Valid
 	private Double				price;
 
 	@Optional

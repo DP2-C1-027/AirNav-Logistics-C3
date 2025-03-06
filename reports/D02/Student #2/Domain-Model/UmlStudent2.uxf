@@ -24,9 +24,9 @@ bg=#f3fdff</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>126</x>
+      <x>84</x>
       <y>455</y>
-      <w>469</w>
+      <w>511</w>
       <h>91</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
@@ -43,9 +43,9 @@ bg=green</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>133</x>
+      <x>77</x>
       <y>294</y>
-      <w>469</w>
+      <w>525</w>
       <h>91</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
@@ -53,7 +53,7 @@ Booking
 --
 + locatorCode: String {Mandatory,ValidLocatorCode, Automapped,Column(unique = true)}
 + purchaseMoment: Date {Mandatory, ValidMoment(past=true), Temporal(TemporalType.TIMESTAMP, Automapped}
-+ travelClass: TravelClass {Mandatory, Valid, Automapped}
++ travelClass: TravelClass {Mandatory, Automapped, Enumerated(EnumType.STRING)}
 + price: Double {Mandatory,Min(0),Valid Automapped}
 + lastNibble: String {Optional, ValidLastNibble, Automapped}
 bg=green</panel_attributes>

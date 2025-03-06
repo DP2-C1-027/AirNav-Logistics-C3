@@ -55,6 +55,7 @@ public class Customers extends AbstractRole {
 	@Optional
 	@Automapped
 	@ValidEarnedPoints
+	/// mirar ev
 	private Integer				earnedPoints;
 
 	// Derived attributes -----------------------------------------------------

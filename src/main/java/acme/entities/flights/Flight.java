@@ -2,6 +2,8 @@
 package acme.entities.flights;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.validation.Valid;
 
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.datatypes.Money;
@@ -11,6 +13,7 @@ import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoney;
 import acme.constraints.ValidLongText;
 import acme.constraints.ValidShortText;
+import acme.realms.AirlineManager;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -25,23 +28,22 @@ public class Flight extends AbstractEntity {
 	// Attributes -------------------------------------------------------------
 
 	@Mandatory
-	@ValidShortText
 	@Automapped
+	@ValidShortText
 	private String				tag;
 
 	@Mandatory
-	@ValidLongText
 	@Automapped
-	private String				indication;
+	private Boolean				indication;
 
 	@Mandatory
-	@ValidMoney
 	@Automapped
-	private Money				salary;
+	@ValidMoney
+	private Money				cost;
 
 	@Optional
-	@ValidLongText
 	@Automapped
+	@ValidLongText
 	private String				description;
 
 	/*
@@ -80,5 +82,10 @@ public class Flight extends AbstractEntity {
 	// Derived attributes -----------------------------------------------------
 
 	// Relationships ----------------------------------------------------------
+
+	@Mandatory
+	@ManyToOne(optional = false)
+	@Valid
+	private AirlineManager		airlineManager;
 
 }

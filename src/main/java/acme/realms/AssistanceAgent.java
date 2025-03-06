@@ -8,16 +8,16 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
-import javax.validation.constraints.Past;
 
 import acme.client.components.basis.AbstractRole;
 import acme.client.components.datatypes.Money;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
+import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidMoney;
 import acme.client.components.validation.ValidUrl;
-import acme.constraints.ValidEmployeeCode;
+import acme.constraints.ValidIdentifier;
 import acme.constraints.ValidLongText;
 import acme.entities.airline.Airline;
 import lombok.Getter;
@@ -34,41 +34,42 @@ public class AssistanceAgent extends AbstractRole {
 	// Attributes -------------------------------------------------------------
 
 	@Mandatory
-	@ValidEmployeeCode
 	@Automapped
+	@ValidIdentifier
 	private String				employeeCode;
 
 	@Mandatory
-	@ValidLongText
 	@Automapped
+	@ValidLongText
 	private String				spokenLanguages;
 
 	@Mandatory
-	@Past
+	@Automapped
+	@ValidMoment(past = true)
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date				startDate;
+	private Date				moment;
 
 	@Optional
-	@ValidLongText
 	@Automapped
+	@ValidLongText
 	private String				bio;
 
 	@Optional
-	@ValidMoney
 	@Automapped
+	@ValidMoney
 	private Money				salary;
 
 	@Optional
-	@ValidUrl
 	@Automapped
-	private String				photoLink;
+	@ValidUrl
+	private String				photo;
 
 	// Derived attributes -----------------------------------------------------
 
 	// Relationships ----------------------------------------------------------
 
-	@ManyToOne(optional = false)
 	@Mandatory
+	@ManyToOne(optional = false)
 	@Valid
 	private Airline				airline;
 

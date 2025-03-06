@@ -28,8 +28,8 @@ public class Service extends AbstractEntity {
 	// Attributes -------------------------------------------------------------
 
 	@Mandatory
-	@ValidShortText
 	@Automapped
+	@ValidShortText
 	private String				name;
 
 	@Mandatory
@@ -37,10 +37,10 @@ public class Service extends AbstractEntity {
 	@ValidUrl
 	private String				picture;
 
-	@Optional
+	@Mandatory
 	@Automapped
 	@Min(0)
-	private Double				averageDwellTime;
+	private Integer				averageDwellTime;
 
 	@Optional
 	@Automapped

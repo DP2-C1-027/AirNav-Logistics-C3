@@ -3,6 +3,8 @@ package acme.realms;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
@@ -13,7 +15,7 @@ import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoney;
-import acme.constraints.ValidEmployeeCode;
+import acme.constraints.ValidIdentifier;
 import acme.constraints.ValidLongText;
 import acme.constraints.ValidPhoneNumber;
 import acme.entities.airline.Airline;
@@ -32,7 +34,7 @@ public class FlightCrewMember extends AbstractRole {
 
 	@Mandatory
 	@Automapped
-	@ValidEmployeeCode
+	@ValidIdentifier
 	@Column(unique = true)
 	private String				employeeCode;
 
@@ -48,6 +50,7 @@ public class FlightCrewMember extends AbstractRole {
 
 	@Mandatory
 	@Automapped
+	@Enumerated(EnumType.STRING)
 	private AvailabilityStatus	availabilityStatus;
 
 	@Mandatory
@@ -65,8 +68,8 @@ public class FlightCrewMember extends AbstractRole {
 	// Relationships ----------------------------------------------------------
 
 	@Mandatory
-	@Valid
 	@ManyToOne(optional = false)
+	@Valid
 	private Airline				airline;
 
 }

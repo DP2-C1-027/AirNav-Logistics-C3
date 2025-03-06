@@ -1,17 +1,21 @@
 
 package acme.entities.claims;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.Valid;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.Past;
 
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
+import acme.client.components.validation.ValidEmail;
+import acme.client.components.validation.ValidMoment;
 import acme.constraints.ValidLongText;
 import acme.realms.AssistanceAgent;
 import lombok.Getter;
@@ -28,29 +32,29 @@ public class Claim extends AbstractEntity {
 	// Attributes -------------------------------------------------------------
 
 	@Mandatory
-	@Past
 	@Automapped
-	private java.util.Date		registrationMoment;
+	@ValidMoment(past = true)
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date				registrationMoment;
 
 	@Mandatory
-	@Email
 	@Automapped
+	@ValidEmail
 	private String				passengerEmail;
 
 	@Mandatory
-	@ValidLongText
 	@Automapped
+	@ValidLongText
 	private String				description;
 
 	@Mandatory
-	@Enumerated(EnumType.STRING)
 	@Automapped
+	@Enumerated(EnumType.STRING)
 	private ClaimType			type;
 
 	@Mandatory
-	@Valid
 	@Automapped
-	private Boolean				isAccepted;
+	private Boolean				indicator;
 
 	// Derived attributes -----------------------------------------------------
 
@@ -61,9 +65,4 @@ public class Claim extends AbstractEntity {
 	@Valid
 	private AssistanceAgent		registeredBy;
 
-
-	// Enumerated type for claim type -----------------------------------------
-	public enum ClaimType {
-		FLIGHT_ISSUES, LUGGAGE_ISSUES, SECURITY_INCIDENT, OTHER_ISSUES
-	}
 }

@@ -8,8 +8,8 @@ import acme.client.components.basis.AbstractRole;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
-import acme.constraints.ValidCustomersIdentifier;
 import acme.constraints.ValidEarnedPoints;
+import acme.constraints.ValidIdentifier;
 import acme.constraints.ValidLongText;
 import acme.constraints.ValidPhoneNumber;
 import acme.constraints.ValidShortText;
@@ -27,19 +27,19 @@ public class Customers extends AbstractRole {
 	// Attributes -------------------------------------------------------------
 
 	@Mandatory
-	@ValidCustomersIdentifier
-	@Column(unique = true)
 	@Automapped
+	@ValidIdentifier
+	@Column(unique = true)
 	private String				identifier;
 
 	@Mandatory
-	@ValidPhoneNumber
 	@Automapped
+	@ValidPhoneNumber
 	private String				phone;
 
 	@Mandatory
-	@ValidLongText
 	@Automapped
+	@ValidLongText
 	private String				physicalAddress;
 
 	@Mandatory

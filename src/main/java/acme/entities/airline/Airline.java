@@ -1,29 +1,31 @@
 
 package acme.entities.airline;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.validation.constraints.Past;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidEmail;
+import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidUrl;
 import acme.constraints.ValidIATAcode;
 import acme.constraints.ValidPhoneNumber;
 import acme.constraints.ValidShortText;
-import acme.entities.airport.OperationalScope;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
-
 public class Airline extends AbstractEntity {
 
 	// Serialisation version --------------------------------------------------
@@ -32,19 +34,15 @@ public class Airline extends AbstractEntity {
 	// Attributes -------------------------------------------------------------
 
 	@Mandatory
-	@ValidShortText
 	@Automapped
+	@ValidShortText
 	private String				name;
 
 	@Mandatory
-	@ValidIATAcode
 	@Automapped
+	@ValidIATAcode
 	@Column(unique = true)
 	private String				code;
-
-	@Mandatory
-	@Automapped
-	private OperationalScope	operationalScope;
 
 	@Mandatory
 	@Automapped
@@ -52,14 +50,15 @@ public class Airline extends AbstractEntity {
 	private String				website;
 
 	@Mandatory
-	@Enumerated(EnumType.STRING)
 	@Automapped
-	private Type				type;
+	@Enumerated(EnumType.STRING)
+	private AirlineType			type;
 
 	@Mandatory
 	@Automapped
-	@Past
-	private java.util.Date		foundationMoment;
+	@ValidMoment(past = true)
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date				foundationMoment;
 
 	@Optional
 	@Automapped

@@ -1,9 +1,11 @@
 
 package acme.entities.flightAssignment;
 
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -31,6 +33,7 @@ public class FlightAssignment extends AbstractEntity {
 
 	@Mandatory
 	@Automapped
+	@Enumerated(EnumType.STRING)
 	private Duty				duty;
 
 	@Mandatory
@@ -41,6 +44,7 @@ public class FlightAssignment extends AbstractEntity {
 
 	@Mandatory
 	@Automapped
+	@Enumerated(EnumType.STRING)
 	private CurrentStatus		currentStatus;
 
 	@Optional
@@ -53,8 +57,8 @@ public class FlightAssignment extends AbstractEntity {
 	// Relationships ----------------------------------------------------------
 
 	@Mandatory
-	@Valid
 	@OneToOne(optional = false)
+	@Valid
 	private FlightCrewMember	flightCrewMember;
 
 }

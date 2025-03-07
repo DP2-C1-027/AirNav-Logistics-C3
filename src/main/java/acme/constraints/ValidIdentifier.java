@@ -19,7 +19,7 @@ import javax.validation.constraints.Pattern;
 
 @NotBlank
 @Pattern(regexp = "^[A-Z]{2,3}\\d{6}$")
-public @interface ValidCustomersIdentifier {
+public @interface ValidIdentifier {
 
 	String message() default "{acme.validation.text.message}";
 	Class<?>[] groups() default {};

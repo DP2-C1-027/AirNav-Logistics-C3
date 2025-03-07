@@ -1,12 +1,12 @@
 
-package acme.entities.claims;
+package acme.entities.flightAssignment;
 
 import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
@@ -14,17 +14,17 @@ import javax.validation.Valid;
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
-import acme.client.components.validation.ValidEmail;
+import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoment;
 import acme.constraints.ValidLongText;
-import acme.realms.AssistanceAgent;
+import acme.realms.FlightCrewMember;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
-public class Claim extends AbstractEntity {
+public class FlightAssignment extends AbstractEntity {
 
 	// Serialisation version --------------------------------------------------
 	private static final long	serialVersionUID	= 1L;
@@ -33,36 +33,32 @@ public class Claim extends AbstractEntity {
 
 	@Mandatory
 	@Automapped
+	@Enumerated(EnumType.STRING)
+	private Duty				duty;
+
+	@Mandatory
+	@Automapped
 	@ValidMoment(past = true)
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date				registrationMoment;
-
-	@Mandatory
-	@Automapped
-	@ValidEmail
-	private String				passengerEmail;
-
-	@Mandatory
-	@Automapped
-	@ValidLongText
-	private String				description;
+	private Date				moment;
 
 	@Mandatory
 	@Automapped
 	@Enumerated(EnumType.STRING)
-	private ClaimType			type;
+	private CurrentStatus		currentStatus;
 
-	@Mandatory
+	@Optional
 	@Automapped
-	private Boolean				indicator;
+	@ValidLongText
+	private String				remarks;
 
 	// Derived attributes -----------------------------------------------------
 
 	// Relationships ----------------------------------------------------------
 
 	@Mandatory
-	@ManyToOne
+	@OneToOne(optional = false)
 	@Valid
-	private AssistanceAgent		registeredBy;
+	private FlightCrewMember	flightCrewMember;
 
 }

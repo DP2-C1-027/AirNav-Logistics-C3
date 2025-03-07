@@ -1,26 +1,32 @@
 
-package acme.entities.claims;
+package acme.realms;
+
+import java.util.Date;
 
 import javax.persistence.Entity;
-import javax.validation.constraints.Past;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.Valid;
 
-import acme.client.components.basis.AbstractEntity;
+import acme.client.components.basis.AbstractRole;
 import acme.client.components.datatypes.Money;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
+import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidMoney;
 import acme.client.components.validation.ValidUrl;
-import acme.constraints.ValidEmployeeCode;
+import acme.constraints.ValidIdentifier;
 import acme.constraints.ValidLongText;
-// import acme.entities.airlines.Airline;
+import acme.entities.airline.Airline;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
-public class AssistanceAgent extends AbstractEntity {
+public class AssistanceAgent extends AbstractRole {
 
 	// Serialisation version --------------------------------------------------
 	private static final long	serialVersionUID	= 1L;
@@ -28,44 +34,43 @@ public class AssistanceAgent extends AbstractEntity {
 	// Attributes -------------------------------------------------------------
 
 	@Mandatory
-	@ValidEmployeeCode
 	@Automapped
+	@ValidIdentifier
 	private String				employeeCode;
 
 	@Mandatory
-	@ValidLongText
 	@Automapped
+	@ValidLongText
 	private String				spokenLanguages;
 
 	@Mandatory
-	@Past
 	@Automapped
-	private java.util.Date		startDate;
+	@ValidMoment(past = true)
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date				moment;
 
 	@Optional
-	@ValidLongText
 	@Automapped
+	@ValidLongText
 	private String				bio;
 
 	@Optional
-	@ValidMoney
 	@Automapped
+	@ValidMoney
 	private Money				salary;
 
 	@Optional
-	@ValidUrl
 	@Automapped
-	private String				photoLink;
+	@ValidUrl
+	private String				photo;
 
 	// Derived attributes -----------------------------------------------------
 
 	// Relationships ----------------------------------------------------------
-	/*
-	 * @Mandatory
-	 * 
-	 * @ManyToOne
-	 * 
-	 * @Valid
-	 * private Airline airline;
-	 */
+
+	@Mandatory
+	@ManyToOne(optional = false)
+	@Valid
+	private Airline				airline;
+
 }

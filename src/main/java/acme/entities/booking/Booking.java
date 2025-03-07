@@ -5,6 +5,8 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -18,6 +20,7 @@ import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoment;
 import acme.constraints.ValidLastNibble;
 import acme.constraints.ValidLocatorCode;
+import acme.entities.flights.Flight;
 import acme.realms.booking.Customers;
 import lombok.Getter;
 import lombok.Setter;
@@ -33,21 +36,20 @@ public class Booking extends AbstractEntity {
 	// Attributes -------------------------------------------------------------
 
 	@Mandatory
-	@ValidLocatorCode
 	@Automapped
+	@ValidLocatorCode
 	@Column(unique = true)
 	private String				locatorCode;
 
 	@Mandatory
-	//valid en el pasado
-	@ValidMoment
-	@Temporal(TemporalType.TIMESTAMP)
 	@Automapped
+	@ValidMoment(past = true)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date				purchaseMoment;
 
 	@Mandatory
 	@Automapped
-	@Valid
+	@Enumerated(EnumType.STRING)
 	private TravelClass			travelClass;
 
 	@Mandatory
@@ -65,14 +67,14 @@ public class Booking extends AbstractEntity {
 
 	// Relationships ----------------------------------------------------------
 
-	@ManyToOne(optional = false)
 	@Mandatory
+	@ManyToOne(optional = false)
 	@Valid
 	private Customers			customer;
 
-	//@ManyToOne(optional = false)
-	//@Valid
-	//@Mandatory
-	//private Flight flight;
+	@Mandatory
+	@ManyToOne(optional = false)
+	@Valid
+	private Flight				flight;
 
 }

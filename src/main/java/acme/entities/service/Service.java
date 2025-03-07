@@ -1,17 +1,18 @@
 
-package acme.realms.booking;
+package acme.entities.service;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.validation.constraints.Min;
 
-import acme.client.components.basis.AbstractRole;
+import acme.client.components.basis.AbstractEntity;
+import acme.client.components.datatypes.Money;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
-import acme.constraints.ValidEarnedPoints;
-import acme.constraints.ValidIdentifier;
-import acme.constraints.ValidLongText;
-import acme.constraints.ValidPhoneNumber;
+import acme.client.components.validation.ValidMoney;
+import acme.client.components.validation.ValidUrl;
+import acme.constraints.ValidPromotionCode;
 import acme.constraints.ValidShortText;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,7 +20,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class Customers extends AbstractRole {
+public class Service extends AbstractEntity {
 
 	// Serialisation version --------------------------------------------------
 	private static final long	serialVersionUID	= 1L;
@@ -28,35 +29,29 @@ public class Customers extends AbstractRole {
 
 	@Mandatory
 	@Automapped
-	@ValidIdentifier
-	@Column(unique = true)
-	private String				identifier;
-
-	@Mandatory
-	@Automapped
-	@ValidPhoneNumber
-	private String				phone;
-
-	@Mandatory
-	@Automapped
-	@ValidLongText
-	private String				physicalAddress;
-
-	@Mandatory
-	@Automapped
 	@ValidShortText
-	private String				city;
+	private String				name;
 
 	@Mandatory
 	@Automapped
-	@ValidShortText
-	private String				country;
+	@ValidUrl
+	private String				picture;
+
+	@Mandatory
+	@Automapped
+	@Min(0)
+	private Integer				averageDwellTime;
 
 	@Optional
 	@Automapped
-	@ValidEarnedPoints
-	/// mirar ev
-	private Integer				earnedPoints;
+	@ValidPromotionCode
+	@Column(unique = true)
+	private String				promotionCode;
+
+	@Optional
+	@Automapped
+	@ValidMoney
+	private Money				money;
 
 	// Derived attributes -----------------------------------------------------
 

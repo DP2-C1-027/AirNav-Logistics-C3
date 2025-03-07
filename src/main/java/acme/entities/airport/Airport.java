@@ -2,6 +2,10 @@
 package acme.entities.airport;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.validation.Valid;
 
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
@@ -12,7 +16,12 @@ import acme.client.components.validation.ValidUrl;
 import acme.constraints.ValidIATAcode;
 import acme.constraints.ValidPhoneNumber;
 import acme.constraints.ValidShortText;
+import lombok.Getter;
+import lombok.Setter;
 
+@Entity
+@Getter
+@Setter
 public class Airport extends AbstractEntity {
 
 	// Serialisation version --------------------------------------------------
@@ -21,18 +30,19 @@ public class Airport extends AbstractEntity {
 	// Attributes -------------------------------------------------------------
 
 	@Mandatory
-	@ValidShortText
 	@Automapped
+	@ValidShortText
 	private String				name;
 
 	@Mandatory
-	@ValidIATAcode
 	@Automapped
+	@ValidIATAcode
 	@Column(unique = true)
 	private String				code;
 
 	@Mandatory
 	@Automapped
+	@Enumerated(EnumType.STRING)
 	private OperationalScope	operationalScope;
 
 	@Mandatory
@@ -57,7 +67,7 @@ public class Airport extends AbstractEntity {
 
 	@Optional
 	@Automapped
-	//tengo q validar algo?¿
+	@Valid
 	private String				address;
 
 	@Optional

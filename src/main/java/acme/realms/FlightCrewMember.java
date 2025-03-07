@@ -1,30 +1,31 @@
 
-package acme.entities.claims;
+package acme.realms;
 
-import java.util.Date;
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.Valid;
+import javax.validation.constraints.Min;
 
-import acme.client.components.basis.AbstractEntity;
+import acme.client.components.basis.AbstractRole;
+import acme.client.components.datatypes.Money;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
-import acme.client.components.validation.ValidEmail;
-import acme.client.components.validation.ValidMoment;
+import acme.client.components.validation.Optional;
+import acme.client.components.validation.ValidMoney;
+import acme.constraints.ValidIdentifier;
 import acme.constraints.ValidLongText;
-import acme.realms.AssistanceAgent;
+import acme.constraints.ValidPhoneNumber;
+import acme.entities.airline.Airline;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
-public class Claim extends AbstractEntity {
+public class FlightCrewMember extends AbstractRole {
 
 	// Serialisation version --------------------------------------------------
 	private static final long	serialVersionUID	= 1L;
@@ -33,36 +34,42 @@ public class Claim extends AbstractEntity {
 
 	@Mandatory
 	@Automapped
-	@ValidMoment(past = true)
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date				registrationMoment;
+	@ValidIdentifier
+	@Column(unique = true)
+	private String				employeeCode;
 
 	@Mandatory
 	@Automapped
-	@ValidEmail
-	private String				passengerEmail;
+	@ValidPhoneNumber
+	private String				phoneNumber;
 
 	@Mandatory
 	@Automapped
 	@ValidLongText
-	private String				description;
+	private String				languageSkills;
 
 	@Mandatory
 	@Automapped
 	@Enumerated(EnumType.STRING)
-	private ClaimType			type;
+	private AvailabilityStatus	availabilityStatus;
 
 	@Mandatory
 	@Automapped
-	private Boolean				indicator;
+	@ValidMoney
+	private Money				salary;
+
+	@Optional
+	@Automapped
+	@Min(0)
+	private Integer				yearsOfExperience;
 
 	// Derived attributes -----------------------------------------------------
 
 	// Relationships ----------------------------------------------------------
 
 	@Mandatory
-	@ManyToOne
+	@ManyToOne(optional = false)
 	@Valid
-	private AssistanceAgent		registeredBy;
+	private Airline				airline;
 
 }

@@ -1,11 +1,14 @@
 
 package acme.entities.claims;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Past;
+import javax.validation.constraints.Min;
 
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
@@ -27,27 +30,27 @@ public class TrackingLog extends AbstractEntity {
 	// Attributes -------------------------------------------------------------
 
 	@Mandatory
-	@Past
 	@Automapped
-	private java.util.Date		lastUpdateMoment;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date				lastUpdateMoment;
 
 	@Mandatory
-	@ValidShortText
 	@Automapped
+	@ValidShortText
 	private String				stepUndergoing;
 
 	@Mandatory
-	@NotNull
 	@Automapped
+	@Min(0)
 	private Double				resolutionPercentage;
 
 	@Mandatory
 	@Automapped
-	private Boolean				isFinalDecision;
+	private Boolean				indicator;
 
 	@Optional
-	@ValidLongText
 	@Automapped
+	@ValidLongText
 	private String				resolutionDetails;
 
 	// Relationships ----------------------------------------------------------

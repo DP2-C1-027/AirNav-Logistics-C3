@@ -1,8 +1,9 @@
 
-package acme.entities.claims;
+package acme.entities.legs;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -10,21 +11,20 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
+import javax.validation.constraints.Min;
 
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
-import acme.client.components.validation.ValidEmail;
-import acme.client.components.validation.ValidMoment;
-import acme.constraints.ValidLongText;
-import acme.realms.AssistanceAgent;
+import acme.constraints.ValidIATAcode;
+import acme.entities.airport.Airport;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
-public class Claim extends AbstractEntity {
+public class Leg extends AbstractEntity {
 
 	// Serialisation version --------------------------------------------------
 	private static final long	serialVersionUID	= 1L;
@@ -33,28 +33,29 @@ public class Claim extends AbstractEntity {
 
 	@Mandatory
 	@Automapped
-	@ValidMoment(past = true)
+	@ValidIATAcode
+	@Column(unique = true)
+	private String				flightNumber;
+
+	@Mandatory
+	@Automapped
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date				registrationMoment;
+	private Date				scheduledDeparture;
 
 	@Mandatory
 	@Automapped
-	@ValidEmail
-	private String				passengerEmail;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date				scheduledArrival;
 
 	@Mandatory
 	@Automapped
-	@ValidLongText
-	private String				description;
+	@Min(0)
+	private Integer				duration;
 
 	@Mandatory
 	@Automapped
 	@Enumerated(EnumType.STRING)
-	private ClaimType			type;
-
-	@Mandatory
-	@Automapped
-	private Boolean				indicator;
+	private LegStatus			status;
 
 	// Derived attributes -----------------------------------------------------
 
@@ -63,6 +64,15 @@ public class Claim extends AbstractEntity {
 	@Mandatory
 	@ManyToOne
 	@Valid
-	private AssistanceAgent		registeredBy;
+	private Airport				departureAirport;
 
+	@Mandatory
+	@ManyToOne
+	@Valid
+	private Airport				arrivalAirport;
+
+	//	@Mandatory
+	//	@OneToOne
+	// 	@Valid
+	//	private Aircraft			aircraft;
 }

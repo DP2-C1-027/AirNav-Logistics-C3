@@ -1,30 +1,26 @@
 
-package acme.entities.booking;
-
-import java.util.Date;
+package acme.entities.flights;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.Valid;
 
 import acme.client.components.basis.AbstractEntity;
+import acme.client.components.datatypes.Money;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
-import acme.client.components.validation.ValidEmail;
-import acme.client.components.validation.ValidMoment;
+import acme.client.components.validation.ValidMoney;
 import acme.constraints.ValidLongText;
-import acme.constraints.ValidPassportNumber;
 import acme.constraints.ValidShortText;
+import acme.realms.AirlineManager;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
-public class Passenger extends AbstractEntity {
+public class Flight extends AbstractEntity {
 
 	// Serialisation version --------------------------------------------------
 	private static final long	serialVersionUID	= 1L;
@@ -33,30 +29,56 @@ public class Passenger extends AbstractEntity {
 
 	@Mandatory
 	@Automapped
-	@ValidLongText
-	private String				fullName;
+	@ValidShortText
+	private String				tag;
 
 	@Mandatory
 	@Automapped
-	@ValidEmail
-	private String				email;
+	private Boolean				indication;
 
 	@Mandatory
 	@Automapped
-	@ValidPassportNumber
-	private String				passportNumber;
-
-	@Mandatory
-	@Automapped
-	@ValidMoment(past = true)
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date				dateOfBirth;
+	@ValidMoney
+	private Money				cost;
 
 	@Optional
 	@Automapped
-	@ValidShortText
-	private String				specialNeeds;
+	@ValidLongText
+	private String				description;
 
+	/*
+	 * Debería ser Transient casi seguro
+	 * 
+	 * @Mandatory
+	 * 
+	 * @Automapped
+	 * private java.util.Date scheduledDeparture;
+	 * 
+	 * @Mandatory
+	 * 
+	 * @Automapped
+	 * private java.util.Date scheduledArrival;
+	 * 
+	 * 
+	 * @Mandatory
+	 * 
+	 * @ValidShortText
+	 * 
+	 * @Automapped
+	 * private String departureCity;
+	 * 
+	 * @Mandatory
+	 * 
+	 * @ValidShortText
+	 * 
+	 * @Automapped
+	 * private String arrivalCity;
+	 * 
+	 * @Mandatory
+	 * 
+	 * @Automapped
+	 * private Integer layovers;
+	 */
 	// Derived attributes -----------------------------------------------------
 
 	// Relationships ----------------------------------------------------------
@@ -64,5 +86,6 @@ public class Passenger extends AbstractEntity {
 	@Mandatory
 	@ManyToOne(optional = false)
 	@Valid
-	private Booking				booking;
+	private AirlineManager		airlineManager;
+
 }

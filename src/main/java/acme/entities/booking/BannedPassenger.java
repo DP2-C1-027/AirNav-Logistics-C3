@@ -1,30 +1,27 @@
 
-package acme.entities.claims;
+package acme.entities.booking;
 
 import java.util.Date;
 
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.Valid;
 
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
-import acme.client.components.validation.ValidEmail;
+import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoment;
 import acme.constraints.ValidLongText;
-import acme.realms.AssistanceAgent;
+import acme.constraints.ValidPassportNumber;
+import acme.constraints.ValidShortText;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
-public class Claim extends AbstractEntity {
+public class BannedPassenger extends AbstractEntity {
 
 	// Serialisation version --------------------------------------------------
 	private static final long	serialVersionUID	= 1L;
@@ -32,37 +29,45 @@ public class Claim extends AbstractEntity {
 	// Attributes -------------------------------------------------------------
 
 	@Mandatory
+	@ValidLongText
 	@Automapped
-	@ValidMoment(past = true)
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date				registrationMoment;
+	private String				fullName;
 
 	@Mandatory
 	@Automapped
-	@ValidEmail
-	private String				passengerEmail;
+	@ValidPassportNumber
+	private String				passportNumber;
+
+	@Mandatory
+	@Automapped
+	@ValidMoment(past = true)
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date				dateOfBirth;
+
+	@Mandatory
+	@Automapped
+	@ValidShortText
+	private String				nationality;
 
 	@Mandatory
 	@Automapped
 	@ValidLongText
-	private String				description;
+	private String				reason;
 
 	@Mandatory
 	@Automapped
-	@Enumerated(EnumType.STRING)
-	private ClaimType			type;
+	@ValidMoment(past = true)
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date				dateOfBan;
 
-	@Mandatory
+	@Optional
 	@Automapped
-	private Boolean				indicator;
+	@ValidMoment(past = true)
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date				dateOfLift;
 
 	// Derived attributes -----------------------------------------------------
 
 	// Relationships ----------------------------------------------------------
-
-	@Mandatory
-	@ManyToOne
-	@Valid
-	private AssistanceAgent		registeredBy;
 
 }

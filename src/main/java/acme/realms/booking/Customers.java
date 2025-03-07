@@ -11,8 +11,8 @@ import acme.client.components.validation.Optional;
 import acme.constraints.ValidEarnedPoints;
 import acme.constraints.ValidIdentifier;
 import acme.constraints.ValidLongText;
-import acme.constraints.ValidPhoneNumber;
 import acme.constraints.ValidShortText;
+import acme.datatypes.Phone;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -34,8 +34,8 @@ public class Customers extends AbstractRole {
 
 	@Mandatory
 	@Automapped
-	@ValidPhoneNumber
-	private String				phone;
+
+	private Phone				phone;
 
 	@Mandatory
 	@Automapped
@@ -55,7 +55,6 @@ public class Customers extends AbstractRole {
 	@Optional
 	@Automapped
 	@ValidEarnedPoints
-	/// mirar ev
 	private Integer				earnedPoints;
 
 	// Derived attributes -----------------------------------------------------

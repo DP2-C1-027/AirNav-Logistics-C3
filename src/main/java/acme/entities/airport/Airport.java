@@ -14,8 +14,8 @@ import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidEmail;
 import acme.client.components.validation.ValidUrl;
 import acme.constraints.ValidIATAcode;
-import acme.constraints.ValidPhoneNumber;
 import acme.constraints.ValidShortText;
+import acme.datatypes.Phone;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -72,8 +72,8 @@ public class Airport extends AbstractEntity {
 
 	@Optional
 	@Automapped
-	@ValidPhoneNumber
-	private String				phoneNumber;
+
+	private Phone				phoneNumber;
 
 	// Derived attributes -----------------------------------------------------
 

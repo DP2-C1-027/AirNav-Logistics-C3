@@ -1,0 +1,3 @@
+key,registrationMoment,passengerEmail,description,type,indicator,key:registeredBy
+claim-01,2020/11/01 10:00,passenger1@gmail.com,"The flight was delayed for 3 hours.",FLIGHT_ISSUES,true,agent-01
+claim-02,2020/11/01 10:00,passenger1@gmail.com,"The flight was delayed for 7 hours.",FLIGHT_ISSUES,false,agent-01

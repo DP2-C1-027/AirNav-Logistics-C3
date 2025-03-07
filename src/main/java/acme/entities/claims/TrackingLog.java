@@ -14,6 +14,7 @@ import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
+import acme.client.components.validation.ValidMoment;
 import acme.constraints.ValidLongText;
 import acme.constraints.ValidShortText;
 import lombok.Getter;
@@ -31,6 +32,7 @@ public class TrackingLog extends AbstractEntity {
 
 	@Mandatory
 	@Automapped
+	@ValidMoment(past = true)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date				lastUpdateMoment;
 

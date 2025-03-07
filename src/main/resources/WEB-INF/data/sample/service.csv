@@ -1,0 +1,3 @@
+key,name,picture,averageDwellTime,promotionCode,money
+service-01,Wi-Fi Service,https://example.com/wifi.jpg,30,WIFI-23,EUR 500.00
+service-02,Lounge Access,https://example.com/lounge.jpg,60,LOUN-45,EUR 500.00

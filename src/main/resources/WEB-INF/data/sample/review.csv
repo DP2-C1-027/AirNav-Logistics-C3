@@ -1,0 +1,3 @@
+key,name,moment,subject,text,score,recommended
+review-01,John ,2020/09/01 10:00,Great Service,"The service was excellent, fast and friendly.",4.5,true
+review-02,Karen,2020/09/02 10:00,Poor Service,"The service was slow and unprofessional.",1.0,false

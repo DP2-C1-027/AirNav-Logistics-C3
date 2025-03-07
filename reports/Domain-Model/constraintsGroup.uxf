@@ -108,8 +108,8 @@ bg=RED</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>637</x>
-      <y>364</y>
+      <x>581</x>
+      <y>343</y>
       <w>189</w>
       <h>63</h>
     </coordinates>

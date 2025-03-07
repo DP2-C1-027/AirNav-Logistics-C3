@@ -40,7 +40,7 @@ Airport
 + website: String {Optional, ValidUrl, Automapped}
 + email: String {Optional, ValidEmail, Automapped}
 + address: String {Optional, Valid, Automapped}
-+ phoneNumber: String {Optional, ValidPhone, Automapped}
++ phoneNumber: String {Optional, ValidPhoneNumber, Automapped}
 bg=green</panel_attributes>
     <additional_attributes/>
   </element>
@@ -61,7 +61,7 @@ Airlane
 + email: String {Optional, ValidEmail, Automapped}
 + type: AirlineType {Mandatory, Enumerated(EnumType.STRING), Automapped}
 + foundationMoment: Date {Mandatory, ValidMoment(past=true), Temporal(TemporalType.TIMESTAMP), Automapped}
-+ phoneNumber: String {Optional, ValidPhone, Automapped}
++ phoneNumber: String {Optional, ValidPhoneNumber, Automapped}
 bg=green</panel_attributes>
     <additional_attributes/>
   </element>
@@ -70,17 +70,18 @@ bg=green</panel_attributes>
     <coordinates>
       <x>558</x>
       <y>360</y>
-      <w>264</w>
-      <h>78</h>
+      <w>354</w>
+      <h>90</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
-Announcement
+Aircraft
 --
-+ moment: Date {Mandatory, ValidMoment(past=true), Automapped}
-+ title: String {Mandatory, ValidShortText, Automapped}
-+ status: AnnouncementStatus {Mandatory, Valid, Automapped}
-+ text: String {Mandatory, ValidLongText, Automapped}
-+ moreInfo: String {Mandatory, ValidUrl, Automapped}
++ model: String {Mandatory,ValidShortText, Automapped}
++ registrationNumber: String {Mandatory, ValidShortText, Column(unique=true), Automapped}
++ capacity: Integer {Mandatory,Automapped}
++ cargoWeight: Integer {Mandatory, Min(2),Max(50), Automapped}
++ status: Boolean {Mandatory, Automapped}
++ details: String {Mandatory, Automapped, ValidLongText}
 bg=green</panel_attributes>
     <additional_attributes/>
   </element>

@@ -70,7 +70,7 @@ bg=green</panel_attributes>
     <panel_attributes>Booked by &gt;
 lt=&lt;-x
 m1=1
-m2=0..*
+m2=*
 
 </panel_attributes>
     <additional_attributes>150.0;20.0;10.0;20.0</additional_attributes>
@@ -99,7 +99,7 @@ bg=pink</panel_attributes>
     <panel_attributes>  includes ^
 lt=&lt;-x
 m1=1
-m2=0..*
+m2=*
 bg=green
 
 </panel_attributes>
@@ -116,7 +116,7 @@ bg=green
     <panel_attributes>  has ^
 lt=&lt;-x
 m1=1
-m2=0..*
+m2=*
 bg=green
 
 </panel_attributes>

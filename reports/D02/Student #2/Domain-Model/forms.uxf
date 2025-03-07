@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="15.1">
-  <zoom_level>8</zoom_level>
+  <zoom_level>10</zoom_level>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>200</x>
-      <y>40</y>
-      <w>456</w>
-      <h>128</h>
+      <x>120</x>
+      <y>60</y>
+      <w>570</w>
+      <h>160</h>
     </coordinates>
-    <panel_attributes>realms.uxf
+    <panel_attributes>forms.uxf
 
 Copyright (C) 2012-2025 Rafael Corchuelo.
 
@@ -24,21 +24,21 @@ bg=#f3fdff</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>192</x>
-      <y>208</y>
-      <w>496</w>
-      <h>120</h>
+      <x>110</x>
+      <y>270</y>
+      <w>360</w>
+      <h>150</h>
     </coordinates>
-    <panel_attributes>&lt;&lt;Role&gt;&gt;
-Customers
+    <panel_attributes>&lt;&lt;Form&gt;&gt;
+Dashboard
 --
-+ identifier: String {Mandatory, ValidIdentifier, Column(unique = true), Automapped}
-+ phone: Phone {Mandatory, Automapped}
-+ physicalAddress: String {Mandatory, ValidLongText, Automapped}
-+ city: String {Mandatory, ValidShortText, Automapped}
-+ country: String {Mandatory, ValidShortText, Automapped}
-+ earnedPoints: Integer {Optionaly, ValidEarnedPoints, Automapped}
-bg=pink</panel_attributes>
++ averageNumberOfJobsPerEmployer: Double
++ averageNumberOfApplicationsPerWorker: Double
++ avegageNumberOfApplicationsPerEmployer: Double
++ ratioOfPendingApplications: Double
++ ratioOfAcceptedApplications: Double
++ ratioOfRejectedApplications: Double
+bg=cyan</panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>

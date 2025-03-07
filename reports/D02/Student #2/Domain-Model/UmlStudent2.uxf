@@ -36,7 +36,7 @@ Passenger
 + email: String {Mandatory, ValidEmail, Automapped}
 + passportNumber: String {Mandatory, ValidPassportNumber, Automapped}
 + dateOfBirth: Date {Mandatory, ValidMoment(past=true), Temporal(TemporalType.TIMESTAMP), Automapped}
-+ specialNeeds: String {Optional, ValidShortText, Automapped}
++ specialNeeds: String {Optional, ValidShortTextOptional, Automapped}
 bg=green</panel_attributes>
     <additional_attributes/>
   </element>
@@ -54,7 +54,7 @@ Booking
 + locatorCode: String {Mandatory,ValidLocatorCode, Automapped,Column(unique = true)}
 + purchaseMoment: Date {Mandatory, ValidMoment(past=true), Temporal(TemporalType.TIMESTAMP, Automapped}
 + travelClass: TravelClass {Mandatory, Automapped, Enumerated(EnumType.STRING)}
-+ price: Double {Mandatory,Min(0),Valid Automapped}
++ price: Money {Mandatory,ValidMoney Automapped}
 + lastNibble: String {Optional, ValidLastNibble, Automapped}
 bg=green</panel_attributes>
     <additional_attributes/>

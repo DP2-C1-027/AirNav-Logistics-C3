@@ -20,7 +20,6 @@ import java.lang.annotation.Target;
 import javax.validation.Constraint;
 import javax.validation.Payload;
 import javax.validation.ReportAsSingleViolation;
-import javax.validation.constraints.NotBlank;
 
 import org.hibernate.validator.constraints.Length;
 
@@ -29,8 +28,7 @@ import org.hibernate.validator.constraints.Length;
 @Constraint(validatedBy = {})
 @ReportAsSingleViolation
 
-@NotBlank
-@Length(min = 1, max = 50)
+@Length(min = 0, max = 50)
 
 public @interface ValidShortTextOptional {
 

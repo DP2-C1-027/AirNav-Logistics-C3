@@ -1,0 +1,4 @@
+key,name,code,operationalScope,city,country,website,email,address,phoneNumber
+airport-01,John F. Kennedy International Airport,JFK,INTERNATIONAL,New York,United States,https://www.jfkairport.com,info@jfkairport.com,"JFK Airport, Queens, NY 11430",+1234567880
+airport-02,Heathrow Airport,LHR,INTERNATIONAL,London,United Kingdom,https://www.heathrow.com,info@heathrow.com,"Heathrow Airport, Hounslow, TW6 1AP",+1234567898
+

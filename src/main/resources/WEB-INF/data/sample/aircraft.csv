@@ -1,0 +1,4 @@
+key,model,registrationNumber,capacity,cargoWeight,status,details
+aircraft-01,Delta Air Lines,DAL123,200,25,true,"Delta Air Lines is a major American airline."
+aircraft-02,Emirates,EAU456,300,30,false,"Emirates is a major airline based in Dubai."
+

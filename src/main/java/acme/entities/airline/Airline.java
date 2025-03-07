@@ -26,6 +26,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
+
 public class Airline extends AbstractEntity {
 
 	// Serialisation version --------------------------------------------------

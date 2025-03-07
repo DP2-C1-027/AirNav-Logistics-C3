@@ -1,0 +1,3 @@
+key,lastUpdateMoment,stepUndergoing,resolutionPercentage,indicator,resolutionDetails,key:claim
+trackingLog-01,2020/11/01 10:00,Initial Review,10.0,true,"Initial review completed.",claim-01
+trackingLog-02,2020/11/01 10:00,Investigation,50.0,false,"Investigation in progress.",claim-02

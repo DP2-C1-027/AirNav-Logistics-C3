@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>120</x>
+      <y>60</y>
+      <w>570</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>forms.uxf
+
+Copyright (C) 2012-2025 Rafael Corchuelo.
+
+In keeping with the traditional purpose of furthering education and research, it is
+the policy of the copyright owner to permit non-commercial use and redistribution of
+this software. It has been tested carefully, but it is not guaranteed for any particular
+purposes. The copyright owner does not offer any warranties or representations, nor do
+they accept any liabilities with respect to them.
+bg=#f3fdff</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>240</x>
+      <y>280</y>
+      <w>360</w>
+      <h>240</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Form&gt;&gt;
+Dashboard
+--
++ ratioOfResolvedClaims: Double
++ ratioOfRejectedClaims: Double
++ topThreeMonthsWithMostClaims: List&lt;String&gt;
++ averageNumberOfLogsPerClaim: Double
++ standardDeviationOfLogsPerClaim: Double
++ averageNumberOfClaimsLastMonth: Double
++ standardDeviationOfClaimsLastMonth: Double
++ minimumNumberOfLogsPerClaim: Integer
++ maximumNumberOfLogsPerClaim: Integer
++ minimumNumberOfClaimsLastMonth: Integer
++ maximumNumberOfClaimsLastMonth: Integer
+bg=cyan</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

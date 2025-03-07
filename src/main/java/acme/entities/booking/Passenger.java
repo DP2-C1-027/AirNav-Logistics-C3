@@ -17,7 +17,7 @@ import acme.client.components.validation.ValidEmail;
 import acme.client.components.validation.ValidMoment;
 import acme.constraints.ValidLongText;
 import acme.constraints.ValidPassportNumber;
-import acme.constraints.ValidShortText;
+import acme.constraints.ValidShortTextOptional;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -54,7 +54,7 @@ public class Passenger extends AbstractEntity {
 
 	@Optional
 	@Automapped
-	@ValidShortText
+	@ValidShortTextOptional
 	private String				specialNeeds;
 
 	// Derived attributes -----------------------------------------------------

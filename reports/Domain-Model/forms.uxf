@@ -4,8 +4,8 @@
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>120</x>
-      <y>60</y>
+      <x>20</x>
+      <y>20</y>
       <w>570</w>
       <h>160</h>
     </coordinates>
@@ -24,27 +24,28 @@ bg=#f3fdff</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>110</x>
-      <y>270</y>
+      <x>120</x>
+      <y>250</y>
       <w>430</w>
       <h>270</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Form&gt;&gt;
-CustomersDashboards
+AdministratorDashBoard
 --
-+ theLastFiveDestinations: List&lt;String&gt;
-+ moneySpentInBookingDuringLastYear: Double
-+ bookingsGroupedByTravelClass: Map&lt;TravelClass,Integer&gt;
-+ countOfTheCostBooking5Years: Double
-+ averageOfTheCostBooking5Years: Double
-+ minOfTheCostBooking5Years: Double
-+ maxOfTheCostBooking5Years: Double
-+ desviationOfTheCostBooking5Years: Double
-+ countOfTheNumberOfPassengersBookings: Double
-+ averageOfTheNumberOfPassengersBookings: Double
-+ minOfTheNumberOfPassengersBookings: Double
-+ maxOfTheNumberOfPassengersBookings: Double
-+ desviationOfTheNumberOfPassengersBookings: Double
++ internationalAirports: Integer
++ domesticAirports: Integer
++ regionalAirports: Integer 
++ luxuryAirlines: Integer
++ standardAirlines: Integer
++ lowCostAirlines: Integer
++ ratioAirlinesEmailAndPhone: Double
++ activeAircrafts: Double
++ ratioHighScoreReviews: Double
++ countReviews: Integer
++ averageReviews: Double
++ minReviews: Integer
++ maxReviews: Integer
++ deviationFlightCost: Double
 
 bg=cyan</panel_attributes>
     <additional_attributes/>

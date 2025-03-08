@@ -34,13 +34,14 @@ CustomersDashboards
 --
 + theLastFiveDestinations: List&lt;String&gt;
 + moneySpentInBookingDuringLastYear: Double
-+ bookingsGroupedByTravelClass: Map&lt;TravelClass,Integer&gt;
-+ countOfTheCostBooking5Years: Double
++ bookingGroupByEconomy: Integer
++ bookingGroupByBusiness: Integer
++ countOfTheCostBooking5Years: Integer
 + averageOfTheCostBooking5Years: Double
 + minOfTheCostBooking5Years: Double
 + maxOfTheCostBooking5Years: Double
 + desviationOfTheCostBooking5Years: Double
-+ countOfTheNumberOfPassengersBookings: Double
++ countOfTheNumberOfPassengersBookings: Integer
 + averageOfTheNumberOfPassengersBookings: Double
 + minOfTheNumberOfPassengersBookings: Double
 + maxOfTheNumberOfPassengersBookings: Double

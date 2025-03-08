@@ -2,10 +2,8 @@
 package acme.forms;
 
 import java.util.List;
-import java.util.Map;
 
 import acme.client.components.basis.AbstractForm;
-import acme.entities.booking.TravelClass;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,17 +16,20 @@ public class CustomersDashboards extends AbstractForm {
 
 	// Attributes -------------------------------------------------------------
 
-	List<String>				theLastFiveDestinations;
+	private List<String>		theLastFiveDestinations; // tengo q poner el private
 	Double						moneySpentInBookingDuringLastYear;
-	Map<TravelClass, Integer>	bookingsGroupedByTravelClass;
+	//Map<TravelClass, Integer>	bookingsGroupedByTravelClass;
 
-	Double						countOfTheCostBooking5Years;
+	Integer						bookingGroupByEconomy;
+	Integer						bookingGroupByBusiness;
+
+	Integer						countOfTheCostBooking5Years;
 	Double						averageOfTheCostBooking5Years;
 	Double						minOfTheCostBooking5Years;
 	Double						maxOfTheCostBooking5Years;
 	Double						desviationOfTheCostBooking5Years;
 
-	Double						countOfTheNumberOfPassengersBookings;
+	Integer						countOfTheNumberOfPassengersBookings;
 	Double						averageOfTheNumberOfPassengersBookings;
 	Double						minOfTheNumberOfPassengersBookings;
 	Double						maxOfTheNumberOfPassengersBookings;

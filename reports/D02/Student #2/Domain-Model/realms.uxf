@@ -33,7 +33,7 @@ bg=#f3fdff</panel_attributes>
 Customers
 --
 + identifier: String {Mandatory, ValidIdentifier, Column(unique = true), Automapped}
-+ phone: Phone {Mandatory, Automapped}
++ phone: String {Mandatory,ValidPhoneNumber, Automapped}
 + physicalAddress: String {Mandatory, ValidLongText, Automapped}
 + city: String {Mandatory, ValidShortText, Automapped}
 + country: String {Mandatory, ValidShortText, Automapped}

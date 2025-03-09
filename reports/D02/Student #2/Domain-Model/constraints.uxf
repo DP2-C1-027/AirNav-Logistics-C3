@@ -100,7 +100,7 @@ bg=RED</panel_attributes>
     <panel_attributes>&lt;&lt;Constraint&gt;&gt;
 ValidLastNibble
 --
-+ Length(min=4, max=4)
++ LastNibbleValidator
 bg=RED</panel_attributes>
     <additional_attributes/>
   </element>

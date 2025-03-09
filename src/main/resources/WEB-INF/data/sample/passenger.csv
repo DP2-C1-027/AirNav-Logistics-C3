@@ -1,0 +1,6 @@
+key,fullName,email,passportNumber,dateOfBirth,specialNeeds,key:booking
+passenger-01,John Doe,john.doe@example.com,AB123456,2000/06/15 08:30,Vegetarian,booking-01
+passenger-02,Jane Smith,jane.smith@example.com,CD789012,2001/09/21 14:45,Wheelchair,booking-02
+passenger-03,Mike Johnson,mike.johnson@example.com,EF345678,2004/02/03 10:00,,booking-03
+passenger-04,Emily Davis,emily.davis@example.com,GH901234,2010/07/19 16:20,Gluten-free,booking-04
+passenger-05,Chris Brown,chris.brown@example.com,IJ567890,2008/12/05 09:15,,booking-05

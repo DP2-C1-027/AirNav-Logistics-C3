@@ -1,0 +1,6 @@
+key,locatorCode,purchaseMoment,travelClass,price,lastNibble,key:customer,key:flight
+booking-01,ABC123,2005/01/01 10:30,ECONOMY,150USD,1234,customer-01,flight-01
+booking-02,XYZ789,2009/02/15 15:45,BUSINESS,210EUR,5678,customer-02,flight-02
+booking-03,LMN456,2000/05/30 00:00,ECONOMY,210EUR,,customer-02,flight-02
+booking-04,QWE987,2002/05/30 00:00,BUSINESS,50EUR,9999,customer-01,flight-03
+booking-05,RTY654,2015/01/01 10:30,ECONOMY,150USD,4321,customer-01,flight-01

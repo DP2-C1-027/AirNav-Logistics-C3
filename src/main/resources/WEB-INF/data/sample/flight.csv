@@ -1,0 +1,6 @@
+key,tag,indication,cost,description,key:airlineManager
+flight-01,"Dubai-Japón",true,150USD,"Un vuelo desde Dubai a Japón",manager-02
+flight-02,"Transatlantic",true,210EUR,"Transatlántico",manager-02
+flight-03,"regional flights",true,120USD,"vuelo regional de la costa griega",manager-01
+flight-04,"madrid barcelona",false,100EUR,"madrid to barcelona direct flight",manager-01
+flight-05,"españa marruecos",false,50EUR,"flight accross the mediterranean, stopping at Málaga",manager-01

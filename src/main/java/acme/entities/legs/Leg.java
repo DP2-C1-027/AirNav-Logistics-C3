@@ -3,7 +3,6 @@ package acme.entities.legs;
 
 import java.util.Date;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -16,7 +15,7 @@ import javax.validation.constraints.Min;
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
-import acme.constraints.ValidIATAcode;
+import acme.constraints.ValidFlightNumber;
 import acme.entities.aircraft.Aircraft;
 import acme.entities.airport.Airport;
 import acme.entities.flights.Flight;
@@ -35,8 +34,7 @@ public class Leg extends AbstractEntity {
 
 	@Mandatory
 	@Automapped
-	@ValidIATAcode
-	@Column(unique = true)
+	@ValidFlightNumber
 	private String				flightNumber;
 
 	@Mandatory

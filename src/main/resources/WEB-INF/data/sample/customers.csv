@@ -1,4 +1,4 @@
 key,key:userAccount,identifier,phone,physicalAddress,city,country,earnedPoints
-customer-01,user-account-customer-01,LU123456,+123456789012,"123 Elm St, Apt 4B",New York,USA,1200
-customer-02,user-account-customer-02,LUC789123,+441632960961,"789 Pine St",London,UK,3500
+customer-01,user-account-customer-01,LU123456,+123456789012,"123 Elm St, Apt 4B",New York,USA,50
+customer-02,user-account-customer-02,LUC789123,+441632960961,"789 Pine St",London,UK,350000
 customer-03,user-account-customer-03,ALU123456,+1122334455,789 Pine St, Springfield, Thailand,

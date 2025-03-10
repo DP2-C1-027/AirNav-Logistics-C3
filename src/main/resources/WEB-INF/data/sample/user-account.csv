@@ -23,3 +23,9 @@ user-account-technician-07,true,"UserIdentity{name: 'Ann', surname: 'Takamaki', 
 user-account-technician-08,true,"UserIdentity{name: 'Haru', surname: 'Okumura', email: 'haru@email.com'}",technician8,technician8
 user-account-technician-09,true,"UserIdentity{name: 'Goro', surname: 'Akechi', email: 'goro@email.com'}",technician9,technician9
 user-account-technician-10,true,"UserIdentity{name: 'Elise', surname: 'Liedl', email: 'elise@email.com'}",technician10,technician10
+user-account-flight-crew-member-01,true,"UserIdentity{name: 'Åxel', surname: 'Møller-Grün', email: 'axelmg@email.com'}",member1,member1
+user-account-flight-crew-member-02,true,"UserIdentity{name: 'Zoë', surname: 'Łukaszewski', email: 'zoeluk@email.com'}",member2,member2
+user-account-flight-crew-member-03,true,"UserIdentity{name: 'Íñigo', surname: 'Østergård', email: 'inigoost@email.com'}",member3,member3
+user-account-flight-crew-member-04,true,"UserIdentity{name: 'Maëlle', surname: 'Černý', email: 'maellec@email.com'}",member4,member4
+user-account-flight-crew-member-05,true,"UserIdentity{name: 'Tórbjörn', surname: 'Šebestić', email: 'torbjseb@email.com'}",member5,member5
+

@@ -1,10 +1,10 @@
 
-package acme.entities.flights;
+package acme.entities.flightAssignment;
 
 import java.util.Date;
 
 import javax.persistence.Entity;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
@@ -53,8 +53,8 @@ public class ActivityLog extends AbstractEntity {
 	// Relationships ----------------------------------------------------------
 
 	@Mandatory
-	@OneToOne
+	@ManyToOne(optional = false)
 	@Valid
-	private Flight				flight;
+	private FlightAssignment	flightAssignment;
 
 }

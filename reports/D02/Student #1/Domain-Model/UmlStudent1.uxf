@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1">
+  <zoom_level>7</zoom_level>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>560</x>
+      <y>0</y>
+      <w>399</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>entities.uxf
+
+Copyright (C) 2012-2025 Rafael Corchuelo.
+
+In keeping with the traditional purpose of furthering education and research, it is
+the policy of the copyright owner to permit non-commercial use and redistribution of
+this software. It has been tested carefully, but it is not guaranteed for any particular
+purposes. The copyright owner does not offer any warranties or representations, nor do
+they accept any liabilities with respect to them.
+bg=#f3fdff</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>427</x>
+      <y>525</y>
+      <w>560</w>
+      <h>98</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Entity&gt;&gt;
+Claim
+--
++ tag: String {Mandatory,ValidShortText,Automapped}
++ indication: Boolean {Mandatory,Automapped}
++ cost: Money {Mandatory,ValidMoney,Automapped}
++ description: String {Mandatory, ValidLongText, Automapped}
++ airlineManager: AirlineManager {Mandatory,ManyToOne,Valid}
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>679</x>
+      <y>455</y>
+      <w>70</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>  includes ^
+lt=&lt;-x
+m1=1
+m2=*
+bg=green
+
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>714</x>
+      <y>308</y>
+      <w>77</w>
+      <h>77</h>
+    </coordinates>
+    <panel_attributes>  works for ^
+lt=&lt;-x
+m1=1
+m2=*
+bg=green
+
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>693</x>
+      <y>280</y>
+      <w>63</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Entity&gt;&gt;
+Airline
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>434</x>
+      <y>672</y>
+      <w>567</w>
+      <h>147</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Entity&gt;&gt;
+Leg
+--
++ flightNumber: String {Mandatory, ValidFlightNumber, Column(unique = true), Automapped}
++ stepUndergoing: String {Mandatory, ValidLongText, Automapped}
++ scheduledDeparture: Date {Mandatory, ValidMoment, Temporal(TemporalType.TIMESTAMP), Automapped}
++ scheduledArrival: Date {Mandatory, ValidMoment, Temporal(TemporalType.TIMESTAMP), Automapped}
++ duration: Integer {Mandatory, Min(0), Automapped}
++ status: LegStatus {Mandatory, Enumerated(EnumType.STRING), Automapped}
++ departureAirport: Airport {Mandatory,ManyToOne,Valid,Automapped}
++ arrivalAirport: Airport {Mandatory,ManyToOne,Valid,Automapped}
++ aircraft: Aircraft {Mandatory,ManyToOne,Valid,Automapped}
++ flight: Flight {Mandatory,ManyToOne,Valid,Automapped}
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>672</x>
+      <y>616</y>
+      <w>70</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>  includes ^
+lt=&lt;-x
+m1=1
+m2=*
+bg=green
+
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>448</x>
+      <y>371</y>
+      <w>532</w>
+      <h>91</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Role&gt;&gt;
+AirlineManager
+--
++ identifierNumber: String {Mandatory, ValidIdentifier, Column(unique = true), Automapped}
++ yearsOfService: Integer {Mandatory, Automapped, Min(0)}
++ dateOfBirth: Date {Mandatory,Past ,Temporal(TemporalType.TIMESTAMP), Automapped}
++ bio: String {Optional, ValidLongText, Automapped}
++ photo: String {Optional, ValidUrl, Automapped}
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

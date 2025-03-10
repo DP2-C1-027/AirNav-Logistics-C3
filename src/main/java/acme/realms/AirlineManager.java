@@ -14,6 +14,7 @@ package acme.realms;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -43,12 +44,13 @@ public class AirlineManager extends AbstractRole {
 	@Mandatory
 	@Automapped
 	@ValidIdentifier
+	@Column(unique = true)
 	private String				identifierNumber;
 
 	@Mandatory
 	@Automapped
 	@Min(0)
-	private int					yearsOfService;
+	private Integer				yearsOfService;
 
 	@Mandatory
 	@Automapped

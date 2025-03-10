@@ -8,14 +8,18 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
+import javax.validation.constraints.Future;
 
 import acme.client.components.basis.AbstractEntity;
+import acme.client.components.datatypes.Money;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoment;
+import acme.client.components.validation.ValidMoney;
 import acme.constraints.ValidLongText;
 import acme.entities.aircraft.Aircraft;
+import acme.realms.maintenanceRecords.Technician;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -30,9 +34,8 @@ public class MaintanenceRecord extends AbstractEntity {
 	// Attributes -------------------------------------------------------------
 
 	@Mandatory
-	//valid en el pasado
-	@ValidMoment
 	@Temporal(TemporalType.TIMESTAMP)
+	@ValidMoment(past = true)
 	@Automapped
 	private Date					maintanenceMoment;
 
@@ -43,13 +46,14 @@ public class MaintanenceRecord extends AbstractEntity {
 
 	@Mandatory
 	@Automapped
-	//validMoment pero en el futuro
+	@Future
 	@Valid
 	private Date					nextMaintanence;
 
 	@Mandatory
 	@Automapped
-	private Double					estimatedCost;
+	@ValidMoney
+	private Money					estimatedCost;
 
 	@Optional
 	@ValidLongText
@@ -58,6 +62,12 @@ public class MaintanenceRecord extends AbstractEntity {
 	// Derived attributes -----------------------------------------------------
 
 	// Relationships ----------------------------------------------------------
+
+	//muchas instancias de Maintanence estan asociadas a un Technician
+	@ManyToOne(optional = false)
+	@Mandatory
+	@Valid
+	private Technician				technician;
 
 	//muchas instancias de Maintanence estan asociadas a un Aircraft
 	@ManyToOne(optional = false)

@@ -2,7 +2,6 @@
 package acme.entities.maintanenceRecords;
 
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
 import javax.validation.Valid;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -47,10 +46,5 @@ public class Task extends AbstractEntity {
 	// Derived attributes -----------------------------------------------------
 
 	// Relationships ----------------------------------------------------------
-
-	@ManyToOne(optional = false)
-	@Mandatory
-	@Valid
-	private MaintanenceRecord	maintanenceRecord;
 
 }

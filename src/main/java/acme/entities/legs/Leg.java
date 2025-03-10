@@ -34,17 +34,20 @@ public class Leg extends AbstractEntity {
 
 	@Mandatory
 	@Automapped
+	@Column(unique = true)
 	@ValidFlightNumber
 	private String				flightNumber;
 
 	@Mandatory
 	@Automapped
 	@Temporal(TemporalType.TIMESTAMP)
+	@ValidMoment
 	private Date				scheduledDeparture;
 
 	@Mandatory
 	@Automapped
 	@Temporal(TemporalType.TIMESTAMP)
+	@ValidMoment
 	private Date				scheduledArrival;
 
 	@Mandatory
@@ -64,20 +67,24 @@ public class Leg extends AbstractEntity {
 	@Mandatory
 	@ManyToOne
 	@Valid
+	@Automapped
 	private Airport				departureAirport;
 
 	@Mandatory
 	@ManyToOne
 	@Valid
+	@Automapped
 	private Airport				arrivalAirport;
 
 	@Mandatory
 	@ManyToOne
 	@Valid
+	@Automapped
 	private Aircraft			aircraft;
 
 	@Mandatory
 	@ManyToOne(optional = false)
 	@Valid
+	@Automapped
 	private Flight				flight;
 }

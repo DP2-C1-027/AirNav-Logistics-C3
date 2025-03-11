@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="15.1">
-  <zoom_level>7</zoom_level>
+  <zoom_level>8</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>714</x>
-      <y>497</y>
-      <w>294</w>
-      <h>84</h>
+      <x>744</x>
+      <y>552</y>
+      <w>336</w>
+      <h>96</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 Task
@@ -22,10 +22,10 @@ bg=green</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>238</x>
-      <y>504</y>
-      <w>371</w>
-      <h>63</h>
+      <x>200</x>
+      <y>560</y>
+      <w>424</w>
+      <h>72</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 InvolvedIn
@@ -36,10 +36,10 @@ bg=green</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>154</x>
-      <y>343</y>
-      <w>539</w>
-      <h>84</h>
+      <x>104</x>
+      <y>376</y>
+      <w>616</w>
+      <h>96</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 maintenanceRecord
@@ -55,24 +55,30 @@ bg=green</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>371</x>
-      <y>245</y>
-      <w>112</w>
-      <h>42</h>
+      <x>152</x>
+      <y>184</y>
+      <w>576</w>
+      <h>120</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Role&gt;&gt;
 Technician
-
+--
++ licenseNumber: String {Mandatory,ValidTechnicianLicenseNumber,Column(unique = true),Automapped}
++ phoneNumber: String {Mandatory, ValidPhoneNumber, Automapped}
++ specialisation: String {Mandatory, ValidShortText, Automapped}
++ annualHealthTest: Boolean {Mandatory, Automapped, Valid}
++ yearsOfExperience: Integer {Mandatory, Automapped, Max(120), Valid}
++ certifications: String {Optional, Automapped, ValidLongTextOptional}
 bg=red</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>812</x>
-      <y>343</y>
-      <w>126</w>
-      <h>56</h>
+      <x>856</x>
+      <y>376</y>
+      <w>144</w>
+      <h>64</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 Aircraft
@@ -84,10 +90,10 @@ bg=green
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>357</x>
-      <y>49</y>
-      <w>399</w>
-      <h>112</h>
+      <x>336</x>
+      <y>40</y>
+      <w>456</w>
+      <h>128</h>
     </coordinates>
     <panel_attributes>entities.uxf
 
@@ -104,10 +110,10 @@ bg=#f3fdff</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>420</x>
-      <y>280</y>
-      <w>91</w>
-      <h>77</h>
+      <x>408</x>
+      <y>296</y>
+      <w>104</w>
+      <h>96</h>
     </coordinates>
     <panel_attributes>registered by ^
 lt=&lt;-x
@@ -116,15 +122,15 @@ m2=*
 
 
 </panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>686</x>
-      <y>371</y>
-      <w>140</w>
-      <h>56</h>
+      <x>712</x>
+      <y>408</y>
+      <w>160</w>
+      <h>64</h>
     </coordinates>
     <panel_attributes>About ^
 lt=&lt;-x
@@ -138,10 +144,10 @@ m2=*
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>420</x>
-      <y>420</y>
-      <w>70</w>
-      <h>98</h>
+      <x>408</x>
+      <y>464</y>
+      <w>80</w>
+      <h>112</h>
     </coordinates>
     <panel_attributes>Involves ^
 lt=&lt;-x
@@ -155,10 +161,10 @@ m2=*
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>602</x>
-      <y>525</y>
-      <w>119</w>
-      <h>56</h>
+      <x>616</x>
+      <y>584</y>
+      <w>136</w>
+      <h>64</h>
     </coordinates>
     <panel_attributes>Involves ^
 lt=&lt;-x
@@ -168,5 +174,22 @@ m2=*
 
 </panel_attributes>
     <additional_attributes>150.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>720</x>
+      <y>240</y>
+      <w>360</w>
+      <h>328</h>
+    </coordinates>
+    <panel_attributes>Assigned ^
+lt=&lt;-x
+m1=1
+m2=*
+
+
+</panel_attributes>
+    <additional_attributes>10.0;20.0;410.0;20.0;410.0;390.0</additional_attributes>
   </element>
 </diagram>

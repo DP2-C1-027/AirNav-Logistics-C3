@@ -1,0 +1,6 @@
+key,key:userAccount,employeeCode,phoneNumber,languageSkills,availabilityStatus,salary,yearsOfExperience,key:airline
+flight-crew-member-1,user-account-flight-crew-member-01,AMG000001,+34678123456,"English, Spanish",AVAILABLE,45000.0EUR,5,airline-01
+flight-crew-member-2,user-account-flight-crew-member-02,ZL000002,+491529876543,"English, German, French",ON_VACATION,47000.0EUR,7,airline-01
+flight-crew-member-3,user-account-flight-crew-member-03,IO000003,+33612345678,"English, French",AVAILABLE,43000.0EUR,4,airline-02
+flight-crew-member-4,user-account-flight-crew-member-04,MC000004,+41795556677,"English,Czech,Italian",ON_LEAVE,46000.0EUR,6,airline-02
+flight-crew-member-5,user-account-flight-crew-member-05,TS000005,+46731123344,"English, Swedish, Norwegian",AVAILABLE,48000.0EUR,8,airline-01

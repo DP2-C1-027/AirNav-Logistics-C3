@@ -24,8 +24,8 @@ bg=#f3fdff</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>72</x>
-      <y>192</y>
+      <x>276</x>
+      <y>210</y>
       <w>378</w>
       <h>120</h>
     </coordinates>
@@ -48,7 +48,7 @@ bg=green</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>84</x>
-      <y>336</y>
+      <y>444</y>
       <w>330</w>
       <h>108</h>
     </coordinates>
@@ -69,7 +69,7 @@ bg=green</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>558</x>
-      <y>360</y>
+      <y>456</y>
       <w>354</w>
       <h>90</h>
     </coordinates>
@@ -108,8 +108,8 @@ bg=green</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>486</x>
-      <y>234</y>
+      <x>786</x>
+      <y>204</y>
       <w>264</w>
       <h>78</h>
     </coordinates>
@@ -123,5 +123,91 @@ Service
 + money: Money {Optional, ValidMoney, Automapped}
 bg=green</panel_attributes>
     <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>408</x>
+      <y>492</y>
+      <w>162</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>  belongs to
+  ^
+lt=&lt;-x
+m1=1
+m2=*
+bg=green
+
+</panel_attributes>
+    <additional_attributes>10.0;20.0;250.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>570</x>
+      <y>378</y>
+      <w>66</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Entity&gt;&gt;
+Leg
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>570</x>
+      <y>324</y>
+      <w>54</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>  arrives at
+  ^
+lt=&lt;-x
+m1=1
+m2=*
+bg=green
+
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>594</x>
+      <y>402</y>
+      <w>48</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>  
+  flies on
+  ^
+lt=&lt;-x
+m1=1
+m2=*
+bg=green
+
+</panel_attributes>
+    <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>624</x>
+      <y>324</y>
+      <w>66</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>  departs from
+  ^
+lt=&lt;-x
+m1=1
+m2=*
+bg=green
+
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
   </element>
 </diagram>

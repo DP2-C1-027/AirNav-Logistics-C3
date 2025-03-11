@@ -5,13 +5,12 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 
 import acme.client.components.basis.AbstractEntity;
-import acme.client.components.datatypes.Money;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
-import acme.client.components.validation.ValidMoney;
 import acme.client.components.validation.ValidUrl;
 import acme.constraints.ValidDwellTime;
+import acme.constraints.ValidMoney;
 import acme.constraints.ValidPromotionCode;
 import acme.constraints.ValidShortText;
 import lombok.Getter;
@@ -51,7 +50,7 @@ public class Service extends AbstractEntity {
 	@Optional
 	@Automapped
 	@ValidMoney
-	private Money				money;
+	private Double				money;
 
 	// Derived attributes -----------------------------------------------------
 

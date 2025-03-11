@@ -12,7 +12,7 @@ import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
-import acme.constraints.ValidLongText;
+import acme.constraints.ValidLongTextOptional;
 import acme.constraints.ValidShortText;
 import acme.entities.airline.Airline;
 import lombok.Getter;
@@ -55,7 +55,7 @@ public class Aircraft extends AbstractEntity {
 
 	@Optional
 	@Automapped
-	@ValidLongText
+	@ValidLongTextOptional
 	private String				details;
 
 	// Derived attributes -----------------------------------------------------

@@ -15,12 +15,10 @@ import javax.validation.constraints.Pattern;
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = {})
 @ReportAsSingleViolation
+@Pattern(regexp = "^$|^\\+?\\d{6,15}$") // Permite cadenas vacías o números de teléfono válidos
+public @interface ValidPhoneNumberOptional {
 
-@Pattern(regexp = "^$|^[A-Z]{4}-[0-9]{2}$")
-public @interface ValidPromotionCode {
-
-	String message() default "{acme.validation.text.message}";
-	Class<?>[] groups() default {};
-	Class<? extends Payload>[] payload() default {};
-
+	String message() default "{acme.validation.text.message}"; // Mensaje de error personalizado
+	Class<?>[] groups() default {}; // Grupos de validación
+	Class<? extends Payload>[] payload() default {}; // Payload para categorizar errores
 }

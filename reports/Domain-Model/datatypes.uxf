@@ -4,8 +4,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>160</x>
-      <y>220</y>
+      <x>210</x>
+      <y>280</y>
       <w>480</w>
       <h>100</h>
     </coordinates>
@@ -21,8 +21,8 @@ bg=yellow</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>210</x>
-      <y>370</y>
+      <x>260</x>
+      <y>430</y>
       <w>310</w>
       <h>70</h>
     </coordinates>
@@ -35,8 +35,8 @@ bg=LIGHT_GRAY</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>360</x>
-      <y>310</y>
+      <x>410</x>
+      <y>370</y>
       <w>30</w>
       <h>80</h>
     </coordinates>
@@ -46,8 +46,8 @@ bg=LIGHT_GRAY</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>80</x>
-      <y>0</y>
+      <x>130</x>
+      <y>60</y>
       <w>570</w>
       <h>160</h>
     </coordinates>
@@ -66,8 +66,8 @@ bg=#f3fdff</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>660</x>
-      <y>240</y>
+      <x>710</x>
+      <y>280</y>
       <w>160</w>
       <h>100</h>
     </coordinates>
@@ -83,8 +83,8 @@ bg=LIGHT_GRAY</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>580</x>
-      <y>380</y>
+      <x>710</x>
+      <y>400</y>
       <w>160</w>
       <h>100</h>
     </coordinates>

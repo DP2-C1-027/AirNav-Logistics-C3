@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>170</x>
+      <y>270</y>
+      <w>680</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Role&gt;&gt;
+Technician
+--
++ licenseNumber: String {Mandatory,ValidTechnicianLicenseNumber,Column(unique = true),Automapped}
++ phoneNumber: String {Mandatory, ValidPhoneNumber, Automapped}
++ specialisation: String {Mandatory, ValidShortText, Automapped}
++ annualHealthTest: Boolean {Mandatory, Automapped, Valid}
++ yearsOfExperience: Integer {Mandatory, Automapped, Max(120), Valid}
++ certifications: String {Optional, Automapped, ValidLongTextOptional}
+bg=pink</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1870</x>
+      <y>410</y>
+      <w>360</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Constraint&gt;&gt;
+MoneyExchange
+--
++ source: Money {Mandatory, ValidMoney}
++ targetCurrency: String {Mandatory, ValidCurrency}
++ moment: Date {Optional, ValidMoment(past=true)}
++ target: Money {Optional, ValidMoney}
++ oops: Throwable {Optional, Valid}</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>170</x>
+      <y>70</y>
+      <w>570</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>realms.uxf
+
+Copyright (C) 2012-2025 Rafael Corchuelo.
+
+In keeping with the traditional purpose of furthering education and research, it is
+the policy of the copyright owner to permit non-commercial use and redistribution of
+this software. It has been tested carefully, but it is not guaranteed for any particular
+purposes. The copyright owner does not offer any warranties or representations, nor do
+they accept any liabilities with respect to them.
+bg=#f3fdff</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

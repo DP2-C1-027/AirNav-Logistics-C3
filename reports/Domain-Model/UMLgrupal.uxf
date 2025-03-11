@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="15.1">
-  <zoom_level>5</zoom_level>
+
+  <zoom_level>6</zoom_level>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>160</x>
-      <y>25</y>
-      <w>285</w>
-      <h>80</h>
+      <x>240</x>
+      <y>0</y>
+      <w>342</w>
+      <h>96</h>
     </coordinates>
     <panel_attributes>entities.uxf
 
@@ -24,10 +25,11 @@ bg=#f3fdff</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>280</x>
-      <y>245</y>
-      <w>315</w>
-      <h>100</h>
+
+      <x>336</x>
+      <y>210</y>
+      <w>378</w>
+      <h>120</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 Airport
@@ -48,9 +50,11 @@ bg=green</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>0</x>
-      <y>440</y>
-      <w>395</w>
-      <h>90</h>
+
+      <y>444</y>
+      <w>474</w>
+      <h>108</h>
+
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 Airlane
@@ -68,30 +72,34 @@ bg=green</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>515</x>
-      <y>450</y>
-      <w>295</w>
-      <h>75</h>
+
+      <x>618</x>
+      <y>456</y>
+      <w>354</w>
+      <h>90</h>
+
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 Aircraft
 --
 + model: String {Mandatory,ValidShortText, Automapped}
 + registrationNumber: String {Mandatory, ValidShortText, Column(unique=true), Automapped}
-+ capacity: Integer {Mandatory,Automapped}
-+ cargoWeight: Integer {Mandatory, Min(2),Max(50), Automapped}
-+ status: Boolean {Mandatory, Automapped}
-+ details: String {Mandatory, Automapped, ValidLongText}
++ capacity: Integer {Mandatory,Automapped, Valid, Min(1), Max(255)}
++ cargoWeight: Integer {Mandatory, Automapped, Min(2000), Max(50000), Valid}
++ status: Boolean {Mandatory, Automapped, Valid}
++ details: String {Optional, Automapped, ValidLongText}
 bg=green</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>350</x>
-      <y>155</y>
-      <w>350</w>
-      <h>75</h>
+
+      <x>522</x>
+      <y>102</y>
+      <w>420</w>
+      <h>90</h>
+
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 Review
@@ -108,10 +116,12 @@ bg=green</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>705</x>
-      <y>240</y>
-      <w>315</w>
-      <h>80</h>
+
+      <x>846</x>
+      <y>204</y>
+      <w>378</w>
+      <h>96</h>
+
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 Service
@@ -127,10 +137,12 @@ bg=green</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>390</x>
-      <y>480</y>
-      <w>135</w>
-      <h>40</h>
+
+      <x>468</x>
+      <y>492</y>
+      <w>162</w>
+      <h>48</h>
+
     </coordinates>
     <panel_attributes>  belongs to
   ^
@@ -145,10 +157,12 @@ bg=green
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>525</x>
-      <y>385</y>
-      <w>55</w>
-      <h>25</h>
+
+      <x>630</x>
+      <y>378</y>
+      <w>66</w>
+      <h>30</h>
+
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 Leg
@@ -158,10 +172,12 @@ bg=green</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>525</x>
-      <y>340</y>
-      <w>45</w>
-      <h>55</h>
+
+      <x>630</x>
+      <y>324</y>
+      <w>54</w>
+      <h>66</h>
+
     </coordinates>
     <panel_attributes>  arrives at
   ^
@@ -176,10 +192,12 @@ bg=green
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>545</x>
-      <y>405</y>
-      <w>40</w>
-      <h>55</h>
+
+      <x>654</x>
+      <y>402</y>
+      <w>48</w>
+      <h>66</h>
+
     </coordinates>
     <panel_attributes>  
   flies on
@@ -195,10 +213,12 @@ bg=green
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>570</x>
-      <y>340</y>
-      <w>55</w>
-      <h>55</h>
+
+      <x>684</x>
+      <y>324</y>
+      <w>66</w>
+      <h>66</h>
+
     </coordinates>
     <panel_attributes>  departs from
   ^
@@ -209,5 +229,36 @@ bg=green
 
 </panel_attributes>
     <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1080</x>
+      <y>486</y>
+      <w>108</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Entity&gt;&gt;
+MaintenanceRecord
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>972</x>
+      <y>486</y>
+      <w>120</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>  
+&lt; About
+lt=&lt;-x
+m1=1
+m2=*
+bg=green
+
+</panel_attributes>
+    <additional_attributes>10.0;20.0;180.0;20.0</additional_attributes>
   </element>
 </diagram>

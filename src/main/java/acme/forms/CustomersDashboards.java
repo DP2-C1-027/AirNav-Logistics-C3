@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import acme.client.components.basis.AbstractForm;
+import acme.datatypes.Statistics;
 import acme.entities.booking.TravelClass;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,20 +20,12 @@ public class CustomersDashboards extends AbstractForm {
 	// Attributes -------------------------------------------------------------
 
 	private List<String>				theLastFiveDestinations;
-	Double								moneySpentInBookingDuringLastYear;
+	private Double						moneySpentInBookingDuringLastYear;
 	private Map<TravelClass, Integer>	bookingsGroupedByTravelClass;
 
-	Integer								countOfTheCostBooking5Years;
-	Double								averageOfTheCostBooking5Years;
-	Double								minOfTheCostBooking5Years;
-	Double								maxOfTheCostBooking5Years;
-	Double								desviationOfTheCostBooking5Years;
+	private Statistics					booking5Years;
 
-	Integer								countOfTheNumberOfPassengersBookings;
-	Double								averageOfTheNumberOfPassengersBookings;
-	Double								minOfTheNumberOfPassengersBookings;
-	Double								maxOfTheNumberOfPassengersBookings;
-	Double								desviationOfTheNumberOfPassengersBookings;
+	private Statistics					passengersBooking;
 
 	// Derived attributes -----------------------------------------------------
 

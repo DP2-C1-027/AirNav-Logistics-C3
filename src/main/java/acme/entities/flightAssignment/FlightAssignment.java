@@ -6,7 +6,7 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
@@ -17,6 +17,7 @@ import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoment;
 import acme.constraints.ValidLongText;
+import acme.entities.legs.Leg;
 import acme.realms.FlightCrewMember;
 import lombok.Getter;
 import lombok.Setter;
@@ -57,8 +58,13 @@ public class FlightAssignment extends AbstractEntity {
 	// Relationships ----------------------------------------------------------
 
 	@Mandatory
-	@OneToOne(optional = false)
+	@ManyToOne(optional = false)
 	@Valid
 	private FlightCrewMember	flightCrewMember;
+
+	@Mandatory
+	@ManyToOne(optional = false)
+	@Valid
+	private Leg					leg;
 
 }

@@ -26,18 +26,26 @@ bg=#f3fdff</panel_attributes>
     <coordinates>
       <x>110</x>
       <y>270</y>
-      <w>360</w>
-      <h>150</h>
+      <w>430</w>
+      <h>270</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Form&gt;&gt;
-Dashboard
+CustomersDashboards
 --
-+ averageNumberOfJobsPerEmployer: Double
-+ averageNumberOfApplicationsPerWorker: Double
-+ avegageNumberOfApplicationsPerEmployer: Double
-+ ratioOfPendingApplications: Double
-+ ratioOfAcceptedApplications: Double
-+ ratioOfRejectedApplications: Double
++ theLastFiveDestinations: List&lt;String&gt;
++ moneySpentInBookingDuringLastYear: Double
++ bookingsGroupedByTravelClass: Map&lt;TravelClass, Integer&gt;
++ countOfTheCostBooking5Years: Integer
++ averageOfTheCostBooking5Years: Double
++ minOfTheCostBooking5Years: Double
++ maxOfTheCostBooking5Years: Double
++ desviationOfTheCostBooking5Years: Double
++ countOfTheNumberOfPassengersBookings: Integer
++ averageOfTheNumberOfPassengersBookings: Double
++ minOfTheNumberOfPassengersBookings: Double
++ maxOfTheNumberOfPassengersBookings: Double
++ desviationOfTheNumberOfPassengersBookings: Double
+
 bg=cyan</panel_attributes>
     <additional_attributes/>
   </element>

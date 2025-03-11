@@ -2,16 +2,24 @@
 package acme.realms.maintenanceRecords;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.validation.Valid;
+import javax.validation.constraints.Max;
 
 import acme.client.components.basis.AbstractRealm;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
-import acme.constraints.ValidLongText;
+import acme.constraints.ValidLongTextOptional;
 import acme.constraints.ValidPhoneNumber;
 import acme.constraints.ValidShortText;
 import acme.constraints.ValidTechnicianLicenseNumber;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
+@Entity
 public class Technician extends AbstractRealm {
 
 	// Serialisation version --------------------------------------------------
@@ -25,7 +33,7 @@ public class Technician extends AbstractRealm {
 	@Automapped
 	private String				licenseNumber;
 
-	@Optional
+	@Mandatory
 	@Automapped
 	@ValidPhoneNumber
 	private String				phoneNumber;
@@ -37,15 +45,18 @@ public class Technician extends AbstractRealm {
 
 	@Mandatory
 	@Automapped
+	@Valid
 	private Boolean				annualHealthTest;
 
 	@Mandatory
 	@Automapped
+	@Max(120)
+	@Valid
 	private Integer				yearsOfExperience;
 
 	@Optional
 	@Automapped
-	@ValidLongText
+	@ValidLongTextOptional
 	private String				certifications;
 
 	// Derived attributes -----------------------------------------------------

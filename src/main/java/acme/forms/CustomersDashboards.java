@@ -14,25 +14,25 @@ import lombok.Setter;
 public class CustomersDashboards extends AbstractForm {
 	// Serialisation version --------------------------------------------------
 
-	private static final long	serialVersionUID	= 1L;
+	private static final long			serialVersionUID	= 1L;
 
 	// Attributes -------------------------------------------------------------
 
-	List<String>				theLastFiveDestinations;
-	Double						moneySpentInBookingDuringLastYear;
-	Map<TravelClass, Integer>	bookingsGroupedByTravelClass;
+	private List<String>				theLastFiveDestinations;
+	Double								moneySpentInBookingDuringLastYear;
+	private Map<TravelClass, Integer>	bookingsGroupedByTravelClass;
 
-	Double						countOfTheCostBooking5Years;
-	Double						averageOfTheCostBooking5Years;
-	Double						minOfTheCostBooking5Years;
-	Double						maxOfTheCostBooking5Years;
-	Double						desviationOfTheCostBooking5Years;
+	Integer								countOfTheCostBooking5Years;
+	Double								averageOfTheCostBooking5Years;
+	Double								minOfTheCostBooking5Years;
+	Double								maxOfTheCostBooking5Years;
+	Double								desviationOfTheCostBooking5Years;
 
-	Double						countOfTheNumberOfPassengersBookings;
-	Double						averageOfTheNumberOfPassengersBookings;
-	Double						minOfTheNumberOfPassengersBookings;
-	Double						maxOfTheNumberOfPassengersBookings;
-	Double						desviationOfTheNumberOfPassengersBookings;
+	Integer								countOfTheNumberOfPassengersBookings;
+	Double								averageOfTheNumberOfPassengersBookings;
+	Double								minOfTheNumberOfPassengersBookings;
+	Double								maxOfTheNumberOfPassengersBookings;
+	Double								desviationOfTheNumberOfPassengersBookings;
 
 	// Derived attributes -----------------------------------------------------
 

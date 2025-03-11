@@ -16,8 +16,11 @@ import javax.validation.constraints.Min;
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
-import acme.constraints.ValidIATAcode;
+import acme.client.components.validation.ValidMoment;
+import acme.constraints.ValidFlightNumber;
+import acme.entities.aircraft.Aircraft;
 import acme.entities.airport.Airport;
+import acme.entities.flights.Flight;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -33,18 +36,20 @@ public class Leg extends AbstractEntity {
 
 	@Mandatory
 	@Automapped
-	@ValidIATAcode
 	@Column(unique = true)
+	@ValidFlightNumber
 	private String				flightNumber;
 
 	@Mandatory
 	@Automapped
 	@Temporal(TemporalType.TIMESTAMP)
+	@ValidMoment
 	private Date				scheduledDeparture;
 
 	@Mandatory
 	@Automapped
 	@Temporal(TemporalType.TIMESTAMP)
+	@ValidMoment
 	private Date				scheduledArrival;
 
 	@Mandatory
@@ -64,15 +69,24 @@ public class Leg extends AbstractEntity {
 	@Mandatory
 	@ManyToOne
 	@Valid
+	@Automapped
 	private Airport				departureAirport;
 
 	@Mandatory
 	@ManyToOne
 	@Valid
+	@Automapped
 	private Airport				arrivalAirport;
 
-	//	@Mandatory
-	//	@OneToOne
-	// 	@Valid
-	//	private Aircraft			aircraft;
+	@Mandatory
+	@ManyToOne
+	@Valid
+	@Automapped
+	private Aircraft			aircraft;
+
+	@Mandatory
+	@ManyToOne(optional = false)
+	@Valid
+	@Automapped
+	private Flight				flight;
 }

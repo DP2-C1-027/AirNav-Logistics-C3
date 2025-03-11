@@ -16,7 +16,7 @@ import javax.validation.constraints.Pattern;
 @Constraint(validatedBy = {})
 @ReportAsSingleViolation
 
-@Pattern(regexp = "^[A-Z]{4}-[0-9]{2}$")
+@Pattern(regexp = "^$|^[A-Z]{4}-[0-9]{2}$")
 public @interface ValidPromotionCode {
 
 	String message() default "{acme.validation.text.message}";

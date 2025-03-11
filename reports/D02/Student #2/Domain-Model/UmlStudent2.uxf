@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="15.1">
-  <zoom_level>7</zoom_level>
+  <zoom_level>6</zoom_level>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>210</x>
+      <x>510</x>
       <y>0</y>
-      <w>399</w>
-      <h>112</h>
+      <w>342</w>
+      <h>96</h>
     </coordinates>
     <panel_attributes>entities.uxf
 
@@ -24,10 +24,10 @@ bg=#f3fdff</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>84</x>
-      <y>455</y>
-      <w>511</w>
-      <h>91</h>
+      <x>30</x>
+      <y>120</y>
+      <w>438</w>
+      <h>78</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 Passenger
@@ -43,10 +43,10 @@ bg=green</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>77</x>
-      <y>294</y>
-      <w>525</w>
-      <h>91</h>
+      <x>168</x>
+      <y>240</y>
+      <w>450</w>
+      <h>78</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 Booking
@@ -54,7 +54,6 @@ Booking
 + locatorCode: String {Mandatory,ValidLocatorCode, Automapped,Column(unique = true)}
 + purchaseMoment: Date {Mandatory, ValidMoment(past=true), Temporal(TemporalType.TIMESTAMP, Automapped}
 + travelClass: TravelClass {Mandatory, Automapped, Enumerated(EnumType.STRING)}
-+ price: Money {Mandatory,ValidMoney Automapped}
 + lastNibble: String {Optional, ValidLastNibble, Automapped}
 bg=green</panel_attributes>
     <additional_attributes/>
@@ -62,10 +61,10 @@ bg=green</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>595</x>
-      <y>329</y>
-      <w>119</w>
-      <h>42</h>
+      <x>612</x>
+      <y>270</y>
+      <w>72</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>Booked by &gt;
 lt=&lt;-x
@@ -73,45 +72,15 @@ m1=1
 m2=*
 
 </panel_attributes>
-    <additional_attributes>150.0;20.0;10.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>700</x>
-      <y>329</y>
-      <w>77</w>
-      <h>28</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;Role&gt;&gt;
-Customers
-bg=pink</panel_attributes>
-    <additional_attributes/>
+    <additional_attributes>100.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>350</x>
-      <y>378</y>
-      <w>70</w>
-      <h>91</h>
-    </coordinates>
-    <panel_attributes>  includes ^
-lt=&lt;-x
-m1=1
-m2=*
-bg=green
-
-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;110.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>364</x>
-      <y>231</y>
-      <w>49</w>
-      <h>77</h>
+      <x>510</x>
+      <y>180</y>
+      <w>48</w>
+      <h>78</h>
     </coordinates>
     <panel_attributes>  has ^
 lt=&lt;-x
@@ -120,19 +89,86 @@ m2=*
 bg=green
 
 </panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
+    <additional_attributes>20.0;10.0;20.0;100.0;10.0;100.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>343</x>
-      <y>203</y>
-      <w>63</w>
-      <h>35</h>
+      <x>498</x>
+      <y>156</y>
+      <w>54</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 Flight
 bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>48</x>
+      <y>264</y>
+      <w>66</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Entity&gt;&gt;
+BookingRecord
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>84</x>
+      <y>192</y>
+      <w>60</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>  refers to ^
+lt=&lt;-x
+m1=1
+m2=*
+bg=green
+
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;120.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>108</x>
+      <y>264</y>
+      <w>72</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>  belongs to &gt;
+lt=&lt;-x
+m1=1
+m2=*
+bg=green
+
+</panel_attributes>
+    <additional_attributes>100.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>672</x>
+      <y>246</y>
+      <w>372</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Role&gt;&gt;
+Customers
+--
++ identifier: String {Mandatory, ValidIdentifier, Column(unique = true), Automapped}
++ phone: String {Mandatory,ValidPhoneNumber, Automapped}
++ physicalAddress: String {Mandatory, ValidLongText, Automapped}
++ city: String {Mandatory, ValidShortText, Automapped}
++ country: String {Mandatory, ValidShortText, Automapped}
++ earnedPoints: Integer {Optionaly, ValidEarnedPoints, Automapped}
+bg=pink</panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>

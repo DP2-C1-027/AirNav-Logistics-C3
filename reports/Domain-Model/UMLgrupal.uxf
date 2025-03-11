@@ -4,7 +4,7 @@
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>180</x>
+      <x>264</x>
       <y>0</y>
       <w>342</w>
       <h>96</h>
@@ -24,7 +24,7 @@ bg=#f3fdff</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>72</x>
+      <x>492</x>
       <y>192</y>
       <w>378</w>
       <h>120</h>
@@ -40,16 +40,16 @@ Airport
 + website: String {Optional, ValidUrl, Automapped}
 + email: String {Optional, ValidEmail, Automapped}
 + address: String {Optional, Valid, Automapped}
-+ phoneNumber: String {Optional, ValidPhone, Automapped}
++ phoneNumber: String {Optional, ValidPhoneNumber, Automapped}
 bg=green</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>84</x>
-      <y>336</y>
-      <w>330</w>
+      <x>936</x>
+      <y>522</y>
+      <w>474</w>
       <h>108</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
@@ -61,34 +61,35 @@ Airlane
 + email: String {Optional, ValidEmail, Automapped}
 + type: AirlineType {Mandatory, Enumerated(EnumType.STRING), Automapped}
 + foundationMoment: Date {Mandatory, ValidMoment(past=true), Temporal(TemporalType.TIMESTAMP), Automapped}
-+ phoneNumber: String {Optional, ValidPhone, Automapped}
++ phoneNumber: String {Optional, ValidPhoneNumber, Automapped}
 bg=green</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>558</x>
-      <y>360</y>
-      <w>264</w>
-      <h>78</h>
+      <x>510</x>
+      <y>534</y>
+      <w>354</w>
+      <h>90</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
-Announcement
+Aircraft
 --
-+ moment: Date {Mandatory, ValidMoment(past=true), Automapped}
-+ title: String {Mandatory, ValidShortText, Automapped}
-+ status: AnnouncementStatus {Mandatory, Valid, Automapped}
-+ text: String {Mandatory, ValidLongText, Automapped}
-+ moreInfo: String {Mandatory, ValidUrl, Automapped}
++ model: String {Mandatory,ValidShortText, Automapped}
++ registrationNumber: String {Mandatory, ValidShortText, Column(unique=true), Automapped}
++ capacity: Integer {Mandatory,Automapped, Valid, Min(1), Max(255)}
++ cargoWeight: Integer {Mandatory, Automapped, Min(2000), Max(50000), Valid}
++ status: Boolean {Mandatory, Automapped, Valid}
++ details: String {Optional, Automapped, ValidLongText}
 bg=green</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>462</x>
-      <y>102</y>
+      <x>0</x>
+      <y>192</y>
       <w>420</w>
       <h>90</h>
     </coordinates>
@@ -107,10 +108,10 @@ bg=green</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>486</x>
-      <y>234</y>
-      <w>264</w>
-      <h>78</h>
+      <x>42</x>
+      <y>300</y>
+      <w>378</w>
+      <h>96</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 Service
@@ -122,5 +123,229 @@ Service
 + money: Money {Optional, ValidMoney, Automapped}
 bg=green</panel_attributes>
     <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>858</x>
+      <y>564</y>
+      <w>90</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>  belongs to
+  ^
+lt=&lt;-x
+m1=1
+m2=*
+bg=green
+
+</panel_attributes>
+    <additional_attributes>130.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>654</x>
+      <y>378</y>
+      <w>66</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Entity&gt;&gt;
+Leg
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>654</x>
+      <y>306</y>
+      <w>54</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>  arrives at
+  ^
+lt=&lt;-x
+m1=1
+m2=*
+bg=green
+
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;120.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>678</x>
+      <y>402</y>
+      <w>48</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>  
+  flies on
+  ^
+lt=&lt;-x
+m1=1
+m2=*
+bg=green
+
+</panel_attributes>
+    <additional_attributes>10.0;220.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>708</x>
+      <y>306</y>
+      <w>66</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>  departs from
+  ^
+lt=&lt;-x
+m1=1
+m2=*
+bg=green
+
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;120.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>312</x>
+      <y>558</y>
+      <w>108</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Entity&gt;&gt;
+MaintenanceRecord
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>414</x>
+      <y>558</y>
+      <w>108</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>  About &gt;
+lt=&lt;-x
+m1=1
+m2=*
+bg=green
+
+</panel_attributes>
+    <additional_attributes>160.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>714</x>
+      <y>378</y>
+      <w>96</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>&lt; belong to
+lt=&lt;-x
+m1=1
+m2=*
+bg=green
+
+</panel_attributes>
+    <additional_attributes>10.0;20.0;140.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>798</x>
+      <y>378</y>
+      <w>96</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Entity&gt;&gt;
+FlightAssignment
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>888</x>
+      <y>378</y>
+      <w>96</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>&lt; records
+lt=&lt;-x
+m1=1
+m2=*
+bg=green
+
+</panel_attributes>
+    <additional_attributes>10.0;20.0;140.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>972</x>
+      <y>378</y>
+      <w>114</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Entity&gt;&gt;
+ActivityLog
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1026</x>
+      <y>462</y>
+      <w>60</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>  working for
+  v
+lt=&lt;-x
+m1=1
+m2=*
+bg=green
+
+</panel_attributes>
+    <additional_attributes>10.0;100.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>972</x>
+      <y>438</y>
+      <w>114</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Role&gt;&gt;
+FlightCrewMember
+bg=pink</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>840</x>
+      <y>402</y>
+      <w>144</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes> allocates &gt;
+lt=&lt;-x
+m1=1
+m2=*
+bg=green
+
+</panel_attributes>
+    <additional_attributes>220.0;80.0;10.0;80.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>

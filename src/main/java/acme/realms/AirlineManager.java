@@ -14,16 +14,17 @@ package acme.realms;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.Past;
 
 import acme.client.components.basis.AbstractRole;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
-import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidUrl;
 import acme.constraints.ValidIdentifier;
 import lombok.Getter;
@@ -43,22 +44,23 @@ public class AirlineManager extends AbstractRole {
 	@Mandatory
 	@Automapped
 	@ValidIdentifier
+	@Column(unique = true)
 	private String				identifierNumber;
 
 	@Mandatory
 	@Automapped
 	@Min(0)
-	private int					yearsOfService;
+	private Integer				yearsOfService;
 
 	@Mandatory
 	@Automapped
-	@ValidMoment(past = true)
+	@Past
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date				dateOfBirth;
 
 	@Optional
 	@Automapped
 	@ValidUrl
-	private String				picture;
+	private String				photo;
 
 }

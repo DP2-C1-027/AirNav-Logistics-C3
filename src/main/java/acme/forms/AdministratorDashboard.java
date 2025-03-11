@@ -1,0 +1,43 @@
+
+package acme.forms;
+
+import acme.client.components.basis.AbstractForm;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+public class AdministratorDashboard extends AbstractForm {
+
+	// Serialisation identifier -----------------------------------------------
+
+	protected static final long	serialVersionUID	= 1L;
+
+	// Attributes -------------------------------------------------------------
+
+	// amount of airports grouped by operational scope
+	private Integer				internationalAirports;
+	private Integer				domesticAirports;
+	private Integer				regionalAirports;
+
+	// amount of airlines grouped by type
+	private Integer				luxuryAirlines;
+	private Integer				standardAirlines;
+	private Integer				lowCostAirlines;
+
+	// ratio of all airlines with both an email and phone number
+	private Double				ratioAirlinesEmailAndPhone;
+
+	// ratio of active and nonActive aircrafts
+	private Double				activeAircrafts;
+
+	// ratio of all reviews with a score above 5.00
+	private Double				ratioHighScoreReviews;
+
+	// count, average, minimum, maximum, and deviation of the number of reviews posted over the last 10 weeks
+	private Integer				countReviews;
+	private Double				averageReviews;
+	private Integer				minReviews;
+	private Integer				maxReviews;
+	private Double				deviationFlightCost;
+}

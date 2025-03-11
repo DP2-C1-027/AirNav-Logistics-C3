@@ -2,7 +2,6 @@
 package acme.entities.maintanenceRecords;
 
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
 import javax.validation.Valid;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -38,19 +37,17 @@ public class Task extends AbstractEntity {
 	@Automapped
 	@Min(0)
 	@Max(10)
+	@Valid
 	private Integer				priority;
 
 	@Mandatory
 	@Automapped
+	@Valid
+	@Max(1000)
 	private Integer				estimatedDuration;
 
 	// Derived attributes -----------------------------------------------------
 
 	// Relationships ----------------------------------------------------------
-
-	@ManyToOne(optional = false)
-	@Mandatory
-	@Valid
-	private MaintanenceRecord	maintanenceRecord;
 
 }

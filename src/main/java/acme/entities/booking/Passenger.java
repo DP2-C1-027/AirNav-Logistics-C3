@@ -4,10 +4,8 @@ package acme.entities.booking;
 import java.util.Date;
 
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.Valid;
 
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
@@ -61,8 +59,4 @@ public class Passenger extends AbstractEntity {
 
 	// Relationships ----------------------------------------------------------
 
-	@Mandatory
-	@ManyToOne(optional = false)
-	@Valid
-	private Booking				booking;
 }

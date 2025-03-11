@@ -1,3 +1,21 @@
 key,name,code,website,type,foundationMoment,email,phoneNumber
 airline-01,Delta Air Lines,DAL,https://www.delta.com,STANDARD,2000/05/30 00:00,contact@delta.com,+1234567890
-airline-02,Emirates,EAU,https://www.emirates.com,STANDARD,2003/03/25 00:00,contact@emirates.com,+1234567899
+airline-02,Emirates,EAU,https://www.emirates.com,LOW_COST,2003/03/25 00:00,contact@emirates.com,+1234567899
+airline-03,American Airlines,AAL,https://www.aa.com,STANDARD,2002/04/15 00:00,contact@aa.com,+1234567891
+airline-04,Lufthansa,LHA,https://www.lufthansa.com,LUXURY,2003/01/06 00:00,contact@lufthansa.com,+1234567892
+airline-05,Air France,AFA,https://www.airfrance.com,STANDARD,2003/10/07 00:00,contact@airfrance.com,+1234567893
+airline-06,British Airways,ABA,https://www.britishairways.com,STANDARD,2004/04/01 00:00,contact@ba.com,+1234567894
+airline-07,Qantas,QFA,https://www.qantas.com,STANDARD,2020/11/16 00:00,contact@qantas.com,+1234567895
+airline-08,Singapore Airlines,ASQ,https://www.singaporeair.com,LOW_COST,2002/05/01 00:00,contact@singaporeair.com,+1234567896
+airline-09,Cathay Pacific,CXA,https://www.cathaypacific.com,LOW_COST,2006/09/24 00:00,contact@cathaypacific.com,+1234567897
+airline-10,Japan Airlines,JLA,https://www.jal.com,STANDARD,2001/08/01 00:00,contact@jal.com,+1234567898
+airline-11,Air Canada,ACA,https://www.aircanada.com,LUXURY,2007/04/10 00:00,contact@aircanada.com,+1234567800
+airline-12,Qatar Airways,QRA,https://www.qatarairways.com,STANDARD,2003/11/22 00:00,contact@qatarairways.com,+1234567801
+airline-13,Turkish Airlines,TKA,https://www.turkishairlines.com,LUXURY,2003/05/20 00:00,contact@turkishairlines.com,+1234567802
+airline-14,Etihad Airways,EYA,https://www.etihad.com,STANDARD,2003/07/01 00:00,contact@etihad.com,+1234567803
+airline-15,Virgin Atlantic,VSA,https://www.virginatlantic.com,LUXURY,2004/06/22 00:00,contact@virginatlantic.com,+1234567804
+airline-16,中国国际航空 (Air China),CCA,https://www.airchina.com,STANDARD,2005/09/01 00:00,contact@airchina.com,+1234567805
+airline-22,한국항공 (Korean Air),KAL,https://www.koreanair.com,STANDARD,2000/03/01 00:00,contact@koreanair.com,+1234567811
+airline-23,مصر للطيران (EgyptAir),MSR,https://www.egyptair.com,STANDARD,2000/06/01 00:00,contact@egyptair.com,+1234567812
+airline-24,<img src=x onerror=alert('XSS')>,XSS,https://www.xss.com,LOW_COST,2003/03/01 00:00,xss@example.com,+1234567813
+airline-25,俄罗斯航空 (Aeroflot),AFL,https://www.aeroflot.com,STANDARD,2000/07/01 00:00,contact@aeroflot.com,+1234567814

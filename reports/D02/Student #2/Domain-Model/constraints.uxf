@@ -45,13 +45,13 @@ bg=RED</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>693</x>
-      <y>490</y>
+      <x>322</x>
+      <y>497</y>
       <w>168</w>
       <h>63</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Constraint&gt;&gt;
-ValidPhone?¿
+ValidPhoneNumber
 --
 + Pattern(regexp="^\\+?\\d{6,15}$")
 bg=RED</panel_attributes>
@@ -100,7 +100,7 @@ bg=RED</panel_attributes>
     <panel_attributes>&lt;&lt;Constraint&gt;&gt;
 ValidLastNibble
 --
-+ Length(min=4, max=4)
++ LastNibbleValidator
 bg=RED</panel_attributes>
     <additional_attributes/>
   </element>
@@ -164,23 +164,6 @@ ValidPassportNumber
 --
 + NotBlank
 + Pattern(regexp = "^[A-Z0-9]{6,9}$")
-bg=RED</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>420</x>
-      <y>490</y>
-      <w>259</w>
-      <h>70</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;Constraint&gt;&gt;
-ValidPhone
---
-+ countryCode must be in range 1..999
-+ areaCode must be in range 1..99999
-+ number must match pattern "\\d{1,9}([\\s-]\\d{1,9}){0,5}"
 bg=RED</panel_attributes>
     <additional_attributes/>
   </element>

@@ -7,4 +7,25 @@ user-account-provider-02,true,"UserIdentity{name: 'Martina', surname: 'коза 
 user-account-provider-03,true,"UserIdentity{name: 'Antonia', surname: 'אבטיח Æløzå', email: 'antonia@acme.com'}",provider3,provider3
 user-account-agent-01,true,"UserIdentity{name: 'Lurel', surname: 'Agent', email: 'lurel@acme.com'}",agent1,agent1
 user-account-agent-02,true,"UserIdentity{name: 'Lorel', surname: '之乎', email: 'll@acme.com'}",agent2,agent2
+user-account-customer-01,true,"UserIdentity{name: 'Lucy', surname: 'الفارسي', email: 'lucy@acme.com'}",customer1,customer1
+user-account-customer-02,true,"UserIdentity{name: 'Lucay', surname: 'Customer', email: 'lucay@acme.com'}",customer2,customer2
+user-account-customer-03,true,"UserIdentity{name: 'Aluay', surname: 'เปนาลอซ่า', email: 'aluay@acme.com'}",customer3,customer3
+user-account-manager-01,true,"UserIdentity{name: 'Jose', surname: 'Garcia Delgado', email: 'example@email.com'}",manager1,manager1
+user-account-manager-02,true,"UserIdentity{name: 'Juan', surname: 'Saler Merito', email: 'example2@email.com'}",manager2,manager2
+user-account-manager-03,true,"UserIdentity{name: 'Geralt', surname: 'Bardo', email: 'example3@email.com'}",manager3,manager3
+user-account-technician-01,true,"UserIdentity{name: 'Richter', surname: 'Belmont', email: 'richter@email.com'}",technician1,technician1
+user-account-technician-02,true,"UserIdentity{name: 'Maria', surname: 'Renard', email: 'maria@email.com'}",technician2,technician2
+user-account-technician-03,true,"UserIdentity{name: 'Adrian', surname: 'Farenhait Tepes', email: 'adrian@email.com'}",technician3,technician3
+user-account-technician-04,true,"UserIdentity{name: 'Makoto', surname: 'Niijima', email: 'makoto@email.com'}",technician4,technician4
+user-account-technician-05,true,"UserIdentity{name: 'Futaba', surname: 'Sakura', email: 'futaba@email.com'}",technician5,technician5
+user-account-technician-06,true,"UserIdentity{name: 'Sumire', surname: 'Yoshizawa', email: 'sumire@email.com'}",technician6,technician6
+user-account-technician-07,true,"UserIdentity{name: 'Ann', surname: 'Takamaki', email: 'ann@email.com'}",technician7,technician7
+user-account-technician-08,true,"UserIdentity{name: 'Haru', surname: 'Okumura', email: 'haru@email.com'}",technician8,technician8
+user-account-technician-09,true,"UserIdentity{name: 'Goro', surname: 'Akechi', email: 'goro@email.com'}",technician9,technician9
+user-account-technician-10,true,"UserIdentity{name: 'Elise', surname: 'Liedl', email: 'elise@email.com'}",technician10,technician10
+user-account-flight-crew-member-01,true,"UserIdentity{name: 'Åxel', surname: 'Møller-Grün', email: 'axelmg@email.com'}",member1,member1
+user-account-flight-crew-member-02,true,"UserIdentity{name: 'Zoë', surname: 'Łukaszewski', email: 'zoeluk@email.com'}",member2,member2
+user-account-flight-crew-member-03,true,"UserIdentity{name: 'Íñigo', surname: 'Østergård', email: 'inigoost@email.com'}",member3,member3
+user-account-flight-crew-member-04,true,"UserIdentity{name: 'Maëlle', surname: 'Černý', email: 'maellec@email.com'}",member4,member4
+user-account-flight-crew-member-05,true,"UserIdentity{name: 'Tórbjörn', surname: 'Šebestić', email: 'torbjseb@email.com'}",member5,member5
 

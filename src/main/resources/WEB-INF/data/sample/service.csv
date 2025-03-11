@@ -1,3 +1,11 @@
 key,name,picture,averageDwellTime,promotionCode,money
 service-01,Wi-Fi Service,https://example.com/wifi.jpg,30,WIFI-23,50.00
 service-02,Lounge Access,https://example.com/lounge.jpg,60,LOUN-45,25.00
+service-03,<script>alert('Hacked!');</script>,https://example.com/hacked.jpg,10,,100.00
+service-04,餐饮服务 (Catering Service),https://example.com/catering.jpg,45,CATE-12,75.00
+service-05,<marquee>Hacked Service</marquee>,https://example.com/marquee.jpg,90,MARQ-34,0.00
+service-06,خدمة التوصيل (Delivery Service),https://example.com/delivery.jpg,30,DELI-56,
+service-07,<b>Bold Service</b>,https://example.com/bold.jpg,60,BOLD-78,20.00
+service-08,บริการสปา (Spa Service),https://example.com/spa.jpg,10,SPAS-90,50.00
+service-09,<img src=x onerror=alert('XSS')>,https://example.com/xss.jpg,15,XXSS-11,
+service-10,行李寄存 (Luggage Storage),https://example.com/luggage.jpg,30,LUGG-22,15.00

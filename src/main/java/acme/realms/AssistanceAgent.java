@@ -19,6 +19,7 @@ import acme.client.components.validation.ValidMoney;
 import acme.client.components.validation.ValidUrl;
 import acme.constraints.ValidIdentifier;
 import acme.constraints.ValidLongText;
+import acme.constraints.ValidLongTextOptional;
 import acme.entities.airline.Airline;
 import lombok.Getter;
 import lombok.Setter;
@@ -51,7 +52,7 @@ public class AssistanceAgent extends AbstractRole {
 
 	@Optional
 	@Automapped
-	@ValidLongText
+	@ValidLongTextOptional
 	private String				bio;
 
 	@Optional

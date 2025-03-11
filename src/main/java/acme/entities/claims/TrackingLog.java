@@ -15,7 +15,7 @@ import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoment;
-import acme.constraints.ValidLongText;
+import acme.constraints.ValidLongTextOptional;
 import acme.constraints.ValidShortText;
 import lombok.Getter;
 import lombok.Setter;
@@ -52,7 +52,7 @@ public class TrackingLog extends AbstractEntity {
 
 	@Optional
 	@Automapped
-	@ValidLongText
+	@ValidLongTextOptional
 	private String				resolutionDetails;
 
 	// Relationships ----------------------------------------------------------

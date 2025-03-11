@@ -24,8 +24,8 @@ bg=#f3fdff</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>192</x>
-      <y>208</y>
+      <x>24</x>
+      <y>264</y>
       <w>496</w>
       <h>120</h>
     </coordinates>

@@ -53,6 +53,7 @@ public class Booking extends AbstractEntity {
 	@Mandatory
 	@Automapped
 	@Enumerated(EnumType.STRING)
+	@Valid
 	private TravelClass			travelClass;
 
 	@Optional

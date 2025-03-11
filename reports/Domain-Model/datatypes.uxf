@@ -93,7 +93,26 @@ AirlineType
 --
 + LUXURY
 + STANDARD
-+ LOW-COST
++ LOW_COST
+bg=LIGHT_GRAY</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>890</x>
+      <y>390</y>
+      <w>160</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Datatype&gt;&gt;
+Statistics
+--
++ count: Integer
++ average: Double
++ min: Double
++ max: Double
++ deviation: Double
 bg=LIGHT_GRAY</panel_attributes>
     <additional_attributes/>
   </element>

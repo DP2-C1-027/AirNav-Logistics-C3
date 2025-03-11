@@ -21,36 +21,4 @@ they accept any liabilities with respect to them.
 bg=#f3fdff</panel_attributes>
     <additional_attributes/>
   </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>246</x>
-      <y>246</y>
-      <w>252</w>
-      <h>66</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;Role&gt;&gt;
-Consumer
---
-+ company: String {Mandatory, ValidString, Automapped}
-+ sector: String {Mandatory, ValidString, Automapped}
-bg=pink</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>246</x>
-      <y>324</y>
-      <w>252</w>
-      <h>66</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;Role&gt;&gt;
-Provider
---
-+ company: String {Mandatory, ValidString, Automapped}
-+ sector: String {Mandatory, ValidString, Automapped}
-bg=pink</panel_attributes>
-    <additional_attributes/>
-  </element>
 </diagram>

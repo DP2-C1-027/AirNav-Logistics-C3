@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="15.1">
-  <zoom_level>6</zoom_level>
+  <zoom_level>5</zoom_level>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>264</x>
-      <y>90</y>
-      <w>342</w>
-      <h>96</h>
+      <x>300</x>
+      <y>75</y>
+      <w>285</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes>entities.uxf
 
@@ -24,10 +24,10 @@ bg=#f3fdff</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>492</x>
-      <y>282</y>
-      <w>378</w>
-      <h>120</h>
+      <x>380</x>
+      <y>250</y>
+      <w>315</w>
+      <h>100</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 Airport
@@ -38,19 +38,19 @@ Airport
 + city: String {Mandatory, ValidShortText, Automapped}
 + country: String {Mandatory, ValidShortText, Automapped}
 + website: String {Optional, ValidUrl, Automapped}
-+ email: String {Optional, ValidEmail, Automapped}
++ email: String {Optional, ValidEmailOptional, Automapped}
 + address: String {Optional, Valid, Automapped}
-+ phoneNumber: String {Optional, ValidPhoneNumber, Automapped}
++ phoneNumber: String {Optional, ValidPhoneNumberOptional, Automapped}
 bg=green</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>936</x>
-      <y>612</y>
-      <w>474</w>
-      <h>108</h>
+      <x>100</x>
+      <y>445</y>
+      <w>395</w>
+      <h>90</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 Airlane
@@ -58,20 +58,20 @@ Airlane
 + name: String {Mandatory, ValidShortText, Automapped}
 + code: String {Mandatory, ValidIATAcode, Automapped, Column(unique = true)}
 + website: String {Mandatory, ValidUrl, Automapped}
-+ email: String {Optional, ValidEmail, Automapped}
++ email: String {Optional, ValidEmailOptional, Automapped}
 + type: AirlineType {Mandatory, Enumerated(EnumType.STRING), Automapped}
 + foundationMoment: Date {Mandatory, ValidMoment(past=true), Temporal(TemporalType.TIMESTAMP), Automapped}
-+ phoneNumber: String {Optional, ValidPhoneNumber, Automapped}
++ phoneNumber: String {Optional, ValidPhoneNumberOptional, Automapped}
 bg=green</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>510</x>
-      <y>624</y>
-      <w>354</w>
-      <h>90</h>
+      <x>615</x>
+      <y>455</y>
+      <w>295</w>
+      <h>75</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 Aircraft
@@ -81,17 +81,17 @@ Aircraft
 + capacity: Integer {Mandatory,Automapped, Valid, Min(1), Max(255)}
 + cargoWeight: Integer {Mandatory, Automapped, Min(2000), Max(50000), Valid}
 + status: Boolean {Mandatory, Automapped, Valid}
-+ details: String {Optional, Automapped, ValidLongText}
++ details: String {Optional, Automapped, ValidLongTextOptional}
 bg=green</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>0</x>
-      <y>282</y>
-      <w>420</w>
-      <h>90</h>
+      <x>535</x>
+      <y>160</y>
+      <w>350</w>
+      <h>75</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 Review
@@ -108,17 +108,17 @@ bg=green</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>42</x>
-      <y>390</y>
-      <w>378</w>
-      <h>96</h>
+      <x>805</x>
+      <y>245</y>
+      <w>315</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 Service
 --
 + name: String {Mandatory,ValidShortText, Automapped}
 + picture: String {Mandatory, ValidUrl, Automapped}
-+ averangeDwellTime: Integer {Mandatory, Min(0), Automapped}
++ averangeDwellTime: Integer {Mandatory, ValidDwellTime, Automapped}
 + promotionCode: String {Mandatory, ValidPromotionCode, Column(unique=true), Automapped}
 + money: Money {Optional, ValidMoney, Automapped}
 bg=green</panel_attributes>
@@ -127,10 +127,10 @@ bg=green</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>858</x>
-      <y>654</y>
-      <w>90</w>
-      <h>48</h>
+      <x>490</x>
+      <y>485</y>
+      <w>135</w>
+      <h>40</h>
     </coordinates>
     <panel_attributes>  belongs to
   ^
@@ -140,15 +140,15 @@ m2=*
 bg=green
 
 </panel_attributes>
-    <additional_attributes>130.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>10.0;20.0;250.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>654</x>
-      <y>468</y>
-      <w>66</w>
-      <h>30</h>
+      <x>625</x>
+      <y>390</y>
+      <w>55</w>
+      <h>25</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 Leg
@@ -158,10 +158,10 @@ bg=green</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>654</x>
-      <y>396</y>
-      <w>54</w>
-      <h>84</h>
+      <x>625</x>
+      <y>345</y>
+      <w>45</w>
+      <h>55</h>
     </coordinates>
     <panel_attributes>  arrives at
   ^
@@ -171,15 +171,15 @@ m2=*
 bg=green
 
 </panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;120.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>678</x>
-      <y>492</y>
-      <w>48</w>
-      <h>144</h>
+      <x>645</x>
+      <y>410</y>
+      <w>40</w>
+      <h>55</h>
     </coordinates>
     <panel_attributes>  
   flies on
@@ -190,15 +190,15 @@ m2=*
 bg=green
 
 </panel_attributes>
-    <additional_attributes>10.0;220.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>708</x>
-      <y>396</y>
-      <w>66</w>
-      <h>84</h>
+      <x>670</x>
+      <y>345</y>
+      <w>55</w>
+      <h>55</h>
     </coordinates>
     <panel_attributes>  departs from
   ^
@@ -208,15 +208,15 @@ m2=*
 bg=green
 
 </panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;120.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>312</x>
-      <y>648</y>
-      <w>108</w>
-      <h>30</h>
+      <x>1000</x>
+      <y>480</y>
+      <w>90</w>
+      <h>25</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 MaintenanceRecord
@@ -226,127 +226,132 @@ bg=green</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>414</x>
-      <y>648</y>
-      <w>108</w>
-      <h>36</h>
+      <x>910</x>
+      <y>480</y>
+      <w>100</w>
+      <h>40</h>
     </coordinates>
-    <panel_attributes>  About &gt;
+    <panel_attributes>  
+&lt; About
 lt=&lt;-x
 m1=1
 m2=*
 bg=green
 
 </panel_attributes>
-    <additional_attributes>160.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>10.0;20.0;180.0;20.0</additional_attributes>
   </element>
   <element>
-    <id>Relation</id>
+    <id>UMLNote</id>
     <coordinates>
-      <x>714</x>
-      <y>468</y>
-      <w>96</w>
-      <h>36</h>
+      <x>910</x>
+      <y>135</y>
+      <w>210</w>
+      <h>70</h>
     </coordinates>
-    <panel_attributes>&lt; belong to
-lt=&lt;-x
-m1=1
-m2=*
-bg=green
+    <panel_attributes>+ The discount associated with the promotion
+code must be registered as a valid monetary amount.
 
-</panel_attributes>
-    <additional_attributes>10.0;20.0;140.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>798</x>
-      <y>468</y>
-      <w>96</w>
-      <h>30</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;Entity&gt;&gt;
-FlightAssignment
-bg=green</panel_attributes>
++ Operations to display services must be accessible to any user.
+
++ The display of services must be random and should not
+interfere with the user experience.
+bg=orange</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>888</x>
-      <y>468</y>
-      <w>96</w>
-      <h>36</h>
+      <x>310</x>
+      <y>530</y>
+      <w>75</w>
+      <h>55</h>
     </coordinates>
-    <panel_attributes>&lt; records
-lt=&lt;-x
-m1=1
-m2=*
-bg=green
-
-</panel_attributes>
-    <additional_attributes>10.0;20.0;140.0;20.0</additional_attributes>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;90.0;130.0;10.0</additional_attributes>
   </element>
   <element>
-    <id>UMLClass</id>
+    <id>UMLNote</id>
     <coordinates>
-      <x>972</x>
-      <y>468</y>
-      <w>114</w>
-      <h>30</h>
+      <x>195</x>
+      <y>575</y>
+      <w>165</w>
+      <h>70</h>
     </coordinates>
-    <panel_attributes>&lt;&lt;Entity&gt;&gt;
-ActivityLog
-bg=green</panel_attributes>
+    <panel_attributes>+ The IATA code typically has an "X" as 
+the last letter
+
++ The operations to create or update 
+an airline require confirmation by the administrator.
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>650</x>
+      <y>580</y>
+      <w>225</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>+ The aircraft's status must be "ACTIVE"
+or "UNDER_MAINTENANCE, "where a value of 1 means active 
+and 0 means under maintenance.
+
++ The operations to create, update, or deactivate an
+aircraft require confirmation from the administrator.
+bg=orange</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1026</x>
-      <y>552</y>
-      <w>60</w>
-      <h>72</h>
+      <x>740</x>
+      <y>525</y>
+      <w>15</w>
+      <h>60</h>
     </coordinates>
-    <panel_attributes>  working for
-  v
-lt=&lt;-x
-m1=1
-m2=*
-bg=green
-
-</panel_attributes>
+    <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;100.0;10.0;10.0</additional_attributes>
   </element>
   <element>
-    <id>UMLClass</id>
+    <id>Relation</id>
     <coordinates>
-      <x>972</x>
-      <y>528</y>
-      <w>114</w>
-      <h>30</h>
+      <x>690</x>
+      <y>300</y>
+      <w>55</w>
+      <h>80</h>
     </coordinates>
-    <panel_attributes>&lt;&lt;Role&gt;&gt;
-FlightCrewMember
-bg=pink</panel_attributes>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>90.0;140.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>735</x>
+      <y>360</y>
+      <w>165</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>+ An airport can only have 
+two runways 
+(one for landings and one for take-offs)
+
++ The operations to create or update an airport
+require confirmation from the administrator.
+bg=orange</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>840</x>
-      <y>492</y>
-      <w>144</w>
-      <h>72</h>
+      <x>940</x>
+      <y>200</y>
+      <w>15</w>
+      <h>55</h>
     </coordinates>
-    <panel_attributes> allocates &gt;
-lt=&lt;-x
-m1=1
-m2=*
-bg=green
-
-</panel_attributes>
-    <additional_attributes>220.0;80.0;10.0;80.0;10.0;10.0</additional_attributes>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>

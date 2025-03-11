@@ -40,7 +40,7 @@ public class Statistics {
 	}
 
 	public String getCountString() {
-		return this.count != null ? String.valueOf(this.count) : "N/A";
+		return String.valueOf(this.count);
 	}
 
 }

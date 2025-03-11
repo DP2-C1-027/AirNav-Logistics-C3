@@ -10,6 +10,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.Valid;
 
 import acme.client.components.basis.AbstractEntity;
@@ -18,10 +19,11 @@ import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoment;
-import acme.client.components.validation.ValidMoney;
+import acme.client.helpers.SpringHelper;
 import acme.constraints.ValidLastNibble;
 import acme.constraints.ValidLocatorCode;
 import acme.entities.flights.Flight;
+import acme.entities.flights.FlightRepository;
 import acme.realms.booking.Customers;
 import lombok.Getter;
 import lombok.Setter;
@@ -53,11 +55,6 @@ public class Booking extends AbstractEntity {
 	@Enumerated(EnumType.STRING)
 	private TravelClass			travelClass;
 
-	@Mandatory
-	@Automapped
-	@ValidMoney
-	private Money				price;
-
 	@Optional
 	@Automapped
 	@ValidLastNibble
@@ -65,16 +62,30 @@ public class Booking extends AbstractEntity {
 
 	// Derived attributes -----------------------------------------------------
 
+
+	@Transient
+	private Money getPrice() {
+
+		Money result;
+		FlightRepository repository;
+
+		repository = SpringHelper.getBean(FlightRepository.class);
+		result = repository.findCostByFlightId(this.getId());
+
+		return result;
+	}
+
 	// Relationships ----------------------------------------------------------
 
-	@Mandatory
-	@ManyToOne(optional = false)
-	@Valid
-	private Customers			customer;
 
 	@Mandatory
 	@ManyToOne(optional = false)
 	@Valid
-	private Flight				flight;
+	private Customers	customer;
+
+	@Mandatory
+	@ManyToOne(optional = false)
+	@Valid
+	private Flight		flight;
 
 }

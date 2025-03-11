@@ -64,13 +64,11 @@ public class MaintanenceRecord extends AbstractEntity {
 
 	// Relationships ----------------------------------------------------------
 
-	//muchas instancias de Maintanence estan asociadas a un Technician
 	@ManyToOne(optional = false)
 	@Mandatory
 	@Valid
 	private Technician				technician;
 
-	//muchas instancias de Maintanence estan asociadas a un Aircraft
 	@ManyToOne(optional = false)
 	@Mandatory
 	@Valid

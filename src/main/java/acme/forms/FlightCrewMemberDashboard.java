@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import acme.client.components.basis.AbstractForm;
+import acme.datatypes.Statistics;
 import acme.entities.airport.Airport;
 import acme.entities.flightAssignment.FlightAssignment;
 import acme.realms.AvailabilityStatus;
@@ -35,8 +36,5 @@ public class FlightCrewMemberDashboard extends AbstractForm {
 	private Map<AvailabilityStatus, List<FlightAssignment>>	flightAssignmentsByStatus;
 
 	//	Minimum, maximum, average and deviation of flight assignments in the last month
-	private Integer											minFlightAssignmentCost;
-	private Integer											maxFlightAssignmentCost;
-	private Double											averageFlightAssignmentCost;
-	private Double											deviationFlightAssignmentCost;
+	private Statistics										flightAssignments;
 }

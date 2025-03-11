@@ -31,7 +31,7 @@ public class Technician extends AbstractRealm {
 	@Automapped
 	private String				licenseNumber;
 
-	@Optional
+	@Mandatory
 	@Automapped
 	@ValidPhoneNumber
 	private String				phoneNumber;

@@ -15,7 +15,7 @@ Task
 + type: TaskType {Mandatory, Automapped, Valid}
 + description: String {Mandatory, ValidLongText, Automapped}
 + priority: Integer {Mandatory, Automapped, Min(0), Max(10)}
-+ estimatedDuration: Integer {Mandatory, Automapped}
++ estimatedDuration: Integer {Mandatory , Automapped}
 bg=green</panel_attributes>
     <additional_attributes/>
   </element>

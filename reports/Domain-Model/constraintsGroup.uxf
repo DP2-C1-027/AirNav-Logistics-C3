@@ -120,4 +120,21 @@ ValidPromotionCode
 bg=RED</panel_attributes>
     <additional_attributes/>
   </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>210</x>
+      <y>469</y>
+      <w>189</w>
+      <h>77</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Constraint&gt;&gt;
+ValidDwellTime
+--
++ Min(0)
++ Max(100)
++ Digits(integer = 3, fraction = 2)
+bg=RED</panel_attributes>
+    <additional_attributes/>
+  </element>
 </diagram>

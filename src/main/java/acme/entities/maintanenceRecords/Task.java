@@ -2,6 +2,7 @@
 package acme.entities.maintanenceRecords;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.validation.Valid;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -10,6 +11,7 @@ import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.constraints.ValidLongText;
+import acme.realms.maintenanceRecords.Technician;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -49,5 +51,8 @@ public class Task extends AbstractEntity {
 	// Derived attributes -----------------------------------------------------
 
 	// Relationships ----------------------------------------------------------
-
+	@ManyToOne(optional = false)
+	@Mandatory
+	@Valid
+	private Technician			technician;
 }

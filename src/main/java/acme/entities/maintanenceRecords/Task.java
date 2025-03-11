@@ -37,10 +37,13 @@ public class Task extends AbstractEntity {
 	@Automapped
 	@Min(0)
 	@Max(10)
+	@Valid
 	private Integer				priority;
 
 	@Mandatory
 	@Automapped
+	@Valid
+	@Max(1000)
 	private Integer				estimatedDuration;
 
 	// Derived attributes -----------------------------------------------------

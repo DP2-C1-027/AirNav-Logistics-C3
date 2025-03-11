@@ -1,3 +1,16 @@
 key,registrationMoment,passengerEmail,description,type,indicator,key:registeredBy
 claim-01,2020/11/01 10:00,passenger1@gmail.com,"The flight was delayed for 3 hours.",FLIGHT_ISSUES,true,agent-01
 claim-02,2020/11/01 10:00,passenger1@gmail.com,"The flight was delayed for 7 hours.",FLIGHT_ISSUES,false,agent-01
+claim-03,2021/06/15 14:30,passenger2@yahoo.com,"El equipaje no llegó a destino.",LUGGAGE_ISSUES,true,agent-02
+claim-04,2021/07/22 08:45,passenger3@hotmail.com,"Vol retardé de 5 heures.",FLIGHT_ISSUES,false,agent-03
+claim-05,2021/09/10 20:10,passenger4@gmail.com,"荷物が紛失しました。",LUGGAGE_ISSUES,true,agent-04
+claim-06,2021/11/03 13:15,passenger5@outlook.com,"Overbooked flight, I was denied boarding.",FLIGHT_ISSUES,true,agent-05
+claim-07,2022/02/14 16:50,passenger6@gmail.com,"Flug storniert ohne Vorankündigung.",FLIGHT_ISSUES,false,agent-06
+claim-08,2022/05/30 10:05,passenger7@yahoo.com,"Mi maleta llegó dañada.",LUGGAGE_ISSUES,true,agent-07
+claim-09,2021/08/19 22:20,passenger8@hotmail.com,"حقيبتي لم تصل",OTHER_ISSUES,false,agent-08
+claim-10,2021/11/11 18:00,passenger9@gmail.com,"Le vol a été annulé sans compensation.",FLIGHT_ISSUES,true,agent-09
+claim-11,2021/03/05 07:30,passenger10@outlook.com,"I received the wrong meal.",SECURITY_INCIDENT,false,agent-10
+claim-12,2021/06/25 12:10,passenger11@gmail.com,"서비스가 매우 불친절했습니다.",SECURITY_INCIDENT,true,agent-11
+claim-13,2021/09/09 15:55,passenger12@yahoo.com,"Vuelo desviado a otro aeropuerto sin explicación.",FLIGHT_ISSUES,false,agent-12
+claim-14,2021/12/01 21:40,passenger13@hotmail.com,"Καθυστερημένη πτήση χωρίς ενημέρωση.",FLIGHT_ISSUES,true,agent-13
+claim-15,2022/02/18 11:30,passenger14@gmail.com,"Robert'); DROP TABLE claims; --",SECURITY_INCIDENT,false,agent-14

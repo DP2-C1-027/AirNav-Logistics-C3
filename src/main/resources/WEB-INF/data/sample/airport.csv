@@ -1,4 +1,16 @@
 key,name,code,operationalScope,city,country,website,email,address,phoneNumber
 airport-01,John F. Kennedy International Airport,JFK,INTERNATIONAL,New York,United States,https://www.jfkairport.com,info@jfkairport.com,"JFK Airport, Queens, NY 11430",+1234567880
-airport-02,Heathrow Airport,LHR,INTERNATIONAL,London,United Kingdom,https://www.heathrow.com,info@heathrow.com,"Heathrow Airport, Hounslow, TW6 1AP",+1234567898
-
+airport-02,Heathrow Airport,LHR,INTERNATIONAL,London,United Kingdom,https://www.heathrow.com,info@heathrow.com,"Heathrow Airport, Hounslow, TW6 1AP",
+airport-03,Charles de Gaulle Airport,CDG,INTERNATIONAL,Paris,France,https://www.parisaeroport.fr,info@cdgairport.com,"Roissy-en-France, 95700",null
+airport-04,东京成田国际机场 (Narita International Airport),NRT,INTERNATIONAL,Tokyo,Japan,,,,+1234567800
+airport-05,<script>alert('Hacked!');</script>,HKD,INTERNATIONAL,Hacker City,Unknown,https://www.hackedairport.com,hacked@example.com,"Hacker Street, 12345",+1234567801
+airport-06,مطار دبي الدولي (Dubai International Airport),DXB,INTERNATIONAL,Dubai,United Arab Emirates,https://www.dubaiairports.ae,info@dxbairport.com,"Dubai, UAE",+1234567802
+airport-07,<marquee>Hacked Airport</marquee>,HKA,INTERNATIONAL,Hacker City,Unknown,https://www.hackedairport.com,hacked@example.com,"Hacker Avenue, 67890",+1234567803
+airport-08,法兰克福机场 (Frankfurt Airport),FRA,INTERNATIONAL,Frankfurt,Germany,https://www.frankfurt-airport.com,info@fraairport.com,"Frankfurt, 60547",+1234567804
+airport-09,인천국제공항 (Incheon International Airport),ICN,INTERNATIONAL,Seoul,South Korea,https://www.airport.kr,info@icnairport.com,"Incheon, South Korea",+1234567805
+airport-10,<img src=x onerror=alert('XSS')>,XSS,INTERNATIONAL,XSS City,Unknown,https://www.xssairport.com,xss@example.com,"XSS Street, 10101",+1234567806
+airport-11,悉尼机场 (Sydney Airport),SYD,INTERNATIONAL,Sydney,Australia,https://www.sydneyairport.com.au,info@sydairport.com,"Sydney, NSW 2020",+1234567807
+airport-12,مطار القاهرة الدولي (Cairo International Airport),CAI,INTERNATIONAL,Cairo,Egypt,https://www.cairo-airport.com,info@cairoairport.com,"Cairo, Egypt",+1234567808
+airport-13,ไทยสมายล์ แอร์พอร์ต (Thai Smile Airport),THS,DOMESTIC,Bangkok,Thailand,https://www.thaismileairport.com,info@thaismileairport.com,"Bangkok, Thailand",+1234567809
+airport-14,<b>Bold Airport</b>,BLA,INTERNATIONAL,Bold City,Unknown,https://www.boldairport.com,bold@example.com,"Bold Street, 12345",+1234567810
+airport-15,新加坡樟宜机场 (Changi Airport),SIN,INTERNATIONAL,Singapore,Singapore,https://www.changiairport.com,info@changiairport.com,"Singapore, 819643",+1234567811

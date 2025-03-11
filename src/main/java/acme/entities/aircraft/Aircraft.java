@@ -41,16 +41,21 @@ public class Aircraft extends AbstractEntity {
 
 	@Mandatory
 	@Automapped
+	@Valid
+	@Min(1)
+	@Max(255)
 	private Integer				capacity;
 
 	@Mandatory
 	@Automapped
-	@Min(2)
-	@Max(50)
+	@Min(2000)
+	@Max(50000)
+	@Valid
 	private Integer				cargoWeight;
 
 	@Mandatory
 	@Automapped
+	@Valid
 	private Boolean				status;
 
 	@Optional

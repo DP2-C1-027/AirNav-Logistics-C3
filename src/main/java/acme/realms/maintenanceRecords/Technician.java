@@ -3,6 +3,7 @@ package acme.realms.maintenanceRecords;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.validation.Valid;
 import javax.validation.constraints.Max;
 
 import acme.client.components.basis.AbstractRealm;
@@ -44,11 +45,13 @@ public class Technician extends AbstractRealm {
 
 	@Mandatory
 	@Automapped
+	@Valid
 	private Boolean				annualHealthTest;
 
 	@Mandatory
 	@Automapped
 	@Max(120)
+	@Valid
 	private Integer				yearsOfExperience;
 
 	@Optional

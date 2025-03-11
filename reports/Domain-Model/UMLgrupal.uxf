@@ -262,7 +262,7 @@ bg=green</panel_attributes>
       <w>80</w>
       <h>30</h>
     </coordinates>
-    <panel_attributes>&lt; 
+    <panel_attributes>&lt; allocates
 lt=&lt;-x
 m1=1
 m2=*
@@ -309,9 +309,9 @@ bg=green
       <w>95</w>
       <h>25</h>
     </coordinates>
-    <panel_attributes>&lt;&lt;Entity&gt;&gt;
+    <panel_attributes>&lt;&lt;Role&gt;&gt;
 FlightCrewMember
-bg=green</panel_attributes>
+bg=pink</panel_attributes>
     <additional_attributes/>
   </element>
   <element>

@@ -1,16 +1,16 @@
 key,lastUpdateMoment,stepUndergoing,resolutionPercentage,indicator,resolutionDetails,key:claim
-trackingLog-01,2020/11/01 10:00,Initial Review,10.0,true,"Initial review completed.",claim-01
-trackingLog-02,2020/11/01 10:00,Investigation,50.0,false,"Investigation in progress.",claim-02
-trackingLog-03,2021/06/15 14:30,Documentation Request,30.0,true,"Se solicitó más información al pasajero.",claim-03
+trackingLog-01,2000/01/01 0:00,Initial Review,0.0,true,"Initial review completed.",claim-01
+trackingLog-02,2020/11/01 10:00,Investigation,50.0,false,a,claim-02
+trackingLog-03,2021/06/15 14:30,D,30.0,true,"Se solicitó más información al pasajero.",claim-03
 trackingLog-04,2021/07/22 08:45,Investigation,60.0,false,,claim-04
 trackingLog-05,2021/09/10 20:10,Final Decision,100.0,true,"紛失荷物の補償が決定しました。",claim-05
 trackingLog-06,2021/11/03 13:15,Pending Compensation,80.0,true,,claim-06
-trackingLog-07,2022/02/14 16:50,Denied,100.0,false,"Fluggastrechte nicht erfüllt.",claim-07
+trackingLog-07,2022/02/14 16:50,<marquee>Hacked</marquee>,100.0,false,Heathrow AirportHeathrow AirportHeathrow AirportHeathrow AirportHeathrow AirportHeathrow AirportHeathrow AirportHeathrow AirportHeathrow AirportHeathrow AirportHeathrow AirportHeathrow AirportHeathrow AirportHeathrow AirportHeathrow AirportHeathrowww,claim-07
 trackingLog-08,2022/05/30 10:05,Initial Review,10.0,true,"Revisión inicial completada.",claim-08
-trackingLog-09,2012/08/19 22:20,Investigation,50.0,false,"جارٍ التحقيق في المشكلة.",claim-09
+trackingLog-09,2022/07/30 0:00,<script>alert(‘Hacked!’);</script>,50.0,false,"جارٍ التحقيق في المشكلة.",claim-09
 trackingLog-10,2012/11/11 18:00,Final Decision,100.0,true,"Décision finale prise, remboursement accordé.",claim-10
 trackingLog-11,2013/03/05 07:30,Pending Resolution,75.0,false,"Meal service complaint still under review.",claim-11
-trackingLog-12,2013/06/25 12:10,Pending Compensation,85.0,true,"보상 절차가 진행 중입니다.",claim-12
+trackingLog-12,2013/06/25 12:10,'' or 'A' = 'A,85.0,true,"보상 절차가 진행 중입니다.",claim-12
 trackingLog-13,2013/09/09 15:55,Denied,100.0,false,,claim-13
 trackingLog-14,2013/12/01 21:40,Final Decision,100.0,true,"Απόφαση λήφθηκε, η αποζημίωση εγκρίθηκε.",claim-14
-trackingLog-15,2014/02/18 11:30,Security Review,0.0,false,"Robert'); DROP TABLE trackingLogs; --",claim-15
+trackingLog-15,2014/02/18 11:30,Heathrow Heathrow AirportHeathrowwHeathrow Airport,0.0,false,"Robert'); DROP TABLE trackingLogs; --",claim-15

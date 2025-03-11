@@ -10,10 +10,11 @@ import acme.constraints.ValidShortText;
 import lombok.Getter;
 import lombok.Setter;
 
+// parte del D02 S2 student4
 @Entity
 @Getter
 @Setter
-public class FlightStatus extends AbstractEntity {
+public class FlightDelays extends AbstractEntity {
 
 	// Serialisation version --------------------------------------------------
 	private static final long	serialVersionUID	= 1L;

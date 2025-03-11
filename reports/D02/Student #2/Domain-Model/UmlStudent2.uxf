@@ -46,15 +46,18 @@ bg=green</panel_attributes>
       <x>168</x>
       <y>240</y>
       <w>450</w>
-      <h>78</h>
+      <h>90</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 Booking
 --
 + locatorCode: String {Mandatory,ValidLocatorCode, Automapped,Column(unique = true)}
 + purchaseMoment: Date {Mandatory, ValidMoment(past=true), Temporal(TemporalType.TIMESTAMP, Automapped}
-+ travelClass: TravelClass {Mandatory, Automapped, Enumerated(EnumType.STRING)}
++ travelClass: TravelClass {Mandatory,Valid, Automapped, Enumerated(EnumType.STRING)}
 + lastNibble: String {Optional, ValidLastNibble, Automapped}
+--
+/+ getPrice: Money
+
 bg=green</panel_attributes>
     <additional_attributes/>
   </element>
@@ -170,5 +173,80 @@ Customers
 + earnedPoints: Integer {Optionaly, ValidEarnedPoints, Automapped}
 bg=pink</panel_attributes>
     <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>414</x>
+      <y>402</y>
+      <w>174</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>+ getPrice=Returns the price of the specific
+flight to which the booking being created
+or consulted belongs.
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>480</x>
+      <y>324</y>
+      <w>18</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;130.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>156</x>
+      <y>372</y>
+      <w>174</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>+ A booking can be published only
+when the last credit card nibble
+has been stored. 
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>234</x>
+      <y>324</y>
+      <w>18</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;80.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>750</x>
+      <y>132</y>
+      <w>174</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>+ The identifier is unique and
+must match the first 2 or 3 letters
+corresponding to their initials..
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>810</x>
+      <y>162</y>
+      <w>18</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;140.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>

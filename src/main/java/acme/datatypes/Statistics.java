@@ -18,8 +18,8 @@ public class Statistics {
 
 	Integer						count;
 	Double						average;
-	Integer						min;
-	Integer						max;
+	Double						min;
+	Double						max;
 	Double						deviation;
 
 

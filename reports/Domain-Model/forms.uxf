@@ -26,26 +26,18 @@ bg=#f3fdff</panel_attributes>
     <coordinates>
       <x>120</x>
       <y>250</y>
-      <w>430</w>
-      <h>270</h>
+      <w>550</w>
+      <h>160</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Form&gt;&gt;
 AdministratorDashBoard
 --
-+ internationalAirports: Integer
-+ domesticAirports: Integer
-+ regionalAirports: Integer 
-+ luxuryAirlines: Integer
-+ standardAirlines: Integer
-+ lowCostAirlines: Integer
++ airportsGroupedByOperationalScope: Map&lt;OperationalScope, Integer&gt;
++ airlineGroupedByType: Map&lt;AirlineType, Integer&gt;
 + ratioAirlinesEmailAndPhone: Double
 + activeAircrafts: Double
 + ratioHighScoreReviews: Double
-+ countReviews: Integer
-+ averageReviews: Double
-+ minReviews: Integer
-+ maxReviews: Integer
-+ deviationFlightCost: Double
++ adminReviews: Statistics
 
 bg=cyan</panel_attributes>
     <additional_attributes/>

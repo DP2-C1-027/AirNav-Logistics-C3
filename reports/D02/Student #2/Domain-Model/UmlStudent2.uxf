@@ -66,7 +66,7 @@ bg=green</panel_attributes>
     <coordinates>
       <x>624</x>
       <y>270</y>
-      <w>72</w>
+      <w>84</w>
       <h>36</h>
     </coordinates>
     <panel_attributes>Booked by &gt;
@@ -75,7 +75,7 @@ m1=1
 m2=*
 
 </panel_attributes>
-    <additional_attributes>100.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>120.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -155,26 +155,6 @@ bg=green
     <additional_attributes>100.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>684</x>
-      <y>246</y>
-      <w>372</w>
-      <h>90</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;Role&gt;&gt;
-Customers
---
-+ identifier: String {Mandatory, ValidIdentifier, Column(unique = true), Automapped}
-+ phone: String {Mandatory,ValidPhoneNumber, Automapped}
-+ physicalAddress: String {Mandatory, ValidLongText, Automapped}
-+ city: String {Mandatory, ValidShortText, Automapped}
-+ country: String {Mandatory, ValidShortText, Automapped}
-- earnedPoints: Integer {Optionaly, ValidEarnedPoints, Automapped}
-bg=pink</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
     <id>UMLNote</id>
     <coordinates>
       <x>426</x>
@@ -234,7 +214,7 @@ bg=orange</panel_attributes>
     </coordinates>
     <panel_attributes>+ The identifier is unique and
 must match the first 2 or 3 letters
-corresponding to their initials.
+corresponding to their initials.(ValidIdentifier)
 bg=orange</panel_attributes>
     <additional_attributes/>
   </element>
@@ -244,9 +224,29 @@ bg=orange</panel_attributes>
       <x>822</x>
       <y>162</y>
       <w>18</w>
-      <h>96</h>
+      <h>102</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;140.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;150.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>696</x>
+      <y>252</y>
+      <w>372</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Role&gt;&gt;
+Customers
+--
++ code: String {Mandatory, Column(unique = true), Automapped}
++ phone: String {Mandatory,ValidPhoneNumber, Automapped}
++ physicalAddress: String {Mandatory, ValidLongText, Automapped}
++ city: String {Mandatory, ValidShortText, Automapped}
++ country: String {Mandatory, ValidShortText, Automapped}
+- earnedPoints: Integer {Optionaly, ValidEarnedPoints, Automapped}
+bg=pink</panel_attributes>
+    <additional_attributes/>
   </element>
 </diagram>

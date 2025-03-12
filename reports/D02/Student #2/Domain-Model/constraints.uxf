@@ -37,8 +37,7 @@ bg=#f3fdff</panel_attributes>
     <panel_attributes>&lt;&lt;Constraint&gt;&gt;
 ValidIdentifier
 --
-+ NotBlank
-+ Pattern(regexp="^[A-Z]{2,3}\\d{6}$")
++ IdentifierValidator
 bg=RED</panel_attributes>
     <additional_attributes/>
   </element>

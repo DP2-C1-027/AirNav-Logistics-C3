@@ -36,7 +36,7 @@ CustomersDashboards
 + moneySpentInBookingDuringLastYear: Double
 + bookingsGroupedByTravelClass: Map&lt;TravelClass, Integer&gt;
 + booking5Years: Statistics
-+ passengersBookign: Statistics
++ passengersBooking: Statistics
 
 bg=cyan</panel_attributes>
     <additional_attributes/>

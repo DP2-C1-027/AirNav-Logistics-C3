@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="15.1">
-  <zoom_level>8</zoom_level>
+  <zoom_level>6</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>744</x>
-      <y>552</y>
-      <w>336</w>
-      <h>96</h>
+      <x>528</x>
+      <y>438</y>
+      <w>294</w>
+      <h>72</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 Task
@@ -22,24 +22,23 @@ bg=green</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>200</x>
-      <y>560</y>
-      <w>424</w>
-      <h>72</h>
+      <x>240</x>
+      <y>456</y>
+      <w>78</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 InvolvedIn
---
 bg=green</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>104</x>
-      <y>376</y>
-      <w>616</w>
-      <h>96</h>
+      <x>48</x>
+      <y>318</y>
+      <w>462</w>
+      <h>78</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 maintenanceRecord
@@ -55,10 +54,10 @@ bg=green</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>152</x>
-      <y>184</y>
-      <w>576</w>
-      <h>120</h>
+      <x>84</x>
+      <y>174</y>
+      <w>432</w>
+      <h>90</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Role&gt;&gt;
 Technician
@@ -69,20 +68,19 @@ Technician
 + annualHealthTest: Boolean {Mandatory, Automapped, Valid}
 + yearsOfExperience: Integer {Mandatory, Automapped, Max(120), Valid}
 + certifications: String {Optional, Automapped, ValidLongTextOptional}
-bg=red</panel_attributes>
+bg=pink</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>856</x>
-      <y>376</y>
-      <w>144</w>
-      <h>64</h>
+      <x>606</x>
+      <y>342</y>
+      <w>108</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 Aircraft
---
 bg=green
 </panel_attributes>
     <additional_attributes/>
@@ -90,10 +88,10 @@ bg=green
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>336</x>
-      <y>40</y>
-      <w>456</w>
-      <h>128</h>
+      <x>222</x>
+      <y>66</y>
+      <w>342</w>
+      <h>96</h>
     </coordinates>
     <panel_attributes>entities.uxf
 
@@ -110,10 +108,10 @@ bg=#f3fdff</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>408</x>
-      <y>296</y>
-      <w>104</w>
-      <h>96</h>
+      <x>276</x>
+      <y>258</y>
+      <w>78</w>
+      <h>72</h>
     </coordinates>
     <panel_attributes>registered by ^
 lt=&lt;-x
@@ -127,10 +125,10 @@ m2=*
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>712</x>
-      <y>408</y>
-      <w>160</w>
-      <h>64</h>
+      <x>504</x>
+      <y>342</y>
+      <w>114</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>About ^
 lt=&lt;-x
@@ -139,15 +137,15 @@ m2=*
 
 
 </panel_attributes>
-    <additional_attributes>180.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>170.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>408</x>
-      <y>464</y>
-      <w>80</w>
-      <h>112</h>
+      <x>276</x>
+      <y>390</y>
+      <w>60</w>
+      <h>78</h>
     </coordinates>
     <panel_attributes>Involves ^
 lt=&lt;-x
@@ -156,15 +154,15 @@ m2=*
 
 
 </panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;120.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;110.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>616</x>
-      <y>584</y>
-      <w>136</w>
-      <h>64</h>
+      <x>312</x>
+      <y>462</y>
+      <w>228</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>Involves ^
 lt=&lt;-x
@@ -173,15 +171,15 @@ m2=*
 
 
 </panel_attributes>
-    <additional_attributes>150.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>360.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>720</x>
-      <y>240</y>
-      <w>360</w>
-      <h>328</h>
+      <x>510</x>
+      <y>216</y>
+      <w>264</w>
+      <h>234</h>
     </coordinates>
     <panel_attributes>Assigned ^
 lt=&lt;-x
@@ -190,6 +188,54 @@ m2=*
 
 
 </panel_attributes>
-    <additional_attributes>10.0;20.0;410.0;20.0;410.0;390.0</additional_attributes>
+    <additional_attributes>10.0;20.0;410.0;20.0;410.0;370.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>558</x>
+      <y>270</y>
+      <w>180</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>To publish a maintenance record, 
+it cannot have any unpublished tasks
+and should have at least one published task.
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>504</x>
+      <y>282</y>
+      <w>66</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;70.0;90.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>558</x>
+      <y>546</y>
+      <w>192</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>Published tasks cannot be updated or deleted.
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>642</x>
+      <y>504</y>
+      <w>18</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
   </element>
 </diagram>

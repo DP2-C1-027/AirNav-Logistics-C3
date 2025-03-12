@@ -9,3 +9,32 @@ technician-07,user-account-technician-07,MN555555,+7778889991,Electronics,false,
 technician-08,user-account-technician-08,PQ666777,+1122334455,Automotive,true,25,
 technician-09,user-account-technician-09,RS888999,+6677889900,Aerospace,false,1,"FAA Certification"
 technician-10,user-account-technician-10,TU999888,+3322114455,Biomedical,true,10,"Medical Equipment Specialist"
+technician-11,user-account-technician-11,LM987654,+6677889900,Automotive,true,5,"Certified Mechanic, Engine Diagnostics"
+technician-12,user-account-technician-12,AA000001,+1111111111,Electrical,true,2,"Entry-level Certification" 
+technician-13,user-account-technician-13,ZZ999998,+2222222222,Mechanical,true,30,"Senior Engineer License" 
+technician-14,user-account-technician-14,AAA000002,+3333333333,Software,false,5,"Software Security Expert" 
+technician-15,user-account-technician-15,AB654321,+4444444444,Plumbing,true,10,"Plumbing Expert" 
+technician-16,user-account-technician-16,ZC987653,+5555555555,Civil Engineering,false,7,"Structural Analysis" 
+technician-17,user-account-technician-17,LM765431,+6666666666,Robotics,true,12,"Robotics AI Certification" 
+technician-18,user-account-technician-18,XYZ234567,+7777777777,Electronics,false,0,"Basic Circuits" 
+technician-19,user-account-technician-19,CD654322,+8888888888,Automotive,true,3,"Engine Diagnostics" 
+technician-20,user-account-technician-20,QW111112,+9999999999,Aerospace,false,15,"FAA Certification"  
+technician-21,user-account-technician-21,BB111111,+100000,Marine,true,4,"Ship Engine Maintenance"
+technician-22,user-account-technician-22,CC222222,123456,Avionics,false,8,"Certified Avionics Engineer"
+technician-23,user-account-technician-23,DD333333,+999999999999999,Telecommunications,true,15,"5G Network Specialist"
+technician-24,user-account-technician-24,EE444444,+111111111111111,Construction,false,6,"Structural Engineering"
+technician-25,user-account-technician-25,FF555555,654321,Renewable Energy,true,12,"Solar Panel Installation Expert"
+technician-26,user-account-technician-26,GG666666,+777777777777777,HVAC,false,20,"Certified HVAC Technician"
+technician-27,user-account-technician-27,HH777777,1234567,Nuclear Energy,true,25,"Radiation Safety Specialist"
+technician-28,user-account-technician-28,II888888,+987654321000000,Aerospace,false,10,"Spacecraft Systems Expert"
+technician-29,user-account-technician-29,JJ999999,+600000,Mining,true,5,"Deep Earth Drilling"
+technician-30,user-account-technician-30,KK000000,99999999999999,Automation,false,7,"Industrial Robotics Programming"
+technician-31,user-account-technician-31,JJ012345,+100000000000010,Biomedical Engineering and Medical Robotics,true,7,"Medical Robotics and Engineering for Advanced Healthcare Solutions"
+technician-32,user-account-technician-32,BB234567,+200000000000002,Mechanical Engineering and Thermal Systems,true,10,"A"
+technician-33,user-account-technician-33,ZZ123456,+1231231231,Mechanical,true,120,"Extensive experience in mechanical engineering, including advanced systems design, project management. Known for pioneering research in renewable energy systems, with numerous publications in top-tier engineering journals."
+technician-34,user-account-technician-34,WW234567,+9876543212,Electrical,true,10,"Certified Electrician, Senior Technician, Advanced Electrical Systems, Building Infrastructure Expert, Electrical Power Systems Design Specialist, Automation Expert, Renewable Energy Solutions, Safety Stand. This is just an example of a long certification"
+technician-35,user-account-technician-35,XX345678,+4567891234,Plumbing,true,1,"P"
+
+
+
+

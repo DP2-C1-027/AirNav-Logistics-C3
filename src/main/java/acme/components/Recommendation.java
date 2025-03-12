@@ -1,5 +1,5 @@
 
-package acme.entities.recommendation;
+package acme.components;
 
 import javax.persistence.ManyToOne;
 import javax.validation.Valid;

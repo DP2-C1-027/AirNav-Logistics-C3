@@ -9,16 +9,13 @@ import java.lang.annotation.Target;
 import javax.validation.Constraint;
 import javax.validation.Payload;
 import javax.validation.ReportAsSingleViolation;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
 
-@Target(ElementType.FIELD)
+@Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = {})
-@ReportAsSingleViolation
 
-@NotBlank
-@Pattern(regexp = "^[A-Z]{2,3}\\d{6}$")
+@ReportAsSingleViolation
+@Constraint(validatedBy = IdentifierValidator.class)
+
 public @interface ValidIdentifier {
 
 	String message() default "{acme.validation.text.message}";

@@ -19,6 +19,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
+@ValidIdentifier
 public class Customers extends AbstractRole {
 
 	// Serialisation version --------------------------------------------------
@@ -28,9 +29,8 @@ public class Customers extends AbstractRole {
 
 	@Mandatory
 	@Automapped
-	@ValidIdentifier
 	@Column(unique = true)
-	private String				identifier;
+	private String				code;
 
 	@Mandatory
 	@Automapped

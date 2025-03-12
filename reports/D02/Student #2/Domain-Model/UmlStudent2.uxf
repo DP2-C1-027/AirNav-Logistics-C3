@@ -234,7 +234,7 @@ bg=orange</panel_attributes>
     </coordinates>
     <panel_attributes>+ The identifier is unique and
 must match the first 2 or 3 letters
-corresponding to their initials..
+corresponding to their initials.
 bg=orange</panel_attributes>
     <additional_attributes/>
   </element>

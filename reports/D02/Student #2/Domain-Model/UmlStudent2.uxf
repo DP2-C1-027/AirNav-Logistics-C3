@@ -4,7 +4,7 @@
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>510</x>
+      <x>522</x>
       <y>0</y>
       <w>342</w>
       <h>96</h>
@@ -24,7 +24,7 @@ bg=#f3fdff</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>30</x>
+      <x>42</x>
       <y>120</y>
       <w>438</w>
       <h>78</h>
@@ -36,14 +36,14 @@ Passenger
 + email: String {Mandatory, ValidEmail, Automapped}
 + passportNumber: String {Mandatory, ValidPassportNumber, Automapped}
 + dateOfBirth: Date {Mandatory, ValidMoment(past=true), Temporal(TemporalType.TIMESTAMP), Automapped}
-+ specialNeeds: String {Optional, ValidShortTextOptional, Automapped}
+- specialNeeds: String {Optional, ValidShortTextOptional, Automapped}
 bg=green</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>168</x>
+      <x>180</x>
       <y>240</y>
       <w>450</w>
       <h>90</h>
@@ -54,7 +54,7 @@ Booking
 + locatorCode: String {Mandatory,ValidLocatorCode, Automapped,Column(unique = true)}
 + purchaseMoment: Date {Mandatory, ValidMoment(past=true), Temporal(TemporalType.TIMESTAMP, Automapped}
 + travelClass: TravelClass {Mandatory,Valid, Automapped, Enumerated(EnumType.STRING)}
-+ lastNibble: String {Optional, ValidLastNibble, Automapped}
+- lastNibble: String {Optional, ValidLastNibble, Automapped}
 --
 /+ getPrice: Money
 
@@ -64,7 +64,7 @@ bg=green</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>612</x>
+      <x>624</x>
       <y>270</y>
       <w>72</w>
       <h>36</h>
@@ -80,7 +80,7 @@ m2=*
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>510</x>
+      <x>522</x>
       <y>180</y>
       <w>48</w>
       <h>78</h>
@@ -97,7 +97,7 @@ bg=green
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>498</x>
+      <x>510</x>
       <y>156</y>
       <w>54</w>
       <h>30</h>
@@ -110,7 +110,7 @@ bg=green</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>48</x>
+      <x>60</x>
       <y>264</y>
       <w>66</w>
       <h>30</h>
@@ -123,7 +123,7 @@ bg=green</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>84</x>
+      <x>96</x>
       <y>192</y>
       <w>60</w>
       <h>84</h>
@@ -140,7 +140,7 @@ bg=green
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>108</x>
+      <x>120</x>
       <y>264</y>
       <w>72</w>
       <h>36</h>
@@ -157,7 +157,7 @@ bg=green
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>672</x>
+      <x>684</x>
       <y>246</y>
       <w>372</w>
       <h>90</h>
@@ -170,14 +170,14 @@ Customers
 + physicalAddress: String {Mandatory, ValidLongText, Automapped}
 + city: String {Mandatory, ValidShortText, Automapped}
 + country: String {Mandatory, ValidShortText, Automapped}
-+ earnedPoints: Integer {Optionaly, ValidEarnedPoints, Automapped}
+- earnedPoints: Integer {Optionaly, ValidEarnedPoints, Automapped}
 bg=pink</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>414</x>
+      <x>426</x>
       <y>402</y>
       <w>174</w>
       <h>42</h>
@@ -191,7 +191,7 @@ bg=orange</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>480</x>
+      <x>492</x>
       <y>324</y>
       <w>18</w>
       <h>90</h>
@@ -202,7 +202,7 @@ bg=orange</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>156</x>
+      <x>168</x>
       <y>372</y>
       <w>174</w>
       <h>42</h>
@@ -216,7 +216,7 @@ bg=orange</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>234</x>
+      <x>246</x>
       <y>324</y>
       <w>18</w>
       <h>60</h>
@@ -227,7 +227,7 @@ bg=orange</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>750</x>
+      <x>762</x>
       <y>132</y>
       <w>174</w>
       <h>42</h>
@@ -241,7 +241,7 @@ bg=orange</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>810</x>
+      <x>822</x>
       <y>162</y>
       <w>18</w>
       <h>96</h>

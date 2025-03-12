@@ -63,7 +63,7 @@ Airport
 + country: String {Mandatory, ValidShortText, Automapped}
 - website: String {Optional, ValidUrl, Automapped}
 - email: String {Optional, ValidEmailOptional, Automapped}
-- address: String {Optional, Valid, Automapped}
+- address: String {Optional, ValidShortTextOptional, Automapped}
 - phoneNumber: String {Optional, ValidPhoneNumberOptional, Automapped}
 bg=green</panel_attributes>
     <additional_attributes/>

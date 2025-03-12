@@ -6,21 +6,22 @@ import javax.persistence.Entity;
 import javax.validation.Valid;
 import javax.validation.constraints.Max;
 
-import acme.client.components.basis.AbstractRealm;
+import acme.client.components.basis.AbstractRole;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
+import acme.constraints.ValidIdentifier;
 import acme.constraints.ValidLongTextOptional;
 import acme.constraints.ValidPhoneNumber;
 import acme.constraints.ValidShortText;
-import acme.constraints.ValidTechnicianLicenseNumber;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
 @Entity
-public class Technician extends AbstractRealm {
+@ValidIdentifier
+public class Technician extends AbstractRole {
 
 	// Serialisation version --------------------------------------------------
 	private static final long	serialVersionUID	= 1L;
@@ -28,10 +29,9 @@ public class Technician extends AbstractRealm {
 	// Attributes -------------------------------------------------------------
 
 	@Mandatory
-	@ValidTechnicianLicenseNumber
-	@Column(unique = true)
 	@Automapped
-	private String				licenseNumber;
+	@Column(unique = true)
+	private String				code;
 
 	@Mandatory
 	@Automapped

@@ -24,15 +24,15 @@ bg=#f3fdff</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>32</x>
-      <y>280</y>
+      <x>224</x>
+      <y>288</y>
       <w>496</w>
       <h>120</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Role&gt;&gt;
 Customers
 --
-+ identifier: String {Mandatory, ValidIdentifier, Column(unique = true), Automapped}
++ code: String {Mandatory, Column(unique = true), Automapped}
 + phone: String {Mandatory,ValidPhoneNumber, Automapped}
 + physicalAddress: String {Mandatory, ValidLongText, Automapped}
 + city: String {Mandatory, ValidShortText, Automapped}

@@ -1,13 +1,276 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="15.1">
-  <zoom_level>7</zoom_level>
+  <zoom_level>6</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>342</x>
+      <y>282</y>
+      <w>480</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Entity&gt;&gt;
+Flight
+--
++ tag: String {Mandatory,ValidFlightTag,Automapped}
++ indication: Boolean {Mandatory,Automapped}
++ cost: Money {Mandatory,ValidMoney,Automapped}
++ description: String {Mandatory, ValidLongText, Automapped}
++ getScheduledDeparture: Date, Transient, earliest scheduledDeparture from legs
++ getScheduledArrival: Date, Transient, latest scheduledArrival from legs
++ getOriginCity: String, Transient, city of departureAirport of first leg
++ getDestinationCity: String, Transient, city of arrivalAirport of last leg
++ getLayovers: Integer, Transient, number of layovers (number of legs - 1)
+--
++ draftMode: Boolean {Mandatory,Automapped,Valid}
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>558</x>
+      <y>240</y>
+      <w>78</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>  managed by ^
+lt=&lt;-x
+m1=1
+m2=*
+bg=green
+
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>588</x>
+      <y>114</y>
+      <w>66</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>  works for ^
+lt=&lt;-x
+m1=1
+m2=*
+bg=green
+
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>570</x>
+      <y>90</y>
+      <w>54</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Entity&gt;&gt;
+Airline
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>348</x>
+      <y>432</y>
+      <w>486</w>
+      <h>114</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Entity&gt;&gt;
+Leg
+--
++ flightNumber: String {Mandatory, ValidFlightNumber, Column(unique = true), Automapped}
++ stepUndergoing: String {Mandatory, ValidLongText, Automapped}
++ scheduledDeparture: Date {Mandatory, ValidMoment, Temporal(TemporalType.TIMESTAMP), Automapped}
++ scheduledArrival: Date {Mandatory, ValidMoment, Temporal(TemporalType.TIMESTAMP), Automapped}
++ duration: Integer {Mandatory, Min(0), Automapped}
++ status: LegStatus {Mandatory, Enumerated(EnumType.STRING), Automapped}
+
+--
++ draftMode: Boolean {Mandatory,Automapped}
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>552</x>
+      <y>402</y>
+      <w>72</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>  belongs to ^
+lt=&lt;-x
+m1=1
+m2=*
+bg=green
+
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>360</x>
+      <y>168</y>
+      <w>456</w>
+      <h>78</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Role&gt;&gt;
+AirlineManager
+--
++ identifier: String {Mandatory, ValidIdentifier, Column(unique = true), Automapped}
++ yearsOfService: Integer {Mandatory, Automapped, Min(0),ValidYearsOfService}
++ dateOfBirth: Date {Mandatory,Past ,Temporal(TemporalType.TIMESTAMP), Automapped}
+- bio: String {Optional, ValidLongText, Automapped}
+- photo: String {Optional, ValidUrl, Automapped}
+bg=pink</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>480</x>
+      <y>618</y>
+      <w>156</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Entity&gt;&gt;
+Airport
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>498</x>
+      <y>540</y>
+      <w>72</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>Arrives at v
+lt=&lt;-x
+m1=1
+r1=+arrivalAirport
+m2=*
+
+</panel_attributes>
+    <additional_attributes>10.0;130.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>600</x>
+      <y>540</y>
+      <w>84</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>Departs from v
+lt=&lt;-x
+m1=1
+r1=+departureAirport
+m2=*
+
+</panel_attributes>
+    <additional_attributes>10.0;130.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>906</x>
+      <y>468</y>
+      <w>54</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Entity&gt;&gt;
+Aircraft
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>828</x>
+      <y>474</y>
+      <w>90</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>  flown on &gt;
+lt=&lt;-x
+m1=1
+m2=*
+bg=green
+
+</panel_attributes>
+    <additional_attributes>130.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>258</x>
+      <y>486</y>
+      <w>102</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>&lt;  managed by
+lt=&lt;-x
+m1=1
+m2=*
+bg=green
+
+</panel_attributes>
+    <additional_attributes>10.0;20.0;150.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>180</x>
+      <y>486</y>
+      <w>84</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Role&gt;&gt;
+AirlineManager
+bg=pink</panel_attributes>
+    <additional_attributes/>
+  </element>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>560</x>
+      <x>108</x>
+      <y>192</y>
+      <w>174</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>+ The identifier is unique and
+must match the first 2 or 3 letters
+corresponding to their initials.
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>276</x>
+      <y>210</y>
+      <w>96</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;140.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>126</x>
       <y>0</y>
-      <w>399</w>
-      <h>112</h>
+      <w>342</w>
+      <h>96</h>
     </coordinates>
     <panel_attributes>entities.uxf
 
@@ -22,129 +285,52 @@ bg=#f3fdff</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
-    <id>UMLClass</id>
+    <id>UMLNote</id>
     <coordinates>
-      <x>427</x>
-      <y>525</y>
-      <w>560</w>
-      <h>98</h>
+      <x>126</x>
+      <y>402</y>
+      <w>174</w>
+      <h>42</h>
     </coordinates>
-    <panel_attributes>&lt;&lt;Entity&gt;&gt;
-Claim
---
-+ tag: String {Mandatory,ValidShortText,Automapped}
-+ indication: Boolean {Mandatory,Automapped}
-+ cost: Money {Mandatory,ValidMoney,Automapped}
-+ description: String {Mandatory, ValidLongText, Automapped}
-+ airlineManager: AirlineManager {Mandatory,ManyToOne,Valid}
-bg=green</panel_attributes>
+    <panel_attributes>+ The airlineManager assigned to the leg
+must be the same as the one assigned to the
+parent Flight.
+bg=orange</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>679</x>
-      <y>455</y>
-      <w>70</w>
-      <h>84</h>
+      <x>210</x>
+      <y>438</y>
+      <w>18</w>
+      <h>60</h>
     </coordinates>
-    <panel_attributes>  includes ^
-lt=&lt;-x
-m1=1
-m2=*
-bg=green
-
-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>714</x>
-      <y>308</y>
-      <w>77</w>
-      <h>77</h>
-    </coordinates>
-    <panel_attributes>  works for ^
-lt=&lt;-x
-m1=1
-m2=*
-bg=green
-
-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>693</x>
-      <y>280</y>
-      <w>63</w>
-      <h>35</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;Entity&gt;&gt;
-Airline
-bg=green</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>434</x>
-      <y>672</y>
-      <w>567</w>
-      <h>147</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;Entity&gt;&gt;
-Leg
---
-+ flightNumber: String {Mandatory, ValidFlightNumber, Column(unique = true), Automapped}
-+ stepUndergoing: String {Mandatory, ValidLongText, Automapped}
-+ scheduledDeparture: Date {Mandatory, ValidMoment, Temporal(TemporalType.TIMESTAMP), Automapped}
-+ scheduledArrival: Date {Mandatory, ValidMoment, Temporal(TemporalType.TIMESTAMP), Automapped}
-+ duration: Integer {Mandatory, Min(0), Automapped}
-+ status: LegStatus {Mandatory, Enumerated(EnumType.STRING), Automapped}
-+ departureAirport: Airport {Mandatory,ManyToOne,Valid,Automapped}
-+ arrivalAirport: Airport {Mandatory,ManyToOne,Valid,Automapped}
-+ aircraft: Aircraft {Mandatory,ManyToOne,Valid,Automapped}
-+ flight: Flight {Mandatory,ManyToOne,Valid,Automapped}
-bg=green</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>672</x>
-      <y>616</y>
-      <w>70</w>
-      <h>70</h>
-    </coordinates>
-    <panel_attributes>  includes ^
-lt=&lt;-x
-m1=1
-m2=*
-bg=green
-
-</panel_attributes>
+    <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
   </element>
   <element>
-    <id>UMLClass</id>
+    <id>UMLNote</id>
     <coordinates>
-      <x>448</x>
-      <y>371</y>
-      <w>532</w>
-      <h>91</h>
+      <x>864</x>
+      <y>546</y>
+      <w>174</w>
+      <h>42</h>
     </coordinates>
-    <panel_attributes>&lt;&lt;Role&gt;&gt;
-AirlineManager
---
-+ identifierNumber: String {Mandatory, ValidIdentifier, Column(unique = true), Automapped}
-+ yearsOfService: Integer {Mandatory, Automapped, Min(0)}
-+ dateOfBirth: Date {Mandatory,Past ,Temporal(TemporalType.TIMESTAMP), Automapped}
-+ bio: String {Optional, ValidLongText, Automapped}
-+ photo: String {Optional, ValidUrl, Automapped}
-bg=green</panel_attributes>
+    <panel_attributes>+ Aircraft must belong to the same airline
+as airlineManager works for.
+bg=orange</panel_attributes>
     <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>924</x>
+      <y>498</y>
+      <w>18</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
   </element>
 </diagram>

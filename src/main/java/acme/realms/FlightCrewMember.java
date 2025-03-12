@@ -25,6 +25,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
+@ValidIdentifier
 public class FlightCrewMember extends AbstractRole {
 
 	// Serialisation version --------------------------------------------------
@@ -34,9 +35,8 @@ public class FlightCrewMember extends AbstractRole {
 
 	@Mandatory
 	@Automapped
-	@ValidIdentifier
 	@Column(unique = true)
-	private String				employeeCode;
+	private String				code;
 
 	@Mandatory
 	@Automapped

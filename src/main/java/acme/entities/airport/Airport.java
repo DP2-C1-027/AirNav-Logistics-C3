@@ -5,7 +5,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.validation.Valid;
 
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
@@ -16,6 +15,7 @@ import acme.constraints.ValidEmailOptional;
 import acme.constraints.ValidIATAcode;
 import acme.constraints.ValidPhoneNumberOptional;
 import acme.constraints.ValidShortText;
+import acme.constraints.ValidShortTextOptional;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -67,7 +67,7 @@ public class Airport extends AbstractEntity {
 
 	@Optional
 	@Automapped
-	@Valid
+	@ValidShortTextOptional
 	private String				address;
 
 	@Optional

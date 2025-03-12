@@ -24,20 +24,19 @@ bg=#f3fdff</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>224</x>
-      <y>288</y>
-      <w>496</w>
-      <h>120</h>
+      <x>128</x>
+      <y>232</y>
+      <w>472</w>
+      <h>104</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Role&gt;&gt;
-Customers
+AirlineManager
 --
-+ code: String {Mandatory, Column(unique = true), Automapped}
-+ phone: String {Mandatory,ValidPhoneNumber, Automapped}
-+ physicalAddress: String {Mandatory, ValidLongText, Automapped}
-+ city: String {Mandatory, ValidShortText, Automapped}
-+ country: String {Mandatory, ValidShortText, Automapped}
-- earnedPoints: Integer {Optionaly, ValidEarnedPoints, Automapped}
++ identifier: String {Mandatory, ValidIdentifier, Column(unique = true), Automapped}
++ yearsOfService: Integer {Mandatory, Automapped, Min(0),ValidYearsOfService}
++ dateOfBirth: Date {Mandatory,Past ,Temporal(TemporalType.TIMESTAMP), Automapped}
+- bio: String {Optional, ValidLongText, Automapped}
+- photo: String {Optional, ValidUrl, Automapped}
 bg=pink</panel_attributes>
     <additional_attributes/>
   </element>

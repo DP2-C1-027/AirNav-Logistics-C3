@@ -17,7 +17,7 @@ Technician
 + specialisation: String {Mandatory, ValidShortText, Automapped}
 + annualHealthTest: Boolean {Mandatory, Automapped, Valid}
 + yearsOfExperience: Integer {Mandatory, Automapped, Max(120), Valid}
-+ certifications: String {Optional, Automapped, ValidLongTextOptional}
+- certifications: String {Optional, Automapped, ValidLongTextOptional}
 bg=pink</panel_attributes>
     <additional_attributes/>
   </element>

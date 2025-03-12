@@ -5,7 +5,7 @@
     <id>UMLNote</id>
     <coordinates>
       <x>602</x>
-      <y>14</y>
+      <y>0</y>
       <w>399</w>
       <h>112</h>
     </coordinates>
@@ -25,7 +25,7 @@ bg=#f3fdff</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>469</x>
-      <y>539</y>
+      <y>525</y>
       <w>560</w>
       <h>126</h>
     </coordinates>
@@ -46,7 +46,7 @@ bg=green</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>721</x>
-      <y>441</y>
+      <y>427</y>
       <w>70</w>
       <h>112</h>
     </coordinates>
@@ -63,11 +63,11 @@ bg=green
     <id>Relation</id>
     <coordinates>
       <x>756</x>
-      <y>245</y>
-      <w>49</w>
+      <y>231</y>
+      <w>84</w>
       <h>84</h>
     </coordinates>
-    <panel_attributes>  has ^
+    <panel_attributes>  working for ^
 lt=&lt;-x
 m1=1
 m2=*
@@ -80,7 +80,7 @@ bg=green
     <id>UMLClass</id>
     <coordinates>
       <x>735</x>
-      <y>217</y>
+      <y>203</y>
       <w>63</w>
       <h>35</h>
     </coordinates>
@@ -93,7 +93,7 @@ bg=green</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>476</x>
-      <y>784</y>
+      <y>770</y>
       <w>567</w>
       <h>126</h>
     </coordinates>
@@ -114,7 +114,7 @@ bg=green</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>714</x>
-      <y>658</y>
+      <y>644</y>
       <w>70</w>
       <h>140</h>
     </coordinates>
@@ -131,7 +131,7 @@ bg=green
     <id>UMLClass</id>
     <coordinates>
       <x>490</x>
-      <y>315</y>
+      <y>301</y>
       <w>532</w>
       <h>133</h>
     </coordinates>
@@ -146,7 +146,97 @@ AssistanceAgent
 + salary: Money {Optionaly, ValidEarnedPoints, Automapped}
 + photo: String {Optionaly, ValidUrl, Automapped}
 + airline: Airline {Mandatory,  ManyToOne(optional = false), Valid}
+bg=pink</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>259</x>
+      <y>546</y>
+      <w>63</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Entity&gt;&gt;
+Leg
 bg=green</panel_attributes>
     <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>315</x>
+      <y>546</y>
+      <w>168</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>  linked to ^
+lt=&lt;-x
+m1=1
+m2=*
+bg=green
+
+</panel_attributes>
+    <additional_attributes>10.0;20.0;220.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>245</x>
+      <y>413</y>
+      <w>175</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>••	List the undergoing claims and
+show their details including the leg to
+which they are linked.  .
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>14</x>
+      <y>0</y>
+      <w>21</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>357</x>
+      <y>469</y>
+      <w>21</w>
+      <h>98</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;120.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>903</x>
+      <y>462</y>
+      <w>175</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>•	List and show the tracking logs 
+associated to their claims.
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>728</x>
+      <y>476</y>
+      <w>189</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;250.0;10.0</additional_attributes>
   </element>
 </diagram>

@@ -1,13 +1,11 @@
 
-package acme.entities.recommendation;
+package acme.components;
 
-import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.validation.Valid;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 
-import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
@@ -19,10 +17,9 @@ import acme.entities.airport.Airport;
 import lombok.Getter;
 import lombok.Setter;
 
-@Entity
 @Setter
 @Getter
-public class Recommendation extends AbstractEntity {
+public class Recommendation {
 
 	//Foursquare Places API
 

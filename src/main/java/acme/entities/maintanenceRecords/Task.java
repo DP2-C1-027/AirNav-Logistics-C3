@@ -45,6 +45,7 @@ public class Task extends AbstractEntity {
 	@Mandatory
 	@Automapped
 	@Valid
+	@Min(1)
 	@Max(1000)
 	private Integer				estimatedDuration;
 

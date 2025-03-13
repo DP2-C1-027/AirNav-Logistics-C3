@@ -31,9 +31,9 @@ public class SystemConfiguration extends AbstractEntity {
 
 	@Mandatory
 	@Automapped
-	@ElementCollection(fetch = FetchType.EAGER)  // Permite mapear listas simples
-	@CollectionTable(name = "accepted_currencies")  // Nombre de la tabla intermedia
-	@Column(name = "currency")  // Nombre de la columna en la tabla intermedia
+	@ElementCollection(fetch = FetchType.EAGER)
+	@CollectionTable(name = "accepted_currencies")
+	@Column(name = "currency")
 	private List<String>		acceptedCurrencies	= List.of("EUR", "USD", "GBP");
 
 	// Derived attributes -----------------------------------------------------

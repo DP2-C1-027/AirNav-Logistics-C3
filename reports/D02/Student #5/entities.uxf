@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="15.1">
-  <zoom_level>6</zoom_level>
+  <zoom_level>7</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>648</x>
-      <y>420</y>
-      <w>294</w>
-      <h>72</h>
+      <x>714</x>
+      <y>469</y>
+      <w>343</w>
+      <h>84</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 Task
@@ -22,10 +22,10 @@ bg=green</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>360</x>
-      <y>438</y>
-      <w>78</w>
-      <h>36</h>
+      <x>378</x>
+      <y>490</y>
+      <w>91</w>
+      <h>42</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 InvolvedIn
@@ -35,10 +35,10 @@ bg=green</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>168</x>
-      <y>300</y>
-      <w>462</w>
-      <h>78</h>
+      <x>154</x>
+      <y>329</y>
+      <w>539</w>
+      <h>91</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 maintenanceRecord
@@ -54,15 +54,15 @@ bg=green</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>204</x>
-      <y>156</y>
-      <w>432</w>
-      <h>90</h>
+      <x>196</x>
+      <y>161</y>
+      <w>504</w>
+      <h>105</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Role&gt;&gt;
 Technician
 --
-+ licenseNumber: String {Mandatory,ValidTechnicianLicenseNumber,Column(unique = true),Automapped}
++ code: String {Mandatory,Column(unique = true),Automapped}
 + phoneNumber: String {Mandatory, ValidPhoneNumber, Automapped}
 + specialisation: String {Mandatory, ValidShortText, Automapped}
 + annualHealthTest: Boolean {Mandatory, Automapped, Valid}
@@ -74,10 +74,10 @@ bg=pink</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>726</x>
-      <y>324</y>
-      <w>108</w>
-      <h>24</h>
+      <x>805</x>
+      <y>357</y>
+      <w>126</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 Aircraft
@@ -88,10 +88,10 @@ bg=green
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>342</x>
-      <y>48</y>
-      <w>342</w>
-      <h>96</h>
+      <x>357</x>
+      <y>35</y>
+      <w>399</w>
+      <h>112</h>
     </coordinates>
     <panel_attributes>entities.uxf
 
@@ -108,10 +108,10 @@ bg=#f3fdff</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>396</x>
-      <y>240</y>
-      <w>78</w>
-      <h>72</h>
+      <x>420</x>
+      <y>259</y>
+      <w>91</w>
+      <h>84</h>
     </coordinates>
     <panel_attributes>registered by ^
 lt=&lt;-x
@@ -125,10 +125,10 @@ m2=*
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>624</x>
-      <y>324</y>
-      <w>114</w>
-      <h>48</h>
+      <x>686</x>
+      <y>357</y>
+      <w>133</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>About ^
 lt=&lt;-x
@@ -142,10 +142,10 @@ m2=*
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>396</x>
-      <y>372</y>
-      <w>60</w>
-      <h>78</h>
+      <x>420</x>
+      <y>413</y>
+      <w>70</w>
+      <h>91</h>
     </coordinates>
     <panel_attributes>Involves ^
 lt=&lt;-x
@@ -159,10 +159,10 @@ m2=*
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>432</x>
-      <y>444</y>
-      <w>228</w>
-      <h>48</h>
+      <x>462</x>
+      <y>497</y>
+      <w>266</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>Involves ^
 lt=&lt;-x
@@ -176,10 +176,10 @@ m2=*
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>630</x>
-      <y>198</y>
-      <w>264</w>
-      <h>234</h>
+      <x>693</x>
+      <y>210</y>
+      <w>308</w>
+      <h>273</h>
     </coordinates>
     <panel_attributes>Assigned ^
 lt=&lt;-x
@@ -193,10 +193,10 @@ m2=*
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>678</x>
-      <y>246</y>
-      <w>180</w>
-      <h>36</h>
+      <x>749</x>
+      <y>266</y>
+      <w>210</w>
+      <h>42</h>
     </coordinates>
     <panel_attributes>To publish a maintenance record, 
 it cannot have any unpublished tasks
@@ -207,10 +207,10 @@ bg=orange</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>624</x>
-      <y>258</y>
-      <w>66</w>
-      <h>60</h>
+      <x>686</x>
+      <y>280</y>
+      <w>77</w>
+      <h>70</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
     <additional_attributes>10.0;80.0;90.0;10.0</additional_attributes>
@@ -218,10 +218,10 @@ bg=orange</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>678</x>
-      <y>528</y>
-      <w>192</w>
-      <h>24</h>
+      <x>749</x>
+      <y>595</y>
+      <w>224</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>Published tasks cannot be updated or deleted.
 bg=orange</panel_attributes>
@@ -230,10 +230,10 @@ bg=orange</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>762</x>
-      <y>486</y>
-      <w>18</w>
-      <h>54</h>
+      <x>847</x>
+      <y>546</y>
+      <w>21</w>
+      <h>63</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>

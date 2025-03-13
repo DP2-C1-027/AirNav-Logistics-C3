@@ -56,7 +56,7 @@ public class Aircraft extends AbstractEntity {
 	@Mandatory
 	@Automapped
 	@Valid
-	private Boolean				status;
+	private Status				status;
 
 	@Optional
 	@Automapped

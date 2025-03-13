@@ -14,7 +14,7 @@ DefaultUserIdentity
 --
 + name: String {Mandatory, ValidString(min=1, max=75), Automapped}
 + surname: String {Mandatory, ValidString(min=1, max=75), Automapped}
-+ name: String {Mandatory, ValidEmail, Automapped}
++ email: String {Mandatory, ValidEmail, Automapped}
 bg=yellow</panel_attributes>
     <additional_attributes/>
   </element>
@@ -113,6 +113,22 @@ Statistics
 + min: Double
 + max: Double
 + deviation: Double
+bg=LIGHT_GRAY</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>920</x>
+      <y>260</y>
+      <w>200</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Enum&gt;&gt;
+Status
+--
++ ACTIVE_SERVICE
++ UNDER_MAINTENANCES
 bg=LIGHT_GRAY</panel_attributes>
     <additional_attributes/>
   </element>

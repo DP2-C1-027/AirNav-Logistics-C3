@@ -10,7 +10,7 @@ import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidUrl;
 import acme.constraints.ValidDwellTime;
-import acme.constraints.ValidMoney;
+import acme.constraints.ValidDiscount;
 import acme.constraints.ValidPromotionCode;
 import acme.constraints.ValidShortText;
 import lombok.Getter;
@@ -49,7 +49,7 @@ public class Service extends AbstractEntity {
 
 	@Optional
 	@Automapped
-	@ValidMoney
+	@ValidDiscount
 	private Double				money;
 
 	// Derived attributes -----------------------------------------------------

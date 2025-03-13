@@ -12,7 +12,7 @@
     <panel_attributes>&lt;&lt;Role&gt;&gt;
 Technician
 --
-+ licenseNumber: String {Mandatory,ValidTechnicianLicenseNumber,Column(unique = true),Automapped}
++ code: String {Mandatory,Column(unique = true),Automapped}
 + phoneNumber: String {Mandatory, ValidPhoneNumber, Automapped}
 + specialisation: String {Mandatory, ValidShortText, Automapped}
 + annualHealthTest: Boolean {Mandatory, Automapped, Valid}

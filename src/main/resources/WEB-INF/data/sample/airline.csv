@@ -17,5 +17,5 @@ airline-15,'' or 'A' = 'A ,VSA,https://www.virginatlantic.com,LUXURY,2004/06/22 
 airline-16,中国国际航空 (Air China),CCA,https://www.airchina.com,STANDARD,2005/09/01 00:00,contact@airchina.com,+1234567805
 airline-22,한국항공 (Korean Air),KAL,https://www.koreanair.com,STANDARD,2000/03/01 00:00,a@b.e,+1234567811
 airline-23,مصر للطيران (EgyptAir),MSR,ftp://aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa,STANDARD,2000/06/01 00:00,contact@egyptair.com,+1234567812
-airline-24,<img src=x onerror=alert('XSS')>,XSS,https://www.xss.com,LOW_COST,2022/07/30 0:00,xss@example.com,+1234567813
+airline-24,<img src=x onerror=alert('XSS')>,XSS,https://www.xss.com,LOW_COST,2025/01/01 0:00,xss@example.com,+1234567813
 airline-25,俄罗斯航空 (Aeroflot),AFL,https://www.aeroflot.com,STANDARD,2000/01/01 0:00,contact@aeroflot.com,+1234567814

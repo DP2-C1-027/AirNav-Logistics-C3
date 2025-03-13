@@ -1,0 +1,11 @@
+key,maintanenceMoment,status,nextMaintanence,estimatedCost,notes,key:technician,key:aircraft
+maint-01,2024/01/15 08:30,COMPLETED,2025/01/15 08:30,5000USD,"Routine engine check completed.",technician-01,aircraft-01
+maint-02,2024/02/20 14:45,PENDING,2025/02/20 14:45,0.00USD,"Administrative maintenance record with no cost.",technician-02,aircraft-02
+maint-03,2024/03/10 10:15,IN_PROGRESS,2025/03/10 10:15,4200USD,"Avionics upgrade in progress.",technician-03,aircraft-03
+maint-04,2024/04/05 16:00,COMPLETED,2025/04/05 16:00,2800USD,"Landing gear inspection completed.",technician-04,aircraft-04
+maint-05,2024/05/18 09:00,PENDING,2025/05/18 09:00,3100USD,"Scheduled wing structural inspection.",technician-05,aircraft-05
+maint-06,2024/06/12 11:30,IN_PROGRESS,2025/06/12 11:30,4500USD,"Electrical system diagnostics ongoing.",technician-06,aircraft-06
+maint-07,2000/01/01 00:01,COMPLETED,2200/12/31 23:58,3900USD,"Fuel system maintenance completed.",technician-07,aircraft-07
+maint-08,2024/08/30 07:50,PENDING,2025/08/30 07:50,5200USD,"Engine replacement scheduled.",technician-08,aircraft-08
+maint-09,2024/09/14 15:10,IN_PROGRESS,2025/09/14 15:10,1000000USD,"Complete aircraft overhaul including new engines and avionics.",technician-09,aircraft-09
+maint-10,2024/10/25 12:00,COMPLETED,2025/10/25 12:00,6000USD,"Full safety compliance check completed.",technician-10,aircraft-10

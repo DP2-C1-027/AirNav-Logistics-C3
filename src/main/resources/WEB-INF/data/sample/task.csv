@@ -1,0 +1,11 @@
+key,type,description,priority,estimatedDuration,key:technician
+task-01,MAINTENANCE,"Routine engine check for aircraft.",5,120,technician-01
+task-02,INSPECTION,"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",7,90,technician-02
+task-03,REPAIR,"Electrical system diagnostics and repair.",8,180,technician-03
+task-04,INSPECTION,"Inspection and maintenance of the fuel system.",6,150,technician-04
+task-05,SYSTEM_CHECK,"Upgrade of avionics system with new software.",9,240,technician-05
+task-06,INSPECTION,"Structural inspection of wings and fuselage.",4,100,technician-06
+task-07,REPAIR,"Complete engine replacement for aircraft.",10,300,technician-07
+task-08,SYSTEM_CHECK,"Full system diagnostics for the aircraft.",7,1,technician-08
+task-09,MAINTENANCE,"Scheduled maintenance for various systems.",0,1000,technician-09
+task-10,INSPECTION,"A",5,90,technician-10

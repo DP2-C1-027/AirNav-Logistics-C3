@@ -1,4 +1,4 @@
-key,key:userAccount,code,yearsOfService,dateOfBirth,photo
-manager-01,user-account-manager-01,JG123456,10,1992/03/03 17:34,"https://example.com/photo1.jpg"
-manager-02,user-account-manager-02,JS987654,20,1978/07/15 08:17,"https://example.com/photo2.jpg"
-manager-03,user-account-manager-03,GB483924,0,2000/01/21 10:00,"https://example.com/photo3.jpg"
+key,key:userAccount,code,yearsOfService,dateOfBirth,photo,key:airline
+manager-01,user-account-manager-01,JG123456,10,1992/03/03 17:34,https://example.com/photo1.jpg,airline-01
+manager-02,user-account-manager-02,JS987654,20,1978/07/15 08:17,https://example.com/photo2.jpg,airline-01
+manager-03,user-account-manager-03,GB483924,0,2000/01/21 10:00,https://example.com/photo3.jpg,airline-01

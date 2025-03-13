@@ -16,7 +16,7 @@ import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoney;
 import acme.client.helpers.SpringHelper;
-import acme.constraints.ValidLongText;
+import acme.constraints.ValidLongTextOptional;
 import acme.constraints.ValidShortText;
 import acme.entities.legs.Leg;
 import acme.realms.AirlineManager;
@@ -49,7 +49,7 @@ public class Flight extends AbstractEntity {
 
 	@Optional
 	@Automapped
-	@ValidLongText
+	@ValidLongTextOptional
 	private String				description;
 
 	// Derived attributes -----------------------------------------------------

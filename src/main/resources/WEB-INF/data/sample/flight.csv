@@ -1,6 +1,14 @@
 key,tag,indication,cost,description,key:airlineManager
-flight-01,"Dubai-Japón",true,150USD,"Un vuelo desde Dubai a Japón",manager-02
-flight-02,"Transatlantic",true,210EUR,"Transatlántico",manager-02
-flight-03,"regional flights",true,120USD,"vuelo regional de la costa griega",manager-01
-flight-04,"madrid barcelona",false,100EUR,"madrid to barcelona direct flight",manager-01
-flight-05,"españa marruecos",false,50EUR,"flight accross the mediterranean, stopping at Málaga",manager-01
+flight-01,Dubai-Japón,true,150USD,Un vuelo desde Dubai a Japón,manager-02
+flight-02,Transatlantic,true,210EUR,Transatlántico,manager-02
+flight-03,regional flights,true,120USD,vuelo regional de la costa griega,manager-01
+flight-04,madrid barcelona,false,100EUR,madrid to barcelona direct flight,manager-01
+flight-05,españa marruecos,false,50EUR,"flight accross the mediterranean, stopping at Málaga",manager-01
+flight-06,L,true,1USD,"",manager-01
+flight-07,Lorem ipsum dolor sit ame,false,100EUR,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",manager-01
+flight-08,"Lorem ipsum dolor sit amet, consectetur adipiscing",true,200EUR,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor*",manager-01
+flight-09,"Lorem ipsum dolor sit amet, consectetur adipiscin",true,50EUR,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor",manager-02
+flight-10,Lo,false,1EUR,Lo,manager-01
+flight-11,โลเร็ม อิปซัม,false,1EUR,لوريم إيبسوم,manager-01
+flight-12,洛伦·伊普森,false,1EUR,<marquee>Hacked</marquee>,manager-01
+flight-13,<script>alert(‘Hacked!’);</script>,false,1EUR,' or 'A' = 'A,manager-01

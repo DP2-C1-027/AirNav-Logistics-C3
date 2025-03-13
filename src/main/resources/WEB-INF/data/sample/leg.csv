@@ -4,3 +4,5 @@ leg-02,DAL1000,2023/01/01 17:00,2023/01/01 19:00,2,ON_TIME,airport-02,airport-01
 leg-03,EAU1000,2024/02/13 8:00,2024/02/13 10:00,2,DELAYED,airport-01,airport-02,aircraft-02,flight-02
 leg-04,EAU1001,2024/02/13 12:00,2024/02/13 14:00,2,DELAYED,airport-02,airport-01,aircraft-02,flight-02
 leg-05,EAU1002,2024/02/13 16:00,2024/02/13 19:00,3,CANCELLED,airport-01,airport-02,aircraft-02,flight-02
+leg-06,EAU1003,2000/01/01 00:00,2000/01/01 00:01,0,CANCELLED,airport-01,airport-02,aircraft-02,flight-03
+leg-07,EAU1004,2024/12/31 23:59,2025/01/01 00:00,0,CANCELLED,airport-01,airport-02,aircraft-02,flight-04

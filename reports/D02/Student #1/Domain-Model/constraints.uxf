@@ -9,7 +9,7 @@ bg=RED</help_text>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>196</x>
+      <x>189</x>
       <y>91</y>
       <w>392</w>
       <h>112</h>
@@ -29,7 +29,7 @@ bg=#f3fdff</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>357</x>
+      <x>350</x>
       <y>224</y>
       <w>203</w>
       <h>70</h>
@@ -46,7 +46,7 @@ bg=RED</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>189</x>
+      <x>182</x>
       <y>329</y>
       <w>168</w>
       <h>63</h>
@@ -62,7 +62,7 @@ bg=RED</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>189</x>
+      <x>182</x>
       <y>231</y>
       <w>147</w>
       <h>63</h>
@@ -78,7 +78,7 @@ bg=RED</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>399</x>
+      <x>392</x>
       <y>329</y>
       <w>168</w>
       <h>63</h>
@@ -87,6 +87,21 @@ bg=RED</panel_attributes>
 ValidLongText
 --
 + Length(min = 1, max = 255)
+bg=RED</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>189</x>
+      <y>406</y>
+      <w>168</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Constraint&gt;&gt;
+ValidLongText
+--
++ Length(min = 0, max = 255)
 bg=RED</panel_attributes>
     <additional_attributes/>
   </element>

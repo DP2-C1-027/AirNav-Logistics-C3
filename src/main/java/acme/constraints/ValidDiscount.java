@@ -22,7 +22,7 @@ import javax.validation.constraints.Min;
 
 @Min(0)
 @Max(100)
-public @interface ValidMoney {
+public @interface ValidDiscount {
 
 	// Standard validation properties -----------------------------------------
 

@@ -39,7 +39,9 @@
 		<acme:menu-option code="master.menu.provider" access="hasRealm('Provider')">
 			<acme:menu-suboption code="master.menu.provider.favourite-link" action="http://www.example.com/"/>
 		</acme:menu-option>
-
+		<acme:menu-option code="master.menu.airlineManager" access="hasRealm('AirlineManager')">
+			<acme:menu-suboption code="master.menu.employer.list-my-flights" action="/airlineManager/flights/list" />
+		</acme:menu-option>
 		<acme:menu-option code="master.menu.consumer" access="hasRealm('Consumer')">
 			<acme:menu-suboption code="master.menu.consumer.favourite-link" action="http://www.example.com/"/>
 		</acme:menu-option>

@@ -1,0 +1,27 @@
+# messages-es.i18n
+#
+# Copyright (C) 2012-2025 Rafael Corchuelo.
+#
+# In keeping with the traditional purpose of furthering education and research, it is
+# the policy of the copyright owner to permit non-commercial use and redistribution of
+# this software. It has been tested carefully, but it is not guaranteed for any particular
+# purposes.  The copyright owner does not offer any warranties or representations, nor do
+# they accept any liabilities with respect to them.
+
+administrator.airline.form.title = Detalles de la aerolinea
+administrator.airline.list.title = Lista de aerolineas
+
+administrator.airline.form.label.name = Nombre: 
+administrator.airline.form.label.code = Codigo:
+administrator.airline.form.label.website = Pagina web:
+administrator.airline.form.label.type = Tipo:
+administrator.airline.form.label.foundationMoment = Momento de fundación:
+administrator.airline.form.label.email = Correo:
+administrator.airline.form.label.phoneNumber = Número de telefono:
+
+authenticated.provider.booking.form.button.create = Registrer
+authenticated.provider.booking.form.button.update = Update
+
+administrator.airline.list.label.name = Nombre: 
+administrator.airline.list.label.code = CoCodigode:
+administrator.airline.list.label.type = Tipo:

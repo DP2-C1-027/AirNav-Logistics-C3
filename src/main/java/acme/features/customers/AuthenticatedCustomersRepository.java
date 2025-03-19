@@ -10,22 +10,22 @@
  * they accept any liabilities with respect to them.
  */
 
-package acme.features.authenticated.consumer;
+package acme.features.customers;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import acme.client.components.principals.UserAccount;
 import acme.client.repositories.AbstractRepository;
-import acme.realms.Consumer;
+import acme.realms.Customers;
 
 @Repository
-public interface AuthenticatedConsumerRepository extends AbstractRepository {
+public interface AuthenticatedCustomersRepository extends AbstractRepository {
 
 	@Query("select ua from UserAccount ua where ua.id = :id")
 	UserAccount findUserAccountById(int id);
 
-	@Query("select c from Consumer c where c.userAccount.id = :id")
-	Consumer findConsumerByUserAccountId(int id);
+	@Query("select c from Customers c where c.userAccount.id = :id")
+	Customers findCustomersByUserAccountId(int id);
 
 }

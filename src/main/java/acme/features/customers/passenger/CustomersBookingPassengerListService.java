@@ -1,24 +1,23 @@
 
-package acme.features.customers.booking;
+package acme.features.customers.passenger;
 
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import acme.client.components.datatypes.Money;
 import acme.client.components.models.Dataset;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.booking.Booking;
+import acme.entities.booking.Passenger;
 import acme.realms.Customers;
 
 @GuiService
-public class CustomersBookingListService2 extends AbstractGuiService<Customers, Booking> {
-
+public class CustomersBookingPassengerListService extends AbstractGuiService<Customers, Passenger> {
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private CustomersBookingRepository repository;
+	private CustomersBookingPassengerRepository repository;
 
 	// AbstractGuiService interface -------------------------------------------
 
@@ -30,22 +29,26 @@ public class CustomersBookingListService2 extends AbstractGuiService<Customers, 
 
 	@Override
 	public void load() {
-		Collection<Booking> booking;
+		Collection<Passenger> passenger;
 		int customerId;
+		int id;
+		Booking booking;
+
+		id = super.getRequest().getData("bookingId", int.class);
+		booking = this.repository.findBookinById(id);
 
 		customerId = super.getRequest().getPrincipal().getActiveRealm().getId();
-		booking = this.repository.findByCustomer(customerId);
+		passenger = this.repository.findPassengersByBookingId(booking.getId());
 
-		super.getBuffer().addData(booking);
+		super.getBuffer().addData(passenger);
 	}
 
 	@Override
-	public void unbind(final Booking booking) {
+	public void unbind(final Passenger booking) {
 		Dataset dataset;
-		Money price = booking.getPrice();
-		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "travelClass", "lastNibble");
-		dataset.put("price", price);
+
+		dataset = super.unbindObject(booking, "fullName", "email");
+
 		super.getResponse().addData(dataset);
 	}
-
 }

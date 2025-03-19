@@ -8,20 +8,9 @@
 # purposes.  The copyright owner does not offer any warranties or representations, nor do
 # they accept any liabilities with respect to them.
 
-customers.booking.form.title = Booking details
-customers.booking.list.title = Booking list
 
-customers.booking.form.label.locatorCode = Locator Code: 
-customers.booking.form.label.purchaseMoment = Purchase Moment:
-customers.booking.form.label.travelClass = Travel class:
-customers.booking.form.label.lastNibble = Last nibble:
-customers.booking.form.label.price = Price:
+customers.bookingPassenger.list.title = 
+passenger list for this booking
 
-authenticated.provider.booking.form.button.create = Registrer
-authenticated.provider.booking.form.button.update = Update
-
-customers.booking.list.label.locatorCode = Locator Code: 
-customers.booking.list.label.purchaseMoment = Purchase Moment:
-customers.booking.list.label.travelClass = Travel class:
-customers.booking.list.label.lastNibble = Last nibble:
-customers.booking.list.label.price = Price:
+customers.bookingPassenger.list.fullName= Full Name:
+customers.bookingPassenger.list.email = Email:

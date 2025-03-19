@@ -15,23 +15,17 @@
 <%@taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
-<acme:form  readonly="${readonly}">
+<acme:form >
 	<acme:input-textbox code="customers.booking.form.label.locatorCode" path="locatorCode"/>
-	<acme:input-textbox code="customers.booking.form.label.purchaseMoment" path="purchaseMoment"/>
+	<acme:input-moment code="customers.booking.form.label.purchaseMoment" path="purchaseMoment"/>
 	<acme:input-textbox code="customers.booking.form.label.travelClass" path="travelClass"/>
 	<acme:input-textbox code="customers.booking.form.label.lastNibble" path="lastNibble"/>
-	<acme:input-textbox code="customers.booking.form.label.price" path="price"/>
-	<acme:input-textbox code="customers.booking.form.label.passenger" path="passenger"/>
+	<acme:input-money  code="customers.booking.form.label.price" path="price"/>
 	
 	
-	<jstl:if test="${_command == 'passengers'}">
-		<acme:submit code="customers.bookingPassenger.form.button.passenger" action="/customers/bookingPassenger/passengerList"/>
-	</jstl:if>
-	<jstl:if test="${_command == 'create'}">
-		<acme:submit code="authenticated.provider.form.button.create" action="/authenticated/provider/create"/>
-	</jstl:if>
 	
-	<jstl:if test="${_command == 'update'}">
-		<acme:submit code="authenticated.provider.form.button.update" action="/authenticated/provider/update"/>
-	</jstl:if>
+	<acme:button code="customers.bookingPassenger.list.button.passenger" action="/customers/passenger/passengerList?bookingId=${id}"/>
+	
+	
+	
 </acme:form>

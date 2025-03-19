@@ -25,3 +25,5 @@ customers.booking.list.label.purchaseMoment = Purchase Moment:
 customers.booking.list.label.travelClass = Travel class:
 customers.booking.list.label.lastNibble = Last nibble:
 customers.booking.list.label.price = Price:
+
+customers.bookingPassenger.list.button.passenger = Passenger List

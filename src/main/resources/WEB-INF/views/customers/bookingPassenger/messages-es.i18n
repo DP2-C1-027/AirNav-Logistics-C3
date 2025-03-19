@@ -25,3 +25,5 @@ customers.booking.list.label.purchaseMoment = Momento de compra:
 customers.booking.list.label.travelClass = Clase de viaje:
 customers.booking.list.label.lastNibble = Ultimos numero de la tarjeta:
 customers.booking.list.label.price = Precio:
+
+customers.bookingPassenger.list.button.passenger= Lista de Pasajeros

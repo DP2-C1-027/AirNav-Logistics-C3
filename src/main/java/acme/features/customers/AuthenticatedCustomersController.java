@@ -10,7 +10,7 @@
  * they accept any liabilities with respect to them.
  */
 
-package acme.features.authenticated.consumer;
+package acme.features.customers;
 
 import javax.annotation.PostConstruct;
 
@@ -19,18 +19,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import acme.client.components.principals.Authenticated;
 import acme.client.controllers.AbstractGuiController;
 import acme.client.controllers.GuiController;
-import acme.realms.Consumer;
+import acme.realms.Customers;
 
 @GuiController
-public class AuthenticatedConsumerController extends AbstractGuiController<Authenticated, Consumer> {
+public class AuthenticatedCustomersController extends AbstractGuiController<Authenticated, Customers> {
 
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private AuthenticatedConsumerCreateService	createService;
+	private AuthenticatedCustomersCreateService	createService;
 
 	@Autowired
-	private AuthenticatedConsumerUpdateService	updateService;
+	private AuthenticatedCustomersUpdateService	updateService;
 
 	// Constructors -----------------------------------------------------------
 

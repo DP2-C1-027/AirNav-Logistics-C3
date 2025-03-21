@@ -50,9 +50,8 @@ public class AdministratorAircraftCreateService extends AbstractGuiService<Admin
 
 	@Override
 	public void validate(final Aircraft aircraft) {
-		boolean confirmation;
+		boolean confirmation = super.getRequest().getData("confirmation", boolean.class);
 
-		confirmation = super.getRequest().getData("confirmation", boolean.class);
 		super.state(confirmation, "confirmation", "acme.validation.confirmation.message");
 	}
 
@@ -63,11 +62,7 @@ public class AdministratorAircraftCreateService extends AbstractGuiService<Admin
 
 	@Override
 	public void unbind(final Aircraft aircraft) {
-		Dataset dataset;
-
-		dataset = super.unbindObject(aircraft, "title", "status", "text", "moreInfo");
-		dataset.put("confirmation", false);
-		dataset.put("readonly", false);
+		Dataset dataset = super.unbindObject(aircraft, "model", "registrationNumber", "capacity", "cargoWeight", "status", "details", "airline");
 
 		super.getResponse().addData(dataset);
 	}

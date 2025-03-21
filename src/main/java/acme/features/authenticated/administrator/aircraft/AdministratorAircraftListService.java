@@ -8,8 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import acme.client.components.models.Dataset;
 import acme.client.components.principals.Administrator;
 import acme.client.services.AbstractGuiService;
+import acme.client.services.GuiService;
 import acme.entities.aircraft.Aircraft;
 
+@GuiService
 public class AdministratorAircraftListService extends AbstractGuiService<Administrator, Aircraft> {
 
 	// Internal state ---------------------------------------------------------
@@ -36,10 +38,7 @@ public class AdministratorAircraftListService extends AbstractGuiService<Adminis
 
 	@Override
 	public void unbind(final Aircraft aircraft) {
-		Dataset dataset;
-
-		dataset = super.unbindObject(aircraft, "title", "moment", "status");
-		super.addPayload(dataset, aircraft, "text");
+		Dataset dataset = super.unbindObject(aircraft, "model", "registrationNumber", "capacity", "cargoWeight", "status", "details", "airline");
 
 		super.getResponse().addData(dataset);
 	}

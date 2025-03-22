@@ -7,10 +7,12 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
+import acme.client.components.views.SelectChoices;
 import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.booking.Booking;
+import acme.entities.booking.TravelClass;
 import acme.entities.flights.Flight;
 import acme.realms.Customers;
 
@@ -25,7 +27,6 @@ public class CustomersBookingCreateService extends AbstractGuiService<Customers,
 
 
 	@Override
-	//deberia comprobar q existe el vuelo???
 	public void authorise() {
 		boolean status;
 		Customers customer;
@@ -41,7 +42,6 @@ public class CustomersBookingCreateService extends AbstractGuiService<Customers,
 		Date moment;
 		Customers customer;
 		Booking whine;
-		Collection<Flight> availableFlights;
 
 		moment = MomentHelper.getCurrentMoment();
 		customer = (Customers) super.getRequest().getPrincipal().getActiveRealm();
@@ -50,33 +50,25 @@ public class CustomersBookingCreateService extends AbstractGuiService<Customers,
 
 		whine.setPurchaseMoment(moment);
 		whine.setCustomer(customer);
-		whine.setLocatorCode("");
-		whine.setTravelClass(null);
-		whine.setLastNibble(null);
+
 		super.getBuffer().addData(whine);
 
 	}
 
 	@Override
 	public void bind(final Booking whine) {
-		super.bindObject(whine, "locatorCode", "purchaseMoment", "travelClass", "lastNibble");
+		int flightId = super.getRequest().getData("vuelo", int.class);
 
-		// Enlazar el vuelo seleccionado
+		Flight flight = this.repository.findFlightById(flightId);
+		super.bindObject(whine, "locatorCode", "purchaseMoment", "travelClass", "lastNibble");
+		whine.setFlight(flight);
+		whine.setDraftMode(true);
 
 	}
 
 	@Override
 	public void validate(final Booking whine) {
-		//boolean confirmation;
 
-		//confirmation = super.getRequest().getData("confirmation", boolean.class);
-		//super.state(confirmation, "confirmation", "acme.validation.confirmation.message");
-
-		// Verifica que el vuelo seleccionado sea válido
-		//super.state(whine.getFlight() != null, "flight", "acme.validation.flight.missing");
-
-		// Verifica que la clase de viaje sea válida
-		//super.state(whine.getTravelClass() != null, "travelClass", "acme.validation.travelClass.invalid");
 	}
 
 	@Override
@@ -87,9 +79,17 @@ public class CustomersBookingCreateService extends AbstractGuiService<Customers,
 	@Override
 	public void unbind(final Booking whine) {
 		Dataset dataset;
-
-		dataset = super.unbindObject(whine, "locatorCode", "purchaseMoment", "travelClass", "lastNibble");
+		SelectChoices choices;
+		SelectChoices flightChoices;
+		Collection<Flight> vuelos;
+		vuelos = this.repository.getAllFlight();
+		flightChoices = SelectChoices.from(vuelos, "tag", whine.getFlight());
+		choices = SelectChoices.from(TravelClass.class, whine.getTravelClass());
+		dataset = super.unbindObject(whine, "locatorCode", "purchaseMoment", "travelClass", "lastNibble", "draft-mode");
+		dataset.put("vuelo", flightChoices.getSelected().getKey());
+		dataset.put("vuelos", flightChoices);
 		dataset.put("price", whine.getPrice());
+		dataset.put("travelClasses", choices);
 
 		super.getResponse().addData(dataset);
 

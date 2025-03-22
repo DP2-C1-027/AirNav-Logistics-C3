@@ -5,51 +5,49 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.principals.Administrator;
+import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.airline.Airline;
+import acme.entities.airline.AirlineType;
 
 @GuiService
 public class AdministratorAirlineUpdateService extends AbstractGuiService<Administrator, Airline> {
+
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
 	private AdministratorAirlineRepository repository;
 
-	// AbstractGuiService interface -------------------------------------------
+	// AbstractService -------------------------------------
 
 
 	@Override
 	public void authorise() {
-		boolean status;
-		int whineId;
-		Airline whine;
 
-		whineId = super.getRequest().getData("id", int.class);
-		whine = this.repository.findAirline(whineId);
-		status = whine != null;
-
-		super.getResponse().setAuthorised(status);
+		super.getResponse().setAuthorised(true);
 	}
 
 	@Override
 	public void load() {
-		int whineId;
-		Airline whine;
+		int airlineId;
+		Airline airline;
 
-		whineId = super.getRequest().getData("id", int.class);
-		whine = this.repository.findAirline(whineId);
+		airlineId = super.getRequest().getData("id", int.class);
+		airline = this.repository.findAirline(airlineId);
 
-		super.getBuffer().addData(whine);
+		super.getBuffer().addData(airline);
 	}
 
 	@Override
-	public void bind(final Airline whine) {
-		super.bindObject(whine, "name", "code", "website", "type", "foundationMoment", "email", "phoneNumber");
+	public void bind(final Airline airline) {
+		//	super.bindObject(whine, "name", "code", "website", "type", "foundationMoment", "email", "phoneNumber");
+		super.bindObject(airline, "name", "code", "website", "type", "foundationMoment", "email", "phoneNumber");
+
 	}
 
 	@Override
-	public void validate(final Airline whine) {
+	public void validate(final Airline airline) {
 		{
 			boolean confirmation;
 
@@ -60,16 +58,19 @@ public class AdministratorAirlineUpdateService extends AbstractGuiService<Admini
 	}
 
 	@Override
-	public void perform(final Airline whine) {
-		this.repository.save(whine);
+	public void perform(final Airline airline) {
+
+		this.repository.save(airline);
 	}
 
 	@Override
-	public void unbind(final Airline whine) {
+	public void unbind(final Airline airline) {
 		Dataset dataset;
-
-		dataset = super.unbindObject(whine, "name", "code", "website", "type", "foundationMoment", "email", "phoneNumber");
+		SelectChoices choices;
+		choices = SelectChoices.from(AirlineType.class, airline.getType());
+		dataset = super.unbindObject(airline, "name", "code", "website", "type", "foundationMoment", "email", "phoneNumber");
 		dataset.put("confirmation", false);
+		dataset.put("types", choices);
 		super.getResponse().addData(dataset);
 
 	}

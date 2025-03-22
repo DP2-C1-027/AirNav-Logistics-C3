@@ -1,5 +1,5 @@
 
-package acme.features.customers.bookingRecord;
+package acme.features.customers.passenger;
 
 import java.util.Collection;
 

@@ -44,6 +44,12 @@ public interface CustomersBookingRepository extends AbstractRepository {
 	@Query("SELECT f.cost FROM Flight f WHERE f.id=:id")
 	Money getPriceById(final int id);
 
+	@Query("SELECT f FROM Flight f")
+	Collection<Flight> getAllFlight();
+
+	@Query("SELECT f FROM Flight f WHERE f.id = ?1")
+	Flight findFlightById(int id);
+
 	//create and update
 
 }

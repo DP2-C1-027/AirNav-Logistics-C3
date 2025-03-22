@@ -43,12 +43,7 @@ public class CustomersPassengerCreateService extends AbstractGuiService<Customer
 		moment = MomentHelper.getCurrentMoment();
 
 		passenger = new Passenger();
-		passenger.setFullName("");
-		passenger.setEmail("");
-		passenger.setDateOfBirth(moment);
-		passenger.setPassportNumber("");
-		passenger.setSpecialNeeds("");
-		//COMO PONGO LA RELACION CON BOOKING
+		passenger.setDraftMode(true);
 
 		super.getBuffer().addData(passenger);
 	}

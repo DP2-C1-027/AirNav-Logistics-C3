@@ -21,8 +21,9 @@
 	<acme:list-column code="customers.booking.list.label.travelClass" path="travelClass" width="20%"/>
 	<acme:list-column code="customers.booking.list.label.lastNibble" path="lastNibble" width="20%"/>
 	<acme:list-column code="customers.booking.list.label.price" path="price" width="20%"/>
-
 	<acme:list-payload path="payload"/>
 </acme:list>
-
+<jstl:if test="${_command == 'list'}">
+	<acme:button code="customers.booking.list.button.create" action="/customers/booking/create"/>
+</jstl:if>	
 

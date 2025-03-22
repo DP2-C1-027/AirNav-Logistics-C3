@@ -30,14 +30,13 @@ public class CustomersBookingPassengerListService extends AbstractGuiService<Cus
 	@Override
 	public void load() {
 		Collection<Passenger> passenger;
-		int customerId;
+
 		int id;
 		Booking booking;
 
 		id = super.getRequest().getData("bookingId", int.class);
 		booking = this.repository.findBookinById(id);
 
-		customerId = super.getRequest().getPrincipal().getActiveRealm().getId();
 		passenger = this.repository.findPassengersByBookingId(booking.getId());
 
 		super.getBuffer().addData(passenger);
@@ -48,6 +47,7 @@ public class CustomersBookingPassengerListService extends AbstractGuiService<Cus
 		Dataset dataset;
 
 		dataset = super.unbindObject(booking, "fullName", "email");
+		dataset.put("readonly", false);
 
 		super.getResponse().addData(dataset);
 	}

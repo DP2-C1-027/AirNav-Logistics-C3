@@ -12,28 +12,57 @@ import acme.entities.airline.Airline;
 import acme.entities.airline.AirlineType;
 
 @GuiService
-public class AdministratorAirlineShowService extends AbstractGuiService<Administrator, Airline> {
+public class AdministratorAirlineUpdateService extends AbstractGuiService<Administrator, Airline> {
+
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
 	private AdministratorAirlineRepository repository;
 
+	// AbstractService -------------------------------------
 
-	// AbstractGuiService interface -------------------------------------------
+
 	@Override
 	public void authorise() {
+
 		super.getResponse().setAuthorised(true);
 	}
+
 	@Override
 	public void load() {
+		int airlineId;
 		Airline airline;
-		int id;
 
-		id = super.getRequest().getData("id", int.class);
-		airline = this.repository.findAirline(id);
+		airlineId = super.getRequest().getData("id", int.class);
+		airline = this.repository.findAirline(airlineId);
 
 		super.getBuffer().addData(airline);
 	}
+
+	@Override
+	public void bind(final Airline airline) {
+		//	super.bindObject(whine, "name", "code", "website", "type", "foundationMoment", "email", "phoneNumber");
+		super.bindObject(airline, "name", "code", "website", "type", "foundationMoment", "email", "phoneNumber");
+
+	}
+
+	@Override
+	public void validate(final Airline airline) {
+		{
+			boolean confirmation;
+
+			confirmation = super.getRequest().getData("confirmation", boolean.class);
+			super.state(confirmation, "confirmation", "acme.validation.confirmation.message");
+		}
+
+	}
+
+	@Override
+	public void perform(final Airline airline) {
+
+		this.repository.save(airline);
+	}
+
 	@Override
 	public void unbind(final Airline airline) {
 		Dataset dataset;
@@ -42,7 +71,7 @@ public class AdministratorAirlineShowService extends AbstractGuiService<Administ
 		dataset = super.unbindObject(airline, "name", "code", "website", "type", "foundationMoment", "email", "phoneNumber");
 		dataset.put("confirmation", false);
 		dataset.put("types", choices);
-
 		super.getResponse().addData(dataset);
+
 	}
 }

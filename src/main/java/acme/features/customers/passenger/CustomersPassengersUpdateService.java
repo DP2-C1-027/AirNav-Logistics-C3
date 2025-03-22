@@ -1,57 +1,56 @@
 
 package acme.features.customers.passenger;
 
-import java.util.Date;
-
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
-import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.booking.Passenger;
 import acme.realms.Customers;
 
 @GuiService
-public class CustomersPassengerCreateService extends AbstractGuiService<Customers, Passenger> {
+public class CustomersPassengersUpdateService extends AbstractGuiService<Customers, Passenger> {
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
 	private CustomersPassengersRepository repository;
 
-	// AbstractGuiService interface -------------------------------------------
+	// AbstractService -------------------------------------
 
 
-	//tengo q incluir algo en el authorise???
 	@Override
 	public void authorise() {
 		boolean status;
+		int passengerId;
+		Passenger passenger;
 		Customers customer;
 
+		passengerId = super.getRequest().getData("id", int.class);
+		passenger = this.repository.findPassengerById(passengerId);
 		customer = (Customers) super.getRequest().getPrincipal().getActiveRealm();
-		status = super.getRequest().getPrincipal().hasRealm(customer);
+		status = passenger != null && passenger.isDraftMode() && super.getRequest().getPrincipal().hasRealm(customer);
+
 		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
 	public void load() {
 		Passenger passenger;
+		int id;
 
-		Date moment;
-		//no se si ma hace falta date
-
-		moment = MomentHelper.getCurrentMoment();
-
-		passenger = new Passenger();
-		passenger.setDraftMode(true);
+		id = super.getRequest().getData("id", int.class);
+		passenger = this.repository.findPassengerById(id);
 
 		super.getBuffer().addData(passenger);
 	}
 
 	@Override
 	public void bind(final Passenger passenger) {
-		super.bindObject(passenger, "fullName", "email", "passportNumber", "dateOfBirth", "specialNeeds");
+		//dataset = super.unbindObject(passenger, "fullName", "email", "passportNumber", "dateOfBirth", "specialNeeds");
 
+		super.bindObject(passenger, "fullName", "email", "passportNumber", "dateOfBirth", "specialNeeds");
+		//	job.setContractor(contractor);
 	}
 
 	@Override
@@ -66,10 +65,15 @@ public class CustomersPassengerCreateService extends AbstractGuiService<Customer
 
 	@Override
 	public void unbind(final Passenger passenger) {
+		int employerId;
 
 		Dataset dataset;
 
+		employerId = super.getRequest().getPrincipal().getActiveRealm().getId();
+
 		dataset = super.unbindObject(passenger, "fullName", "email", "passportNumber", "dateOfBirth", "specialNeeds");
+
 		super.getResponse().addData(dataset);
 	}
+
 }

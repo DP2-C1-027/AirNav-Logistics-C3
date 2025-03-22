@@ -60,6 +60,11 @@ public class Booking extends AbstractEntity {
 	@ValidLastNibble
 	private String				lastNibble;
 
+	@Mandatory
+	// HINT: @Valid by default.
+	@Automapped
+	private boolean				draftMode;
+
 	// Derived attributes -----------------------------------------------------
 
 

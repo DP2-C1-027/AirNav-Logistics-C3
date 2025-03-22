@@ -5,7 +5,6 @@ import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import acme.client.components.datatypes.Money;
 import acme.client.components.models.Dataset;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
@@ -25,7 +24,13 @@ public class CustomersBookingListService extends AbstractGuiService<Customers, B
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		Customers customer;
+		boolean status;
+		customer = (Customers) super.getRequest().getPrincipal().getActiveRealm();
+
+		status = super.getRequest().getPrincipal().hasRealm(customer);
+		super.getResponse().setAuthorised(status);
+
 	}
 
 	@Override
@@ -42,7 +47,7 @@ public class CustomersBookingListService extends AbstractGuiService<Customers, B
 	@Override
 	public void unbind(final Booking booking) {
 		Dataset dataset;
-		Money price = booking.getPrice();
+
 		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "travelClass", "lastNibble");
 		dataset.put("price", booking.getPrice());
 		super.getResponse().addData(dataset);

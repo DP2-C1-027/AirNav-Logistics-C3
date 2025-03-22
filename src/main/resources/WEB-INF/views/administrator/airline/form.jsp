@@ -19,11 +19,24 @@
 	<acme:input-textbox code="administrator.airline.form.label.name" path="name"/>
 	<acme:input-textbox code="administrator.airline.form.label.code" path="code"/>
 	<acme:input-url code="administrator.airline.form.label.website" path="website"/>
-	<acme:input-textbox code="administrator.airline.form.label.type" path="type"/>
+	<acme:input-select code="administrator.airline.form.label.type" path="type" choices="${types}"/>
 	<acme:input-moment  code="administrator.airline.form.label.foundationMoment" path="foundationMoment"/>
 	<acme:input-email code="administrator.airline.form.label.email" path="email"/>
 	<acme:input-textbox code="administrator.airline.form.label.phoneNumber" path="phoneNumber"/>
 	
 	
+	
+	
+	<jstl:choose>
+		
+		<jstl:when test="${_command == 'create'}">
+		<acme:input-checkbox code="administrator.airline.form.label.confirmation" path="confirmation"/>
+			<acme:submit code="administrator.airline.form.button.create" action="/administrator/airline/create"/>
+		</jstl:when>
+		<jstl:when test="${acme:anyOf(_command, 'show|update')}">
+		<acme:input-checkbox code="administrator.airline.form.label.confirmation" path="confirmation"/>
+			<acme:submit code="administrator.airline.form.button.update" action="/administrator/airline/update"/>
+		</jstl:when>
+	</jstl:choose>
 	
 </acme:form>

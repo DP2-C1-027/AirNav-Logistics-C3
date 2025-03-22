@@ -26,4 +26,17 @@
 	
 	
 	
+	
+	<jstl:choose>
+		
+		<jstl:when test="${_command == 'create'}">
+		<acme:input-checkbox code="administrator.airline.form.label.confirmation" path="confirmation"/>
+			<acme:submit code="administrator.airline.form.button.create" action="/administrator/airline/create"/>
+		</jstl:when>
+		<jstl:when test="${acme:anyOf(_command, 'show|update')}">
+		<acme:input-checkbox code="administrator.airline.form.label.confirmation" path="confirmation"/>
+			<acme:submit code="administrator.airline.form.button.update" action="/administrator/airline/update"/>
+		</jstl:when>
+	</jstl:choose>
+	
 </acme:form>

@@ -55,6 +55,11 @@ public class Passenger extends AbstractEntity {
 	@ValidShortTextOptional
 	private String				specialNeeds;
 
+	@Mandatory
+	// HINT: @Valid by default.
+	@Automapped
+	private boolean				draftMode;
+
 	// Derived attributes -----------------------------------------------------
 
 	// Relationships ----------------------------------------------------------

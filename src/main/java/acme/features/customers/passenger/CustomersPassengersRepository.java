@@ -38,4 +38,5 @@ public interface CustomersPassengersRepository extends AbstractRepository {
 
 	@Query("Select c from Customers c where c.id=:id")
 	Customers findCustomerById(final int id);
+
 }

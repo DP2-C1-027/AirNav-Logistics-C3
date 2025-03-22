@@ -15,19 +15,20 @@
 <%@taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
-<acme:form readonly="${readonly}">
+<acme:form >
 	<acme:input-textbox code="customers.passenger.form.label.fullName" path="fullName"/>
-	<acme:input-textbox code="customers.passenger.form.label.email" path="email"/>
+	<acme:input-email code="customers.passenger.form.label.email" path="email"/>
 	<acme:input-textbox code="customers.passenger.form.label.passportNumber" path="passportNumber"/>
-	<acme:input-textbox code="customers.passenger.form.label.dateOfBirth" path="dateOfBirth"/>
+	<acme:input-moment code="customers.passenger.form.label.dateOfBirth" path="dateOfBirth"/>
 	<acme:input-textbox code="customers.passenger.form.label.specialNeeds" path="specialNeeds"/>
 	
-	
-	<jstl:if test="${_command == 'create'}">
-		<acme:submit code="authenticated.provider.form.button.create" action="/authenticated/provider/create"/>
-	</jstl:if>
-	
-	<jstl:if test="${_command == 'update'}">
-		<acme:submit code="authenticated.provider.form.button.update" action="/authenticated/provider/update"/>
-	</jstl:if>
+	<jstl:choose>
+		<jstl:when test="${_command == 'create'}">
+			<acme:submit code="customers.passenger.form.button.create" action="/customers/passenger/create"/>
+		</jstl:when>
+		
+		<jstl:when test="${acme:anyOf(_command, 'show|update') && draftMode == True}">
+			<acme:submit code="customers.passenger.form.button.update" action="/customers/passenger/update"/>
+		</jstl:when>
+	</jstl:choose>
 </acme:form>

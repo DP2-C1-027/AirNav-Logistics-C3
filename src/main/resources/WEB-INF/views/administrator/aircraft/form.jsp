@@ -16,14 +16,10 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <acme:form >
-	<acme:input-textbox code="administrator.airline.form.label.name" path="name"/>
-	<acme:input-textbox code="administrator.airline.form.label.code" path="code"/>
-	<acme:input-url code="administrator.airline.form.label.website" path="website"/>
-	<acme:input-textbox code="administrator.airline.form.label.type" path="type"/>
-	<acme:input-moment  code="administrator.airline.form.label.foundationMoment" path="foundationMoment"/>
-	<acme:input-email code="administrator.airline.form.label.email" path="email"/>
-	<acme:input-textbox code="administrator.airline.form.label.phoneNumber" path="phoneNumber"/>
-	
-	
-	
+	<acme:input-textbox code="administrator.aircraft.form.label.model" path="model"/>
+	<acme:input-textbox code="administrator.aircraft.form.label.registrationNumber" path="registrationNumber"/>
+	<acme:input-textbox code="administrator.aircraft.form.label.capacity" path="capacity"/>
+	<acme:input-textbox code="administrator.aircraft.form.label.cargoWeight" path="cargoWeight"/>
+	<acme:input-textbox  code="administrator.aircraft.form.label.status" path="status"/>
+	<acme:input-textbox code="administrator.aircraft.form.label.details" path="details"/>
 </acme:form>

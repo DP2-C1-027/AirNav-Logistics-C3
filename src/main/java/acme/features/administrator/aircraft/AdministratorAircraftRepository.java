@@ -1,5 +1,5 @@
 
-package acme.features.authenticated.administrator.aircraft;
+package acme.features.administrator.aircraft;
 
 import java.util.Collection;
 
@@ -17,5 +17,8 @@ public interface AdministratorAircraftRepository extends AbstractRepository {
 
 	@Query("select a from Aircraft a")
 	Collection<Aircraft> findAllAircrafts();
+
+	@Query("select a from Aircraft a where a.airline.id = :airlineId")
+	Collection<Aircraft> findAircraftsByAirlineId(int airlineId);
 
 }

@@ -63,8 +63,6 @@ public class Aircraft extends AbstractEntity {
 	@ValidLongTextOptional
 	private String				details;
 
-	private boolean				draftMode;
-
 	// Derived attributes -----------------------------------------------------
 
 	// Relationships ----------------------------------------------------------

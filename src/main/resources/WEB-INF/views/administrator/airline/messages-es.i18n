@@ -19,8 +19,12 @@ administrator.airline.form.label.foundationMoment = Momento de fundación:
 administrator.airline.form.label.email = Correo:
 administrator.airline.form.label.phoneNumber = Número de telefono:
 
-administrator.airline.form.button.aircrafts = Mostrar
+administrator.airline.form.button.aircrafts = Mostrar aviones
+dministrator.airline.form.button.create = Crear
+administrator.airline.form.button.update = Actualizar
 
 administrator.airline.list.label.name = Nombre: 
-administrator.airline.list.label.code = CoCodigode:
+administrator.airline.list.label.code = Codigo:
 administrator.airline.list.label.type = Tipo:
+
+administrator.airline.list.button.create = Crear

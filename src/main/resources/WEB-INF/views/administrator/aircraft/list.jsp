@@ -22,5 +22,7 @@
 	
 	<acme:list-payload path="payload"/>
 </acme:list>
+	
+<acme:button code="administrator.aircraft.list.button.create" action="/administrator/aircraft/create"/>
 
 

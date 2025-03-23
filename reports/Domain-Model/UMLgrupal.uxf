@@ -57,7 +57,7 @@ bg=#f3fdff</panel_attributes>
 Airport
 --
 + name: String {Mandatory, ValidShortText, Automapped}
-+ code: String {Mandatory, ValidIATAcode,Column(unique=true), Automapped}
++ codigo: String {Mandatory, ValidIATAcode,Column(unique=true), Automapped}
 + operationalScope: OperationalScope {Mandatory,Enumrated(EnumType.String), Automapped}
 + city: String {Mandatory, ValidShortText, Automapped}
 + country: String {Mandatory, ValidShortText, Automapped}
@@ -80,7 +80,7 @@ bg=green</panel_attributes>
 Airlane
 --
 + name: String {Mandatory, ValidShortText, Automapped}
-+ code: String {Mandatory, ValidIATAcode, Automapped, Column(unique = true)}
++ codigo: String {Mandatory, ValidIATAcode, Automapped, Column(unique = true)}
 + website: String {Mandatory, ValidUrl, Automapped}
 + type: AirlineType {Mandatory, Enumerated(EnumType.STRING), Automapped}
 + foundationMoment: Date {Mandatory, ValidMoment(past=true), Temporal(TemporalType.TIMESTAMP), Automapped}

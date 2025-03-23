@@ -5,9 +5,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.principals.Administrator;
+import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.aircraft.Aircraft;
+import acme.entities.aircraft.Status;
 
 @GuiService
 public class AdministratorAircraftShowService extends AbstractGuiService<Administrator, Aircraft> {
@@ -36,6 +38,9 @@ public class AdministratorAircraftShowService extends AbstractGuiService<Adminis
 	@Override
 	public void unbind(final Aircraft aircraft) {
 		Dataset dataset = super.unbindObject(aircraft, "model", "registrationNumber", "capacity", "cargoWeight", "status", "details");
+
+		SelectChoices choices = SelectChoices.from(Status.class, aircraft.getStatus());
+		dataset.put("types", choices);
 
 		super.getResponse().addData(dataset);
 	}

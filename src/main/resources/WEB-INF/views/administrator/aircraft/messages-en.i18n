@@ -17,6 +17,7 @@ administrator.aircraft.form.label.capacity = Capacity:
 administrator.aircraft.form.label.cargoWeight = Cargo Weight:
 administrator.aircraft.form.label.status = Status:
 administrator.aircraft.form.label.details = Details:
+administrator.aircraft.form.label.confirmation = Confirmation
 
 administrator.aircraft.form.button.create = Create
 administrator.aircraft.form.button.update = Update

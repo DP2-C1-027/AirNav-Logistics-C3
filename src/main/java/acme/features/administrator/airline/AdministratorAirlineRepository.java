@@ -12,10 +12,10 @@ import acme.entities.airline.Airline;
 @Repository
 public interface AdministratorAirlineRepository extends AbstractRepository {
 
-	@Query("SELECT b FROM Airline b WHERE b.id=:id")
-	Airline findAirline(final int id);
+	@Query("select a from Airline a where a.id = :id")
+	Airline findAirlineById(int id);
 
-	@Query("SELECT a FROM Airline a")
+	@Query("select a from Airline a")
 	Collection<Airline> findAllAirline();
 
 }

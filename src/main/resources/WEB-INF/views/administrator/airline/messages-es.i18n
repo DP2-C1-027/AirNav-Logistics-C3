@@ -18,6 +18,7 @@ administrator.airline.form.label.type = Tipo:
 administrator.airline.form.label.foundationMoment = Momento de fundación:
 administrator.airline.form.label.email = Correo:
 administrator.airline.form.label.phoneNumber = Número de telefono:
+administrator.airline.form.label.confirmation = Confirmación
 
 administrator.airline.form.button.aircrafts = Mostrar aviones
 dministrator.airline.form.button.create = Crear

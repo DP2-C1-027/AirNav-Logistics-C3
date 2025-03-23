@@ -29,11 +29,9 @@ public class AdministratorAirlineListService extends AbstractGuiService<Administ
 
 	@Override
 	public void load() {
-		Collection<Airline> anouncements;
+		Collection<Airline> airlines = this.repository.findAllAirline();
 
-		anouncements = this.repository.findAllAirline();
-
-		super.getBuffer().addData(anouncements);
+		super.getBuffer().addData(airlines);
 	}
 
 	@Override

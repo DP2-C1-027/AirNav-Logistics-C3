@@ -34,7 +34,7 @@ public class AdministratorAirlineUpdateService extends AbstractGuiService<Admini
 		Airline airline;
 
 		airlineId = super.getRequest().getData("id", int.class);
-		airline = this.repository.findAirline(airlineId);
+		airline = this.repository.findAirlineById(airlineId);
 
 		super.getBuffer().addData(airline);
 	}

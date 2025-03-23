@@ -3,6 +3,8 @@ package acme.entities.aircraft;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
 import javax.validation.Valid;
 import javax.validation.constraints.Max;
@@ -55,7 +57,7 @@ public class Aircraft extends AbstractEntity {
 
 	@Mandatory
 	@Automapped
-	@Valid
+	@Enumerated(EnumType.STRING)
 	private Status				status;
 
 	@Optional

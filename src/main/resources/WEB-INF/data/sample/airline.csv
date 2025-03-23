@@ -1,4 +1,4 @@
-key,name,code,website,type,foundationMoment,email,phoneNumber
+key,name,codigo,website,type,foundationMoment,email,phoneNumber
 airline-01,Delta Air Lines,DAL,https://www.delta.com,STANDARD,2004/05/30 00:00,contact@delta.com,+1234567890
 airline-02,Emirates,EAU,https://www.emirates.com,LOW_COST,2003/03/25 00:00,contact@emirates.com,+1234567899
 airline-03,American Airlines,AAL,https://www.aa.com,STANDARD,2002/04/15 00:00,contact@aa.com,+1234567891

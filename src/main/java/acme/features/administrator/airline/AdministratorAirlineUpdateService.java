@@ -42,7 +42,7 @@ public class AdministratorAirlineUpdateService extends AbstractGuiService<Admini
 	@Override
 	public void bind(final Airline airline) {
 		//	super.bindObject(whine, "name", "code", "website", "type", "foundationMoment", "email", "phoneNumber");
-		super.bindObject(airline, "name", "code", "website", "type", "foundationMoment", "email", "phoneNumber");
+		super.bindObject(airline, "name", "codigo", "website", "type", "foundationMoment", "email", "phoneNumber");
 
 	}
 
@@ -68,7 +68,7 @@ public class AdministratorAirlineUpdateService extends AbstractGuiService<Admini
 		Dataset dataset;
 		SelectChoices choices;
 		choices = SelectChoices.from(AirlineType.class, airline.getType());
-		dataset = super.unbindObject(airline, "name", "code", "website", "type", "foundationMoment", "email", "phoneNumber");
+		dataset = super.unbindObject(airline, "name", "codigo", "website", "type", "foundationMoment", "email", "phoneNumber");
 		dataset.put("confirmation", false);
 		dataset.put("types", choices);
 		super.getResponse().addData(dataset);

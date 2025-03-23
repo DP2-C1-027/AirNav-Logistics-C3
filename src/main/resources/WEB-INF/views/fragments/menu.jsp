@@ -26,11 +26,16 @@
 			<acme:menu-suboption code="master.menu.anonymous.HHV4884-ETSII" action="https://astralshiftpro.com/"/>
 			<acme:menu-suboption code="master.menu.anonymous.jose" action="https://codeforces.com/problemset"/>
 		</acme:menu-option>
+		
+		<acme:menu-option code="master.menu.any">
+			<acme:menu-suboption code="master.menu.any.review" action="/any/review/list"/>
+		</acme:menu-option>
 
 		<acme:menu-option code="master.menu.administrator" access="hasRealm('Administrator')">
 			<acme:menu-suboption code="master.menu.administrator.list-airline" action="/administrator/airline/list"/>
 			<acme:menu-suboption code="master.menu.administrator.list-user-accounts" action="/administrator/user-account/list"/>
-
+			<acme:menu-separator/>
+			<acme:menu-suboption code="master.menu.administrator.list-airport" action="/administrator/airport/list"/>
 			<acme:menu-separator/>
 			<acme:menu-suboption code="master.menu.administrator.populate-db-initial" action="/administrator/system/populate-initial"/>
 			<acme:menu-suboption code="master.menu.administrator.populate-db-sample" action="/administrator/system/populate-sample"/>			
@@ -43,6 +48,10 @@
 		</acme:menu-option>
 		<acme:menu-option code="master.menu.airlineManager" access="hasRealm('AirlineManager')">
 			<acme:menu-suboption code="master.menu.employer.list-my-flights" action="/airlineManager/flights/list" />
+		</acme:menu-option>
+		<acme:menu-option code="master.menu.assistanceAgent" access="hasRealm('AssistanceAgent')">
+					<acme:menu-suboption code="master.menu.assistanceAgent.list-my-claims" action="/assistance-agent/claim/list" />
+					<acme:menu-suboption code="master.menu.assistanceAgent.list-my-claimsUndergoing" action="/assistance-agent/claim/listUndergoing" />
 		</acme:menu-option>
 		<acme:menu-option code="master.menu.consumer" access="hasRealm('Consumer')">
 			<acme:menu-suboption code="master.menu.consumer.favourite-link" action="http://www.example.com/"/>

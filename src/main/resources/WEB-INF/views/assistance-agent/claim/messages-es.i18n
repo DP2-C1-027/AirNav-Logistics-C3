@@ -1,0 +1,31 @@
+# messages-es.i18n
+#
+# Copyright (C) 2012-2025 Rafael Corchuelo.
+#
+# De acuerdo con el propósito tradicional de fomentar la educación y la investigación, es
+# política del propietario de los derechos de autor permitir el uso no comercial y la redistribución de
+# este software. Ha sido probado cuidadosamente, pero no se garantiza para ningún propósito
+# particular. El propietario de los derechos de autor no ofrece garantías ni representaciones, ni
+# acepta responsabilidades con respecto a ellas.
+
+# Etiquetas del formulario de detalles del aeropuerto
+administrator.airport.form.title = Detalles del aeropuerto
+administrator.airport.form.label.name = Nombre:
+administrator.airport.form.label.code = Código:
+administrator.airport.form.label.operationalScope = Alcance operativo:
+administrator.airport.form.label.city = Ciudad:
+administrator.airport.form.label.country = País:
+administrator.airport.form.label.website = Sitio web:
+administrator.airport.form.label.email = Correo electrónico:
+administrator.airport.form.label.address = Dirección:
+administrator.airport.form.label.phoneNumber = Número de teléfono:
+
+# Etiquetas de la lista de aeropuertos
+administrator.airport.list.title = Lista de aeropuertos
+administrator.airport.list.label.name = Nombre:
+administrator.airport.list.label.code = Código:
+administrator.airport.list.label.operationalScope = Alcance operativo:
+
+# Botones comunes
+authenticated.provider.booking.form.button.create = Registrar
+authenticated.provider.booking.form.button.update = Actualizar

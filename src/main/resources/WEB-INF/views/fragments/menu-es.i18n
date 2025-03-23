@@ -18,11 +18,17 @@ master.menu.anonymous.norapfr= 25740745L: Peñaloza,Nora
 master.menu.anonymous.HHV4884-ETSII= 77936901K: Campos Díez, Lucía
 master.menu.anonymous.jose= 29589177E: García de Tejada Delgado, José
 
+# master.menu.any #######################################################
+master.menu.any = Any
+master.menu.any.review = Ver reviews
+
 # master.menu.administrator ###################################################
 
 master.menu.administrator = Administrador
 master.menu.administrator.list-user-accounts = Ver cuentas de usuario
 master.menu.administrator.list-airline = Ver aerolineas
+master.menu.administrator.list-airport = Ver aeropuertos
+
 master.menu.administrator.populate-db-initial = Poblar BD (inicial)
 master.menu.administrator.populate-db-sample = Poblar BD (ejemplos)
 master.menu.administrator.shut-system-down = Parar el sistema

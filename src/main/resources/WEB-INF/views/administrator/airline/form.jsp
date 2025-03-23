@@ -16,8 +16,8 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <acme:form >
+<acme:input-textbox code="administrator.airline.form.label.codigo" path="codigo"/>
 	<acme:input-textbox code="administrator.airline.form.label.name" path="name"/>
-	<acme:input-textbox code="administrator.airline.form.label.code" path="code"/>
 	<acme:input-url code="administrator.airline.form.label.website" path="website"/>
 	<acme:input-textbox code="administrator.airline.form.label.type" path="type"/>
 	<acme:input-moment  code="administrator.airline.form.label.foundationMoment" path="foundationMoment"/>

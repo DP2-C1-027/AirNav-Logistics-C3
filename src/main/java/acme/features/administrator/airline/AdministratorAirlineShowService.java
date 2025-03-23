@@ -39,7 +39,7 @@ public class AdministratorAirlineShowService extends AbstractGuiService<Administ
 		Dataset dataset;
 		SelectChoices choices;
 		choices = SelectChoices.from(AirlineType.class, airline.getType());
-		dataset = super.unbindObject(airline, "name", "code", "website", "type", "foundationMoment", "email", "phoneNumber");
+		dataset = super.unbindObject(airline, "codigo", "name", "website", "type", "foundationMoment", "email", "phoneNumber");
 		dataset.put("confirmation", false);
 		dataset.put("types", choices);
 

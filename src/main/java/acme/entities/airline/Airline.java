@@ -43,7 +43,7 @@ public class Airline extends AbstractEntity {
 	@Automapped
 	@ValidIATAcode
 	@Column(unique = true)
-	private String				code;
+	private String				codigo;
 
 	@Mandatory
 	@Automapped

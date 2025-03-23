@@ -1,4 +1,4 @@
-key,name,code,operationalScope,city,country,website,email,address,phoneNumber
+key,name,codigo,operationalScope,city,country,website,email,address,phoneNumber
 airport-01,John F. Kennedy International Airport,JFK,REGIONAL,New York,United States,https://www.jfkairport.com,info@jfkairport.com,"JFK Airport, Queens, NY 11430",+1234567880
 airport-02,Heathrow Heathrow AirportHeathrowwHeathrow Airport,LHR,REGIONAL,London,United Kingdom,https://www.heathrow.com,info@heathrow.com,"Heathrow Airport, Hounslow, TW6 1AP",
 airport-03,C,CDG,INTERNATIONAL,Paris,France,https://www.parisaeroport.fr,info@cdgairport.com,"Roissy-en-France, 95700",null

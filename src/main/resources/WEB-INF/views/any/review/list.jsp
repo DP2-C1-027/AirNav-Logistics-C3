@@ -16,11 +16,13 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <acme:list>
-	<acme:list-column code="administrator.airline.list.label.name" path="name" width="10%"/>
-	<acme:list-column code="administrator.airline.list.label.codigo" path="codigo" width="20%"/>
-	<acme:list-column code="administrator.airline.list.label.type"  path="type" width="10%"/>
+	<acme:list-column code="any.review.list.label.name" path="name" width="10%"/>
+	<acme:list-column code="any.review.list.label.moment" path="moment" width="20%"/>
+	<acme:list-column code="any.review.list.label.subject"  path="subject" width="20%"/>
 	
 	<acme:list-payload path="payload"/>
 </acme:list>
-<acme:button code="administrator.airline.list.button.create" action="/administrator/airline/create"/>
+<acme:button code="any.review.list.button.create" action="/any/review/create"/>
+
+
 

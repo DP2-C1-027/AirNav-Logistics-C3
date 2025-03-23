@@ -33,16 +33,9 @@ public class AdministratorAirlineShowService extends AbstractGuiService<Administ
 	}
 	@Override
 	public void unbind(final Airline airline) {
-<<<<<<< HEAD
-		Dataset dataset = super.unbindObject(airline, "name", "code", "website", "type", "foundationMoment", "email", "phoneNumber");
+		Dataset dataset = super.unbindObject(airline, "name", "codigo", "website", "type", "foundationMoment", "email", "phoneNumber");
 
 		SelectChoices choices = SelectChoices.from(AirlineType.class, airline.getType());
-=======
-		Dataset dataset;
-		SelectChoices choices;
-		choices = SelectChoices.from(AirlineType.class, airline.getType());
-		dataset = super.unbindObject(airline, "codigo", "name", "website", "type", "foundationMoment", "email", "phoneNumber");
->>>>>>> main
 		dataset.put("confirmation", false);
 		dataset.put("types", choices);
 

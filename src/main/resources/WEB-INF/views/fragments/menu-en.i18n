@@ -14,7 +14,7 @@ master.menu.anonymous = Anonymous
 master.menu.anonymous.favourite-link = Favourite link
 master.menu.anonymous.nico = 49167809L: Gomez, Nicolas
 master.menu.anonymous.mannizcob = 45808774L: Niza, Manuel Jesus
-master.menu.anonymous.norapfr= 25740745L: Peñaloza,Nora
+master.menu.anonymous.norapfr= 25740745L: Peñaloza Friqui,Nora
 master.menu.anonymous.HHV4884-ETSII= 77936901K: Campos Díez, Lucía
 master.menu.anonymous.jose= 29589177E: García de Tejada Delgado, José
 
@@ -28,6 +28,7 @@ master.menu.administrator = Administrator
 master.menu.administrator.list-user-accounts = List user accounts
 master.menu.administrator.list-airline = List airline
 master.menu.administrator.list-airport = List airport
+master.menu.administrator.list-booking = List booking
 master.menu.administrator.populate-db-initial = Populate DB (initial)
 master.menu.administrator.populate-db-sample = Populate DB (samples)
 master.menu.administrator.shut-system-down = Shut system down

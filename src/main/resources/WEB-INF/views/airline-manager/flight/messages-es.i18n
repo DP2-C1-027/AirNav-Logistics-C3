@@ -1,0 +1,12 @@
+airline-manager.flight.form.title = Vuelo
+airlineManager.flight.form.label.tag = Tag
+airlineManager.flight.form.label.indication = Indicación
+airlineManager.flight.form.label.cost = Precio
+airlineManager.flight.form.label.description = Descripción
+
+airline-manager.flight.list.title = Listado de vuelos
+airlineManager.flight.list.label.tag = Tag
+airlineManager.flight.list.label.indication = Indicación
+airlineManager.flight.list.label.cost = Precio
+airlineManager.flight.list.label.description = Descripción
+	

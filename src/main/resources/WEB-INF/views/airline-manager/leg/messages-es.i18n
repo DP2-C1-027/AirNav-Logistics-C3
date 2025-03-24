@@ -1,0 +1,17 @@
+airline-manager.leg.form.title = Tramo
+airlineManager.leg.form.label.flightNumber = Número de vuelo
+airlineManager.leg.form.label.scheduledDeparture = Hora de salida
+airlineManager.leg.form.label.scheduledArrival = Hora de llegada
+airlineManager.leg.form.label.duration = Duración
+airlineManager.leg.form.label.status = Estado
+airlineManager.leg.form.label.departureAirport = Aeropuerto de salida
+airlineManager.leg.form.label.arrivalAirport = Aeropuerto de llegada
+airlineManager.leg.form.label.aircraft = Avión
+airlineManager.leg.form.label.flight = Vuelo
+
+airline-manager.leg.list.title = Listado de tramos
+airlineManager.leg.list.label.flightNumber = Número de vuelo
+airlineManager.leg.list.label.scheduledDeparture = Hora de salida
+airlineManager.leg.list.label.scheduledArrival = Hora de llegada
+airlineManager.leg.list.label.departureAirport = Aeropuerto de salida
+airlineManager.leg.list.label.arrivalAirport = Aeropuerto de llegada

@@ -69,6 +69,8 @@ public class CustomersBookingCreateService extends AbstractGuiService<Customers,
 	@Override
 	public void validate(final Booking whine) {
 
+		if (whine.getFlight() == null)
+			super.state(false, "vuelo", "customers.booking.error.no-flight");
 	}
 
 	@Override

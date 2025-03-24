@@ -71,7 +71,7 @@ public class CustomersBookingUpdateService extends AbstractGuiService<Customers,
 		Dataset dataset;
 		SelectChoices choices;
 		choices = SelectChoices.from(TravelClass.class, booking.getTravelClass());
-		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "travelClass", "lastNibble");
+		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "travelClass", "lastNibble", "draftMode");
 		Money price = booking.getPrice();
 		dataset.put("price", price);
 		dataset.put("travelClasses", choices);

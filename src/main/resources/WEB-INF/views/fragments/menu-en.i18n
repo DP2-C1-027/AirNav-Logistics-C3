@@ -43,6 +43,12 @@ master.menu.flightCrewMember = Flight Crew Member
 master.menu.flightCrewMember.list-flight-assignments-planned = Flight Assignments Planned
 master.menu.flightCrewMember.list-flight-assignments-completed = Flight Assignments Completed
 
+# master.menu.airlineManager #################################################
+
+master.menu.airlineManager = Airline Manager
+master.menu.airlineManager.list-my-flights = List my flights
+master.menu.airlineManager.list-my-legs = List my legs
+
 # master.menu.consumer ##########################################################
 
 master.menu.consumer = Consumer

@@ -71,6 +71,11 @@ public class Airline extends AbstractEntity {
 	@ValidPhoneNumberOptional
 	private String				phoneNumber;
 
+	@Mandatory
+	// HINT: @Valid by default.
+	@Automapped
+	private boolean				draftMode;
+
 	// Derived attributes -----------------------------------------------------
 
 	// Relationships ----------------------------------------------------------

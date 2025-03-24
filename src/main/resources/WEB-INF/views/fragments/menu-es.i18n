@@ -38,6 +38,11 @@ master.menu.administrator.shut-system-down = Parar el sistema
 master.menu.provider = Proveedor
 master.menu.provider.favourite-link = Enlace favorito
 
+# master.menu.flightCrewMember ########################################################
+
+master.menu.flightCrewMember = Flight Crew Member
+master.menu.flightCrewMember.list-flight-assignments = Flight Assignments
+
 # master.menu.consumer ##########################################################
 
 master.menu.consumer = Consumidor

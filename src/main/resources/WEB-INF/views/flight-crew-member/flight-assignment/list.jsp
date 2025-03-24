@@ -16,13 +16,14 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <acme:list>
-	<acme:list-column code="administrator.aircraft.list.label.model" path="model" width="10%"/>
-	<acme:list-column code="administrator.aircraft.list.label.registrationNumber" path="registrationNumber" width="20%"/>
-	<acme:list-column code="administrator.aircraft.list.label.status"  path="status" width="10%"/>
-	
+	<acme:list-column code="flight-crew-member.flight-assignment.list.label.duty" path="duty" width="10%"/>
+	<acme:list-column code="flight-crew-member.flight-assignment.list.label.moment" path="moment" width="10%"/>
+	<acme:list-column code="flight-crew-member.flight-assignment.list.label.currentStatus"  path="currentStatus" width="10%"/>
+	<acme:list-column code="flight-crew-member.flight-assignment.list.label.remarks"  path="remarks" width="40%"/>
+
 	<acme:list-payload path="payload"/>
 </acme:list>
 	
-<acme:button code="administrator.aircraft.list.button.create" action="/administrator/aircraft/create?airlineId=${airlineId}"/>
+<acme:button code="flight-crew-member.flight-assignment.list.button.create" action="/flight-crew-member/flight-assignment/create"/>
 
 

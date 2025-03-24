@@ -24,15 +24,14 @@
 	<acme:input-email code="administrator.airline.form.label.email" path="email"/>
 	<acme:input-textbox code="administrator.airline.form.label.phoneNumber" path="phoneNumber"/>
 	
-	<acme:button code="administrator.airline.form.button.aircrafts" action="/administrator/aircraft/list?airlineId=${id}"/>
-	
 	<jstl:choose>
 		<jstl:when test="${_command == 'create'}">
 		<acme:input-checkbox code="administrator.airline.form.label.confirmation" path="confirmation"/>
 			<acme:submit code="administrator.airline.form.button.create" action="/administrator/airline/create"/>
 		</jstl:when>
 		<jstl:when test="${acme:anyOf(_command, 'show|update')}">
-		<acme:input-checkbox code="administrator.airline.form.label.confirmation" path="confirmation"/>
+			<acme:input-checkbox code="administrator.airline.form.label.confirmation" path="confirmation"/>
+			<acme:button code="administrator.airline.form.button.aircrafts" action="/administrator/aircraft/list?airlineId=${id}"/>
 			<acme:submit code="administrator.airline.form.button.update" action="/administrator/airline/update"/>
 		</jstl:when>
 	</jstl:choose>

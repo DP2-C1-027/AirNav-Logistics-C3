@@ -19,8 +19,9 @@
 	<acme:input-textbox code="customers.booking.form.label.locatorCode" path="locatorCode"/>
 	<acme:input-moment code="customers.booking.form.label.purchaseMoment" path="purchaseMoment"/>
 	<acme:input-select code="customers.booking.form.label.travelClass" path="travelClass" choices="${travelClasses}"/>
-	<acme:input-textbox code="customers.booking.form.label.lastNibble" path="lastNibble"/>
 	<acme:input-money  code="customers.booking.form.label.price" path="price" readonly="true"/>
+	<acme:input-textbox code="customers.booking.form.label.lastNibble" path="lastNibble"/>
+	
 	
 	
 	

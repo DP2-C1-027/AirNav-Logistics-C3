@@ -1,5 +1,5 @@
 /*
- * AuthenticatedCustomersCreateService.java
+ * AuthenticatedCustomersUpdateService.java
  *
  * Copyright (C) 2012-2025 Rafael Corchuelo.
  *
@@ -10,34 +10,33 @@
  * they accept any liabilities with respect to them.
  */
 
-package acme.features.customers;
+package acme.features.authenticated.customers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.principals.Authenticated;
-import acme.client.components.principals.UserAccount;
 import acme.client.helpers.PrincipalHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.realms.Customers;
 
 @GuiService
-public class AuthenticatedCustomersCreateService extends AbstractGuiService<Authenticated, Customers> {
+public class AuthenticatedCustomersUpdateService extends AbstractGuiService<Authenticated, Customers> {
 
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
 	private AuthenticatedCustomersRepository repository;
 
-	// AbstractService<Authenticated, Customers> ---------------------------
+	// AbstractService interface ----------------------------------------------
 
 
 	@Override
 	public void authorise() {
 		boolean status;
 
-		status = !super.getRequest().getPrincipal().hasRealmOfType(Customers.class);
+		status = super.getRequest().getPrincipal().hasRealmOfType(Customers.class);
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -46,13 +45,9 @@ public class AuthenticatedCustomersCreateService extends AbstractGuiService<Auth
 	public void load() {
 		Customers object;
 		int userAccountId;
-		UserAccount userAccount;
 
 		userAccountId = super.getRequest().getPrincipal().getAccountId();
-		userAccount = this.repository.findUserAccountById(userAccountId);
-
-		object = new Customers();
-		object.setUserAccount(userAccount);
+		object = this.repository.findCustomersByUserAccountId(userAccountId);
 
 		super.getBuffer().addData(object);
 	}
@@ -78,10 +73,11 @@ public class AuthenticatedCustomersCreateService extends AbstractGuiService<Auth
 
 	@Override
 	public void unbind(final Customers object) {
+		assert object != null;
+
 		Dataset dataset;
 
 		dataset = super.unbindObject(object, "code", "phone", "physicalAddress", "city", "country", "earnedPoints");
-
 		super.getResponse().addData(dataset);
 	}
 

@@ -10,7 +10,7 @@
  * they accept any liabilities with respect to them.
  */
 
-package acme.features.customers;
+package acme.features.authenticated.customers;
 
 import javax.annotation.PostConstruct;
 

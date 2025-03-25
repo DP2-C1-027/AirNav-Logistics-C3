@@ -10,44 +10,64 @@ import acme.entities.booking.Passenger;
 import acme.realms.Customers;
 
 @GuiService
-public class CustomersPassengersShowService extends AbstractGuiService<Customers, Passenger> {
+public class CustomersPassengerPublishService extends AbstractGuiService<Customers, Passenger> {
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
 	private CustomersPassengersRepository repository;
 
-
 	// AbstractGuiService interface -------------------------------------------
+
+
 	@Override
 	public void authorise() {
 		boolean status;
-		Customers customer;
 		int passengerId;
 		Passenger passenger;
+		Customers customer;
 
+		customer = (Customers) super.getRequest().getPrincipal().getActiveRealm();
 		passengerId = super.getRequest().getData("id", int.class);
 		passenger = this.repository.findPassengerById(passengerId);
-		customer = passenger == null ? null : passenger.getCustomer();
-		status = super.getRequest().getPrincipal().hasRealm(customer);
+
+		status = passenger != null && passenger.isDraftMode() && super.getRequest().getPrincipal().hasRealm(customer);
 
 		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
 	public void load() {
-		int passengerId;
 		Passenger passenger;
+		int id;
 
-		passengerId = super.getRequest().getData("id", int.class);
-
-		passenger = this.repository.findPassengerById(passengerId);
+		id = super.getRequest().getData("id", int.class);
+		passenger = this.repository.findPassengerById(id);
 
 		super.getBuffer().addData(passenger);
 	}
 
 	@Override
+	public void bind(final Passenger passenger) {
+
+		super.bindObject(passenger, "fullName", "email", "passportNumber", "dateOfBirth", "specialNeeds");
+
+	}
+
+	@Override
+	public void validate(final Passenger passenger) {
+		;
+	}
+	@Override
+	public void perform(final Passenger passenger) {
+		passenger.setDraftMode(false);
+		this.repository.save(passenger);
+	}
+
+	@Override
 	public void unbind(final Passenger passenger) {
+
 		Dataset dataset;
+
 		dataset = super.unbindObject(passenger, "fullName", "email", "passportNumber", "dateOfBirth", "specialNeeds", "draftMode");
 
 		super.getResponse().addData(dataset);

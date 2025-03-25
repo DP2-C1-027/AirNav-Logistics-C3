@@ -53,6 +53,10 @@ public class FlightAssignment extends AbstractEntity {
 	@ValidLongText
 	private String				remarks;
 
+	@Mandatory
+	@Automapped
+	private Boolean				draftMode;
+
 	// Derived attributes -----------------------------------------------------
 
 	// Relationships ----------------------------------------------------------

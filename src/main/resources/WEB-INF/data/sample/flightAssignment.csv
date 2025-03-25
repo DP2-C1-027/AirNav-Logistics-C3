@@ -1,11 +1,11 @@
-key,duty,moment,currentStatus,remarks,key:flightCrewMember,key:leg
-flight-assignment-01,PILOT,2018/02/28 00:00,CONFIRMED,"Crew assignment confirmed and ready for duty.",flight-crew-member-1,leg-01
-flight-assignment-02,CO_PILOT,2018/02/28 00:00,CONFIRMED,"Crew assignment confirmed and ready for duty.",flight-crew-member-2,leg-04
-flight-assignment-03,LEAD_ATTENDANT,2018/02/28 00:00,CONFIRMED,"Crew assignment confirmed and ready for duty.",flight-crew-member-3,leg-02
-flight-assignment-04,CABIN_ATTENDANT,2018/02/28 00:00,CONFIRMED,"Crew assignment confirmed and ready for duty.",flight-crew-member-4,leg-02
-flight-assignment-05,PILOT,2020/02/29 10:00,CONFIRMED,"Crew assignment confirmed and ready for duty.",flight-crew-member-1,leg-02
-flight-assignment-06,CO_PILOT,2020/02/29 10:00,CONFIRMED,"Crew assignment confirmed and ready for duty.",flight-crew-member-2,leg-03
-flight-assignment-07,LEAD_ATTENDANT,2020/02/29 10:00,CONFIRMED,"Crew assignment confirmed and ready for duty.",flight-crew-member-3,leg-04
-flight-assignment-08,PILOT,2021/02/28 20:00,PENDING,"Awaiting final confirmation for the assignment.",flight-crew-member-1,leg-05
-flight-assignment-09,CO_PILOT,2021/02/28 20:00,PENDING,"Awaiting final confirmation for the assignment.",flight-crew-member-2,leg-06
-flight-assignment-10,PILOT,2022/07/30 00:00,CANCELLED,"Assignment cancelled, crew reassignment may be required.",flight-crew-member-1,leg-07
+key,duty,moment,currentStatus,remarks,draftMode,key:flightCrewMember,key:leg
+flight-assignment-01,PILOT,2018/02/28 00:00,CONFIRMED,"Crew assignment confirmed and ready for duty.",false,flight-crew-member-1,leg-01
+flight-assignment-02,CO_PILOT,2018/02/28 00:00,CONFIRMED,"Crew assignment confirmed and ready for duty.",false,flight-crew-member-2,leg-04
+flight-assignment-03,LEAD_ATTENDANT,2018/02/28 00:00,CONFIRMED,"Crew assignment confirmed and ready for duty.",false,flight-crew-member-3,leg-02
+flight-assignment-04,CABIN_ATTENDANT,2018/02/28 00:00,CONFIRMED,"Crew assignment confirmed and ready for duty.",false,flight-crew-member-4,leg-02
+flight-assignment-05,PILOT,2020/02/29 10:00,CONFIRMED,"Crew assignment confirmed and ready for duty.",false,flight-crew-member-1,leg-02
+flight-assignment-06,CO_PILOT,2020/02/29 10:00,CONFIRMED,"Crew assignment confirmed and ready for duty.",false,flight-crew-member-2,leg-03
+flight-assignment-07,LEAD_ATTENDANT,2020/02/29 10:00,CONFIRMED,"Crew assignment confirmed and ready for duty.",false,flight-crew-member-3,leg-04
+flight-assignment-08,PILOT,2021/02/28 20:00,PENDING,"Awaiting final confirmation for the assignment.",false,flight-crew-member-1,leg-05
+flight-assignment-09,CO_PILOT,2021/02/28 20:00,PENDING,"Awaiting final confirmation for the assignment.",false,flight-crew-member-2,leg-06
+flight-assignment-10,PILOT,2022/07/30 00:00,CANCELLED,"Assignment cancelled, crew reassignment may be required.",false,flight-crew-member-1,leg-07

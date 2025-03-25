@@ -1,22 +1,22 @@
-key,registrationMoment,typeOfIncident,description,severityLevel,key:flightAssignment
-activity-log-01,2018/02/28 00:00,Engine Failure,"Engine failure detected during pre-flight check, requiring inspection.",3,flight-assignment-01
-activity-log-02,2018/02/28 00:00,Delayed Takeoff,"Takeoff delayed due to weather conditions at the airport.",2,flight-assignment-02
-activity-log-03,2018/02/28 00:00,Hydraulic Leak,"Hydraulic leak noticed in the cabin, maintenance requested before departure.",4,flight-assignment-03
-activity-log-04,2018/02/28 00:00,Passenger Discomfort,"Passenger reported discomfort due to temperature fluctuations in the cabin.",1,flight-assignment-04
-activity-log-05,2020/02/29 10:00,Communication Issue,"Communication issues with ground control caused a brief delay in departure.",3,flight-assignment-05
-activity-log-06,2020/02/29 10:00,Overweight Load,"Flight weight exceeded capacity due to miscalculation, reassessment completed.",2,flight-assignment-06
-activity-log-07,2020/02/29 10:00,Cabin Pressure Drop,"Cabin pressure dropped briefly during ascent, issue resolved by crew.",5,flight-assignment-07
-activity-log-08,2021/02/28 20:00,Unplanned Detour,"Flight diverted due to unexpected turbulence over the planned route.",2,flight-assignment-08
-activity-log-09,2021/02/28 20:00,Passenger Illness,"Passenger fell ill mid-flight, emergency landing was considered but not needed.",4,flight-assignment-09
-activity-log-10,2022/07/30 00:00,Weather Delay,"Severe weather conditions at the destination caused a delay in arrival.",3,flight-assignment-10
-activity-log-11,2018/02/28 00:00,Avionics Malfunction,"Minor avionics malfunction detected, issue resolved after brief troubleshooting.",4,flight-assignment-01
-activity-log-12,2018/02/28 00:00,Emergency Evacuation Drill,"Conducted emergency evacuation drill, no issues reported.",5,flight-assignment-02
-activity-log-13,2018/02/28 00:00,Runway Closure,"Runway closure at the departure airport caused a delay in takeoff.",3,flight-assignment-03
-activity-log-14,2018/02/28 00:00,Fuel Contamination,"Fuel contamination detected, aircraft grounded until refueling inspection.",2,flight-assignment-04
-activity-log-15,2020/02/29 10:00,Minor Turbulence,"Encountered minor turbulence, no risk to flight stability, continued as planned.",4,flight-assignment-05
-activity-log-16,2020/02/29 10:00,Autopilot Failure,"Autopilot malfunction during cruise, resolved manually by the flight crew.",3,flight-assignment-06
-activity-log-17,2020/02/29 10:00,Medical Emergency,"Medical emergency onboard, treated by flight crew with no landing required.",5,flight-assignment-07
-activity-log-18,2021/02/28 20:00,Weather Diversion,"Flight diverted to an alternate airport due to poor visibility at the destination.",2,flight-assignment-08
-activity-log-19,2021/02/28 20:00,Seatbelt Warning,"Seatbelt sign malfunctioning, maintenance requested before next flight leg.",4,flight-assignment-09
-activity-log-20,2022/07/30 00:00,Engine Surge,"Engine surge detected, precautionary measures taken, flight continued safely.",3,flight-assignment-10
+key,registrationMoment,typeOfIncident,description,severityLevel,draftMode,key:flightAssignment
+activity-log-01,2018/02/28 00:00,Engine Failure,"Engine failure detected during pre-flight check, requiring inspection.",3,false,flight-assignment-01
+activity-log-02,2018/02/28 00:00,Delayed Takeoff,"Takeoff delayed due to weather conditions at the airport.",2,false,flight-assignment-02
+activity-log-03,2018/02/28 00:00,Hydraulic Leak,"Hydraulic leak noticed in the cabin, maintenance requested before departure.",4,false,flight-assignment-03
+activity-log-04,2018/02/28 00:00,Passenger Discomfort,"Passenger reported discomfort due to temperature fluctuations in the cabin.",1,false,flight-assignment-04
+activity-log-05,2020/02/29 10:00,Communication Issue,"Communication issues with ground control caused a brief delay in departure.",3,false,flight-assignment-05
+activity-log-06,2020/02/29 10:00,Overweight Load,"Flight weight exceeded capacity due to miscalculation, reassessment completed.",2,false,flight-assignment-06
+activity-log-07,2020/02/29 10:00,Cabin Pressure Drop,"Cabin pressure dropped briefly during ascent, issue resolved by crew.",5,false,flight-assignment-07
+activity-log-08,2021/02/28 20:00,Unplanned Detour,"Flight diverted due to unexpected turbulence over the planned route.",2,false,flight-assignment-08
+activity-log-09,2021/02/28 20:00,Passenger Illness,"Passenger fell ill mid-flight, emergency landing was considered but not needed.",4,false,flight-assignment-09
+activity-log-10,2022/07/30 00:00,Weather Delay,"Severe weather conditions at the destination caused a delay in arrival.",3,false,flight-assignment-10
+activity-log-11,2018/02/28 00:00,Avionics Malfunction,"Minor avionics malfunction detected, issue resolved after brief troubleshooting.",4,false,flight-assignment-01
+activity-log-12,2018/02/28 00:00,Emergency Evacuation Drill,"Conducted emergency evacuation drill, no issues reported.",5,false,flight-assignment-02
+activity-log-13,2018/02/28 00:00,Runway Closure,"Runway closure at the departure airport caused a delay in takeoff.",3,false,flight-assignment-03
+activity-log-14,2018/02/28 00:00,Fuel Contamination,"Fuel contamination detected, aircraft grounded until refueling inspection.",2,false,flight-assignment-04
+activity-log-15,2020/02/29 10:00,Minor Turbulence,"Encountered minor turbulence, no risk to flight stability, continued as planned.",4,false,flight-assignment-05
+activity-log-16,2020/02/29 10:00,Autopilot Failure,"Autopilot malfunction during cruise, resolved manually by the flight crew.",3,false,flight-assignment-06
+activity-log-17,2020/02/29 10:00,Medical Emergency,"Medical emergency onboard, treated by flight crew with no landing required.",5,false,flight-assignment-07
+activity-log-18,2021/02/28 20:00,Weather Diversion,"Flight diverted to an alternate airport due to poor visibility at the destination.",2,false,flight-assignment-08
+activity-log-19,2021/02/28 20:00,Seatbelt Warning,"Seatbelt sign malfunctioning, maintenance requested before next flight leg.",4,false,flight-assignment-09
+activity-log-20,2022/07/30 00:00,Engine Surge,"Engine surge detected, precautionary measures taken, flight continued safely.",3,false,flight-assignment-10
 

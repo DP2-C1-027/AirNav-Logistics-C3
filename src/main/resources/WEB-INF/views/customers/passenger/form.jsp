@@ -29,6 +29,7 @@
 		
 		<jstl:when test="${acme:anyOf(_command, 'show|update|publish') && draftMode == true }">
 			<acme:submit code="customers.passenger.form.button.update" action="/customers/passenger/update"/>
+			<acme:submit code="customers.passenger.form.button.publish" action="/customers/passenger/publish"/>
 		</jstl:when>
 	</jstl:choose>
 </acme:form>

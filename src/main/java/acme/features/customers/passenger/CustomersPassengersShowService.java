@@ -37,7 +37,6 @@ public class CustomersPassengersShowService extends AbstractGuiService<Customers
 	@Override
 	public void load() {
 		int passengerId;
-		//Booking booking;
 		Passenger passenger;
 
 		passengerId = super.getRequest().getData("id", int.class);

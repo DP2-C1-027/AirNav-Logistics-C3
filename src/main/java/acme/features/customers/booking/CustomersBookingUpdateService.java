@@ -1,6 +1,8 @@
 
 package acme.features.customers.booking;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.datatypes.Money;
@@ -57,7 +59,12 @@ public class CustomersBookingUpdateService extends AbstractGuiService<Customers,
 
 	@Override
 	public void validate(final Booking booking) {
-		;
+		String cod = booking.getLocatorCode();
+		Collection<Booking> codigo = this.repository.findAllBookingLocatorCode(cod).stream().filter(x -> x.getId() != booking.getId()).toList();
+
+		if (!codigo.isEmpty())
+			super.state(false, "locatorCode", "customers.booking.error.repeat-code");
+
 	}
 
 	@Override
@@ -74,6 +81,7 @@ public class CustomersBookingUpdateService extends AbstractGuiService<Customers,
 		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "travelClass", "lastNibble", "draftMode");
 		Money price = booking.getPrice();
 		dataset.put("price", price);
+
 		dataset.put("travelClasses", choices);
 		super.getResponse().addData(dataset);
 	}

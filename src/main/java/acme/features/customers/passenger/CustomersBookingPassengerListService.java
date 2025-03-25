@@ -17,37 +17,47 @@ public class CustomersBookingPassengerListService extends AbstractGuiService<Cus
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private CustomersBookingPassengerRepository repository;
+	private CustomersPassengersRepository repository;
 
 	// AbstractGuiService interface -------------------------------------------
 
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+
+		boolean status;
+		int customerId;
+		int passengerId;
+
+		customerId = super.getRequest().getPrincipal().getActiveRealm().getId();
+
+		status = super.getRequest().getPrincipal().hasRealm(this.repository.findCustomerById(customerId));
+
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
 	public void load() {
 		Collection<Passenger> passenger;
+		Customers customer;
 
+		customer = (Customers) super.getRequest().getPrincipal().getActiveRealm();
 		int id;
 		Booking booking;
 
 		id = super.getRequest().getData("bookingId", int.class);
 		booking = this.repository.findBookinById(id);
 
-		passenger = this.repository.findPassengersByBookingId(booking.getId());
+		passenger = this.repository.findPassengersByBookingId(booking.getId(), customer.getId());
 
 		super.getBuffer().addData(passenger);
 	}
 
 	@Override
-	public void unbind(final Passenger booking) {
+	public void unbind(final Passenger passenger) {
 		Dataset dataset;
 
-		dataset = super.unbindObject(booking, "fullName", "email");
-		dataset.put("readonly", false);
+		dataset = super.unbindObject(passenger, "fullName", "email");
 
 		super.getResponse().addData(dataset);
 	}

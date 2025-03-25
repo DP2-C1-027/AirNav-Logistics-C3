@@ -68,7 +68,10 @@ public class CustomersBookingCreateService extends AbstractGuiService<Customers,
 
 	@Override
 	public void validate(final Booking whine) {
-
+		String cod = whine.getLocatorCode();
+		Collection<Booking> codigo = this.repository.findAllBookingLocatorCode(cod);
+		if (!codigo.isEmpty())
+			super.state(false, "locatorCode", "customers.booking.error.repeat-code");
 		if (whine.getFlight() == null)
 			super.state(false, "vuelo", "customers.booking.error.no-flight");
 	}

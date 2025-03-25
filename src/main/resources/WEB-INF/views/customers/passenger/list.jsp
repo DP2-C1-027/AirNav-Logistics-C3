@@ -29,7 +29,7 @@
 </jstl:if>
 
 <jstl:if test="${_command != 'list'}">
-<acme:list  navigable="false">
+<acme:list >
 	<acme:list-column code="customers.passenger.list.label.fullName" path="fullName" width="20%"/>
 	<acme:list-column code="customers.passenger.list.label.email" path="email" width="10%"/>
 	<acme:list-payload path="payload"/>

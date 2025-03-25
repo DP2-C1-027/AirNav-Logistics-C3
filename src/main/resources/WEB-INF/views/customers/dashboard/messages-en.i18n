@@ -27,5 +27,3 @@ customers.booking.list.label.lastNibble = Last nibble:
 customers.booking.list.label.price = Price:
 
 customers.bookingPassenger.list.button.passenger = Passenger List
-
-acme.validation.unpublishedPassengers.message = You have unpublished passengers

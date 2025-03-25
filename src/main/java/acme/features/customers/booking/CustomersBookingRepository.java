@@ -17,6 +17,9 @@ import acme.realms.Customers;
 @Repository
 public interface CustomersBookingRepository extends AbstractRepository {
 
+	@Query("select b from Booking b where b.locatorCode =?1")
+	Collection<Booking> findAllBookingLocatorCode(String locatorCode);
+
 	//listar los booking de un customer
 
 	@Query("select b from Booking b where b.customer.id = :customerId")

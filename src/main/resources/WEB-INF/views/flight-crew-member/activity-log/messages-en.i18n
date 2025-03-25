@@ -25,5 +25,6 @@ flight-crew-member.activity-log.list.label.registrationMoment = Registration Mom
 flight-crew-member.activity-log.list.label.typeOfIncident = Type of Incident:
 flight-crew-member.activity-log.list.label.description = Description:
 flight-crew-member.activity-log.list.label.severityLevel = Severity Level:
+flight-crew-member.activity-log.list.label.draftMode = Published:
 
 flight-crew-member.activity-log.list.button.create = Create

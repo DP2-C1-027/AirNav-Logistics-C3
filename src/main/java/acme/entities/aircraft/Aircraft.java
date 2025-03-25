@@ -7,13 +7,13 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
 import javax.validation.Valid;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
+import acme.constraints.ValidCapacity;
+import acme.constraints.ValidCargoWeight;
 import acme.constraints.ValidLongTextOptional;
 import acme.constraints.ValidShortText;
 import acme.entities.airline.Airline;
@@ -43,16 +43,12 @@ public class Aircraft extends AbstractEntity {
 
 	@Mandatory
 	@Automapped
-	@Valid
-	@Min(1)
-	@Max(255)
+	@ValidCapacity
 	private Integer				capacity;
 
 	@Mandatory
 	@Automapped
-	@Min(2000)
-	@Max(50000)
-	@Valid
+	@ValidCargoWeight
 	private Integer				cargoWeight;
 
 	@Mandatory

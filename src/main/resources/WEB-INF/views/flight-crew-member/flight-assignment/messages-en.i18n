@@ -27,5 +27,6 @@ flight-crew-member.flight-assignment.list.label.duty = Duty:
 flight-crew-member.flight-assignment.list.label.moment = Moment:
 flight-crew-member.flight-assignment.list.label.currentStatus = Current Status:
 flight-crew-member.flight-assignment.list.label.remarks = Remarks:
+flight-crew-member.flight-assignment.list.label.draftMode = Published:
 
 flight-crew-member.flight-assignment.list.button.create = Create

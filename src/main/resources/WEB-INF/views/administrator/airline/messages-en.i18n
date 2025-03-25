@@ -20,7 +20,6 @@ administrator.airline.form.label.email = Email:
 administrator.airline.form.label.phoneNumber = Phone Number:
 administrator.airline.form.label.confirmation = Confirmation
 
-administrator.airline.form.button.aircrafts = Show aircrafts
 dministrator.airline.form.button.create = Create
 administrator.airline.form.button.update = Update
 

@@ -29,7 +29,7 @@ public class AdministratorAirlineListService extends AbstractGuiService<Administ
 
 	@Override
 	public void load() {
-		Collection<Airline> airlines = this.repository.findAllAirline();
+		Collection<Airline> airlines = this.repository.findAllAirlines();
 
 		super.getBuffer().addData(airlines);
 	}

@@ -31,7 +31,6 @@
 		</jstl:when>
 		<jstl:when test="${acme:anyOf(_command, 'show|update')}">
 			<acme:input-checkbox code="administrator.airline.form.label.confirmation" path="confirmation"/>
-			<acme:button code="administrator.airline.form.button.aircrafts" action="/administrator/aircraft/list?airlineId=${id}"/>
 			<acme:submit code="administrator.airline.form.button.update" action="/administrator/airline/update"/>
 		</jstl:when>
 	</jstl:choose>

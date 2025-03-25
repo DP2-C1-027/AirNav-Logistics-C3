@@ -23,7 +23,7 @@
 	<acme:input-textbox code="any.review.form.label.subject" path="subject"/>
 	<acme:input-textbox code="any.review.form.label.text" path="text"/>
 	<acme:input-double code="any.review.form.label.score" path="score"/>
-	<acme:input-textbox code="any.review.form.label.recommended" path="recommended"/>
+	<acme:input-checkbox code="any.review.form.label.recommended" path="recommended"/>
 
 	<jstl:choose>
 				<jstl:when test="${_command == 'create'}">

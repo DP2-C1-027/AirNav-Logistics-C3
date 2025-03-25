@@ -11,7 +11,6 @@ import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
-import acme.client.components.validation.ValidMoment;
 import acme.constraints.ValidLongText;
 import acme.constraints.ValidReviewScore;
 import acme.constraints.ValidShortText;
@@ -35,7 +34,6 @@ public class Review extends AbstractEntity {
 
 	@Mandatory
 	@Automapped
-	@ValidMoment(past = true)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date				moment;
 

@@ -16,6 +16,6 @@ public interface AdministratorAirlineRepository extends AbstractRepository {
 	Airline findAirlineById(int id);
 
 	@Query("select a from Airline a")
-	Collection<Airline> findAllAirline();
+	Collection<Airline> findAllAirlines();
 
 }

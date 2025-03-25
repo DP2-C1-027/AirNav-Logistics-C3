@@ -1,0 +1,12 @@
+airline-manager.flight.form.title = Flight
+airlineManager.flight.form.label.tag = Tag
+airlineManager.flight.form.label.indication = Indication
+airlineManager.flight.form.label.cost = Cost
+airlineManager.flight.form.label.description = Description
+
+airline-manager.flight.list.title = Flight list
+airlineManager.flight.list.label.tag = Tag
+airlineManager.flight.list.label.indication = Indication
+airlineManager.flight.list.label.cost = Cost
+airlineManager.flight.list.label.description = Description
+	

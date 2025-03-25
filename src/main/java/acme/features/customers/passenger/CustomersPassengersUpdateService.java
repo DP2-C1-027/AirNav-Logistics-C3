@@ -47,10 +47,9 @@ public class CustomersPassengersUpdateService extends AbstractGuiService<Custome
 
 	@Override
 	public void bind(final Passenger passenger) {
-		//dataset = super.unbindObject(passenger, "fullName", "email", "passportNumber", "dateOfBirth", "specialNeeds");
 
 		super.bindObject(passenger, "fullName", "email", "passportNumber", "dateOfBirth", "specialNeeds");
-		//	job.setContractor(contractor);
+
 	}
 
 	@Override
@@ -65,13 +64,10 @@ public class CustomersPassengersUpdateService extends AbstractGuiService<Custome
 
 	@Override
 	public void unbind(final Passenger passenger) {
-		int employerId;
 
 		Dataset dataset;
 
-		employerId = super.getRequest().getPrincipal().getActiveRealm().getId();
-
-		dataset = super.unbindObject(passenger, "fullName", "email", "passportNumber", "dateOfBirth", "specialNeeds");
+		dataset = super.unbindObject(passenger, "fullName", "email", "passportNumber", "dateOfBirth", "specialNeeds", "draftMode");
 
 		super.getResponse().addData(dataset);
 	}

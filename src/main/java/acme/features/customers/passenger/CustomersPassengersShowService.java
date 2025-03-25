@@ -21,15 +21,14 @@ public class CustomersPassengersShowService extends AbstractGuiService<Customers
 	@Override
 	public void authorise() {
 		boolean status;
-		int customerId;
+		Customers customer;
 		int passengerId;
-		//como un passenger puede estar asociado a mas de un customer simplemente me quedo con uno?¿¿¿
+		Passenger passenger;
 
-		//como hago para pillar el customer
-		customerId = super.getRequest().getPrincipal().getActiveRealm().getId();
 		passengerId = super.getRequest().getData("id", int.class);
-
-		status = super.getRequest().getPrincipal().hasRealm(this.repository.findCustomerById(customerId));
+		passenger = this.repository.findPassengerById(passengerId);
+		customer = passenger == null ? null : passenger.getCustomer();
+		status = super.getRequest().getPrincipal().hasRealm(customer);
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -49,7 +48,7 @@ public class CustomersPassengersShowService extends AbstractGuiService<Customers
 	@Override
 	public void unbind(final Passenger passenger) {
 		Dataset dataset;
-		dataset = super.unbindObject(passenger, "fullName", "email", "passportNumber", "dateOfBirth", "specialNeeds");
+		dataset = super.unbindObject(passenger, "fullName", "email", "passportNumber", "dateOfBirth", "specialNeeds", "draftMode");
 
 		super.getResponse().addData(dataset);
 	}

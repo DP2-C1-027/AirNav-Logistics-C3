@@ -27,7 +27,7 @@
 			<acme:submit code="customers.passenger.form.button.create" action="/customers/passenger/create"/>
 		</jstl:when>
 		
-		<jstl:when test="${acme:anyOf(_command, 'show|update') && draftMode == True}">
+		<jstl:when test="${acme:anyOf(_command, 'show|update|publish') && draftMode == true }">
 			<acme:submit code="customers.passenger.form.button.update" action="/customers/passenger/update"/>
 		</jstl:when>
 	</jstl:choose>

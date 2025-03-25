@@ -22,7 +22,6 @@ public class CustomersPassengerCreateService extends AbstractGuiService<Customer
 	// AbstractGuiService interface -------------------------------------------
 
 
-	//tengo q incluir algo en el authorise???
 	@Override
 	public void authorise() {
 		boolean status;
@@ -36,32 +35,38 @@ public class CustomersPassengerCreateService extends AbstractGuiService<Customer
 	@Override
 	public void load() {
 		Passenger passenger;
+		Customers customer;
 
+		customer = (Customers) super.getRequest().getPrincipal().getActiveRealm();
 		Date moment;
-		//no se si ma hace falta date
-
 		moment = MomentHelper.getCurrentMoment();
 
 		passenger = new Passenger();
-		passenger.setDraftMode(true);
-
+		passenger.setDateOfBirth(moment);
+		passenger.setCustomer(customer);
 		super.getBuffer().addData(passenger);
+
 	}
 
 	@Override
 	public void bind(final Passenger passenger) {
+
 		super.bindObject(passenger, "fullName", "email", "passportNumber", "dateOfBirth", "specialNeeds");
+		passenger.setDraftMode(true);
 
 	}
 
 	@Override
 	public void validate(final Passenger passenger) {
+
 		;
 	}
 
 	@Override
 	public void perform(final Passenger passenger) {
+
 		this.repository.save(passenger);
+
 	}
 
 	@Override
@@ -69,7 +74,8 @@ public class CustomersPassengerCreateService extends AbstractGuiService<Customer
 
 		Dataset dataset;
 
-		dataset = super.unbindObject(passenger, "fullName", "email", "passportNumber", "dateOfBirth", "specialNeeds");
+		dataset = super.unbindObject(passenger, "fullName", "email", "passportNumber", "dateOfBirth", "specialNeeds", "draftMode");
 		super.getResponse().addData(dataset);
+
 	}
 }

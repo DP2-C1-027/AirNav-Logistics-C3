@@ -49,7 +49,7 @@ public class FlightCrewMemberFlightAssignmentCreateService extends AbstractGuiSe
 
 	@Override
 	public void bind(final FlightAssignment flightAssignment) {
-		super.bindObject(flightAssignment, "duty", "moment", "currentStatus", "remarks");
+		super.bindObject(flightAssignment, "duty", "moment", "currentStatus", "remarks", "draftMode");
 	}
 
 	@Override
@@ -64,7 +64,7 @@ public class FlightCrewMemberFlightAssignmentCreateService extends AbstractGuiSe
 
 	@Override
 	public void unbind(final FlightAssignment flightAssignment) {
-		Dataset dataset = super.unbindObject(flightAssignment, "duty", "moment", "currentStatus", "remarks");
+		Dataset dataset = super.unbindObject(flightAssignment, "duty", "moment", "currentStatus", "remarks", "draftMode");
 
 		SelectChoices dutyChoices = SelectChoices.from(Duty.class, flightAssignment.getDuty());
 		dataset.put("dutyChoices", dutyChoices);

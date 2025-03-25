@@ -1,0 +1,16 @@
+# title-en.i18n
+#
+# Copyright (C) 2012-2025 Rafael Corchuelo.
+#
+# In keeping with the traditional purpose of furthering education and research, it is
+# the policy of the copyright owner to permit non-commercial use and redistribution of
+# this software. It has been tested carefully, but it is not guaranteed for any particular
+# purposes.  The copyright owner does not offer any warranties or representations, nor do
+# they accept any liabilities with respect to them.
+
+acme.validation.short-text = Text should be between 1 and 50 characters.
+acme.validation.long-text = Text should be between 1 and 255 characters.
+acme.validation.optional.short-text = Text should be between 0 and 50 characters.
+acme.validation.optional.long-text = Text should be between 0 and 255 characters.
+acme.validation.cargo-weight = Weight should be between 2000 and 50000 kgs.
+acme.validation.capacity = Capacity should be between 1 and 255 passengers.

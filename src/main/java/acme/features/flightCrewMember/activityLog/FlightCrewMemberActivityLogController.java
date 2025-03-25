@@ -16,19 +16,22 @@ public class FlightCrewMemberActivityLogController extends AbstractGuiController
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private FlightCrewMemberActivityLogListService	listService;
+	private FlightCrewMemberActivityLogListService			listService;
 
 	@Autowired
 	private FlightCrewMemberActivityLogRecordShowService	showService;
 
 	@Autowired
-	private FlightCrewMemberActivityLogCreateService	createService;
+	private FlightCrewMemberActivityLogCreateService		createService;
 
 	@Autowired
-	private FlightCrewMemberActivityLogUpdateService	updateService;
+	private FlightCrewMemberActivityLogUpdateService		updateService;
 
 	@Autowired
-	private FlightCrewMemberActivityLogDeleteService	deleteService;
+	private FlightCrewMemberActivityLogDeleteService		deleteService;
+
+	@Autowired
+	private FlightCrewMemberActivityLogPublishService		publishService;
 
 	// Constructors -----------------------------------------------------------
 
@@ -41,6 +44,7 @@ public class FlightCrewMemberActivityLogController extends AbstractGuiController
 		super.addBasicCommand("create", this.createService);
 		super.addBasicCommand("update", this.updateService);
 		super.addBasicCommand("delete", this.deleteService);
+		super.addCustomCommand("publish", "update", this.publishService);
 	}
 
 }

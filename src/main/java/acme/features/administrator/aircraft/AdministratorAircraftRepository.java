@@ -22,7 +22,4 @@ public interface AdministratorAircraftRepository extends AbstractRepository {
 	@Query("select a from Aircraft a")
 	Collection<Aircraft> findAllAircrafts();
 
-	@Query("select a from Aircraft a where a.airline.id = :airlineId")
-	Collection<Aircraft> findAircraftsByAirlineId(int airlineId);
-
 }

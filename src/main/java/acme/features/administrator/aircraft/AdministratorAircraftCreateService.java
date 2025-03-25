@@ -10,7 +10,6 @@ import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.aircraft.Aircraft;
 import acme.entities.aircraft.Status;
-import acme.entities.airline.Airline;
 
 @GuiService
 public class AdministratorAircraftCreateService extends AbstractGuiService<Administrator, Aircraft> {
@@ -30,9 +29,6 @@ public class AdministratorAircraftCreateService extends AbstractGuiService<Admin
 
 	@Override
 	public void load() {
-		int airlineId = super.getRequest().getData("airlineId", int.class);
-		Airline airline = this.repository.findAirlineById(airlineId);
-
 		Aircraft aircraft = new Aircraft();
 		aircraft.setModel("");
 		aircraft.setRegistrationNumber("");
@@ -40,7 +36,7 @@ public class AdministratorAircraftCreateService extends AbstractGuiService<Admin
 		aircraft.setCargoWeight(0);
 		aircraft.setStatus(Status.ACTIVE_SERVICE);
 		aircraft.setDetails("");
-		aircraft.setAirline(airline);
+		aircraft.setAirline(null);
 
 		super.getBuffer().addData(aircraft);
 	}
@@ -69,9 +65,7 @@ public class AdministratorAircraftCreateService extends AbstractGuiService<Admin
 
 		SelectChoices choices = SelectChoices.from(Status.class, Status.ACTIVE_SERVICE);
 		dataset.put("types", choices);
-		dataset.put("airlineId", super.getRequest().getData("airlineId", int.class));
 		dataset.put("confirmation", false);
-		dataset.put("draftMode", aircraft.getAirline().isDraftMode());
 
 		super.getResponse().addData(dataset);
 	}

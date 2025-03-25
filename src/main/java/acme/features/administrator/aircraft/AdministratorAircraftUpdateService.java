@@ -29,11 +29,8 @@ public class AdministratorAircraftUpdateService extends AbstractGuiService<Admin
 
 	@Override
 	public void load() {
-		Aircraft aircraft;
-		int id;
-
-		id = super.getRequest().getData("id", int.class);
-		aircraft = this.repository.findAircraftById(id);
+		int id = super.getRequest().getData("id", int.class);
+		Aircraft aircraft = this.repository.findAircraftById(id);
 
 		super.getBuffer().addData(aircraft);
 	}

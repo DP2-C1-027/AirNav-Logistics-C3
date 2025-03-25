@@ -45,7 +45,7 @@ public class FlightCrewMemberActivityLogDeleteService extends AbstractGuiService
 
 	@Override
 	public void perform(final ActivityLog activityLog) {
-		this.repository.save(activityLog);
+		this.repository.delete(activityLog);
 	}
 
 	@Override

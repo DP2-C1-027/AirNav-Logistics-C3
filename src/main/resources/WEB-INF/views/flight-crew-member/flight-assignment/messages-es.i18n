@@ -21,6 +21,7 @@ flight-crew-member.flight-assignment.form.label.leg = Código de tramo:
 flight-crew-member.flight-assignment.form.button.activity-log = Mostrar logs de actividad
 flight-crew-member.flight-assignment.form.button.create = Crear
 flight-crew-member.flight-assignment.form.button.update = Actualizar
+flight-crew-member.flight-assignment.form.button.publish = Publicar
 
 flight-crew-member.flight-assignment.list.label.duty = Tareas: 
 flight-crew-member.flight-assignment.list.label.moment = Fecha:

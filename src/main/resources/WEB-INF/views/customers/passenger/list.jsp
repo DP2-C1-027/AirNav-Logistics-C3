@@ -23,7 +23,23 @@
 	<acme:list-column code="customers.passenger.list.label.email" path="email" width="10%"/>
 	<acme:list-payload path="payload"/>
 </acme:list>
-<acme:button code="customers.passenger.list.button.create" action="/customers/passenger/create"/>
+
+<jstl:choose>
+		<jstl:when test="${_command == 'list'}">
+			<acme:button code="customers.passenger.form.button.create" action="/customers/passenger/create"/>
+		</jstl:when>
+		
+		<jstl:when test="${_command == 'passengerList' }">
+			<acme:button code="customers.passenger.form.button.createBooking" action="/customers/passenger/createBooking?bookingId=${id}"/>
+		</jstl:when>
+	</jstl:choose>
+
+
+
+
+
+  
+
 
 	
 

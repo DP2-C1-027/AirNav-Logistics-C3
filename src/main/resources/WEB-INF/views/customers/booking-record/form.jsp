@@ -18,8 +18,9 @@
 <acme:form>	
 	<jstl:choose>
 		<jstl:when test="${acme:anyOf(_command, 'show|update') && draftMode == true}">
-			<acme:input-select code="customers.booking-record.form.label.booking" path="booking" choices="${bookings}" readonly="true"/>
-			<acme:input-select code="customers.booking-record.form.label.passenger" path="passenger" choices="${passengers}" readonly="true"/>
+			<acme:input-select code="customers.booking-record.form.label.booking" path="booking" choices="${bookings}"/>
+			<acme:input-select code="customers.booking-record.form.label.passenger" path="passenger" choices="${passengers}"/>
+			<acme:submit code="customers.booking-record.list.label.update" action="/customers/booking-record/update"/>
 			
 		</jstl:when>
 		<jstl:when test="${_command == 'show' && draftMode == false}">

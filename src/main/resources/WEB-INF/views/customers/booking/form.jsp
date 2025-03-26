@@ -29,6 +29,9 @@
 	<jstl:when test="${_command == 'show' && draftMode == false}">
 	
 		<acme:button code="customers.bookingPassenger.list.button.passenger" action="/customers/passenger/passengerList?bookingId=${id}"/>
+		
+			
+		
 		</jstl:when>
 		
 		<jstl:when test="${_command == 'create'}">
@@ -39,6 +42,7 @@
 		<acme:button code="customers.bookingPassenger.list.button.passenger" action="/customers/passenger/passengerList?bookingId=${id}"/>
 		<acme:submit code="customers.booking.form.button.update" action="/customers/booking/update"/>
 		<acme:submit code="customers.booking.form.button.publish" action="/customers/booking/publish"/>
+		<acme:button code="customers.passenger.form.button.createBooking" action="/customers/passenger/createBooking?bookingId=${id}"/>
 		</jstl:when>
 	</jstl:choose>
 	

@@ -1,0 +1,31 @@
+# messages-es.i18n
+#
+# Copyright (C) 2012-2025 Rafael Corchuelo.
+#
+# In keeping with the traditional purpose of furthering education and research, it is
+# the policy of the copyright owner to permit non-commercial use and redistribution of
+# this software. It has been tested carefully, but it is not guaranteed for any particular
+# purposes.  The copyright owner does not offer any warranties or representations, nor do
+# they accept any liabilities with respect to them.
+
+customers.booking.form.title = Detalles de la reserva
+customers.booking.list.title = Lista de reserva
+
+customers.booking.form.label.locatorCode = Codigo localizador: 
+customers.booking.form.label.purchaseMoment = Momento de compra:
+customers.booking.form.label.travelClass = Clase de viaje:
+customers.booking.form.label.lastNibble = Ultimos numero de la tarjeta:
+customers.booking.form.label.price = Precio:
+
+authenticated.provider.booking.form.button.create = Registrar
+authenticated.provider.booking.form.button.update = Actualizar
+
+customers.booking.list.label.locatorCode = Codigo localizador: 
+customers.booking.list.label.purchaseMoment = Momento de compra:
+customers.booking.list.label.travelClass = Clase de viaje:
+customers.booking.list.label.lastNibble = Ultimos numero de la tarjeta:
+customers.booking.list.label.price = Precio:
+
+customers.bookingPassenger.list.button.passenger = Lista de pasajeros
+
+acme.validation.unpublishedPassengers.message = Tienes pasajeros sin publicar

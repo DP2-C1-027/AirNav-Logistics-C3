@@ -11,7 +11,7 @@ import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.constraints.ValidLongText;
-import acme.realms.maintenanceRecords.Technician;
+import acme.realms.Technician;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -29,6 +29,10 @@ public class Task extends AbstractEntity {
 	@Automapped
 	@Valid
 	private TaskType			type;
+
+	@Mandatory
+	@Automapped
+	private Boolean				draftMode;
 
 	@Mandatory
 	@Automapped

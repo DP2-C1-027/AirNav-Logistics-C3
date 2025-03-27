@@ -19,7 +19,7 @@ import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidMoney;
 import acme.constraints.ValidLongText;
 import acme.entities.aircraft.Aircraft;
-import acme.realms.maintenanceRecords.Technician;
+import acme.realms.Technician;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -32,6 +32,10 @@ public class MaintanenceRecord extends AbstractEntity {
 	private static final long		serialVersionUID	= 1L;
 
 	// Attributes -------------------------------------------------------------
+
+	@Mandatory
+	@Automapped
+	private Boolean					draftMode;
 
 	@Mandatory
 	@Temporal(TemporalType.TIMESTAMP)

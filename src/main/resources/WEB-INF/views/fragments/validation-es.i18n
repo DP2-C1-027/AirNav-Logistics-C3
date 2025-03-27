@@ -23,3 +23,9 @@ acme.validation.phoneNumberOptional = El numero de telefono debe tener una longu
 acme.validation.emailOptional= El correo debe contener entre 0 y 255 caracteres.
 acme.validation.IATAcode = El patrón es incorrecto; debe ser un identificador de tres letras mayúsculas. 
 
+acme.validation.registrationNumber = El número de registro introducido ya está en uso
+acme.validation.severityLevel = El nivel de severidad debería estar entre 0 y 10
+acme.validation.flightAssignment.flightcrewmember = Deberías seleccionar un miembro de tripulación válido
+acme.validation.flightAssignment.leg = Deberías seleccionar un tramo de vuelo válido
+
+

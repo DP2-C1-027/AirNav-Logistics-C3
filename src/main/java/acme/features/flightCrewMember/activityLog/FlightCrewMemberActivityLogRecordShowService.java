@@ -37,6 +37,9 @@ public class FlightCrewMemberActivityLogRecordShowService extends AbstractGuiSer
 	public void unbind(final ActivityLog activityLog) {
 		Dataset dataset = super.unbindObject(activityLog, "registrationMoment", "typeOfIncident", "description", "severityLevel", "draftMode");
 
+		boolean draftModeFlightAssignment = this.repository.findFlightAssignmentById(activityLog.getFlightAssignment().getId()).getDraftMode();
+		dataset.put("draftModeFlightAssignment", draftModeFlightAssignment);
+
 		super.getResponse().addData(dataset);
 	}
 }

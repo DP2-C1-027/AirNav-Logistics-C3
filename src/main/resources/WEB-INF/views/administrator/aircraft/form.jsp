@@ -20,8 +20,9 @@
 	<acme:input-textbox code="administrator.aircraft.form.label.registrationNumber" path="registrationNumber"/>
 	<acme:input-textbox code="administrator.aircraft.form.label.capacity" path="capacity"/>
 	<acme:input-textbox code="administrator.aircraft.form.label.cargoWeight" path="cargoWeight"/>
-	<acme:input-select code="administrator.aircraft.form.label.status" path="status" choices="${types}"/>
+	<acme:input-select code="administrator.aircraft.form.label.status" path="status" choices="${statusChoices}"/>
 	<acme:input-textbox code="administrator.aircraft.form.label.details" path="details"/>
+	<acme:input-select code="administrator.aircraft.form.label.airline" path="airline" choices="${airlinesChoices}"/>
 	
 	<jstl:choose>
 		<jstl:when test="${_command == 'create'}">

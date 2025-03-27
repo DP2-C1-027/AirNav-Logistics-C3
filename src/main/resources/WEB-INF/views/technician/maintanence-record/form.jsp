@@ -16,10 +16,10 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <acme:form>
-	<acme:input-moment code="airlineManager.flight.form.label.maintanenceMoment" path="maintanenceMoment"/>
-	<acme:input-select code="airlineManager.flight.form.label.status" path="status" choices="${StatusMaintanenceRecord}"/>
-	<acme:input-money code="airlineManager.flight.form.label.estimatedCost" path="estimatedCost"/>
-	<acme:input-moment code="airlineManager.flight.form.label.nextMaintanence" path="nextMaintanence"/>
-	<acme:input-textbox code="airlineManager.flight.form.label.notes" path="notes"/>
+	<acme:input-moment code="technician.maintanence-record.form.label.maintanenceMoment" path="maintanenceMoment"/>
+	<acme:input-select code="technician.maintanence-record.form.label.status" path="status" choices="${StatusRecord}"/>
+	<acme:input-money code="technician.maintanence-record.form.label.estimatedCost" path="estimatedCost"/>
+	<acme:input-moment code="technician.maintanence-record.form.label.nextMaintanence" path="nextMaintanence"/>
+	<acme:input-textbox code="technician.maintanence-record.form.label.notes" path="notes"/>
 	
 </acme:form>

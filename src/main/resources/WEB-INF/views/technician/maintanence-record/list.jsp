@@ -16,13 +16,11 @@
 
 <acme:list>
 	
-	<acme:list-column code="technician.maintenanceRecord.form.label.maintanenceMoment" path="maintanenceMoment" width="20%"/>
-	<acme:list-column code="technician.maintenanceRecord.form.label.status" path="status" width="20%"/>
-	<acme:list-column code="technician.maintenanceRecord.form.label.estimatedCost" path="estimatedCost" width="20%"/>
-	<acme:list-column code="technician.maintenanceRecord.form.label.nextMaintanence" path="nextMaintanence" width="20%"/>
+	<acme:list-column code="technician.maintenanceRecord.form.label.maintanenceMoment" path="maintanenceMoment" width="5%"/>
+	<acme:list-column code="technician.maintenanceRecord.form.label.status" path="status" width="5%"/>
+	<acme:list-column code="technician.maintenanceRecord.form.label.estimatedCost" path="estimatedCost" width="5%"/>
+	<acme:list-column code="technician.maintenanceRecord.form.label.nextMaintanence" path="nextMaintanence" width="5%"/>
 	<acme:list-column code="technician.maintenanceRecord.form.label.notes" path="notes" width="20%"/>
-	
-		<acme:list-payload path="payload"/>
 	
 </acme:list>
 

@@ -18,12 +18,13 @@
 
 
 
-<acme:list >
-	<acme:list-column code="customers.passenger.list.label.fullName" path="fullName" width="20%"/>
-	<acme:list-column code="customers.passenger.list.label.email" path="email" width="10%"/>
-	<acme:list-payload path="payload"/>
+<acme:list>
+	<acme:list-column code="customers.booking-record.list.label.booking" path="booking" width="20%"/>
+	<acme:list-column code="customers.booking-record.list.label.passenger" path="passenger" width="20%"/>
 </acme:list>
-<acme:button code="customers.passenger.list.button.create" action="/customers/passenger/create"/>
 
+<jstl:if test="${_command == 'list'}">
+	<acme:button code="customers.booking-record.list.label.create" action="/customers/booking-record/create"/>
+</jstl:if>
 	
 

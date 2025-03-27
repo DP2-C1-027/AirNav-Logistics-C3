@@ -23,7 +23,12 @@ public class CustomersPassengersListService extends AbstractGuiService<Customers
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		boolean status;
+		Customers customer;
+
+		customer = (Customers) super.getRequest().getPrincipal().getActiveRealm();
+		status = super.getRequest().getPrincipal().hasRealm(customer);
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
@@ -41,7 +46,7 @@ public class CustomersPassengersListService extends AbstractGuiService<Customers
 	public void unbind(final Passenger passenger) {
 		Dataset dataset;
 
-		dataset = super.unbindObject(passenger, "fullName", "email", "passportNumber", "dateOfBirth", "specialNeeds");
+		dataset = super.unbindObject(passenger, "fullName", "email");
 		super.getResponse().addData(dataset);
 	}
 }

@@ -20,7 +20,7 @@ public class Statistics {
 	Double						average;
 	Double						min;
 	Double						max;
-	Double						deviation;
+	Double						deviationsss;
 
 
 	public String getAverageString() {
@@ -28,7 +28,7 @@ public class Statistics {
 	}
 
 	public String getDeviationString() {
-		return this.formatter.format(this.deviation);
+		return this.formatter.format(this.deviationsss);
 	}
 
 	public String getMinimumString() {

@@ -68,7 +68,10 @@ public class CustomersBookingCreateService extends AbstractGuiService<Customers,
 
 	@Override
 	public void validate(final Booking whine) {
-
+		String cod = whine.getLocatorCode();
+		Collection<Booking> codigo = this.repository.findAllBookingLocatorCode(cod);
+		if (!codigo.isEmpty())
+			super.state(false, "locatorCode", "customers.booking.error.repeat-code");
 		if (whine.getFlight() == null)
 			super.state(false, "vuelo", "customers.booking.error.no-flight");
 	}
@@ -87,7 +90,7 @@ public class CustomersBookingCreateService extends AbstractGuiService<Customers,
 		vuelos = this.repository.getAllFlight();
 		flightChoices = SelectChoices.from(vuelos, "tag", whine.getFlight());
 		choices = SelectChoices.from(TravelClass.class, whine.getTravelClass());
-		dataset = super.unbindObject(whine, "locatorCode", "purchaseMoment", "travelClass", "lastNibble", "draft-mode");
+		dataset = super.unbindObject(whine, "locatorCode", "purchaseMoment", "travelClass", "lastNibble", "draftMode");
 		dataset.put("vuelo", flightChoices.getSelected().getKey());
 		dataset.put("vuelos", flightChoices);
 		dataset.put("price", whine.getPrice());

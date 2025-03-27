@@ -1,63 +1,53 @@
 
-package acme.features.customers.passenger;
+package acme.features.administrator.passenger;
 
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
+import acme.client.components.principals.Administrator;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.booking.Booking;
 import acme.entities.booking.Passenger;
-import acme.realms.Customers;
 
 @GuiService
-public class CustomersBookingPassengerListService extends AbstractGuiService<Customers, Passenger> {
+public class AdministratorPassengerListService extends AbstractGuiService<Administrator, Passenger> {
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private CustomersPassengersRepository repository;
+	private AdministratorPassengerRepository repository;
 
 	// AbstractGuiService interface -------------------------------------------
 
 
 	@Override
 	public void authorise() {
-
-		boolean status;
-		int customerId;
-		int passengerId;
-
-		customerId = super.getRequest().getPrincipal().getActiveRealm().getId();
-
-		status = super.getRequest().getPrincipal().hasRealm(this.repository.findCustomerById(customerId));
-
-		super.getResponse().setAuthorised(status);
+		super.getResponse().setAuthorised(true);
 	}
 
 	@Override
 	public void load() {
 		Collection<Passenger> passenger;
-		Customers customer;
 
-		customer = (Customers) super.getRequest().getPrincipal().getActiveRealm();
 		int id;
 		Booking booking;
 
 		id = super.getRequest().getData("bookingId", int.class);
 		booking = this.repository.findBookinById(id);
 
-		passenger = this.repository.findPassengersByBookingId(booking.getId(), customer.getId());
+		passenger = this.repository.findPassengersByBookingId(booking.getId());
 
 		super.getBuffer().addData(passenger);
 	}
 
 	@Override
-	public void unbind(final Passenger passenger) {
+	public void unbind(final Passenger booking) {
 		Dataset dataset;
 
-		dataset = super.unbindObject(passenger, "fullName", "email");
+		dataset = super.unbindObject(booking, "fullName", "email");
+		dataset.put("readonly", true);
 
 		super.getResponse().addData(dataset);
 	}

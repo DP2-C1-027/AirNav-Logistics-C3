@@ -1,5 +1,5 @@
 
-package acme.features.customers.passenger;
+package acme.features.administrator.passenger;
 
 import java.util.Collection;
 
@@ -12,7 +12,7 @@ import acme.entities.booking.Booking;
 import acme.entities.booking.Passenger;
 
 @Repository
-public interface CustomersBookingPassengerRepository extends AbstractRepository {
+public interface AdministratorPassengerRepository extends AbstractRepository {
 
 	@Query("select b.passenger from BookingRecord b  WHERE b.booking.id = :bookingId")
 	Collection<Passenger> findPassengersByBookingId(@Param("bookingId") int bookingId);

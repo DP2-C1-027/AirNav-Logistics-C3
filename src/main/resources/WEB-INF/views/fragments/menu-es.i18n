@@ -71,3 +71,5 @@ master.menu.user-account.consumer-profile = Perfil de consumidor
 master.menu.customers = Cliente
 master.menu.customers.list-my-bookings = Mi lista de reservas
 master.menu.customers.list-my-passengers = Mi lista de pasajeros
+master.menu.customers.show-dashboard = Mi dashboard
+master.menu.customers.list-my-bookingRecord = Lista de bookingRecord

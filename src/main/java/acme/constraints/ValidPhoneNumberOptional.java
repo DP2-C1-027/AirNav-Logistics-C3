@@ -18,7 +18,7 @@ import javax.validation.constraints.Pattern;
 @Pattern(regexp = "^$|^\\+?\\d{6,15}$")
 public @interface ValidPhoneNumberOptional {
 
-	String message() default "{acme.validation.text.message}";
+	String message() default "{acme.validation.phoneNumberOptional}";
 	Class<?>[] groups() default {};
 	Class<? extends Payload>[] payload() default {};
 }

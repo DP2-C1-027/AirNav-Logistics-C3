@@ -25,7 +25,9 @@ public class CustomersPassengerCreateService2 extends AbstractGuiService<Custome
 	@Autowired
 	private CustomersBookingRecordRepository	bookingRepository;
 
-	// AbstractGuiService interface -------------------------------------------
+	// AbstractGuiService interface ------------------------------------------
+
+	BookingRecord								bookingRecord	= new BookingRecord();
 
 
 	@Override
@@ -42,6 +44,8 @@ public class CustomersPassengerCreateService2 extends AbstractGuiService<Custome
 	public void load() {
 		Passenger passenger;
 		Customers customer;
+		int bookingId = super.getRequest().getData("bookingId", int.class);
+		Booking booking = this.bookingRepository.findBookingById(bookingId);
 
 		customer = (Customers) super.getRequest().getPrincipal().getActiveRealm();
 		Date moment;
@@ -50,10 +54,11 @@ public class CustomersPassengerCreateService2 extends AbstractGuiService<Custome
 		passenger = new Passenger();
 		passenger.setDateOfBirth(moment);
 		passenger.setCustomer(customer);
-		System.out.println("llega hasta a qui?");
 
 		super.getBuffer().addData(passenger);
-		System.out.println("hellohellohello");
+
+		if (booking != null)
+			this.bookingRecord.setBooking(booking);
 
 	}
 
@@ -62,7 +67,6 @@ public class CustomersPassengerCreateService2 extends AbstractGuiService<Custome
 
 		super.bindObject(passenger, "fullName", "email", "passportNumber", "dateOfBirth", "specialNeeds");
 		passenger.setDraftMode(true);
-		System.out.println("hellohellohello3");
 
 	}
 
@@ -74,21 +78,10 @@ public class CustomersPassengerCreateService2 extends AbstractGuiService<Custome
 
 	@Override
 	public void perform(final Passenger passenger) {
-		System.out.println("se guarda? pasenger");
-		this.repository.save(passenger);
 
-		System.out.println("si");
-		int bookingId = super.getRequest().getData("bookingId", int.class);
-		Booking booking = this.bookingRepository.findBookingById(bookingId);
-		System.out.println(booking.getLocatorCode());
-		if (booking != null) {
-			System.out.println("se duarga bookingrecord");
-			BookingRecord bookingRecord = new BookingRecord();
-			bookingRecord.setBooking(booking);
-			bookingRecord.setPassenger(passenger);
-			this.bookingRepository.save(bookingRecord);
-			System.out.println("pls si");
-		}
+		this.repository.save(passenger);
+		this.bookingRecord.setPassenger(passenger);
+		this.bookingRepository.save(this.bookingRecord);
 
 	}
 
@@ -99,7 +92,6 @@ public class CustomersPassengerCreateService2 extends AbstractGuiService<Custome
 
 		dataset = super.unbindObject(passenger, "fullName", "email", "passportNumber", "dateOfBirth", "specialNeeds", "draftMode");
 		super.getResponse().addData(dataset);
-		System.out.println("hello hello");
 
 	}
 }

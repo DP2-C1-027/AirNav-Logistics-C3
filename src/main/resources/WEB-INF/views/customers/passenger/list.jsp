@@ -24,17 +24,11 @@
 	<acme:list-payload path="payload"/>
 </acme:list>
 
-<jstl:choose>
-		<jstl:when test="${_command == 'list'}">
-			<acme:button code="customers.passenger.form.button.create" action="/customers/passenger/create"/>
-		</jstl:when>
-		
-		<jstl:when test="${_command == 'passengerList' }">
-			<acme:button code="customers.passenger.form.button.createBooking" action="/customers/passenger/createBooking?bookingId=${id}"/>
-		</jstl:when>
-	</jstl:choose>
 
 
+<jstl:if test="${_command == 'list'}">
+	<acme:button code="customers.passenger.form.button.create" action="/customers/passenger/create"/>
+</jstl:if>	
 
 
 

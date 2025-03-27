@@ -39,7 +39,7 @@ public @interface ValidEmailOptional {
 
 	// Standard validation properties -----------------------------------------
 
-	String message() default "{javax.validation.constraints.Email.message}";
+	String message() default "{acme.validation.emailOptional}";
 	Class<?>[] groups() default {};
 	Class<? extends Payload>[] payload() default {};
 

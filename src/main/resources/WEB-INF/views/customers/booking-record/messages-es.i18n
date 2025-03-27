@@ -8,24 +8,18 @@
 # purposes.  The copyright owner does not offer any warranties or representations, nor do
 # they accept any liabilities with respect to them.
 
-customers.booking.form.title = Detalles de la reserva
-customers.booking.list.title = Lista de reserva
+customers.booking-record.form.title = Detalles
+customers.booking-record.list.title = Lista de booking Record
 
-customers.booking.form.label.locatorCode = Codigo localizador: 
-customers.booking.form.label.purchaseMoment = Momento de compra:
-customers.booking.form.label.travelClass = Clase de viaje:
-customers.booking.form.label.lastNibble = Ultimos numero de la tarjeta:
-customers.booking.form.label.price = Precio:
+customers.booking-record.form.label.booking= Reserva:
+customers.booking-record.form.label.passenger=Pasajeros:
 
-authenticated.provider.booking.form.button.create = Registrar
-authenticated.provider.booking.form.button.update = Actualizar
+customers.booking-record.list.label.booking = Reserva:
+customers.booking-record.list.label.passenger= Pasajeros:
 
-customers.booking.list.label.locatorCode = Codigo localizador: 
-customers.booking.list.label.purchaseMoment = Momento de compra:
-customers.booking.list.label.travelClass = Clase de viaje:
-customers.booking.list.label.lastNibble = Ultimos numero de la tarjeta:
-customers.booking.list.label.price = Precio:
+customers.booking-record.form.label.create= Crear
+customers.booking-record.form.label.update= Actualizar
 
-customers.bookingPassenger.list.button.passenger = Lista de pasajeros
-
-acme.validation.unpublishedPassengers.message = Tienes pasajeros sin publicar
+customer.booking-record.create.error.null-booking= No puede no seleccionar una reserva
+customer.booking-record.create.error.null-passenger = No puede no seleccionar un pasajero
+customer.booking-record.create.error.duplicate-booking-passenger= Esta relacion ya existe

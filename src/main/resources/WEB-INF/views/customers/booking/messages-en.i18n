@@ -17,15 +17,21 @@ customers.booking.form.label.travelClass = Travel class:
 customers.booking.form.label.lastNibble = Last nibble:
 customers.booking.form.label.price = Price:
 
-authenticated.provider.booking.form.button.create = Registrer
-authenticated.provider.booking.form.button.update = Update
-
 customers.booking.list.label.locatorCode = Locator Code: 
 customers.booking.list.label.purchaseMoment = Purchase Moment:
 customers.booking.list.label.travelClass = Travel class:
 customers.booking.list.label.lastNibble = Last nibble:
 customers.booking.list.label.price = Price:
 
+customers.booking.form.label.vuelos = Flight:
 customers.bookingPassenger.list.button.passenger = Passenger List
+customers.booking.form.button.create= Create new Booking
+customers.booking.list.button.create= Create new Booking
+customers.booking.form.button.update= Update
+customers.booking.form.button.publish = Publish
+customers.passenger.form.button.createBooking= Add new passenger
 
-acme.validation.unpublishedPassengers.message = You have unpublished passengers
+customers.booking.error.repeat-code= existing code, cannot be repeated
+customers.booking.error.no-flight= select a flight
+customer.booking.error.nibble-required= Last Nibble is mandatory to be able to publish the booking
+customer.booking.error.unpublishedPassengers.message= You have unpublished passengers

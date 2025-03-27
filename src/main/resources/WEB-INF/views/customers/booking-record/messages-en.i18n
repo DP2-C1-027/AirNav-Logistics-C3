@@ -8,24 +8,18 @@
 # purposes.  The copyright owner does not offer any warranties or representations, nor do
 # they accept any liabilities with respect to them.
 
-customers.booking.form.title = Booking details
-customers.booking.list.title = Booking list
+customers.booking-record.form.title = Details
+customers.booking-record.list.title = List of bookingRecord
 
-customers.booking.form.label.locatorCode = Locator Code: 
-customers.booking.form.label.purchaseMoment = Purchase Moment:
-customers.booking.form.label.travelClass = Travel class:
-customers.booking.form.label.lastNibble = Last nibble:
-customers.booking.form.label.price = Price:
+customers.booking-record.form.label.booking= Booking:
+customers.booking-record.form.label.passenger=Passenger:
 
-authenticated.provider.booking.form.button.create = Registrer
-authenticated.provider.booking.form.button.update = Update
+customers.booking-record.list.label.booking = Booking:
+customers.booking-record.list.label.passenger= Passenger:
 
-customers.booking.list.label.locatorCode = Locator Code: 
-customers.booking.list.label.purchaseMoment = Purchase Moment:
-customers.booking.list.label.travelClass = Travel class:
-customers.booking.list.label.lastNibble = Last nibble:
-customers.booking.list.label.price = Price:
+customers.booking-record.form.label.create= Create
+customers.booking-record.form.label.update= Update
 
-customers.bookingPassenger.list.button.passenger = Passenger List
-
-acme.validation.unpublishedPassengers.message = You have unpublished passengers
+customer.booking-record.create.error.null-booking = You cannot leave the booking unselected.  
+customer.booking-record.create.error.null-passenger = You cannot leave the passenger unselected.  
+customer.booking-record.create.error.duplicate-booking-passenger = This relationship already exists.  

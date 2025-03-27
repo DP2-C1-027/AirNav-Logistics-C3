@@ -45,6 +45,10 @@
 			<acme:menu-suboption code="master.menu.administrator.populate-db-sample" action="/administrator/system/populate-sample"/>			
 			<acme:menu-separator/>
 			<acme:menu-suboption code="master.menu.administrator.shut-system-down" action="/administrator/system/shut-down"/>
+			
+			<acme:menu-suboption code="master.menu.airlineManager.prueba" action="/administrator/flight/list" />
+			
+			
 		</acme:menu-option>
 
 		<acme:menu-option code="master.menu.provider" access="hasRealm('Provider')">
@@ -54,6 +58,8 @@
 		<acme:menu-option code="master.menu.airlineManager" access="hasRealm('AirlineManager')">
 			<acme:menu-suboption code="master.menu.airlineManager.list-my-flights" action="/airline-manager/flight/list" />
 			<acme:menu-suboption code="master.menu.airlineManager.list-my-legs" action="/airline-manager/leg/list" />
+			
+			
 		</acme:menu-option>
 		
 		<acme:menu-option code="master.menu.assistanceAgent" access="hasRealm('AssistanceAgent')">
@@ -77,7 +83,14 @@
 		<acme:menu-suboption code="master.menu.customers.list-my-bookingRecord" action="/customers/booking-record/list"/>
 		
 		</acme:menu-option>
+		
+		<acme:menu-option code="master.menu.technicians" access="hasRealm('Technician')">
+			<acme:menu-suboption code="master.menu.technicians.list-my-maintenance-records" action="/technician/maintanence-record/list"/>
+		</acme:menu-option>
+		
 	</acme:menu-left>
+	
+	
 
 	<acme:menu-right>		
 		<acme:menu-option code="master.menu.user-account" access="isAuthenticated()">

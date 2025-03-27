@@ -14,3 +14,23 @@ airport-12,مطار القاهرة الدولي (Cairo International Airport),CA
 airport-13,ไทยสมายล์ แอร์พอร์ต (Thai Smile Airport),THS,DOMESTIC,Bangkok,Thailand,https://www.thaismileairport.com,info@thaismileairport.com,"Bangkok, Thailand",+1234567809
 airport-14,<b>Bold Airport</b>,BLA,INTERNATIONAL,Bold City,Unknown,https://www.boldairport.com,bold@example.com,"Bold Street, 12345",+1234567810
 airport-15,新加坡樟宜机场 (Changi Airport),SIN,INTERNATIONAL,Singapore,Singapore,ftp://a,a@b.e,"Singapore, 819643",+1234567811
+airport-16,<script>alert("XSS Attack")</script>,XSL,INTERNATIONAL,Exploit City,Unknown,http://malicious.site,attacker@example.com,"Exploit Street, 99999",+1234567812
+airport-17,' OR '1'='1 ,SQL,INTERNATIONAL,SQL City,Unknown,https://www.sqlinjection.com,sql@injection.com,"SQL Injection Street, 88888",+1234567813
+airport-18,Robert'); DROP TABLE Airports;--,SQP,INTERNATIONAL,Drop City,Unknown,http://drop.tables.com,drop@example.com,"No Database Lane, 77777",+1234567814
+airport-19,นานาชาติกรุงเทพ (Bangkok International Airport),BKK,INTERNATIONAL,Bangkok,Thailand,https://www.bangkokairport.com,info@bkkairport.com,"Bangkok, Thailand",+1234567815
+airport-20,<iframe src="http://malicious.com"></iframe>,IFR,INTERNATIONAL,Phish Town,Unknown,http://phishing-attack.com,phish@attacker.com,"Phishing Road, 66666",+1234567816
+airport-21,alert('Owned!'),OWN,DOMESTIC,Exploiter City,Unknown,https://www.ownedairport.com,exploit@hacker.com,"Exploit Avenue, 55555",+1234567817
+airport-22,; EXEC xp_cmdshell('dir'),CMD,INTERNATIONAL,Hacker Central,Unknown,http://cmdshell.com,cmd@hacker.com,"Command Lane, 44444",+1234567818
+airport-23,"<object data='evil.swf'></object>",OBJ,INTERNATIONAL,Object City,Unknown,http://evilobjects.com,object@hacker.com,"Flash Exploit Road, 33333",+1234567819
+airport-24,مطار الرياض الدولي (Riyadh International Airport),RUH,INTERNATIONAL,Riyadh,Saudi Arabia,https://www.riyadh-airport.com,info@ruhairport.com,"Riyadh, Saudi Arabia",+1234567820
+airport-25,南京禄口国际机场 (Nanjing Lukou International Airport),NKG,INTERNATIONAL,Nanjing,China,https://www.nkgairport.com,info@nkgairport.com,"Nanjing, China",+1234567821
+airport-26,0xDEADBEEF Airport,HEX,INTERNATIONAL,Hex City,Unknown,http://hexploit.com,hex@exploit.com,"Hexadecimal Avenue, 22222",+1234567822
+airport-27,sys.exit(),EXT,INTERNATIONAL,Exit City,Unknown,http://exit-script.com,exit@script.com,"Exit Street, 11111",+1234567823
+airport-28,""><img src=x onerror=alert('Injected!')>,IMG,INTERNATIONAL,Image City,Unknown,http://image-exploit.com,image@inject.com,"Image Injection Street, 10101",+1234567824
+airport-29,제주국제공항 (Jeju International Airport),CJU,DOMESTIC,Jeju,South Korea,https://www.jeju-airport.kr,info@cjuairport.com,"Jeju, South Korea",+1234567825
+airport-30,<meta http-equiv="refresh";,MET,INTERNATIONAL,Redirect City,Unknown,http://redirector.com,redirect@phish.com,"Redirect Street, 90909",+1234567826
+airport-31,eval("alert('Executed!')"),EVL,INTERNATIONAL,Eval Town,Unknown,http://evalattack.com,eval@hacker.com,"Eval Lane, 80808",+1234567827
+airport-32,广州白云国际机场 (Guangzhou Baiyun International Airport),CAN,INTERNATIONAL,Guangzhou,China,https://www.baiyunairport.com,info@canairport.com,"Guangzhou, China",+1234567828
+airport-33,"<svg onload=alert(1)>",SVG,INTERNATIONAL,SVG City,Unknown,http://svg-exploit.com,svg@inject.com,"SVG Exploit Road, 70707",+1234567829
+airport-34,(); DROP DATABASE airports;,DRP,INTERNATIONAL,DB City,Unknown,http://drop-db.com,drop@hacker.com,"Drop Table Lane, 60606",+1234567830
+airport-35,香港国际机场 (Hong Kong International Airport),HKG,INTERNATIONAL,Hong Kong,China,https://www.hongkongairport.com,info@hkgairport.com,"Hong Kong, China",+1234567831

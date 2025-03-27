@@ -37,14 +37,18 @@ public class AdministratorAircraftUpdateService extends AbstractGuiService<Admin
 
 	@Override
 	public void bind(final Aircraft aircraft) {
-		super.bindObject(aircraft, "model", "registrationNumber", "capacity", "cargoWeight", "status", "details");
+		super.bindObject(aircraft, "model", "registrationNumber", "capacity", "cargoWeight", "status", "details", "airline");
 	}
 
 	@Override
 	public void validate(final Aircraft aircraft) {
-		boolean confirmation;
+		Aircraft oldAircraft = this.repository.findAircraftByRegistrationNumber(aircraft.getRegistrationNumber());
+		if (oldAircraft != null) {
+			boolean idMatch = oldAircraft.getId() == aircraft.getId();
+			super.state(idMatch, "registrationNumber", "acme.validation.registrationNumber");
+		}
 
-		confirmation = super.getRequest().getData("confirmation", boolean.class);
+		boolean confirmation = super.getRequest().getData("confirmation", boolean.class);
 		super.state(confirmation, "confirmation", "acme.validation.confirmation.message");
 	}
 
@@ -55,12 +59,15 @@ public class AdministratorAircraftUpdateService extends AbstractGuiService<Admin
 
 	@Override
 	public void unbind(final Aircraft aircraft) {
-		Dataset dataset = super.unbindObject(aircraft, "model", "registrationNumber", "capacity", "cargoWeight", "status", "details");
+		Dataset dataset = super.unbindObject(aircraft, "model", "registrationNumber", "capacity", "cargoWeight", "status", "details", "airline");
 
-		SelectChoices choices = SelectChoices.from(Status.class, aircraft.getStatus());
-		dataset.put("types", choices);
+		SelectChoices statusChoices = SelectChoices.from(Status.class, aircraft.getStatus());
+		dataset.put("statusChoices", statusChoices);
+
+		SelectChoices airlinesChoices = SelectChoices.from(this.repository.findAllAirlines(), "name", aircraft.getAirline());
+		dataset.put("airlinesChoices", airlinesChoices);
+
 		dataset.put("confirmation", false);
-		dataset.put("draftMode", aircraft.getAirline().isDraftMode());
 
 		super.getResponse().addData(dataset);
 	}

@@ -12,3 +12,27 @@ flight-10,Lo,false,1EUR,Lo,manager-01
 flight-11,โลเร็ม อิปซัม,false,1EUR,لوريم إيبسوم,manager-01
 flight-12,洛伦·伊普森,false,1EUR,<marquee>Hacked</marquee>,manager-01
 flight-13,<script>alert(‘Hacked!’);</script>,false,1EUR,' or 'A' = 'A,manager-01
+flight-14,<iframe src="http://evil.com"></iframe>,true,150EUR,Malicious Iframe Attempt,manager-02
+flight-15,"'; DROP TABLE flights; --",false,120EUR,SQL Injection Attempt,manager-03
+flight-16,<b>Bold Flight</b>,true,200EUR,Attempt to inject HTML bold tag,manager-01
+flight-17,alert("Injected JS"),false,50EUR,JavaScript Injection Attempt,manager-02
+flight-18,España-Italia,true,180EUR,Flight from Spain to Italy,manager-03
+flight-19,Paris-Berlin,false,140EUR,Direct flight from Paris to Berlin,manager-01
+flight-20,Athens-Rome,true,160EUR,Flight across the Mediterranean,manager-02
+flight-21,New York - London,false,300EUR,Transatlantic flight,manager-03
+flight-22,"London-Frankfurt",true,120EUR,Short European flight,manager-01
+flight-23,"../etc/passwd",false,1EUR,Path traversal attempt,manager-02
+flight-24,"<svg onload=alert(1)>",true,130EUR,SVG Injection Attempt,manager-03
+flight-25,Lisbon-Madrid,true,90EUR,Short flight between Lisbon and Madrid,manager-01
+flight-26,"Tokyo-Seoul",true,220EUR,Flight between Tokyo and Seoul,manager-02
+flight-27,"Moscow-Beijing",false,250EUR,Long-distance flight,manager-03
+flight-28,Phishing Attempt,true,1EUR,Fake flight entry for testing,manager-01
+flight-29,"Paris-Rome",true,180EUR,Popular European flight route,manager-02
+flight-30,"Sydney-Auckland",false,200EUR,International flight in Oceania,manager-03
+flight-31,"Dublin-Amsterdam",true,140EUR,Flight connecting Ireland and the Netherlands,manager-01
+flight-32,"Prague-Vienna",false,110EUR,Short trip in Central Europe,manager-02
+flight-33,"Madrid-Buenos Aires",true,320EUR,Long-haul transatlantic flight,manager-03
+flight-34,"XSS Attempt <img src=x onerror=alert('XSS')>",false,1EUR,Malicious XSS script,manager-01
+flight-35,"Zurich-Barcelona",true,130EUR,Flight across Western Europe,manager-02
+flight-36,"Helsinki-Stockholm",false,120EUR,Scandinavian regional flight,manager-03
+flight-37,"Warsaw-Budapest",true,150EUR,Flight connecting Poland and Hungary,manager-01

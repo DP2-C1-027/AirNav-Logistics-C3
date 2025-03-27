@@ -1,8 +1,11 @@
 key,flightNumber,scheduledDeparture,scheduledArrival,duration,status,key:departureAirport,key:arrivalAirport,key:aircraft,key:flight
-leg-01,DAL1234,2023/01/01 10:00,2023/01/01 15:00,5,ON_TIME,airport-01,airport-02,aircraft-01,flight-01
-leg-02,DAL1000,2023/01/01 17:00,2023/01/01 19:00,2,ON_TIME,airport-02,airport-01,aircraft-01,flight-01
-leg-03,EAU1000,2024/02/13 8:00,2024/02/13 10:00,2,DELAYED,airport-01,airport-02,aircraft-02,flight-02
-leg-04,EAU1001,2024/02/13 12:00,2024/02/13 14:00,2,DELAYED,airport-02,airport-01,aircraft-02,flight-02
-leg-05,EAU1002,2024/02/13 16:00,2024/02/13 19:00,3,LANDED,airport-01,airport-02,aircraft-02,flight-02
-leg-06,EAU1003,2000/01/01 00:00,2000/01/01 00:01,0,LANDED,airport-01,airport-02,aircraft-02,flight-03
-leg-07,EAU1004,2024/12/31 23:59,2025/01/01 00:00,0,CANCELLED,airport-01,airport-02,aircraft-02,flight-04
+leg-01,ABC1234,2024/12/15 08:30,2024/12/15 12:45,4,LANDED,airport-01,airport-02,aircraft-05,flight-03
+leg-02,XYZ5678,2025/01/05 14:20,2025/01/05 18:35,4,ON_TIME,airport-03,airport-04,aircraft-10,flight-07
+leg-03,LMN2468,2024/11/20 06:45,2024/11/20 10:00,4,LANDED,airport-05,airport-06,aircraft-15,flight-09
+leg-04,PQR1357,2025/02/10 12:10,2025/02/10 16:25,4,ON_TIME,airport-07,airport-08,aircraft-20,flight-12
+leg-05,DEF6789,2024/10/05 10:30,2024/10/05 15:00,4,LANDED,airport-09,airport-10,aircraft-25,flight-15
+leg-06,GHI5432,2025/03/12 09:15,2025/03/12 13:30,4,DELAYED,airport-11,airport-12,aircraft-30,flight-18
+leg-07,JKL7890,2024/09/08 14:00,2024/09/08 18:15,4,LANDED,airport-13,airport-14,aircraft-01,flight-21
+leg-08,MNO6543,2025/04/18 11:20,2025/04/18 15:35,4,ON_TIME,airport-15,airport-16,aircraft-02,flight-24
+leg-09,QWE3210,2024/08/22 07:45,2024/08/22 12:00,4,DELAYED,airport-17,airport-18,aircraft-03,flight-27
+leg-10,RTY9876,2025/05/20 16:10,2025/05/20 20:25,4,CANCELLED,airport-19,airport-20,aircraft-04,flight-30

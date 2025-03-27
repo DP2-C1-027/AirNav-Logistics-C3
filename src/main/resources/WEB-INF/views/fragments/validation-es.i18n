@@ -28,4 +28,6 @@ acme.validation.severityLevel = El nivel de severidad debería estar entre 0 y 1
 acme.validation.flightAssignment.flightcrewmember = Deberías seleccionar un miembro de tripulación válido
 acme.validation.flightAssignment.leg = Deberías seleccionar un tramo de vuelo válido
 
+acme.validation.identifier.pattern
+
 

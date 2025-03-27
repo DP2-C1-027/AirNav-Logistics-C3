@@ -12,6 +12,8 @@
 
 package acme.features.authenticated.customers;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
@@ -62,19 +64,21 @@ public class AuthenticatedCustomersCreateService extends AbstractGuiService<Auth
 
 	@Override
 	public void bind(final Customers object) {
-		assert object != null;
 
 		super.bindObject(object, "codigo", "phone", "physicalAddress", "city", "country", "earnedPoints");
 	}
 
 	@Override
 	public void validate(final Customers object) {
-		assert object != null;
+
+		String cod = object.getCodigo();
+		Collection<Customers> codigo = this.repository.findCustomerCode(cod);
+		if (!codigo.isEmpty())
+			super.state(false, "codigo", "acme.validation.error.repeat-code");
 	}
 
 	@Override
 	public void perform(final Customers object) {
-		assert object != null;
 
 		this.repository.save(object);
 	}

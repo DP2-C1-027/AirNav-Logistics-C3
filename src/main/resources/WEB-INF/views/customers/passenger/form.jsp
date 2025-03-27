@@ -22,9 +22,14 @@
 	<acme:input-moment code="customers.passenger.form.label.dateOfBirth" path="dateOfBirth"/>
 	<acme:input-textbox code="customers.passenger.form.label.specialNeeds" path="specialNeeds"/>
 	
+	 
+	
 	<jstl:choose>
 		<jstl:when test="${_command == 'create'}">
 			<acme:submit code="customers.passenger.form.button.create" action="/customers/passenger/create"/>
+		</jstl:when>
+		<jstl:when test="${_command == 'createBooking'}">
+			<acme:submit code="customers.passenger.form.button.createBooking" action="/customers/passenger/createBooking?bookingId=${id }"/>
 		</jstl:when>
 		
 		<jstl:when test="${acme:anyOf(_command, 'show|update|publish') && draftMode == true }">

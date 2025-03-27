@@ -24,7 +24,7 @@
 </acme:list>
 
 <jstl:if test="${_command == 'list'}">
-	<acme:button code="customers.booking-record.list.label.create" action="/customers/booking-record/create"/>
+	<acme:button code="customers.booking-record.form.label.create" action="/customers/booking-record/create"/>
 </jstl:if>
 	
 

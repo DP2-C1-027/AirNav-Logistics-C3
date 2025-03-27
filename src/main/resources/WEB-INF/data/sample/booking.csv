@@ -35,7 +35,7 @@ booking-33,TK9D4W,2016/04/04 03:30,ECONOMY,5678,customer-02,true,flight-02
 booking-34,G4PS0M,2021/02/28 20:00,BUSINESS,,customer-03,true,flight-01
 booking-35,FD0JPE,2020/02/29 10:00,ECONOMY,1234,customer-01,true,flight-01
 booking-36,BBVAA5ZL,2022/07/30 00:00,ECONOMY,5678,customer-02,true,flight-02
-booking-37,G5IM90K,2000/01/01 00:00,BUSINESS,5677,customer-02,true,flight-02
-booking-38,G6O4Y7,2000/01/01 00:01,ECONOMY,,customer-01,true,flight-02
+booking-37,G5IM90K,2000/01/01 00:00,BUSINESS,5677,customer-02,false,flight-02
+booking-38,G6O4Y7,2000/01/01 00:01,ECONOMY,,customer-01,false,flight-02
 
 

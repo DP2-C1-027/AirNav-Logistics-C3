@@ -69,7 +69,7 @@ public class CustomersBookingPublishService extends AbstractGuiService<Customers
 		boolean confirmation = p.isEmpty() || p.stream().allMatch(x -> !x.isDraftMode());
 
 		//confirmation = super.getRequest().getData("confirmation", boolean.class);
-		super.state(confirmation, "lastNibble", "customer.booking.error.unpublishedPassengers.message");
+		super.state(confirmation, "*", "customer.booking.error.unpublishedPassengers.message");
 	}
 	@Override
 	public void perform(final Booking booking) {

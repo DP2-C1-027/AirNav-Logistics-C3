@@ -8,13 +8,25 @@
 # purposes.  The copyright owner does not offer any warranties or representations, nor do
 # they accept any liabilities with respect to them.
 
-acme.validation.short-text = Text should be between 1 and 50 characters
-acme.validation.long-text = Text should be between 1 and 255 characters
-acme.validation.optional.short-text = Text should be between 0 and 50 characters
-acme.validation.optional.long-text = Text should be between 0 and 255 characters
-acme.validation.cargo-weight = Weight should be between 2000 and 50000 kgs
-acme.validation.capacity = Capacity should be between 1 and 255 passengers
+
+acme.validation.short-text = Text should be between 1 and 50 characters.
+acme.validation.long-text = Text should be between 1 and 255 characters.
+acme.validation.optional.short-text = Text should be between 0 and 50 characters.
+acme.validation.optional.long-text = Text should be between 0 and 255 characters.
+acme.validation.cargo-weight = Weight should be between 2000 and 50000 kgs.
+acme.validation.capacity = Capacity should be between 1 and 255 passengers.
+
+acme.validation.locatorCode = Pattern is incorrect; it must be between 6 and 8 characters long.  
+acme.validation.lastNibble = It must be 4 characters long.  
+acme.validation.passportNumber = The pattern must be composed of 6 or 9 characters.  
+acme.validation.PhoneNumber = The number must be between 6 and 15 characters long.  
+acme.validation.EarnedPoints = The number should be between 0 and 500,000.  
+acme.validation.phoneNumberOptional = The phone number must be between 6 and 15 characters long if provided.  
+acme.validation.emailOptional = The email must contain between 0 and 255 characters.  
+acme.validation.IATAcode = Pattern is incorrect; it must be  three-uppercase-letter identifier.
+
 acme.validation.registrationNumber = The registration number entered is already in use
 acme.validation.severityLevel = The severity level should be between 0 and 10
 acme.validation.flightAssignment.flightcrewmember = You should select a valid flight crew member
 acme.validation.flightAssignment.leg = You should select a valid leg
+

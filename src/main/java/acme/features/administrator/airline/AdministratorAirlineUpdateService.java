@@ -1,6 +1,8 @@
 
 package acme.features.administrator.airline;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
@@ -41,13 +43,18 @@ public class AdministratorAirlineUpdateService extends AbstractGuiService<Admini
 
 	@Override
 	public void bind(final Airline airline) {
-		//	super.bindObject(whine, "name", "code", "website", "type", "foundationMoment", "email", "phoneNumber");
+
 		super.bindObject(airline, "name", "codigo", "website", "type", "foundationMoment", "email", "phoneNumber");
 
 	}
 
 	@Override
 	public void validate(final Airline airline) {
+		String cod = airline.getCodigo();
+		Collection<Airline> codigos = this.repository.findAllAirlineCode(cod).stream().filter(x -> x.getId() != airline.getId()).toList();
+
+		if (!codigos.isEmpty())
+			super.state(false, "codigo", "customers.booking.error.repeat-code");
 		{
 			boolean confirmation;
 

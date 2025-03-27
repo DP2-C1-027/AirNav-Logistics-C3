@@ -8,9 +8,13 @@
 # purposes.  The copyright owner does not offer any warranties or representations, nor do
 # they accept any liabilities with respect to them.
 
-acme.validation.short-text = El texto debería contener entre 1 y 50 caracteres.
-acme.validation.long-text = El texto debería contener entre 1 y 255 caracteres.
-acme.validation.optional.short-text = El texto debería contener entre 0 y 50 caracteres.
-acme.validation.optional.long-text = El texto debería contener entre 0 y 255 caracteres.
-acme.validation.cargo-weight = El peso debería estar entre 2000 y 50000 kgs.
-acme.validation.capacity = La capacidad debería estar entre 1 y 255 pasajeros.
+acme.validation.short-text = El texto debería contener entre 1 y 50 caracteres
+acme.validation.long-text = El texto debería contener entre 1 y 255 caracteres
+acme.validation.optional.short-text = El texto debería contener entre 0 y 50 caracteres
+acme.validation.optional.long-text = El texto debería contener entre 0 y 255 caracteres
+acme.validation.cargo-weight = El peso debería estar entre 2000 y 50000 kgs
+acme.validation.capacity = La capacidad debería estar entre 1 y 255 pasajeros
+acme.validation.registrationNumber = El número de registro introducido ya está en uso
+acme.validation.severityLevel = El nivel de severidad debería estar entre 0 y 10
+acme.validation.flightAssignment.flightcrewmember = Deberías seleccionar un miembro de tripulación válido
+acme.validation.flightAssignment.leg = Deberías seleccionar un tramo de vuelo válido

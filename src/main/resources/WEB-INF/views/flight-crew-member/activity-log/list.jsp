@@ -18,7 +18,6 @@
 <acme:list>
 	<acme:list-column code="flight-crew-member.activity-log.list.label.registrationMoment" path="registrationMoment" width="10%"/>
 	<acme:list-column code="flight-crew-member.activity-log.list.label.typeOfIncident" path="typeOfIncident" width="10%"/>
-	<acme:list-column code="flight-crew-member.activity-log.list.label.description"  path="description" width="40%"/>
 	<acme:list-column code="flight-crew-member.activity-log.list.label.severityLevel"  path="severityLevel" width="10%"/>
 	<acme:list-column code="flight-crew-member.activity-log.list.label.draftMode"  path="draftMode" width="10%"/>
 	

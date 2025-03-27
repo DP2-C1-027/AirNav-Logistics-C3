@@ -48,7 +48,7 @@ public class FlightCrewMemberFlightAssignmentShowService extends AbstractGuiServ
 		dataset.put("statusChoices", statusChoices);
 
 		FlightCrewMember flightCrewMember = (FlightCrewMember) dataset.get("flightCrewMember");
-		dataset.put("flightCrewMember", flightCrewMember.getCode());
+		dataset.put("flightCrewMember", flightCrewMember.getCodigo());
 
 		Leg leg = (Leg) dataset.get("leg");
 		dataset.put("leg", leg.getFlightNumber());

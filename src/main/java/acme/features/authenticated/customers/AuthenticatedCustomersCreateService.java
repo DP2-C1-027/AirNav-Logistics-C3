@@ -20,6 +20,7 @@ import acme.client.components.principals.UserAccount;
 import acme.client.helpers.PrincipalHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
+import acme.features.authenticated.GeneratorValidCode;
 import acme.realms.Customers;
 
 @GuiService
@@ -53,6 +54,8 @@ public class AuthenticatedCustomersCreateService extends AbstractGuiService<Auth
 
 		object = new Customers();
 		object.setUserAccount(userAccount);
+		object.setCodigo(GeneratorValidCode.generateValidCode(object));
+		//System.out.println(object.getCodigo());
 
 		super.getBuffer().addData(object);
 	}
@@ -61,7 +64,7 @@ public class AuthenticatedCustomersCreateService extends AbstractGuiService<Auth
 	public void bind(final Customers object) {
 		assert object != null;
 
-		super.bindObject(object, "code", "phone", "physicalAddress", "city", "country", "earnedPoints");
+		super.bindObject(object, "codigo", "phone", "physicalAddress", "city", "country", "earnedPoints");
 	}
 
 	@Override
@@ -80,7 +83,7 @@ public class AuthenticatedCustomersCreateService extends AbstractGuiService<Auth
 	public void unbind(final Customers object) {
 		Dataset dataset;
 
-		dataset = super.unbindObject(object, "code", "phone", "physicalAddress", "city", "country", "earnedPoints");
+		dataset = super.unbindObject(object, "codigo", "phone", "physicalAddress", "city", "country", "earnedPoints");
 
 		super.getResponse().addData(dataset);
 	}

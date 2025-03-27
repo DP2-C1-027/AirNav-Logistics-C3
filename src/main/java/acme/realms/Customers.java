@@ -30,7 +30,7 @@ public class Customers extends AbstractRole {
 	@Mandatory
 	@Automapped
 	@Column(unique = true)
-	private String				code;
+	private String				codigo;
 
 	@Mandatory
 	@Automapped

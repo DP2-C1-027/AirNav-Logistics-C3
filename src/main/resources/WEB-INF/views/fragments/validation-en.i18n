@@ -8,9 +8,13 @@
 # purposes.  The copyright owner does not offer any warranties or representations, nor do
 # they accept any liabilities with respect to them.
 
-acme.validation.short-text = Text should be between 1 and 50 characters.
-acme.validation.long-text = Text should be between 1 and 255 characters.
-acme.validation.optional.short-text = Text should be between 0 and 50 characters.
-acme.validation.optional.long-text = Text should be between 0 and 255 characters.
-acme.validation.cargo-weight = Weight should be between 2000 and 50000 kgs.
-acme.validation.capacity = Capacity should be between 1 and 255 passengers.
+acme.validation.short-text = Text should be between 1 and 50 characters
+acme.validation.long-text = Text should be between 1 and 255 characters
+acme.validation.optional.short-text = Text should be between 0 and 50 characters
+acme.validation.optional.long-text = Text should be between 0 and 255 characters
+acme.validation.cargo-weight = Weight should be between 2000 and 50000 kgs
+acme.validation.capacity = Capacity should be between 1 and 255 passengers
+acme.validation.registrationNumber = The registration number entered is already in use
+acme.validation.severityLevel = The severity level should be between 0 and 10
+acme.validation.flightAssignment.flightcrewmember = You should select a valid flight crew member
+acme.validation.flightAssignment.leg = You should select a valid leg

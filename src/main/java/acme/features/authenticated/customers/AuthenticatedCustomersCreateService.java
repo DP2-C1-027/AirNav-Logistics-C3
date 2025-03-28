@@ -57,7 +57,6 @@ public class AuthenticatedCustomersCreateService extends AbstractGuiService<Auth
 		object = new Customers();
 		object.setUserAccount(userAccount);
 		object.setCodigo(GeneratorValidCode.generateValidCode(object));
-		//System.out.println(object.getCodigo());
 
 		super.getBuffer().addData(object);
 	}
@@ -72,9 +71,12 @@ public class AuthenticatedCustomersCreateService extends AbstractGuiService<Auth
 	public void validate(final Customers object) {
 
 		String cod = object.getCodigo();
-		Collection<Customers> codigo = this.repository.findCustomerCode(cod);
-		if (!codigo.isEmpty())
-			super.state(false, "codigo", "acme.validation.error.repeat-code");
+		if (cod.matches("^[A-Z]{2,3}\\d{6}$")) {
+			Collection<Customers> codigo = this.repository.findCustomerCode(cod);
+			if (!codigo.isEmpty())
+				super.state(false, "codigo", "acme.validation.error.repeat-code");
+		} else
+			super.state(false, "codigo", "acme.validation.error.pattern-code");
 	}
 
 	@Override

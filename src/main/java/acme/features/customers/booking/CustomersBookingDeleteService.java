@@ -11,22 +11,27 @@ import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.booking.Booking;
-import acme.entities.booking.Passenger;
+import acme.entities.booking.BookingRecord;
 import acme.entities.booking.TravelClass;
+import acme.features.customers.bookingRecord.CustomersBookingRecordRepository;
 import acme.realms.Customers;
 
 @GuiService
-public class CustomersBookingPublishService extends AbstractGuiService<Customers, Booking> {
+public class CustomersBookingDeleteService extends AbstractGuiService<Customers, Booking> {
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private CustomersBookingRepository repository;
+	private CustomersBookingRepository			repository;
+
+	@Autowired
+	private CustomersBookingRecordRepository	brRepo;
 
 	// AbstractGuiService interface -------------------------------------------
 
 
 	@Override
 	public void authorise() {
+
 		boolean status;
 		int bookingId;
 		Booking booking;
@@ -34,10 +39,11 @@ public class CustomersBookingPublishService extends AbstractGuiService<Customers
 
 		bookingId = super.getRequest().getData("id", int.class);
 		booking = this.repository.findBookinById(bookingId);
-		customer = booking == null ? null : booking.getCustomer();
+		customer = booking.getCustomer() != null ? booking.getCustomer() : null;
 		status = booking != null && booking.isDraftMode() && super.getRequest().getPrincipal().hasRealm(customer);
 
 		super.getResponse().setAuthorised(status);
+
 	}
 
 	@Override
@@ -49,49 +55,45 @@ public class CustomersBookingPublishService extends AbstractGuiService<Customers
 		booking = this.repository.findBookinById(id);
 
 		super.getBuffer().addData(booking);
+
 	}
 
 	@Override
 	public void bind(final Booking booking) {
-
 		super.bindObject(booking, "locatorCode", "purchaseMoment", "travelClass", "lastNibble");
 
 	}
 
 	@Override
 	public void validate(final Booking booking) {
-		boolean isValidNibble = booking.getLastNibble() != null && !booking.getLastNibble().isEmpty();
 
-		super.state(isValidNibble, "lastNibble", "customer.booking.error.nibble-required");
+		if (!super.getBuffer().getErrors().hasErrors("draftMode"))
+			super.state(booking.isDraftMode(), "draftMode", "customers.form.error.draft-mode");
 
-		Collection<Passenger> p = this.repository.findPassengersByBookingId(booking.getId());
-
-		boolean confirmation = p.stream().allMatch(x -> !x.isDraftMode());
-		if (p.isEmpty())
-			//si no tiene pasajeros no se puede publicar
-			super.state(false, "*", "customer.booking.error.noPassenger.message");
-		//confirmation = super.getRequest().getData("confirmation", boolean.class);
-		super.state(confirmation, "*", "customer.booking.error.unpublishedPassengers.message");
 	}
+
 	@Override
 	public void perform(final Booking booking) {
-		booking.setDraftMode(false);
-		this.repository.save(booking);
+		Collection<BookingRecord> br;
+
+		br = this.repository.findAllBookingRecordById(booking.getId());
+		this.brRepo.deleteAll(br);
+		this.repository.delete(booking);
+
 	}
 
 	@Override
 	public void unbind(final Booking booking) {
-
 		Dataset dataset;
 		SelectChoices choices;
-		choices = SelectChoices.from(TravelClass.class, booking.getTravelClass());
-		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "travelClass", "lastNibble", "draftMode");
 		Integer numero = this.repository.getNumberofPassenger(booking.getId());
 		double precio = booking.getPrice().getAmount() * numero;
 		String moneda = booking.getPrice().getCurrency();
 		Money precioNuevo = new Money();
 		precioNuevo.setAmount(precio);
 		precioNuevo.setCurrency(moneda);
+		choices = SelectChoices.from(TravelClass.class, booking.getTravelClass());
+		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "travelClass", "lastNibble", "draftMode");
 		dataset.put("price", precioNuevo);
 		dataset.put("travelClasses", choices);
 		super.getResponse().addData(dataset);

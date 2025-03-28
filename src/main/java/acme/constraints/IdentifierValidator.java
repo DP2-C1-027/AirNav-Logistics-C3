@@ -47,6 +47,7 @@ public class IdentifierValidator extends AbstractValidator<ValidIdentifier, Abst
 
 			boolean cod1 = expectedInitials2letras.matches(codValido1) || expectedInitials3letras.matches(codValido2);
 
+
 			super.state(context, cod1 && cod, "codigo", "acme.validation.identifier.mismatch");
 		} else
 			super.state(context, false, "codigo", "acme.validation.identifier.notnull");
@@ -68,7 +69,9 @@ public class IdentifierValidator extends AbstractValidator<ValidIdentifier, Abst
 
 		String initials = name.substring(0, 1).toUpperCase() + surname.substring(0, 1).toUpperCase();
 
+
 		if (surname.length() > 1)
+
 			initials += surname.substring(1, 2).toUpperCase(); // Tercera letra opcional
 
 		return initials;

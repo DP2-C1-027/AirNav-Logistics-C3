@@ -38,7 +38,6 @@ public class IdentifierValidator extends AbstractValidator<ValidIdentifier, Abst
 		String identifierInitials = matcher.group(1);
 
 		String expectedInitials = this.getInitials(identity.getName(), identity.getSurname(), realm);
-		System.out.println(expectedInitials);
 
 		boolean isValid = identifierInitials.equals(expectedInitials);
 		if (!isValid)
@@ -53,12 +52,9 @@ public class IdentifierValidator extends AbstractValidator<ValidIdentifier, Abst
 		String codigo = this.getIdentifierFromRealm(realm);
 
 		String initials = name.substring(0, 1).toUpperCase() + surname.substring(0, 1).toUpperCase();
-		System.out.println(surname);
-		System.out.println(codigo.substring(0, 3));
 		if (codigo.substring(0, 3).matches("[A-Z]{2,3}") && surname.length() > 1)
 			initials += surname.substring(1, 2).toUpperCase(); // Tercera letra opcional
 
-		System.out.println(initials);
 		return initials;
 	}
 

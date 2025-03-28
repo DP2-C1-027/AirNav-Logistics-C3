@@ -62,6 +62,10 @@ public class Leg extends AbstractEntity {
 	@Enumerated(EnumType.STRING)
 	private LegStatus			status;
 
+	@Mandatory
+	@Automapped
+	private Boolean				draftMode;
+
 	// Derived attributes -----------------------------------------------------
 
 	// Relationships ----------------------------------------------------------

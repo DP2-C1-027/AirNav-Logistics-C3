@@ -42,6 +42,8 @@ public class AdministratorAircraftUpdateService extends AbstractGuiService<Admin
 
 	@Override
 	public void validate(final Aircraft aircraft) {
+		super.state(aircraft.getAirline() != null, "airline", "acme.validation.aircraft.airline");
+
 		Aircraft oldAircraft = this.repository.findAircraftByRegistrationNumber(aircraft.getRegistrationNumber());
 		if (oldAircraft != null) {
 			boolean idMatch = oldAircraft.getId() == aircraft.getId();

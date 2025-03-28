@@ -16,22 +16,22 @@ public class FlightCrewMemberActivityLogController extends AbstractGuiController
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private FlightCrewMemberActivityLogListService			listService;
+	private FlightCrewMemberActivityLogListService		listService;
 
 	@Autowired
-	private FlightCrewMemberActivityLogRecordShowService	showService;
+	private FlightCrewMemberActivityLogShowService		showService;
 
 	@Autowired
-	private FlightCrewMemberActivityLogCreateService		createService;
+	private FlightCrewMemberActivityLogCreateService	createService;
 
 	@Autowired
-	private FlightCrewMemberActivityLogUpdateService		updateService;
+	private FlightCrewMemberActivityLogUpdateService	updateService;
 
 	@Autowired
-	private FlightCrewMemberActivityLogDeleteService		deleteService;
+	private FlightCrewMemberActivityLogDeleteService	deleteService;
 
 	@Autowired
-	private FlightCrewMemberActivityLogPublishService		publishService;
+	private FlightCrewMemberActivityLogPublishService	publishService;
 
 	// Constructors -----------------------------------------------------------
 

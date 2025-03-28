@@ -10,7 +10,7 @@ import acme.entities.flightAssignment.ActivityLog;
 import acme.realms.FlightCrewMember;
 
 @GuiService
-public class FlightCrewMemberActivityLogRecordShowService extends AbstractGuiService<FlightCrewMember, ActivityLog> {
+public class FlightCrewMemberActivityLogShowService extends AbstractGuiService<FlightCrewMember, ActivityLog> {
 
 	// Internal state ---------------------------------------------------------
 

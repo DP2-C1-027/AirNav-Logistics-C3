@@ -29,15 +29,14 @@ public class FlightCrewMemberActivityLogCreateService extends AbstractGuiService
 
 	@Override
 	public void load() {
+		ActivityLog activityLog = new ActivityLog();
+
+		activityLog.setRegistrationMoment(MomentHelper.getCurrentMoment());
+
 		int assignmentId = super.getRequest().getData("assignmentId", int.class);
 		FlightAssignment flightAssignment = this.repository.findFlightAssignmentById(assignmentId);
-
-		ActivityLog activityLog = new ActivityLog();
-		activityLog.setRegistrationMoment(MomentHelper.getCurrentMoment());
 		activityLog.setFlightAssignment(flightAssignment);
-		activityLog.setDescription("");
-		activityLog.setTypeOfIncident("");
-		activityLog.setSeverityLevel(0);
+
 		activityLog.setDraftMode(false);
 		super.getBuffer().addData(activityLog);
 	}

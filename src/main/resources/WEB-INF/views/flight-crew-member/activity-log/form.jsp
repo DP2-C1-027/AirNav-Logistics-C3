@@ -16,9 +16,10 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <acme:form >
-	<acme:input-textbox code="flight-crew-member.activity-log.form.label.typeOfIncident" path="typeOfIncident" readonly="draftMode"/>
-	<acme:input-textarea code="flight-crew-member.activity-log.form.label.description" path="description" readonly="draftMode"/>
-	<acme:input-textbox code="flight-crew-member.activity-log.form.label.severityLevel" path="severityLevel" readonly="draftMode"/>
+	<acme:input-textbox code="flight-crew-member.activity-log.form.label.typeOfIncident" path="typeOfIncident" readonly="draftMode" placeholder = "acme.placeholders.form.activityLog.typeOfIncident"/>
+	<acme:input-textarea code="flight-crew-member.activity-log.form.label.description" path="description" readonly="draftMode" placeholder = "acme.placeholders.form.activityLog.description"/>
+	<acme:input-textbox code="flight-crew-member.activity-log.form.label.severityLevel" path="severityLevel" readonly="draftMode" placeholder = "acme.placeholders.form.activityLog.severityLevel"/>
+	<acme:input-textbox code="flight-crew-member.activity-log.form.label.severityLevel" path="severityLevel" readonly="draftMode" placeholder = "acme.placeholders.form.activityLog.severityLevel"/>
 	
 	<jstl:choose>
 		<jstl:when test="${_command == 'create'}">

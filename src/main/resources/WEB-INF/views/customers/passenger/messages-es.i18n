@@ -17,11 +17,12 @@ customers.passenger.form.label.passportNumber = Numero de pasaporte:
 customers.passenger.form.label.dateOfBirth = Fecha de nacimiento:
 customers.passenger.form.label.specialNeeds = Necesidades especiales:
 
-authenticated.provider.booking.form.button.create = Registro
-authenticated.provider.booking.form.button.update = Actualizar
 
 customers.passenger.list.label.fullName =  Nombre completo: 
 customers.passenger.list.label.email = Email:
-customers.passenger.list.label.passportNumber = Numero de pasaporte:
-customers.passenger.list.label.dateOfBirth = Fecha de nacimiento:
-customers.passenger.list.label.specialNeeds = Necesidades especiales:
+customers.passenger.form.button.create= Crear nuevo pasajero
+customers.passenger.form.button.createBooking = Crear nuevo pasajero
+customers.passenger.form.button.update = Actualizar
+customers.passenger.form.button.publish= Publicar
+
+customers.passenger.form.button.delete=Borrar

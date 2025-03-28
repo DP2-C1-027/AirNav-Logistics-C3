@@ -12,6 +12,8 @@
 
 package acme.features.authenticated.customers;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
@@ -20,6 +22,7 @@ import acme.client.components.principals.UserAccount;
 import acme.client.helpers.PrincipalHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
+import acme.features.authenticated.GeneratorValidCode;
 import acme.realms.Customers;
 
 @GuiService
@@ -53,25 +56,31 @@ public class AuthenticatedCustomersCreateService extends AbstractGuiService<Auth
 
 		object = new Customers();
 		object.setUserAccount(userAccount);
+		object.setCodigo(GeneratorValidCode.generateValidCode(object));
 
 		super.getBuffer().addData(object);
 	}
 
 	@Override
 	public void bind(final Customers object) {
-		assert object != null;
 
-		super.bindObject(object, "code", "phone", "physicalAddress", "city", "country", "earnedPoints");
+		super.bindObject(object, "codigo", "phone", "physicalAddress", "city", "country", "earnedPoints");
 	}
 
 	@Override
 	public void validate(final Customers object) {
-		assert object != null;
+
+		String cod = object.getCodigo();
+		if (cod.matches("^[A-Z]{2,3}\\d{6}$")) {
+			Collection<Customers> codigo = this.repository.findCustomerCode(cod);
+			if (!codigo.isEmpty())
+				super.state(false, "codigo", "acme.validation.error.repeat-code");
+		} else
+			super.state(false, "codigo", "acme.validation.error.pattern-code");
 	}
 
 	@Override
 	public void perform(final Customers object) {
-		assert object != null;
 
 		this.repository.save(object);
 	}
@@ -80,7 +89,7 @@ public class AuthenticatedCustomersCreateService extends AbstractGuiService<Auth
 	public void unbind(final Customers object) {
 		Dataset dataset;
 
-		dataset = super.unbindObject(object, "code", "phone", "physicalAddress", "city", "country", "earnedPoints");
+		dataset = super.unbindObject(object, "codigo", "phone", "physicalAddress", "city", "country", "earnedPoints");
 
 		super.getResponse().addData(dataset);
 	}

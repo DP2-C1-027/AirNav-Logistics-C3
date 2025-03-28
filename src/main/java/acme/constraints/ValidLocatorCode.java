@@ -21,7 +21,7 @@ import javax.validation.constraints.Pattern;
 @Pattern(regexp = "^[A-Z0-9]{6,8}$")
 public @interface ValidLocatorCode {
 
-	String message() default "{acme.validation.text.message}";
+	String message() default "{acme.validation.locatorCode}";
 
 	Class<?>[] groups() default {};
 	Class<? extends Payload>[] payload() default {};

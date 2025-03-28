@@ -2,6 +2,7 @@
 package acme.features.customers.dashboard;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
@@ -26,12 +27,10 @@ public interface CustomersDashboardRepository extends AbstractRepository {
 	List<String> findLastFiveDestinations(int customerId);
 
 	//•	The money spent in bookings during the last year
-	@Query("select sum(b.flight.cost.amount) From Booking b where b.customer.id=:customerId AND b.purchaseMoment>=FUNCTION('DATEADD', 'YEAR', -1, CURRENT_DATE)")
-	Double moneySpentInBookingDuringLastYear(int customerId);
+	@Query("SELECT SUM(b.flight.cost.amount) FROM Booking b WHERE b.customer.id = :customerId AND b.purchaseMoment >= :dateLimit")
+	Double moneySpentInBookingDuringLastYear(@Param("customerId") int customerId, @Param("dateLimit") Date dateLimit);
 
 	//•	Their number of bookings grouped by travel class
-	@Query("SELECT b.travelClass, COUNT(b) FROM Booking b WHERE b.customer.id=:customerId GROUP BY b.travelClass")
-	Map<TravelClass, Integer> bookingsGroupedByTravelClass(int customerId);
 
 	@Query("select c from Booking c where c.customer.id = :auditorId")
 	Collection<Booking> findPublishedCodeAudits(int auditorId);
@@ -48,25 +47,24 @@ public interface CustomersDashboardRepository extends AbstractRepository {
 	}
 
 	//estadistica de passenger in ther booking
-	//count of number of passegers in their booking
-	@Query("SELECT COUNT(br) FROM BookingRecord br WHERE br.booking.customer = :customer")
-	Integer countPassengersByCustomer(@Param("customer") Customers customer);
+	@Query("SELECT COUNT(br) FROM BookingRecord br WHERE br.booking.customer.id = :customer")
+	Integer countPassengersByCustomer(@Param("customer") int customer);
 
-	@Query("SELECT AVG(COUNT(br)) FROM BookingRecord br WHERE br.booking.customer = :customer")
-	Double averagePassengersByCustomer(@Param("customer") Customers customer);
+	@Query("SELECT AVG(COUNT(br)) FROM BookingRecord br WHERE br.booking.customer.id = :customer")
+	Double averagePassengersByCustomer(@Param("customer") int customer);
 
-	@Query("SELECT MIN(COUNT(br)) FROM BookingRecord br WHERE br.booking.customer = :customer")
-	Long minPassengersByCustomer(@Param("customer") Customers customer);
+	@Query("SELECT MIN(COUNT(br)) FROM BookingRecord br WHERE br.booking.customer.id = :customer")
+	Long minPassengersByCustomer(@Param("customer") int customer);
 
-	@Query("SELECT MAX(COUNT(br)) FROM BookingRecord br WHERE br.booking.customer = :customer")
-	Long maxPassengersByCustomer(@Param("customer") Customers customer);
+	@Query("SELECT MAX(COUNT(br)) FROM BookingRecord br WHERE br.booking.customer.id = :customer")
+	Long maxPassengersByCustomer(@Param("customer") int customer);
 
-	@Query("SELECT STDDEV(COUNT(br)) FROM BookingRecord br WHERE br.booking.customer = :customer")
-	Double stddevPassengersByCustomer(@Param("customer") Customers customer);
+	@Query("SELECT STDDEV(COUNT(br)) FROM BookingRecord br WHERE br.booking.customer.id = :customer")
+	Double stddevPassengersByCustomer(@Param("customer") int customer);
 
 	//estadistica booking
-	@Query("SELECT COUNT(b.flight.cost.amount) FROM Booking b WHERE b.customer = :customer AND b.purchaseMoment >= FUNCTION('DATEADD', 'YEAR', -5, CURRENT_DATE)")
-	Integer countBookingsInLastFiveYears(@Param("customer") Customers customer);
+	@Query("SELECT COUNT(b.flight.cost.amount) FROM Booking b WHERE b.customer.id = :customer AND b.purchaseMoment >= FUNCTION('DATEADD', 'YEAR', -5, CURRENT_DATE)")
+	Integer countBookingsInLastFiveYears(@Param("customer") int customer);
 
 	@Query("SELECT AVG(b.flight.cost.amount) FROM Booking b WHERE b.customer = :customer AND b.purchaseMoment >= FUNCTION('DATEADD', 'YEAR', -5, CURRENT_DATE)")
 	Double averageBookingCostInLastFiveYears(@Param("customer") Customers customer);
@@ -79,5 +77,7 @@ public interface CustomersDashboardRepository extends AbstractRepository {
 
 	@Query("SELECT STDDEV(b.flight.cost.amount) FROM Booking b WHERE b.customer = :customer AND b.purchaseMoment >= FUNCTION('DATEADD', 'YEAR', -5, CURRENT_DATE)")
 	Double stddevBookingCostInLastFiveYears(@Param("customer") Customers customer);
+
+	//count of number of passegers in their booking
 
 }

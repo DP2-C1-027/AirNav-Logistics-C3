@@ -8,12 +8,20 @@
 # purposes.  The copyright owner does not offer any warranties or representations, nor do
 # they accept any liabilities with respect to them.
 
-acme.validation.short-text = El texto debería contener entre 1 y 50 caracteres
-acme.validation.long-text = El texto debería contener entre 1 y 255 caracteres
-acme.validation.optional.short-text = El texto debería contener entre 0 y 50 caracteres
-acme.validation.optional.long-text = El texto debería contener entre 0 y 255 caracteres
-acme.validation.cargo-weight = El peso debería estar entre 2000 y 50000 kgs
-acme.validation.capacity = La capacidad debería estar entre 1 y 255 pasajeros
+acme.validation.short-text = El texto debería contener entre 1 y 50 caracteres.
+acme.validation.long-text = El texto debería contener entre 1 y 255 caracteres.
+acme.validation.optional.short-text = El texto debería contener entre 0 y 50 caracteres.
+acme.validation.optional.long-text = El texto debería contener entre 0 y 255 caracteres.
+acme.validation.cargo-weight = El peso debería estar entre 2000 y 50000 kgs.
+acme.validation.capacity = La capacidad debería estar entre 1 y 255 pasajeros.
+acme.validation.locatorCode= El valor debe contener entre 6 y 8 caracteres, solo letras mayúsculas y números
+acme.validation.lastNibble = Debe tener una longuitud de 4 caracteres
+acme.validation.passportNumber = El valor debe contener entre 6 y 9 caracteres, solo letras mayúsculas y números
+acme.validation.PhoneNumber = El número debe contener entre 6 y 15 dígitos y puede comenzar opcionalmente con el signo '+'
+acme.validation.EarnedPoints = El numero deberia estar entre 0 y 500000
+acme.validation.phoneNumberOptional =El valor debe estar vacío o contener entre 6 y 15 dígitos, y puede comenzar opcionalmente con el signo '+'
+acme.validation.emailOptional= El correo debe contener entre 0 y 255 caracteres
+acme.validation.IATAcode = El valor debe contener exactamente 3 letras mayúsculas
 acme.validation.registrationNumber = El número de registro introducido ya está en uso
 acme.validation.severityLevel = El nivel de severidad debería estar entre 0 y 10
 acme.validation.flightAssignment.flightcrewmember = Deberías seleccionar un miembro de tripulación válido
@@ -23,3 +31,5 @@ acme.validation.flightAssignment.leg.moment = La asignación solo puede ser real
 acme.validation.flightAssignment.flightCrewMember.available = El miembro de tripulación no está disponible para ser asignado
 acme.validation.flightAssignment.flightCrewMember.multipleLegs = El miembro de tripulación ya está asignado a otro tramo en este momento
 acme.validation.aircraft.airline = Deberías seleccionar una aerolínea válida
+acme.validation.identifier.mismatch = El identificador debe comenzar con tus iniciales (2 o 3 letras mayúsculas) y contener exactamente 6 dígitos numéricos
+acme.validation.identifier.notnull = El codigo no puede ser nulo

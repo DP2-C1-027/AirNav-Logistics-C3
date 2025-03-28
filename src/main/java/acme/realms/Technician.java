@@ -1,5 +1,5 @@
 
-package acme.realms.maintenanceRecords;
+package acme.realms;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -31,7 +31,7 @@ public class Technician extends AbstractRole {
 	@Mandatory
 	@Automapped
 	@Column(unique = true)
-	private String				code;
+	private String				codigo;
 
 	@Mandatory
 	@Automapped

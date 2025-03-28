@@ -66,10 +66,12 @@ public class CustomersBookingPublishService extends AbstractGuiService<Customers
 
 		Collection<Passenger> p = this.repository.findPassengersByBookingId(booking.getId());
 
-		boolean confirmation = p.isEmpty() || p.stream().allMatch(x -> !x.isDraftMode());
-
+		boolean confirmation = p.stream().allMatch(x -> !x.isDraftMode());
+		if (p.isEmpty())
+			//si no tiene pasajeros no se puede publicar
+			super.state(false, "*", "customer.booking.error.noPassenger.message");
 		//confirmation = super.getRequest().getData("confirmation", boolean.class);
-		super.state(confirmation, "lastNibble", "customer.booking.error.unpublishedPassengers.message");
+		super.state(confirmation, "*", "customer.booking.error.unpublishedPassengers.message");
 	}
 	@Override
 	public void perform(final Booking booking) {
@@ -84,9 +86,13 @@ public class CustomersBookingPublishService extends AbstractGuiService<Customers
 		SelectChoices choices;
 		choices = SelectChoices.from(TravelClass.class, booking.getTravelClass());
 		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "travelClass", "lastNibble", "draftMode");
-		Money price = booking.getPrice();
-		dataset.put("price", price);
-
+		Integer numero = this.repository.getNumberofPassenger(booking.getId());
+		double precio = booking.getPrice().getAmount() * numero;
+		String moneda = booking.getPrice().getCurrency();
+		Money precioNuevo = new Money();
+		precioNuevo.setAmount(precio);
+		precioNuevo.setCurrency(moneda);
+		dataset.put("price", precioNuevo);
 		dataset.put("travelClasses", choices);
 		super.getResponse().addData(dataset);
 	}

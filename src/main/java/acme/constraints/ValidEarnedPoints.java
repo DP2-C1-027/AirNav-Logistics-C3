@@ -21,7 +21,7 @@ import javax.validation.constraints.Min;
 @Max(500000)
 public @interface ValidEarnedPoints {
 
-	String message() default "{acme.validation.text.message}";
+	String message() default "{acme.validation.EarnedPoints}";
 
 	Class<?>[] groups() default {};
 	Class<? extends Payload>[] payload() default {};

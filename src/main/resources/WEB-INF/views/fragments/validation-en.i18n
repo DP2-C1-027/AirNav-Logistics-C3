@@ -8,12 +8,21 @@
 # purposes.  The copyright owner does not offer any warranties or representations, nor do
 # they accept any liabilities with respect to them.
 
-acme.validation.short-text = Text should be between 1 and 50 characters
-acme.validation.long-text = Text should be between 1 and 255 characters
-acme.validation.optional.short-text = Text should be between 0 and 50 characters
-acme.validation.optional.long-text = Text should be between 0 and 255 characters
-acme.validation.cargo-weight = Weight should be between 2000 and 50000 kgs
-acme.validation.capacity = Capacity should be between 1 and 255 passengers
+
+acme.validation.short-text = Text should be between 1 and 50 characters.
+acme.validation.long-text = Text should be between 1 and 255 characters.
+acme.validation.optional.short-text = Text should be between 0 and 50 characters.
+acme.validation.optional.long-text = Text should be between 0 and 255 characters.
+acme.validation.cargo-weight = Weight should be between 2000 and 50000 kgs.
+acme.validation.capacity = Capacity should be between 1 and 255 passengers.
+acme.validation.locatorCode = The value must contain between 6 and 8 characters, only uppercase letters and numbers
+acme.validation.lastNibble = It must be 4 characters long 
+acme.validation.passportNumber = The value must contain between 6 and 9 characters, only uppercase letters and numbers
+acme.validation.PhoneNumber = The number must contain between 6 and 15 digits and may optionally start with the '+' sign
+acme.validation.EarnedPoints = The number should be between 0 and 500,000
+acme.validation.phoneNumberOptional = The value must be empty or contain between 6 and 15 digits, and may optionally start with the '+' sign
+acme.validation.emailOptional = The email must contain between 0 and 255 characters
+acme.validation.IATAcode = The value must contain exactly 3 uppercase letters
 acme.validation.registrationNumber = The registration number entered is already in use
 acme.validation.severityLevel = The severity level should be between 0 and 10
 acme.validation.flightAssignment.flightcrewmember = You should select a valid flight crew member
@@ -23,3 +32,5 @@ acme.validation.flightAssignment.leg.moment = The assignment cannot be linked to
 acme.validation.flightAssignment.flightCrewMember.available = The flight crew member is not available to be assigned
 acme.validation.flightAssignment.flightCrewMember.multipleLegs = The flight crew member is already assigned to another leg
 acme.validation.aircraft.airline = You should select a valid airline
+acme.validation.identifier.mismatch = The identifier must start with your initials (2 or 3 uppercase letters) and contain exactly 6 numeric digits
+acme.validation.identifier.notnull = It cannot be null

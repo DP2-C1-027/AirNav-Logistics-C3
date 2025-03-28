@@ -17,11 +17,13 @@ customers.passenger.form.label.passportNumber = Passport Number:
 customers.passenger.form.label.dateOfBirth = Date of birth:
 customers.passenger.form.label.specialNeeds = Special Needs:
 
-authenticated.provider.booking.form.button.create = Registrer
-authenticated.provider.booking.form.button.update = Update
-
 customers.passenger.list.label.fullName = Full name: 
 customers.passenger.list.label.email = Email:
-customers.passenger.list.label.passportNumber = Passport Number:
-customers.passenger.list.label.dateOfBirth = Date of birth:
-customers.passenger.list.label.specialNeeds = Special Needs:
+
+customers.passenger.form.button.create= Create new passenger
+customers.passenger.form.button.createBooking = Add new passenger
+
+customers.passenger.form.button.update = Update
+customers.passenger.form.button.publish= Publish
+customers.passenger.form.button.delete=Delete
+

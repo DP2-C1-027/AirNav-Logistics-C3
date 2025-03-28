@@ -29,16 +29,21 @@
 	<jstl:when test="${_command == 'show' && draftMode == false}">
 	
 		<acme:button code="customers.bookingPassenger.list.button.passenger" action="/customers/passenger/passengerList?bookingId=${id}"/>
+		
+			
+		
 		</jstl:when>
 		
 		<jstl:when test="${_command == 'create'}">
 		<acme:input-select  code="customers.booking.form.label.vuelos" path="vuelo" choices="${vuelos}"/>
 		<acme:submit code="customers.booking.form.button.create" action="/customers/booking/create"/>
 		</jstl:when>
-		<jstl:when test="${acme:anyOf(_command, 'show|update|publish') && draftMode == true }">
+		<jstl:when test="${acme:anyOf(_command, 'show|update|publish|delete') && draftMode == true }">
 		<acme:button code="customers.bookingPassenger.list.button.passenger" action="/customers/passenger/passengerList?bookingId=${id}"/>
 		<acme:submit code="customers.booking.form.button.update" action="/customers/booking/update"/>
 		<acme:submit code="customers.booking.form.button.publish" action="/customers/booking/publish"/>
+		<acme:button code="customers.passenger.form.button.createBooking" action="/customers/passenger/createBooking?bookingId=${id}"/>
+		<acme:submit code="customers.booking.form.button.delete" action="/customers/booking/delete"/>
 		</jstl:when>
 	</jstl:choose>
 	

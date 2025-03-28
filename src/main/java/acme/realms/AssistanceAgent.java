@@ -37,7 +37,7 @@ public class AssistanceAgent extends AbstractRole {
 
 	@Mandatory
 	@Automapped
-	private String				code;
+	private String				codigo;
 
 	@Mandatory
 	@Automapped

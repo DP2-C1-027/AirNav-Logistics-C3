@@ -22,7 +22,7 @@ import javax.validation.constraints.Pattern;
 
 public @interface ValidPassportNumber {
 
-	String message() default "{acme.validation.text.message}";
+	String message() default "{acme.validation.passportNumber}";
 
 	Class<?>[] groups() default {};
 	Class<? extends Payload>[] payload() default {};

@@ -30,7 +30,7 @@ public class IdentifierValidator extends AbstractValidator<ValidIdentifier, Abst
 
 		DefaultUserIdentity identity = realm.getIdentity();
 
-		if (!codigo.isBlank()) {
+		if (codigo != null && !codigo.isEmpty()) {
 			boolean cod = codigo.matches("^([A-Z]{2,3})(\\d{6})$");
 
 			//2 letras
@@ -58,17 +58,13 @@ public class IdentifierValidator extends AbstractValidator<ValidIdentifier, Abst
 	private String getInitials(final String name, final String surname, final AbstractRealm realm) {
 		if (name == null || surname == null || name.isEmpty() || surname.isEmpty())
 			return "";
-		String codigo = this.getIdentifierFromRealm(realm);
 
-		String initials = name.substring(0, 1).toUpperCase() + surname.substring(0, 1).toUpperCase();
-
-		return initials;
+		return name.substring(0, 1).toUpperCase() + surname.substring(0, 1).toUpperCase();
 	}
 
 	private String getInitials1(final String name, final String surname, final AbstractRealm realm) {
 		if (name == null || surname == null || name.isEmpty() || surname.isEmpty())
 			return "";
-		String codigo = this.getIdentifierFromRealm(realm);
 
 		String initials = name.substring(0, 1).toUpperCase() + surname.substring(0, 1).toUpperCase();
 
@@ -80,9 +76,7 @@ public class IdentifierValidator extends AbstractValidator<ValidIdentifier, Abst
 
 	private String getIdentifierFromRealm(final AbstractRealm realm) {
 		try {
-			String codigo = (String) realm.getClass().getMethod("getCodigo").invoke(realm);
-
-			return codigo;
+			return (String) realm.getClass().getMethod("getCodigo").invoke(realm);
 		} catch (Exception e) {
 			return null;
 		}

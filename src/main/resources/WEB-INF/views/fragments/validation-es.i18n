@@ -14,20 +14,20 @@ acme.validation.optional.short-text = El texto debería contener entre 0 y 50 ca
 acme.validation.optional.long-text = El texto debería contener entre 0 y 255 caracteres.
 acme.validation.cargo-weight = El peso debería estar entre 2000 y 50000 kgs.
 acme.validation.capacity = La capacidad debería estar entre 1 y 255 pasajeros.
-acme.validation.locatorCode= Patron es incorrecto, debe tener una longuitud de entre 6 y 8 caracteres.
-acme.validation.lastNibble = Debe tener una longuitud de 4 caracteres.
-acme.validation.passportNumber = El patrón debe estar formado por 6 o 9 caracteres.
-acme.validation.PhoneNumber = El numero debe tener entre 6 o 15 caracteres de longuitud.
-acme.validation.EarnedPoints = El numero deberia estar entre 0 y 500000.
-acme.validation.phoneNumberOptional = El numero de telefono debe tener una longuitud de entre 6 y 15 en caso de ponerlo.
-acme.validation.emailOptional= El correo debe contener entre 0 y 255 caracteres.
-acme.validation.IATAcode = El patrón es incorrecto; debe ser un identificador de tres letras mayúsculas. 
+acme.validation.locatorCode= El valor debe contener entre 6 y 8 caracteres, solo letras mayúsculas y números
+acme.validation.lastNibble = Debe tener una longuitud de 4 caracteres
+acme.validation.passportNumber = El valor debe contener entre 6 y 9 caracteres, solo letras mayúsculas y números
+acme.validation.PhoneNumber = El número debe contener entre 6 y 15 dígitos y puede comenzar opcionalmente con el signo '+'
+acme.validation.EarnedPoints = El numero deberia estar entre 0 y 500000
+acme.validation.phoneNumberOptional =El valor debe estar vacío o contener entre 6 y 15 dígitos, y puede comenzar opcionalmente con el signo '+'
+acme.validation.emailOptional= El correo debe contener entre 0 y 255 caracteres
+acme.validation.IATAcode = El valor debe contener exactamente 3 letras mayúsculas
 
 acme.validation.registrationNumber = El número de registro introducido ya está en uso
 acme.validation.severityLevel = El nivel de severidad debería estar entre 0 y 10
 acme.validation.flightAssignment.flightcrewmember = Deberías seleccionar un miembro de tripulación válido
 acme.validation.flightAssignment.leg = Deberías seleccionar un tramo de vuelo válido
 
-acme.validation.identifier.pattern
-
+acme.validation.identifier.mismatch= El identificador debe comenzar con tus iniciales (2 o 3 letras mayúsculas) y contener exactamente 6 dígitos numéricos
+acme.validation.identifier.notnull= El codigo no puede ser nulo
 

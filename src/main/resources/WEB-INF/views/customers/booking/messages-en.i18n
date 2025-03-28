@@ -30,8 +30,11 @@ customers.booking.list.button.create= Create new Booking
 customers.booking.form.button.update= Update
 customers.booking.form.button.publish = Publish
 customers.passenger.form.button.createBooking= Add new passenger
+customers.booking.form.button.delete=Delete
 
 customers.booking.error.repeat-code= existing code, cannot be repeated
 customers.booking.error.no-flight= select a flight
 customer.booking.error.nibble-required= Last Nibble is mandatory to be able to publish the booking
 customer.booking.error.unpublishedPassengers.message= You have unpublished passengers
+customer.booking.error.noPassenger.message = There are no passengers in this booking
+customers.form.error.draft-mode= You cannot delete it

@@ -55,4 +55,8 @@ public interface CustomersBookingRepository extends AbstractRepository {
 
 	//create and update
 
+	//cuantos pasajeros hay en el booking
+	@Query("select count(br.passenger) from BookingRecord br where br.booking.id=:id")
+	Integer getNumberofPassenger(int id);
+
 }

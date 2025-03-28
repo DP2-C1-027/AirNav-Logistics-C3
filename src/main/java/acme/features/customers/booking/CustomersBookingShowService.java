@@ -57,11 +57,16 @@ public class CustomersBookingShowService extends AbstractGuiService<Customers, B
 	public void unbind(final Booking booking) {
 		Dataset dataset;
 
-		Money price = booking.getPrice();
+		Integer numero = this.repository.getNumberofPassenger(booking.getId());
+		double precio = booking.getPrice().getAmount() * numero;
+		String moneda = booking.getPrice().getCurrency();
+		Money precioNuevo = new Money();
+		precioNuevo.setAmount(precio);
+		precioNuevo.setCurrency(moneda);
 		SelectChoices choices;
 		choices = SelectChoices.from(TravelClass.class, booking.getTravelClass());
 		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "travelClass", "lastNibble", "draftMode");
-		dataset.put("price", price);
+		dataset.put("price", precioNuevo);
 		dataset.put("travelClasses", choices);
 
 		super.getResponse().addData(dataset);

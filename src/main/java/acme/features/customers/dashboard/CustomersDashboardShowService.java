@@ -53,9 +53,8 @@ public class CustomersDashboardShowService extends AbstractGuiService<Customers,
 		moment = MomentHelper.getCurrentMoment();
 		LocalDate localDateMoment = moment.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 		LocalDate dateLimit = localDateMoment.minusYears(1);
-		System.out.print(dateLimit);
+
 		LocalDate dateLimit2 = localDateMoment.minusYears(5);
-		System.out.print(dateLimit2);
 
 		Date date = Date.from(dateLimit.atStartOfDay(ZoneId.systemDefault()).toInstant());
 		Date date2 = Date.from(dateLimit2.atStartOfDay(ZoneId.systemDefault()).toInstant());
@@ -100,7 +99,7 @@ public class CustomersDashboardShowService extends AbstractGuiService<Customers,
 		minBooking = this.repository.minBookingCostInLastFiveYears(customer, date2) != null ? this.repository.minBookingCostInLastFiveYears(customer, date2) : 0.0;
 		maxBooking = this.repository.maxBookingCostInLastFiveYears(customer, date2) != null ? this.repository.maxBookingCostInLastFiveYears(customer, date2) : 0.0;
 		stddevBooking = this.repository.deviationBookingCost(customer, date2) != null ? this.repository.stddevBookingCostInLastFiveYears(customer, date2) : 0.0;
-		System.out.print(stddevBooking);
+
 		Statistics statPassenger = new Statistics();
 		statPassenger.setCount(countPassenger);
 		statPassenger.setAverage(averagePassenger);

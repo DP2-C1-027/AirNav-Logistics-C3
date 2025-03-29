@@ -56,47 +56,55 @@ public class CustomersBookingCreateService extends AbstractGuiService<Customers,
 	}
 
 	@Override
-	public void bind(final Booking whine) {
+	public void bind(final Booking booking) {
 		int flightId = super.getRequest().getData("vuelo", int.class);
 
 		Flight flight = this.repository.findFlightById(flightId);
-		super.bindObject(whine, "locatorCode", "purchaseMoment", "travelClass", "lastNibble");
-		whine.setFlight(flight);
-		whine.setDraftMode(true);
+		super.bindObject(booking, "locatorCode", "purchaseMoment", "travelClass", "lastNibble");
+		booking.setFlight(flight);
+		booking.setDraftMode(true);
 
 	}
 
 	@Override
-	public void validate(final Booking whine) {
-		String cod = whine.getLocatorCode();
+	public void validate(final Booking booking) {
+		String cod = booking.getLocatorCode();
 		Collection<Booking> codigo = this.repository.findAllBookingLocatorCode(cod);
 		if (!codigo.isEmpty())
 			super.state(false, "locatorCode", "customers.booking.error.repeat-code");
-		if (whine.getFlight() == null)
+		if (booking.getFlight() == null)
 			super.state(false, "vuelo", "customers.booking.error.no-flight");
 	}
 
 	@Override
-	public void perform(final Booking whine) {
-		this.repository.save(whine);
+	public void perform(final Booking booking) {
+		this.repository.save(booking);
 	}
 
 	@Override
-	public void unbind(final Booking whine) {
+	public void unbind(final Booking booking) {
 		Dataset dataset;
 		SelectChoices choices;
 		SelectChoices flightChoices;
 		Collection<Flight> vuelos;
-		vuelos = this.repository.getAllFlight();
-		flightChoices = SelectChoices.from(vuelos, "tag", whine.getFlight());
-		choices = SelectChoices.from(TravelClass.class, whine.getTravelClass());
-		dataset = super.unbindObject(whine, "locatorCode", "purchaseMoment", "travelClass", "lastNibble", "draftMode");
+
+		vuelos = this.vuelosFiltrados(booking);
+
+		flightChoices = SelectChoices.from(vuelos, "tag", booking.getFlight());
+		choices = SelectChoices.from(TravelClass.class, booking.getTravelClass());
+		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "travelClass", "lastNibble", "draftMode");
 		dataset.put("vuelo", flightChoices.getSelected().getKey());
 		dataset.put("vuelos", flightChoices);
-		dataset.put("price", whine.getPrice());
+		dataset.put("price", booking.getPrice());
 		dataset.put("travelClasses", choices);
 
 		super.getResponse().addData(dataset);
+
+	}
+
+	public Collection<Flight> vuelosFiltrados(final Booking booking) {
+		Collection<Flight> vuelosPublicados = this.repository.getAllFlight();
+		return vuelosPublicados.stream().filter(x -> x.getScheduledDeparture().after(booking.getPurchaseMoment())).toList();
 
 	}
 }

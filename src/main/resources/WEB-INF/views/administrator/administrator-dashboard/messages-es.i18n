@@ -1,0 +1,28 @@
+# messages-es.i18n
+#
+# Copyright (C) 2012-2025 Rafael Corchuelo.
+#
+# In keeping with the traditional purpose of furthering education and research, it is
+# the policy of the copyright owner to permit non-commercial use and redistribution of
+# this software. It has been tested carefully, but it is not guaranteed for any particular
+# purposes.  The copyright owner does not offer any warranties or representations, nor do
+# they accept any liabilities with respect to them.
+
+administrator.administrator-dashboard.form.title = Panel de control de Administración
+administrator.administrator-dashboard.form.title.general-indicators = Indicadores Generales
+administrator.administrator-dashboard.form.title.review-statistics = Estadísticas
+
+administrator.administrator-dashboard.form.label.amount-airports-grouped-operational-scope = Cantidad de Aeropuertos por Alcance Operacional
+administrator.administrator-dashboard.form.label.amount-airlines-grouped-type = Cantidad de Aerolíneas por Tipo
+administrator.administrator-dashboard.form.label.airline-type = Tipo de aerolínea
+administrator.administrator-dashboard.form.label.airline-count = Cantidad de aerolíneas
+administrator.administrator-dashboard.form.label.ratio-airlines-email-phone = Proporción de Aerolíneas con Email y Teléfono
+administrator.administrator-dashboard.form.label.ratio-active-aircrafts = Proporción de Aeronaves Activas
+administrator.administrator-dashboard.form.label.ratio-high-score-reviews = Proporción de Reseñas con Alta Puntuación
+
+administrator.administrator-dashboard.form.label.review-count = Número de Reseñas (Últimas 10 Semanas)
+administrator.administrator-dashboard.form.label.review-average = Puntuación Media de Reseñas (Últimas 10 Semanas)
+administrator.administrator-dashboard.form.label.review-min = Puntuación Mínima de Reseñas (Últimas 10 Semanas)
+administrator.administrator-dashboard.form.label.review-max = Puntuación Máxima de Reseñas (Últimas 10 Semanas)
+administrator.administrator-dashboard.form.label.review-deviation = Desviación de Puntuaciones de Reseñas (Últimas 10 Semanas)
+

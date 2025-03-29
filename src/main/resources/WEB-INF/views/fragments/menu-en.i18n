@@ -25,6 +25,7 @@ master.menu.any.review = List review
 # master.menu.administrator ###################################################
 
 master.menu.administrator = Administrator
+master.menu.administrator.show-administrator-dashboard = Show dashboard
 master.menu.administrator.list-user-accounts = List user accounts
 master.menu.administrator.list-airline = List airline
 master.menu.administrator.list-airport = List airport

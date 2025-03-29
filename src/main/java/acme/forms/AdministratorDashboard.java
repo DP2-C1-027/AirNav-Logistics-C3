@@ -22,17 +22,17 @@ public class AdministratorDashboard extends AbstractForm {
 
 	// amount of airports grouped by operational scope
 
-	private Map<OperationalScope, Integer>	airportsGroupedByOperationalScope;
+	private Map<OperationalScope, Integer>	amountAirportsGroupedByOperationalScope;
 
 	// amount of airlines grouped by type
 
-	private Map<AirlineType, Integer>		airlineGroupedByType;
+	private Map<AirlineType, Integer>		amountAirlineGroupedByType;
 
 	// ratio of all airlines with both an email and phone number
 	private Double							ratioAirlinesEmailAndPhone;
 
 	// ratio of active and nonActive aircrafts
-	private Double							activeAircrafts;
+	private Double							ratioActiveAircrafts;
 
 	// ratio of all reviews with a score above 5.00
 	private Double							ratioHighScoreReviews;

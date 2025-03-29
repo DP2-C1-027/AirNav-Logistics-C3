@@ -25,8 +25,3 @@ administrator.airport.list.title = Lista de aeropuertos
 administrator.airport.list.label.name = Nombre:
 administrator.airport.list.label.codigo = Código:
 administrator.airport.list.label.operationalScope = Alcance operativo:
-
-# Botones comunes
-administrator.airport.list.button.create = Crear
-administrator.airport.form.button.create = Crear
-administrator.airport.form.button.update = Actualizar

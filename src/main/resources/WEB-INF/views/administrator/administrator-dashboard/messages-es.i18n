@@ -1,0 +1,26 @@
+# messages-es.i18n
+#
+# Copyright (C) 2012-2025 Rafael Corchuelo.
+#
+# In keeping with the traditional purpose of furthering education and research, it is
+# the policy of the copyright owner to permit non-commercial use and redistribution of
+# this software. It has been tested carefully, but it is not guaranteed for any particular
+# purposes.  The copyright owner does not offer any warranties or representations, nor do
+# they accept any liabilities with respect to them.
+
+administrator.administrator-dashboard.form.title = Panel de control de Administración
+administrator.administrator-dashboard.form.title.general-indicators = Indicadores Generales
+administrator.administrator-dashboard.form.title.review-statistics = Estadísticas
+
+administrator.administrator-dashboard.form.label.amount-airports-grouped-operational-scope = Cantidad de aeropuertos por alcance operacional:
+administrator.administrator-dashboard.form.label.amount-airlines-grouped-type = Cantidad de aerolíneas por tipo:
+administrator.administrator-dashboard.form.label.ratio-airlines-email-phone = Proporción de aerolíneas con email y teléfono:
+administrator.administrator-dashboard.form.label.ratio-active-aircrafts = Proporción de aviones activos:
+administrator.administrator-dashboard.form.label.ratio-high-score-reviews = Proporción de reseñas con alta puntuación:
+
+administrator.administrator-dashboard.form.label.review-count = Número de reseñas (Últimas 10 Semanas):
+administrator.administrator-dashboard.form.label.review-average = Puntuación media de reseñas (Últimas 10 Semanas):
+administrator.administrator-dashboard.form.label.review-min = Puntuación mínima de reseñas (Últimas 10 Semanas):
+administrator.administrator-dashboard.form.label.review-max = Puntuación máxima de reseñas (Últimas 10 Semanas):
+administrator.administrator-dashboard.form.label.review-deviation = Desviación de puntuaciones de reseñas (Últimas 10 Semanas):
+

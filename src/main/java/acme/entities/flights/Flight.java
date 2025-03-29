@@ -66,7 +66,7 @@ public class Flight extends AbstractEntity {
 		FlightRepository repository;
 
 		repository = SpringHelper.getBean(FlightRepository.class);
-		List<Leg> legs = repository.getLegs(this.getId());
+		List<Leg> legs = repository.getLegs(this);
 		result = legs.stream().min(Comparator.comparing(Leg::getScheduledArrival)).get().getScheduledArrival();
 		return result;
 	};
@@ -78,7 +78,7 @@ public class Flight extends AbstractEntity {
 		FlightRepository repository;
 
 		repository = SpringHelper.getBean(FlightRepository.class);
-		List<Leg> legs = repository.getLegs(this.getId());
+		List<Leg> legs = repository.getLegs(this);
 		result = legs.stream().max(Comparator.comparing(Leg::getScheduledArrival)).get().getScheduledArrival();
 		return result;
 	};
@@ -89,7 +89,7 @@ public class Flight extends AbstractEntity {
 		FlightRepository repository;
 
 		repository = SpringHelper.getBean(FlightRepository.class);
-		List<Leg> legs = repository.getLegs(this.getId());
+		List<Leg> legs = repository.getLegs(this);
 		result = legs.stream().min(Comparator.comparing(Leg::getScheduledArrival)).get().getArrivalAirport().getCity();
 		return result;
 	};
@@ -100,7 +100,7 @@ public class Flight extends AbstractEntity {
 		FlightRepository repository;
 
 		repository = SpringHelper.getBean(FlightRepository.class);
-		List<Leg> legs = repository.getLegs(this.getId());
+		List<Leg> legs = repository.getLegs(this);
 		result = legs.stream().max(Comparator.comparing(Leg::getScheduledArrival)).get().getArrivalAirport().getCity();
 		return result;
 	};
@@ -111,7 +111,7 @@ public class Flight extends AbstractEntity {
 		FlightRepository repository;
 
 		repository = SpringHelper.getBean(FlightRepository.class);
-		result = repository.getLegs(this.getId()).size();
+		result = repository.getLegs(this).size() - 1;
 		return result;
 	};
 

@@ -60,7 +60,7 @@ public class Flight extends AbstractEntity {
 
 
 	@Transient
-	private java.util.Date getScheduledDeparture() {
+	public java.util.Date getScheduledDeparture() {
 
 		java.util.Date result;
 		FlightRepository repository;
@@ -72,7 +72,7 @@ public class Flight extends AbstractEntity {
 	};
 
 	@Transient
-	private java.util.Date getScheduledArrival() {
+	public java.util.Date getScheduledArrival() {
 
 		java.util.Date result;
 		FlightRepository repository;
@@ -84,7 +84,7 @@ public class Flight extends AbstractEntity {
 	};
 
 	@Transient
-	private String getDepartureCity() {
+	public String getDepartureCity() {
 		String result;
 		FlightRepository repository;
 
@@ -95,7 +95,7 @@ public class Flight extends AbstractEntity {
 	};
 
 	@Transient
-	private String getArrivalCity() {
+	public String getArrivalCity() {
 		String result;
 		FlightRepository repository;
 

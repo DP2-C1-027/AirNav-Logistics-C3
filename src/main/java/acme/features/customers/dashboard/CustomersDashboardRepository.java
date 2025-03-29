@@ -14,6 +14,7 @@ import org.springframework.stereotype.Repository;
 import acme.client.repositories.AbstractRepository;
 import acme.entities.booking.Booking;
 import acme.entities.booking.TravelClass;
+import acme.entities.flights.Flight;
 import acme.realms.Customers;
 
 @Repository
@@ -22,12 +23,30 @@ public interface CustomersDashboardRepository extends AbstractRepository {
 	@Query("select c from Customers c where c.id=:id")
 	Customers findCustomer(int id);
 
+	@Query("select f from Flight f where f.id=:id")
+	Flight findById(int id);
 	//last five destinations
-	@Query("SELECT DISTINCT l.arrivalAirport.city FROM Booking b JOIN b.flight f JOIN Leg l ON l.flight = f WHERE b.customer.id = :customerId ORDER BY l.scheduledArrival DESC")
-	List<String> findLastFiveDestinations(int customerId);
+	@Query("""
+		    SELECT distinct b.flight
+		    FROM Booking b
+		    WHERE b.customer.id = :customerId
+		""")
+	List<Flight> findFlightsByCustomerId(@Param("customerId") int customerId);
 
+	default List<String> find5topFlightsByCustomerId(final int customerId) {
+		List<Flight> reservas = this.findFlightsByCustomerId(customerId);
+		System.out.println(reservas);
+		System.out.println(reservas.stream().map(x -> x.getArrivalCity()).toList());
+		List<Integer> l = reservas.stream().map(x -> x.getId()).toList();
+		for (Flight f : reservas) {
+
+		}
+		System.out.println(l);
+		return reservas.stream().map(x -> x.getArrivalCity()).toList();// Ordena en orden descendente por la fecha de salida programada
+
+	}
 	//•	The money spent in bookings during the last year
-	@Query("SELECT SUM(b.flight.cost.amount) FROM Booking b WHERE b.customer.id = :customerId AND b.purchaseMoment >= :dateLimit")
+	@Query("SELECT SUM(b.flight.cost.amount*(SELECT COUNT(br) FROM BookingRecord br WHERE br.booking = b)) FROM Booking b WHERE b.customer.id = :customerId AND b.purchaseMoment >= :dateLimit")
 	Double moneySpentInBookingDuringLastYear(@Param("customerId") int customerId, @Param("dateLimit") Date dateLimit);
 
 	//•	Their number of bookings grouped by travel class
@@ -47,37 +66,35 @@ public interface CustomersDashboardRepository extends AbstractRepository {
 	}
 
 	//estadistica de passenger in ther booking
-	@Query("SELECT COUNT(br) FROM BookingRecord br WHERE br.booking.customer.id = :customer")
+	@Query("SELECT COUNT(br) FROM BookingRecord br WHERE br.passenger.customer.id = :customer")
 	Integer countPassengersByCustomer(@Param("customer") int customer);
 
-	@Query("SELECT AVG(COUNT(br)) FROM BookingRecord br WHERE br.booking.customer.id = :customer")
+	@Query("SELECT AVG(select count(b) from BookingRecord b where b.booking.id=br.id) FROM Booking br WHERE br.customer.id = :customer ")
 	Double averagePassengersByCustomer(@Param("customer") int customer);
 
-	@Query("SELECT MIN(COUNT(br)) FROM BookingRecord br WHERE br.booking.customer.id = :customer")
-	Long minPassengersByCustomer(@Param("customer") int customer);
+	@Query("SELECT MIN(select count(b) from BookingRecord b where b.booking.id=br.id) FROM Booking br WHERE br.customer.id = :customer ")
+	Double minPassengersByCustomer(@Param("customer") int customer);
 
-	@Query("SELECT MAX(COUNT(br)) FROM BookingRecord br WHERE br.booking.customer.id = :customer")
-	Long maxPassengersByCustomer(@Param("customer") int customer);
-
-	@Query("SELECT STDDEV(COUNT(br)) FROM BookingRecord br WHERE br.booking.customer.id = :customer")
-	Double stddevPassengersByCustomer(@Param("customer") int customer);
+	@Query("SELECT MAX(select count(b) from BookingRecord b where b.booking.id=br.id) FROM Booking br WHERE br.customer.id = :customer  ")
+	Double maxPassengersByCustomer(@Param("customer") int customer);
 
 	//estadistica booking
-	@Query("SELECT COUNT(b.flight.cost.amount) FROM Booking b WHERE b.customer.id = :customer AND b.purchaseMoment >= FUNCTION('DATEADD', 'YEAR', -5, CURRENT_DATE)")
-	Integer countBookingsInLastFiveYears(@Param("customer") int customer);
+	@Query("SELECT COUNT(b) FROM Booking b WHERE b.customer = :customer AND b.purchaseMoment >= :dateLimit")
+	Integer countBookingsInLastFiveYears(@Param("customer") Customers customer, @Param("dateLimit") Date dateLimit);
 
-	@Query("SELECT AVG(b.flight.cost.amount) FROM Booking b WHERE b.customer = :customer AND b.purchaseMoment >= FUNCTION('DATEADD', 'YEAR', -5, CURRENT_DATE)")
-	Double averageBookingCostInLastFiveYears(@Param("customer") Customers customer);
+	@Query("SELECT AVG(b.flight.cost.amount * (SELECT COUNT(br) FROM BookingRecord br WHERE br.booking = b)) FROM Booking b WHERE b.customer = :customer AND b.purchaseMoment >= :dateLimit")
+	Double averageBookingCostInLastFiveYears(@Param("customer") Customers customer, @Param("dateLimit") Date dateLimit);
 
-	@Query("SELECT MIN(b.flight.cost.amount) FROM Booking b WHERE b.customer = :customer AND b.purchaseMoment >= FUNCTION('DATEADD', 'YEAR', -5, CURRENT_DATE)")
-	Double minBookingCostInLastFiveYears(@Param("customer") Customers customer);
+	@Query("SELECT MIN(b.flight.cost.amount* (SELECT COUNT(br) FROM BookingRecord br WHERE br.booking = b)) FROM Booking b WHERE b.customer = :customer AND b.purchaseMoment >= :dateLimit")
+	Double minBookingCostInLastFiveYears(@Param("customer") Customers customer, @Param("dateLimit") Date dateLimit);
 
-	@Query("SELECT MAX(b.flight.cost.amount) FROM Booking b WHERE b.customer = :customer AND b.purchaseMoment >= FUNCTION('DATEADD', 'YEAR', -5, CURRENT_DATE)")
-	Double maxBookingCostInLastFiveYears(@Param("customer") Customers customer);
+	@Query("SELECT MAX(b.flight.cost.amount*(SELECT COUNT(br) FROM BookingRecord br WHERE br.booking = b)) FROM Booking b WHERE b.customer = :customer AND b.purchaseMoment >= :dateLimit")
+	Double maxBookingCostInLastFiveYears(@Param("customer") Customers customer, @Param("dateLimit") Date dateLimit);
 
-	@Query("SELECT STDDEV(b.flight.cost.amount) FROM Booking b WHERE b.customer = :customer AND b.purchaseMoment >= FUNCTION('DATEADD', 'YEAR', -5, CURRENT_DATE)")
-	Double stddevBookingCostInLastFiveYears(@Param("customer") Customers customer);
+	@Query("SELECT STDDEV(b.flight.cost.amount) FROM Booking b WHERE b.customer = :customer AND b.purchaseMoment >= :dateLimit")
+	Double stddevBookingCostInLastFiveYears(@Param("customer") Customers customer, @Param("dateLimit") Date dateLimit);
 
-	//count of number of passegers in their booking
+	@Query("SELECT SQRT(SUM((b.flight.cost.amount*(SELECT COUNT(br) FROM BookingRecord br WHERE br.booking = b) - (SELECT AVG(b2.flight.cost.amount*(SELECT COUNT(br) FROM BookingRecord br WHERE br.booking = b)) FROM Booking b2 WHERE b2.customer = :customer AND b2.purchaseMoment >= :moment)) * (b.flight.cost.amount*(SELECT COUNT(br) FROM BookingRecord br WHERE br.booking = b) - (SELECT AVG(b2.flight.cost.amount*(SELECT COUNT(br) FROM BookingRecord br WHERE br.booking = b)) FROM Booking b2 WHERE b2.customer = :customer AND b2.purchaseMoment >= :moment))) / COUNT(b)) FROM Booking b WHERE b.customer = :customer AND b.purchaseMoment >= :moment")
+	Double deviationBookingCost(@Param("customer") Customers customer, @Param("moment") Date moment);
 
 }

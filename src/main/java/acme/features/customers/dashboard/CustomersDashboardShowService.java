@@ -9,8 +9,10 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 
 import acme.client.components.models.Dataset;
+import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.datatypes.Statistics;
@@ -47,8 +49,13 @@ public class CustomersDashboardShowService extends AbstractGuiService<Customers,
 		Customers customer = (Customers) super.getRequest().getPrincipal().getActiveRealm();
 		CustomersDashboards dashboard;
 		int id = customer.getId();
-		LocalDate dateLimit = LocalDate.now().minusYears(1);
-		LocalDate dateLimit2 = LocalDate.now().minusYears(5);
+		Date moment;
+		moment = MomentHelper.getCurrentMoment();
+		LocalDate localDateMoment = moment.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+		LocalDate dateLimit = localDateMoment.minusYears(1);
+		System.out.print(dateLimit);
+		LocalDate dateLimit2 = localDateMoment.minusYears(5);
+		System.out.print(dateLimit2);
 
 		Date date = Date.from(dateLimit.atStartOfDay(ZoneId.systemDefault()).toInstant());
 		Date date2 = Date.from(dateLimit2.atStartOfDay(ZoneId.systemDefault()).toInstant());
@@ -78,33 +85,35 @@ public class CustomersDashboardShowService extends AbstractGuiService<Customers,
 		Double stddevBooking;
 
 		//asigamos:
-		theLastFiveDestinations = this.repository.findLastFiveDestinations(id);
+		theLastFiveDestinations = this.repository.find5topFlightsByCustomerId(customer.getId());
 		moneySpentInBookingDuringLastYear = this.repository.moneySpentInBookingDuringLastYear(id, date);
 		bookingsGroupedByTravelClass = this.repository.totalTypes(id);
+
 		countPassenger = this.repository.countPassengersByCustomer(id) != null ? this.repository.countPassengersByCustomer(id) : 0;
 		averagePassenger = this.repository.averagePassengersByCustomer(id) != null ? this.repository.averagePassengersByCustomer(id) : 0;
 		minPassenger = this.repository.minPassengersByCustomer(id) != null ? this.repository.minPassengersByCustomer(id) : 0.0;
 		maxPassenger = this.repository.maxPassengersByCustomer(id) != null ? this.repository.maxPassengersByCustomer(id) : 0.0;
-		//stddevPassenger = this.repository.stddevPassengersByCustomer(customer) != null ? this.repository.stddevPassengersByCustomer(customer) : 0.0;
-		//countBooking = this.repository.countBookingsInLastFiveYears(customer, date2) != null ? this.repository.countBookingsInLastFiveYears(customer, date2) : 0;
-		//	averageBooking = this.repository.averageBookingCostInLastFiveYears(customer, date2) != null ? this.repository.averageBookingCostInLastFiveYears(customer, date2) : 0;
-		//	minBooking = this.repository.minBookingCostInLastFiveYears(customer, date2) != null ? this.repository.minBookingCostInLastFiveYears(customer, date2) : 0.0;
-		//	maxBooking = this.repository.maxBookingCostInLastFiveYears(customer, date2) != null ? this.repository.maxBookingCostInLastFiveYears(customer, date2) : 0.0;
-		//	stddevBooking = this.repository.stddevBookingCostInLastFiveYears(customer, date2) != null ? this.repository.stddevBookingCostInLastFiveYears(customer, date2) : 0.0;
 
+		stddevPassenger = this.calculateDeviation(id) != null ? this.calculateDeviation(id) : 0.0;
+		countBooking = this.repository.countBookingsInLastFiveYears(customer, date2) != null ? this.repository.countBookingsInLastFiveYears(customer, date2) : 0;
+		averageBooking = this.repository.averageBookingCostInLastFiveYears(customer, date2) != null ? this.repository.averageBookingCostInLastFiveYears(customer, date2) : 0;
+		minBooking = this.repository.minBookingCostInLastFiveYears(customer, date2) != null ? this.repository.minBookingCostInLastFiveYears(customer, date2) : 0.0;
+		maxBooking = this.repository.maxBookingCostInLastFiveYears(customer, date2) != null ? this.repository.maxBookingCostInLastFiveYears(customer, date2) : 0.0;
+		stddevBooking = this.repository.deviationBookingCost(customer, date2) != null ? this.repository.stddevBookingCostInLastFiveYears(customer, date2) : 0.0;
+		System.out.print(stddevBooking);
 		Statistics statPassenger = new Statistics();
 		statPassenger.setCount(countPassenger);
 		statPassenger.setAverage(averagePassenger);
 		statPassenger.setMax(maxPassenger);
 		statPassenger.setMin(minPassenger);
-		//	statPassenger.setDeviationsss(stddevPassenger);
+		statPassenger.setDeviationsss(stddevPassenger);
 
 		Statistics statBooking = new Statistics();
-		//statBooking.setCount(countBooking);
-		//statBooking.setAverage(averageBooking);
-		//	statBooking.setMax(maxBooking);
-		//statBooking.setMin(minBooking);
-		//	statBooking.setDeviationsss(stddevBooking);
+		statBooking.setCount(countBooking);
+		statBooking.setAverage(averageBooking);
+		statBooking.setMax(maxBooking);
+		statBooking.setMin(minBooking);
+		statBooking.setDeviationsss(stddevBooking);
 
 		dashboard = new CustomersDashboards();
 		dashboard.setTheLastFiveDestinations(theLastFiveDestinations);
@@ -119,12 +128,42 @@ public class CustomersDashboardShowService extends AbstractGuiService<Customers,
 	@Override
 	public void unbind(final CustomersDashboards object) {
 		Dataset dataset;
+		Integer totalNumBUSINESS;
+		Integer totalNumEconomy;
+		String res5LastCity = String.join(" ", object.getTheLastFiveDestinations());
+		totalNumBUSINESS = object.getBookingsGroupedByTravelClass().get(TravelClass.BUSINESS) != null ? object.getBookingsGroupedByTravelClass().get(TravelClass.BUSINESS) : 0;
+		totalNumEconomy = object.getBookingsGroupedByTravelClass().get(TravelClass.ECONOMY) != null ? object.getBookingsGroupedByTravelClass().get(TravelClass.ECONOMY) : 0;
 
 		dataset = super.unbindObject(object, //
-			"theLastFiveDestinations", "moneySpentInBookingDuringLastYear", // 
-			"bookingsGroupedByTravelClass", "booking5Years", "passengersBooking");
+			"moneySpentInBookingDuringLastYear",// 
+			"booking5Years", "passengersBooking");
+		dataset.put("totalNumTravelClassEconomy", totalNumEconomy);
+		dataset.put("totalNumTravelClassBusiness", totalNumBUSINESS);
+		dataset.put("theLastFiveDestinations", res5LastCity);
 
 		super.getResponse().addData(dataset);
+	}
+
+	public Double calculateDeviation(@Param("customer") final int customer) {
+
+		Integer totalPassengers = this.repository.countPassengersByCustomer(customer);
+
+		Double averagePassengers = this.repository.averagePassengersByCustomer(customer);
+
+		Double minPassengers = this.repository.minPassengersByCustomer(customer);
+
+		Double maxPassengers = this.repository.maxPassengersByCustomer(customer);
+
+		double variance = 0.0;
+
+		for (int i = minPassengers.intValue(); i <= maxPassengers.intValue(); i++) {
+			Double diff = i - averagePassengers;
+			variance += Math.pow(diff, 2);
+		}
+
+		Double deviation = Math.sqrt(variance / totalPassengers);
+
+		return deviation;
 	}
 
 }

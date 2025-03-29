@@ -28,16 +28,17 @@
 		</acme:menu-option>
 		
 		<acme:menu-option code="master.menu.any">
+			<acme:menu-suboption code="master.menu.any.airport" action="/any/airport/list"/>
 			<acme:menu-suboption code="master.menu.any.review" action="/any/review/list"/>
 		</acme:menu-option>
 
 		<acme:menu-option code="master.menu.administrator" access="hasRealm('Administrator')">
-			<acme:menu-suboption code="master.menu.administrator.list-airline" action="/administrator/airline/list"/>
-			<acme:menu-separator/>
+			<acme:menu-suboption code="master.menu.administrator.show-administrator-dashboard" action="/administrator/administrator-dashboard/show" />
 			<acme:menu-suboption code="master.menu.administrator.list-user-accounts" action="/administrator/user-account/list"/>
 			<acme:menu-separator/>
 			<acme:menu-suboption code="master.menu.administrator.list-booking" action="/administrator/booking/list"/>
 			<acme:menu-separator/>
+			<acme:menu-suboption code="master.menu.administrator.list-airline" action="/administrator/airline/list"/>
 			<acme:menu-suboption code="master.menu.administrator.list-airport" action="/administrator/airport/list"/>
 			<acme:menu-suboption code="master.menu.administrator.list-aircraft" action="/administrator/aircraft/list"/>
 			<acme:menu-separator/>

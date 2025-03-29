@@ -1,20 +1,20 @@
 
-package acme.features.administrator.airports;
+package acme.features.any.airport;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
-import acme.client.components.principals.Administrator;
+import acme.client.components.principals.Any;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.airport.Airport;
 
 @GuiService
-public class AdministratorAirportShowService extends AbstractGuiService<Administrator, Airport> {
+public class AnyAirportShowService extends AbstractGuiService<Any, Airport> {
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private AdministratorAirportRepository repository;
+	private AnyAirportRepository repository;
 
 
 	// AbstractGuiService interface -------------------------------------------
@@ -24,11 +24,8 @@ public class AdministratorAirportShowService extends AbstractGuiService<Administ
 	}
 	@Override
 	public void load() {
-		Airport airport;
-		int id;
-
-		id = super.getRequest().getData("id", int.class);
-		airport = this.repository.findAirport(id);
+		int id = super.getRequest().getData("id", int.class);
+		Airport airport = this.repository.findAirport(id);
 
 		super.getBuffer().addData(airport);
 	}

@@ -23,9 +23,10 @@ administrator.airport.form.label.phoneNumber = Phone Number:
 # List labels for airport list
 administrator.airport.list.title = Airport list
 administrator.airport.list.label.name = Name:
-administrator.airport.list.label.code = Code:
+administrator.airport.list.label.codigo = Code:
 administrator.airport.list.label.operationalScope = Operational Scope:
 
 # Common buttons
-authenticated.provider.booking.form.button.create = Register
-authenticated.provider.booking.form.button.update = Update
+administrator.airport.list.button.create = Create
+administrator.airport.form.button.create = Create
+administrator.airport.form.button.update = Update

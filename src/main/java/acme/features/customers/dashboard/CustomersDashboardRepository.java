@@ -2,10 +2,12 @@
 package acme.features.customers.dashboard;
 
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -35,14 +37,10 @@ public interface CustomersDashboardRepository extends AbstractRepository {
 
 	default List<String> find5topFlightsByCustomerId(final int customerId) {
 		List<Flight> reservas = this.findFlightsByCustomerId(customerId);
-		System.out.println(reservas);
-		System.out.println(reservas.stream().map(x -> x.getArrivalCity()).toList());
-		List<Integer> l = reservas.stream().map(x -> x.getId()).toList();
-		for (Flight f : reservas) {
-
-		}
-		System.out.println(l);
-		return reservas.stream().map(x -> x.getArrivalCity()).toList();// Ordena en orden descendente por la fecha de salida programada
+		List<String> vuelosOrdenados = reservas.stream().sorted(Comparator.comparing(Flight::getScheduledDeparture).reversed())  // Ordena en orden descendente por la fecha
+			.limit(5).map(x -> x.getArrivalCity())  // Limita a los 5 vuelos más recientes
+			.collect(Collectors.toList());
+		return vuelosOrdenados;// Ordena en orden descendente por la fecha de salida programada
 
 	}
 	//•	The money spent in bookings during the last year

@@ -42,16 +42,21 @@ public class FlightCrewMemberFlightAssignmentShowService extends AbstractGuiServ
 	public void unbind(final FlightAssignment flightAssignment) {
 		Dataset dataset = super.unbindObject(flightAssignment, "duty", "moment", "currentStatus", "remarks", "flightCrewMember", "leg", "draftMode");
 
+		// Duty choices
 		SelectChoices dutyChoices = SelectChoices.from(Duty.class, flightAssignment.getDuty());
 		dataset.put("dutyChoices", dutyChoices);
 
+		// Status choices
 		SelectChoices statusChoices = SelectChoices.from(CurrentStatus.class, flightAssignment.getCurrentStatus());
 		dataset.put("statusChoices", statusChoices);
 
-		Collection<FlightCrewMember> flightCrewMembers = this.repository.findAllFlightCrewMemberFromAirline(flightAssignment.getFlightCrewMember().getAirline().getId());
+		// Flight Crew Member choices
+		Collection<FlightCrewMember> flightCrewMembers = this.repository.findAllflightCrewMemberFromAirline(flightAssignment.getFlightCrewMember().getAirline().getId());
 		SelectChoices flightCrewMemberChoices = SelectChoices.from(flightCrewMembers, "identity.fullName", flightAssignment.getFlightCrewMember());
 		dataset.put("flightCrewMemberChoices", flightCrewMemberChoices);
+		dataset.put("readOnlyCrewMember", true);
 
+		// Leg choices
 		SelectChoices legChoices = SelectChoices.from(this.repository.findAllLegs(), "flightNumber", flightAssignment.getLeg());
 		dataset.put("legChoices", legChoices);
 

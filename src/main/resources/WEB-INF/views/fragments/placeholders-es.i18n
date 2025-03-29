@@ -1,0 +1,20 @@
+# title-en.i18n
+#
+# Copyright (C) 2012-2025 Rafael Corchuelo.
+#
+# In keeping with the traditional purpose of furthering education and research, it is
+# the policy of the copyright owner to permit non-commercial use and redistribution of
+# this software. It has been tested carefully, but it is not guaranteed for any particular
+# purposes.  The copyright owner does not offer any warranties or representations, nor do
+# they accept any liabilities with respect to them.
+
+acme.placeholders.form.aircraft.model = Iberia
+acme.placeholders.form.aircraft.registrationNumber = AH244
+acme.placeholders.form.aircraft.capacity = 210
+acme.placeholders.form.aircraft.cargoWeight = 2300
+acme.placeholders.form.aircraft.details = Iberia es la mejor aerolínea de España
+acme.placeholders.form.flightAssignment.moment = 2025/11/03 12:32
+acme.placeholders.form.flightAssignment.remarks = Esperando la confirmación final de la asignación
+acme.placeholders.form.activityLog.typeOfIncident = Emergencia médica
+acme.placeholders.form.activityLog.description = Emergencia médica abordo, tratamiento realizado por tripulante de vuelo
+acme.placeholders.form.activityLog.severityLevel = 2

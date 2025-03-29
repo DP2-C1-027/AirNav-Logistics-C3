@@ -20,16 +20,18 @@ master.menu.anonymous.jose= 29589177E: García de Tejada Delgado, José
 
 # master.menu.any #######################################################
 master.menu.any = Any
+master.menu.any.airport = List airports
 master.menu.any.review = List review
 
 # master.menu.administrator ###################################################
 
 master.menu.administrator = Administrator
+master.menu.administrator.show-administrator-dashboard = Show dashboard
 master.menu.administrator.list-user-accounts = List user accounts
-master.menu.administrator.list-airline = List airline
-master.menu.administrator.list-airport = List airport
-master.menu.administrator.list-booking = List booking
-master.menu.administrator.list-aircraft = List aircraft
+master.menu.administrator.list-airline = List airlines
+master.menu.administrator.list-airport = List airports
+master.menu.administrator.list-booking = List bookings
+master.menu.administrator.list-aircraft = List aircrafts
 
 master.menu.administrator.populate-db-initial = Populate DB (initial)
 master.menu.administrator.populate-db-sample = Populate DB (samples)

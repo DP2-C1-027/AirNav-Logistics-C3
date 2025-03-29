@@ -2,7 +2,6 @@
 package acme.features.flightCrewMember.flightAssignment;
 
 import java.util.Collection;
-import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -31,16 +30,16 @@ public class FlightCrewMemberFlightAssignmentListPlannedService extends Abstract
 
 	@Override
 	public void load() {
-		Date moment = MomentHelper.getCurrentMoment();
-		Collection<FlightAssignment> plannedFlightAssignments = this.repository.findAllPlannedFlightAssignments(moment);
+		Collection<FlightAssignment> plannedFlightAssignments = this.repository.findAllPlannedFlightAssignments(MomentHelper.getCurrentMoment());
 
 		super.getBuffer().addData(plannedFlightAssignments);
 	}
 
 	@Override
 	public void unbind(final FlightAssignment plannedFlightAssignments) {
-		Dataset dataset = super.unbindObject(plannedFlightAssignments, "duty", "moment", "currentStatus", "remarks", "draftMode");
-		super.addPayload(dataset, plannedFlightAssignments, "duty", "moment", "currentStatus", "remarks", "draftMode");
+		Dataset dataset = super.unbindObject(plannedFlightAssignments, "duty", "moment", "currentStatus", "remarks", "draftMode", "leg");
+		dataset.put("leg", plannedFlightAssignments.getLeg().getFlightNumber());
+		super.addPayload(dataset, plannedFlightAssignments, "duty", "moment", "currentStatus", "remarks", "draftMode", "leg");
 		super.getResponse().addData(dataset);
 
 	}

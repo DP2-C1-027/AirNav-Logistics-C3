@@ -1,7 +1,7 @@
 key,tag,indication,cost,description,draftMode,key:airlineManager
-flight-01,Dubai-Japón,true,150USD,Un vuelo desde Dubai a Japón,true,manager-02
-flight-02,Transatlantic,true,210EUR,Transatlántico,true,manager-02
-flight-03,regional flights,true,120USD,vuelo regional de la costa griega,true,manager-01
+flight-01,Dubai-Japón,true,150USD,Un vuelo desde Dubai a Japón,false,manager-02
+flight-02,Transatlantic,true,210EUR,Transatlántico,false,manager-02
+flight-03,regional flights,true,120USD,vuelo regional de la costa griega,false,manager-01
 flight-04,madrid barcelona,false,100EUR,madrid to barcelona direct flight,true,manager-01
 flight-05,españa marruecos,false,50EUR,"flight accross the mediterranean, stopping at Málaga",true,manager-01
 flight-06,L,true,1USD,"",true,manager-01

@@ -15,7 +15,7 @@ flight-crew-member.flight-assignment.form.label.duty = Duty:
 flight-crew-member.flight-assignment.form.label.moment = Moment:
 flight-crew-member.flight-assignment.form.label.currentStatus = Current Status:
 flight-crew-member.flight-assignment.form.label.remarks = Remarks:
-flight-crew-member.flight-assignment.form.label.flightCrewMember = Flight Crew Member code:
+flight-crew-member.flight-assignment.form.label.flightCrewMember = Flight Crew Member:
 flight-crew-member.flight-assignment.form.label.leg = Leg code:
 
 flight-crew-member.flight-assignment.form.button.activity-log = Show activity logs
@@ -27,6 +27,7 @@ flight-crew-member.flight-assignment.list.label.duty = Duty:
 flight-crew-member.flight-assignment.list.label.moment = Moment:
 flight-crew-member.flight-assignment.list.label.currentStatus = Current Status:
 flight-crew-member.flight-assignment.list.label.remarks = Remarks:
+flight-crew-member.flight-assignment.list.label.leg = Flight Number:
 flight-crew-member.flight-assignment.list.label.draftMode = Published:
 
 flight-crew-member.flight-assignment.list.button.create = Create

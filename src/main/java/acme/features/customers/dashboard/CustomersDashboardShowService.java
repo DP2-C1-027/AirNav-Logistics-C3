@@ -106,14 +106,14 @@ public class CustomersDashboardShowService extends AbstractGuiService<Customers,
 		statPassenger.setAverage(averagePassenger);
 		statPassenger.setMax(maxPassenger);
 		statPassenger.setMin(minPassenger);
-		statPassenger.setDeviationsss(stddevPassenger);
+		statPassenger.setDeviation(stddevPassenger);
 
 		Statistics statBooking = new Statistics();
 		statBooking.setCount(countBooking);
 		statBooking.setAverage(averageBooking);
 		statBooking.setMax(maxBooking);
 		statBooking.setMin(minBooking);
-		statBooking.setDeviationsss(stddevBooking);
+		statBooking.setDeviation(stddevBooking);
 
 		dashboard = new CustomersDashboards();
 		dashboard.setTheLastFiveDestinations(theLastFiveDestinations);

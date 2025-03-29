@@ -1,9 +1,7 @@
 <%@ taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="acme" uri="http://acme-framework.org/" %>
 
-<h2>
-    <acme:print code="customer.dashboard.title" />
-</h2>
+
 
 <!-- Estadísticas de reservas -->
 <h3>
@@ -55,7 +53,7 @@
             <acme:print code="customer.customers-dashboard.label.devv-booking" />
         </th>
         <td>
-            <acme:print value="${booking5Years.deviationsss}" />
+            <acme:print value="${booking5Years.deviation}" />
         </td>
     </tr>
 </table>
@@ -110,7 +108,7 @@
             <acme:print code="customer.customers-dashboard.label.devv-passenger" />
         </th>
         <td>
-            <acme:print value="${passengersBooking.deviationsss}" />
+            <acme:print value="${passengersBooking.deviation}" />
         </td>
     </tr>
 </table>

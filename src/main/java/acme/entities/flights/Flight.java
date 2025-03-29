@@ -67,7 +67,8 @@ public class Flight extends AbstractEntity {
 
 		repository = SpringHelper.getBean(FlightRepository.class);
 		List<Leg> legs = repository.getLegs(this);
-		result = legs.stream().min(Comparator.comparing(Leg::getScheduledArrival)).get().getScheduledArrival();
+		Leg l = legs.stream().min(Comparator.comparing(Leg::getScheduledDeparture)).orElse(null);
+		result = l == null ? null : l.getScheduledDeparture();
 		return result;
 	};
 
@@ -79,7 +80,8 @@ public class Flight extends AbstractEntity {
 
 		repository = SpringHelper.getBean(FlightRepository.class);
 		List<Leg> legs = repository.getLegs(this);
-		result = legs.stream().max(Comparator.comparing(Leg::getScheduledArrival)).get().getScheduledArrival();
+		Leg l = legs.stream().max(Comparator.comparing(Leg::getScheduledArrival)).orElse(null);
+		result = l == null ? null : l.getScheduledArrival();
 		return result;
 	};
 
@@ -90,7 +92,8 @@ public class Flight extends AbstractEntity {
 
 		repository = SpringHelper.getBean(FlightRepository.class);
 		List<Leg> legs = repository.getLegs(this);
-		result = legs.stream().min(Comparator.comparing(Leg::getScheduledArrival)).get().getArrivalAirport().getCity();
+		Leg l = legs.stream().min(Comparator.comparing(Leg::getScheduledArrival)).orElse(null);
+		result = l == null ? null : l.getDepartureAirport().getCity();
 		return result;
 	};
 
@@ -101,17 +104,19 @@ public class Flight extends AbstractEntity {
 
 		repository = SpringHelper.getBean(FlightRepository.class);
 		List<Leg> legs = repository.getLegs(this);
-		result = legs.stream().max(Comparator.comparing(Leg::getScheduledArrival)).get().getArrivalAirport().getCity();
+		Leg l = legs.stream().max(Comparator.comparing(Leg::getScheduledArrival)).orElse(null);
+		result = l == null ? null : l.getArrivalAirport().getCity();
 		return result;
 	};
 
 	@Transient
-	private Integer getLayovers() {
+	public Integer getLayovers() {
 		Integer result;
 		FlightRepository repository;
 
 		repository = SpringHelper.getBean(FlightRepository.class);
 		result = repository.getLegs(this).size() - 1;
+		result = result >= 0 ? result : null;
 		return result;
 	};
 

@@ -30,13 +30,6 @@ public class AdministratorAircraftCreateService extends AbstractGuiService<Admin
 	@Override
 	public void load() {
 		Aircraft aircraft = new Aircraft();
-		aircraft.setModel("");
-		aircraft.setRegistrationNumber("");
-		aircraft.setCapacity(0);
-		aircraft.setCargoWeight(0);
-		aircraft.setStatus(Status.ACTIVE_SERVICE);
-		aircraft.setDetails("");
-		aircraft.setAirline(null);
 
 		super.getBuffer().addData(aircraft);
 	}
@@ -48,6 +41,8 @@ public class AdministratorAircraftCreateService extends AbstractGuiService<Admin
 
 	@Override
 	public void validate(final Aircraft aircraft) {
+		super.state(aircraft.getAirline() != null, "airline", "acme.validation.aircraft.airline");
+
 		String registrationNumber = super.getRequest().getData("registrationNumber", String.class);
 		boolean registrationNumberMatch = this.repository.findAllAircrafts().stream().noneMatch(x -> x.getRegistrationNumber().equals(registrationNumber));
 		super.state(registrationNumberMatch, "registrationNumber", "acme.validation.registrationNumber");

@@ -12,17 +12,15 @@ administrator.administrator-dashboard.form.title = Panel de control de Administr
 administrator.administrator-dashboard.form.title.general-indicators = Indicadores Generales
 administrator.administrator-dashboard.form.title.review-statistics = Estadísticas
 
-administrator.administrator-dashboard.form.label.amount-airports-grouped-operational-scope = Cantidad de Aeropuertos por Alcance Operacional
-administrator.administrator-dashboard.form.label.amount-airlines-grouped-type = Cantidad de Aerolíneas por Tipo
-administrator.administrator-dashboard.form.label.airline-type = Tipo de aerolínea
-administrator.administrator-dashboard.form.label.airline-count = Cantidad de aerolíneas
-administrator.administrator-dashboard.form.label.ratio-airlines-email-phone = Proporción de Aerolíneas con Email y Teléfono
-administrator.administrator-dashboard.form.label.ratio-active-aircrafts = Proporción de Aeronaves Activas
-administrator.administrator-dashboard.form.label.ratio-high-score-reviews = Proporción de Reseñas con Alta Puntuación
+administrator.administrator-dashboard.form.label.amount-airports-grouped-operational-scope = Cantidad de aeropuertos por alcance operacional:
+administrator.administrator-dashboard.form.label.amount-airlines-grouped-type = Cantidad de aerolíneas por tipo:
+administrator.administrator-dashboard.form.label.ratio-airlines-email-phone = Proporción de aerolíneas con email y teléfono:
+administrator.administrator-dashboard.form.label.ratio-active-aircrafts = Proporción de aviones activos:
+administrator.administrator-dashboard.form.label.ratio-high-score-reviews = Proporción de reseñas con alta puntuación:
 
-administrator.administrator-dashboard.form.label.review-count = Número de Reseñas (Últimas 10 Semanas)
-administrator.administrator-dashboard.form.label.review-average = Puntuación Media de Reseñas (Últimas 10 Semanas)
-administrator.administrator-dashboard.form.label.review-min = Puntuación Mínima de Reseñas (Últimas 10 Semanas)
-administrator.administrator-dashboard.form.label.review-max = Puntuación Máxima de Reseñas (Últimas 10 Semanas)
-administrator.administrator-dashboard.form.label.review-deviation = Desviación de Puntuaciones de Reseñas (Últimas 10 Semanas)
+administrator.administrator-dashboard.form.label.review-count = Número de reseñas (Últimas 10 Semanas):
+administrator.administrator-dashboard.form.label.review-average = Puntuación media de reseñas (Últimas 10 Semanas):
+administrator.administrator-dashboard.form.label.review-min = Puntuación mínima de reseñas (Últimas 10 Semanas):
+administrator.administrator-dashboard.form.label.review-max = Puntuación máxima de reseñas (Últimas 10 Semanas):
+administrator.administrator-dashboard.form.label.review-deviation = Desviación de puntuaciones de reseñas (Últimas 10 Semanas):
 

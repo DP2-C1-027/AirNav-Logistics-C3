@@ -14,12 +14,35 @@
 
 <%@taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <h2>
 	<acme:print code="administrator.administrator-dashboard.form.title.general-indicators"/>
 </h2>
 
 <table class="table table-sm">
+
+    <tr>
+        <th scope="row">
+            <acme:print code="administrator.administrator-dashboard.form.label.amount-airports-grouped-operational-scope"/>
+        </th>
+    </tr>
+    <c:forEach var="entry" items="${amountAirportsGroupedByOperationalScope}">
+        <tr>
+            <td>${entry.key}: ${entry.value}</td>
+        </tr>
+    </c:forEach>
+
+    <tr>
+        <th scope="row">
+            <acme:print code="administrator.administrator-dashboard.form.label.amount-airlines-grouped-type"/>
+        </th>
+    </tr>
+    <c:forEach var="entry" items="${amountAirlineGroupedByType}">
+        <tr>
+            <td>${entry.key}: ${entry.value}</td>
+        </tr>
+    </c:forEach>
 
 	<tr>
 		<th scope="row">

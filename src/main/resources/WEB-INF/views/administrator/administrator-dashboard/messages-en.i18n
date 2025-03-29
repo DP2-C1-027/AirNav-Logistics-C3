@@ -12,16 +12,14 @@ administrator.administrator-dashboard.form.title = Administrator Dashboard
 administrator.administrator-dashboard.form.title.general-indicators = General Indicators
 administrator.administrator-dashboard.form.title.review-statistics = Statistics
 
-administrator.administrator-dashboard.form.label.amount-airports-grouped-operational-scope = Amount of Airports by Operational Scope
-administrator.administrator-dashboard.form.label.amount-airlines-grouped-type = Amount of Airlines by Type
-administrator.administrator-dashboard.form.label.airline-type = Airline Type
-administrator.administrator-dashboard.form.label.airline-count = Airline Count
-administrator.administrator-dashboard.form.label.ratio-airlines-email-phone = Ratio of Airlines with Email and Phone
-administrator.administrator-dashboard.form.label.ratio-active-aircrafts = Ratio of Active Aircrafts
-administrator.administrator-dashboard.form.label.ratio-high-score-reviews = Ratio of High Score Reviews
+administrator.administrator-dashboard.form.label.amount-airports-grouped-operational-scope = Amount of airports by operational scope:
+administrator.administrator-dashboard.form.label.amount-airlines-grouped-type = Amount of airlines by type:
+administrator.administrator-dashboard.form.label.ratio-airlines-email-phone = Ratio of airlines with email and phone:
+administrator.administrator-dashboard.form.label.ratio-active-aircrafts = Ratio of active aircrafts:
+administrator.administrator-dashboard.form.label.ratio-high-score-reviews = Ratio of high score reviews:
 
-administrator.administrator-dashboard.form.label.review-count = Number of Reviews (Last 10 Weeks)
-administrator.administrator-dashboard.form.label.review-average = Average Review Score (Last 10 Weeks)
-administrator.administrator-dashboard.form.label.review-min = Minimum Review Score (Last 10 Weeks)
-administrator.administrator-dashboard.form.label.review-max = Maximum Review Score (Last 10 Weeks)
-administrator.administrator-dashboard.form.label.review-deviation = Deviation of Review Scores (Last 10 Weeks)
+administrator.administrator-dashboard.form.label.review-count = Number of reviews (Last 10 Weeks):
+administrator.administrator-dashboard.form.label.review-average = Average review score (Last 10 Weeks):
+administrator.administrator-dashboard.form.label.review-min = Minimum review score (Last 10 Weeks):
+administrator.administrator-dashboard.form.label.review-max = Maximum review score (Last 10 Weeks):
+administrator.administrator-dashboard.form.label.review-deviation = Deviation of review scores (Last 10 Weeks):

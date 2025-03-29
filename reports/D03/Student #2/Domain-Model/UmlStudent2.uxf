@@ -4,8 +4,8 @@
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>522</x>
-      <y>0</y>
+      <x>54</x>
+      <y>6</y>
       <w>342</w>
       <h>96</h>
     </coordinates>
@@ -24,8 +24,8 @@ bg=#f3fdff</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>42</x>
-      <y>120</y>
+      <x>282</x>
+      <y>138</y>
       <w>438</w>
       <h>78</h>
     </coordinates>
@@ -43,8 +43,8 @@ bg=green</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>180</x>
-      <y>240</y>
+      <x>420</x>
+      <y>258</y>
       <w>450</w>
       <h>90</h>
     </coordinates>
@@ -64,8 +64,8 @@ bg=green</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>624</x>
-      <y>270</y>
+      <x>864</x>
+      <y>288</y>
       <w>84</w>
       <h>36</h>
     </coordinates>
@@ -80,8 +80,8 @@ m2=*
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>522</x>
-      <y>180</y>
+      <x>762</x>
+      <y>198</y>
       <w>48</w>
       <h>78</h>
     </coordinates>
@@ -97,8 +97,8 @@ bg=green
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>510</x>
-      <y>156</y>
+      <x>750</x>
+      <y>174</y>
       <w>54</w>
       <h>30</h>
     </coordinates>
@@ -110,8 +110,8 @@ bg=green</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>60</x>
-      <y>264</y>
+      <x>300</x>
+      <y>282</y>
       <w>66</w>
       <h>30</h>
     </coordinates>
@@ -123,8 +123,8 @@ bg=green</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>96</x>
-      <y>192</y>
+      <x>336</x>
+      <y>210</y>
       <w>60</w>
       <h>84</h>
     </coordinates>
@@ -140,8 +140,8 @@ bg=green
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>120</x>
-      <y>264</y>
+      <x>360</x>
+      <y>282</y>
       <w>72</w>
       <h>36</h>
     </coordinates>
@@ -157,8 +157,8 @@ bg=green
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>426</x>
-      <y>402</y>
+      <x>630</x>
+      <y>372</y>
       <w>174</w>
       <h>42</h>
     </coordinates>
@@ -171,33 +171,38 @@ bg=orange</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>492</x>
-      <y>324</y>
+      <x>696</x>
+      <y>342</y>
       <w>18</w>
-      <h>90</h>
+      <h>42</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;130.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;50.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>168</x>
-      <y>372</y>
-      <w>174</w>
-      <h>42</h>
+      <x>408</x>
+      <y>390</y>
+      <w>204</w>
+      <h>90</h>
     </coordinates>
     <panel_attributes>+ A booking can be published only
 when the last credit card nibble
 has been stored. 
+
++ A booking cannot be published until it has at least
+one associated passenger and whose passengers 
+are also published.
+
 bg=orange</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>246</x>
-      <y>324</y>
+      <x>486</x>
+      <y>342</y>
       <w>18</w>
       <h>60</h>
     </coordinates>
@@ -207,8 +212,8 @@ bg=orange</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>762</x>
-      <y>132</y>
+      <x>1002</x>
+      <y>150</y>
       <w>174</w>
       <h>42</h>
     </coordinates>
@@ -221,8 +226,8 @@ bg=orange</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>822</x>
-      <y>162</y>
+      <x>1062</x>
+      <y>180</y>
       <w>18</w>
       <h>102</h>
     </coordinates>
@@ -232,15 +237,15 @@ bg=orange</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>696</x>
-      <y>252</y>
+      <x>936</x>
+      <y>270</y>
       <w>372</w>
       <h>90</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Role&gt;&gt;
 Customers
 --
-+ code: String {Mandatory, Column(unique = true), Automapped}
++ codigo: String {Mandatory, Column(unique = true), Automapped}
 + phone: String {Mandatory,ValidPhoneNumber, Automapped}
 + physicalAddress: String {Mandatory, ValidLongText, Automapped}
 + city: String {Mandatory, ValidShortText, Automapped}
@@ -248,5 +253,75 @@ Customers
 - earnedPoints: Integer {Optionaly, ValidEarnedPoints, Automapped}
 bg=pink</panel_attributes>
     <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>708</x>
+      <y>150</y>
+      <w>270</w>
+      <h>132</h>
+    </coordinates>
+    <panel_attributes>  Belongs to&gt;
+lt=&lt;-x
+m1=1
+m2=*
+bg=green
+
+</panel_attributes>
+    <additional_attributes>420.0;200.0;420.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>186</x>
+      <y>342</y>
+      <w>192</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>There cannot be duplicate pairs 
+of passengers and bookings, 
+meaning a passenger can only be associated
+with a specific booking once.
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>306</x>
+      <y>300</y>
+      <w>18</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;70.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>816</x>
+      <y>378</y>
+      <w>132</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>+ A booking can only be 
+associated with a flight that
+is already published and whose 
+departure date is later
+than the purchase date
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>840</x>
+      <y>336</y>
+      <w>18</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;70.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>

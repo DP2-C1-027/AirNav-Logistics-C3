@@ -31,14 +31,14 @@ public interface CustomersDashboardRepository extends AbstractRepository {
 	@Query("""
 		    SELECT distinct b.flight
 		    FROM Booking b
-		    WHERE b.customer.id = :customerId
+		    WHERE b.customer.id = :customerId AND b.flight.draftMode=false
 		""")
 	List<Flight> findFlightsByCustomerId(@Param("customerId") int customerId);
 
 	default List<String> find5topFlightsByCustomerId(final int customerId) {
 		List<Flight> reservas = this.findFlightsByCustomerId(customerId);
 		List<String> vuelosOrdenados = reservas.stream().sorted(Comparator.comparing(Flight::getScheduledDeparture).reversed())  // Ordena en orden descendente por la fecha
-			.limit(5).map(x -> x.getArrivalCity())  // Limita a los 5 vuelos más recientes
+			.map(x -> x.getArrivalCity()).distinct().limit(5)  // Limita a los 5 vuelos más recientes
 			.collect(Collectors.toList());
 		return vuelosOrdenados;// Ordena en orden descendente por la fecha de salida programada
 

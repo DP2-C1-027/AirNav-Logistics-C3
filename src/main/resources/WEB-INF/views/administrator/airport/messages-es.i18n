@@ -31,4 +31,5 @@ authenticated.provider.booking.form.button.create = Registrar
 authenticated.provider.booking.form.button.update = Actualizar
 administrator.airport.list.button.create = Crear
 administrator.airport.form.label.confirmation = Confirmar
-administrator.airport.form.button.update = Actualizar
+
+

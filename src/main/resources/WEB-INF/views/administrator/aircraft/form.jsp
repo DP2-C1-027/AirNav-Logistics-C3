@@ -16,12 +16,13 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <acme:form >
-	<acme:input-textbox code="administrator.aircraft.form.label.model" path="model"/>
-	<acme:input-textbox code="administrator.aircraft.form.label.registrationNumber" path="registrationNumber"/>
-	<acme:input-textbox code="administrator.aircraft.form.label.capacity" path="capacity"/>
-	<acme:input-textbox code="administrator.aircraft.form.label.cargoWeight" path="cargoWeight"/>
-	<acme:input-select code="administrator.aircraft.form.label.status" path="status" choices="${types}"/>
-	<acme:input-textbox code="administrator.aircraft.form.label.details" path="details"/>
+	<acme:input-textbox code="administrator.aircraft.form.label.model" path="model" placeholder = "acme.placeholders.form.aircraft.model"/>
+	<acme:input-textbox code="administrator.aircraft.form.label.registrationNumber" path="registrationNumber" placeholder = "acme.placeholders.form.aircraft.registrationNumber"/>
+	<acme:input-textbox code="administrator.aircraft.form.label.capacity" path="capacity" placeholder = "acme.placeholders.form.aircraft.capacity"/>
+	<acme:input-textbox code="administrator.aircraft.form.label.cargoWeight" path="cargoWeight" placeholder = "acme.placeholders.form.aircraft.cargoWeight"/>
+	<acme:input-select code="administrator.aircraft.form.label.status" path="status" choices="${statusChoices}"/>
+	<acme:input-textbox code="administrator.aircraft.form.label.details" path="details" placeholder = "acme.placeholders.form.aircraft.details"/>
+	<acme:input-select code="administrator.aircraft.form.label.airline" path="airline" choices="${airlinesChoices}"/>
 	
 	<jstl:choose>
 		<jstl:when test="${_command == 'create'}">

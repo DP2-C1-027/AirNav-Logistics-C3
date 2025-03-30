@@ -10,7 +10,7 @@ import acme.entities.flightAssignment.ActivityLog;
 import acme.realms.FlightCrewMember;
 
 @GuiService
-public class FlightCrewMemberActivityLogRecordShowService extends AbstractGuiService<FlightCrewMember, ActivityLog> {
+public class FlightCrewMemberActivityLogShowService extends AbstractGuiService<FlightCrewMember, ActivityLog> {
 
 	// Internal state ---------------------------------------------------------
 
@@ -36,6 +36,9 @@ public class FlightCrewMemberActivityLogRecordShowService extends AbstractGuiSer
 	@Override
 	public void unbind(final ActivityLog activityLog) {
 		Dataset dataset = super.unbindObject(activityLog, "registrationMoment", "typeOfIncident", "description", "severityLevel", "draftMode");
+
+		boolean draftModeFlightAssignment = this.repository.findFlightAssignmentById(activityLog.getFlightAssignment().getId()).getDraftMode();
+		dataset.put("draftModeFlightAssignment", draftModeFlightAssignment);
 
 		super.getResponse().addData(dataset);
 	}

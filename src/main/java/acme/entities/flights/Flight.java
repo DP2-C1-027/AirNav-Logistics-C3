@@ -52,62 +52,71 @@ public class Flight extends AbstractEntity {
 	@ValidLongTextOptional
 	private String				description;
 
+	@Mandatory
+	@Automapped
+	private Boolean				draftMode;
+
 	// Derived attributes -----------------------------------------------------
 
 
 	@Transient
-	private java.util.Date getScheduledDeparture() {
+	public java.util.Date getScheduledDeparture() {
 
 		java.util.Date result;
 		FlightRepository repository;
 
 		repository = SpringHelper.getBean(FlightRepository.class);
-		List<Leg> legs = repository.getLegs(this.getId());
-		result = legs.stream().min(Comparator.comparing(Leg::getScheduledArrival)).get().getScheduledArrival();
+		List<Leg> legs = repository.getLegs(this);
+		Leg l = legs.stream().min(Comparator.comparing(Leg::getScheduledDeparture)).orElse(null);
+		result = l == null ? null : l.getScheduledDeparture();
 		return result;
 	};
 
 	@Transient
-	private java.util.Date getScheduledArrival() {
+	public java.util.Date getScheduledArrival() {
 
 		java.util.Date result;
 		FlightRepository repository;
 
 		repository = SpringHelper.getBean(FlightRepository.class);
-		List<Leg> legs = repository.getLegs(this.getId());
-		result = legs.stream().max(Comparator.comparing(Leg::getScheduledArrival)).get().getScheduledArrival();
+		List<Leg> legs = repository.getLegs(this);
+		Leg l = legs.stream().max(Comparator.comparing(Leg::getScheduledArrival)).orElse(null);
+		result = l == null ? null : l.getScheduledArrival();
 		return result;
 	};
 
 	@Transient
-	private String getDepartureCity() {
+	public String getDepartureCity() {
 		String result;
 		FlightRepository repository;
 
 		repository = SpringHelper.getBean(FlightRepository.class);
-		List<Leg> legs = repository.getLegs(this.getId());
-		result = legs.stream().min(Comparator.comparing(Leg::getScheduledArrival)).get().getArrivalAirport().getCity();
+		List<Leg> legs = repository.getLegs(this);
+		Leg l = legs.stream().min(Comparator.comparing(Leg::getScheduledArrival)).orElse(null);
+		result = l == null ? null : l.getDepartureAirport().getCity();
 		return result;
 	};
 
 	@Transient
-	private String getArrivalCity() {
+	public String getArrivalCity() {
 		String result;
 		FlightRepository repository;
 
 		repository = SpringHelper.getBean(FlightRepository.class);
-		List<Leg> legs = repository.getLegs(this.getId());
-		result = legs.stream().max(Comparator.comparing(Leg::getScheduledArrival)).get().getArrivalAirport().getCity();
+		List<Leg> legs = repository.getLegs(this);
+		Leg l = legs.stream().max(Comparator.comparing(Leg::getScheduledArrival)).orElse(null);
+		result = l == null ? null : l.getArrivalAirport().getCity();
 		return result;
 	};
 
 	@Transient
-	private Integer getLayovers() {
+	public Integer getLayovers() {
 		Integer result;
 		FlightRepository repository;
 
 		repository = SpringHelper.getBean(FlightRepository.class);
-		result = repository.getLegs(this.getId()).size();
+		result = repository.getLegs(this).size() - 1;
+		result = result >= 0 ? result : null;
 		return result;
 	};
 

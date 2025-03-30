@@ -8,10 +8,17 @@
 # purposes.  The copyright owner does not offer any warranties or representations, nor do
 # they accept any liabilities with respect to them.
 
-authenticated.provider.form.title = Provider form
+authenticated.customers.form.title = Customers form
 
-authenticated.provider.form.label.company = Company: 
-authenticated.provider.form.label.sector = Sector:
+authenticated.customers.form.label.code = Code:
+authenticated.customers.form.label.phone = Phone:
+authenticated.customers.form.label.physicalAddress = Physical address:
+authenticated.customers.form.label.city = City:
+authenticated.customers.form.label.country = Country:
+authenticated.customers.form.label.earnedPoints = Earned Points:
 
-authenticated.provider.form.button.create = Register
-authenticated.provider.form.button.update = Update
+authenticated.customers.form.button.create= Create
+authenticated.customers.form.button.update= Update
+
+
+acme.validation.error.repeat-code = existing code

@@ -18,7 +18,7 @@ import javax.validation.ReportAsSingleViolation;
 
 public @interface ValidLastNibble {
 
-	String message() default "{acme.validation.text.message}";
+	String message() default "{acme.validation.lastNibble}";
 	Class<?>[] groups() default {};
 	Class<? extends Payload>[] payload() default {};
 

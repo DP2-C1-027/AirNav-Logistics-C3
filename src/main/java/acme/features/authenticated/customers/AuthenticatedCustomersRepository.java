@@ -1,5 +1,5 @@
 /*
- * AuthenticatedCustomersRepository.java
+ * AuthenticatedFlightCrewMemberRepository.java
  *
  * Copyright (C) 2012-2025 Rafael Corchuelo.
  *
@@ -11,6 +11,8 @@
  */
 
 package acme.features.authenticated.customers;
+
+import java.util.Collection;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -27,5 +29,8 @@ public interface AuthenticatedCustomersRepository extends AbstractRepository {
 
 	@Query("select c from Customers c where c.userAccount.id = :id")
 	Customers findCustomersByUserAccountId(int id);
+
+	@Query("select b from Customers b where b.codigo =?1")
+	Collection<Customers> findCustomerCode(String locatorCode);
 
 }

@@ -1,0 +1,41 @@
+# messages-es.i18n
+#
+# Copyright (C) 2012-2025 Rafael Corchuelo.
+#
+# In keeping with the traditional purpose of furthering education and research, it is
+# the policy of the copyright owner to permit non-commercial use and redistribution of
+# this software. It has been tested carefully, but it is not guaranteed for any particular
+# purposes.  The copyright owner does not offer any warranties or representations, nor do
+# they accept any liabilities with respect to them.
+
+# Título del dashboard
+customers.customers-dashboards.form.title=Mi dashboard
+
+# Estadísticas de reservas
+customer.customers-dashboard.booking-statistics=Estadísticas de reservas en los ultimos 5 años
+customer.customers-dashboard.label.count-booking=Total de reservas 
+customer.customers-dashboard.label.average-booking=Promedio de coste de las reservas
+customer.customers-dashboard.label.min-booking=Coste mínimo de las reservas
+customer.customers-dashboard.label.max-booking=Coste máximo de las reservas
+customer.customers-dashboard.label.devv-booking=Desviación estándar del coste de las reservas
+
+# Estadísticas de pasajeros
+customer.customers-dashboard.passenger-statistics=Estadísticas de pasajeros
+customer.customers-dashboard.label.count-passenger=Total de pasajeros
+customer.customers-dashboard.label.average-passenger=Promedio de pasajeros por reserva
+customer.customers-dashboard.label.min-passenger=Mínimo número de pasajeros por reserva
+customer.customers-dashboard.label.max-passenger=Máximo número de pasajeros por reserva
+customer.customers-dashboard.label.devv-passenger=Desviación estándar del número de pasajeros
+
+# Últimos cinco destinos
+customer.customers-dashboard.last-five-destinations= Últimos cinco destinos
+customer.customers-dashboard.label.last-five-destinations=Los últimos 5 destinos son:
+
+# Dinero gastado en el último año
+customer.customers-dashboard.money-spent-last-year=Dinero gastado en el último año
+customer.customers-dashboard.label.money-spent=El dinero gastado 
+
+# Número de reservas por clase de viaje
+customer.customers-dashboard.numBYTravelClass=Número de reservas por clase de viaje
+customer.customers-dashboard.label.totalNumTravelClassEconomy=Número total de reservas en clase económica
+customer.customers-dashboard.label.totalNumTravelClassBusiness=Número total de reservas en clase business

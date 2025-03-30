@@ -42,6 +42,7 @@ public class AdministratorAirportUpdateService extends AbstractGuiService<Admini
 	public void bind(final Airport airport) {
 
 		super.bindObject(airport, "name", "codigo", "city", "country", "website", "email", "address", "phoneNumber");
+
 	}
 
 	@Override
@@ -66,6 +67,7 @@ public class AdministratorAirportUpdateService extends AbstractGuiService<Admini
 		dataset = super.unbindObject(airport, "name", "codigo", "city", "country", "website", "email", "address", "phoneNumber");
 		dataset.put("confirmation", false);
 		dataset.put("operationalScope", choices);
+
 
 		super.getResponse().addData(dataset);
 	}

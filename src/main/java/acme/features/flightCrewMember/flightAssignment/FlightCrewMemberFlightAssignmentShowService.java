@@ -1,6 +1,8 @@
 
 package acme.features.flightCrewMember.flightAssignment;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
@@ -10,7 +12,6 @@ import acme.client.services.GuiService;
 import acme.entities.flightAssignment.CurrentStatus;
 import acme.entities.flightAssignment.Duty;
 import acme.entities.flightAssignment.FlightAssignment;
-import acme.entities.legs.Leg;
 import acme.realms.FlightCrewMember;
 
 @GuiService
@@ -41,17 +42,23 @@ public class FlightCrewMemberFlightAssignmentShowService extends AbstractGuiServ
 	public void unbind(final FlightAssignment flightAssignment) {
 		Dataset dataset = super.unbindObject(flightAssignment, "duty", "moment", "currentStatus", "remarks", "flightCrewMember", "leg", "draftMode");
 
+		// Duty choices
 		SelectChoices dutyChoices = SelectChoices.from(Duty.class, flightAssignment.getDuty());
 		dataset.put("dutyChoices", dutyChoices);
 
+		// Status choices
 		SelectChoices statusChoices = SelectChoices.from(CurrentStatus.class, flightAssignment.getCurrentStatus());
 		dataset.put("statusChoices", statusChoices);
 
-		FlightCrewMember flightCrewMember = (FlightCrewMember) dataset.get("flightCrewMember");
-		dataset.put("flightCrewMember", flightCrewMember.getCode());
+		// Flight Crew Member choices
+		Collection<FlightCrewMember> flightCrewMembers = this.repository.findAllflightCrewMemberFromAirline(flightAssignment.getFlightCrewMember().getAirline().getId());
+		SelectChoices flightCrewMemberChoices = SelectChoices.from(flightCrewMembers, "identity.fullName", flightAssignment.getFlightCrewMember());
+		dataset.put("flightCrewMemberChoices", flightCrewMemberChoices);
+		dataset.put("readOnlyCrewMember", true);
 
-		Leg leg = (Leg) dataset.get("leg");
-		dataset.put("leg", leg.getFlightNumber());
+		// Leg choices
+		SelectChoices legChoices = SelectChoices.from(this.repository.findAllLegs(), "flightNumber", flightAssignment.getLeg());
+		dataset.put("legChoices", legChoices);
 
 		super.getResponse().addData(dataset);
 	}

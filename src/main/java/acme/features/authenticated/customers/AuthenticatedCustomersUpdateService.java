@@ -1,5 +1,5 @@
 /*
- * AuthenticatedCustomersUpdateService.java
+ * AuthenticatedFlightCrewMemberUpdateService.java
  *
  * Copyright (C) 2012-2025 Rafael Corchuelo.
  *
@@ -11,6 +11,8 @@
  */
 
 package acme.features.authenticated.customers;
+
+import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -34,9 +36,7 @@ public class AuthenticatedCustomersUpdateService extends AbstractGuiService<Auth
 
 	@Override
 	public void authorise() {
-		boolean status;
-
-		status = super.getRequest().getPrincipal().hasRealmOfType(Customers.class);
+		boolean status = super.getRequest().getPrincipal().hasRealmOfType(Customers.class);
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -54,30 +54,33 @@ public class AuthenticatedCustomersUpdateService extends AbstractGuiService<Auth
 
 	@Override
 	public void bind(final Customers object) {
-		assert object != null;
 
-		super.bindObject(object, "code", "phone", "physicalAddress", "city", "country", "earnedPoints");
+		super.bindObject(object, "codigo", "phone", "physicalAddress", "city", "country", "earnedPoints");
 	}
 
 	@Override
 	public void validate(final Customers object) {
-		assert object != null;
+
+		String cod = object.getCodigo();
+		Collection<Customers> codigo = this.repository.findCustomerCode(cod).stream().filter(x -> x.getId() != object.getId()).toList();
+
+		if (!codigo.isEmpty())
+			super.state(false, "codigo", "acme.validation.error.repeat-code");
+
 	}
 
 	@Override
 	public void perform(final Customers object) {
-		assert object != null;
 
 		this.repository.save(object);
 	}
 
 	@Override
 	public void unbind(final Customers object) {
-		assert object != null;
 
 		Dataset dataset;
 
-		dataset = super.unbindObject(object, "code", "phone", "physicalAddress", "city", "country", "earnedPoints");
+		dataset = super.unbindObject(object, "codigo", "phone", "physicalAddress", "city", "country", "earnedPoints");
 		super.getResponse().addData(dataset);
 	}
 

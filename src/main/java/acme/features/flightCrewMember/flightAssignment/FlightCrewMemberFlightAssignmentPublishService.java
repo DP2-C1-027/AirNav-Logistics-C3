@@ -3,12 +3,8 @@ package acme.features.flightCrewMember.flightAssignment;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import acme.client.components.models.Dataset;
-import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
-import acme.entities.flightAssignment.CurrentStatus;
-import acme.entities.flightAssignment.Duty;
 import acme.entities.flightAssignment.FlightAssignment;
 import acme.realms.FlightCrewMember;
 
@@ -38,7 +34,7 @@ public class FlightCrewMemberFlightAssignmentPublishService extends AbstractGuiS
 
 	@Override
 	public void bind(final FlightAssignment flightAssignment) {
-		super.bindObject(flightAssignment, "duty", "moment", "currentStatus", "remarks");
+
 	}
 
 	@Override
@@ -54,15 +50,7 @@ public class FlightCrewMemberFlightAssignmentPublishService extends AbstractGuiS
 
 	@Override
 	public void unbind(final FlightAssignment flightAssignment) {
-		Dataset dataset = super.unbindObject(flightAssignment, "duty", "moment", "currentStatus", "remarks", "draftMode");
 
-		SelectChoices dutyChoices = SelectChoices.from(Duty.class, flightAssignment.getDuty());
-		dataset.put("dutyChoices", dutyChoices);
-
-		SelectChoices statusChoices = SelectChoices.from(CurrentStatus.class, flightAssignment.getCurrentStatus());
-		dataset.put("statusChoices", statusChoices);
-
-		super.getResponse().addData(dataset);
 	}
 
 }

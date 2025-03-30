@@ -60,8 +60,8 @@ public class CustomersBookingRecordCreateService extends AbstractGuiService<Cust
 		Customers customer;
 		customer = (Customers) super.getRequest().getPrincipal().getActiveRealm();
 
-		super.state(booking != null, "*", "customer.booking-record.create.error.null-booking");
-		super.state(passenger != null, "*", "customer.booking-record.create.error.null-passenger");
+		super.state(booking != null, "booking", "customer.booking-record.create.error.null-booking");
+		super.state(passenger != null, "passenger", "customer.booking-record.create.error.null-passenger");
 
 		boolean exists = this.repository.existsByBookingAndPassenger(booking, passenger);
 		super.state(!exists, "*", "customer.booking-record.create.error.duplicate-booking-passenger");
@@ -93,6 +93,8 @@ public class CustomersBookingRecordCreateService extends AbstractGuiService<Cust
 		dataset.put("bookings", bookingChoices);
 		dataset.put("passenger", passengerChoices.getSelected().getKey());
 		dataset.put("passengers", passengerChoices);
+		dataset.put("draftMode", true);
+
 		super.getResponse().addData(dataset);
 
 	}

@@ -43,6 +43,7 @@ public class AdministratorAirportShowService extends AbstractGuiService<Administ
 		SelectChoices choices = SelectChoices.from(OperationalScope.class, airport.getOperationalScope());
 		dataset.put("operationalScope", choices);
 
+
 		super.getResponse().addData(dataset);
 	}
 }

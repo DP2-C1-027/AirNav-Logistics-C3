@@ -1,0 +1,41 @@
+# messages-en.i18n
+#
+# Copyright (C) 2012-2025 Rafael Corchuelo.
+#
+# In keeping with the traditional purpose of furthering education and research, it is
+# the policy of the copyright owner to permit non-commercial use and redistribution of
+# this software. It has been tested carefully, but it is not guaranteed for any particular
+# purposes.  The copyright owner does not offer any warranties or representations, nor do
+# they accept any liabilities with respect to them.
+
+# Dashboard title
+customers.customers-dashboards.form.title=My Dashboard
+
+# Booking statistics
+customer.customers-dashboard.booking-statistics=Booking statistics in the last 5 years
+customer.customers-dashboard.label.count-booking=Total bookings
+customer.customers-dashboard.label.average-booking=Average booking cost
+customer.customers-dashboard.label.min-booking=Minimum booking cost
+customer.customers-dashboard.label.max-booking=Maximum booking cost
+customer.customers-dashboard.label.devv-booking=Standard deviation of booking cost
+
+# Passenger statistics
+customer.customers-dashboard.passenger-statistics=Passenger statistics
+customer.customers-dashboard.label.count-passenger=Total passengers
+customer.customers-dashboard.label.average-passenger=Average passengers per booking
+customer.customers-dashboard.label.min-passenger=Minimum number of passengers per booking
+customer.customers-dashboard.label.max-passenger=Maximum number of passengers per booking
+customer.customers-dashboard.label.devv-passenger=Standard deviation of number of passengers
+
+# Last five destinations
+customer.customers-dashboard.last-five-destinations=Last five destinations
+customer.customers-dashboard.label.last-five-destinations=The last 5 destinations are:
+
+# Money spent in the last year
+customer.customers-dashboard.money-spent-last-year=Money spent in the last year
+customer.customers-dashboard.label.money-spent=Money spent
+
+# Number of bookings by travel class
+customer.customers-dashboard.numBYTravelClass=Number of bookings by travel class
+customer.customers-dashboard.label.totalNumTravelClassEconomy=Total number of economy class bookings
+customer.customers-dashboard.label.totalNumTravelClassBusiness=Total number of business class bookings

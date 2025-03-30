@@ -39,8 +39,10 @@ public class FlightCrewMemberFlightAssignmentListPlannedService extends Abstract
 	public void unbind(final FlightAssignment plannedFlightAssignments) {
 		Dataset dataset = super.unbindObject(plannedFlightAssignments, "duty", "moment", "currentStatus", "remarks", "draftMode", "leg");
 		dataset.put("leg", plannedFlightAssignments.getLeg().getFlightNumber());
+
 		super.addPayload(dataset, plannedFlightAssignments, "duty", "moment", "currentStatus", "remarks", "draftMode", "leg");
 		super.getResponse().addData(dataset);
+		super.getResponse().addGlobal("showCreate", true);
 
 	}
 }

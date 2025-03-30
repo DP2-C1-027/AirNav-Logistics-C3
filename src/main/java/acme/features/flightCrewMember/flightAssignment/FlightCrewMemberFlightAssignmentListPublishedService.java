@@ -6,14 +6,13 @@ import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
-import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.flightAssignment.FlightAssignment;
 import acme.realms.FlightCrewMember;
 
 @GuiService
-public class FlightCrewMemberFlightAssignmentListCompletedService extends AbstractGuiService<FlightCrewMember, FlightAssignment> {
+public class FlightCrewMemberFlightAssignmentListPublishedService extends AbstractGuiService<FlightCrewMember, FlightAssignment> {
 
 	// Internal state ---------------------------------------------------------
 
@@ -30,7 +29,7 @@ public class FlightCrewMemberFlightAssignmentListCompletedService extends Abstra
 
 	@Override
 	public void load() {
-		Collection<FlightAssignment> completedFlightAssignments = this.repository.findAllCompletedFlightAssignments(MomentHelper.getCurrentMoment());
+		Collection<FlightAssignment> completedFlightAssignments = this.repository.findAllPublishedFlightAssignments();
 
 		super.getBuffer().addData(completedFlightAssignments);
 	}
@@ -42,7 +41,7 @@ public class FlightCrewMemberFlightAssignmentListCompletedService extends Abstra
 
 		super.addPayload(dataset, completedFlightAssignments, "duty", "moment", "currentStatus", "remarks", "draftMode", "leg");
 		super.getResponse().addData(dataset);
-		super.getResponse().addGlobal("showCreate", true);
+		super.getResponse().addGlobal("showCreate", false);
 
 	}
 }

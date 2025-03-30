@@ -1,5 +1,5 @@
 /*
- * AuthenticatedCustomersRepository.java
+ * AuthenticatedFlightCrewMemberRepository.java
  *
  * Copyright (C) 2012-2025 Rafael Corchuelo.
  *

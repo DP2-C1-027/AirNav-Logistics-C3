@@ -10,24 +10,24 @@
  * they accept any liabilities with respect to them.
  */
 
-package acme.features.administrator.dashboard;
+package acme.features.flightCrewMember.dashboard;
 
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import acme.client.components.principals.Administrator;
 import acme.client.controllers.AbstractGuiController;
 import acme.client.controllers.GuiController;
-import acme.forms.AdministratorDashboard;
+import acme.forms.FlightCrewMemberDashboard;
+import acme.realms.FlightCrewMember;
 
 @GuiController
-public class AdministratorDashboardController extends AbstractGuiController<Administrator, AdministratorDashboard> {
+public class FlightCrewMemberDashboardController extends AbstractGuiController<FlightCrewMember, FlightCrewMemberDashboard> {
 
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private AdministratorDashboardShowService showService;
+	private FlightCrewMemberDashboardShowService showService;
 
 	// Constructors -----------------------------------------------------------
 

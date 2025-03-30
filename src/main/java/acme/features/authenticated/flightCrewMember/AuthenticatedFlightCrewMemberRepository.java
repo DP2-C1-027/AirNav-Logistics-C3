@@ -10,22 +10,31 @@
  * they accept any liabilities with respect to them.
  */
 
-package acme.features.authenticated.consumer;
+package acme.features.authenticated.flightCrewMember;
+
+import java.util.Collection;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import acme.client.components.principals.UserAccount;
 import acme.client.repositories.AbstractRepository;
-import acme.realms.Consumer;
+import acme.entities.airline.Airline;
+import acme.realms.FlightCrewMember;
 
 @Repository
-public interface AuthenticatedConsumerRepository extends AbstractRepository {
+public interface AuthenticatedFlightCrewMemberRepository extends AbstractRepository {
+
+	@Query("select a FROM Airline a")
+	Collection<Airline> finAllAirlines();
 
 	@Query("select ua from UserAccount ua where ua.id = :id")
 	UserAccount findUserAccountById(int id);
 
-	@Query("select c from Consumer c where c.userAccount.id = :id")
-	Consumer findConsumerByUserAccountId(int id);
+	@Query("select f from FlightCrewMember f where f.userAccount.id = :id")
+	FlightCrewMember findFlightCrewMemberByUserAccountId(int id);
+
+	@Query("select f from FlightCrewMember f where f.codigo =?1")
+	Collection<FlightCrewMember> findFlightCrewMemberCode(String locatorCode);
 
 }

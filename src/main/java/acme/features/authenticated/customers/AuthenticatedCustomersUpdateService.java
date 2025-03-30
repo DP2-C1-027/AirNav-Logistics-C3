@@ -1,5 +1,5 @@
 /*
- * AuthenticatedCustomersUpdateService.java
+ * AuthenticatedFlightCrewMemberUpdateService.java
  *
  * Copyright (C) 2012-2025 Rafael Corchuelo.
  *
@@ -36,9 +36,7 @@ public class AuthenticatedCustomersUpdateService extends AbstractGuiService<Auth
 
 	@Override
 	public void authorise() {
-		boolean status;
-
-		status = super.getRequest().getPrincipal().hasRealmOfType(Customers.class);
+		boolean status = super.getRequest().getPrincipal().hasRealmOfType(Customers.class);
 
 		super.getResponse().setAuthorised(status);
 	}

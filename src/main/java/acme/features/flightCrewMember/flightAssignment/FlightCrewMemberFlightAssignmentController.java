@@ -16,6 +16,9 @@ public class FlightCrewMemberFlightAssignmentController extends AbstractGuiContr
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
+	private FlightCrewMemberFlightAssignmentListPublishedService	listPublishedService;
+
+	@Autowired
 	private FlightCrewMemberFlightAssignmentListPlannedService		listPlannedService;
 
 	@Autowired
@@ -33,16 +36,21 @@ public class FlightCrewMemberFlightAssignmentController extends AbstractGuiContr
 	@Autowired
 	private FlightCrewMemberFlightAssignmentPublishService			publishService;
 
+	@Autowired
+	private FlightCrewMemberFlightAssignmentDeleteService			deleteService;
+
 	// Constructors -----------------------------------------------------------
 
 
 	@PostConstruct
 	protected void initialise() {
+		super.addCustomCommand("list-published", "list", this.listPublishedService);
 		super.addCustomCommand("list-planned", "list", this.listPlannedService);
 		super.addCustomCommand("list-completed", "list", this.listCompletedService);
 		super.addBasicCommand("show", this.showService);
 		super.addBasicCommand("create", this.createService);
 		super.addBasicCommand("update", this.updateService);
 		super.addCustomCommand("publish", "update", this.publishService);
+		super.addBasicCommand("delete", this.deleteService);
 	}
 }

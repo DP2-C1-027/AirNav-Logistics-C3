@@ -27,3 +27,4 @@ customer.booking-record.create.error.duplicate-booking-passenger = This relation
 
 customers.form.error.draft-mode= Published booking cannot be modified
 customers.booking-record.form.label.delete=Delete
+customer.booking-record.create.publish.booking= This booking has been published, you cannot select it.

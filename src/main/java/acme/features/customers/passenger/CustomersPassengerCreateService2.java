@@ -34,9 +34,12 @@ public class CustomersPassengerCreateService2 extends AbstractGuiService<Custome
 	public void authorise() {
 		boolean status;
 		Customers customer;
-
+		int bookingId = super.getRequest().getData("bookingId", int.class);
+		System.out.println(bookingId);
+		Booking booking = this.bookingRepository.findBookingById(bookingId);
+		System.out.println(booking);
 		customer = (Customers) super.getRequest().getPrincipal().getActiveRealm();
-		status = super.getRequest().getPrincipal().hasRealm(customer);
+		status = booking.isDraftMode() && super.getRequest().getPrincipal().hasRealm(customer);
 		super.getResponse().setAuthorised(status);
 	}
 

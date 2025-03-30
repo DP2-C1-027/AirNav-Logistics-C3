@@ -21,9 +21,10 @@ public class CustomersBookingCreateService extends AbstractGuiService<Customers,
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private CustomersBookingRepository repository;
+	private CustomersBookingRepository	repository;
 
 	// AbstractGuiService interface -------------------------------------------
+	Collection<Flight>					vuelos;
 
 
 	@Override
@@ -70,10 +71,16 @@ public class CustomersBookingCreateService extends AbstractGuiService<Customers,
 	public void validate(final Booking booking) {
 		String cod = booking.getLocatorCode();
 		Collection<Booking> codigo = this.repository.findAllBookingLocatorCode(cod);
+		Date d = booking.getPurchaseMoment() == null ? null : booking.getPurchaseMoment();
 		if (!codigo.isEmpty())
 			super.state(false, "locatorCode", "customers.booking.error.repeat-code");
 		if (booking.getFlight() == null)
 			super.state(false, "vuelo", "customers.booking.error.no-flight");
+		else if (d == null)
+			super.state(false, "purchaseMoment", "customers.booking.error.moment");
+		else if (!booking.getFlight().getScheduledDeparture().after(d))
+			super.state(false, "vuelo", "customers.booking.error.cannotChoseFlight");
+
 	}
 
 	@Override
@@ -89,11 +96,14 @@ public class CustomersBookingCreateService extends AbstractGuiService<Customers,
 		Collection<Flight> vuelos;
 
 		vuelos = this.vuelosFiltrados(booking);
+		Flight flight = booking.getFlight();
+		if (flight != null && !vuelos.contains(flight))
+			flight = null;
 
-		flightChoices = SelectChoices.from(vuelos, "tag", booking.getFlight());
+		flightChoices = SelectChoices.from(vuelos, "tag", flight);
 		choices = SelectChoices.from(TravelClass.class, booking.getTravelClass());
 		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "travelClass", "lastNibble", "draftMode");
-		dataset.put("vuelo", flightChoices.getSelected().getKey());
+		dataset.put("vuelo", flightChoices.getSelected() != null ? flightChoices.getSelected().getKey() : "");
 		dataset.put("vuelos", flightChoices);
 		dataset.put("price", booking.getPrice());
 		dataset.put("travelClasses", choices);
@@ -103,8 +113,11 @@ public class CustomersBookingCreateService extends AbstractGuiService<Customers,
 	}
 
 	public Collection<Flight> vuelosFiltrados(final Booking booking) {
-		Collection<Flight> vuelosPublicados = this.repository.getAllFlight();
-		return vuelosPublicados.stream().filter(x -> x.getScheduledDeparture().after(booking.getPurchaseMoment())).toList();
+		if (booking.getPurchaseMoment() != null) {
+			Collection<Flight> vuelosPublicados = this.repository.getAllFlight();
+			return vuelosPublicados.stream().filter(x -> x.getScheduledDeparture().after(booking.getPurchaseMoment())).toList();
+		} else
+			return this.repository.getAllFlight();
 
 	}
 }

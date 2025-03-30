@@ -61,7 +61,8 @@ public class CustomersBookingUpdateService extends AbstractGuiService<Customers,
 	public void validate(final Booking booking) {
 		String cod = booking.getLocatorCode();
 		Collection<Booking> codigo = this.repository.findAllBookingLocatorCode(cod).stream().filter(x -> x.getId() != booking.getId()).toList();
-
+		if (!booking.getFlight().getScheduledDeparture().after(booking.getPurchaseMoment()))
+			super.state(false, "purchaseMoment", "customers.booking.error.purchaseMoment");
 		if (!codigo.isEmpty())
 			super.state(false, "locatorCode", "customers.booking.error.repeat-code");
 
@@ -74,19 +75,24 @@ public class CustomersBookingUpdateService extends AbstractGuiService<Customers,
 
 	@Override
 	public void unbind(final Booking booking) {
-
 		Dataset dataset;
 		SelectChoices choices;
+
 		Integer numero = this.repository.getNumberofPassenger(booking.getId());
 		double precio = booking.getPrice().getAmount() * numero;
 		String moneda = booking.getPrice().getCurrency();
 		Money precioNuevo = new Money();
 		precioNuevo.setAmount(precio);
 		precioNuevo.setCurrency(moneda);
+
 		choices = SelectChoices.from(TravelClass.class, booking.getTravelClass());
 		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "travelClass", "lastNibble", "draftMode");
 		dataset.put("price", precioNuevo);
 		dataset.put("travelClasses", choices);
+
+		dataset.put("vuelo", booking.getFlight().getTag());
+
 		super.getResponse().addData(dataset);
 	}
+
 }

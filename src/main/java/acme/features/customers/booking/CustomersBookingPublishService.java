@@ -63,6 +63,11 @@ public class CustomersBookingPublishService extends AbstractGuiService<Customers
 		boolean isValidNibble = booking.getLastNibble() != null && !booking.getLastNibble().isEmpty();
 
 		super.state(isValidNibble, "lastNibble", "customer.booking.error.nibble-required");
+		String cod = booking.getLocatorCode();
+		Collection<Booking> codigo = this.repository.findAllBookingLocatorCode(cod).stream().filter(x -> x.getId() != booking.getId()).toList();
+
+		if (!codigo.isEmpty())
+			super.state(false, "locatorCode", "customers.booking.error.repeat-code");
 
 		Collection<Passenger> p = this.repository.findPassengersByBookingId(booking.getId());
 

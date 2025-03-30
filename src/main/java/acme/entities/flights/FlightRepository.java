@@ -12,7 +12,7 @@ import acme.entities.legs.Leg;
 @Repository
 public interface FlightRepository extends AbstractRepository {
 
-	@Query("select l from Leg l where l.flight = :flightId")
-	List<Leg> getLegs(int flightId);
+	@Query("select l from Leg l where l.flight = :flight")
+	List<Leg> getLegs(Flight flight);
 
 }

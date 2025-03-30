@@ -27,6 +27,9 @@ administrator.airport.list.label.codigo = Code:
 administrator.airport.list.label.operationalScope = Operational Scope:
 
 # Common buttons
+authenticated.provider.airport.form.button.create = Register
+authenticated.provider.airport.form.button.update = Update
 administrator.airport.list.button.create = Create
-administrator.airport.form.button.create = Create
+administrator.airport.form.label.confirmation = Confirm
 administrator.airport.form.button.update = Update
+

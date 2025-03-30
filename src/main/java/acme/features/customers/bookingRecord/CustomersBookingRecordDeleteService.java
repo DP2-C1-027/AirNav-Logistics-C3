@@ -59,7 +59,7 @@ public class CustomersBookingRecordDeleteService extends AbstractGuiService<Cust
 	@Override
 	public void validate(final BookingRecord bookingRecord) {
 		super.state(bookingRecord.getBooking().isDraftMode(), "*", "customers.form.error.draft-mode");
-		;
+
 	}
 
 	@Override

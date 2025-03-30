@@ -26,3 +26,4 @@ any.review.list.label.subject = Asunto:
 # Botones comunes
 any.review.form.button.create = Crear
 any.review.list.button.create = Crear Reseña
+any.review.form.label.confirmation = Confirmar

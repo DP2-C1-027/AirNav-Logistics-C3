@@ -76,9 +76,7 @@ public class CustomersBookingRecordUpdateService extends AbstractGuiService<Cust
 
 	@Override
 	public void perform(final BookingRecord bookingRecord) {
-		Customers customer = (Customers) super.getRequest().getPrincipal().getActiveRealm();
-		Collection<Booking> booking = this.repository.findNotPublishBooking(customer.getId()).stream().filter(x -> x.isDraftMode()).toList();
-		System.out.println(booking.stream().map(x -> x.getLocatorCode()).toList());
+
 		this.repository.save(bookingRecord);
 	}
 

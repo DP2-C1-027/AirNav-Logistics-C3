@@ -20,18 +20,19 @@
 <acme:form >
 	<acme:input-textbox code="assistanceAgent.claim.form.label.registrationMoment" path="registrationMoment"/>
 	<acme:input-textbox code="assistanceAgent.claim.form.label.description" path="description"/>
-	<acme:input-textbox code="assistanceAgent.claim.form.label.type" path="type"/>
+	<acme:input-select code="assistanceAgent.claim.form.label.type" path="type "  choices="${type}"  />
 	<acme:input-textbox code="assistanceAgent.claim.form.label.indicator" path="indicator"/>
-	<acme:input-textbox code="assistanceAgent.claim.form.label.registeredBy" path="registeredBy"/>
 	<acme:input-email code="assistanceAgent.claim.form.label.passengerEmail" path="passengerEmail" />
 	<acme:input-textbox code="assistanceAgent.claim.form.label.linkedTo" path="linkedTo"/>
 
 	<jstl:choose>
-				<jstl:when test="${acme:anyOf(_command, 'show|update')}">
-					<acme:submit code="assistanceAgent.claim.form.button.update" action="/administrator/airport/update"/>
+				<jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish')}">
+					<acme:submit code="assistanceAgent.claim.form.button.update" action="/assistance-agent/claim/update"/>
+					<acme:submit code="assistanceAgent.claim.form.button.delete" action="/assistance-agent/claim/delete"/>
+					<acme:submit code="assistanceAgent.claim.form.button.publish" action="/assistance-agent/claim/publish"/>
 				</jstl:when>
 				<jstl:when test="${_command == 'create'}">
-					<acme:submit code="assistanceAgent.claim.form.button.create" action="/administrator/airport/create"/>
+					<acme:submit code="assistanceAgent.claim.form.button.create" action="/assistance-agent/claim/create"/>
 				</jstl:when>		
 		</jstl:choose>	
 </acme:form>

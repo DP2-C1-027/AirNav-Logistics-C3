@@ -39,3 +39,6 @@ customer.booking.error.unpublishedPassengers.message= You have unpublished passe
 customer.booking.error.noPassenger.message = There are no passengers in this booking
 customers.form.error.draft-mode= You cannot delete it
 customers.booking.error.cannotChoseFlight = The flight date cannot be earlier than the purchase date.
+customers.booking.error.moment= Please complete the date before choose a flight
+customer.booking-record.create.publish.booking= This reservation has been published, you cannot select it.
+customers.booking.error.purchaseMoment= The purchase date must be prior to the flight date

@@ -43,3 +43,5 @@ customers.form.error.draft-mode= No puedes borrarlo
 customers.booking.error.cannotChoseFlight= La fecha del vuelo no puede ser anterior a la fecha de compra
 
 customer.booking-record.create.publish.booking= Esta reserva ha sido publicada, no puedes seleccionarla
+customers.booking.error.moment= Por favor complete la fecha antes de elegir un vuelo
+customers.booking.error.purchaseMoment= La fecha de compra debe ser anterior a la fecha de vuelo

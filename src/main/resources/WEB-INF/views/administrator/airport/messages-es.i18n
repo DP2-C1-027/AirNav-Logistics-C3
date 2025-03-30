@@ -27,6 +27,9 @@ administrator.airport.list.label.codigo = Código:
 administrator.airport.list.label.operationalScope = Alcance operativo:
 
 # Botones comunes
+authenticated.provider.booking.form.button.create = Registrar
+authenticated.provider.booking.form.button.update = Actualizar
 administrator.airport.list.button.create = Crear
-administrator.airport.form.button.create = Crear
-administrator.airport.form.button.update = Actualizar
+administrator.airport.form.label.confirmation = Confirmar
+
+

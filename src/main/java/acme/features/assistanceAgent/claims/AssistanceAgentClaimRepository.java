@@ -24,11 +24,18 @@ import acme.entities.claims.TrackingLog;
 @Repository
 public interface AssistanceAgentClaimRepository extends AbstractRepository {
 
-	@Query("SELECT c FROM Claim c WHERE EXISTS (SELECT t FROM TrackingLog t WHERE t.claim = c AND t.resolutionPercentage BETWEEN 0 AND 99)")
+	@Query("SELECT c FROM Claim c WHERE NOT EXISTS (SELECT t FROM TrackingLog t WHERE t.claim = c AND t.indicator IN (acme.entities.claims.Indicator.ACCEPTED, acme.entities.claims.Indicator.REJECTED))")
 	Collection<Claim> findAllUndergoingClaims();
 
-	@Query("SELECT c FROM Claim c WHERE NOT EXISTS (SELECT t FROM TrackingLog t WHERE t.claim = c AND t.resolutionPercentage < 100)")
+	@Query("SELECT c FROM Claim c WHERE EXISTS (SELECT t FROM TrackingLog t WHERE t.claim = c AND t.indicator IN (acme.entities.claims.Indicator.ACCEPTED, acme.entities.claims.Indicator.REJECTED))")
 	Collection<Claim> findAllCompletedClaims();
+
+	// Nuevos métodos filtrados por assistance agent
+	@Query("SELECT c FROM Claim c WHERE c.registeredBy.id = :assistanceAgentId AND NOT EXISTS (SELECT t FROM TrackingLog t WHERE t.claim = c AND t.indicator IN (acme.entities.claims.Indicator.ACCEPTED, acme.entities.claims.Indicator.REJECTED))")
+	Collection<Claim> findAllUndergoingClaimsByAgent(int assistanceAgentId);
+
+	@Query("SELECT c FROM Claim c WHERE c.registeredBy.id = :assistanceAgentId AND EXISTS (SELECT t FROM TrackingLog t WHERE t.claim = c AND t.indicator IN (acme.entities.claims.Indicator.ACCEPTED, acme.entities.claims.Indicator.REJECTED))")
+	Collection<Claim> findAllCompletedClaimsByAgent(int assistanceAgentId);
 
 	@Query("SELECT c FROM Claim c WHERE c.id = :id")
 	Claim findOneClaimById(int id);

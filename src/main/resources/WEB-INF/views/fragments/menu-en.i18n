@@ -70,3 +70,11 @@ master.menu.user-account.consumer-profile = Consumer profile
 master.menu.customers = Customer
 master.menu.customers.list-my-bookings = My booking List
 master.menu.customers.list-my-passengers = My passengers List
+
+# master.menu.AssistanceAgent ##########################################################
+
+master.menu.assistanceAgent = Assistance Agent
+master.menu.assistanceAgent.list-my-claims =My claims completed
+master.menu.assistanceAgent.list-my-claimsUndergoing =My claims undergoing
+master.menu.assistanceAgent.list-my-trackingLogs =My trackingLogs 
+

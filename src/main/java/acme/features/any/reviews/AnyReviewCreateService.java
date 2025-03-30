@@ -42,7 +42,10 @@ public class AnyReviewCreateService extends AbstractGuiService<Any, Review> {
 
 	@Override
 	public void validate(final Review review) {
-		;
+		boolean confirmation;
+
+		confirmation = super.getRequest().getData("confirmation", boolean.class);
+		super.state(confirmation, "confirmation", "acme.validation.confirmation.message");
 	}
 
 	@Override
@@ -55,6 +58,7 @@ public class AnyReviewCreateService extends AbstractGuiService<Any, Review> {
 		Dataset dataset;
 
 		dataset = super.unbindObject(review, "name", "moment", "subject", "text", "score", "recommended");
+		dataset.put("confirmation", false);
 
 		super.getResponse().addData(dataset);
 	}

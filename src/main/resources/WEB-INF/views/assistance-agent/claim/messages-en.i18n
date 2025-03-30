@@ -8,24 +8,34 @@
 # purposes.  The copyright owner does not offer any warranties or representations, nor do
 # they accept any liabilities with respect to them.
 
-# Form labels for airport details
-administrator.airport.form.title = Airport details
-administrator.airport.form.label.name = Name:
-administrator.airport.form.label.code = Code:
-administrator.airport.form.label.operationalScope = Operational Scope:
-administrator.airport.form.label.city = City:
-administrator.airport.form.label.country = Country:
-administrator.airport.form.label.website = Website:
-administrator.airport.form.label.email = Email:
-administrator.airport.form.label.address = Address:
-administrator.airport.form.label.phoneNumber = Phone Number:
+# ============= CLAIM MODULE =============
+# List labels for claim
+assistance-agent.claim.list.title = Claims
+assistance-agent.claim.form.title = Claim
+assistanceAgent.claim.list.title = Claims Management
+assistanceAgent.claim.list.label.passengerEmail = Passenger Email
+assistanceAgent.claim.list.label.description = Description
+assistanceAgent.claim.list.label.indicator = Status
 
-# List labels for airport list
-administrator.airport.list.title = Airport list
-administrator.airport.list.label.name = Name:
-administrator.airport.list.label.code = Code:
-administrator.airport.list.label.operationalScope = Operational Scope:
+# List buttons
+assistanceAgent.claim.list.button.create = Create New Claim
 
-# Common buttons
+# Form labels for claim
+assistanceAgent.claim.form.label.registrationMoment = Registration Date
+assistanceAgent.claim.form.label.description = Description
+assistanceAgent.claim.form.label.type = Claim Type
+assistanceAgent.claim.form.label.indicator = Status
+assistanceAgent.claim.form.label.registeredBy = Registered By
+assistanceAgent.claim.form.label.passengerEmail = Passenger Email
+assistanceAgent.claim.form.label.linkedTo = Linked To
+
+# Form buttons
+assistanceAgent.claim.form.button.create = Create
+assistanceAgent.claim.form.button.update = Update
+assistanceAgent.claim.form.button.delete = Delete
+assistanceAgent.claim.form.button.publish = Publish
+
+# ============= COMMON =============
+# Common buttons (existing)
 authenticated.provider.booking.form.button.create = Register
 authenticated.provider.booking.form.button.update = Update

@@ -63,11 +63,18 @@ public class CustomersBookingPublishService extends AbstractGuiService<Customers
 		boolean isValidNibble = booking.getLastNibble() != null && !booking.getLastNibble().isEmpty();
 
 		super.state(isValidNibble, "lastNibble", "customer.booking.error.nibble-required");
+		String cod = booking.getLocatorCode();
+		Collection<Booking> codigo = this.repository.findAllBookingLocatorCode(cod).stream().filter(x -> x.getId() != booking.getId()).toList();
+
+		if (!codigo.isEmpty())
+			super.state(false, "locatorCode", "customers.booking.error.repeat-code");
 
 		Collection<Passenger> p = this.repository.findPassengersByBookingId(booking.getId());
 
-		boolean confirmation = p.isEmpty() || p.stream().allMatch(x -> !x.isDraftMode());
-
+		boolean confirmation = p.stream().allMatch(x -> !x.isDraftMode());
+		if (p.isEmpty())
+			//si no tiene pasajeros no se puede publicar
+			super.state(false, "*", "customer.booking.error.noPassenger.message");
 		//confirmation = super.getRequest().getData("confirmation", boolean.class);
 		super.state(confirmation, "*", "customer.booking.error.unpublishedPassengers.message");
 	}
@@ -84,9 +91,13 @@ public class CustomersBookingPublishService extends AbstractGuiService<Customers
 		SelectChoices choices;
 		choices = SelectChoices.from(TravelClass.class, booking.getTravelClass());
 		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "travelClass", "lastNibble", "draftMode");
-		Money price = booking.getPrice();
-		dataset.put("price", price);
-
+		Integer numero = this.repository.getNumberofPassenger(booking.getId());
+		double precio = booking.getPrice().getAmount() * numero;
+		String moneda = booking.getPrice().getCurrency();
+		Money precioNuevo = new Money();
+		precioNuevo.setAmount(precio);
+		precioNuevo.setCurrency(moneda);
+		dataset.put("price", precioNuevo);
 		dataset.put("travelClasses", choices);
 		super.getResponse().addData(dataset);
 	}

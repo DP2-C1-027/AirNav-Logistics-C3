@@ -1,0 +1,25 @@
+# title-en.i18n
+#
+# Copyright (C) 2012-2025 Rafael Corchuelo.
+#
+# In keeping with the traditional purpose of furthering education and research, it is
+# the policy of the copyright owner to permit non-commercial use and redistribution of
+# this software. It has been tested carefully, but it is not guaranteed for any particular
+# purposes.  The copyright owner does not offer any warranties or representations, nor do
+# they accept any liabilities with respect to them.
+
+acme.placeholders.form.aircraft.model = Delta Air Lines
+acme.placeholders.form.aircraft.registrationNumber = AG724
+acme.placeholders.form.aircraft.capacity = 230
+acme.placeholders.form.aircraft.cargoWeight = 2400
+acme.placeholders.form.aircraft.details = Delta Air Lines is a major American airline
+acme.placeholders.form.flightAssignment.moment = 2025/10/05 10:30
+acme.placeholders.form.flightAssignment.remarks = Awaiting final confirmation for the assignment
+acme.placeholders.form.activityLog.typeOfIncident = Medical Emergency
+acme.placeholders.form.activityLog.description = Medical emergency onboard, treated by flight crew with no landing required
+acme.placeholders.form.activityLog.severityLevel = 5
+acme.placeholders.form.flightCrewMember.codigo = ZL000002
+acme.placeholders.form.flightCrewMember.phoneNumber = +41795556677
+acme.placeholders.form.flightCrewMember.languageSkills = English, Czech, Italian
+acme.placeholders.form.flightCrewMember.salary = 46000.0EUR
+acme.placeholders.form.flightCrewMember.yearsOfExperience = 6

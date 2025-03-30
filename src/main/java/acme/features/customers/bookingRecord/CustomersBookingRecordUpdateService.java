@@ -22,7 +22,7 @@ public class CustomersBookingRecordUpdateService extends AbstractGuiService<Cust
 	private CustomersBookingRecordRepository repository;
 
 
-	// AbstractService<Manager, ProjectUserStoryLink> ---------------------------
+	// AbstractGuiService<Customers, BookingRecord> ---------------------------
 	@Override
 	public void authorise() {
 		Customers customer;
@@ -65,8 +65,8 @@ public class CustomersBookingRecordUpdateService extends AbstractGuiService<Cust
 		Customers customer;
 		customer = (Customers) super.getRequest().getPrincipal().getActiveRealm();
 
-		super.state(booking != null, "*", "customer.booking-record.create.error.null-booking");
-		super.state(passenger != null, "*", "customer.booking-record.create.error.null-passenger");
+		super.state(booking != null, "booking", "customer.booking-record.create.error.null-booking");
+		super.state(passenger != null, "passenger", "customer.booking-record.create.error.null-passenger");
 
 		boolean exists = this.repository.existsByBookingAndPassenger(booking, passenger);
 		super.state(!exists, "*", "customer.booking-record.create.error.duplicate-booking-passenger");
@@ -82,9 +82,9 @@ public class CustomersBookingRecordUpdateService extends AbstractGuiService<Cust
 	public void unbind(final BookingRecord bookingRecord) {
 		Dataset dataset;
 		Customers customer = (Customers) super.getRequest().getPrincipal().getActiveRealm();
-		//creo q da igual si el pasajero esta publicado o no
+
 		Collection<Passenger> passenger = this.repository.findPassengerByCustomerId(customer.getId());
-		//creo q el booking no debe estar publicado
+
 		Collection<Booking> booking = this.repository.findNotPublishBooking(customer.getId(), true);
 
 		SelectChoices passengerChoices;
@@ -99,7 +99,7 @@ public class CustomersBookingRecordUpdateService extends AbstractGuiService<Cust
 		dataset.put("passenger", passengerChoices.getSelected().getKey());
 		dataset.put("passengers", passengerChoices);
 		dataset.put("draftMode", bookingRecord.getBooking().isDraftMode());
-		//todas las booking deben estar en draftmode->por lo tanto es draftmode aqui debe ser true
+
 		super.getResponse().addData(dataset);
 
 	}

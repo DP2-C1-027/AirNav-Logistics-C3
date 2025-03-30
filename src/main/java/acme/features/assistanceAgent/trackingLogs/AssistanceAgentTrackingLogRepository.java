@@ -1,5 +1,5 @@
 /*
- * AssistanceAgentTrackingLogRepository.java
+ * TrackingLogRepository.java
  *
  * Copyright (C) 2012-2025 Rafael Corchuelo.
  *
@@ -23,16 +23,15 @@ import acme.entities.claims.TrackingLog;;
 @Repository
 public interface AssistanceAgentTrackingLogRepository extends AbstractRepository {
 
-	//Listar todos los TrackingLog asociados a una Claim específica
-	@Query("SELECT t FROM TrackingLog t WHERE t.claim.id = :claimId")
+	@Query("SELECT t FROM TrackingLog t LEFT JOIN FETCH t.claim WHERE t.claim.id = :claimId")
 	Collection<TrackingLog> findTrackingLogsByClaimId(int claimId);
 
-	// Obtener un TrackingLog específico por su ID
-	@Query("SELECT t FROM TrackingLog t WHERE t.id = :trackingLogId")
+	@Query("SELECT t FROM TrackingLog t LEFT JOIN FETCH t.claim WHERE t.id = :trackingLogId")
 	TrackingLog findOneTrackingLogById(int trackingLogId);
 
-	// Listar todos los TrackingLog (opcional, si es necesario)
-	@Query("SELECT t FROM TrackingLog t")
+	@Query("SELECT t FROM TrackingLog t LEFT JOIN FETCH t.claim")
 	Collection<TrackingLog> findAllTrackingLogs();
 
+	@Query("SELECT t FROM TrackingLog t LEFT JOIN FETCH t.claim c WHERE c.registeredBy.id = :assistanceAgentId")
+	Collection<TrackingLog> findAllTrackingLogsByAgent(int assistanceAgentId);
 }

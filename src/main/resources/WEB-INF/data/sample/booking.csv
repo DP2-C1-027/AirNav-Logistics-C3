@@ -6,7 +6,7 @@ booking-04,QWERTY1,2002/05/30 00:00,BUSINESS,9999,customer-01,true,flight-03
 booking-05,RTY654,2015/01/01 10:30,ECONOMY,4321,customer-01,true,flight-01
 booking-06,ABC1234,2020/06/15 12:00,ECONOMY,1234,customer-02,true,flight-01
 booking-07,XYZ543,2001/11/11 08:30,BUSINESS,,customer-03,true,flight-02
-booking-08,JKL098,2015/12/01 18:00,ECONOMY,4321,customer-01,true,flight-02
+booking-08,JKL098,2024/12/01 18:00,ECONOMY,4321,customer-01,true,flight-02
 booking-09,LMN567,2021/03/25 14:00,ECONOMY,5678,customer-02,true,flight-03
 booking-10,OPQ678,2021/11/22 17:00,BUSINESS,6789,customer-01,true,flight-02
 booking-11,DEF789,2020/01/01 00:00,ECONOMY,1234,customer-01,true,flight-01

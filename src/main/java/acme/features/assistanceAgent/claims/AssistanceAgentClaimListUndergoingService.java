@@ -35,14 +35,21 @@ public class AssistanceAgentClaimListUndergoingService extends AbstractGuiServic
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		AssistanceAgent assistance;
+		boolean status;
+		assistance = (AssistanceAgent) super.getRequest().getPrincipal().getActiveRealm();
+
+		status = super.getRequest().getPrincipal().hasRealm(assistance);
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
 	public void load() {
 		Collection<Claim> companies;
+		int assistanceId;
 
-		companies = this.repository.findAllUndergoingClaims();
+		assistanceId = super.getRequest().getPrincipal().getActiveRealm().getId();
+		companies = this.repository.findAllUndergoingClaimsByAgent(assistanceId);
 
 		super.getBuffer().addData(companies);
 	}

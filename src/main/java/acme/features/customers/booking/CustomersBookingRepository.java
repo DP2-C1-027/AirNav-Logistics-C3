@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import acme.client.components.datatypes.Money;
 import acme.client.repositories.AbstractRepository;
 import acme.entities.booking.Booking;
+import acme.entities.booking.BookingRecord;
 import acme.entities.booking.Passenger;
 import acme.entities.flights.Flight;
 import acme.realms.Customers;
@@ -47,12 +48,20 @@ public interface CustomersBookingRepository extends AbstractRepository {
 	@Query("SELECT f.cost FROM Flight f WHERE f.id=:id")
 	Money getPriceById(final int id);
 
-	@Query("SELECT f FROM Flight f")
+	@Query("SELECT f FROM Flight f where f.draftMode = false")
 	Collection<Flight> getAllFlight();
 
 	@Query("SELECT f FROM Flight f WHERE f.id = ?1")
 	Flight findFlightById(int id);
 
 	//create and update
+
+	//cuantos pasajeros hay en el booking
+	@Query("select count(br.passenger) from BookingRecord br where br.booking.id=:id")
+	Integer getNumberofPassenger(int id);
+
+	//todos los bookingRecord de un booking
+	@Query("select br from BookingRecord br where br.booking.id=:id")
+	Collection<BookingRecord> findAllBookingRecordById(int id);
 
 }

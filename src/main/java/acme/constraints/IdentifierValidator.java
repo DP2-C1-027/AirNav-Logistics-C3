@@ -1,7 +1,6 @@
 
 package acme.constraints;
 
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.validation.ConstraintValidatorContext;
@@ -18,41 +17,61 @@ public class IdentifierValidator extends AbstractValidator<ValidIdentifier, Abst
 
 
 	@Override
-	public boolean isValid(final AbstractRealm realm, final ConstraintValidatorContext context) {
-		if (realm == null || realm.getIdentity() == null)
-			return false;
+	protected void initialise(final ValidIdentifier annotation) {
+		assert annotation != null;
+	}
 
-		DefaultUserIdentity identity = realm.getIdentity();
+	@Override
+	public boolean isValid(final AbstractRealm realm, final ConstraintValidatorContext context) {
+
 		String codigo = this.getIdentifierFromRealm(realm);
 
-		if (codigo == null)
-			return false;
+		boolean result;
 
-		Matcher matcher = IdentifierValidator.IDENTIFIER_PATTERN.matcher(codigo);
-		if (!matcher.matches()) {
+		DefaultUserIdentity identity = realm.getIdentity();
 
-			this.state(context, false, "codigo", "acme.validation.identifier.pattern");
-			return false;
-		}
+		if (codigo != null && !codigo.isEmpty()) {
+			boolean cod = codigo.matches("^([A-Z]{2,3})(\\d{6})$");
 
-		String identifierInitials = matcher.group(1);
+			//2 letras
+			String codValido1 = "";
+			//3 letras
+			String codValido2 = "";
+			if (codigo.length() > 2)
+				codValido1 = codigo.substring(0, 2);
+			if (codigo.length() > 3)
+				codValido2 = codigo.substring(0, 3);
 
-		String expectedInitials = this.getInitials(identity.getName(), identity.getSurname(), realm);
+			String expectedInitials2letras = this.getInitials(identity.getName(), identity.getSurname(), realm);
+			String expectedInitials3letras = this.getInitials1(identity.getName(), identity.getSurname(), realm);
 
-		boolean isValid = identifierInitials.equals(expectedInitials);
-		if (!isValid)
-			this.state(context, false, "codigo", "acme.validation.identifier.mismatch");
+			boolean cod1 = expectedInitials2letras.matches(codValido1) || expectedInitials3letras.matches(codValido2);
 
-		return isValid;
+
+			super.state(context, cod1 && cod, "codigo", "acme.validation.identifier.mismatch");
+		} else
+			super.state(context, false, "codigo", "acme.validation.identifier.notnull");
+		result = !super.hasErrors(context);
+
+		return result;
 	}
 
 	private String getInitials(final String name, final String surname, final AbstractRealm realm) {
 		if (name == null || surname == null || name.isEmpty() || surname.isEmpty())
 			return "";
-		String codigo = this.getIdentifierFromRealm(realm);
+
+		return name.substring(0, 1).toUpperCase() + surname.substring(0, 1).toUpperCase();
+	}
+
+	private String getInitials1(final String name, final String surname, final AbstractRealm realm) {
+		if (name == null || surname == null || name.isEmpty() || surname.isEmpty())
+			return "";
 
 		String initials = name.substring(0, 1).toUpperCase() + surname.substring(0, 1).toUpperCase();
-		if (codigo.substring(0, 3).matches("[A-Z]{2,3}") && surname.length() > 1)
+
+
+		if (surname.length() > 1)
+
 			initials += surname.substring(1, 2).toUpperCase(); // Tercera letra opcional
 
 		return initials;

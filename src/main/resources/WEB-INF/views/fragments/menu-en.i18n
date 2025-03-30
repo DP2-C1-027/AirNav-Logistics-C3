@@ -20,16 +20,18 @@ master.menu.anonymous.jose= 29589177E: García de Tejada Delgado, José
 
 # master.menu.any #######################################################
 master.menu.any = Any
+master.menu.any.airport = List airports
 master.menu.any.review = List review
 
 # master.menu.administrator ###################################################
 
 master.menu.administrator = Administrator
+master.menu.administrator.show-administrator-dashboard = Show dashboard
 master.menu.administrator.list-user-accounts = List user accounts
-master.menu.administrator.list-airline = List airline
-master.menu.administrator.list-airport = List airport
-master.menu.administrator.list-booking = List booking
-master.menu.administrator.list-aircraft = List aircraft
+master.menu.administrator.list-airline = List airlines
+master.menu.administrator.list-airport = List airports
+master.menu.administrator.list-booking = List bookings
+master.menu.administrator.list-aircraft = List aircrafts
 
 master.menu.administrator.populate-db-initial = Populate DB (initial)
 master.menu.administrator.populate-db-sample = Populate DB (samples)
@@ -43,6 +45,7 @@ master.menu.provider.favourite-link = Favourite link
 # master.menu.flightCrewMember ########################################################
 
 master.menu.flightCrewMember = Flight Crew Member
+master.menu.flightCrewMember.list-flight-assignments-published = Flight Assignments Published
 master.menu.flightCrewMember.list-flight-assignments-planned = Flight Assignments Planned
 master.menu.flightCrewMember.list-flight-assignments-completed = Flight Assignments Completed
 
@@ -67,6 +70,15 @@ master.menu.user-account.become-consumer = Become a consumer
 master.menu.user-account.consumer-profile = Consumer profile
 master.menu.user-account.become-customers = Become a customer
 master.menu.user-account.customers-profile = Customer profile
+master.menu.user-account.become-flight-crew-member = Become a flight crew member
+master.menu.user-account.flight-crew-member-profile = Flight Crew Member profile
+
+# master.menu.AssistanceAgent ##########################################################
+
+master.menu.assistanceAgent = Assistance Agent
+master.menu.assistanceAgent.list-my-claims =My claims completed
+master.menu.assistanceAgent.list-my-claimsUndergoing =My claims undergoing
+master.menu.assistanceAgent.list-my-trackingLogs =My trackingLogs 
 
 # master.menu.customers ##########################################################
 master.menu.customers = Customer
@@ -75,3 +87,6 @@ master.menu.customers.list-my-passengers = My passengers List
 master.menu.customers.show-dashboard = My dashboard
 master.menu.customers.list-my-bookingRecord = My bookingRecord List
 
+# master.menu.dashboards ########################################################
+master.menu.dashboards = Dashboards
+master.menu.dashboards.flight-crew-member-dashboard = Flight Crew Member Dashboard

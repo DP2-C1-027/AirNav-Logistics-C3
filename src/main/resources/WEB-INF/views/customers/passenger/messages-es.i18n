@@ -24,3 +24,5 @@ customers.passenger.form.button.create= Crear nuevo pasajero
 customers.passenger.form.button.createBooking = Crear nuevo pasajero
 customers.passenger.form.button.update = Actualizar
 customers.passenger.form.button.publish= Publicar
+
+customers.passenger.form.button.delete=Borrar

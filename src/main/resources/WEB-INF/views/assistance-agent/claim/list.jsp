@@ -17,12 +17,12 @@
 
 <acme:list>
 	<acme:list-column code="assistanceAgent.claim.list.label.passengerEmail" path="passengerEmail" width="10%"/>
-	<acme:list-column code="assistanceAgent.claim.list.label.description" path="description" width="20%"/>
-	<acme:list-column code="assistanceAgent.claim.list.label.indicator"  path="indicator" width="20%"/>
+	<acme:list-column code="assistanceAgent.claim.list.label.description" path="description" width="10%"/>
+	<acme:list-column code="assistanceAgent.claim.list.label.indicator"  path="indicator" width="10%"/>
 	
 	<acme:list-payload path="payload"/>
 </acme:list>
-<acme:button code="assistanceAgent.claim.list.button.create" action="/administrator/airport/create"/>
+<acme:button code="assistanceAgent.claim.list.button.create" action="/assistance-agent/claim/create"/>
 
 
 

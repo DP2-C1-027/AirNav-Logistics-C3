@@ -17,7 +17,7 @@
 
 <acme:list>
 	<acme:list-column code="administrator.airport.list.label.name" path="name" width="10%"/>
-	<acme:list-column code="administrator.airport.list.label.code" path="code" width="20%"/>
+	<acme:list-column code="administrator.airport.list.label.codigo" path="codigo" width="20%"/>
 	<acme:list-column code="administrator.airport.list.label.operationalScope"  path="operationalScope" width="20%"/>
 	
 	<acme:list-payload path="payload"/>

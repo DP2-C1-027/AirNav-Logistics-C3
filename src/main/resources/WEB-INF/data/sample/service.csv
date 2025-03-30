@@ -1,5 +1,5 @@
 key,name,picture,averageDwellTime,promotionCode,money
-service-01,Heathrow Heathrow AirportHeathrowwHeathrow Airport,https://example.com/wifi.jpg,30,WIFI-23,50.00
+service-01,Heathrow Heathrow AirportHeathrowwHeathrow Airport,https://media.istockphoto.com/id/1254973568/photo/empty-airport-terminal-lounge-with-airplane-on-background.jpg?s=612x612&w=0&k=20&c=WoX_hcz_igZ1NNRlwwR9Cc_EjjL4Ncf_hoTMDatg2AU=,30,WIFI-23,50.00
 service-02,L,https://example.com/lounge.jpg,60,LOUN-45,25.00
 service-03,<script>alert('Hacked!');</script>,https://example.com/hacked.jpg,10,,100.00
 service-04,餐饮服务 (Catering Service),https://example.com/catering.jpg,45,CATE-12,

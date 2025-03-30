@@ -54,7 +54,7 @@ public class Flight extends AbstractEntity {
 
 	@Mandatory
 	@Automapped
-	private Boolean				draftMode;
+	private boolean				draftMode;
 
 	// Derived attributes -----------------------------------------------------
 

@@ -3,11 +3,13 @@ package acme.features.flightCrewMember.flightAssignment;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import acme.client.repositories.AbstractRepository;
+import acme.entities.flightAssignment.ActivityLog;
 import acme.entities.flightAssignment.Duty;
 import acme.entities.flightAssignment.FlightAssignment;
 import acme.entities.legs.Leg;
@@ -16,8 +18,14 @@ import acme.realms.FlightCrewMember;
 @Repository
 public interface FlightCrewMemberFlightAssignmentRepository extends AbstractRepository {
 
+	@Query("SELECT a FROM ActivityLog a WHERE a.flightAssignment.id = :flightAssignmentId")
+	List<ActivityLog> findAllActivityLogs(int flightAssignmentId);
+
 	@Query("SELECT fa FROM FlightAssignment fa WHERE fa.id = :id")
 	FlightAssignment findFlightAssignmentById(int id);
+
+	@Query("SELECT fa FROM FlightAssignment fa WHERE fa.draftMode = true")
+	Collection<FlightAssignment> findAllPublishedFlightAssignments();
 
 	@Query("SELECT fa FROM FlightAssignment fa WHERE fa.leg.scheduledDeparture >= :moment")
 	Collection<FlightAssignment> findAllPlannedFlightAssignments(Date moment);

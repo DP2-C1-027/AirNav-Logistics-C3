@@ -45,6 +45,7 @@ master.menu.provider.favourite-link = Favourite link
 # master.menu.flightCrewMember ########################################################
 
 master.menu.flightCrewMember = Flight Crew Member
+master.menu.flightCrewMember.list-flight-assignments-published = Flight Assignments Published
 master.menu.flightCrewMember.list-flight-assignments-planned = Flight Assignments Planned
 master.menu.flightCrewMember.list-flight-assignments-completed = Flight Assignments Completed
 
@@ -69,6 +70,8 @@ master.menu.user-account.become-consumer = Become a consumer
 master.menu.user-account.consumer-profile = Consumer profile
 master.menu.user-account.become-customers = Become a customer
 master.menu.user-account.customers-profile = Customer profile
+master.menu.user-account.become-flight-crew-member = Become a flight crew member
+master.menu.user-account.flight-crew-member-profile = Flight Crew Member profile
 
 # master.menu.customers ##########################################################
 master.menu.customers = Customer
@@ -77,3 +80,6 @@ master.menu.customers.list-my-passengers = My passengers List
 master.menu.customers.show-dashboard = My dashboard
 master.menu.customers.list-my-bookingRecord = My bookingRecord List
 
+# master.menu.dashboards ########################################################
+master.menu.dashboards = Dashboards
+master.menu.dashboards.flight-crew-member-dashboard = Flight Crew Member Dashboard

@@ -48,8 +48,6 @@
 			<acme:menu-suboption code="master.menu.administrator.shut-system-down" action="/administrator/system/shut-down"/>
 			
 			<acme:menu-suboption code="master.menu.airlineManager.prueba" action="/administrator/flight/list" />
-			
-			
 		</acme:menu-option>
 
 		<acme:menu-option code="master.menu.provider" access="hasRealm('Provider')">
@@ -59,18 +57,17 @@
 		<acme:menu-option code="master.menu.airlineManager" access="hasRealm('AirlineManager')">
 			<acme:menu-suboption code="master.menu.airlineManager.list-my-flights" action="/airline-manager/flight/list" />
 			<acme:menu-suboption code="master.menu.airlineManager.list-my-legs" action="/airline-manager/leg/list" />
-			
-			
 		</acme:menu-option>
 		
 		<acme:menu-option code="master.menu.assistanceAgent" access="hasRealm('AssistanceAgent')">
-					<acme:menu-suboption code="master.menu.assistanceAgent.list-my-claims" action="/assistance-agent/claim/list" />
-					<acme:menu-suboption code="master.menu.assistanceAgent.list-my-claimsUndergoing" action="/assistance-agent/claim/listUndergoing" />
+			<acme:menu-suboption code="master.menu.assistanceAgent.list-my-claims" action="/assistance-agent/claim/list" />
+			<acme:menu-suboption code="master.menu.assistanceAgent.list-my-claimsUndergoing" action="/assistance-agent/claim/listUndergoing" />
 		</acme:menu-option>
 		
 		<acme:menu-option code="master.menu.flightCrewMember" access="hasRealm('FlightCrewMember')">
-							<acme:menu-suboption code="master.menu.flightCrewMember.list-flight-assignments-planned" action="/flight-crew-member/flight-assignment/list-planned" />
-					<acme:menu-suboption code="master.menu.flightCrewMember.list-flight-assignments-completed" action="/flight-crew-member/flight-assignment/list-completed" />
+			<acme:menu-suboption code="master.menu.flightCrewMember.list-flight-assignments-published" action="/flight-crew-member/flight-assignment/list-published" />
+			<acme:menu-suboption code="master.menu.flightCrewMember.list-flight-assignments-planned" action="/flight-crew-member/flight-assignment/list-planned" />
+			<acme:menu-suboption code="master.menu.flightCrewMember.list-flight-assignments-completed" action="/flight-crew-member/flight-assignment/list-completed" />
 		</acme:menu-option>
 		
 		<acme:menu-option code="master.menu.consumer" access="hasRealm('Consumer')">
@@ -79,18 +76,20 @@
 		
 		<acme:menu-option code="master.menu.customers" access="hasRealm('Customers')">
 			<acme:menu-suboption code="master.menu.customers.list-my-bookings" action="/customers/booking/list"/>
-				<acme:menu-suboption code="master.menu.customers.show-dashboard" action="/customers/customers-dashboards/show"/>
+			<acme:menu-suboption code="master.menu.customers.show-dashboard" action="/customers/customers-dashboards/show"/>
 			<acme:menu-suboption code="master.menu.customers.list-my-passengers" action="/customers/passenger/list"/>
 		<acme:menu-suboption code="master.menu.customers.list-my-bookingRecord" action="/customers/booking-record/list"/>
 		
 		</acme:menu-option>
-		
-		<acme:menu-option code="master.menu.technicians" access="hasRealm('Technician')">
+			<acme:menu-option code="master.menu.technicians" access="hasRealm('Technician')">
 			<acme:menu-suboption code="master.menu.technicians.list-my-maintenance-records" action="/technician/maintanence-record/list"/>
 		</acme:menu-option>
 		
+		<acme:menu-option code="master.menu.dashboards" access="hasRealm('FlightCrewMember')">
+			<acme:menu-suboption code="master.menu.dashboards.flight-crew-member-dashboard" action="/flight-crew-member/flight-crew-member-dashboard/show"/>
+		</acme:menu-option>
+		
 	</acme:menu-left>
-	
 	
 
 	<acme:menu-right>		
@@ -102,6 +101,8 @@
 			<acme:menu-suboption code="master.menu.user-account.consumer-profile" action="/authenticated/consumer/update" access="hasRealm('Consumer')"/>
 			<acme:menu-suboption code="master.menu.user-account.become-customers" action="/authenticated/customers/create" access="!hasRealm('Customers')"/>
 			<acme:menu-suboption code="master.menu.user-account.customers-profile" action="/authenticated/customers/update" access="hasRealm('Customers')"/>
+			<acme:menu-suboption code="master.menu.user-account.become-flight-crew-member" action="/authenticated/flight-crew-member/create" access="!hasRealm('FlightCrewMember')"/>
+			<acme:menu-suboption code="master.menu.user-account.flight-crew-member-profile" action="/authenticated/flight-crew-member/update" access="hasRealm('FlightCrewMember')"/>
 		</acme:menu-option>
 	</acme:menu-right>
 </acme:menu-bar>

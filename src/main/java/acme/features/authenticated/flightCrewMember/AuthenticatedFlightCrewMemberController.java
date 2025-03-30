@@ -1,5 +1,5 @@
 /*
- * FlightCrewMemberDashboardController.java
+ * AuthenticatedFlightCrewMemberController.java
  *
  * Copyright (C) 2012-2025 Rafael Corchuelo.
  *
@@ -10,31 +10,35 @@
  * they accept any liabilities with respect to them.
  */
 
-package acme.features.administrator.dashboard;
+package acme.features.authenticated.flightCrewMember;
 
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import acme.client.components.principals.Administrator;
+import acme.client.components.principals.Authenticated;
 import acme.client.controllers.AbstractGuiController;
 import acme.client.controllers.GuiController;
-import acme.forms.AdministratorDashboard;
+import acme.realms.FlightCrewMember;
 
 @GuiController
-public class AdministratorDashboardController extends AbstractGuiController<Administrator, AdministratorDashboard> {
+public class AuthenticatedFlightCrewMemberController extends AbstractGuiController<Authenticated, FlightCrewMember> {
 
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private AdministratorDashboardShowService showService;
+	private AuthenticatedFlightCrewMemberCreateService	createService;
+
+	@Autowired
+	private AuthenticatedFlightCrewMemberUpdateService	updateService;
 
 	// Constructors -----------------------------------------------------------
 
 
 	@PostConstruct
 	protected void initialise() {
-		super.addBasicCommand("show", this.showService);
+		super.addBasicCommand("create", this.createService);
+		super.addBasicCommand("update", this.updateService);
 	}
 
 }

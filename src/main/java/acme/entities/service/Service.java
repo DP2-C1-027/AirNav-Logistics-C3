@@ -9,8 +9,8 @@ import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidUrl;
-import acme.constraints.ValidDwellTime;
 import acme.constraints.ValidDiscount;
+import acme.constraints.ValidDwellTime;
 import acme.constraints.ValidPromotionCode;
 import acme.constraints.ValidShortText;
 import lombok.Getter;
@@ -30,6 +30,11 @@ public class Service extends AbstractEntity {
 	@Automapped
 	@ValidShortText
 	private String				name;
+
+	@Mandatory
+	// HINT: @Valid by default.
+	@Automapped
+	private boolean				draftMode;
 
 	@Mandatory
 	@Automapped

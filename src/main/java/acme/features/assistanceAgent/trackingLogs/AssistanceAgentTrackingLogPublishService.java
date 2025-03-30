@@ -12,13 +12,9 @@
 
 package acme.features.assistanceAgent.trackingLogs;
 
-import java.util.Collection;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.batch.BatchProperties.Job;
 
 import acme.client.components.models.Dataset;
-import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.claims.TrackingLog;
@@ -37,61 +33,47 @@ public class AssistanceAgentTrackingLogPublishService extends AbstractGuiService
 
 	@Override
 	public void authorise() {
+		AssistanceAgent assistance;
 		boolean status;
-		int jobId;
-		Job job;
-		TrackingLog employer;
+		assistance = (AssistanceAgent) super.getRequest().getPrincipal().getActiveRealm();
 
-		jobId = super.getRequest().getData("id", int.class);
-		//job = this.repository.findJobById(jobId);
-		//employer = job == null ? null : job.getEmployer();
-		//status = job != null && job.isDraftMode() && super.getRequest().getPrincipal().hasRealm(employer);
-
-		//super.getResponse().setAuthorised(status);
+		status = super.getRequest().getPrincipal().hasRealm(assistance);
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
 	public void load() {
-		Job job;
+		TrackingLog TrackingLog;
 		int id;
 
 		id = super.getRequest().getData("id", int.class);
-		//job = this.repository.findJobById(id);
+		TrackingLog = this.repository.findOneTrackingLogById(id);
 
-		//super.getBuffer().addData(job);
+		super.getBuffer().addData(TrackingLog);
 	}
 
 	@Override
-	public void bind(final TrackingLog job) {
-
+	public void bind(final TrackingLog TrackingLog) {
+		super.bindObject(TrackingLog, "lastUpdateMoment", "stepUndergoing", "resolutionPercentage", "indicator");
 	}
 
 	@Override
-	public void validate(final TrackingLog job) {
+	public void validate(final TrackingLog TrackingLog) {
 		;
 	}
 
 	@Override
-	public void perform(final TrackingLog job) {
-
+	public void perform(final TrackingLog TrackingLog) {
+		TrackingLog.setDraftMode(false);
+		this.repository.save(TrackingLog);
 	}
 
 	@Override
-	public void unbind(final TrackingLog job) {
-		int employerId;
-		Collection<TrackingLog> contractors;
-		SelectChoices choices;
+	public void unbind(final TrackingLog TrackingLog) {
 		Dataset dataset;
 
-		employerId = super.getRequest().getPrincipal().getActiveRealm().getId();
-		//contractors = this.repository.findContractorsByEmployerId(employerId);
-		//choices = SelectChoices.from(contractors, "name", job.getContractor());
-
-		dataset = super.unbindObject(job, "lastUpdateMoment", "stepUndergoing", "resolutionPercentage", "indicator", "claim");
-		//dataset.put("contractor", choices.getSelected().getKey());
-		//dataset.put("contractors", choices);
+		dataset = super.unbindObject(TrackingLog, "lastUpdateMoment", "stepUndergoing", "resolutionPercentage", "indicator");
 
 		super.getResponse().addData(dataset);
 	}
-
 }

@@ -15,9 +15,11 @@ package acme.features.assistanceAgent.claims;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
+import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.claims.Claim;
+import acme.entities.claims.ClaimType;
 import acme.realms.AssistanceAgent;
 
 @GuiService
@@ -33,7 +35,12 @@ public class AssistanceAgentClaimShowService extends AbstractGuiService<Assistan
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		AssistanceAgent assistance;
+		boolean status;
+		assistance = (AssistanceAgent) super.getRequest().getPrincipal().getActiveRealm();
+
+		status = super.getRequest().getPrincipal().hasRealm(assistance);
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
@@ -51,7 +58,9 @@ public class AssistanceAgentClaimShowService extends AbstractGuiService<Assistan
 	public void unbind(final Claim claim) {
 		Dataset dataset;
 
-		dataset = super.unbindObject(claim, "registrationMoment", "passengerEmail", "description", "type", "indicator", "registeredBy", "linkedTo");
+		dataset = super.unbindObject(claim, "registrationMoment", "passengerEmail", "description", "indicator", "linkedTo");
+		SelectChoices statusChoices = SelectChoices.from(ClaimType.class, claim.getType());
+		dataset.put("type", statusChoices);
 
 		super.getResponse().addData(dataset);
 	}

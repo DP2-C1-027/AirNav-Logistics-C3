@@ -33,7 +33,12 @@ public class AssistanceAgentClaimDeleteService extends AbstractGuiService<Assist
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		AssistanceAgent assistance;
+		boolean status;
+		assistance = (AssistanceAgent) super.getRequest().getPrincipal().getActiveRealm();
+
+		status = super.getRequest().getPrincipal().hasRealm(assistance);
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
@@ -49,7 +54,8 @@ public class AssistanceAgentClaimDeleteService extends AbstractGuiService<Assist
 
 	@Override
 	public void bind(final Claim claim) {
-		super.bindObject(claim, "name", "description", "moreInfo");
+		super.bindObject(claim, "registrationMoment", "passengerEmail", "description", "type", "indicator", "registeredBy", "linkedTo");
+
 	}
 
 	@Override
@@ -70,7 +76,7 @@ public class AssistanceAgentClaimDeleteService extends AbstractGuiService<Assist
 	public void unbind(final Claim claim) {
 		Dataset dataset;
 
-		dataset = super.unbindObject(claim, "name", "description", "moreInfo");
+		dataset = super.unbindObject(claim, "registrationMoment", "passengerEmail", "description", "type", "indicator", "registeredBy", "linkedTo");
 
 		super.getResponse().addData(dataset);
 	}

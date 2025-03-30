@@ -20,7 +20,7 @@
 <acme:form >
 	<acme:input-textbox code="administrator.airport.form.label.name" path="name"/>
 	<acme:input-textbox code="administrator.airport.form.label.codigo" path="codigo"/>
-	<acme:input-textbox code="administrator.airport.form.label.operationalScope" path="operationalScope"/>
+	<acme:input-select code="administrator.airport.form.label.operationalScope" path="operationalScope" choices="${operationalScope}" />
 	<acme:input-textbox code="administrator.airport.form.label.city" path="city"/>
 	<acme:input-textbox code="administrator.airport.form.label.country" path="country"/>
 	<acme:input-url code="administrator.airport.form.label.website" path="website"/>
@@ -30,9 +30,11 @@
 
 	<jstl:choose>
 				<jstl:when test="${acme:anyOf(_command, 'show|update')}">
+					<acme:input-checkbox code="administrator.airport.form.label.confirmation" path="confirmation"/>
 					<acme:submit code="administrator.airport.form.button.update" action="/administrator/airport/update"/>
 				</jstl:when>
 				<jstl:when test="${_command == 'create'}">
+					<acme:input-checkbox code="administrator.airport.form.label.confirmation" path="confirmation"/>
 					<acme:submit code="administrator.airport.form.button.create" action="/administrator/airport/create"/>
 				</jstl:when>		
 		</jstl:choose>	

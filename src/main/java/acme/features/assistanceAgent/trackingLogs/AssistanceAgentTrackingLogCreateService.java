@@ -33,7 +33,12 @@ public class AssistanceAgentTrackingLogCreateService extends AbstractGuiService<
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		AssistanceAgent assistance;
+		boolean status;
+		assistance = (AssistanceAgent) super.getRequest().getPrincipal().getActiveRealm();
+
+		status = super.getRequest().getPrincipal().hasRealm(assistance);
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
@@ -46,26 +51,26 @@ public class AssistanceAgentTrackingLogCreateService extends AbstractGuiService<
 	}
 
 	@Override
-	public void bind(final TrackingLog TrackingLog) {
-		super.bindObject(TrackingLog, "lastUpdateMoment", "stepUndergoing", "resolutionPercentage", "indicator", "claim");
+	public void bind(final TrackingLog trackingLog) {
+		super.bindObject(trackingLog, "lastUpdateMoment", "stepUndergoing", "resolutionPercentage", "indicator");
 
 	}
 
 	@Override
-	public void validate(final TrackingLog TrackingLog) {
+	public void validate(final TrackingLog trackingLog) {
 		;
 	}
 
 	@Override
-	public void perform(final TrackingLog TrackingLog) {
-		this.repository.save(TrackingLog);
+	public void perform(final TrackingLog trackingLog) {
+		this.repository.save(trackingLog);
 	}
 
 	@Override
-	public void unbind(final TrackingLog TrackingLog) {
+	public void unbind(final TrackingLog trackingLog) {
 		Dataset dataset;
 
-		dataset = super.unbindObject(TrackingLog, "lastUpdateMoment", "stepUndergoing", "resolutionPercentage", "indicator", "claim");
+		dataset = super.unbindObject(trackingLog, "lastUpdateMoment", "stepUndergoing", "resolutionPercentage", "indicator");
 		super.getResponse().addData(dataset);
 	}
 

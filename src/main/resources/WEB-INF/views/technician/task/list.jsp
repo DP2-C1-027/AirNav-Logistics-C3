@@ -17,16 +17,19 @@
 
 
 
+
 <acme:list >
-	<acme:list-column code="customers.passenger.list.label.fullName" path="fullName" width="20%"/>
-	<acme:list-column code="customers.passenger.list.label.email" path="email" width="10%"/>
+	<acme:list-column code="technician.task.list.label.type" path="type" width="20%"/>
+	<acme:list-column code="technician.task.list.label.description" path="description" width="10%"/>
+	<acme:list-column code="technician.task.list.label.priority" path="priority" width="10%"/>
+	<acme:list-column code="technician.task.list.label.estimatedDuration" path="estimatedDuration" width="10%"/>
 	<acme:list-payload path="payload"/>
 </acme:list>
 
 
 
 <jstl:if test="${_command == 'list'}">
-	<acme:button code="customers.passenger.form.button.create" action="/customers/passenger/create"/>
+	<acme:button code="technician.task.form.button.create" action="/technician/task/create"/>
 </jstl:if>	
 
 

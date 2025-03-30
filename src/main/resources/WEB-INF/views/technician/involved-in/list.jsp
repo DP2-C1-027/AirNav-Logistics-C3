@@ -9,30 +9,18 @@
 - purposes.  The copyright owner does not offer any warranties or representations, nor do
 - they accept any liabilities with respect to them.
 --%>
-
 <%@page%>
 
 <%@taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
-
-
-<acme:list >
-	<acme:list-column code="customers.passenger.list.label.fullName" path="fullName" width="20%"/>
-	<acme:list-column code="customers.passenger.list.label.email" path="email" width="10%"/>
-	<acme:list-payload path="payload"/>
+<acme:list>
+	<acme:list-column code="technician.involved-in.list.label.maintanenceRecord" path="maintanenceRecord" width="20%"/>
+	<acme:list-column code="technician.involved-in.list.label.task" path="task" width="20%"/>
 </acme:list>
 
-
-
 <jstl:if test="${_command == 'list'}">
-	<acme:button code="customers.passenger.form.button.create" action="/customers/passenger/create"/>
-</jstl:if>	
+	<acme:button code="technician.involved-in.form.label.create" action="/technician/involved-in/create"/>
+</jstl:if>
 
-
-
-  
-
-
-	
 

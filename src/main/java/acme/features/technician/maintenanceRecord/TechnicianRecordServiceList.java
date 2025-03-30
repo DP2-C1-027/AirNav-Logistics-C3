@@ -12,10 +12,10 @@ import acme.entities.maintanenceRecords.MaintanenceRecord;
 import acme.realms.Technician;
 
 @GuiService
-public class TechnicianMaintenenceRecordServiceList extends AbstractGuiService<Technician, MaintanenceRecord> {
+public class TechnicianRecordServiceList extends AbstractGuiService<Technician, MaintanenceRecord> {
 
 	@Autowired
-	private TechnicianMaintenenceRecordRepository repository;
+	private TechnicianRecordRepository repository;
 
 
 	// AbstractGuiService interface -------------------------------------------

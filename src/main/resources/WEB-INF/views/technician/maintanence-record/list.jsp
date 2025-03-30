@@ -16,12 +16,16 @@
 
 <acme:list>
 	
-	<acme:list-column code="technician.maintenanceRecord.form.label.maintanenceMoment" path="maintanenceMoment" width="5%"/>
-	<acme:list-column code="technician.maintenanceRecord.form.label.status" path="status" width="5%"/>
-	<acme:list-column code="technician.maintenanceRecord.form.label.estimatedCost" path="estimatedCost" width="5%"/>
-	<acme:list-column code="technician.maintenanceRecord.form.label.nextMaintanence" path="nextMaintanence" width="5%"/>
-	<acme:list-column code="technician.maintenanceRecord.form.label.notes" path="notes" width="20%"/>
+	<acme:list-column code="technician.maintanence-record.form.label.maintanenceMoment" path="maintanenceMoment" width="5%"/>
+	<acme:list-column code="technician.maintanence-record.form.label.status" path="status" width="5%"/>
+	<acme:list-column code="technician.maintanence-record.form.label.estimatedCost" path="estimatedCost" width="5%"/>
+	<acme:list-column code="technician.maintanence-record.form.label.nextMaintanence" path="nextMaintanence" width="5%"/>
+	<acme:list-column code="technician.maintanence-record.form.label.notes" path="notes" width="20%"/>
 	
 </acme:list>
+
+<jstl:if test="${_command == 'list'}">
+	<acme:button code="technician.maintanence-record.list.button.create" action="/technician/maintanence-record/create"/>
+</jstl:if>	
 
 

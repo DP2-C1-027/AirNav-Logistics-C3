@@ -55,6 +55,7 @@ public class MaintanenceRecord extends AbstractEntity {
 	@Valid
 	private Date					nextMaintanence;
 
+	//este...?
 	@Mandatory
 	@Automapped
 	@ValidMoney

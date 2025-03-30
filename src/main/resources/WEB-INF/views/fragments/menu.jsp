@@ -42,6 +42,8 @@
 			<acme:menu-suboption code="master.menu.administrator.list-airport" action="/administrator/airport/list"/>
 			<acme:menu-suboption code="master.menu.administrator.list-aircraft" action="/administrator/aircraft/list"/>
 			<acme:menu-separator/>
+			<acme:menu-suboption code="master.menu.administrator.pruebapruebaprueba" action="/administrator/service/list"/>		
+			<acme:menu-separator/>
 			<acme:menu-suboption code="master.menu.administrator.populate-db-initial" action="/administrator/system/populate-initial"/>
 			<acme:menu-suboption code="master.menu.administrator.populate-db-sample" action="/administrator/system/populate-sample"/>			
 			<acme:menu-separator/>
@@ -85,6 +87,8 @@
 		</acme:menu-option>
 			<acme:menu-option code="master.menu.technicians" access="hasRealm('Technician')">
 			<acme:menu-suboption code="master.menu.technicians.list-my-maintenance-records" action="/technician/maintanence-record/list"/>
+						<acme:menu-suboption code="master.menu.technicians.list-my-tasks" action="/technician/task/list"/>
+					<acme:menu-suboption code="master.menu.technicians.list-my-involved-in" action="/technician/involved-in/list"/>
 		</acme:menu-option>
 		
 		<acme:menu-option code="master.menu.dashboards" access="hasRealm('FlightCrewMember')">

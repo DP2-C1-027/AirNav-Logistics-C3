@@ -1,0 +1,23 @@
+# messages-es.i18n
+#
+# Copyright (C) 2012-2025 Rafael Corchuelo.
+#
+# In keeping with the traditional purpose of furthering education and research, it is
+# the policy of the copyright owner to permit non-commercial use and redistribution of
+# this software. It has been tested carefully, but it is not guaranteed for any particular
+# purposes.  The copyright owner does not offer any warranties or representations, nor do
+# they accept any liabilities with respect to them.
+
+flight-crew-member.visa-requirements.form.title = Detalles de los requisitos de visado
+flight-crew-member.visa-requirements.list.title = Lista de requisitos de visado
+
+flight-crew-member.visa-requirements.form.label.country = País: 
+flight-crew-member.visa-requirements.form.label.nationality = Nacionalidad:
+flight-crew-member.visa-requirements.form.label.visaRequired = Necesario el visado:
+flight-crew-member.visa-requirements.form.label.visaType = Tipo de visado:
+flight-crew-member.visa-requirements.form.label.additionalInfo = Información adicional:
+
+flight-crew-member.visa-requirements.list.label.country = País: 
+flight-crew-member.visa-requirements.list.label.nationality = Nacionalidad:
+flight-crew-member.visa-requirements.list.label.visaRequired = Necesario el visado:
+flight-crew-member.visa-requirements.list.label.visaType = Tipo de visado:

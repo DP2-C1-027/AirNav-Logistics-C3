@@ -1,0 +1,66 @@
+key,country,nationality,visaRequired,visaType,additionalInfo
+visa-requirement-01,Brazil,Mexican,True,Business Visa,Visa can be obtained on arrival.
+visa-requirement-02,Japan,British,False,Student Visa,E-visa application available online.
+visa-requirement-03,Brazil,Canadian,False,Student Visa,E-visa application available online.
+visa-requirement-04,United States,German,True,Tourist Visa,E-visa application available online.
+visa-requirement-05,Australia,German,True,Work Visa,Visa can be obtained on arrival.
+visa-requirement-06,South Africa,Argentinian,False,Transit Visa,Visa can be obtained on arrival.
+visa-requirement-07,Brazil,Mexican,False,Transit Visa,E-visa application available online.
+visa-requirement-08,Brazil,German,True,Work Visa,Multiple entry visa available.
+visa-requirement-09,United States,Canadian,False,Tourist Visa,Special permits required for work-related travel.
+visa-requirement-10,Canada,British,False,Student Visa,Multiple entry visa available.
+visa-requirement-11,Germany,Canadian,False,Business Visa,Visa is not required for stays under 90 days.
+visa-requirement-12,Germany,Indian,False,Tourist Visa,Visa can be obtained on arrival.
+visa-requirement-13,Germany,Mexican,False,Business Visa,Visa is not required for stays under 90 days.
+visa-requirement-14,France,Mexican,False,Work Visa,E-visa application available online.
+visa-requirement-15,Spain,Canadian,False,Tourist Visa,Multiple entry visa available.
+visa-requirement-16,Canada,Chinese,True,Business Visa,Visa is not required for stays under 90 days.
+visa-requirement-17,United States,Chinese,True,Business Visa,Visa must be obtained before arrival.
+visa-requirement-18,India,Australian,False,Student Visa,Visa must be obtained before arrival.
+visa-requirement-19,United States,Mexican,True,Student Visa,Visa can be obtained on arrival.
+visa-requirement-20,Spain,Australian,True,Student Visa,Visa must be obtained before arrival.
+visa-requirement-21,South Africa,Canadian,True,Work Visa,Special permits required for work-related travel.
+visa-requirement-22,United States,German,True,Business Visa,Visa must be obtained before arrival.
+visa-requirement-23,India,Indian,True,Student Visa,Visa must be obtained before arrival.
+visa-requirement-24,Germany,American,True,Business Visa,Visa is not required for stays under 90 days.
+visa-requirement-25,Canada,British,True,Business Visa,E-visa application available online.
+visa-requirement-26,United States,Australian,False,Tourist Visa,Visa must be obtained before arrival.
+visa-requirement-27,Spain,American,False,Work Visa,Multiple entry visa available.
+visa-requirement-28,Spain,French,True,Transit Visa,Visa must be obtained before arrival.
+visa-requirement-29,Brazil,Canadian,True,Work Visa,E-visa application available online.
+visa-requirement-30,South Africa,Indian,True,Tourist Visa,Visa must be obtained before arrival.
+visa-requirement-31,Thailand,British,False,Business Visa,Visa must be obtained before arrival.
+visa-requirement-32,Hong Kong,French,True,Tourist Visa,Visa can be obtained on arrival.
+visa-requirement-33,Thailand,French,False,Tourist Visa,Multiple entry visa available.
+visa-requirement-34,France,Australian,True,Work Visa,Multiple entry visa available.
+visa-requirement-35,China,Canadian,True,Tourist Visa,Multiple entry visa available.
+visa-requirement-36,Germany,Indian,True,Student Visa,Visa can be obtained on arrival.
+visa-requirement-37,United Kingdom,British,True,Business Visa,Visa is not required for stays under 90 days.
+visa-requirement-38,Saudi Arabia,American,False,Business Visa,E-visa application available online.
+visa-requirement-39,France,German,False,Work Visa,E-visa application available online.
+visa-requirement-40,United States,German,True,Business Visa,Visa is not required for stays under 90 days.
+visa-requirement-41,South Korea,Mexican,False,Student Visa,Visa must be obtained before arrival.
+visa-requirement-42,Thailand,French,True,Transit Visa,Visa can be obtained on arrival.
+visa-requirement-43,China,Chinese,True,Transit Visa,Multiple entry visa available.
+visa-requirement-44,United Kingdom,Indian,False,Tourist Visa,Visa is not required for stays under 90 days.
+visa-requirement-45,Thailand,Chinese,True,Student Visa,E-visa application available online.
+visa-requirement-46,Singapore,Chinese,False,Transit Visa,Multiple entry visa available.
+visa-requirement-47,South Korea,British,False,Transit Visa,Visa can be obtained on arrival.
+visa-requirement-48,United Arab Emirates,Australian,False,Work Visa,E-visa application available online.
+visa-requirement-49,Saudi Arabia,American,True,Business Visa,Visa can be obtained on arrival.
+visa-requirement-50,Hong Kong,French,False,Work Visa,E-visa application available online.
+visa-requirement-51,Egypt,Chinese,False,Work Visa,Visa is not required for stays under 90 days.
+visa-requirement-52,Australia,Canadian,True,Student Visa,Visa can be obtained on arrival.
+visa-requirement-53,Saudi Arabia,Chinese,True,Student Visa,Visa is not required for stays under 90 days.
+visa-requirement-54,France,Mexican,False,Transit Visa,Special permits required for work-related travel.
+visa-requirement-55,United Kingdom,Indian,True,Business Visa,E-visa application available online.
+visa-requirement-56,China,Chinese,True,Student Visa,Visa is not required for stays under 90 days.
+visa-requirement-57,Saudi Arabia,Mexican,False,Business Visa,Multiple entry visa available.
+visa-requirement-58,Egypt,Mexican,True,Business Visa,Visa must be obtained before arrival.
+visa-requirement-59,United Arab Emirates,French,True,Business Visa,Visa must be obtained before arrival.
+visa-requirement-60,Australia,Indian,False,Tourist Visa,E-visa application available online.
+visa-requirement-61,South Korea,Argentinian,False,Transit Visa,Visa must be obtained before arrival.
+visa-requirement-62,South Korea,Canadian,True,Business Visa,Visa must be obtained before arrival.
+visa-requirement-63,United Kingdom,German,False,Tourist Visa,Visa must be obtained before arrival.
+visa-requirement-64,Japan,French,True,Transit Visa,Visa is not required for stays under 90 days.
+visa-requirement-65,United Kingdom,Canadian,True,Tourist Visa,Visa must be obtained before arrival.

@@ -4,8 +4,8 @@
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>20</x>
-      <y>20</y>
+      <x>220</x>
+      <y>90</y>
       <w>570</w>
       <h>160</h>
     </coordinates>
@@ -24,28 +24,21 @@ bg=#f3fdff</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>120</x>
-      <y>250</y>
-      <w>430</w>
-      <h>270</h>
+      <x>320</x>
+      <y>320</y>
+      <w>470</w>
+      <h>180</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Form&gt;&gt;
-AdministratorDashBoard
+FlightCrewMemberDashboard
 --
-+ internationalAirports: Integer
-+ domesticAirports: Integer
-+ regionalAirports: Integer 
-+ luxuryAirlines: Integer
-+ standardAirlines: Integer
-+ lowCostAirlines: Integer
-+ ratioAirlinesEmailAndPhone: Double
-+ activeAircrafts: Double
-+ ratioHighScoreReviews: Double
-+ countReviews: Integer
-+ averageReviews: Double
-+ minReviews: Integer
-+ maxReviews: Integer
-+ deviationFlightCost: Double
++ lastFiveDestinations: List&lt;String&gt;
++ legsWithIncidentSeverity3: Integer
++ legsWithIncidentSeverity7: Integer 
++ legsWithIncidentSeverity10: Integer
++ lastLegCrewMembers: List&lt;String&gt;
++ flightAssignmentsGroupedByStatus: Map&lt;CurrentStatus, Integer&gt;
++ flightAssignmentsStatsLastMonth: Statistics
 
 bg=cyan</panel_attributes>
     <additional_attributes/>

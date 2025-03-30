@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="15.1">
-  <zoom_level>11</zoom_level>
+  <zoom_level>9</zoom_level>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>0</x>
+      <x>288</x>
       <y>0</y>
-      <w>627</w>
-      <h>176</h>
+      <w>513</w>
+      <h>144</h>
     </coordinates>
     <panel_attributes>entities.uxf
 
@@ -24,10 +24,10 @@ bg=#f3fdff</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>198</x>
-      <y>1001</y>
-      <w>165</w>
-      <h>66</h>
+      <x>0</x>
+      <y>504</y>
+      <w>135</w>
+      <h>54</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 Airlane
@@ -38,10 +38,10 @@ bg=green</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>209</x>
-      <y>693</y>
-      <w>154</w>
-      <h>66</h>
+      <x>0</x>
+      <y>252</y>
+      <w>126</w>
+      <h>54</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 Leg
@@ -51,28 +51,29 @@ bg=green</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>550</x>
-      <y>693</y>
-      <w>583</w>
-      <h>143</h>
+      <x>270</x>
+      <y>252</y>
+      <w>567</w>
+      <h>117</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 FlightAssignment
 --
-+ duty: Duty {Mandatory, Automapped}
-+ moment: Date {Mandatory, ValidMoment(past = true), Automapped}
-+ currentStatus: CurrentStatus {Mandatory, Automapped}
++ duty: Duty {Mandatory, Enumerated(EnumType.STRING), Automapped}
++ moment: Date {Mandatory, ValidMoment, Temporal(TemporalType.TIMESTAMP), Automapped}
++ currentStatus: CurrentStatus {Mandatory, Enumerated(EnumType.STRING), Automapped}
 + remarks: String {Mandatory, ValidLongText, Automapped}
++ draftMode: Boolean {Mandatory, Automapped}
 bg=green</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>352</x>
-      <y>693</y>
-      <w>220</w>
-      <h>66</h>
+      <x>117</x>
+      <y>252</y>
+      <w>171</w>
+      <h>54</h>
     </coordinates>
     <panel_attributes>&lt; belong to
 lt=&lt;-x
@@ -81,33 +82,34 @@ m2=*
 bg=green
 
 </panel_attributes>
-    <additional_attributes>10.0;20.0;180.0;20.0</additional_attributes>
+    <additional_attributes>10.0;20.0;170.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1287</x>
-      <y>693</y>
-      <w>583</w>
-      <h>143</h>
+      <x>963</x>
+      <y>252</y>
+      <w>639</w>
+      <h>117</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 ActivityLog
 --
-+ registrationMoment: Date {Mandatory, ValidMoment(past = true), Automapped}
++ registrationMoment: Date {Mandatory, ValidMoment, Temporal(TemporalType.TIMESTAMP), Automapped}
 + typeOfIncident: String {Mandatory, ValidShortText, Automapped}
 + description: String {Mandatory, ValidLongText, Automapped}
 + severityLevel: Integer {Mandatory, ValidSeverityLevel, Automapped}
++ draftMode: Boolean {Mandatory, Automapped}
 bg=green</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1122</x>
-      <y>693</y>
-      <w>187</w>
-      <h>66</h>
+      <x>828</x>
+      <y>252</y>
+      <w>153</w>
+      <h>54</h>
     </coordinates>
     <panel_attributes>&lt; records
 lt=&lt;-x
@@ -121,10 +123,10 @@ bg=green
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>352</x>
-      <y>1012</y>
-      <w>187</w>
-      <h>88</h>
+      <x>126</x>
+      <y>513</y>
+      <w>162</w>
+      <h>72</h>
     </coordinates>
     <panel_attributes>&lt; working for
   
@@ -134,15 +136,15 @@ m2=*
 bg=green
 
 </panel_attributes>
-    <additional_attributes>10.0;20.0;150.0;20.0</additional_attributes>
+    <additional_attributes>10.0;20.0;160.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>517</x>
-      <y>946</y>
-      <w>638</w>
-      <h>176</h>
+      <x>270</x>
+      <y>459</y>
+      <w>567</w>
+      <h>144</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Role&gt;&gt;
 FlightCrewMember
@@ -150,7 +152,7 @@ FlightCrewMember
 + code: String {Mandatory, ValidIdentifier, Automapped, Column(unique = true)}
 + phoneNumber: String {Mandatory, ValidPhoneNumber, Automapped}
 + languageSkills: String {Mandatory, ValidLongText, Automapped}
-+ availabilityStatus: AvailabilityStatus {Mandatory, Automapped}
++ availabilityStatus: AvailabilityStatus {Mandatory, Enumerated(EnumType.STRING), Automapped}
 + salary: Money {Mandatory, ValidMoney, Automapped}
 + yearsOfExperience: Integer {Optional, Min(0), Automapped}
 bg=pink</panel_attributes>
@@ -159,10 +161,10 @@ bg=pink</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>825</x>
-      <y>825</y>
-      <w>99</w>
-      <h>143</h>
+      <x>540</x>
+      <y>360</y>
+      <w>81</w>
+      <h>117</h>
     </coordinates>
     <panel_attributes> allocates
  v
@@ -173,5 +175,24 @@ bg=green
 
 </panel_attributes>
     <additional_attributes>10.0;110.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>270</x>
+      <y>684</y>
+      <w>567</w>
+      <h>117</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Entity&gt;&gt;
+VisaRequirements
+--
++ country: String {Mandatory, ValidShortText, Automapped}
++ nationality: String {Mandatory, ValidShortText, Automapped}
++ visaRequired: Boolean {Mandatory, Automapped}
++ visaType: String {Mandatory, ValidShortText, Automapped}
++ additionalInfo: String {Mandatory, ValidLongText, Automapped}
+bg=green</panel_attributes>
+    <additional_attributes/>
   </element>
 </diagram>

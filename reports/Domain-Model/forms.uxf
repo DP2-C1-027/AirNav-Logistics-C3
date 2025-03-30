@@ -24,18 +24,18 @@ bg=#f3fdff</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>120</x>
-      <y>250</y>
+      <x>20</x>
+      <y>220</y>
       <w>550</w>
       <h>160</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Form&gt;&gt;
 AdministratorDashBoard
 --
-+ airportsGroupedByOperationalScope: Map&lt;OperationalScope, Integer&gt;
-+ airlineGroupedByType: Map&lt;AirlineType, Integer&gt;
++ amountAirportsGroupedByOperationalScope: Map&lt;OperationalScope, Integer&gt;
++ amountAirlineGroupedByType: Map&lt;AirlineType, Integer&gt;
 + ratioAirlinesEmailAndPhone: Double
-+ activeAircrafts: Double
++ ratioActiveAircrafts: Double
 + ratioHighScoreReviews: Double
 + adminReviews: Statistics
 

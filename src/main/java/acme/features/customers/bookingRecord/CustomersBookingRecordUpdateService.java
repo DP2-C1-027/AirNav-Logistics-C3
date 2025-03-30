@@ -67,14 +67,18 @@ public class CustomersBookingRecordUpdateService extends AbstractGuiService<Cust
 
 		super.state(booking != null, "booking", "customer.booking-record.create.error.null-booking");
 		super.state(passenger != null, "passenger", "customer.booking-record.create.error.null-passenger");
+		super.state(booking.isDraftMode(), "booking", "customer.booking-record.create.publish.booking");
+		boolean exists = this.repository.existsByBookingAndPassengerExcludingId(booking, passenger, bookingRecord.getId());
 
-		boolean exists = this.repository.existsByBookingAndPassenger(booking, passenger);
 		super.state(!exists, "*", "customer.booking-record.create.error.duplicate-booking-passenger");
 
 	}
 
 	@Override
 	public void perform(final BookingRecord bookingRecord) {
+		Customers customer = (Customers) super.getRequest().getPrincipal().getActiveRealm();
+		Collection<Booking> booking = this.repository.findNotPublishBooking(customer.getId()).stream().filter(x -> x.isDraftMode()).toList();
+		System.out.println(booking.stream().map(x -> x.getLocatorCode()).toList());
 		this.repository.save(bookingRecord);
 	}
 
@@ -85,7 +89,7 @@ public class CustomersBookingRecordUpdateService extends AbstractGuiService<Cust
 
 		Collection<Passenger> passenger = this.repository.findPassengerByCustomerId(customer.getId());
 
-		Collection<Booking> booking = this.repository.findNotPublishBooking(customer.getId(), true);
+		Collection<Booking> booking = this.repository.findNotPublishBooking(customer.getId());
 
 		SelectChoices passengerChoices;
 		SelectChoices bookingChoices;

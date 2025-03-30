@@ -21,9 +21,10 @@ public class CustomersBookingCreateService extends AbstractGuiService<Customers,
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private CustomersBookingRepository repository;
+	private CustomersBookingRepository	repository;
 
 	// AbstractGuiService interface -------------------------------------------
+	Collection<Flight>					vuelos;
 
 
 	@Override
@@ -74,6 +75,8 @@ public class CustomersBookingCreateService extends AbstractGuiService<Customers,
 			super.state(false, "locatorCode", "customers.booking.error.repeat-code");
 		if (booking.getFlight() == null)
 			super.state(false, "vuelo", "customers.booking.error.no-flight");
+		else if (!booking.getFlight().getScheduledDeparture().after(booking.getPurchaseMoment()))
+			super.state(false, "vuelo", "customers.booking.error.cannotChoseFlight");
 	}
 
 	@Override
@@ -103,8 +106,11 @@ public class CustomersBookingCreateService extends AbstractGuiService<Customers,
 	}
 
 	public Collection<Flight> vuelosFiltrados(final Booking booking) {
-		Collection<Flight> vuelosPublicados = this.repository.getAllFlight();
-		return vuelosPublicados.stream().filter(x -> x.getScheduledDeparture().after(booking.getPurchaseMoment())).toList();
+		if (booking.getPurchaseMoment() != null) {
+			Collection<Flight> vuelosPublicados = this.repository.getAllFlight();
+			return vuelosPublicados.stream().filter(x -> x.getScheduledDeparture().after(booking.getPurchaseMoment())).toList();
+		} else
+			return this.repository.getAllFlight();
 
 	}
 }

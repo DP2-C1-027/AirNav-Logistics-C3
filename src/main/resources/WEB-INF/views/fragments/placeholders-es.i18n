@@ -18,3 +18,10 @@ acme.placeholders.form.flightAssignment.remarks = Esperando la confirmación fin
 acme.placeholders.form.activityLog.typeOfIncident = Emergencia médica
 acme.placeholders.form.activityLog.description = Emergencia médica abordo, tratamiento realizado por tripulante de vuelo
 acme.placeholders.form.activityLog.severityLevel = 2
+
+
+acme.placeholders.form.airline.codigo=DAL
+acme.placeholders.form.customer.codigo=ACC123456
+acme.placeholder.customer.booking.code= ADCD1235
+acme.placeholder.customer.booking.nibble=1234
+acme.placeholders.customer.passenger.number=EF345678

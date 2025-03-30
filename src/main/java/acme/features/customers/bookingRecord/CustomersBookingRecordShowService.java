@@ -46,19 +46,22 @@ public class CustomersBookingRecordShowService extends AbstractGuiService<Custom
 	@Override
 	public void unbind(final BookingRecord bookingRecord) {
 		Dataset dataset;
+		Customers customer = (Customers) super.getRequest().getPrincipal().getActiveRealm();
+
+		Collection<Passenger> passenger = this.repository.findPassengerByCustomerId(customer.getId());
+
+		Collection<Booking> booking = this.repository.findNotPublishBooking(customer.getId());
+
 		SelectChoices passengerChoices;
 		SelectChoices bookingChoices;
 
-		Customers customer = (Customers) super.getRequest().getPrincipal().getActiveRealm();
-
-		Collection<Passenger> passengers = this.repository.findPassengerByCustomerId(customer.getId());
-		Collection<Booking> bookings = this.repository.findBookingByCustomerId(customer.getId());
-
-		passengerChoices = SelectChoices.from(passengers, "fullName", bookingRecord.getPassenger());
-		bookingChoices = SelectChoices.from(bookings, "locatorCode", bookingRecord.getBooking());
+		passengerChoices = SelectChoices.from(passenger, "fullName", bookingRecord.getPassenger());
+		bookingChoices = SelectChoices.from(booking, "locatorCode", bookingRecord.getBooking());
 
 		dataset = super.unbindObject(bookingRecord, "booking", "passenger");
+		dataset.put("booking", bookingChoices.getSelected().getKey());
 		dataset.put("bookings", bookingChoices);
+		dataset.put("passenger", passengerChoices.getSelected().getKey());
 		dataset.put("passengers", passengerChoices);
 		dataset.put("draftMode", bookingRecord.getBooking().isDraftMode());
 

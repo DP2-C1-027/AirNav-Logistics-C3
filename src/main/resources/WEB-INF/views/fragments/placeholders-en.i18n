@@ -18,3 +18,9 @@ acme.placeholders.form.flightAssignment.remarks = Awaiting final confirmation fo
 acme.placeholders.form.activityLog.typeOfIncident = Medical Emergency
 acme.placeholders.form.activityLog.description = Medical emergency onboard, treated by flight crew with no landing required
 acme.placeholders.form.activityLog.severityLevel = 5
+
+acme.placeholders.form.airline.codigo=DAL
+acme.placeholders.form.customer.codigo=ACC123456
+acme.placeholder.customer.booking.code=ADCD1235
+acme.placeholder.customer.booking.nibble=1234
+acme.placeholders.customer.passenger.number=EF345678

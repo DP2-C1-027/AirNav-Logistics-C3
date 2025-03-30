@@ -76,7 +76,7 @@ public class CustomersBookingRecordDeleteService extends AbstractGuiService<Cust
 
 		Collection<Passenger> passenger = this.repository.findPassengerByCustomerId(customer.getId());
 
-		Collection<Booking> booking = this.repository.findNotPublishBooking(customer.getId(), true);
+		Collection<Booking> booking = this.repository.findNotPublishBooking(customer.getId());
 
 		SelectChoices passengerChoices;
 		SelectChoices bookingChoices;

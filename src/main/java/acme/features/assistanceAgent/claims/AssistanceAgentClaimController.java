@@ -16,7 +16,7 @@ public class AssistanceAgentClaimController extends AbstractGuiController<Assist
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private AssistanceAgentClaimListService				listService;
+	private AssistanceAgentClaimListServiceCompleted	listService;
 	@Autowired
 	private AssistanceAgentClaimShowService				showService;
 
@@ -25,39 +25,29 @@ public class AssistanceAgentClaimController extends AbstractGuiController<Assist
 
 	@Autowired
 	private AssistanceAgentClaimCreateService			createService;
-	/*
-	 * 
-	 * 
-	 * @Autowired
-	 * private AssistanceAgentClaimUpdateService updateService;
-	 * 
-	 * @Autowired
-	 * private AssistanceAgentClaimDeleteService deleteService;
-	 * 
-	 * @Autowired
-	 * private AssistanceAgentClaimPublishService publishService;
-	 * 
-	 * // Constructors -----------------------------------------------------------
-	 */
+
+	@Autowired
+	private AssistanceAgentClaimUpdateService			updateService;
+
+	@Autowired
+	private AssistanceAgentClaimDeleteService			deleteService;
+
+	@Autowired
+	private AssistanceAgentClaimPublishService			publishService;
+
+	// Constructors -----------------------------------------------------------
 
 
 	@PostConstruct
 	protected void initialise() {
 
-		super.addBasicCommand("list", this.listService);
-
+		super.addCustomCommand("listCompleted", "list", this.listService);
 		super.addBasicCommand("show", this.showService);
-		//super.addBasicCommand("listUndergoing", this.listUndergoingService);
-
+		super.addCustomCommand("listUndergoing", "list", this.listUndergoingService);
 		super.addBasicCommand("create", this.createService);
-		/*
-		 * super.addBasicCommand("listUndergoing", this.listUndergoingService);
-		 * 
-		 * super.addBasicCommand("create", this.createService);
-		 * super.addBasicCommand("update", this.updateService);
-		 * super.addBasicCommand("delete", this.deleteService);
-		 * super.addBasicCommand("publish", this.publishService);
-		 */
+		super.addBasicCommand("update", this.updateService);
+		super.addBasicCommand("delete", this.deleteService);
+		super.addCustomCommand("publish", "update", this.publishService);
 
 	}
 

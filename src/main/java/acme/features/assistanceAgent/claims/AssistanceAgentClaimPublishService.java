@@ -12,16 +12,14 @@
 
 package acme.features.assistanceAgent.claims;
 
-import java.util.Collection;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.batch.BatchProperties.Job;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.claims.Claim;
+import acme.entities.claims.ClaimType;
 import acme.realms.AssistanceAgent;
 
 @GuiService
@@ -37,32 +35,28 @@ public class AssistanceAgentClaimPublishService extends AbstractGuiService<Assis
 
 	@Override
 	public void authorise() {
+		AssistanceAgent assistance;
 		boolean status;
-		int jobId;
-		Job job;
-		Claim employer;
+		assistance = (AssistanceAgent) super.getRequest().getPrincipal().getActiveRealm();
 
-		jobId = super.getRequest().getData("id", int.class);
-		//job = this.repository.findJobById(jobId);
-		//employer = job == null ? null : job.getEmployer();
-		//status = job != null && job.isDraftMode() && super.getRequest().getPrincipal().hasRealm(employer);
-
-		//super.getResponse().setAuthorised(status);
+		status = super.getRequest().getPrincipal().hasRealm(assistance);
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
 	public void load() {
-		Job job;
+		Claim claim;
 		int id;
 
 		id = super.getRequest().getData("id", int.class);
-		//job = this.repository.findJobById(id);
+		claim = this.repository.findOneClaimById(id);
 
-		//super.getBuffer().addData(job);
+		super.getBuffer().addData(claim);
 	}
 
 	@Override
-	public void bind(final Claim job) {
+	public void bind(final Claim claim) {
+		super.bindObject(claim, "registrationMoment", "passengerEmail", "description", "indicator", "linkedTo");
 
 	}
 
@@ -72,24 +66,17 @@ public class AssistanceAgentClaimPublishService extends AbstractGuiService<Assis
 	}
 
 	@Override
-	public void perform(final Claim job) {
-
+	public void perform(final Claim claim) {
+		claim.setDraftMode(false);
+		this.repository.save(claim);
 	}
 
 	@Override
-	public void unbind(final Claim job) {
-		int employerId;
-		Collection<Claim> contractors;
-		SelectChoices choices;
-		Dataset dataset;
+	public void unbind(final Claim claim) {
 
-		employerId = super.getRequest().getPrincipal().getActiveRealm().getId();
-		//contractors = this.repository.findContractorsByEmployerId(employerId);
-		//choices = SelectChoices.from(contractors, "name", job.getContractor());
-
-		dataset = super.unbindObject(job, "ticker", "title", "deadline", "salary", "score", "moreInfo", "description", "draftMode");
-		//dataset.put("contractor", choices.getSelected().getKey());
-		//dataset.put("contractors", choices);
+		Dataset dataset = super.unbindObject(claim, "registrationMoment", "passengerEmail", "description", "indicator", "linkedTo");
+		SelectChoices statusChoices = SelectChoices.from(ClaimType.class, claim.getType());
+		dataset.put("type", statusChoices);
 
 		super.getResponse().addData(dataset);
 	}

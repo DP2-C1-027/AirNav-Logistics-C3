@@ -23,7 +23,7 @@ import acme.entities.claims.Claim;
 import acme.realms.AssistanceAgent;
 
 @GuiService
-public class AssistanceAgentClaimListService extends AbstractGuiService<AssistanceAgent, Claim> {
+public class AssistanceAgentClaimListServiceCompleted extends AbstractGuiService<AssistanceAgent, Claim> {
 
 	// Internal state ---------------------------------------------------------
 
@@ -35,14 +35,21 @@ public class AssistanceAgentClaimListService extends AbstractGuiService<Assistan
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		AssistanceAgent assistance;
+		boolean status;
+		assistance = (AssistanceAgent) super.getRequest().getPrincipal().getActiveRealm();
+
+		status = super.getRequest().getPrincipal().hasRealm(assistance);
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
 	public void load() {
 		Collection<Claim> companies;
+		int assistanceId;
 
-		companies = this.repository.findAllCompletedClaims();
+		assistanceId = super.getRequest().getPrincipal().getActiveRealm().getId();
+		companies = this.repository.findAllCompletedClaimsByAgent(assistanceId);
 
 		super.getBuffer().addData(companies);
 	}

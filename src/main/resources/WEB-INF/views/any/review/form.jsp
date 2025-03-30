@@ -27,6 +27,7 @@
 
 	<jstl:choose>
 				<jstl:when test="${_command == 'create'}">
+					<acme:input-checkbox code="any.review.form.label.confirmation" path="confirmation"/>
 					<acme:submit code="any.review.form.button.create" action="/any/review/create"/>
 				</jstl:when>		
 		</jstl:choose>	

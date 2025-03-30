@@ -73,6 +73,13 @@ master.menu.user-account.customers-profile = Customer profile
 master.menu.user-account.become-flight-crew-member = Become a flight crew member
 master.menu.user-account.flight-crew-member-profile = Flight Crew Member profile
 
+# master.menu.AssistanceAgent ##########################################################
+
+master.menu.assistanceAgent = Assistance Agent
+master.menu.assistanceAgent.list-my-claims =My claims completed
+master.menu.assistanceAgent.list-my-claimsUndergoing =My claims undergoing
+master.menu.assistanceAgent.list-my-trackingLogs =My trackingLogs 
+
 # master.menu.customers ##########################################################
 master.menu.customers = Customer
 master.menu.customers.list-my-bookings = My booking List

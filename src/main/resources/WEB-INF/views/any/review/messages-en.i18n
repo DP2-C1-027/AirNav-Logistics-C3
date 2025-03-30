@@ -26,3 +26,4 @@ any.review.list.label.subject = Subject:
 # Common buttons
 any.review.form.button.create = Create
 any.review.list.button.create = Create Review
+any.review.form.label.confirmation = Confirm

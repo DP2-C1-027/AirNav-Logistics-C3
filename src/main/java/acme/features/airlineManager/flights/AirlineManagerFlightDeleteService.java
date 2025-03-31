@@ -10,7 +10,6 @@ import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.flights.Flight;
 import acme.entities.legs.Leg;
-import acme.features.airlineManager.legs.AirlineManagerLegsRepository;
 import acme.realms.AirlineManager;
 
 @GuiService
@@ -19,10 +18,7 @@ public class AirlineManagerFlightDeleteService extends AbstractGuiService<Airlin
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private AirlineManagerFlightRepository	repository;
-
-	@Autowired
-	private AirlineManagerLegsRepository	legRepository;
+	private AirlineManagerFlightRepository repository;
 
 	// AbstractGuiService interface -------------------------------------------
 
@@ -68,7 +64,7 @@ public class AirlineManagerFlightDeleteService extends AbstractGuiService<Airlin
 	public void perform(final Flight flight) {
 		Collection<Leg> legs;
 
-		legs = this.legRepository.findLegsByFlightId(flight.getId());
+		legs = this.repository.findLegsByFlightId(flight.getId());
 		this.repository.deleteAll(legs);
 		this.repository.delete(flight);
 	}

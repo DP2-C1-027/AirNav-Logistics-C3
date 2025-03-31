@@ -13,7 +13,7 @@ claim-11,2021/03/05 07:30,passenger10@outlook.com,I received the wrong meal.,SEC
 claim-12,2021/06/25 12:10,passenger11@gmail.com,서비스가 매우 불친절했습니다.,SECURITY_INCIDENT,True,agent-11,leg-01
 claim-13,2021/09/09 15:55,passenger12@yahoo.com,d,FLIGHT_ISSUES,True,agent-12,leg-01
 claim-14,2021/12/01 21:40,passenger13@hotmail.com,Καθυστερημένη πτήση χωρίς ενημέρωση.,FLIGHT_ISSUES,True,agent-13,leg-01
-claim-15,2022/02/18 11:30,a@b.e,Robert'); DROP TABLE claims; --,SECURITY_INCIDENT,True,agent-14,leg-01
-claim-16,2020/11/01 10:00,passenger1@gmail.com,Καθυστερημένη,FLIGHT_ISSUES,True,agent-01,leg-01
-claim-17,2020/11/01 10:00,passenger2@gmail.com,Καθυστερημένη,FLIGHT_ISSUES,True,agent-01,leg-01
+claim-15,2024/12/07 10:00,a@b.e,Robert'); DROP TABLE claims; --,SECURITY_INCIDENT,True,agent-01,leg-01
+claim-16,2024/12/07 10:00,passenger1@gmail.com,Καθυστερημένη,FLIGHT_ISSUES,True,agent-01,leg-01
+claim-17,2024/12/07 10:00,passenger2@gmail.com,Καθυστερημένη,FLIGHT_ISSUES,True,agent-01,leg-01
 claim-18,2020/11/01 10:00,passenger1@gmail.com,Καθυστερημένη,FLIGHT_ISSUES,True,agent-01,leg-01

@@ -41,6 +41,8 @@
 			<acme:menu-separator/>
 			<acme:menu-suboption code="master.menu.administrator.list-record" action="/administrator/maintanence-record/list"/>
 			<acme:menu-separator/>
+			<acme:menu-suboption code="master.menu.administrator.claim" action="/administrator/claim/list"/>
+			<acme:menu-separator/>
 			<acme:menu-suboption code="master.menu.administrator.list-airline" action="/administrator/airline/list"/>
 			<acme:menu-suboption code="master.menu.administrator.list-airport" action="/administrator/airport/list"/>
 			<acme:menu-suboption code="master.menu.administrator.list-aircraft" action="/administrator/aircraft/list"/>
@@ -68,6 +70,8 @@
 					<acme:menu-suboption code="master.menu.assistanceAgent.list-my-claims" action="/assistance-agent/claim/listCompleted" />
 					<acme:menu-suboption code="master.menu.assistanceAgent.list-my-claimsUndergoing" action="/assistance-agent/claim/listUndergoing" />
 					<acme:menu-suboption code="master.menu.assistanceAgent.list-my-trackingLogs" action="/assistance-agent/tracking-log/list" />
+					<acme:menu-suboption code="master.menu.assistanceAgent.show-dashboard" action="/assistance-agent/assistance-agent-dashboard/show"/>
+
 
 		</acme:menu-option>
 		
@@ -112,8 +116,13 @@
 			<acme:menu-suboption code="master.menu.user-account.customers-profile" action="/authenticated/customers/update" access="hasRealm('Customers')"/>
 			<acme:menu-suboption code="master.menu.user-account.become-flight-crew-member" action="/authenticated/flight-crew-member/create" access="!hasRealm('FlightCrewMember')"/>
 			<acme:menu-suboption code="master.menu.user-account.flight-crew-member-profile" action="/authenticated/flight-crew-member/update" access="hasRealm('FlightCrewMember')"/>
+
 			<acme:menu-suboption code="master.menu.user-account.become-technician" action="/authenticated/technician/create" access="!hasRealm('Technician')"/>
 			<acme:menu-suboption code="master.menu.user-account.technician-profile" action="/authenticated/technician/update" access="hasRealm('Technician')"/>
+
+			<acme:menu-suboption code="master.menu.user-account.become-assistance-agent" action="/authenticated/assistance-agent/create" access="!hasRealm('assistanceAgent')"/>
+			<acme:menu-suboption code="master.menu.user-account.assistance-agent-profile" action="/authenticated/assistance-agent/update" access="hasRealm('assistanceAgent')"/>
+
 		</acme:menu-option>
 	</acme:menu-right>
 </acme:menu-bar>

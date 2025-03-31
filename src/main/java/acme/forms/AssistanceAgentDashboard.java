@@ -15,6 +15,7 @@ package acme.forms;
 import java.util.List;
 
 import acme.client.components.basis.AbstractForm;
+import acme.datatypes.LegStatistics;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -32,14 +33,8 @@ public class AssistanceAgentDashboard extends AbstractForm {
 	Double						ratioOfRejectedClaims;
 	List<String>				topThreeMonthsWithMostClaims;
 
-	Double						averageNumberOfLogsPerClaim;
-	Integer						minimumNumberOfLogsPerClaim;
-	Integer						maximumNumberOfLogsPerClaim;
-	Double						standardDeviationOfLogsPerClaim;
-	Double						averageNumberOfClaimsLastMonth;
-	Integer						minimumNumberOfClaimsLastMonth;
-	Integer						maximumNumberOfClaimsLastMonth;
-	Double						standardDeviationOfClaimsLastMonth;
+	LegStatistics				statsLogsPerClaim;
+	LegStatistics				statsClaimsLastMonth;
 
 	// Derived attributes -----------------------------------------------------
 

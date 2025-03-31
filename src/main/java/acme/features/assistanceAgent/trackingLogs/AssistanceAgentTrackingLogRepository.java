@@ -13,11 +13,13 @@
 package acme.features.assistanceAgent.trackingLogs;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import acme.client.repositories.AbstractRepository;
+import acme.entities.claims.Claim;
 import acme.entities.claims.TrackingLog;;
 
 @Repository
@@ -34,4 +36,13 @@ public interface AssistanceAgentTrackingLogRepository extends AbstractRepository
 
 	@Query("SELECT t FROM TrackingLog t LEFT JOIN FETCH t.claim c WHERE c.registeredBy.id = :assistanceAgentId")
 	Collection<TrackingLog> findAllTrackingLogsByAgent(int assistanceAgentId);
+
+	@Query("SELECT t FROM TrackingLog t WHERE t.claim.id = :claimId ORDER BY t.lastUpdateMoment DESC")
+	List<TrackingLog> findTrackingLogsByClaimIdOrderedByDateDesc(int claimId);
+
+	@Query("SELECT t FROM TrackingLog t WHERE t.claim.id = :claimId ORDER BY t.lastUpdateMoment ASC")
+	List<TrackingLog> findTrackingLogsByClaimIdOrderedByDateAsc(int claimId);
+
+	@Query("SELECT t.claim FROM TrackingLog t WHERE t.id = :trackingLogId")
+	Claim findClaimByTrackingLogId(int trackingLogId);
 }

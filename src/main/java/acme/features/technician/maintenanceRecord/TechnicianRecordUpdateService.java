@@ -12,6 +12,7 @@ import acme.client.services.GuiService;
 import acme.entities.aircraft.Aircraft;
 import acme.entities.maintanenceRecords.MaintanenceRecord;
 import acme.entities.maintanenceRecords.StatusMaintanenceRecord;
+import acme.entities.maintanenceRecords.Task;
 import acme.realms.Technician;
 
 @GuiService
@@ -43,6 +44,7 @@ public class TechnicianRecordUpdateService extends AbstractGuiService<Technician
 	public void load() {
 		MaintanenceRecord record;
 		int id;
+		Task prueba;
 
 		id = super.getRequest().getData("id", int.class);
 		record = this.repository.findRecordById(id);

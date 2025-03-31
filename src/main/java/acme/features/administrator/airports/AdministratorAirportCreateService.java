@@ -1,6 +1,8 @@
 
 package acme.features.administrator.airports;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
@@ -46,6 +48,10 @@ public class AdministratorAirportCreateService extends AbstractGuiService<Admini
 	@Override
 	public void validate(final Airport airport) {
 		boolean confirmation;
+		String cod = airport.getCodigo();
+		Collection<Airport> codigos = this.repository.findAllAirportCode(cod);
+		if (!codigos.isEmpty())
+			super.state(false, "codigo", "customers.booking.error.repeat-code");
 
 		confirmation = super.getRequest().getData("confirmation", boolean.class);
 		super.state(confirmation, "confirmation", "acme.validation.confirmation.message");
@@ -65,7 +71,6 @@ public class AdministratorAirportCreateService extends AbstractGuiService<Admini
 		dataset.put("operationalScope", choices);
 		dataset.put("confirmation", false);
 		dataset.put("readonly", false);
-	
 
 		super.getResponse().addData(dataset);
 	}

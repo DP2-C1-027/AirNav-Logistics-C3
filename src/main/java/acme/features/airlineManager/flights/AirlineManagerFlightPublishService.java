@@ -1,6 +1,7 @@
 
 package acme.features.airlineManager.flights;
 
+
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,9 @@ import acme.client.components.models.Dataset;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.flights.Flight;
+
 import acme.entities.legs.Leg;
+
 import acme.realms.AirlineManager;
 
 @GuiService
@@ -56,6 +59,7 @@ public class AirlineManagerFlightPublishService extends AbstractGuiService<Airli
 
 	@Override
 	public void validate(final Flight flight) {
+
 		Collection<Leg> legs;
 		boolean confirmation;
 

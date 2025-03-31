@@ -62,13 +62,9 @@ public class TechnicianInvolvedInUpdateService extends AbstractGuiService<Techni
 
 		super.state(record != null, "*", "technician.involved-in.create.error.null-record");
 		super.state(task != null, "*", "technician.involved-in.create.error.null-task");
-		boolean exists1 = this.repository.existsByRecordAndTask(record, task);
-		super.state(!exists1, "*", "technician.involved-in.create.error.duplicate-record-task");
-
-		if (record != null && task != null) {
-			boolean exists = this.repository.existsByRecordAndTask(record, task);
-			super.state(!exists, "*", "technician.involved-in.create.error.duplicate-record-task");
-		}
+		//boolean exists1 = this.repository.existsByRecordAndTask(record, task);
+		//super.state(!exists1, "*", "technician.involved-in.create.error.duplicate-record-task");
+		;
 	}
 
 	@Override

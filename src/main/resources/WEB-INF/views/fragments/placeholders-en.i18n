@@ -25,6 +25,7 @@ acme.placeholders.form.flightCrewMember.salary = 46000.0EUR
 acme.placeholders.form.flightCrewMember.yearsOfExperience = 6
 acme.placeholders.form.airline.codigo=DAL
 acme.placeholders.form.customer.codigo=ACC123456
+acme.placeholders.form.technician.codigo = RB123456
 acme.placeholder.customer.booking.code=ADCD1235
 acme.placeholder.customer.booking.nibble=1234
 acme.placeholders.customer.passenger.number=EF345678

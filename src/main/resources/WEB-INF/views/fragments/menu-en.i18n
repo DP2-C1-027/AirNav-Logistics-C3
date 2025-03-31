@@ -72,6 +72,8 @@ master.menu.user-account.become-customers = Become a customer
 master.menu.user-account.customers-profile = Customer profile
 master.menu.user-account.become-flight-crew-member = Become a flight crew member
 master.menu.user-account.flight-crew-member-profile = Flight Crew Member profile
+master.menu.user-account.become-technician = Become a technician
+master.menu.user-account.technician-profile = Technician profile
 
 # master.menu.AssistanceAgent ##########################################################
 
@@ -89,7 +91,7 @@ master.menu.customers.list-my-bookingRecord = My bookingRecord List
 
 
 # master.menu.technicians ##########################################################
-master.menu.customers = Technician
+master.menu.technicians = Technician
 master.menu.technicians.list-my-maintenance-records = My records
 master.menu.technicians.list-my-tasks = My tasks
 master.menu.technicians.list-my-involved-in = My involved in

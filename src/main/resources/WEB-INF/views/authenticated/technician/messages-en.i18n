@@ -1,0 +1,24 @@
+# messages-en.i18n
+#
+# Copyright (C) 2012-2025 Rafael Corchuelo.
+#
+# In keeping with the traditional purpose of furthering education and research, it is
+# the policy of the copyright owner to permit non-commercial use and redistribution of
+# this software. It has been tested carefully, but it is not guaranteed for any particular
+# purposes. The copyright owner does not offer any warranties or representations, nor do
+# they accept any liabilities with respect to them.
+
+authenticated.technician.form.title = Technician Form
+
+authenticated.technician.form.label.code = Code:
+authenticated.technician.form.label.phoneNumber = Phone Number:
+authenticated.technician.form.label.specialisation = Specialisation:
+authenticated.technician.form.label.annualHealthTest = Annual Health Test:
+authenticated.technician.form.label.yearsOfExperience = Years of Experience:
+authenticated.technician.form.label.certifications = Certifications:
+
+authenticated.technician.form.button.create = Create
+authenticated.technician.form.button.update = Update
+
+acme.validation.error.repeat-code = Existing code
+acme.validation.error.pattern-code = Incorrect pattern

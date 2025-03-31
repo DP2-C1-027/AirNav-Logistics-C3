@@ -53,4 +53,7 @@ public interface TechnicianInvolvedInRepository extends AbstractRepository {
 	@Query("select b from MaintanenceRecord b where b.technician.id=:id and b.draftMode=:draftMode")
 	Collection<MaintanenceRecord> findNotPublishRecord(@Param("id") int id, @Param("draftMode") boolean draftMode);
 
+	@Query("SELECT b FROM InvolvedIn b WHERE b.maintanenceRecord = :maintanenceRecord AND b.task = :task")
+	Collection<InvolvedIn> findByRecordAndTask(MaintanenceRecord maintanenceRecord, Task task);
+
 }

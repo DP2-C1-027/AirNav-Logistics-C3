@@ -59,12 +59,13 @@ public class TechnicianInvolvedInUpdateService extends AbstractGuiService<Techni
 	public void validate(final InvolvedIn involved) {
 		MaintanenceRecord record = involved.getMaintanenceRecord();
 		Task task = involved.getTask();
-
+		InvolvedIn currentInvolvedIn;
+		currentInvolvedIn = this.repository.findInvolvedIn(involved.getId());
 		super.state(record != null, "*", "technician.involved-in.create.error.null-record");
 		super.state(task != null, "*", "technician.involved-in.create.error.null-task");
-		//boolean exists1 = this.repository.existsByRecordAndTask(record, task);
-		//super.state(!exists1, "*", "technician.involved-in.create.error.duplicate-record-task");
-		;
+		Collection<InvolvedIn> exists = this.repository.findByRecordAndTask(record, task);
+		boolean exists1 = exists.contains(currentInvolvedIn) ? exists.size() > 1 : exists.size() > 0;
+		super.state(!exists1, "*", "technician.involved-in.create.error.duplicate-record-task");
 	}
 
 	@Override
@@ -75,24 +76,23 @@ public class TechnicianInvolvedInUpdateService extends AbstractGuiService<Techni
 	@Override
 	public void unbind(final InvolvedIn involved) {
 		Dataset dataset;
-		Technician tech = (Technician) super.getRequest().getPrincipal().getActiveRealm();
-
-		Collection<MaintanenceRecord> records = this.repository.findRecordByTechnicianId(tech.getId());
-		Collection<Task> tasks = this.repository.findTaskByTechnicianId(tech.getId());
-
 		SelectChoices recordChoices;
 		SelectChoices taskChoices;
+
+		Technician technician = (Technician) super.getRequest().getPrincipal().getActiveRealm();
+
+		Collection<MaintanenceRecord> records = this.repository.findRecordByTechnicianId(technician.getId());
+		Collection<Task> tasks = this.repository.findTaskByTechnicianId(technician.getId());
 
 		recordChoices = SelectChoices.from(records, "maintanenceMoment", involved.getMaintanenceRecord());
 		taskChoices = SelectChoices.from(tasks, "description", involved.getTask());
 
 		dataset = super.unbindObject(involved, "maintanenceRecord", "task");
-		dataset.put("maintanenceRecord", recordChoices.getSelected().getKey());
-		dataset.put("records", recordChoices);
-		dataset.put("task", taskChoices.getSelected().getKey());
-		dataset.put("tasks", taskChoices);
-		MaintanenceRecord record = involved.getMaintanenceRecord();
-		dataset.put("draftMode", record != null ? record.getDraftMode() : false);
+		dataset.put("maintanenceRecord", recordChoices);
+		dataset.put("task", taskChoices);
+
+		dataset.put("draftMode", involved.getMaintanenceRecord().getDraftMode());
+		//no se si es el record o el task lo que tengo que mirar aqui
 
 		super.getResponse().addData(dataset);
 

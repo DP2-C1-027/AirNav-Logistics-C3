@@ -16,7 +16,7 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <acme:form>
-	<acme:input-textbox code="authenticated.customers.form.label.code" path="codigo"/>
+	<acme:input-textbox code="authenticated.customers.form.label.code" path="codigo" placeholder ="acme.placeholders.form.customer.codigo"/>
 	<acme:input-textbox code="authenticated.customers.form.label.phone" path="phone"/>
 	<acme:input-textarea code="authenticated.customers.form.label.physicalAddress" path="physicalAddress"/>
 	<acme:input-textbox code="authenticated.customers.form.label.city" path="city"/>

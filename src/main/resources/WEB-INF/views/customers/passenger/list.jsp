@@ -17,7 +17,6 @@
 
 
 
-
 <acme:list >
 	<acme:list-column code="customers.passenger.list.label.fullName" path="fullName" width="20%"/>
 	<acme:list-column code="customers.passenger.list.label.email" path="email" width="10%"/>
@@ -29,6 +28,7 @@
 <jstl:if test="${_command == 'list'}">
 	<acme:button code="customers.passenger.form.button.create" action="/customers/passenger/create"/>
 </jstl:if>	
+
 
 
 

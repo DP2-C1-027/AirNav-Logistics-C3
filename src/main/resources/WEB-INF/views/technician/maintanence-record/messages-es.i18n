@@ -1,0 +1,33 @@
+# messages-es.i18n
+#
+# Copyright (C) 2012-2025 Rafael Corchuelo.
+#
+# In keeping with the traditional purpose of furthering education and research, it is
+# the policy of the copyright owner to permit non-commercial use and redistribution of
+# this software. It has been tested carefully, but it is not guaranteed for any particular
+# purposes.  The copyright owner does not offer any warranties or representations, nor do
+# they accept any liabilities with respect to them.
+
+technician.maintanence-record.form.title = Detalles del Registro de Mantenimiento
+technician.maintanence-record.list.title = Lista de Registros de Mantenimiento
+
+technician.maintanence-record.form.label.maintanenceMoment = Momento del Mantenimiento:
+technician.maintanence-record.form.label.status = Estado:
+technician.maintanence-record.form.label.estimatedCost = Costo Estimado:
+technician.maintanence-record.form.label.nextMaintanence = Próximo Mantenimiento:
+technician.maintanence-record.form.label.notes = Notas:
+
+technician.maintanence-record.list.button.create = Crear
+
+technician.maintanence-record.form.label.maintanenceMoment = Momento del Mantenimiento
+technician.maintanence-record.form.label.estimatedCost = Costo Estimado
+technician.maintenance-record.form.label.status = Estado
+technician.maintenance-record.form.label.aircraft = Aeronave
+technician.maintanence-record.form.label.nextMaintanence = Próximo Mantenimiento
+technician.maintanence-record.form.label.notes = Notas
+
+technician.maintenance-record.form.button.create = Crear
+technician.task.list.button.task = Lista de Tareas
+technician.maintenance-record.form.button.update = Actualizar
+technician.maintenance-record.form.button.publish = Publicar
+technician.task.form.button.createRecord = Crear Tarea

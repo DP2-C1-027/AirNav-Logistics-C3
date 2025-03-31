@@ -62,6 +62,7 @@ public class CustomersBookingRecordCreateService extends AbstractGuiService<Cust
 
 		super.state(booking != null, "booking", "customer.booking-record.create.error.null-booking");
 		super.state(passenger != null, "passenger", "customer.booking-record.create.error.null-passenger");
+		super.state(booking.isDraftMode(), "booking", "customer.booking-record.create.publish.booking");
 
 		boolean exists = this.repository.existsByBookingAndPassenger(booking, passenger);
 		super.state(!exists, "*", "customer.booking-record.create.error.duplicate-booking-passenger");
@@ -80,7 +81,7 @@ public class CustomersBookingRecordCreateService extends AbstractGuiService<Cust
 		//creo q da igual si el pasajero esta publicado o no
 		Collection<Passenger> passenger = this.repository.findPassengerByCustomerId(customer.getId());
 		//creo q el booking no debe estar publicado
-		Collection<Booking> booking = this.repository.findNotPublishBooking(customer.getId(), true);
+		Collection<Booking> booking = this.repository.findNotPublishBooking(customer.getId());
 
 		SelectChoices passengerChoices;
 		SelectChoices bookingChoices;

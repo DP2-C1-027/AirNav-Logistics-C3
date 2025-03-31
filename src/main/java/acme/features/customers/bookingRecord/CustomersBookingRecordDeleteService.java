@@ -59,7 +59,7 @@ public class CustomersBookingRecordDeleteService extends AbstractGuiService<Cust
 	@Override
 	public void validate(final BookingRecord bookingRecord) {
 		super.state(bookingRecord.getBooking().isDraftMode(), "*", "customers.form.error.draft-mode");
-		;
+
 	}
 
 	@Override
@@ -76,7 +76,7 @@ public class CustomersBookingRecordDeleteService extends AbstractGuiService<Cust
 
 		Collection<Passenger> passenger = this.repository.findPassengerByCustomerId(customer.getId());
 
-		Collection<Booking> booking = this.repository.findNotPublishBooking(customer.getId(), true);
+		Collection<Booking> booking = this.repository.findNotPublishBooking(customer.getId());
 
 		SelectChoices passengerChoices;
 		SelectChoices bookingChoices;

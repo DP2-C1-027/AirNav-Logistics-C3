@@ -21,3 +21,4 @@ authenticated.customers.form.button.create= Crear
 authenticated.customers.form.button.update= Actualizar
 
 acme.validation.error.repeat-code = Codigo existente
+acme.validation.error.pattern-code = Patron incorrecto.

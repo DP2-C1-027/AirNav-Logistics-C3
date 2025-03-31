@@ -11,3 +11,4 @@
 	<acme:list-column code="airlineManager.leg.list.label.arrivalAirport" path="arrivalAirport" width="20%"/>
 	<acme:list-payload path="payload"/>
 </acme:list>
+<acme:button code="airlineManager.leg.list.button.create" action="/airline-manager/leg/create"/>

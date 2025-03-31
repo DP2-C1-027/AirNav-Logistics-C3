@@ -31,6 +31,7 @@ master.menu.administrator.list-user-accounts = List user accounts
 master.menu.administrator.list-airline = List airlines
 master.menu.administrator.list-airport = List airports
 master.menu.administrator.list-booking = List bookings
+master.menu.administrator.list-record = List records
 master.menu.administrator.list-aircraft = List aircrafts
 
 master.menu.administrator.populate-db-initial = Populate DB (initial)

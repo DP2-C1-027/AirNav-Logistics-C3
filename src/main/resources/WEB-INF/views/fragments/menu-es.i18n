@@ -30,6 +30,7 @@ master.menu.administrator.show-administrator-dashboard = Mostrar panel de contro
 master.menu.administrator.list-user-accounts = Ver cuentas de usuario
 master.menu.administrator.list-airline = Ver aerolineas
 master.menu.administrator.list-airport = Ver aeropuertos
+master.menu.administrator.list-record = Ver registros
 master.menu.administrator.list-booking = Ver reservas
 master.menu.administrator.list-aircraft = Ver aviones
 

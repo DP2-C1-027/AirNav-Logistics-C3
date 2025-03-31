@@ -30,6 +30,7 @@ master.menu.administrator.show-administrator-dashboard = Mostrar panel de contro
 master.menu.administrator.list-user-accounts = Ver cuentas de usuario
 master.menu.administrator.list-airline = Ver aerolineas
 master.menu.administrator.list-airport = Ver aeropuertos
+master.menu.administrator.list-record = Ver registros
 master.menu.administrator.list-booking = Ver reservas
 master.menu.administrator.list-aircraft = Ver aviones
 
@@ -74,6 +75,8 @@ master.menu.user-account.become-customers = Hazte cliente
 master.menu.user-account.customers-profile = Perfil de cliente
 master.menu.user-account.become-flight-crew-member = Hazte tripulante de vuelo
 master.menu.user-account.flight-crew-member-profile = Perfil de tripulante de vuelo
+master.menu.user-account.become-technician = Hazte tripulante de vuelo
+master.menu.user-account.technician-profile = Perfil de tripulante de vuelo
 
 # master.menu.AssistanceAgent ##########################################################
 
@@ -89,6 +92,12 @@ master.menu.customers.list-my-passengers = Mi lista de pasajeros
 
 master.menu.customers.show-dashboard = Mi dashboard
 master.menu.customers.list-my-bookingRecord = Lista de bookingRecord
+
+# master.menu.technicians ##########################################################
+master.menu.technicians = Técnico
+master.menu.technicians.list-my-maintenance-records = Mis registros de mantenimiento
+master.menu.technicians.list-my-tasks = Mis tareas
+master.menu.technicians.list-my-involved-in = Mis participaciones
 
 # master.menu.dashboards ########################################################
 master.menu.dashboards = Panel de control

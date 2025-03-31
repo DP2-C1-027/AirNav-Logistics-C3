@@ -62,12 +62,12 @@ public class CustomersBookingRecordShowService extends AbstractGuiService<Custom
 		if (!bookingRecord.getBooking().isDraftMode()) {
 			bookingChoices = SelectChoices.from(bookings, "locatorCode", bookingRecord.getBooking());
 			dataset.put("bookings", bookingChoices);
-			System.out.println("entra aqui");
+
 		} else {
 			bookingChoices = SelectChoices.from(booking, "locatorCode", bookingRecord.getBooking());
 			dataset.put("booking", bookingChoices.getSelected().getKey());
 			dataset.put("bookings", bookingChoices);
-			System.out.println(" no deberia entrar aqui");
+
 		}
 
 		dataset.put("passenger", passengerChoices.getSelected().getKey());

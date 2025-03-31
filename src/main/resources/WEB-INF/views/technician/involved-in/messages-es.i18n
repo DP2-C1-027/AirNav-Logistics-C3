@@ -8,11 +8,16 @@
 # purposes.  The copyright owner does not offer any warranties or representations, nor do
 # they accept any liabilities with respect to them.
 
-technician.maintanence-record.form.title = Maintenance Record details
-technician.maintanence-record.list.title = Maintenance Record list
+technician.involved-in.form.title = Detalles de Involucración  
+technician.involved-in.list.title = Lista de Involucraciones  
 
-technician.maintanence-record.form.label.maintanenceMoment = Maintanence Moment: 
-technician.maintanence-record.form.label.status = Status:
-technician.maintanence-record.form.label.estimatedCost = Estimated Cost:
-technician.maintanence-record.form.label.nextMaintanence = Next Maintanence:
-technician.maintanence-record.form.label.notes = Notes:
+technician.involved-in.form.label.maintanenceRecord = Registro de Mantenimiento:  
+technician.involved-in.form.label.task = Tarea:  
+
+technician.involved-in.form.label.create = Crear  
+technician.involved-in.form.label.update = Actualizar  
+technician.involved-in.form.label.delete = Eliminar  
+
+technician.involved-in.list.label.maintanenceRecord = Registro de Mantenimiento:  
+technician.involved-in.list.label.task = Tarea:  
+

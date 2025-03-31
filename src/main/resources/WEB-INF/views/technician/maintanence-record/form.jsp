@@ -29,10 +29,11 @@
 
 		<acme:submit code="technician.maintenance-record.form.button.create" action="/technician/maintanence-record/create"/>
 		</jstl:when>
-		<jstl:when test="${acme:anyOf(_command, 'show|update|publish') && draftMode == true }">
+		<jstl:when test="${acme:anyOf(_command, 'show|update|publish|delete') && draftMode == true }">
 		<acme:button code="technician.task.list.button.task" action="/technician/task/taskList?recordId=${id}"/>
 		<acme:submit code="technician.maintenance-record.form.button.update" action="/technician/maintanence-record/update"/>
 		<acme:submit code="technician.maintenance-record.form.button.publish" action="/technician/maintanence-record/publish"/>
+		<acme:submit code="technician.maintenance-record.form.button.delete" action="/technician/maintanence-record/delete"/>
 		<acme:button code="technician.task.form.button.createRecord" action="/technician/task/createRecord?recordId=${id}"/>
 		</jstl:when>
 	</jstl:choose>

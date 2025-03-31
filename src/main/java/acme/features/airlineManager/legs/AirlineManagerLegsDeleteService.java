@@ -11,9 +11,11 @@ import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.aircraft.Aircraft;
 import acme.entities.airport.Airport;
+import acme.entities.claims.Claim;
 import acme.entities.flights.Flight;
 import acme.entities.legs.Leg;
 import acme.entities.legs.LegStatus;
+import acme.features.assistanceAgent.claims.AssistanceAgentClaimRepository;
 import acme.realms.AirlineManager;
 
 @GuiService
@@ -21,7 +23,10 @@ public class AirlineManagerLegsDeleteService extends AbstractGuiService<AirlineM
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private AirlineManagerLegsRepository repository;
+	private AirlineManagerLegsRepository	repository;
+
+	@Autowired
+	private AssistanceAgentClaimRepository	claimRepository;
 
 	// AbstractGuiService interface -------------------------------------------
 
@@ -65,6 +70,11 @@ public class AirlineManagerLegsDeleteService extends AbstractGuiService<AirlineM
 
 	@Override
 	public void perform(final Leg leg) {
+		Collection<Claim> claims;
+
+		claims = this.claimRepository.findClaimsByLegId(leg.getId());
+
+		this.claimRepository.deleteAll(claims);
 
 		this.repository.delete(leg);
 	}

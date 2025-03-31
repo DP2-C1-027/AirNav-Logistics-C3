@@ -69,7 +69,7 @@ public class TechnicianRecordCreateService extends AbstractGuiService<Technician
 		//aqui seran todos los errores que tienen que saltar en la pantalla 
 		//para que no se cague encima...
 		if (record.getAircraft() == null)
-			super.state(false, "vuelo", "technician.maintanence-record.error.no-aircraft");
+			super.state(false, "aircraft", "technician.maintanence-record.error.no-aircraft");
 	}
 
 	@Override

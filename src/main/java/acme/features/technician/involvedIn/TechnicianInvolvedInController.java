@@ -25,6 +25,9 @@ public class TechnicianInvolvedInController extends AbstractGuiController<Techni
 	@Autowired
 	private TechnicianInvolvedInCreateService	createService;
 
+	@Autowired
+	private TechnicianInvolvedInDeleteService	deleteService;
+
 
 	@PostConstruct
 	protected void initialise() {
@@ -32,5 +35,6 @@ public class TechnicianInvolvedInController extends AbstractGuiController<Techni
 		super.addBasicCommand("show", this.showService);
 		super.addBasicCommand("update", this.updateService);
 		super.addBasicCommand("create", this.createService);
+		super.addBasicCommand("delete", this.deleteService);
 	}
 }

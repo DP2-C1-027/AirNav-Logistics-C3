@@ -1,12 +1,15 @@
 
 package acme.features.technician.maintenanceRecord;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
+import acme.entities.aircraft.Aircraft;
 import acme.entities.maintanenceRecords.MaintanenceRecord;
 import acme.entities.maintanenceRecords.StatusMaintanenceRecord;
 import acme.realms.Technician;
@@ -76,9 +79,14 @@ public class TechnicianRecordUpdateService extends AbstractGuiService<Technician
 
 		Dataset dataset;
 		SelectChoices choices;
+		SelectChoices aircraftChoices;
+		Collection<Aircraft> aircrafts;
+		aircrafts = this.repository.getAllAircraft();
+		aircraftChoices = SelectChoices.from(aircrafts, "registrationNumber", record.getAircraft());
 		choices = SelectChoices.from(StatusMaintanenceRecord.class, record.getStatus());
 		dataset = super.unbindObject(record, "maintanenceMoment", "status", "nextMaintanence", "estimatedCost", "notes", "draftMode");
-
+		dataset.put("aircraft", aircraftChoices.getSelected().getKey());
+		dataset.put("aircrafts", aircraftChoices);
 		dataset.put("status", choices);
 		super.getResponse().addData(dataset);
 	}

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import acme.client.repositories.AbstractRepository;
 import acme.entities.booking.Passenger;
+import acme.entities.maintanenceRecords.InvolvedIn;
 import acme.entities.maintanenceRecords.MaintanenceRecord;
 import acme.entities.maintanenceRecords.Task;
 import acme.realms.Technician;
@@ -25,7 +26,8 @@ public interface TechnicianTaskRepository extends AbstractRepository {
 	@Query("select p from Task p where p.technician.id=:technicianId")
 	Collection<Task> findTasksByTechnicianId(@Param("technicianId") int technicianId);
 
-	// detalles de un pasajero:
+	@Query("select br from InvolvedIn br where br.task.id=:id")
+	Collection<InvolvedIn> findAllInvolvedInById(int id);
 
 	@Query("SELECT p FROM Passenger p WHERE p.id = :id")
 	Passenger findPassengerById(final int id);

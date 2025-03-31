@@ -18,7 +18,7 @@
 <acme:form >
 	<acme:input-textarea code="customers.passenger.form.label.fullName" path="fullName"/>
 	<acme:input-email code="customers.passenger.form.label.email" path="email"/>
-	<acme:input-textbox code="customers.passenger.form.label.passportNumber" path="passportNumber"/>
+	<acme:input-textbox code="customers.passenger.form.label.passportNumber" path="passportNumber" placeholder="acme.placeholders.customer.passenger.number"/>
 	<acme:input-moment code="customers.passenger.form.label.dateOfBirth" path="dateOfBirth"/>
 	<acme:input-textbox code="customers.passenger.form.label.specialNeeds" path="specialNeeds"/>
 	
@@ -29,7 +29,7 @@
 			<acme:submit code="customers.passenger.form.button.create" action="/customers/passenger/create"/>
 		</jstl:when>
 		<jstl:when test="${_command == 'createBooking'}">
-			<acme:submit code="customers.passenger.form.button.createBooking" action="/customers/passenger/createBooking?bookingId=${id }"/>
+		<acme:submit code="customers.passenger.form.button.createBooking" action="/customers/passenger/createBooking?bookingId=${$request.data.bookingId}"/>
 		</jstl:when>
 		
 		<jstl:when test="${acme:anyOf(_command, 'show|update|publish|delete') && draftMode == true }">

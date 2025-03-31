@@ -16,21 +16,24 @@ public class AssistanceAgentTrackingLogController extends AbstractGuiController<
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private AssistanceAgentTrackingLogListService		listService;
-	@Autowired
-	private AssistanceAgentTrackingLogShowService		showService;
+	private AssistanceAgentTrackingLogListService			listService;
 
 	@Autowired
-	private AssistanceAgentTrackingLogCreateService		createService;
+	private AssistanceAgentTrackingLogListByClaimService	listByClaimService;
+	@Autowired
+	private AssistanceAgentTrackingLogShowService			showService;
 
 	@Autowired
-	private AssistanceAgentTrackingLogUpdateService		updateService;
+	private AssistanceAgentTrackingLogCreateService			createService;
 
 	@Autowired
-	private AssistanceAgentTrackingLogDeleteService		deleteService;
+	private AssistanceAgentTrackingLogUpdateService			updateService;
 
 	@Autowired
-	private AssistanceAgentTrackingLogPublishService	publishService;
+	private AssistanceAgentTrackingLogDeleteService			deleteService;
+
+	@Autowired
+	private AssistanceAgentTrackingLogPublishService		publishService;
 
 	// Constructors -----------------------------------------------------------
 
@@ -39,6 +42,8 @@ public class AssistanceAgentTrackingLogController extends AbstractGuiController<
 	protected void initialise() {
 
 		super.addBasicCommand("list", this.listService);
+		super.addCustomCommand("listByClaim", "list", this.listByClaimService);
+
 		super.addBasicCommand("create", this.createService);
 		super.addBasicCommand("show", this.showService);
 		super.addBasicCommand("update", this.updateService);

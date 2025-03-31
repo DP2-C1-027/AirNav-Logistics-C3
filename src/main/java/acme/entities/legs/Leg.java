@@ -10,8 +10,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.Valid;
-import javax.validation.constraints.Min;
 
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
@@ -54,11 +54,6 @@ public class Leg extends AbstractEntity {
 
 	@Mandatory
 	@Automapped
-	@Min(0)
-	private Integer				duration;
-
-	@Mandatory
-	@Automapped
 	@Enumerated(EnumType.STRING)
 	private LegStatus			status;
 
@@ -68,29 +63,41 @@ public class Leg extends AbstractEntity {
 
 	// Derived attributes -----------------------------------------------------
 
+
+	@Transient
+	public Integer getDuration() {
+
+		Integer result;
+
+		result = Integer.valueOf((int) (this.getScheduledArrival().getTime() - this.getScheduledDeparture().getTime()) / (1000 * 60 * 60));
+
+		return result;
+	};
+
 	// Relationships ----------------------------------------------------------
 
-	@Mandatory
-	@ManyToOne
-	@Valid
-	@Automapped
-	private Airport				departureAirport;
 
 	@Mandatory
 	@ManyToOne
 	@Valid
 	@Automapped
-	private Airport				arrivalAirport;
+	private Airport		departureAirport;
 
 	@Mandatory
 	@ManyToOne
 	@Valid
 	@Automapped
-	private Aircraft			aircraft;
+	private Airport		arrivalAirport;
+
+	@Mandatory
+	@ManyToOne
+	@Valid
+	@Automapped
+	private Aircraft	aircraft;
 
 	@Mandatory
 	@ManyToOne(optional = false)
 	@Valid
 	@Automapped
-	private Flight				flight;
+	private Flight		flight;
 }

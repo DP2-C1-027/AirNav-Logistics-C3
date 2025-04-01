@@ -34,10 +34,7 @@ public class AdministratorSystemConfigurationUpdateService extends AbstractGuiSe
 	@Override
 	public void bind(final SystemConfiguration config) {
 		super.bindObject(config, "currency"); // Obtenemos la nueva moneda seleccionada
-		System.out.print(config.getCurrency());
-		// Buscamos la configuración correspondiente a la moneda seleccionada
 
-		System.out.println("Nueva moneda seleccionada: " + config.getCurrency());
 	}
 
 	@Override
@@ -51,13 +48,10 @@ public class AdministratorSystemConfigurationUpdateService extends AbstractGuiSe
 		SystemConfiguration currentConfig = this.repository.findById(config.getId());
 		SystemConfiguration newActiveConfig = this.repository.findById((int) Integer.valueOf(config.getCurrency()));
 
-		System.out.print("holi");
-
 		newActiveConfig.setSystemCurrency(true);
 		currentConfig.setSystemCurrency(false);
 		this.repository.saveAll(List.of(newActiveConfig, currentConfig));
-		System.out.println(config);
-		//this.repository.saveAll(allConfigs); // Guardamos todas las configuraciones desactivadas
+
 	}
 
 	@Override
@@ -67,13 +61,11 @@ public class AdministratorSystemConfigurationUpdateService extends AbstractGuiSe
 
 		Collection<SystemConfiguration> allConfigs = this.repository.getSystem();
 		choices = SelectChoices.from(allConfigs, "currency", config);
-		//choices = SelectChoices.from(TravelClass.class, booking.getTravelClass());
 
-		System.out.print("moneda acatual i guess" + config.getCurrency());
 		dataset = super.unbindObject(config, "currency");
-		System.out.println("estoy en el unbind" + choices.getSelected().getKey());
+
 		dataset.put("currency", choices.getSelected().getKey());
-		dataset.put("systemCurrencies", choices); // Aquí va la lista de opciones
+		dataset.put("systemCurrencies", choices);
 
 		super.getResponse().addData(dataset);
 	}

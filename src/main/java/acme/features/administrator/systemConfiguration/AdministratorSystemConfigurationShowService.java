@@ -41,7 +41,7 @@ public class AdministratorSystemConfigurationShowService extends AbstractGuiServ
 		dataset = super.unbindObject(config);
 
 		dataset.put("currency", choices.getSelected().getKey());
-		dataset.put("systemCurrencies", choices); // Aquí va la lista de opciones
+		dataset.put("systemCurrencies", choices);
 
 		super.getResponse().addData(dataset);
 	}

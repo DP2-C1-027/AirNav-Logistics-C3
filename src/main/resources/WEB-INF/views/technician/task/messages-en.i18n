@@ -8,20 +8,20 @@
 # purposes.  The copyright owner does not offer any warranties or representations, nor do
 # they accept any liabilities with respect to them.
 
-customers.passenger.form.title = Passenger details
-customers.passenger.list.title = Passenger list
+technician.task.form.title = Task details
+technician.task.list.title = Task list
 
-customers.passenger.form.label.fullName = Full name: 
-customers.passenger.form.label.email = Email:
-customers.passenger.form.label.passportNumber = Passport Number:
-customers.passenger.form.label.dateOfBirth = Date of birth:
-customers.passenger.form.label.specialNeeds = Special Needs:
+echnician.task.form.label.type = Type
+technician.task.form.label.description = Description
+technician.task.form.label.priority = Priority
+technician.task.form.label.estimatedDuration = Estimated Duration
 
-customers.passenger.list.label.fullName = Full name: 
-customers.passenger.list.label.email = Email:
+technician.task.list.label.type = Type
+technician.task.list.label.description = Description
+technician.task.list.label.priority = Priority
+technician.task.list.label.estimatedDuration = Estimated Duration
 
-customers.passenger.form.button.create= Create new passenger
-customers.passenger.form.button.createBooking = Add new passenger
-
-customers.passenger.form.button.update = Update
-customers.passenger.form.button.publish= Publish
+technician.task.form.button.create = Create
+technician.task.form.button.update = Update
+technician.task.form.button.publish = Publish
+technician.task.form.button.delete = Delete

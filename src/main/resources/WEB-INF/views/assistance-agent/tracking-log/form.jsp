@@ -27,6 +27,7 @@
 
 	<jstl:choose>
 				<jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish')}">
+					<acme:button code="assistanceAgent.claim.form.button.claim" action="/assistance-agent/claim/showByTrackingLog?trackingLogId=${id}"/>
 					<acme:submit code="assistanceAgent.trackingLog.form.button.update" action="/assistance-agent/tracking-log/update"/>
 					<acme:submit code="assistanceAgent.trackingLog.form.button.delete" action="/assistance-agent/tracking-log/delete"/>
 					<acme:submit code="assistanceAgent.trackingLog.form.button.publish" action="/assistance-agent/tracking-log/publish"/>

@@ -57,22 +57,14 @@ public class TechnicianInvolvedInUpdateService extends AbstractGuiService<Techni
 
 	@Override
 	public void validate(final InvolvedIn involved) {
-		MaintanenceRecord record;
-		Task task;
-
-		record = involved.getMaintanenceRecord();
-		task = involved.getTask();
-
-		Technician tech;
-		tech = (Technician) super.getRequest().getPrincipal().getActiveRealm();
+		MaintanenceRecord record = involved.getMaintanenceRecord();
+		Task task = involved.getTask();
 
 		super.state(record != null, "*", "technician.involved-in.create.error.null-record");
 		super.state(task != null, "*", "technician.involved-in.create.error.null-task");
-		//no me acuerdo si les he puesto el mismo nombre que al de antes
-
-		boolean exists = this.repository.existsByRecordAndTask(record, task);
-		super.state(!exists, "*", "technician.involved-in.create.error.duplicate-record-task");
-
+		//boolean exists1 = this.repository.existsByRecordAndTask(record, task);
+		//super.state(!exists1, "*", "technician.involved-in.create.error.duplicate-record-task");
+		;
 	}
 
 	@Override
@@ -99,7 +91,8 @@ public class TechnicianInvolvedInUpdateService extends AbstractGuiService<Techni
 		dataset.put("records", recordChoices);
 		dataset.put("task", taskChoices.getSelected().getKey());
 		dataset.put("tasks", taskChoices);
-		dataset.put("draftMode", involved.getMaintanenceRecord().getDraftMode());
+		MaintanenceRecord record = involved.getMaintanenceRecord();
+		dataset.put("draftMode", record != null ? record.getDraftMode() : false);
 
 		super.getResponse().addData(dataset);
 

@@ -40,7 +40,7 @@ public class ValidPercentageIncreaseValidator extends AbstractValidator<ValidPer
 		if (newId != null) {
 			int currentIndex = -1;
 			for (int i = 0; i < existingLogs.size(); i++)
-				if (newId.equals(existingLogs.get(i).getId())) { // Corrección aquí
+				if (newId.equals(existingLogs.get(i).getId())) {
 					currentIndex = i;
 					break;
 				}

@@ -14,15 +14,31 @@ import acme.realms.AirlineManager;
 public class AirlineManagerLegsController extends AbstractGuiController<AirlineManager, Leg> {
 
 	@Autowired
-	private AirlineManagerLegsShowService	showService;
+	private AirlineManagerLegsShowService		showService;
 
 	@Autowired
-	private AirlineManagerLegsListService	listService;
+	private AirlineManagerLegsListService		listService;
+
+	@Autowired
+	private AirlineManagerLegsCreateService		createService;
+
+	@Autowired
+	private AirlineManagerLegsUpdateService		updateService;
+
+	@Autowired
+	private AirlineManagerLegsDeleteService		deleteService;
+
+	@Autowired
+	private AirlineManagerLegsPublishService	publishService;
 
 
 	@PostConstruct
 	protected void initialise() {
 		super.addBasicCommand("list", this.listService);
 		super.addBasicCommand("show", this.showService);
+		super.addBasicCommand("create", this.createService);
+		super.addBasicCommand("update", this.updateService);
+		super.addBasicCommand("delete", this.deleteService);
+		super.addCustomCommand("publish", "update", this.publishService);
 	}
 }

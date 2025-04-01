@@ -25,9 +25,9 @@ bg=#f3fdff</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>282</x>
-      <y>138</y>
+      <y>126</y>
       <w>438</w>
-      <h>78</h>
+      <h>90</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 Passenger
@@ -37,6 +37,7 @@ Passenger
 + passportNumber: String {Mandatory, ValidPassportNumber, Automapped}
 + dateOfBirth: Date {Mandatory, ValidMoment(past=true), Temporal(TemporalType.TIMESTAMP), Automapped}
 - specialNeeds: String {Optional, ValidShortTextOptional, Automapped}
++ draftMode: boolena {Mandatory, Automapped}
 bg=green</panel_attributes>
     <additional_attributes/>
   </element>
@@ -55,6 +56,7 @@ Booking
 + purchaseMoment: Date {Mandatory, ValidMoment(past=true), Temporal(TemporalType.TIMESTAMP, Automapped}
 + travelClass: TravelClass {Mandatory,Valid, Automapped, Enumerated(EnumType.STRING)}
 - lastNibble: String {Optional, ValidLastNibble, Automapped}
++ draftMode: boolena {Mandatory, Automapped}
 --
 /+ getPrice: Money
 
@@ -323,5 +325,30 @@ bg=orange</panel_attributes>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;70.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>84</x>
+      <y>264</y>
+      <w>162</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>Once a booking has been published,
+no additional passengers can be 
+added, nor can its details be modified.
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>240</x>
+      <y>282</y>
+      <w>72</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;100.0;10.0</additional_attributes>
   </element>
 </diagram>

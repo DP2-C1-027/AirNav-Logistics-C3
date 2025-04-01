@@ -61,7 +61,7 @@ public class AssistanceAgentClaimPublishService extends AbstractGuiService<Assis
 	}
 
 	@Override
-	public void validate(final Claim job) {
+	public void validate(final Claim claim) {
 		;
 	}
 

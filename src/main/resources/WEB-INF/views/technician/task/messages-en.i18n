@@ -22,6 +22,6 @@ technician.task.list.label.priority = Priority
 technician.task.list.label.estimatedDuration = Estimated Duration
 
 technician.task.form.button.create = Create
-technician.task.form.button.createRecord = Create Task
 technician.task.form.button.update = Update
 technician.task.form.button.publish = Publish
+technician.task.form.button.delete = Delete

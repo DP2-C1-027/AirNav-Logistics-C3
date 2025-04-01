@@ -1,0 +1,8 @@
+key,currency,systemCurrency
+sys-config-01,EUR,true
+sys-config-02,USD,false
+sys-config-03,GBP,false
+sys-config-04,JPY,false
+sys-config-05,AUD,false
+sys-config-06,CAD,false
+sys-config-07,CHF,false

@@ -12,6 +12,8 @@
 
 package acme.features.assistanceAgent.claims;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
@@ -20,6 +22,7 @@ import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.claims.Claim;
 import acme.entities.claims.ClaimType;
+import acme.entities.legs.Leg;
 import acme.realms.AssistanceAgent;
 
 @GuiService
@@ -56,11 +59,14 @@ public class AssistanceAgentClaimShowByTrackingLogService extends AbstractGuiSer
 
 	@Override
 	public void unbind(final Claim claim) {
-		Dataset dataset;
+		Collection<Leg> legs;
+		legs = this.repository.findAllLegs();
 
-		dataset = super.unbindObject(claim, "registrationMoment", "passengerEmail", "description", "indicator", "linkedTo");
+		Dataset dataset = super.unbindObject(claim, "registrationMoment", "passengerEmail", "description", "indicator", "type", "linkedTo", "draftMode");
 		SelectChoices statusChoices = SelectChoices.from(ClaimType.class, claim.getType());
-		dataset.put("type", statusChoices);
+		SelectChoices legsChoices = SelectChoices.from(legs, "flightNumber", claim.getLinkedTo());
+		dataset.put("linkedTo", legsChoices);
+		dataset.put("typeChoice", statusChoices);
 
 		super.getResponse().addData(dataset);
 	}

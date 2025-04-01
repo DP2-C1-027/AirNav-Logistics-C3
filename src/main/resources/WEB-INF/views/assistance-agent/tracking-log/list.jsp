@@ -16,10 +16,9 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <acme:list>
-	<acme:list-column code="assistanceAgent.trackingLog.list.label.claim" path="claim" width="10%"/>
-	<acme:list-column code="assistanceAgent.trackingLog.list.label.resolutionPercentage" path="resolutionPercentage" width="20%"/>
-	<acme:list-column code="assistanceAgent.trackingLog.list.label.lastUpdateMoment"  path="lastUpdateMoment" width="20%"/>
-	
+	<acme:list-column code="assistanceAgent.trackingLog.list.label.stepUndergoing" path="stepUndergoing" width="10%" />
+	<acme:list-column code="assistanceAgent.trackingLog.list.label.resolutionPercentage" path="resolutionPercentage" width="10%"/>
+	<acme:list-column code="assistanceAgent.trackingLog.list.label.indicator"  path="indicator" width="10%"/>
 	<acme:list-payload path="payload"/>
 </acme:list>
 <acme:button code="assistanceAgent.trackingLog.list.button.create" action="/assistance-agent/tracking-log/create"/>

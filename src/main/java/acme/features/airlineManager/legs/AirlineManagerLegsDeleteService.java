@@ -12,10 +12,14 @@ import acme.client.services.GuiService;
 import acme.entities.aircraft.Aircraft;
 import acme.entities.airport.Airport;
 import acme.entities.claims.Claim;
+import acme.entities.flightAssignment.ActivityLog;
+import acme.entities.flightAssignment.FlightAssignment;
 import acme.entities.flights.Flight;
 import acme.entities.legs.Leg;
 import acme.entities.legs.LegStatus;
 import acme.features.assistanceAgent.claims.AssistanceAgentClaimRepository;
+import acme.features.flightCrewMember.activityLog.FlightCrewMemberActivityLogRepository;
+import acme.features.flightCrewMember.flightAssignment.FlightCrewMemberFlightAssignmentRepository;
 import acme.realms.AirlineManager;
 
 @GuiService
@@ -23,10 +27,16 @@ public class AirlineManagerLegsDeleteService extends AbstractGuiService<AirlineM
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private AirlineManagerLegsRepository	repository;
+	private AirlineManagerLegsRepository				repository;
 
 	@Autowired
-	private AssistanceAgentClaimRepository	claimRepository;
+	private AssistanceAgentClaimRepository				claimRepository;
+
+	@Autowired
+	private FlightCrewMemberFlightAssignmentRepository	assignmentRepository;
+
+	@Autowired
+	private FlightCrewMemberActivityLogRepository		activityRepository;
 
 	// AbstractGuiService interface -------------------------------------------
 
@@ -71,11 +81,16 @@ public class AirlineManagerLegsDeleteService extends AbstractGuiService<AirlineM
 	@Override
 	public void perform(final Leg leg) {
 		Collection<Claim> claims;
+		Collection<FlightAssignment> assignments;
+		Collection<ActivityLog> activities;
 
+		assignments = this.assignmentRepository.findFlightAssignmentsByLegId(leg.getId());
+		activities = this.activityRepository.findActivityLogsByLegId(leg.getId());
 		claims = this.claimRepository.findClaimsByLegId(leg.getId());
 
 		this.claimRepository.deleteAll(claims);
-
+		this.activityRepository.deleteAll(activities);
+		this.assignmentRepository.deleteAll(assignments);
 		this.repository.delete(leg);
 	}
 

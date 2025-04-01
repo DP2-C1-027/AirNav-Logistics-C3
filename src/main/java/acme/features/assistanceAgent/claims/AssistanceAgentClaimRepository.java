@@ -56,4 +56,6 @@ public interface AssistanceAgentClaimRepository extends AbstractRepository {
 	@Query("SELECT l FROM Leg l")
 	Collection<Leg> findAllLegs();
 
+ELECT c FROM Claim c WHERE c.linkedTo.flight.id=:flightId")
+	Collection<Claim> findClaimsByFlightId(int flightId);
 }

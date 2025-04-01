@@ -72,6 +72,11 @@ public class CustomersBookingCreateService extends AbstractGuiService<Customers,
 		String cod = booking.getLocatorCode();
 		Collection<Booking> codigo = this.repository.findAllBookingLocatorCode(cod);
 		Date d = booking.getPurchaseMoment() == null ? null : booking.getPurchaseMoment();
+		Date moment;
+		moment = MomentHelper.getCurrentMoment();
+		if (booking.getPurchaseMoment() != null && booking.getPurchaseMoment().after(moment))
+			super.state(false, "purchaseMoment", "customers.booking.error.date");
+
 		if (!codigo.isEmpty())
 			super.state(false, "locatorCode", "customers.booking.error.repeat-code");
 		if (booking.getFlight() == null)

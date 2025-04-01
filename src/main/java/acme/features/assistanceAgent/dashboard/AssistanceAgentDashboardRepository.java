@@ -51,20 +51,13 @@ public interface AssistanceAgentDashboardRepository extends AbstractRepository {
 	@Query("SELECT STDDEV((SELECT COUNT(t) FROM TrackingLog t WHERE t.claim = c)) " + "FROM Claim c WHERE c.registeredBy.id = :agentId")
 	Double deviationNumberOfLogsPerClaim(@Param("agentId") int agentId);
 
-	// Como Claim no tiene amount, usaremos resolutionPercentage de sus TrackingLogs
-	@Query("SELECT COUNT(c) FROM Claim c WHERE c.registeredBy.id = :agentId AND c.registrationMoment >= :date")
-	Integer countClaimsLastMonth(@Param("agentId") int agentId, @Param("date") Date date);
+	// En el repositorio
+	@Query("SELECT COUNT(c) FROM Claim c WHERE c.registeredBy.id = :agentId AND YEAR(c.registrationMoment) = :year AND MONTH(c.registrationMoment) = :month")
+	Integer countClaimsByMonth(@Param("agentId") int agentId, @Param("year") int year, @Param("month") int month);
 
-	@Query("SELECT AVG((SELECT AVG(t.resolutionPercentage) FROM TrackingLog t WHERE t.claim = c)) " + "FROM Claim c WHERE c.registeredBy.id = :agentId AND c.registrationMoment >= :date")
-	Double averageResolutionOfClaimsLastMonth(@Param("agentId") int agentId, @Param("date") Date date);
-
-	@Query("SELECT MIN((SELECT MIN(t.resolutionPercentage) FROM TrackingLog t WHERE t.claim = c)) " + "FROM Claim c WHERE c.registeredBy.id = :agentId AND c.registrationMoment >= :date")
-	Double minimumResolutionOfClaimsLastMonth(@Param("agentId") int agentId, @Param("date") Date date);
-
-	@Query("SELECT MAX((SELECT MAX(t.resolutionPercentage) FROM TrackingLog t WHERE t.claim = c)) " + "FROM Claim c WHERE c.registeredBy.id = :agentId AND c.registrationMoment >= :date")
-	Double maximumResolutionOfClaimsLastMonth(@Param("agentId") int agentId, @Param("date") Date date);
-
-	@Query("SELECT STDDEV((SELECT AVG(t.resolutionPercentage) FROM TrackingLog t WHERE t.claim = c)) " + "FROM Claim c WHERE c.registeredBy.id = :agentId AND c.registrationMoment >= :date")
-	Double deviationResolutionOfClaimsLastMonth(@Param("agentId") int agentId, @Param("date") Date date);
+	// Método alternativo para obtener todos los conteos mensuales
+	@Query("SELECT YEAR(c.registrationMoment) as year, MONTH(c.registrationMoment) as month, COUNT(c) as count " + "FROM Claim c WHERE c.registeredBy.id = :agentId AND c.registrationMoment BETWEEN :startDate AND :endDate "
+		+ "GROUP BY YEAR(c.registrationMoment), MONTH(c.registrationMoment)")
+	List<Object[]> getMonthlyClaimsCounts(@Param("agentId") int agentId, @Param("startDate") Date startDate, @Param("endDate") Date endDate);
 
 }

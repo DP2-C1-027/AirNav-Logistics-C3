@@ -85,6 +85,9 @@ master.menu.assistanceAgent = Agente de Asistencia
 master.menu.assistanceAgent.list-my-claims =Mis reclamaciones completadas
 master.menu.assistanceAgent.list-my-claimsUndergoing =Mis reclamaciones en proceso
 master.menu.assistanceAgent.list-my-trackingLogs =Mis regitros de reclamaciones 
+master.menu.user-account.become-assistance-agent=Convertirse en Agente de Asistencia
+master.menu.user-account.assistance-agent-profile=Perfil de Agente de Asistencia
+master.menu.assistanceAgent.show-dashboard=Mostrar Panel de Control
 
 # master.menu.customers ##########################################################
 master.menu.customers = Cliente

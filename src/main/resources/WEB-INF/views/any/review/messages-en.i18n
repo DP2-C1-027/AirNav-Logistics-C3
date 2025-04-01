@@ -8,22 +8,27 @@
 # purposes.  The copyright owner does not offer any warranties or representations, nor do
 # they accept any liabilities with respect to them.
 
-# Form labels for review details
-any.review.form.title = Review details
-any.review.form.label.name = Name:
-any.review.form.label.moment = Moment:
-any.review.form.label.subject = Subject:
-any.review.form.label.text = Text:
-any.review.form.label.score = Score:
-any.review.form.label.recommended = Recommended:
+# Review Form Labels
+any.review.form.title=Review Details
+any.review.form.label.name=Name
+any.review.form.label.moment=Date
+any.review.form.label.subject=Subject
+any.review.form.label.text=Review Text
+any.review.form.label.score=Score
+any.review.form.label.recommended=Recommended
+any.review.form.label.confirmation=Confirmation
 
-# List labels for review list
-any.review.list.title = Review list
-any.review.list.label.name = Name:
-any.review.list.label.moment = Moment:
-any.review.list.label.subject = Subject:
+# Review List Labels
+any.review.list.title=Review List
+any.review.list.label.name=Name
+any.review.list.label.moment=Date
+any.review.list.label.subject=Subject
 
-# Common buttons
-any.review.form.button.create = Create
-any.review.list.button.create = Create Review
-any.review.form.label.confirmation = Confirm
+# Review Form Buttons
+any.review.form.button.create=Create Review
+
+# Review List Buttons
+any.review.list.button.create=Create New Review
+
+# Payload
+any.review.list.payload=Additional Information

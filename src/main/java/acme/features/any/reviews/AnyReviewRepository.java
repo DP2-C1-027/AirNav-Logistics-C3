@@ -3,7 +3,10 @@ package acme.features.any.reviews;
 
 import java.util.Collection;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import acme.client.repositories.AbstractRepository;
@@ -18,7 +21,10 @@ public interface AnyReviewRepository extends AbstractRepository {
 	@Query("SELECT a FROM Review a")
 	Collection<Review> findAllReview();
 
-	@Query("SELECT r FROM Review r WHERE YEAR(r.moment) = :year")
-	Collection<Review> findReviewsByYear(int year);
+	@Query("SELECT COUNT(r) FROM Review r WHERE YEAR(r.moment) = :year")
+	int countReviewsByYear(@Param("year") int year);
+
+	@Query("SELECT r FROM Review r WHERE YEAR(r.moment) = :year ORDER BY r.moment DESC")
+	Page<Review> findManyReviewsByYear(@Param("year") int year, Pageable pageable);
 
 }

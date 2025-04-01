@@ -12,11 +12,13 @@
 
 package acme.features.assistanceAgent.trackingLogs;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
+import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.claims.Claim;
@@ -58,7 +60,7 @@ public class AssistanceAgentTrackingLogPublishService extends AbstractGuiService
 
 	@Override
 	public void bind(final TrackingLog TrackingLog) {
-		super.bindObject(TrackingLog, "lastUpdateMoment", "stepUndergoing", "resolutionPercentage", "indicator");
+		super.bindObject(TrackingLog, "lastUpdateMoment", "stepUndergoing", "resolutionPercentage", "indicator", "claim");
 	}
 
 	@Override
@@ -95,10 +97,19 @@ public class AssistanceAgentTrackingLogPublishService extends AbstractGuiService
 	}
 
 	@Override
-	public void unbind(final TrackingLog TrackingLog) {
+	public void unbind(final TrackingLog trackingLog) {
 		Dataset dataset;
+		Collection<Claim> claims;
+		AssistanceAgent assistance = (AssistanceAgent) super.getRequest().getPrincipal().getActiveRealm();
 
-		dataset = super.unbindObject(TrackingLog, "lastUpdateMoment", "stepUndergoing", "resolutionPercentage", "indicator");
+		claims = this.repository.findAllClaimsByAgent(assistance.getId());
+		dataset = super.unbindObject(trackingLog, "lastUpdateMoment", "stepUndergoing", "resolutionPercentage", "indicator");
+
+		SelectChoices claimsChoices = SelectChoices.from(claims, "passengerEmail", trackingLog.getClaim());
+		dataset.put("claim", claimsChoices);
+
+		SelectChoices statusChoices = SelectChoices.from(Indicator.class, trackingLog.getIndicator());
+		dataset.put("indicator", statusChoices);
 
 		super.getResponse().addData(dataset);
 	}

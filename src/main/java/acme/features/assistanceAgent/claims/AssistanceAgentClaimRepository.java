@@ -20,6 +20,7 @@ import org.springframework.stereotype.Repository;
 import acme.client.repositories.AbstractRepository;
 import acme.entities.claims.Claim;
 import acme.entities.claims.TrackingLog;
+import acme.entities.legs.Leg;
 
 @Repository
 public interface AssistanceAgentClaimRepository extends AbstractRepository {
@@ -30,7 +31,6 @@ public interface AssistanceAgentClaimRepository extends AbstractRepository {
 	@Query("SELECT c FROM Claim c WHERE EXISTS (SELECT t FROM TrackingLog t WHERE t.claim = c AND t.indicator IN (acme.entities.claims.Indicator.ACCEPTED, acme.entities.claims.Indicator.REJECTED))")
 	Collection<Claim> findAllCompletedClaims();
 
-	// Nuevos métodos filtrados por assistance agent
 	@Query("SELECT c FROM Claim c WHERE c.registeredBy.id = :assistanceAgentId AND NOT EXISTS (SELECT t FROM TrackingLog t WHERE t.claim = c AND t.indicator IN (acme.entities.claims.Indicator.ACCEPTED, acme.entities.claims.Indicator.REJECTED))")
 	Collection<Claim> findAllUndergoingClaimsByAgent(int assistanceAgentId);
 
@@ -48,4 +48,14 @@ public interface AssistanceAgentClaimRepository extends AbstractRepository {
 
 	@Query("SELECT c FROM Claim c WHERE c.linkedTo.id=:legId")
 	Collection<Claim> findClaimsByLegId(int legId);
+
+	@Query("SELECT l FROM Claim c JOIN Leg l ON c.linkedTo = l.id WHERE c.id = :claimId")
+	Leg findLinkedLegByClaimId(int claimId);
+
+	// esto seguro que hay que filtrar pero ya mas es to much
+	@Query("SELECT l FROM Leg l")
+	Collection<Leg> findAllLegs();
+
+	@Query("SELECT c FROM Claim c WHERE c.linkedTo.flight.id=:flightId")
+	Collection<Claim> findClaimsByFlightId(int flightId);
 }

@@ -12,14 +12,18 @@
 
 package acme.features.assistanceAgent.claims;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
+import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.claims.Claim;
 import acme.entities.claims.ClaimType;
+import acme.entities.legs.Leg;
 import acme.realms.AssistanceAgent;
 
 @GuiService
@@ -46,15 +50,21 @@ public class AssistanceAgentClaimCreateService extends AbstractGuiService<Assist
 	@Override
 	public void load() {
 		Claim claim;
-
+		AssistanceAgent assistance;
+		assistance = (AssistanceAgent) super.getRequest().getPrincipal().getActiveRealm();
 		claim = new Claim();
+		claim.setRegistrationMoment(MomentHelper.getCurrentMoment());
+		claim.setRegisteredBy(assistance);
+		claim.setDraftMode(true);
 
 		super.getBuffer().addData(claim);
 	}
 
 	@Override
 	public void bind(final Claim claim) {
-		super.bindObject(claim, "registrationMoment", "passengerEmail", "description", "type", "indicator", "registeredBy", "linkedTo");
+		claim.setDraftMode(true);
+
+		super.bindObject(claim, "registrationMoment", "passengerEmail", "description", "indicator", "linkedTo", "type");
 
 	}
 
@@ -71,10 +81,14 @@ public class AssistanceAgentClaimCreateService extends AbstractGuiService<Assist
 	@Override
 	public void unbind(final Claim claim) {
 		Dataset dataset;
+		Collection<Leg> legs;
+		legs = this.repository.findAllLegs();
 
-		dataset = super.unbindObject(claim, "registrationMoment", "passengerEmail", "description", "indicator", "linkedTo");
+		dataset = super.unbindObject(claim, "registrationMoment", "passengerEmail", "description", "indicator", "type");
+		SelectChoices legsChoices = SelectChoices.from(legs, "flightNumber", claim.getLinkedTo());
 		SelectChoices statusChoices = SelectChoices.from(ClaimType.class, claim.getType());
-		dataset.put("type", statusChoices);
+		dataset.put("typeChoice", statusChoices);
+		dataset.put("linkedTo", legsChoices);
 
 		super.getResponse().addData(dataset);
 	}

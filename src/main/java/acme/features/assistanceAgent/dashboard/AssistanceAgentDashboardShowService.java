@@ -4,6 +4,9 @@ package acme.features.assistanceAgent.dashboard;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.DoubleSummaryStatistics;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -42,10 +45,7 @@ public class AssistanceAgentDashboardShowService extends AbstractGuiService<Assi
 		AssistanceAgent agent;
 
 		agent = (AssistanceAgent) super.getRequest().getPrincipal().getActiveRealm();
-		Date moment = MomentHelper.getCurrentMoment();
-		LocalDate localDateMoment = moment.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-		LocalDate oneMonthAgo = localDateMoment.minusMonths(1);
-		Date oneMonthAgoDate = Date.from(oneMonthAgo.atStartOfDay(ZoneId.systemDefault()).toInstant());
+
 		int agentId = agent.getId();
 
 		// Ratios de claims
@@ -60,13 +60,36 @@ public class AssistanceAgentDashboardShowService extends AbstractGuiService<Assi
 		statsLogsPerClaim.setDeviation(this.repository.deviationNumberOfLogsPerClaim(agentId));
 		dashboard.setStatsLogsPerClaim(statsLogsPerClaim);
 
-		// Estadísticas de claims del último mes
-		LegStatistics statsClaimsLastMonth = new LegStatistics();
-		statsClaimsLastMonth.setAverage(this.repository.averageResolutionOfClaimsLastMonth(agentId, oneMonthAgoDate));
-		statsClaimsLastMonth.setMin(this.repository.minimumResolutionOfClaimsLastMonth(agentId, oneMonthAgoDate));
-		statsClaimsLastMonth.setMax(100.0);
-		statsClaimsLastMonth.setDeviation(this.repository.deviationResolutionOfClaimsLastMonth(agentId, oneMonthAgoDate));
-		dashboard.setStatsClaimsLastMonth(statsClaimsLastMonth);
+		Date moment = MomentHelper.getCurrentMoment();
+		LocalDate localDateMoment = moment.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+		LocalDate oneYearAgo = localDateMoment.minusYears(1);
+		Date oneYearAgoDate = Date.from(oneYearAgo.atStartOfDay(ZoneId.systemDefault()).toInstant());
+		// Obtener los conteos mensuales
+		List<Object[]> monthlyCounts = this.repository.getMonthlyClaimsCounts(agentId, oneYearAgoDate, moment);
+
+		// Calcular estadísticas
+		List<Double> counts = monthlyCounts.stream().map(obj -> ((Number) obj[2]).doubleValue()).collect(Collectors.toList());
+
+		LegStatistics statsClaimsLastYear = new LegStatistics();
+
+		if (!counts.isEmpty()) {
+			DoubleSummaryStatistics stats = counts.stream().mapToDouble(Double::doubleValue).summaryStatistics();
+
+			statsClaimsLastYear.setAverage(stats.getAverage());
+			statsClaimsLastYear.setMin(stats.getMin());
+			statsClaimsLastYear.setMax(stats.getMax());
+
+			// Calcular desviación estándar
+			double variance = counts.stream().mapToDouble(count -> Math.pow(count - stats.getAverage(), 2)).average().orElse(0.0);
+			statsClaimsLastYear.setDeviation(Math.sqrt(variance));
+		} else {
+			// Valores por defecto si no hay datos
+			statsClaimsLastYear.setAverage(0.0);
+			statsClaimsLastYear.setMin(0.0);
+			statsClaimsLastYear.setMax(0.0);
+			statsClaimsLastYear.setDeviation(0.0);
+		}
+		dashboard.setStatsClaimsLastMonth(statsClaimsLastYear);
 
 		super.getBuffer().addData(dashboard);
 	}

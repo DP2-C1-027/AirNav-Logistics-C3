@@ -2,26 +2,28 @@
 #
 # Copyright (C) 2012-2025 Rafael Corchuelo.
 #
-# In keeping with the traditional purpose of furthering education and research, it is
-# the policy of the copyright owner to permit non-commercial use and redistribution of
-# this software. It has been tested carefully, but it is not guaranteed for any particular
-# purposes.  The copyright owner does not offer any warranties or representations, nor do
-# they accept any liabilities with respect to them.
+# Con el propósito tradicional de fomentar la educación y la investigación, es
+# política del propietario de los derechos de autor permitir el uso no comercial
+# y la redistribución de este software.
 
-flight-crew-member.flight-crew-member-dashboard.form.title = Panel de control de tripulante de vuelo
-flight-crew-member.flight-crew-member-dashboard.form.title.general-indicators = Indicadores Generales
-flight-crew-member.flight-crew-member-dashboard.form.title.review-statistics = Estadísticas
+# Títulos del dashboard
+assistance-agent.assistance-agent-dashboard.form.title.general-indicators=Indicadores Generales
+assistance-agent.assistance-agent-dashboard.form.title.logs-statistics=Estadísticas de Registros
+assistance-agent.assistance-agent-dashboard.form.title.last-month-statistics=Estadísticas del Último Mes
 
-flight-crew-member.flight-crew-member-dashboard.form.label.lastFiveDestinations = Últimos 5 destinos a los que he sido asignado:
-flight-crew-member.flight-crew-member-dashboard.form.label.legsWithIncidentSeverity3 = Número de tramos que tienen un log de actividad con severidad entre 0 y 3:
-flight-crew-member.flight-crew-member-dashboard.form.label.legsWithIncidentSeverity7 = Número de tramos que tienen un log de actividad con severidad entre 4 y 7:
-flight-crew-member.flight-crew-member-dashboard.form.label.legsWithIncidentSeverity10 = Número de tramos que tienen un log de actividad con severidad entre 8 y 10:
-flight-crew-member.flight-crew-member-dashboard.form.label.lastLegCrewMembers = Miembros de tripulación asignados en el último vuelo:
-flight-crew-member.flight-crew-member-dashboard.form.label.flightAssignmentsGroupedByStatus = Cantidad de asignaciones de vuelo agroupadas por su estado:
+# Ratios de Reclamos
+assistance-agent.assistance-agent-dashboard.form.label.ratioOfResolvedClaims=Porcentaje de Reclamos Resueltos
+assistance-agent.assistance-agent-dashboard.form.label.ratioOfRejectedClaims=Porcentaje de Reclamos Rechazados
+assistance-agent.assistance-agent-dashboard.form.label.topThreeMonthsWithMostClaims=Top 3 Meses con Más Reclamos
 
-flight-crew-member.flight-crew-member-dashboard.form.label.review-count = Número de asignaciones de vuelo (Último mes):
-flight-crew-member.flight-crew-member-dashboard.form.label.review-average = Media de asignaciones de vuelo (Último mes):
-flight-crew-member.flight-crew-member-dashboard.form.label.review-min = Mínimo número de asignaciones de vuelo (Último mes):
-flight-crew-member.flight-crew-member-dashboard.form.label.review-max = Máximo número de asignaciones de vuelo (Último mes):
-flight-crew-member.flight-crew-member-dashboard.form.label.review-deviation = Desviación de asignaciones de vuelo (Último mes):
+# Estadísticas de Registros
+assistance-agent.assistance-agent-dashboard.form.label.averageNumberOfLogsPerClaim=Promedio de Registros por Reclamo
+assistance-agent.assistance-agent-dashboard.form.label.minimumNumberOfLogsPerClaim=Mínimo de Registros por Reclamo
+assistance-agent.assistance-agent-dashboard.form.label.maximumNumberOfLogsPerClaim=Máximo de Registros por Reclamo
+assistance-agent.assistance-agent-dashboard.form.label.standardDeviationOfLogsPerClaim=Desviación Estándar de Registros por Reclamo
 
+# Estadísticas del Último Mes
+assistance-agent.assistance-agent-dashboard.form.label.averageNumberOfClaimsLastMonth=Promedio de Reclamos (Último Mes)
+assistance-agent.assistance-agent-dashboard.form.label.minimumNumberOfClaimsLastMonth=Mínimo de Reclamos (Último Mes)
+assistance-agent.assistance-agent-dashboard.form.label.maximumNumberOfClaimsLastMonth=Máximo de Reclamos (Último Mes)
+assistance-agent.assistance-agent-dashboard.form.label.standardDeviationOfClaimsLastMonth=Desviación Estándar de Reclamos (Último Mes)

@@ -33,6 +33,7 @@ master.menu.administrator.list-airport = List airports
 master.menu.administrator.list-booking = List bookings
 master.menu.administrator.list-record = List records
 master.menu.administrator.list-aircraft = List aircrafts
+master.menu.administrator.system-configuration= System Configuration
 
 master.menu.administrator.populate-db-initial = Populate DB (initial)
 master.menu.administrator.populate-db-sample = Populate DB (samples)
@@ -81,7 +82,10 @@ master.menu.user-account.technician-profile = Technician profile
 master.menu.assistanceAgent = Assistance Agent
 master.menu.assistanceAgent.list-my-claims =My claims completed
 master.menu.assistanceAgent.list-my-claimsUndergoing =My claims undergoing
-master.menu.assistanceAgent.list-my-trackingLogs =My trackingLogs 
+master.menu.assistanceAgent.list-my-trackingLogs =My trackingLogs
+master.menu.user-account.become-assistance-agent=Become Assistance Agent
+master.menu.user-account.assistance-agent-profile=Assistance Agent Profile
+master.menu.assistanceAgent.show-dashboard=Show Dashboard 
 
 # master.menu.customers ##########################################################
 master.menu.customers = Customer

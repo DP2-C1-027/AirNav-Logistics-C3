@@ -9,27 +9,30 @@
 # they accept any liabilities with respect to them.
 
 # Form labels for airport details
-administrator.airport.form.title = Airport details
-administrator.airport.form.label.name = Name:
-administrator.airport.form.label.codigo = Code:
-administrator.airport.form.label.operationalScope = Operational Scope:
-administrator.airport.form.label.city = City:
-administrator.airport.form.label.country = Country:
-administrator.airport.form.label.website = Website:
-administrator.airport.form.label.email = Email:
-administrator.airport.form.label.address = Address:
-administrator.airport.form.label.phoneNumber = Phone Number:
+administrator.airport.form.title=Airport details
+administrator.airport.form.label.name=Name
+administrator.airport.form.label.codigo=Code
+administrator.airport.form.label.operationalScope=Operational Scope
+administrator.airport.form.label.city=City
+administrator.airport.form.label.country=Country
+administrator.airport.form.label.website=Website
+administrator.airport.form.label.email=Email
+administrator.airport.form.label.address=Address
+administrator.airport.form.label.phoneNumber=Phone Number
+administrator.airport.form.label.confirmation=Confirmation
 
 # List labels for airport list
-administrator.airport.list.title = Airport list
-administrator.airport.list.label.name = Name:
-administrator.airport.list.label.codigo = Code:
-administrator.airport.list.label.operationalScope = Operational Scope:
+administrator.airport.list.title=Airport list
+administrator.airport.list.label.name=Name
+administrator.airport.list.label.codigo=Code
+administrator.airport.list.label.operationalScope=Operational Scope
 
-# Common buttons
-authenticated.provider.airport.form.button.create = Register
-authenticated.provider.airport.form.button.update = Update
-administrator.airport.list.button.create = Create
-administrator.airport.form.label.confirmation = Confirm
-administrator.airport.form.button.update = Update
+# Form buttons
+administrator.airport.form.button.create=Create
+administrator.airport.form.button.update=Update
 
+# List buttons
+administrator.airport.list.button.create=Create Airport
+
+# Payload (if needed)
+administrator.airport.list.payload=Payload

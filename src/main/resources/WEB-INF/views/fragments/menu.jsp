@@ -35,6 +35,7 @@
 		<acme:menu-option code="master.menu.administrator" access="hasRealm('Administrator')">
 			<acme:menu-suboption code="master.menu.administrator.show-administrator-dashboard" action="/administrator/administrator-dashboard/show" />
 			<acme:menu-suboption code="master.menu.administrator.list-user-accounts" action="/administrator/user-account/list"/>
+			<acme:menu-suboption code="master.menu.administrator.system-configuration" action="/administrator/system-configuration/show" />
 			<acme:menu-separator/>
 			<acme:menu-suboption code="master.menu.administrator.list-booking" action="/administrator/booking/list"/>
 			<acme:menu-separator/>

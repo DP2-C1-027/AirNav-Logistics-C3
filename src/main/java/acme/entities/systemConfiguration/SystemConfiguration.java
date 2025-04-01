@@ -21,7 +21,7 @@ public class SystemConfiguration extends AbstractEntity {
 
 	@Mandatory
 	@Automapped
-	private String				currency			= "EUR";
+	private String				currency;
 
 	@Mandatory
 	@Automapped

@@ -33,6 +33,7 @@ master.menu.administrator.list-airport = List airports
 master.menu.administrator.list-booking = List bookings
 master.menu.administrator.list-record = List records
 master.menu.administrator.list-aircraft = List aircrafts
+master.menu.administrator.system-configuration= System Configuration
 
 master.menu.administrator.populate-db-initial = Populate DB (initial)
 master.menu.administrator.populate-db-sample = Populate DB (samples)

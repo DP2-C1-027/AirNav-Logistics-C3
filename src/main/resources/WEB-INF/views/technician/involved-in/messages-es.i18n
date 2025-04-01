@@ -20,5 +20,3 @@ technician.involved-in.form.label.delete = Eliminar
 
 technician.involved-in.list.label.maintanenceRecord = Registro de Mantenimiento:  
 technician.involved-in.list.label.task = Tarea:  
-
-technician.involved-in.create.error.duplicate-record-task = por fa no te cagues encima

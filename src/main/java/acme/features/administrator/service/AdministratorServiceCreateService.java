@@ -1,6 +1,8 @@
 
 package acme.features.administrator.service;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
@@ -47,6 +49,16 @@ public class AdministratorServiceCreateService extends AbstractGuiService<Admini
 
 		confirmation = super.getRequest().getData("confirmation", boolean.class);
 		super.state(confirmation, "confirmation", "acme.validation.confirmation.message");
+
+		Collection<Service> codigo;
+		boolean confirmation2;
+		codigo = this.repository.findByPromotionCode(service.getPromotionCode());
+		if (codigo.size() > 0)
+			confirmation2 = false;
+		else
+			confirmation2 = true;
+		super.state(confirmation2, "promotionCode", "acme.validation.promotion-code.duplicate-message");
+
 	}
 
 	@Override

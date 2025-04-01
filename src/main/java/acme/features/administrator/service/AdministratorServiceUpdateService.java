@@ -45,10 +45,7 @@ public class AdministratorServiceUpdateService extends AbstractGuiService<Admini
 
 	@Override
 	public void validate(final Service service) {
-		boolean confirmation;
 
-		confirmation = super.getRequest().getData("confirmation", boolean.class);
-		super.state(confirmation, "confirmation", "acme.validation.confirmation.message");
 	}
 
 	@Override

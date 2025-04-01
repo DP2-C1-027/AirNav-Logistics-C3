@@ -21,6 +21,7 @@
 			<acme:input-select code="technician.involved-in.form.label.maintanenceRecord" path="maintanenceRecord" choices="${maintanenceRecord}"/>
 			<acme:input-select code="technician.involved-in.form.label.task" path="task" choices="${task}"/>
 			<acme:submit code="technician.involved-in.form.label.update" action="/technician/involved-in/update"/>
+			<acme:submit code="technician.involved-in.form.label.delete" action="/technician/involved-in/delete"/>
 			
 		</jstl:when>
 		<jstl:when test="${_command == 'show' && draftMode == false}">

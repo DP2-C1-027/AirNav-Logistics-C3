@@ -13,9 +13,14 @@ trackingLog-11,2013/03/05 07:30,Pending Resolution,75.0,PENDING,True,"Meal servi
 trackingLog-12,2013/06/25 12:10,'' or 'A' = 'A,85.0,PENDING,True,"보상 절차가 진행 중입니다.",claim-12
 trackingLog-13,2013/09/09 15:55,Denied,0.0,PENDING,True,,claim-13
 trackingLog-14,2013/12/01 21:40,Final Decision,100.0,ACCEPTED,True,"Απόφαση λήφθηκε, η αποζημίωση εγκρίθηκε.",claim-14
-trackingLog-15,2014/02/18 11:30,Heathrow Heathrow AirportHeathrowwHeathrow Airport,100.0,REJECTED,True,"Robert'); DROP TABLE trackingLogs; --",claim-15
+trackingLog-15,2014/02/18 11:30,Heathrow Heathrow AirportHeathrowwHeathrow Airport,100.0,REJECTED,True,"Robert'); DROP TABLE trackingLogs; --",claim-14
 trackingLog-16,2000/01/01 1:00,Initial Review,0.0,PENDING,True,"Initial review completed.",claim-01
 trackingLog-17,2000/01/01 2:00,Initial Review,20.0,PENDING,True,"Initial review completed.",claim-01
 trackingLog-18,2000/01/01 3:00,Initial Review,40.0,PENDING,True,"Initial review completed.",claim-01
 trackingLog-19,2000/01/01 4:00,Initial Review,100.0,ACCEPTED,True,"Initial review completed.",claim-01
+trackingLog-20,2024/12/07 4:00,Initial Review,0.0,PENDING,True,"Initial review completed.",claim-15
+trackingLog-21,2024/12/07 4:00,Initial Review,10.0,PENDING,True,"Initial review completed.",claim-15
+trackingLog-22,2024/12/07 4:00,Initial Review,20.0,PENDING,True,"Initial review completed.",claim-15
+trackingLog-23,2024/12/07 4:00,Initial Review,30.0,PENDING,True,"Initial review completed.",claim-15
+trackingLog-24,2024/12/07 4:00,Initial Review,100.0,ACCEPTED,True,"Initial review completed.",claim-15
 

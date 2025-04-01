@@ -62,7 +62,7 @@ public class TechnicianTaskCreateService2 extends AbstractGuiService<Technician,
 	@Override
 	public void bind(final Task task) {
 
-		super.bindObject(task, "type", "draftMode", "description", "priority", "estimatedDuration");
+		super.bindObject(task, "type", "description", "priority", "estimatedDuration");
 		task.setDraftMode(true);
 
 	}

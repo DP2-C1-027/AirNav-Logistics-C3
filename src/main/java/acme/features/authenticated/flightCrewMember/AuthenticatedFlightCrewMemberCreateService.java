@@ -88,11 +88,13 @@ public class AuthenticatedFlightCrewMemberCreateService extends AbstractGuiServi
 		// Status choices
 		SelectChoices statusChoices = SelectChoices.from(AvailabilityStatus.class, null);
 		dataset.put("statusChoices", statusChoices);
+		dataset.put("status", statusChoices.getSelected().getKey());
 
 		// Airlines choices
 		Collection<Airline> airlines = this.repository.finAllAirlines();
-		SelectChoices legChoices = SelectChoices.from(airlines, "name", null);
+		SelectChoices legChoices = SelectChoices.from(airlines, "name", flightCrewMember.getAirline());
 		dataset.put("airlineChoices", legChoices);
+		dataset.put("airline", legChoices.getSelected().getKey());
 
 		dataset.put("readOnly", false);
 

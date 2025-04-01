@@ -28,7 +28,8 @@ public class FlightCrewMemberFlightAssignmentUpdateService extends AbstractGuiSe
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		boolean status = super.getRequest().getPrincipal().hasRealmOfType(FlightCrewMember.class);
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
@@ -75,20 +76,24 @@ public class FlightCrewMemberFlightAssignmentUpdateService extends AbstractGuiSe
 		// Duty choices
 		SelectChoices dutyChoices = SelectChoices.from(Duty.class, flightAssignment.getDuty());
 		dataset.put("dutyChoices", dutyChoices);
+		dataset.put("duty", dutyChoices.getSelected().getKey());
 
 		// Status choices
 		SelectChoices statusChoices = SelectChoices.from(CurrentStatus.class, flightAssignment.getCurrentStatus());
 		dataset.put("statusChoices", statusChoices);
+		dataset.put("status", statusChoices.getSelected().getKey());
 
 		// Flight Crew Member choices
 		Collection<FlightCrewMember> flightCrewMembers = this.repository.findAllflightCrewMemberFromAirline(flightAssignment.getFlightCrewMember().getAirline().getId());
 		SelectChoices flightCrewMemberChoices = SelectChoices.from(flightCrewMembers, "identity.fullName", flightAssignment.getFlightCrewMember());
 		dataset.put("flightCrewMemberChoices", flightCrewMemberChoices);
+		dataset.put("flightCrewMember", flightCrewMemberChoices.getSelected().getKey());
 		dataset.put("readOnlyCrewMember", true);
 
 		// Leg choices
 		SelectChoices legChoices = SelectChoices.from(this.repository.findAllLegs(), "flightNumber", flightAssignment.getLeg());
 		dataset.put("legChoices", legChoices);
+		dataset.put("leg", legChoices.getSelected().getKey());
 
 		super.getResponse().addData(dataset);
 	}

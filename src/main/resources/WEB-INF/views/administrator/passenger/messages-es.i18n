@@ -12,3 +12,12 @@ administrator.passenger.list.title = Lista de pasajeros
 
 administrator.passenger.list.label.fullName = Nombre completo:
 administrator.passenger.list.label.email = Email:
+
+administrator.passenger.form.title = Detalles de pasajero
+
+
+administrator.passenger.form.label.fullName = Nombre completo: 
+administrator.passenger.form.label.email = Email:
+administrator.passenger.form.label.passportNumber = Numero de pasaporte:
+administrator.passenger.form.label.dateOfBirth = Fecha de nacimiento:
+administrator.passenger.form.label.specialNeeds = Necesidades especiales:

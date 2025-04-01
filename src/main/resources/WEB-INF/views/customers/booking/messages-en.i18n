@@ -31,7 +31,8 @@ customers.booking.form.button.update= Update
 customers.booking.form.button.publish = Publish
 customers.passenger.form.button.createBooking= Add new passenger
 customers.booking.form.button.delete=Delete
-
+customers.booking.error.date= The date must be between 2000/01/01 00:00 and the current date
+customers.booking.error.momentUpdate= Please choose a date before the flight date
 customers.booking.error.repeat-code= existing code, cannot be repeated
 customers.booking.error.no-flight= select a flight
 customer.booking.error.nibble-required= Last Nibble is mandatory to be able to publish the booking

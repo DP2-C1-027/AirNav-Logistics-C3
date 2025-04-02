@@ -89,7 +89,7 @@ public class AssistanceAgentTrackingLogPublishService extends AbstractGuiService
 
 		Claim claim = this.repository.findClaimByTrackingLogId(trackingLog.getId());
 		boolean isValid = claim != null && !claim.isDraftMode();
-		super.state(isValid, "*", "customer.booking.error.unpublishedPassengers.message");
+		super.state(isValid, "*", "assistance-agent.tracking-log.form.error.claim-must-be-publish");
 
 	}
 

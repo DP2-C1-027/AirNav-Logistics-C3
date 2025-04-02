@@ -33,11 +33,11 @@
 					<acme:submit code="assistanceAgent.trackingLog.form.button.delete" action="/assistance-agent/tracking-log/delete"/>
 					<acme:submit code="assistanceAgent.trackingLog.form.button.publish" action="/assistance-agent/tracking-log/publish"/>
 				</jstl:when>
-				<jstl:when test="${acme:anyOf(_command, 'show') }">
+				<jstl:when test="${acme:anyOf(_command, 'show')  && draftMode == false  }">
 					<acme:button code="assistanceAgent.claim.form.button.claim" action="/assistance-agent/claim/showByTrackingLog?trackingLogId=${id}"/>
 				</jstl:when>
 				<jstl:when test="${_command == 'create'}">
-					<acme:submit code="assistanceAgent.trackingLog.form.button.create" action="/assistance-agent/tracking-log/create"/>
+					<acme:submit code="assistanceAgent.trackingLog.form.button.create" action="/assistance-agent/tracking-log/create?claimId=${id}"/>
 				</jstl:when>		
 		</jstl:choose>	
 </acme:form>

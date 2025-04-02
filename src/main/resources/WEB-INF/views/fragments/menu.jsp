@@ -31,6 +31,7 @@
 			<acme:menu-suboption code="master.menu.any.airport" action="/any/airport/list"/>
 			<acme:menu-suboption code="master.menu.any.review" action="/any/review/list"/>
 			<acme:menu-suboption code="master.menu.any.list-flight-assignments-published" action="/any/flight-assignment/list" />
+			<acme:menu-suboption code="master.menu.any.service" action="/any/service/list"/>
 		</acme:menu-option>
 
 		<acme:menu-option code="master.menu.administrator" access="hasRealm('Administrator')">

@@ -21,8 +21,8 @@ master.menu.anonymous.jose= 29589177E: García de Tejada Delgado, José
 # master.menu.any #######################################################
 master.menu.any = Any
 master.menu.any.airport = List airports
-master.menu.any.review = List review
-master.menu.any.list-flight-assignments-published = List Flight Assignments published
+master.menu.any.review = List reviews
+master.menu.any.service = List services
 
 # master.menu.administrator ###################################################
 

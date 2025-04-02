@@ -43,7 +43,7 @@
 
 <jstl:if test="${service != null}">
 	<div class="panel-body" style="margin: 1em 0em 1em 0em; text-align: center;">	
-		<a href="./any/service/show/${service.id}" target="_blank">
+		<a href="./any/service/show?id=${service.id}" target="_blank">
 			<img src="${service.picture}" alt="${service.name}" class="img-fluid rounded" style="border-style: solid;"/>
 		</a>
 	</div>

@@ -30,6 +30,7 @@
 		<acme:menu-option code="master.menu.any">
 			<acme:menu-suboption code="master.menu.any.airport" action="/any/airport/list"/>
 			<acme:menu-suboption code="master.menu.any.review" action="/any/review/list"/>
+			<acme:menu-suboption code="master.menu.any.list-flight-assignments-published" action="/any/flight-assignment/list" />
 		</acme:menu-option>
 
 		<acme:menu-option code="master.menu.administrator" access="hasRealm('Administrator')">
@@ -77,7 +78,6 @@
 		</acme:menu-option>
 		
 		<acme:menu-option code="master.menu.flightCrewMember" access="hasRealm('FlightCrewMember')">
-			<acme:menu-suboption code="master.menu.flightCrewMember.list-flight-assignments-published" action="/flight-crew-member/flight-assignment/list-published" />
 			<acme:menu-suboption code="master.menu.flightCrewMember.list-flight-assignments-planned" action="/flight-crew-member/flight-assignment/list-planned" />
 			<acme:menu-suboption code="master.menu.flightCrewMember.list-flight-assignments-completed" action="/flight-crew-member/flight-assignment/list-completed" />
 		</acme:menu-option>

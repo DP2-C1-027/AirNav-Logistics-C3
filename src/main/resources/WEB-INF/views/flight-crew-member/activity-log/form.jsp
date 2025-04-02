@@ -19,18 +19,17 @@
 	<acme:input-textbox code="flight-crew-member.activity-log.form.label.typeOfIncident" path="typeOfIncident" readonly="draftMode" placeholder = "acme.placeholders.form.activityLog.typeOfIncident"/>
 	<acme:input-textarea code="flight-crew-member.activity-log.form.label.description" path="description" readonly="draftMode" placeholder = "acme.placeholders.form.activityLog.description"/>
 	<acme:input-textbox code="flight-crew-member.activity-log.form.label.severityLevel" path="severityLevel" readonly="draftMode" placeholder = "acme.placeholders.form.activityLog.severityLevel"/>
-	<acme:input-textbox code="flight-crew-member.activity-log.form.label.severityLevel" path="severityLevel" readonly="draftMode" placeholder = "acme.placeholders.form.activityLog.severityLevel"/>
 	
 	<jstl:choose>
-		<jstl:when test="${_command == 'create'}">
+		<jstl:when test="${_command == 'create' && showAction}">
 			<acme:submit code="flight-crew-member.activity-log.form.button.create" action="/flight-crew-member/activity-log/create?assignmentId=${assignmentId}"/>
 		</jstl:when>
-		<jstl:when test="${acme:anyOf(_command, 'show|update') && draftMode == false}">
+		<jstl:when test="${acme:anyOf(_command, 'show|update') && showAction && draftMode == true}">
 			<acme:submit code="flight-crew-member.activity-log.form.button.update" action="/flight-crew-member/activity-log/update"/>
 			<acme:submit code="flight-crew-member.activity-log.form.button.delete" action="/flight-crew-member/activity-log/delete"/>
 		</jstl:when>
 	</jstl:choose>
-		<jstl:if test="${acme:anyOf(_command, 'show|update') && draftMode == false && draftModeFlightAssignment == true}">
+		<jstl:if test="${acme:anyOf(_command, 'show|update') && showAction && draftMode == true && draftModeFlightAssignment == false}">
 			<acme:submit code="flight-crew-member.activity-log.form.button.publish" action="/flight-crew-member/activity-log/publish"/>
 		</jstl:if>
 </acme:form>

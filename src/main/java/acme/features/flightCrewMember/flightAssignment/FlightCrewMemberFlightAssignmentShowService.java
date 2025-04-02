@@ -1,8 +1,6 @@
 
 package acme.features.flightCrewMember.flightAssignment;
 
-import java.util.Collection;
-
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
@@ -27,7 +25,12 @@ public class FlightCrewMemberFlightAssignmentShowService extends AbstractGuiServ
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		// Only is allowed to show a flight assignment if the creator is associated.
+		int flightAssignmentId = super.getRequest().getData("id", int.class);
+		FlightAssignment flightAssignment = this.repository.findFlightAssignmentById(flightAssignmentId);
+		boolean status = flightAssignment != null && super.getRequest().getPrincipal().hasRealm(flightAssignment.getFlightCrewMember());
+
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
@@ -42,23 +45,22 @@ public class FlightCrewMemberFlightAssignmentShowService extends AbstractGuiServ
 	public void unbind(final FlightAssignment flightAssignment) {
 		Dataset dataset = super.unbindObject(flightAssignment, "duty", "moment", "currentStatus", "remarks", "flightCrewMember", "leg", "draftMode");
 
+		dataset.put("flightCrewMember", flightAssignment.getFlightCrewMember().getIdentity().getFullName());
+
 		// Duty choices
 		SelectChoices dutyChoices = SelectChoices.from(Duty.class, flightAssignment.getDuty());
 		dataset.put("dutyChoices", dutyChoices);
+		dataset.put("duty", dutyChoices.getSelected().getKey());
 
 		// Status choices
 		SelectChoices statusChoices = SelectChoices.from(CurrentStatus.class, flightAssignment.getCurrentStatus());
 		dataset.put("statusChoices", statusChoices);
-
-		// Flight Crew Member choices
-		Collection<FlightCrewMember> flightCrewMembers = this.repository.findAllflightCrewMemberFromAirline(flightAssignment.getFlightCrewMember().getAirline().getId());
-		SelectChoices flightCrewMemberChoices = SelectChoices.from(flightCrewMembers, "identity.fullName", flightAssignment.getFlightCrewMember());
-		dataset.put("flightCrewMemberChoices", flightCrewMemberChoices);
-		dataset.put("readOnlyCrewMember", true);
+		dataset.put("status", statusChoices.getSelected().getKey());
 
 		// Leg choices
-		SelectChoices legChoices = SelectChoices.from(this.repository.findAllLegs(), "flightNumber", flightAssignment.getLeg());
+		SelectChoices legChoices = SelectChoices.from(this.repository.findAllLegsByAirlineId(flightAssignment.getFlightCrewMember().getAirline().getId()), "flightNumber", flightAssignment.getLeg());
 		dataset.put("legChoices", legChoices);
+		dataset.put("leg", legChoices.getSelected().getKey());
 
 		super.getResponse().addData(dataset);
 	}

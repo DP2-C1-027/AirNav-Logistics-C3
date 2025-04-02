@@ -14,7 +14,8 @@ flight-crew-member.activity-log.list.title = Activity Logs list
 flight-crew-member.activity-log.form.label.registrationMoment = Registration Moment: 
 flight-crew-member.activity-log.form.label.typeOfIncident = Type of Incident:
 flight-crew-member.activity-log.form.label.description = Description:
-flight-crew-member.activity-log.form.label.severityLevel = Severity Level:
+flight-crew-member.activity-log.form.label.severityLevel = Severity Level:-
+flight-crew-member.activity-log.form.label.flight-assignment = Flight Assignment
 
 flight-crew-member.activity-log.form.button.create = Create
 flight-crew-member.activity-log.form.button.update = Update
@@ -25,6 +26,6 @@ flight-crew-member.activity-log.list.label.registrationMoment = Registration Mom
 flight-crew-member.activity-log.list.label.typeOfIncident = Type of Incident:
 flight-crew-member.activity-log.list.label.description = Description:
 flight-crew-member.activity-log.list.label.severityLevel = Severity Level:
-flight-crew-member.activity-log.list.label.draftMode = Published:
+flight-crew-member.activity-log.list.label.draftMode = Draft mode:
 
 flight-crew-member.activity-log.list.button.create = Create

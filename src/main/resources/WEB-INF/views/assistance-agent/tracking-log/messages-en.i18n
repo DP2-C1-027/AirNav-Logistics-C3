@@ -24,6 +24,14 @@ assistanceAgent.trackingLog.form.label.claim=Related Claim
 assistanceAgent.trackingLog.form.button.update=Update
 assistanceAgent.trackingLog.form.button.delete=Delete
 assistanceAgent.trackingLog.form.button.publish=Publish
-assistanceAgent.trackingLog.form.button.create=Create
+assistanceAgent.trackingLog.form.button.create=Create TrackingLog
 assistanceAgent.claim.form.button.claim=View Claim
+
+###Errors
+
+assistance-agent.tracking-log.form.error.percentage-not-100 =A trackingLog only can be completed when percentage is 100
+assistance-agent.tracking-log.form.error.resolution-required = Resolution is required
+assistance-agent.tracking-log.form.error.percentage-not-increasing = percentage not increasing
+assistance-agent.tracking-log.form.error.claim-must-be-publish = The claim must be publish
+assistance-agent.tracking-log.form.error.after-publish-percentage-mustbe-100 = The tracking log percentaje must be 100 if the tracking log before is publish
 

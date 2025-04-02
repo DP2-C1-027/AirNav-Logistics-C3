@@ -26,4 +26,10 @@ assistanceAgent.trackingLog.form.button.delete=Eliminar
 assistanceAgent.trackingLog.form.button.publish=Publicar
 assistanceAgent.trackingLog.form.button.create=Crear
 assistanceAgent.claim.form.button.claim=Ver Reclamo
+###Errors
+
+assistance-agent.tracking-log.form.error.percentage-not-100 =A trackingLog only can be completed when percentage is 100
+assistance-agent.tracking-log.form.error.resolution-required=resolution is required
+assistance-agent.tracking-log.form.error.percentage-not-increasing = percentage not increasing
+assistance-agent.tracking-log.form.error.claim-must-be-publish =The claim must be publish
 

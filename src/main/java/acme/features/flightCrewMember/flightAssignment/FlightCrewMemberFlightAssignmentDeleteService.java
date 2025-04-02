@@ -1,13 +1,17 @@
 
 package acme.features.flightCrewMember.flightAssignment;
 
-import java.util.List;
+import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import acme.client.components.models.Dataset;
+import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.flightAssignment.ActivityLog;
+import acme.entities.flightAssignment.CurrentStatus;
+import acme.entities.flightAssignment.Duty;
 import acme.entities.flightAssignment.FlightAssignment;
 import acme.realms.FlightCrewMember;
 
@@ -24,7 +28,12 @@ public class FlightCrewMemberFlightAssignmentDeleteService extends AbstractGuiSe
 
 	@Override
 	public void authorise() {
-		boolean status = super.getRequest().getPrincipal().hasRealmOfType(FlightCrewMember.class);
+		// Only is allowed to delete an flight assignment if the creator is associated.
+		// A flight assignment cannot be deleted if is published, only in draft mode are allowed.
+		int flightAssignmentId = super.getRequest().getData("id", int.class);
+		FlightAssignment flightAssignment = this.repository.findFlightAssignmentById(flightAssignmentId);
+		boolean status = flightAssignment != null && flightAssignment.getDraftMode() && super.getRequest().getPrincipal().hasRealm(flightAssignment.getFlightCrewMember());
+
 		super.getResponse().setAuthorised(status);
 	}
 
@@ -48,14 +57,33 @@ public class FlightCrewMemberFlightAssignmentDeleteService extends AbstractGuiSe
 
 	@Override
 	public void perform(final FlightAssignment flightAssignment) {
-		List<ActivityLog> activityLogs = this.repository.findAllActivityLogs(flightAssignment.getId());
+		Collection<ActivityLog> activityLogs = this.repository.findAllActivityLogs(flightAssignment.getId());
 		this.repository.deleteAll(activityLogs);
 		this.repository.delete(flightAssignment);
 	}
 
 	@Override
 	public void unbind(final FlightAssignment flightAssignment) {
+		Dataset dataset = super.unbindObject(flightAssignment, "duty", "moment", "currentStatus", "remarks", "draftMode", "flightCrewMember", "leg");
 
+		dataset.put("flightCrewMember", flightAssignment.getFlightCrewMember().getIdentity().getFullName());
+
+		// Duty choices
+		SelectChoices dutyChoices = SelectChoices.from(Duty.class, flightAssignment.getDuty());
+		dataset.put("dutyChoices", dutyChoices);
+		dataset.put("duty", dutyChoices.getSelected().getKey());
+
+		// Status choices
+		SelectChoices statusChoices = SelectChoices.from(CurrentStatus.class, flightAssignment.getCurrentStatus());
+		dataset.put("statusChoices", statusChoices);
+		dataset.put("status", statusChoices.getSelected().getKey());
+
+		// Leg choices
+		SelectChoices legChoices = SelectChoices.from(this.repository.findAllLegsByAirlineId(flightAssignment.getFlightCrewMember().getAirline().getId()), "flightNumber", flightAssignment.getLeg());
+		dataset.put("legChoices", legChoices);
+		dataset.put("leg", legChoices.getSelected().getKey());
+
+		super.getResponse().addData(dataset);
 	}
 
 }

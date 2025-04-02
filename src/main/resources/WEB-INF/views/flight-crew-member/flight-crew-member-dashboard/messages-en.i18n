@@ -19,8 +19,8 @@ flight-crew-member.flight-crew-member-dashboard.form.label.legsWithIncidentSever
 flight-crew-member.flight-crew-member-dashboard.form.label.lastLegCrewMembers = Flight crew members assigned in my last leg:
 flight-crew-member.flight-crew-member-dashboard.form.label.flightAssignmentsGroupedByStatus = Amount of flight assignments grouped by status:
 
-flight-crew-member.flight-crew-member-dashboard.form.label.review-count = Number of flight assignments (Last month):
-flight-crew-member.flight-crew-member-dashboard.form.label.review-average = Average number of flight assignments (Last month):
-flight-crew-member.flight-crew-member-dashboard.form.label.review-min = Minimum number of flight assignments (Last month):
-flight-crew-member.flight-crew-member-dashboard.form.label.review-max = Maximum number of flight assignments (Last month):
-flight-crew-member.flight-crew-member-dashboard.form.label.review-deviation = Deviation of flight assignments (Last month):
+flight-crew-member.flight-crew-member-dashboard.form.label.review-count = Number of flight assignments (Last year):
+flight-crew-member.flight-crew-member-dashboard.form.label.review-average = Average number of flight assignments (Last year):
+flight-crew-member.flight-crew-member-dashboard.form.label.review-min = Minimum number of flight assignments (Last year):
+flight-crew-member.flight-crew-member-dashboard.form.label.review-max = Maximum number of flight assignments (Last year):
+flight-crew-member.flight-crew-member-dashboard.form.label.review-deviation = Deviation of flight assignments (Last year):

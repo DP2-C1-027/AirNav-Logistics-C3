@@ -1,5 +1,5 @@
 
-package acme.features.flightCrewMember.flightAssignment;
+package acme.features.any.flightAssignment;
 
 import java.util.Collection;
 import java.util.Date;
@@ -14,7 +14,7 @@ import acme.entities.flightAssignment.FlightAssignment;
 import acme.entities.legs.Leg;
 
 @Repository
-public interface FlightCrewMemberFlightAssignmentRepository extends AbstractRepository {
+public interface AnyFlightAssignmentRepository extends AbstractRepository {
 
 	@Query("SELECT fa FROM FlightAssignment fa WHERE fa.id = :flightAssignmentId")
 	FlightAssignment findFlightAssignmentById(int flightAssignmentId);
@@ -28,7 +28,7 @@ public interface FlightCrewMemberFlightAssignmentRepository extends AbstractRepo
 	Collection<FlightAssignment> findAllPlannedFlightAssignments(Date moment, int flightCrewMemberId);
 
 	// List published assignments
-	@Query("SELECT fa FROM FlightAssignment fa WHERE fa.draftMode = true")
+	@Query("SELECT fa FROM FlightAssignment fa WHERE fa.draftMode = false")
 	Collection<FlightAssignment> findAllPublishedFlightAssignments();
 
 	// Show all the legs in the select choices
@@ -45,7 +45,7 @@ public interface FlightCrewMemberFlightAssignmentRepository extends AbstractRepo
 	@Query("SELECT COUNT(fa) > 0 FROM FlightAssignment fa WHERE fa.leg.id = :legId AND fa.duty IN ('PILOT', 'CO_PILOT') AND fa.duty = :duty AND fa.id != :id")
 	Boolean hasDutyAssigned(int legId, Duty duty, int id);
 
-	@Query("SELECT COUNT(fa) > 0 FROM FlightAssignment fa WHERE fa.flightCrewMember.id = :flightCrewMemberId AND fa.moment >= :moment AND fa.draftMode = false")
+	@Query("SELECT COUNT(fa) > 0 FROM FlightAssignment fa WHERE fa.flightCrewMember.id = :flightCrewMemberId AND fa.moment = :moment")
 	Boolean hasFlightCrewMemberLegAssociated(int flightCrewMemberId, Date moment);
 
 }

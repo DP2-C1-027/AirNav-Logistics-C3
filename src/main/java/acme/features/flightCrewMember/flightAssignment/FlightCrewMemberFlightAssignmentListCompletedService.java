@@ -31,7 +31,8 @@ public class FlightCrewMemberFlightAssignmentListCompletedService extends Abstra
 
 	@Override
 	public void load() {
-		Collection<FlightAssignment> completedFlightAssignments = this.repository.findAllCompletedFlightAssignments(MomentHelper.getCurrentMoment());
+		FlightCrewMember flightCrewMember = (FlightCrewMember) super.getRequest().getPrincipal().getActiveRealm();
+		Collection<FlightAssignment> completedFlightAssignments = this.repository.findAllCompletedFlightAssignments(MomentHelper.getCurrentMoment(), flightCrewMember.getId());
 
 		super.getBuffer().addData(completedFlightAssignments);
 	}
@@ -39,11 +40,11 @@ public class FlightCrewMemberFlightAssignmentListCompletedService extends Abstra
 	@Override
 	public void unbind(final FlightAssignment completedFlightAssignments) {
 		Dataset dataset = super.unbindObject(completedFlightAssignments, "duty", "moment", "currentStatus", "remarks", "draftMode", "leg");
+
 		dataset.put("leg", completedFlightAssignments.getLeg().getFlightNumber());
 
 		super.addPayload(dataset, completedFlightAssignments, "duty", "moment", "currentStatus", "remarks", "draftMode", "leg");
 		super.getResponse().addData(dataset);
-		super.getResponse().addGlobal("showCreate", true);
 
 	}
 }

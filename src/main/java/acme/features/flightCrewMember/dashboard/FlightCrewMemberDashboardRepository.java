@@ -20,6 +20,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import acme.client.repositories.AbstractRepository;
+import acme.entities.flightAssignment.FlightAssignment;
+import acme.realms.FlightCrewMember;
 
 @Repository
 public interface FlightCrewMemberDashboardRepository extends AbstractRepository {
@@ -30,25 +32,19 @@ public interface FlightCrewMemberDashboardRepository extends AbstractRepository 
 	@Query("SELECT COUNT(DISTINCT a.flightAssignment.leg) FROM ActivityLog a WHERE a.severityLevel BETWEEN :innerRange AND :outerRange")
 	Integer countLegsWithSeverity(int innerRange, int outerRange);
 
-	@Query("SELECT DISTINCT f.flightCrewMember.codigo FROM FlightAssignment f WHERE f.leg = (SELECT fa.leg FROM FlightAssignment fa WHERE fa.flightCrewMember.id = :flightCrewMemberId AND fa.moment = (SELECT MAX(fa2.moment) FROM FlightAssignment fa2 WHERE fa2.flightCrewMember.id = :flightCrewMemberId))")
-	List<String> findCrewMembersInLastLeg(int flightCrewMemberId);
+	@Query("SELECT f FROM FlightAssignment f JOIN f.leg l WHERE f.flightCrewMember.id = :flightCrewMemberId ORDER BY l.scheduledArrival ASC")
+	List<FlightAssignment> findFlightAssignment(int flightCrewMemberId);
+
+	@Query("SELECT DISTINCT fa.flightCrewMember FROM FlightAssignment fa WHERE fa.leg.id = :legId")
+	List<FlightCrewMember> findCrewMembersInLastLeg(int legId);
 
 	@Query("SELECT f.currentStatus, COUNT(f) FROM FlightAssignment f WHERE f.flightCrewMember.id = :flightCrewMemberId GROUP BY f.currentStatus")
 	List<Object[]> countFlightAssignmentsGroupedByStatus(int flightCrewMemberId);
 
 	@Query("SELECT COUNT(f) FROM FlightAssignment f WHERE f.moment >= :moment AND f.flightCrewMember.id = :crewMemberId")
-	Integer countFlightAssignmentsLastMonth(Date moment, int crewMemberId);
+	Integer countFlightAssignmentsLastYear(Date moment, int crewMemberId);
 
-	//	@Query("SELECT AVG(COUNT(f)) FROM FlightAssignment f WHERE f.moment >= :moment AND f.flightCrewMember.id = :crewMemberId")
-	//	Double averageFlightAssignmentsLastMonth(Date moment, int crewMemberId);
-	//
-	//	@Query("SELECT MIN(COUNT(f)) FROM FlightAssignment f WHERE f.moment >= :moment AND f.flightCrewMember.id = :crewMemberId")
-	//	Double minFlightAssignmentsLastMonth(Date moment, int crewMemberId);
-	//
-	//	@Query("SELECT MAX(COUNT(f)) FROM FlightAssignment f WHERE f.moment >= :moment AND f.flightCrewMember.id = :crewMemberId")
-	//	Double maxFlightAssignmentsLastMonth(Date moment, int crewMemberId);
-	//
-	//	@Query(value = "SELECT SQRT(SUM(POW(sub.countFA - :avgValue, 2)) / COUNT(sub.countFA)) FROM (SELECT COUNT(*) AS countFA FROM flight_assignment WHERE moment >= :moment AND flight_crew_member_id = :crewMemberId GROUP BY flight_crew_member_id) sub",nativeQuery = true)
-	//	Double deviationFlightAssignmentsLastMonth(Date moment, int crewMemberId, Double avgValue);
+	@Query("SELECT COUNT(fa) FROM FlightAssignment fa WHERE fa.flightCrewMember.id = :crewMemberId AND EXTRACT(YEAR FROM fa.leg.scheduledArrival) = :year AND EXTRACT(MONTH FROM fa.leg.scheduledArrival) = :month")
+	Integer countFlightAssignmentsPerMonthAndYear(int crewMemberId, int year, int month);
 
 }

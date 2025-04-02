@@ -31,7 +31,8 @@ public class FlightCrewMemberFlightAssignmentListPlannedService extends Abstract
 
 	@Override
 	public void load() {
-		Collection<FlightAssignment> plannedFlightAssignments = this.repository.findAllPlannedFlightAssignments(MomentHelper.getCurrentMoment());
+		FlightCrewMember flightCrewMember = (FlightCrewMember) super.getRequest().getPrincipal().getActiveRealm();
+		Collection<FlightAssignment> plannedFlightAssignments = this.repository.findAllPlannedFlightAssignments(MomentHelper.getCurrentMoment(), flightCrewMember.getId());
 
 		super.getBuffer().addData(plannedFlightAssignments);
 	}
@@ -39,11 +40,11 @@ public class FlightCrewMemberFlightAssignmentListPlannedService extends Abstract
 	@Override
 	public void unbind(final FlightAssignment plannedFlightAssignments) {
 		Dataset dataset = super.unbindObject(plannedFlightAssignments, "duty", "moment", "currentStatus", "remarks", "draftMode", "leg");
+
 		dataset.put("leg", plannedFlightAssignments.getLeg().getFlightNumber());
 
 		super.addPayload(dataset, plannedFlightAssignments, "duty", "moment", "currentStatus", "remarks", "draftMode", "leg");
 		super.getResponse().addData(dataset);
-		super.getResponse().addGlobal("showCreate", true);
 
 	}
 }

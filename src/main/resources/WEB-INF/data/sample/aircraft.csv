@@ -1,29 +1,29 @@
 key,model,registrationNumber,capacity,cargoWeight,status,details,key:airline
 aircraft-01,Delta Air Lines,A,200,2000,ACTIVE_SERVICE,"Delta Air Lines is a major American airline.",airline-01
 aircraft-02,Emirates,EAU456,255,2000,UNDER_MAINTENANCES,"Emirates is a major airline based in Dubai.",airline-01
-aircraft-03,American Airlines,AAL789,250,2000,ACTIVE_SERVICE,"American Airlines is one of the largest airlines in the world.",airline-02
-aircraft-04,Lufthansa,LH101,255,2000,ACTIVE_SERVICE,"Lufthansa is the largest German airline.",airline-03
-aircraft-05,Air France,AF202,220,2000,UNDER_MAINTENANCES,"Air France is the flag carrier of France.",airline-04
-aircraft-06,British Airways,BA303,255,2000,ACTIVE_SERVICE,,airline-05
-aircraft-07,Qantas,QF404,240,2000,ACTIVE_SERVICE,A,airline-06
-aircraft-08,Singapore Airlines,SQ505,255,2000,ACTIVE_SERVICE,"Singapore Airlines is the flag carrier of Singapore.",airline-07
-aircraft-09,c,CX606,255,2000,UNDER_MAINTENANCES,"Cathay Pacific is the flag carrier of Hong Kong.",airline-08
-aircraft-10,Japan Airlines,JL707,255,2000,ACTIVE_SERVICE,"Japan Airlines is the flag carrier of Japan.",airline-09
-aircraft-11,Air Canada,AC808,230,2000,ACTIVE_SERVICE,,airline-10
-aircraft-12,Qatar Airways,QR909,255,2000,ACTIVE_SERVICE,Heathrow AirportHeathrow AirportHeathrow...,airline-11
-aircraft-13,Turkish Airlines,TK1010,255,2000,UNDER_MAINTENANCES,"Turkish Airlines is the flag carrier of Turkey.",airline-12
-aircraft-14,Heathrow Heathrow Airport,EY1111,255,2000,ACTIVE_SERVICE,"Etihad Airways is the flag carrier of UAE.",airline-13
-aircraft-15,Virgin Atlantic,VS1212,255,50000,ACTIVE_SERVICE,"Virgin Atlantic is a British airline.",airline-14
-aircraft-16,Alaska Airlines,AS1313,1,2000,UNDER_MAINTENANCES,"Alaska Airlines is a major American airline.",airline-15
-aircraft-17,Southwest Airlines,WN1414,220,2000,ACTIVE_SERVICE,"Southwest Airlines is a major American low-cost carrier.",airline-12
+aircraft-03,American Airlines,AAL789,250,2000,ACTIVE_SERVICE,"American Airlines is one of the largest airlines in the world.",airline-01
+aircraft-04,Lufthansa,LH101,255,2000,ACTIVE_SERVICE,"Lufthansa is the largest German airline.",airline-01
+aircraft-05,Air France,AF202,220,2000,UNDER_MAINTENANCES,"Air France is the flag carrier of France.",airline-01
+aircraft-06,British Airways,BA303,255,2000,ACTIVE_SERVICE,,airline-01
+aircraft-07,Qantas,QF404,240,2000,ACTIVE_SERVICE,A,airline-01
+aircraft-08,Singapore Airlines,SQ505,255,2000,ACTIVE_SERVICE,"Singapore Airlines is the flag carrier of Singapore.",airline-01
+aircraft-09,c,CX606,255,2000,UNDER_MAINTENANCES,"Cathay Pacific is the flag carrier of Hong Kong.",airline-02
+aircraft-10,Japan Airlines,JL707,255,2000,ACTIVE_SERVICE,"Japan Airlines is the flag carrier of Japan.",airline-02
+aircraft-11,Air Canada,AC808,230,2000,ACTIVE_SERVICE,,airline-02
+aircraft-12,Qatar Airways,QR909,255,2000,ACTIVE_SERVICE,Heathrow AirportHeathrow AirportHeathrow...,airline-02
+aircraft-13,Turkish Airlines,TK1010,255,2000,UNDER_MAINTENANCES,"Turkish Airlines is the flag carrier of Turkey.",airline-02
+aircraft-14,Heathrow Heathrow Airport,EY1111,255,2000,ACTIVE_SERVICE,"Etihad Airways is the flag carrier of UAE.",airline-02
+aircraft-15,Virgin Atlantic,VS1212,255,50000,ACTIVE_SERVICE,"Virgin Atlantic is a British airline.",airline-02
+aircraft-16,Alaska Airlines,AS1313,1,2000,UNDER_MAINTENANCES,"Alaska Airlines is a major American airline.",airline-02
+aircraft-17,Southwest Airlines,WN1414,220,2000,ACTIVE_SERVICE,"Southwest Airlines is a major American low-cost carrier.",airline-02
 aircraft-18,Ryanair,Heathrow Heathrow Airport,180,2000,ACTIVE_SERVICE,,airline-13
 aircraft-19,EasyJet,U21616,190,2000,UNDER_MAINTENANCES,"EasyJet is a British low-cost airline.",airline-02
-aircraft-20,AirAsia,AK1717,210,2000,ACTIVE_SERVICE,"AirAsia is a Malaysian low-cost airline.",airline-15
+aircraft-20,AirAsia,AK1717,210,2000,ACTIVE_SERVICE,"AirAsia is a Malaysian low-cost airline.",airline-01
 aircraft-21,XSS Test,XSS123,100,2000,ACTIVE_SERVICE,"This is a test for XSS injection.",airline-11
 aircraft-22,Hacked Test,HACK456,150,2000,UNDER_MAINTENANCES,"This is a test for HTML injection.",airline-13
 aircraft-23,SQL Test,SQL789,255,2000,ACTIVE_SERVICE,"This is a test for SQL injection.",airline-14
 aircraft-24,Emoji Test,EMOJI123,250,2000,ACTIVE_SERVICE,"This is a test for emoji and special characters.",airline-14
-aircraft-25,Arabic Test,ARAB789,200,2000,UNDER_MAINTENANCES,"This is a test for Arabic script.",airline-10
+aircraft-25,Arabic Test,ARAB789,200,2000,UNDER_MAINTENANCES,"This is a test for Arabic script.",airline-01
 aircraft-26,Chinese Test,CHINA123,255,2000,ACTIVE_SERVICE,"This is a test for Chinese script.",airline-11
 aircraft-27,Japanese Test,JAPAN456,255,2000,UNDER_MAINTENANCES,"This is a test for Japanese script.",airline-12
 aircraft-28,Korean Test,KOREAN789,255,2000,ACTIVE_SERVICE,"This is a test for Korean script.",airline-13

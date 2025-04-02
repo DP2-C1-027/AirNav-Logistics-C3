@@ -22,6 +22,7 @@ master.menu.anonymous.jose= 29589177E: García de Tejada Delgado, José
 master.menu.any = Any
 master.menu.any.airport = Ver aeropuertos
 master.menu.any.review = Ver reviews
+master.menu.any.list-flight-assignments-published = Lista de asignaciones publicadas
 
 # master.menu.administrator ###################################################
 
@@ -47,7 +48,6 @@ master.menu.provider.favourite-link = Enlace favorito
 # master.menu.flightCrewMember ########################################################
 
 master.menu.flightCrewMember = Tripulante de vuelo
-master.menu.flightCrewMember.list-flight-assignments-published = Asignaciones publicadas
 master.menu.flightCrewMember.list-flight-assignments-planned = Asignaciones planificadas
 master.menu.flightCrewMember.list-flight-assignments-completed = Asignaciones completadas
 

@@ -12,12 +12,19 @@
 
 package acme.features.assistanceAgent.claims;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
+import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.claims.Claim;
+import acme.entities.claims.ClaimType;
+import acme.entities.claims.TrackingLog;
+import acme.entities.legs.Leg;
+import acme.features.assistanceAgent.trackingLogs.AssistanceAgentTrackingLogRepository;
 import acme.realms.AssistanceAgent;
 
 @GuiService
@@ -26,7 +33,10 @@ public class AssistanceAgentClaimDeleteService extends AbstractGuiService<Assist
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private AssistanceAgentClaimRepository repository;
+	private AssistanceAgentClaimRepository			repository;
+
+	@Autowired
+	private AssistanceAgentTrackingLogRepository	repositoryTL;
 
 	// AbstractGuiService interface -------------------------------------------
 
@@ -57,29 +67,35 @@ public class AssistanceAgentClaimDeleteService extends AbstractGuiService<Assist
 
 	@Override
 	public void bind(final Claim claim) {
-		super.bindObject(claim, "registrationMoment", "passengerEmail", "description", "type", "indicator", "registeredBy", "linkedTo");
+		super.bindObject(claim, "registrationMoment", "passengerEmail", "description", "indicator", "linkedTo");
 
 	}
 
 	@Override
 	public void validate(final Claim claim) {
-		boolean status;
-		int id, numberProxies, numberJobs;
-
-		id = super.getRequest().getData("id", int.class);
+		if (!super.getBuffer().getErrors().hasErrors("draftMode"))
+			super.state(claim.isDraftMode(), "draftMode", "claim.form.error.draft-mode");
 
 	}
 
 	@Override
 	public void perform(final Claim claim) {
+		Collection<TrackingLog> tl;
+		tl = this.repository.findTrackingLogsByClaimId(claim.getId());
+		this.repositoryTL.deleteAll(tl);
 		this.repository.delete(claim);
 	}
 
 	@Override
 	public void unbind(final Claim claim) {
-		Dataset dataset;
+		Collection<Leg> legs;
+		legs = null;
 
-		dataset = super.unbindObject(claim, "registrationMoment", "passengerEmail", "description", "type", "indicator", "registeredBy", "linkedTo");
+		Dataset dataset = super.unbindObject(claim, "registrationMoment", "passengerEmail", "description", "indicator", "type", "linkedTo");
+		SelectChoices statusChoices = SelectChoices.from(ClaimType.class, claim.getType());
+		SelectChoices legsChoices = SelectChoices.from(legs, "flightNumber", claim.getLinkedTo());
+		dataset.put("linkedTo", legsChoices);
+		dataset.put("typeChoice", statusChoices);
 
 		super.getResponse().addData(dataset);
 	}

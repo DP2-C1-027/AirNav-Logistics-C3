@@ -2,28 +2,31 @@
 #
 # Copyright (C) 2012-2025 Rafael Corchuelo.
 #
-# De acuerdo con el propósito tradicional de fomentar la educación y la investigación, es
-# política del propietario de los derechos de autor permitir el uso no comercial y la redistribución de
-# este software. Ha sido probado cuidadosamente, pero no se garantiza para ningún propósito
-# particular. El propietario de los derechos de autor no ofrece garantías ni representaciones, ni
-# acepta responsabilidades con respecto a ellas.
+# Con el propósito tradicional de fomentar la educación y la investigación, es
+# política del propietario de los derechos de autor permitir el uso no comercial
+# y la redistribución de este software.
 
-# Etiquetas del formulario de detalles de la reseña
-any.review.form.title = Detalles de la reseña
-any.review.form.label.name = Nombre:
-any.review.form.label.moment = Momento:
-any.review.form.label.subject = Asunto:
-any.review.form.label.text = Texto:
-any.review.form.label.score = Puntuación:
-any.review.form.label.recommended = Recomendado:
+# Etiquetas del formulario de reseña
+any.review.form.title=Detalles de la reseña
+any.review.form.label.name=Nombre
+any.review.form.label.moment=Fecha
+any.review.form.label.subject=Asunto
+any.review.form.label.text=Texto de la reseña
+any.review.form.label.score=Puntuación
+any.review.form.label.recommended=Recomendado
+any.review.form.label.confirmation=Confirmación
 
-# Etiquetas de la lista de reseñas
-any.review.list.title = Lista de reseñas
-any.review.list.label.name = Nombre:
-any.review.list.label.moment = Momento:
-any.review.list.label.subject = Asunto:
+# Etiquetas del listado de reseñas
+any.review.list.title=Listado de reseñas
+any.review.list.label.name=Nombre
+any.review.list.label.moment=Fecha
+any.review.list.label.subject=Asunto
 
-# Botones comunes
-any.review.form.button.create = Crear
-any.review.list.button.create = Crear Reseña
-any.review.form.label.confirmation = Confirmar
+# Botones del formulario
+any.review.form.button.create=Crear reseña
+
+# Botones del listado
+any.review.list.button.create=Nueva reseña
+
+# Información adicional
+any.review.list.payload=Información adicional

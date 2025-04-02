@@ -48,4 +48,15 @@ public interface FlightCrewMemberFlightAssignmentRepository extends AbstractRepo
 	@Query("SELECT COUNT(fa) > 0 FROM FlightAssignment fa WHERE fa.flightCrewMember.id = :flightCrewMemberId AND fa.moment >= :moment AND fa.draftMode = false")
 	Boolean hasFlightCrewMemberLegAssociated(int flightCrewMemberId, Date moment);
 
+	@Query("SELECT l FROM Leg l WHERE l.aircraft.airline.id = :airlineId")
+	Collection<Leg> findAllLegsFromAirline(int airlineId);
+
+	@Query("SELECT l FROM Leg l")
+	Collection<Leg> findAllLegs();
+
+	@Query("SELECT fa FROM FlightAssignment fa WHERE fa.leg.flight.id=:flightId")
+	Collection<FlightAssignment> findFlightAssignmentsByFlightId(int flightId);
+
+	@Query("SELECT fa FROM FlightAssignment fa WHERE fa.leg.id=:legId")
+	Collection<FlightAssignment> findFlightAssignmentsByLegId(int legId);
 }

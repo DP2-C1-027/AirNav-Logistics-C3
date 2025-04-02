@@ -9,6 +9,13 @@
 # they accept any liabilities with respect to them.
 
 administrator.passenger.list.title = Passenger list
+administrator.passenger.form.title = Passenger details
 
 administrator.passenger.list.label.fullName = Full name:
 administrator.passenger.list.label.email = Email:
+
+administrator.passenger.form.label.fullName = Full name: 
+administrator.passenger.form.label.email = Email:
+administrator.passenger.form.label.passportNumber = Passport Number:
+administrator.passenger.form.label.dateOfBirth = Date of birth:
+administrator.passenger.form.label.specialNeeds = Special Needs:

@@ -46,7 +46,7 @@ public interface CustomersDashboardRepository extends AbstractRepository {
 
 	//•	Their number of bookings grouped by travel class
 
-	@Query("select c from Booking c where c.customer.id = :auditorId")
+	@Query("select c from Booking c where c.customer.id = :customerId")
 	Collection<Booking> findPublishedBooking(int customerId);
 
 	default Map<TravelClass, Integer> totalTypes(final int customerId) {

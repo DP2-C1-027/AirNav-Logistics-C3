@@ -29,10 +29,11 @@ public class CustomersBookingRecordUpdateService extends AbstractGuiService<Cust
 		boolean status;
 		Booking booking;
 		Passenger passenger;
-		customer = (Customers) super.getRequest().getPrincipal().getActiveRealm();
+
 		int bookingRecordId = super.getRequest().getData("id", int.class);
 		passenger = this.repository.findOnePassengerByBookingRecord(bookingRecordId);
 		booking = this.repository.findOneBookingByBookingRecord(bookingRecordId);
+		customer = booking != null ? booking.getCustomer() : null;
 		status = booking != null && passenger != null && booking.isDraftMode() && super.getRequest().getPrincipal().hasRealm(customer);
 		super.getResponse().setAuthorised(status);
 
@@ -61,9 +62,6 @@ public class CustomersBookingRecordUpdateService extends AbstractGuiService<Cust
 
 		booking = bookingRecord.getBooking();
 		passenger = bookingRecord.getPassenger();
-
-		Customers customer;
-		customer = (Customers) super.getRequest().getPrincipal().getActiveRealm();
 
 		super.state(booking != null, "booking", "customer.booking-record.create.error.null-booking");
 		super.state(passenger != null, "passenger", "customer.booking-record.create.error.null-passenger");

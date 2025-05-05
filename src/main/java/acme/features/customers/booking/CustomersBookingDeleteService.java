@@ -36,10 +36,10 @@ public class CustomersBookingDeleteService extends AbstractGuiService<Customers,
 		int bookingId;
 		Booking booking;
 		Customers customer;
-
 		bookingId = super.getRequest().getData("id", int.class);
 		booking = this.repository.findBookinById(bookingId);
 		customer = booking.getCustomer() != null ? booking.getCustomer() : null;
+
 		status = booking != null && booking.isDraftMode() && super.getRequest().getPrincipal().hasRealm(customer);
 
 		super.getResponse().setAuthorised(status);
@@ -60,7 +60,7 @@ public class CustomersBookingDeleteService extends AbstractGuiService<Customers,
 
 	@Override
 	public void bind(final Booking booking) {
-		super.bindObject(booking, "locatorCode", "purchaseMoment", "travelClass", "lastNibble");
+		super.bindObject(booking, "locatorCode", "travelClass", "lastNibble");
 
 	}
 

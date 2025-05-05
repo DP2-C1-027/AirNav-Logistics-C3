@@ -54,7 +54,7 @@ public class CustomersBookingPublishService extends AbstractGuiService<Customers
 	@Override
 	public void bind(final Booking booking) {
 
-		super.bindObject(booking, "locatorCode", "purchaseMoment", "travelClass", "lastNibble");
+		super.bindObject(booking, "locatorCode", "travelClass", "lastNibble");
 
 	}
 

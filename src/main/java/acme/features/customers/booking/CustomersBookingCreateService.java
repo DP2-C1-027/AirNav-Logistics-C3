@@ -42,17 +42,17 @@ public class CustomersBookingCreateService extends AbstractGuiService<Customers,
 	public void load() {
 		Date moment;
 		Customers customer;
-		Booking whine;
+		Booking booking;
 
 		moment = MomentHelper.getCurrentMoment();
 		customer = (Customers) super.getRequest().getPrincipal().getActiveRealm();
 
-		whine = new Booking();
+		booking = new Booking();
 
-		whine.setPurchaseMoment(moment);
-		whine.setCustomer(customer);
+		booking.setPurchaseMoment(moment);
+		booking.setCustomer(customer);
 
-		super.getBuffer().addData(whine);
+		super.getBuffer().addData(booking);
 
 	}
 

@@ -3,7 +3,6 @@ package acme.features.customers.dashboard;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -16,7 +15,6 @@ import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.datatypes.Statistics;
-import acme.entities.booking.Booking;
 import acme.entities.booking.TravelClass;
 import acme.forms.CustomersDashboards;
 import acme.realms.Customers;
@@ -67,7 +65,6 @@ public class CustomersDashboardShowService extends AbstractGuiService<Customers,
 
 		//number of booking grouped
 		Map<TravelClass, Integer> bookingsGroupedByTravelClass;
-		Collection<Booking> listaBooking = this.repository.findPublishedCodeAudits(customer.getId());
 
 		//estadistica de passenger:
 		Integer countPassenger;
@@ -145,14 +142,16 @@ public class CustomersDashboardShowService extends AbstractGuiService<Customers,
 
 	public Double calculateDeviation(@Param("customer") final int customer) {
 
-		Integer totalPassengers = this.repository.countPassengersByCustomer(customer);
+		Integer totalPassengers = this.repository.countPassengersByCustomer(customer) != null ? this.repository.countPassengersByCustomer(customer) : 0;
 
-		Double averagePassengers = this.repository.averagePassengersByCustomer(customer);
+		Double averagePassengers = this.repository.averagePassengersByCustomer(customer) != null ? this.repository.averagePassengersByCustomer(customer) : 0.0;
 
-		Double minPassengers = this.repository.minPassengersByCustomer(customer);
+		Double minPassengers = this.repository.minPassengersByCustomer(customer) != null ? this.repository.minPassengersByCustomer(customer) : 0.0;
 
-		Double maxPassengers = this.repository.maxPassengersByCustomer(customer);
+		Double maxPassengers = this.repository.maxPassengersByCustomer(customer) != null ? this.repository.maxPassengersByCustomer(customer) : 0.0;
 
+		if (totalPassengers == null || totalPassengers == 0)
+			return 0.0;
 		double variance = 0.0;
 
 		for (int i = minPassengers.intValue(); i <= maxPassengers.intValue(); i++) {

@@ -57,9 +57,6 @@ public class CustomersBookingRecordCreateService extends AbstractGuiService<Cust
 		booking = bookingRecord.getBooking();
 		passenger = bookingRecord.getPassenger();
 
-		Customers customer;
-		customer = (Customers) super.getRequest().getPrincipal().getActiveRealm();
-
 		super.state(booking != null, "booking", "customer.booking-record.create.error.null-booking");
 		super.state(passenger != null, "passenger", "customer.booking-record.create.error.null-passenger");
 		super.state(booking.isDraftMode(), "booking", "customer.booking-record.create.publish.booking");
@@ -77,10 +74,10 @@ public class CustomersBookingRecordCreateService extends AbstractGuiService<Cust
 	@Override
 	public void unbind(final BookingRecord bookingRecord) {
 		Dataset dataset;
+
 		Customers customer = (Customers) super.getRequest().getPrincipal().getActiveRealm();
-		//creo q da igual si el pasajero esta publicado o no
 		Collection<Passenger> passenger = this.repository.findPassengerByCustomerId(customer.getId());
-		//creo q el booking no debe estar publicado
+
 		Collection<Booking> booking = this.repository.findNotPublishBooking(customer.getId());
 
 		SelectChoices passengerChoices;

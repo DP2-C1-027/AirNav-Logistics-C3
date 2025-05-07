@@ -59,8 +59,8 @@ public class CustomersBookingRecordCreateService extends AbstractGuiService<Cust
 
 		super.state(booking != null, "booking", "customer.booking-record.create.error.null-booking");
 		super.state(passenger != null, "passenger", "customer.booking-record.create.error.null-passenger");
-		super.state(booking.isDraftMode(), "booking", "customer.booking-record.create.publish.booking");
-
+		if (booking != null)
+			super.state(booking.isDraftMode(), "booking", "customer.booking-record.create.publish.booking");
 		boolean exists = this.repository.existsByBookingAndPassenger(booking, passenger);
 		super.state(!exists, "*", "customer.booking-record.create.error.duplicate-booking-passenger");
 

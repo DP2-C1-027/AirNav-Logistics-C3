@@ -31,5 +31,3 @@ flight-crew-member.flight-assignment.list.label.currentStatus = Current Status:
 flight-crew-member.flight-assignment.list.label.remarks = Remarks:
 flight-crew-member.flight-assignment.list.label.leg = Flight Number:
 flight-crew-member.flight-assignment.list.label.draftMode = Draft mode:
-
-flight-crew-member.flight-assignment.list.button.create = Create

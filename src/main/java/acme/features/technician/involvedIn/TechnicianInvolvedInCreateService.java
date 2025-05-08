@@ -57,9 +57,6 @@ public class TechnicianInvolvedInCreateService extends AbstractGuiService<Techni
 		maintanenceRecord = involved.getMaintanenceRecord();
 		task = involved.getTask();
 
-		Technician tech;
-		tech = (Technician) super.getRequest().getPrincipal().getActiveRealm();
-
 		super.state(maintanenceRecord != null, "*", "technician.involved-in.create.error.null-record");
 		//Esto habra que crearlo en algun lado?¿?¿?¿
 		super.state(task != null, "*", "technician.involved-in.create.error.null-task");

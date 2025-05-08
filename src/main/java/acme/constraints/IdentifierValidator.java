@@ -1,8 +1,6 @@
 
 package acme.constraints;
 
-import java.util.regex.Pattern;
-
 import javax.validation.ConstraintValidatorContext;
 
 import acme.client.components.basis.AbstractRealm;
@@ -12,9 +10,6 @@ import acme.client.components.validation.Validator;
 
 @Validator
 public class IdentifierValidator extends AbstractValidator<ValidIdentifier, AbstractRealm> {
-
-	private static final Pattern IDENTIFIER_PATTERN = Pattern.compile("^([A-Z]{2,3})(\\d{6})$");
-
 
 	@Override
 	protected void initialise(final ValidIdentifier annotation) {
@@ -42,11 +37,10 @@ public class IdentifierValidator extends AbstractValidator<ValidIdentifier, Abst
 			if (codigo.length() > 3)
 				codValido2 = codigo.substring(0, 3);
 
-			String expectedInitials2letras = this.getInitials(identity.getName(), identity.getSurname(), realm);
-			String expectedInitials3letras = this.getInitials1(identity.getName(), identity.getSurname(), realm);
+			String expectedInitials2letras = this.getInitials(identity.getName(), identity.getSurname());
+			String expectedInitials3letras = this.getInitials1(identity.getName(), identity.getSurname());
 
 			boolean cod1 = expectedInitials2letras.matches(codValido1) || expectedInitials3letras.matches(codValido2);
-
 
 			super.state(context, cod1 && cod, "codigo", "acme.validation.identifier.mismatch");
 		} else
@@ -56,19 +50,18 @@ public class IdentifierValidator extends AbstractValidator<ValidIdentifier, Abst
 		return result;
 	}
 
-	private String getInitials(final String name, final String surname, final AbstractRealm realm) {
+	private String getInitials(final String name, final String surname) {
 		if (name == null || surname == null || name.isEmpty() || surname.isEmpty())
 			return "";
 
 		return name.substring(0, 1).toUpperCase() + surname.substring(0, 1).toUpperCase();
 	}
 
-	private String getInitials1(final String name, final String surname, final AbstractRealm realm) {
+	private String getInitials1(final String name, final String surname) {
 		if (name == null || surname == null || name.isEmpty() || surname.isEmpty())
 			return "";
 
 		String initials = name.substring(0, 1).toUpperCase() + surname.substring(0, 1).toUpperCase();
-
 
 		if (surname.length() > 1)
 

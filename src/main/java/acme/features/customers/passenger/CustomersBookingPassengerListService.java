@@ -27,7 +27,6 @@ public class CustomersBookingPassengerListService extends AbstractGuiService<Cus
 
 		boolean status;
 		int customerId;
-		int passengerId;
 
 		customerId = super.getRequest().getPrincipal().getActiveRealm().getId();
 

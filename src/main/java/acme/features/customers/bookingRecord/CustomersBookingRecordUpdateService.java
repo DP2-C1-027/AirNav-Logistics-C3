@@ -62,9 +62,6 @@ public class CustomersBookingRecordUpdateService extends AbstractGuiService<Cust
 		booking = bookingRecord.getBooking();
 		passenger = bookingRecord.getPassenger();
 
-		Customers customer;
-		customer = (Customers) super.getRequest().getPrincipal().getActiveRealm();
-
 		super.state(booking != null, "booking", "customer.booking-record.create.error.null-booking");
 		super.state(passenger != null, "passenger", "customer.booking-record.create.error.null-passenger");
 		super.state(booking.isDraftMode(), "booking", "customer.booking-record.create.publish.booking");

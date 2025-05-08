@@ -27,14 +27,6 @@ public class AirlineManagerLegsShowService extends AbstractGuiService<AirlineMan
 
 	@Override
 	public void authorise() {
-		boolean status;
-		int id;
-		Leg leg;
-
-		id = super.getRequest().getData("id", int.class);
-		leg = this.repository.findLegById(id);
-		//status = leg != null && !leg.isDraftMode();
-
 		super.getResponse().setAuthorised(true);
 	}
 

@@ -3,7 +3,6 @@ package acme.features.customers.dashboard;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -16,7 +15,6 @@ import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.datatypes.Statistics;
-import acme.entities.booking.Booking;
 import acme.entities.booking.TravelClass;
 import acme.forms.CustomersDashboards;
 import acme.realms.Customers;
@@ -67,7 +65,6 @@ public class CustomersDashboardShowService extends AbstractGuiService<Customers,
 
 		//number of booking grouped
 		Map<TravelClass, Integer> bookingsGroupedByTravelClass;
-		Collection<Booking> listaBooking = this.repository.findPublishedCodeAudits(customer.getId());
 
 		//estadistica de passenger:
 		Integer countPassenger;

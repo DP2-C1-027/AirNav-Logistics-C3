@@ -6,12 +6,10 @@ import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
-import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.maintanenceRecords.MaintanenceRecord;
 import acme.entities.maintanenceRecords.Task;
-import acme.entities.maintanenceRecords.TaskType;
 import acme.realms.Technician;
 
 @GuiService
@@ -29,7 +27,6 @@ public class TechnicianRecordTaskListService extends AbstractGuiService<Technici
 
 		boolean status;
 		int technicianId;
-		int taskId;
 
 		technicianId = super.getRequest().getPrincipal().getActiveRealm().getId();
 
@@ -44,12 +41,12 @@ public class TechnicianRecordTaskListService extends AbstractGuiService<Technici
 		Technician tech;
 		tech = (Technician) super.getRequest().getPrincipal().getActiveRealm();
 		int id;
-		MaintanenceRecord record;
+		MaintanenceRecord maintenenceRecord;
 
 		id = super.getRequest().getData("recordId", int.class);
-		record = this.repository.findRecordById(id);
+		maintenenceRecord = this.repository.findRecordById(id);
 
-		task = this.repository.findTasksByTechId(record.getId(), tech.getId());
+		task = this.repository.findTasksByTechId(maintenenceRecord.getId(), tech.getId());
 
 		super.getBuffer().addData(task);
 	}
@@ -57,12 +54,7 @@ public class TechnicianRecordTaskListService extends AbstractGuiService<Technici
 	@Override
 	public void unbind(final Task task) {
 		Dataset dataset;
-		SelectChoices choices;
-		choices = SelectChoices.from(TaskType.class, task.getType());
-
 		dataset = super.unbindObject(task, "type", "draftMode", "description", "priority", "estimatedDuration");
-		//dataset.put("type", choices.getSelected().getKey());
-		//dataset.put("types", choices);
 		super.getResponse().addData(dataset);
 	}
 }

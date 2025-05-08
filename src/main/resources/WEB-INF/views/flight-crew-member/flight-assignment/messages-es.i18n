@@ -25,6 +25,7 @@ flight-crew-member.flight-assignment.form.button.update = Actualizar
 flight-crew-member.flight-assignment.form.button.publish = Publicar
 flight-crew-member.flight-assignment.form.button.delete = Eliminar
 
+flight-crew-member.flight-assignment.list.label.create = Crear
 flight-crew-member.flight-assignment.list.label.duty = Tareas: 
 flight-crew-member.flight-assignment.list.label.moment = Fecha:
 flight-crew-member.flight-assignment.list.label.currentStatus = Estado Actual:

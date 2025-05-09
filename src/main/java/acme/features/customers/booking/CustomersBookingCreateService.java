@@ -61,7 +61,7 @@ public class CustomersBookingCreateService extends AbstractGuiService<Customers,
 		int flightId = super.getRequest().getData("vuelo", int.class);
 
 		Flight flight = this.repository.findFlightById(flightId);
-		super.bindObject(booking, "locatorCode", "purchaseMoment", "travelClass", "lastNibble");
+		super.bindObject(booking, "locatorCode", "travelClass", "lastNibble");
 		booking.setFlight(flight);
 		booking.setDraftMode(true);
 
@@ -104,12 +104,20 @@ public class CustomersBookingCreateService extends AbstractGuiService<Customers,
 		Flight flight = booking.getFlight();
 		if (flight != null && !vuelos.contains(flight))
 			flight = null;
+		SelectChoices flightChoices2 = new SelectChoices();
+		flightChoices2.add("0", "----", flight == null); // opción vacía por defecto
+		for (Flight f : vuelos) {
+			String label = f.getTag() + " : " + f.getDepartureCity() + "->" + f.getArrivalCity();
+			String key = Integer.toString(f.getId());
+			boolean isSelected = flight != null && f.equals(flight);
+			flightChoices2.add(key, label, isSelected);
+		}
 
-		flightChoices = SelectChoices.from(vuelos, "tag", flight);
+		//flightChoices = SelectChoices.from(vuelos, "tag", flight);
 		choices = SelectChoices.from(TravelClass.class, booking.getTravelClass());
 		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "travelClass", "lastNibble", "draftMode");
-		dataset.put("vuelo", flightChoices.getSelected() != null ? flightChoices.getSelected().getKey() : "");
-		dataset.put("vuelos", flightChoices);
+		dataset.put("vuelo", flightChoices2.getSelected() != null ? flightChoices2.getSelected().getKey() : "");
+		dataset.put("vuelos", flightChoices2);
 		dataset.put("price", booking.getPrice());
 		dataset.put("travelClasses", choices);
 

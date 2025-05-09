@@ -68,8 +68,9 @@ public class CustomersBookingShowService extends AbstractGuiService<Customers, B
 		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "travelClass", "lastNibble", "draftMode");
 		dataset.put("price", precioNuevo);
 		dataset.put("travelClasses", choices);
-
-		dataset.put("vuelo", booking.getFlight().getTag());
+		//f.getTag() + ":" + f.getDepartureCity() + "->" + f.getArrivalCity()
+		Flight f = booking.getFlight();
+		dataset.put("vuelo", f.getTag() + " : " + f.getDepartureCity() + "->" + f.getArrivalCity());
 
 		super.getResponse().addData(dataset);
 	}

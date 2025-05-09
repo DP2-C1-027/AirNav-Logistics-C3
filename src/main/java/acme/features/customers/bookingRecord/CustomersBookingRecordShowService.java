@@ -27,10 +27,13 @@ public class CustomersBookingRecordShowService extends AbstractGuiService<Custom
 	public void authorise() {
 		Customers customer;
 		boolean status;
-		customer = (Customers) super.getRequest().getPrincipal().getActiveRealm();
+
 		int id = super.getRequest().getData("id", int.class);
 		BookingRecord bRecord = this.repository.findBookingRecord(id);
-		status = bRecord != null && super.getRequest().getPrincipal().hasRealm(customer);
+		Booking booking = this.repository.findOneBookingByBookingRecord(id);
+		Passenger passenger = this.repository.findOnePassengerByBookingRecord(id);
+		customer = booking != null ? booking.getCustomer() : null;
+		status = super.getRequest().getPrincipal().hasRealm(customer) || bRecord != null && booking != null && !booking.isDraftMode() && passenger != null && !passenger.isDraftMode();
 		super.getResponse().setAuthorised(status);
 
 	}
@@ -49,8 +52,9 @@ public class CustomersBookingRecordShowService extends AbstractGuiService<Custom
 		SelectChoices passengerChoices;
 		SelectChoices bookingChoices;
 
-		Customers customer = (Customers) super.getRequest().getPrincipal().getActiveRealm();
+		Booking boog = this.repository.findOneBookingByBookingRecord(bookingRecord.getId());
 
+		Customers customer = boog.getCustomer();
 		Collection<Passenger> passengers = this.repository.findPassengerByCustomerId(customer.getId());
 		Collection<Booking> bookings = this.repository.findBookingByCustomerId(customer.getId());
 		Collection<Booking> booking = this.repository.findNotPublishBooking(customer.getId());

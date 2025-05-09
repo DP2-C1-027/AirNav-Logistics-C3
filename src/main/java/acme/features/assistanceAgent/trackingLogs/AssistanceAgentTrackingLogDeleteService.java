@@ -51,32 +51,28 @@ public class AssistanceAgentTrackingLogDeleteService extends AbstractGuiService<
 
 	@Override
 	public void load() {
-		TrackingLog TrackingLog;
+		TrackingLog trackingLog;
 		int id;
 
 		id = super.getRequest().getData("id", int.class);
-		TrackingLog = this.repository.findOneTrackingLogById(id);
+		trackingLog = this.repository.findOneTrackingLogById(id);
 
-		super.getBuffer().addData(TrackingLog);
+		super.getBuffer().addData(trackingLog);
 	}
 
 	@Override
-	public void bind(final TrackingLog TrackingLog) {
-		super.bindObject(TrackingLog, "lastUpdateMoment", "stepUndergoing", "resolutionPercentage", "indicator");
+	public void bind(final TrackingLog trackingLog) {
+		super.bindObject(trackingLog, "lastUpdateMoment", "stepUndergoing", "resolutionPercentage", "indicator");
 	}
 
 	@Override
-	public void validate(final TrackingLog TrackingLog) {
-		boolean status;
-		int id, numberProxies, numberJobs;
-
-		id = super.getRequest().getData("id", int.class);
+	public void validate(final TrackingLog trackingLog) {
 
 	}
 
 	@Override
-	public void perform(final TrackingLog TrackingLog) {
-		this.repository.delete(TrackingLog);
+	public void perform(final TrackingLog trackingLog) {
+		this.repository.delete(trackingLog);
 	}
 
 	@Override

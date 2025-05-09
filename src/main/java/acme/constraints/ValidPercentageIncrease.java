@@ -16,7 +16,7 @@ import javax.validation.Payload;
 @Constraint(validatedBy = ValidPercentageIncreaseValidator.class)
 public @interface ValidPercentageIncrease {
 
-	String message() default "acme.validation.tracking.percentage.invalid";
+	String message() default "{acme.validation.tracking.percentage.invalid}";
 	Class<?>[] groups() default {};
 	Class<? extends Payload>[] payload() default {};
 }

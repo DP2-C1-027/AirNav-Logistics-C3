@@ -37,7 +37,7 @@ public class CustomersPassengerCreateService2 extends AbstractGuiService<Custome
 		int bookingId = super.getRequest().getData("bookingId", int.class);
 
 		Booking booking = this.bookingRepository.findBookingById(bookingId);
-		Customers customer = booking == null ? null : booking.getCustomer();
+		Customers customer = booking.getCustomer() != null ? booking.getCustomer() : null;
 
 		status = booking != null && booking.isDraftMode() && super.getRequest().getPrincipal().hasRealm(customer);
 		super.getResponse().setAuthorised(status);

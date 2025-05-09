@@ -14,6 +14,7 @@ import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.booking.Booking;
 import acme.entities.booking.TravelClass;
+import acme.entities.flights.Flight;
 import acme.realms.Customers;
 
 @GuiService
@@ -102,7 +103,8 @@ public class CustomersBookingUpdateService extends AbstractGuiService<Customers,
 		dataset.put("price", precioNuevo);
 		dataset.put("travelClasses", choices);
 
-		dataset.put("vuelo", booking.getFlight().getTag());
+		Flight f = booking.getFlight();
+		dataset.put("vuelo", f.getTag() + " : " + f.getDepartureCity() + "->" + f.getArrivalCity());
 
 		super.getResponse().addData(dataset);
 	}

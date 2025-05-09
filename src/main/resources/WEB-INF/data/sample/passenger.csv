@@ -1,6 +1,6 @@
 key,fullName,email,passportNumber,dateOfBirth,specialNeeds,draft-mode,key:customer
 passenger-01,John Doe,"lorem-ipsum@dolor.sit.amet.consectetur.adipiscing.elit.sed.do.eiusmod.tempor.incididunt.ut.labore.et.dolore.magna.aliqua.Ut.enim.ad.minim.veniam.quis.nostrud.exercitation.ullamco.laboris.nisi.ut.aliquip.ex.commodo.consequat.duis.aute.irure.dolor.est.com",AB123456,2000/06/15 08:30,Vegetarian,false,customer-01
-passenger-02,Jane Smith,acme@lorem-ipsum.org,CD789012,2001/09/21 14:45,Wheelchair,true,customer-02
+passenger-02,Jane Smith,acme@lorem-ipsum.org,CD789012,2001/09/21 14:45,Wheelchair,false,customer-02
 passenger-03,Mike Johnson,mike.johnson@example.com,EF345678,2004/02/03 10:00,,true,customer-02
 passenger-04,Emily Davis,emily.davis@example.com,GH901234,2010/07/19 16:20,Gluten-free,true,customer-01
 passenger-05,Chris Brown,chris.brown@example.com,IJP67890,2008/12/05 09:15,,false,customer-01
@@ -8,7 +8,7 @@ passenger-06,张伟 (Zhang Wei),zhang.wei@example.com,KL234567,2001/03/25 12:00,
 passenger-07,محمد علي (Mohammed Ali),mohammed.ali@example.com,MNYU5678,2002/05/12 15:00,Vegetarian,false,customer-02
 passenger-08,สมชาย ใจดี (Somchai Jaidee),somchai.jaidee@example.com,OP456789,2015/11/30 09:45,,true,customer-01
 passenger-09,罗俊 (Luo Jun),luo.jun@example.com,PQ567890,2000/01/01 00:30,Wheelchair,true,customer-02
-passenger-10,سارة محمد (Sarah Mohamed),sarah.mohamed@example.com,RS678901,2008/07/14 14:30,Gluten-free,true,customer-01
+passenger-10,سارة محمد (Sarah Mohamed),sarah.mohamed@example.com,RS678901,2008/07/14 14:30,Gluten-free,false,customer-01
 passenger-11,ไกรทอง (Kraitong),kraitong@example.com,ST789012,2023/09/09 13:25,,true,customer-01
 passenger-12,张婷 (Zhang Ting),zhang.ting@example.com,UV890123,2007/01/22 11:50,,false,customer-02
 passenger-13,Reza Farhan,reza.farhan@example.com,AA123456,2000/01/01 00:00,,false,customer-01

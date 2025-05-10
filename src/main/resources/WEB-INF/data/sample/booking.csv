@@ -42,7 +42,7 @@ booking-40,H8O4Y7,2023/11/01 10:01,BUSINESS,,customer-01,true,flight-03
 booking-41,O9O4L7,2012/05/25 09:01,ECONOMY,6789,customer-02,false,flight-01
 booking-42,GHL45U,2013/12/11 00:01,BUSINESS,1112,customer-01,false,flight-02
 booking-43,KL9WTY8,2017/01/21 00:01,ECONOMY,3456,customer-02,true,flight-01
-booking-44,P7O8Y7,2000/01/01 00:01,ECONOMY,,customer-01,true,flight-04
-booking-45,NN89TY5,2000/01/01 00:01,BUSINESS,9432,customer-01,false,flight-04
+booking-44,P7O8Y7,2000/01/01 00:01,ECONOMY,,customer-01,true,flight-02
+booking-45,NN89TY5,2000/01/01 00:01,BUSINESS,9432,customer-01,false,flight-01
 
 

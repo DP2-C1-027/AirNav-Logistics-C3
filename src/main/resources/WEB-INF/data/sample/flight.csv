@@ -1,38 +1,38 @@
-key,tag,indication,cost,description,draftMode,key:airlineManager
-flight-01,Dubai-Japón,true,150USD,Un vuelo desde Dubai a Japón,false,manager-02
-flight-02,Transatlantic,true,210EUR,Transatlántico,false,manager-02
-flight-03,regional flights,true,120USD,vuelo regional de la costa griega,false,manager-01
-flight-04,madrid barcelona,false,100EUR,madrid to barcelona direct flight,true,manager-01
-flight-05,españa marruecos,false,50EUR,"flight accross the mediterranean, stopping at Málaga",true,manager-01
-flight-06,L,true,1USD,,true,manager-01
-flight-07,Lorem ipsum dolor sit ame,false,100EUR,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",true,manager-01
-flight-08,"Lorem ipsum dolor sit amet, consectetur adipiscing",true,200EUR,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor*",true,manager-01
-flight-09,"Lorem ipsum dolor sit amet, consectetur adipiscin",true,50EUR,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor",true,manager-02
-flight-10,Lo,false,1EUR,Lo,true,manager-01
-flight-11,โลเร็ม อิปซัม,false,1EUR,لوريم إيبسوم,true,manager-01
-flight-12,洛伦·伊普森,false,1EUR,<marquee>Hacked</marquee>,true,manager-01
-flight-13,<script>alert(‘Hacked!’);</script>,false,1EUR, or A = A,true,manager-01
-flight-14,<iframe src=http://evil.com></iframe>,true,150EUR,Malicious Iframe Attempt,true,manager-02
-flight-15,; DROP TABLE flights; --,false,120EUR,SQL Injection Attempt,true,manager-03
-flight-16,<b>Bold Flight</b>,true,200EUR,Attempt to inject HTML bold tag,true,manager-01
-flight-17,alert(Injected JS),false,50EUR,JavaScript Injection Attempt,true,manager-02
-flight-18,España-Italia,true,180EUR,Flight from Spain to Italy,true,manager-03
-flight-19,Paris-Berlin,false,140EUR,Direct flight from Paris to Berlin,true,manager-01
-flight-20,Athens-Rome,true,160EUR,Flight across the Mediterranean,true,manager-02
-flight-21,New York - London,false,300EUR,Transatlantic flight,false,manager-03
-flight-22,London-Frankfurt,true,120EUR,Short European flight,false,manager-01
-flight-23,../etc/passwd,false,1EUR,Path traversal attempt,false,manager-02
-flight-24,<svg onload=alert(1)>,true,130EUR,SVG Injection Attempt,false,manager-03
-flight-25,Lisbon-Madrid,true,90EUR,Short flight between Lisbon and Madrid,false,manager-01
-flight-26,Tokyo-Seoul,true,220EUR,Flight between Tokyo and Seoul,false,manager-02
-flight-27,Moscow-Beijing,false,250EUR,Long-distance flight,false,manager-03
-flight-28,Phishing Attempt,true,1EUR,Fake flight entry for testing,false,manager-01
-flight-29,Paris-Rome,true,180EUR,Popular European flight route,false,manager-02
-flight-30,Sydney-Auckland,false,200EUR,International flight in Oceania,false,manager-03
-flight-31,Dublin-Amsterdam,true,140EUR,Flight connecting Ireland and the Netherlands,false,manager-01
-flight-32,Prague-Vienna,false,110EUR,Short trip in Central Europe,false,manager-02
-flight-33,Madrid-Buenos Aires,true,320EUR,Long-haul transatlantic flight,false,manager-03
-flight-34,XSS Attempt <img src=x onerror=alert(XSS)>,false,1EUR,Malicious XSS script,false,manager-01
-flight-35,Zurich-Barcelona,true,130EUR,Flight across Western Europe,false,manager-02
-flight-36,Helsinki-Stockholm,false,120EUR,Scandinavian regional flight,false,manager-03
-flight-37,Warsaw-Budapest,true,150EUR,Flight connecting Poland and Hungary,false,manager-01
+key,tag,indication,cost,description,draftMode,key:airlineManager,key:airline
+flight-01,Dubai-Japón,true,150USD,Un vuelo desde Dubai a Japón,false,manager-02,airline-02
+flight-02,Transatlantic,true,210EUR,Transatlántico,false,manager-02,airline-02
+flight-03,regional flights,true,120USD,vuelo regional de la costa griega,false,manager-01,airline-01
+flight-04,madrid barcelona,false,100EUR,madrid to barcelona direct flight,true,manager-01,airline-01
+flight-05,españa marruecos,false,50EUR,"flight accross the mediterranean, stopping at Málaga",true,manager-01,airline-01
+flight-06,L,true,1USD,,true,manager-01,airline-01
+flight-07,Lorem ipsum dolor sit ame,false,100EUR,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",true,manager-01,airline-01
+flight-08,"Lorem ipsum dolor sit amet, consectetur adipiscing",true,200EUR,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor*",true,manager-01,airline-01
+flight-09,"Lorem ipsum dolor sit amet, consectetur adipiscin",true,50EUR,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor",true,manager-02,airline-02
+flight-10,Lo,false,1EUR,Lo,true,manager-01,airline-01
+flight-11,โลเร็ม อิปซัม,false,1EUR,لوريم إيبسوم,true,manager-01,airline-01
+flight-12,洛伦·伊普森,false,1EUR,<marquee>Hacked</marquee>,true,manager-01,airline-01
+flight-13,<script>alert(‘Hacked!’);</script>,false,1EUR, or A = A,true,manager-01,airline-01
+flight-14,<iframe src=http://evil.com></iframe>,true,150EUR,Malicious Iframe Attempt,true,manager-02,airline-02
+flight-15,; DROP TABLE flights; --,false,120EUR,SQL Injection Attempt,true,manager-01,airline-01
+flight-16,<b>Bold Flight</b>,true,200EUR,Attempt to inject HTML bold tag,true,manager-01,airline-01
+flight-17,alert(Injected JS),false,50EUR,JavaScript Injection Attempt,true,manager-02,airline-02
+flight-18,España-Italia,true,50000EUR,Flight from Spain to Italy,true,manager-01,airline-01
+flight-19,Paris-Berlin,false,0EUR,Direct flight from Paris to Berlin,true,manager-01,airline-01
+flight-20,Athens-Rome,true,999999EUR,Flight across the Mediterranean,true,manager-02,airline-02
+flight-21,New York - London,false,1000000EUR,Transatlantic flight,false,manager-01,airline-01
+flight-22,London-Frankfurt,true,120EUR,Short European flight,false,manager-01,airline-03
+flight-23,../etc/passwd,false,1EUR,Path traversal attempt,false,manager-02,airline-04
+flight-24,<svg onload=alert(1)>,true,130EUR,SVG Injection Attempt,false,manager-01,airline-05
+flight-25,Lisbon-Madrid,true,90EUR,Short flight between Lisbon and Madrid,false,manager-01,airline-06
+flight-26,Tokyo-Seoul,true,220EUR,Flight between Tokyo and Seoul,false,manager-02,airline-07
+flight-27,Moscow-Beijing,false,250EUR,Long-distance flight,false,manager-01,airline-08
+flight-28,Phishing Attempt,true,1EUR,Fake flight entry for testing,false,manager-01,airline-09
+flight-29,Paris-Rome,true,180EUR,Popular European flight route,false,manager-02,airline-10
+flight-30,Sydney-Auckland,false,200EUR,International flight in Oceania,false,manager-01,airline-01
+flight-31,Dublin-Amsterdam,true,140EUR,Flight connecting Ireland and the Netherlands,false,manager-01,airline-01
+flight-32,Prague-Vienna,false,110EUR,Short trip in Central Europe,false,manager-02,airline-02
+flight-33,Madrid-Buenos Aires,true,320EUR,Long-haul transatlantic flight,false,manager-01,airline-01
+flight-34,XSS Attempt <img src=x onerror=alert(XSS)>,false,1EUR,Malicious XSS script,false,manager-01,airline-01
+flight-35,Zurich-Barcelona,true,130EUR,Flight across Western Europe,false,manager-02,airline-02
+flight-36,Helsinki-Stockholm,false,120EUR,Scandinavian regional flight,false,manager-01,airline-01
+flight-37,Warsaw-Budapest,true,150EUR,Flight connecting Poland and Hungary,false,manager-01,airline-01

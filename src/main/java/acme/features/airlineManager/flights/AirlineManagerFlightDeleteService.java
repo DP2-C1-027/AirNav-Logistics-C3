@@ -6,8 +6,10 @@ import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
+import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
+import acme.entities.airline.Airline;
 import acme.entities.claims.Claim;
 import acme.entities.flightAssignment.ActivityLog;
 import acme.entities.flightAssignment.FlightAssignment;
@@ -71,7 +73,7 @@ public class AirlineManagerFlightDeleteService extends AbstractGuiService<Airlin
 	@Override
 	public void bind(final Flight flight) {
 
-		super.bindObject(flight, "tag", "indication", "cost", "description");
+		super.bindObject(flight, "tag", "indication", "cost", "description", "airline");
 	}
 
 	@Override
@@ -102,9 +104,15 @@ public class AirlineManagerFlightDeleteService extends AbstractGuiService<Airlin
 	public void unbind(final Flight flight) {
 
 		Dataset dataset;
+		Collection<Airline> airlines;
+		SelectChoices choices;
 
-		dataset = super.unbindObject(flight, "tag", "indication", "cost", "description");
-
+		dataset = super.unbindObject(flight, "tag", "indication", "cost", "description", "airline", "draftMode");
+		super.addPayload(dataset, flight, "tag", "indication", "cost", "description", "airline", "draftMode");
+		airlines = this.repository.getAllAirlines();
+		choices = SelectChoices.from(airlines, "codigo", flight.getAirline());
+		dataset.put("airline", choices.getSelected().getKey());
+		dataset.put("airlines", choices);
 		super.getResponse().addData(dataset);
 	}
 

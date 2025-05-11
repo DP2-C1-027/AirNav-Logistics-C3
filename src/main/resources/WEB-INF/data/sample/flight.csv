@@ -36,3 +36,7 @@ flight-34,XSS Attempt <img src=x onerror=alert(XSS)>,false,1EUR,Malicious XSS sc
 flight-35,Zurich-Barcelona,true,130EUR,Flight across Western Europe,false,manager-02,airline-02
 flight-36,Helsinki-Stockholm,false,120EUR,Scandinavian regional flight,false,manager-01,airline-01
 flight-37,Warsaw-Budapest,true,150EUR,Flight connecting Poland and Hungary,false,manager-01,airline-01
+flight-38,InvalidDraft,true,100EUR,"This flight will have conflicting dates in the draft legs. This is valid as long as the flight remains in draftMode",true,manager-01,airline-01
+flight-39,InvalidDraft2,true,100EUR,"This flight will have published legs that conflict with drafted legs. This is valid as long as the conflicting legs remain in draftMode",true,manager-01,airline-01
+flight-40,DraftWithPublishedLegs,true,100EUR,"This flight will have published, valid legs, but is still in draft mode",true,manager-01,airline-01
+flight-41,AircraftInUse,true,100EUR,"This flight has some legs that use an aircraft while it's scheduled for a published flight. This is valid but the conflicting legs can't be published",true,manager-01,airline-01

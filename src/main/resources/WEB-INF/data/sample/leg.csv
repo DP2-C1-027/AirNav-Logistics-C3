@@ -39,4 +39,4 @@ leg-37,DAL1238,2025/10/03 14:45,2025/10/03 16:30,ON_TIME,2,false,airport-11,airp
 leg-38,DAL1239,2025/10/03 16:00,2025/10/03 17:00,ON_TIME,1,true,airport-11,airport-09,aircraft-29,flight-39
 leg-39,DAL1240,2025/10/04 14:45,2025/10/04 16:30,ON_TIME,2,false,airport-11,airport-09,aircraft-30,flight-40
 leg-40,DAL1241,2025/10/04 14:45,2025/10/04 16:30,ON_TIME,2,true,airport-09,airport-11,aircraft-30,flight-41
-leg-40,DAL1242,2025/10/04 16:45,2025/10/04 19:45,ON_TIME,3,true,airport-11,airport-09,aircraft-30,flight-41
+leg-41,DAL1242,2025/10/04 16:45,2025/10/04 19:45,ON_TIME,3,true,airport-11,airport-09,aircraft-30,flight-41

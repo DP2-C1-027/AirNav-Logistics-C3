@@ -31,7 +31,6 @@ public class CustomersBookingCreateService extends AbstractGuiService<Customers,
 	public void authorise() {
 		boolean status;
 		Customers customer;
-
 		customer = (Customers) super.getRequest().getPrincipal().getActiveRealm();
 		status = super.getRequest().getPrincipal().hasRealm(customer);
 		super.getResponse().setAuthorised(status);
@@ -97,7 +96,7 @@ public class CustomersBookingCreateService extends AbstractGuiService<Customers,
 	public void unbind(final Booking booking) {
 		Dataset dataset;
 		SelectChoices choices;
-		SelectChoices flightChoices;
+
 		Collection<Flight> vuelos;
 
 		vuelos = this.vuelosFiltrados(booking);

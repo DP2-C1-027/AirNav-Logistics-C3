@@ -27,7 +27,19 @@ public class AirlineManagerLegsCreateService extends AbstractGuiService<AirlineM
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		boolean status = true;
+		if (super.getRequest().hasData("flightId")) {
+			Integer flightId;
+			try {
+				flightId = super.getRequest().getData("flightId", Integer.class);
+			} catch (Exception e) {
+				flightId = null;
+			}
+			Flight flight = flightId == null ? null : this.repository.getFlightById(flightId);
+			AirlineManager manager = flight == null ? null : flight.getAirlineManager();
+			status = manager == null ? false : super.getRequest().getPrincipal().hasRealm(manager);
+		}
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
@@ -50,7 +62,13 @@ public class AirlineManagerLegsCreateService extends AbstractGuiService<AirlineM
 
 	@Override
 	public void validate(final Leg leg) {
-		;
+		boolean status;
+		AirlineManager manager;
+		Leg leg_db;
+		leg_db = this.repository.findLegById(leg.getId());
+		manager = leg_db == null ? null : leg_db.getFlight().getAirlineManager();
+		status = manager != null && super.getRequest().getPrincipal().hasRealm(manager);
+		super.state(status, "flight", "airlineManager.leg.error.unownedLeg");
 	}
 
 	@Override

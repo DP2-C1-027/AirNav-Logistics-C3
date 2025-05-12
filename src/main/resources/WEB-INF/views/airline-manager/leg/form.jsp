@@ -7,8 +7,7 @@
 	<acme:input-textbox code="airlineManager.leg.form.label.flightNumber" path="flightNumber"/>
 	<acme:input-moment code="airlineManager.leg.form.label.scheduledDeparture" path="scheduledDeparture"/>
 	<acme:input-moment code="airlineManager.leg.form.label.scheduledArrival" path="scheduledArrival"/>
-	<acme:input-integer code="airlineManager.leg.form.label.duration" path="duration" 
-	readonly="true" />
+	<acme:input-integer code="airlineManager.leg.form.label.duration" path="duration"/>
 	<acme:input-select code="airlineManager.leg.form.label.status" path="status" choices="${statuses}"/>
 	<acme:input-select code="airlineManager.leg.form.label.departureAirport" path="departureAirport" choices="${departureAirports}"/>
 	<acme:input-select code="airlineManager.leg.form.label.arrivalAirport" path="arrivalAirport" choices="${arrivalAirports}"/>

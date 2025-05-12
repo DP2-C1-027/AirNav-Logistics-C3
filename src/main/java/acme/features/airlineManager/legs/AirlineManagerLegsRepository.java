@@ -36,4 +36,6 @@ public interface AirlineManagerLegsRepository extends AbstractRepository {
 	@Query("SELECT a FROM Airport a")
 	Collection<Airport> getAllAirports();
 
+	@Query("SELECT f FROM Flight f WHERE f.id=:flightId")
+	Flight getFlightById(int flightId);
 }

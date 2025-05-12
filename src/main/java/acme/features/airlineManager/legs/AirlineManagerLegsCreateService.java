@@ -37,6 +37,9 @@ public class AirlineManagerLegsCreateService extends AbstractGuiService<AirlineM
 		leg = new Leg();
 		leg.setDraftMode(true);
 
+		if (super.getRequest().hasData("flightId"))
+			leg.setFlight(this.repository.getFlightById(super.getRequest().getData("flightId", int.class)));
+
 		super.getBuffer().addData(leg);
 	}
 

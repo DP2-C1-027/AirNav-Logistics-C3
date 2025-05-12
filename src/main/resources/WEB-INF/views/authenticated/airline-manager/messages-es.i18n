@@ -1,0 +1,20 @@
+# messages-es.i18n
+#
+# Copyright (C) 2012-2025 Rafael Corchuelo.
+#
+# Con el propósito tradicional de fomentar la educación y la investigación, es
+# política del propietario de los derechos de autor permitir el uso no comercial
+# y la redistribución de este software.
+
+
+authenticated.airline-manager.form.title = Gerente de Aerolínea
+
+### Etiquetas del Formulario de Gerente de Aerolínea ###
+authenticated.airlineManager.form.label.codigo=Código de Gerente
+authenticated.airlineManager.form.label.yearsOfService=Años de Servicio
+authenticated.airlineManager.form.label.dateOfBirth=Fecha de Nacimiento
+authenticated.airlineManager.form.label.photo=URL de Foto
+
+### Botones del Formulario ###
+authenticated.airlineManager.form.button.create=Registrar Gerente
+authenticated.airlineManager.form.button.update=Actualizar Gerente

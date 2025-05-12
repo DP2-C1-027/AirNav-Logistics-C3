@@ -10,13 +10,13 @@ import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
 import javax.validation.Valid;
 
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.ValidMoment;
+import acme.constraints.ValidDuration;
 import acme.constraints.ValidFlightNumber;
 import acme.entities.aircraft.Aircraft;
 import acme.entities.airport.Airport;
@@ -59,45 +59,38 @@ public class Leg extends AbstractEntity {
 
 	@Mandatory
 	@Automapped
+	@ValidDuration
+	private Integer				duration;
+
+	@Mandatory
+	@Automapped
 	private boolean				draftMode;
 
 	// Derived attributes -----------------------------------------------------
 
-
-	@Transient
-	public Integer getDuration() {
-
-		Integer result;
-
-		result = Integer.valueOf((int) (this.getScheduledArrival().getTime() - this.getScheduledDeparture().getTime()) / (1000 * 60 * 60));
-
-		return result;
-	};
-
 	// Relationships ----------------------------------------------------------
 
+	@Mandatory
+	@ManyToOne
+	@Valid
+	@Automapped
+	private Airport				departureAirport;
 
 	@Mandatory
 	@ManyToOne
 	@Valid
 	@Automapped
-	private Airport		departureAirport;
+	private Airport				arrivalAirport;
 
 	@Mandatory
 	@ManyToOne
 	@Valid
 	@Automapped
-	private Airport		arrivalAirport;
-
-	@Mandatory
-	@ManyToOne
-	@Valid
-	@Automapped
-	private Aircraft	aircraft;
+	private Aircraft			aircraft;
 
 	@Mandatory
 	@ManyToOne(optional = false)
 	@Valid
 	@Automapped
-	private Flight		flight;
+	private Flight				flight;
 }

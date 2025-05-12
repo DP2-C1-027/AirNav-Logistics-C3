@@ -53,7 +53,7 @@ public class AirlineManagerLegsUpdateService extends AbstractGuiService<AirlineM
 
 	@Override
 	public void bind(final Leg leg) {
-		super.bindObject(leg, "flightNumber", "scheduledDeparture", "scheduledArrival", "status", "departureAirport", "arrivalAirport", "aircraft", "flight");
+		super.bindObject(leg, "flightNumber", "scheduledDeparture", "scheduledArrival", "duration", "status", "departureAirport", "arrivalAirport", "aircraft", "flight");
 	}
 
 	@Override
@@ -91,16 +91,13 @@ public class AirlineManagerLegsUpdateService extends AbstractGuiService<AirlineM
 		choicesAircraft = SelectChoices.from(aircrafts, "registrationNumber", leg.getAircraft());
 		choicesStatus = SelectChoices.from(LegStatus.class, leg.getStatus());
 
-		dataset = super.unbindObject(leg, "flightNumber", "scheduledDeparture", "scheduledArrival", "status", "draftMode", "flight", "arrivalAirport", "departureAirport", "aircraft");
+		dataset = super.unbindObject(leg, "flightNumber", "scheduledDeparture", "scheduledArrival", "duration", "status", "draftMode", "flight", "arrivalAirport", "departureAirport", "aircraft");
 		dataset.put("flight", choicesFlight.getSelected().getKey());
 		dataset.put("flights", choicesFlight);
-		System.out.println("flight no es");
 		dataset.put("arrivalAirport", choicesArrivalAirports.getSelected().getKey());
 		dataset.put("arrivalAirports", choicesArrivalAirports);
-		System.out.println("arrival no es");
 		dataset.put("departureAirport", choicesDepartureAirports.getSelected().getKey());
 		dataset.put("departureAirports", choicesDepartureAirports);
-		System.out.println("flight no es");
 		dataset.put("aircraft", choicesAircraft.getSelected().getKey());
 		dataset.put("aircrafts", choicesAircraft);
 		dataset.put("statuses", choicesStatus);

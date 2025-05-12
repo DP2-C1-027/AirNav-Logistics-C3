@@ -18,6 +18,7 @@ import acme.client.components.validation.ValidMoney;
 import acme.client.helpers.SpringHelper;
 import acme.constraints.ValidLongTextOptional;
 import acme.constraints.ValidShortText;
+import acme.entities.airline.Airline;
 import acme.entities.legs.Leg;
 import acme.realms.AirlineManager;
 import lombok.Getter;
@@ -44,7 +45,7 @@ public class Flight extends AbstractEntity {
 
 	@Mandatory
 	@Automapped
-	@ValidMoney
+	@ValidMoney(max = 1000000, min = 0)
 	private Money				cost;
 
 	@Optional
@@ -126,6 +127,10 @@ public class Flight extends AbstractEntity {
 	@Mandatory
 	@ManyToOne(optional = false)
 	@Valid
-	private AirlineManager airlineManager;
+	private AirlineManager	airlineManager;
+
+	@ManyToOne(optional = true)
+	@Valid
+	private Airline			airline;
 
 }

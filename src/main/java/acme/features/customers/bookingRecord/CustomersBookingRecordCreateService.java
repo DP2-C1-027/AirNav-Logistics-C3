@@ -22,7 +22,6 @@ public class CustomersBookingRecordCreateService extends AbstractGuiService<Cust
 	private CustomersBookingRecordRepository repository;
 
 
-	// AbstractService<Manager, ProjectUserStoryLink> ---------------------------
 	@Override
 	public void authorise() {
 		Customers customer;

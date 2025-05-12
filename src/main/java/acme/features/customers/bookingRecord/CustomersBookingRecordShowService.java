@@ -26,14 +26,22 @@ public class CustomersBookingRecordShowService extends AbstractGuiService<Custom
 	@Override
 	public void authorise() {
 		Customers customer;
-		boolean status;
+		boolean status = true;
 
-		int id = super.getRequest().getData("id", int.class);
-		BookingRecord bRecord = this.repository.findBookingRecord(id);
-		Booking booking = this.repository.findOneBookingByBookingRecord(id);
-		Passenger passenger = this.repository.findOnePassengerByBookingRecord(id);
-		customer = booking != null ? booking.getCustomer() : null;
-		status = super.getRequest().getPrincipal().hasRealm(customer) || bRecord != null && booking != null && !booking.isDraftMode() && passenger != null && !passenger.isDraftMode();
+		if (super.getRequest().hasData("id", int.class)) {
+			Integer id;
+			try {
+				id = super.getRequest().getData("id", int.class);
+			} catch (Exception e) {
+				id = null;
+			}
+			BookingRecord bRecord = id != null ? this.repository.findBookingRecord(id) : null;
+			Booking booking = id != null ? this.repository.findOneBookingByBookingRecord(id) : null;
+			Passenger passenger = id != null ? this.repository.findOnePassengerByBookingRecord(id) : null;
+			customer = booking != null ? booking.getCustomer() : null;
+			status = customer == null ? false : super.getRequest().getPrincipal().hasRealm(customer) || bRecord != null && booking != null && !booking.isDraftMode() && passenger != null && !passenger.isDraftMode();
+		}
+
 		super.getResponse().setAuthorised(status);
 
 	}

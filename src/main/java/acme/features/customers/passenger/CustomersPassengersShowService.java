@@ -20,15 +20,22 @@ public class CustomersPassengersShowService extends AbstractGuiService<Customers
 	// AbstractGuiService interface -------------------------------------------
 	@Override
 	public void authorise() {
-		boolean status;
+		boolean status = true;
 		Customers customer;
-		int passengerId;
-		Passenger passenger;
 
-		passengerId = super.getRequest().getData("id", int.class);
-		passenger = this.repository.findPassengerById(passengerId);
-		customer = passenger == null ? null : passenger.getCustomer();
-		status = super.getRequest().getPrincipal().hasRealm(customer) || passenger != null && !passenger.isDraftMode();
+		Passenger passenger;
+		if (super.getRequest().hasData("id", int.class)) {
+			Integer passengerId;
+			try {
+				passengerId = super.getRequest().getData("id", int.class);
+			} catch (Exception e) {
+				passengerId = null;
+			}
+
+			passenger = passengerId != null ? this.repository.findPassengerById(passengerId) : null;
+			customer = passenger == null ? null : passenger.getCustomer();
+			status = customer == null ? false : super.getRequest().getPrincipal().hasRealm(customer) || passenger != null && !passenger.isDraftMode();
+		}
 
 		super.getResponse().setAuthorised(status);
 	}

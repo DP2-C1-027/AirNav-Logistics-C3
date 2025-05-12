@@ -26,15 +26,22 @@ public class CustomersBookingRecordUpdateService extends AbstractGuiService<Cust
 	@Override
 	public void authorise() {
 		Customers customer;
-		boolean status;
+		boolean status = true;
 		Booking booking;
 		Passenger passenger;
+		if (super.getRequest().hasData("id", int.class)) {
+			Integer bookingRecordId;
+			try {
+				bookingRecordId = super.getRequest().getData("id", int.class);
+			} catch (Exception e) {
+				bookingRecordId = null;
+			}
+			passenger = bookingRecordId != null ? this.repository.findOnePassengerByBookingRecord(bookingRecordId) : null;
+			booking = bookingRecordId != null ? this.repository.findOneBookingByBookingRecord(bookingRecordId) : null;
+			customer = booking != null ? booking.getCustomer() : null;
+			status = customer == null ? false : booking != null && passenger != null && booking.isDraftMode() && super.getRequest().getPrincipal().hasRealm(customer);
+		}
 
-		int bookingRecordId = super.getRequest().getData("id", int.class);
-		passenger = this.repository.findOnePassengerByBookingRecord(bookingRecordId);
-		booking = this.repository.findOneBookingByBookingRecord(bookingRecordId);
-		customer = booking != null ? booking.getCustomer() : null;
-		status = booking != null && passenger != null && booking.isDraftMode() && super.getRequest().getPrincipal().hasRealm(customer);
 		super.getResponse().setAuthorised(status);
 
 	}

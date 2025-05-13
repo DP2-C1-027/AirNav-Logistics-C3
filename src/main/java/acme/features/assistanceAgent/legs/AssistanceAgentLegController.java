@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.controllers.AbstractGuiController;
 import acme.client.controllers.GuiController;
-import acme.entities.claims.Claim;
 import acme.entities.legs.Leg;
 import acme.realms.AssistanceAgent;
 
@@ -15,11 +14,9 @@ import acme.realms.AssistanceAgent;
 public class AssistanceAgentLegController extends AbstractGuiController<AssistanceAgent, Leg> {
 
 	// Internal state ---------------------------------------------------------
-	
-	@Autowired
-	private AssistanceAgentLegShowService					showService;
 
-	
+	@Autowired
+	private AssistanceAgentLegShowService showService;
 
 	// Constructors -----------------------------------------------------------
 
@@ -28,7 +25,6 @@ public class AssistanceAgentLegController extends AbstractGuiController<Assistan
 	protected void initialise() {
 
 		super.addBasicCommand("show", this.showService);
-		
 
 	}
 

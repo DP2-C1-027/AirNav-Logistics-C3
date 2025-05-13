@@ -1,40 +1,36 @@
+# messages-es.i18n
 #
 # Copyright (C) 2012-2025 Rafael Corchuelo.
 #
-# De acuerdo con el propósito tradicional de promover la educación y la investigación,
-# es política del propietario del copyright permitir el uso no comercial y la redistribución
-# de este software. Ha sido probado cuidadosamente, pero no se garantiza para ningún propósito
-# particular. El propietario del copyright no ofrece garantías ni representaciones,
-# ni acepta responsabilidades con respecto a ellas.
+# Con el propósito tradicional de fomentar la educación y la investigación, es
+# política del propietario de los derechos de autor permitir el uso no comercial
+# y la redistribución de este software.
 
-# ============= MÓDULO DE RECLAMACIONES =============
-# Etiquetas de lista para reclamaciones
-assistance-agent.claim.list.title = Reclamaciones
-assistance-agent.claim.form.title = Reclamación
-assistanceAgent.claim.list.title = Gestión de Reclamaciones
-assistanceAgent.claim.list.label.passengerEmail = Email del Pasajero
-assistanceAgent.claim.list.label.description = Descripción
-assistanceAgent.claim.list.label.indicator = Estado
+### Etiquetas del Formulario de Reclamos ###
+assistanceAgent.claim.form.label.registrationMoment=Fecha de Registro
+assistanceAgent.claim.form.label.description=Descripción
+assistanceAgent.claim.form.label.type=Tipo de Reclamo
+assistanceAgent.claim.form.label.indicator=Indicador de Reclamo
+assistanceAgent.claim.form.label.passengerEmail=Correo del Pasajero
+assistanceAgent.claim.form.label.linkedTo=Vinculado a
 
-# Botones de lista
-assistanceAgent.claim.list.button.create = Crear Nueva Reclamación
+### Botones de Seguimiento ###
+assistanceAgent.trackingLog.form.button.trackingLog=Ver Registros de Seguimiento
+assistanceAgent.leg.form.button.leg=Ver Detalles del Trayecto
 
-# Etiquetas de formulario para reclamaciones
-assistanceAgent.claim.form.label.registrationMoment = Fecha de Registro
-assistanceAgent.claim.form.label.description = Descripción
-assistanceAgent.claim.form.label.type = Tipo de Reclamación
-assistanceAgent.claim.form.label.indicator = Estado
-assistanceAgent.claim.form.label.registeredBy = Registrado Por
-assistanceAgent.claim.form.label.passengerEmail = Email del Pasajero
-assistanceAgent.claim.form.label.linkedTo = Vinculado A
+### Botones de Acción ###
+assistanceAgent.claim.form.button.create=Crear Reclamo
+assistanceAgent.claim.form.button.update=Actualizar Reclamo
+assistanceAgent.claim.form.button.delete=Eliminar Reclamo
+assistanceAgent.claim.form.button.publish=Publicar Reclamo
 
-# Botones de formulario
-assistanceAgent.claim.form.button.create = Crear
-assistanceAgent.claim.form.button.update = Actualizar
-assistanceAgent.claim.form.button.delete = Eliminar
-assistanceAgent.claim.form.button.publish = Publicar
+### Etiquetas de la Lista ###
+assistanceAgent.claim.list.label.passengerEmail=Correo del Pasajero
+assistanceAgent.claim.list.label.description=Descripción
+assistanceAgent.claim.list.label.indicator=Indicador
 
-# ============= COMÚN =============
-# Botones comunes (existentes)
-authenticated.provider.booking.form.button.create = Registrar
-authenticated.provider.booking.form.button.update = Actualizar
+### Botón de Lista ###
+assistanceAgent.claim.list.button.create=Nuevo Reclamo
+
+### Información Adicional ###
+assistanceAgent.claim.list.payload=Detalles Adicionales

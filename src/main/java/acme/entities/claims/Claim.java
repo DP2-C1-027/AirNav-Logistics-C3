@@ -5,12 +5,10 @@ import java.beans.Transient;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
@@ -18,7 +16,6 @@ import javax.validation.Valid;
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
-import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidEmail;
 import acme.client.components.validation.ValidMoment;
 import acme.client.helpers.SpringHelper;
@@ -85,15 +82,11 @@ public class Claim extends AbstractEntity {
 	@Mandatory
 	@ManyToOne
 	@Valid
-	private AssistanceAgent		registeredBy;
+	private AssistanceAgent	registeredBy;
 
 	@Mandatory
 	@ManyToOne
 	@Valid
-	private Leg					linkedTo;
-
-	@Optional
-	@OneToMany(mappedBy = "claim", cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<TrackingLog>	trackingLogs;
+	private Leg				linkedTo;
 
 }

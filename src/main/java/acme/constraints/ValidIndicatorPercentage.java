@@ -1,17 +1,22 @@
+
 package acme.constraints;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+
 import javax.validation.Constraint;
 import javax.validation.Payload;
 
-@Target({ElementType.TYPE})
+@Target({
+	ElementType.TYPE
+})
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = ValidIndicatorPercentageValidator.class)
 public @interface ValidIndicatorPercentage {
-    String message() default "acme.validation.tracking.indicator.percentage.mismatch";
-    Class<?>[] groups() default {};
-    Class<? extends Payload>[] payload() default {};
+
+	String message() default "{acme.validation.tracking.indicator.percentage.mismatch}";
+	Class<?>[] groups() default {};
+	Class<? extends Payload>[] payload() default {};
 }

@@ -4,14 +4,17 @@
 #
 # In keeping with the traditional purpose of furthering education and research, it is
 # the policy of the copyright owner to permit non-commercial use and redistribution of
-# this software. It has been tested carefully, but it is not guaranteed for any particular
-# purposes.  The copyright owner does not offer any warranties or representations, nor do
-# they accept any liabilities with respect to them.
+# this software.
 
-authenticated.consumer.form.title = Consumer form
+### Assistance Agent Form Labels ###
+authenticated.assistanceAgent.form.label.codigo=Agent Code
+authenticated.assistanceAgent.form.label.spokenLanguages=Spoken Languages
+authenticated.assistanceAgent.form.label.moment=Registration Date
+authenticated.assistanceAgent.form.label.salary=Salary
+authenticated.assistanceAgent.form.label.photo=Photo URL
+authenticated.assistanceAgent.form.label.airline=Airline
 
-authenticated.consumer.form.label.company = Company
-authenticated.consumer.form.label.sector = Sector
+### Assistance Agent Form Buttons ###
+authenticated.assistanceAgent.form.button.create=Register Agent
+authenticated.assistanceAgent.form.button.update=Update Agent
 
-authenticated.consumer.form.button.create = Register
-authenticated.consumer.form.button.update = Update

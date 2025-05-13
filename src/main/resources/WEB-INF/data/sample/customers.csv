@@ -2,3 +2,5 @@ key,key:userAccount,codigo,phone,physicalAddress,city,country,earnedPoints
 customer-01,user-account-customer-01,LS123456,+123456789012,"123 Elm St, Apt 4B",New York,USA,50
 customer-02,user-account-customer-02,LC789123,+441632960961,"789 Pine St",London,UK,350000
 customer-03,user-account-customer-03,AS123456,+1122334455,789 P St, Springfield, Thailand,
+customer-04,user-account-customer-04,MSL567123,+1111111111,234 reina, Seville,Spain,
+customer-05,user-account-customer-05,DF123456,+1234567890,78 san bernando, Torremolino, Malaga,

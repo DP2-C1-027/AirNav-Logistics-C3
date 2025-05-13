@@ -21,19 +21,23 @@
 	<acme:input-textbox code="assistanceAgent.trackingLog.form.label.lastUpdateMoment" path="lastUpdateMoment"/>
 	<acme:input-textbox code="assistanceAgent.trackingLog.form.label.stepUndergoing" path="stepUndergoing"/>
 	<acme:input-textbox code="assistanceAgent.trackingLog.form.label.resolutionPercentage" path="resolutionPercentage"/>
-	<acme:input-textbox code="assistanceAgent.trackingLog.form.label.indicator" path="indicator"/>
+	<acme:input-select code="assistanceAgent.trackingLog.form.label.indicator" path="indicator" choices="${indicator}" />
 	<acme:input-textbox code="assistanceAgent.trackingLog.form.label.resolutionDetails" path="resolutionDetails"/>
-	<acme:input-textbox code="assistanceAgent.trackingLog.form.label.claim" path="claim"/>
+	<acme:input-select code="assistanceAgent.trackingLog.form.label.claim" path="claim" choices="${claim}"/>
+
 
 	<jstl:choose>
-				<jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish')}">
+				<jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish') && draftMode == true}">
 					<acme:button code="assistanceAgent.claim.form.button.claim" action="/assistance-agent/claim/showByTrackingLog?trackingLogId=${id}"/>
 					<acme:submit code="assistanceAgent.trackingLog.form.button.update" action="/assistance-agent/tracking-log/update"/>
 					<acme:submit code="assistanceAgent.trackingLog.form.button.delete" action="/assistance-agent/tracking-log/delete"/>
 					<acme:submit code="assistanceAgent.trackingLog.form.button.publish" action="/assistance-agent/tracking-log/publish"/>
 				</jstl:when>
+				<jstl:when test="${acme:anyOf(_command, 'show')  && draftMode == false  }">
+					<acme:button code="assistanceAgent.claim.form.button.claim" action="/assistance-agent/claim/showByTrackingLog?trackingLogId=${id}"/>
+				</jstl:when>
 				<jstl:when test="${_command == 'create'}">
-					<acme:submit code="assistanceAgent.trackingLog.form.button.create" action="/assistance-agent/tracking-log/create"/>
+					<acme:submit code="assistanceAgent.trackingLog.form.button.create" action="/assistance-agent/tracking-log/create?claimId=${id}"/>
 				</jstl:when>		
 		</jstl:choose>	
 </acme:form>

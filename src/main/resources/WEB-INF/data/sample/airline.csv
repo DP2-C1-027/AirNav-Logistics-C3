@@ -12,10 +12,10 @@ airline-10,Japan Airlines,JLA,https://www.jal.com,STANDARD,2001/08/01 00:00,cont
 airline-11,Air Canada,ACA,https://www.aircanada.com,LUXURY,2007/04/10 00:00,contact@aircanada.com,+1234567800
 airline-12,Qatar Airways,QRA,https://www.qatarairways.com,STANDARD,2003/11/22 00:00,usuariousuariousuariousuariousuariousuario@example.adipiscing.elit.sed.do.eiusmod.tempor.incididunt.ut.labore.et.dolore.magna.aliqua.Ut.quis.minim.veniam.elit.sed.do.eiusmod.elit.sed.do.eiusaamod.elit.sed.do.eiusmod.quis.minim.veniam.quis.nostrud.com,+1234567801
 airline-13,Turkish Airlines,TKA,https://www.turkishairlines.com,LUXURY,2003/05/20 00:00,,+1234567802
-airline-14,Etihad Airways,EYA,ftp://a,STANDARD,2003/07/01 00:00,contact@etihad.com,+1234567803
+airline-14,Etihad Airways,EYA,https://www.delta.com,STANDARD,2003/07/01 00:00,contact@etihad.com,+1234567803
 airline-15,'' or 'A' = 'A ,VSA,https://www.virginatlantic.com,LUXURY,2004/06/22 00:00,contact@virginatlantic.com,+1234567804
 airline-16,中国国际航空 (Air China),CCA,https://www.airchina.com,STANDARD,2005/09/01 00:00,contact@airchina.com,+1234567805
 airline-22,한국항공 (Korean Air),KAL,https://www.koreanair.com,STANDARD,2000/03/01 00:00,a@b.e,+1234567811
-airline-23,مصر للطيران (EgyptAir),MSR,ftp://aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa,STANDARD,2000/06/01 00:00,contact@egyptair.com,+1234567812
+airline-23,مصر للطيران (EgyptAir),MSR,https://www.delta.com,STANDARD,2000/06/01 00:00,contact@egyptair.com,+1234567812
 airline-24,<img src=x onerror=alert('XSS')>,XSS,https://www.xss.com,LOW_COST,2025/01/01 0:00,xss@example.com,+1234567813
 airline-25,俄罗斯航空 (Aeroflot),AFL,https://www.aeroflot.com,STANDARD,2000/01/01 0:00,contact@aeroflot.com,+1234567814

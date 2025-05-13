@@ -1,0 +1,21 @@
+# messages-en.i18n
+#
+# Copyright (C) 2012-2025 Rafael Corchuelo.
+#
+# In keeping with the traditional purpose of furthering education and research, it is
+# the policy of the copyright owner to permit non-commercial use and redistribution of
+# this software.
+
+
+authenticated.airline-manager.form.title = Airline Manager
+
+### Airline Manager Form Labels ###
+authenticated.airlineManager.form.label.codigo=Manager Code
+authenticated.airlineManager.form.label.yearsOfService=Years of Service
+authenticated.airlineManager.form.label.dateOfBirth=Date of Birth
+authenticated.airlineManager.form.label.photo=Photo URL
+
+### Airline Manager Form Buttons ###
+authenticated.airlineManager.form.button.create=Register Manager
+authenticated.airlineManager.form.button.update=Update Manager
+

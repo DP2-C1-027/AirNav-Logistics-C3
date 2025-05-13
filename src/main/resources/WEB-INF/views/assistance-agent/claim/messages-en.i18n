@@ -4,38 +4,33 @@
 #
 # In keeping with the traditional purpose of furthering education and research, it is
 # the policy of the copyright owner to permit non-commercial use and redistribution of
-# this software. It has been tested carefully, but it is not guaranteed for any particular
-# purposes.  The copyright owner does not offer any warranties or representations, nor do
-# they accept any liabilities with respect to them.
+# this software.
 
-# ============= CLAIM MODULE =============
-# List labels for claim
-assistance-agent.claim.list.title = Claims
-assistance-agent.claim.form.title = Claim
-assistanceAgent.claim.list.title = Claims Management
-assistanceAgent.claim.list.label.passengerEmail = Passenger Email
-assistanceAgent.claim.list.label.description = Description
-assistanceAgent.claim.list.label.indicator = Status
+# Claim Form Labels
+assistanceAgent.claim.form.label.registrationMoment=Registration Date
+assistanceAgent.claim.form.label.description=Description
+assistanceAgent.claim.form.label.type=Claim Type
+assistanceAgent.claim.form.label.indicator=Claim Indicator
+assistanceAgent.claim.form.label.passengerEmail=Passenger Email
+assistanceAgent.claim.form.label.linkedTo=Linked To
 
-# List buttons
-assistanceAgent.claim.list.button.create = Create New Claim
+# Tracking Log and Leg Buttons
+assistanceAgent.trackingLog.form.button.trackingLog=View Tracking Logs
+assistanceAgent.leg.form.button.leg=View Leg Details
 
-# Form labels for claim
-assistanceAgent.claim.form.label.registrationMoment = Registration Date
-assistanceAgent.claim.form.label.description = Description
-assistanceAgent.claim.form.label.type = Claim Type
-assistanceAgent.claim.form.label.indicator = Status
-assistanceAgent.claim.form.label.registeredBy = Registered By
-assistanceAgent.claim.form.label.passengerEmail = Passenger Email
-assistanceAgent.claim.form.label.linkedTo = Linked To
+# Claim Action Buttons
+assistanceAgent.claim.form.button.create=Create Claim
+assistanceAgent.claim.form.button.update=Update Claim
+assistanceAgent.claim.form.button.delete=Delete Claim
+assistanceAgent.claim.form.button.publish=Publish Claim
 
-# Form buttons
-assistanceAgent.claim.form.button.create = Create
-assistanceAgent.claim.form.button.update = Update
-assistanceAgent.claim.form.button.delete = Delete
-assistanceAgent.claim.form.button.publish = Publish
+# Claim List Labels
+assistanceAgent.claim.list.label.passengerEmail=Passenger Email
+assistanceAgent.claim.list.label.description=Description
+assistanceAgent.claim.list.label.indicator=Indicator
 
-# ============= COMMON =============
-# Common buttons (existing)
-authenticated.provider.booking.form.button.create = Register
-authenticated.provider.booking.form.button.update = Update
+# Claim List Button
+assistanceAgent.claim.list.button.create=Create New Claim
+
+# Payload
+assistanceAgent.claim.list.payload=Additional Details

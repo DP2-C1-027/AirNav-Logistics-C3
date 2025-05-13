@@ -26,14 +26,22 @@ public class CustomersBookingRecordUpdateService extends AbstractGuiService<Cust
 	@Override
 	public void authorise() {
 		Customers customer;
-		boolean status;
+		boolean status = true;
 		Booking booking;
 		Passenger passenger;
-		customer = (Customers) super.getRequest().getPrincipal().getActiveRealm();
-		int bookingRecordId = super.getRequest().getData("id", int.class);
-		passenger = this.repository.findOnePassengerByBookingRecord(bookingRecordId);
-		booking = this.repository.findOneBookingByBookingRecord(bookingRecordId);
-		status = booking != null && passenger != null && booking.isDraftMode() && super.getRequest().getPrincipal().hasRealm(customer);
+		if (super.getRequest().hasData("id", int.class)) {
+			Integer bookingRecordId;
+			try {
+				bookingRecordId = super.getRequest().getData("id", int.class);
+			} catch (Exception e) {
+				bookingRecordId = null;
+			}
+			passenger = bookingRecordId != null ? this.repository.findOnePassengerByBookingRecord(bookingRecordId) : null;
+			booking = bookingRecordId != null ? this.repository.findOneBookingByBookingRecord(bookingRecordId) : null;
+			customer = booking != null ? booking.getCustomer() : null;
+			status = customer == null ? false : booking != null && passenger != null && booking.isDraftMode() && super.getRequest().getPrincipal().hasRealm(customer);
+		}
+
 		super.getResponse().setAuthorised(status);
 
 	}
@@ -62,12 +70,10 @@ public class CustomersBookingRecordUpdateService extends AbstractGuiService<Cust
 		booking = bookingRecord.getBooking();
 		passenger = bookingRecord.getPassenger();
 
-		Customers customer;
-		customer = (Customers) super.getRequest().getPrincipal().getActiveRealm();
-
 		super.state(booking != null, "booking", "customer.booking-record.create.error.null-booking");
 		super.state(passenger != null, "passenger", "customer.booking-record.create.error.null-passenger");
-		super.state(booking.isDraftMode(), "booking", "customer.booking-record.create.publish.booking");
+		if (booking != null)
+			super.state(booking.isDraftMode(), "booking", "customer.booking-record.create.publish.booking");
 		boolean exists = this.repository.existsByBookingAndPassengerExcludingId(booking, passenger, bookingRecord.getId());
 
 		super.state(!exists, "*", "customer.booking-record.create.error.duplicate-booking-passenger");

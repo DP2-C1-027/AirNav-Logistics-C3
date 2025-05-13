@@ -31,7 +31,6 @@ public class CustomersBookingCreateService extends AbstractGuiService<Customers,
 	public void authorise() {
 		boolean status;
 		Customers customer;
-
 		customer = (Customers) super.getRequest().getPrincipal().getActiveRealm();
 		status = super.getRequest().getPrincipal().hasRealm(customer);
 		super.getResponse().setAuthorised(status);
@@ -42,17 +41,17 @@ public class CustomersBookingCreateService extends AbstractGuiService<Customers,
 	public void load() {
 		Date moment;
 		Customers customer;
-		Booking whine;
+		Booking booking;
 
 		moment = MomentHelper.getCurrentMoment();
 		customer = (Customers) super.getRequest().getPrincipal().getActiveRealm();
 
-		whine = new Booking();
+		booking = new Booking();
 
-		whine.setPurchaseMoment(moment);
-		whine.setCustomer(customer);
+		booking.setPurchaseMoment(moment);
+		booking.setCustomer(customer);
 
-		super.getBuffer().addData(whine);
+		super.getBuffer().addData(booking);
 
 	}
 
@@ -61,7 +60,7 @@ public class CustomersBookingCreateService extends AbstractGuiService<Customers,
 		int flightId = super.getRequest().getData("vuelo", int.class);
 
 		Flight flight = this.repository.findFlightById(flightId);
-		super.bindObject(booking, "locatorCode", "purchaseMoment", "travelClass", "lastNibble");
+		super.bindObject(booking, "locatorCode", "travelClass", "lastNibble");
 		booking.setFlight(flight);
 		booking.setDraftMode(true);
 
@@ -72,6 +71,11 @@ public class CustomersBookingCreateService extends AbstractGuiService<Customers,
 		String cod = booking.getLocatorCode();
 		Collection<Booking> codigo = this.repository.findAllBookingLocatorCode(cod);
 		Date d = booking.getPurchaseMoment() == null ? null : booking.getPurchaseMoment();
+		Date moment;
+		moment = MomentHelper.getCurrentMoment();
+		if (booking.getPurchaseMoment() != null && booking.getPurchaseMoment().after(moment))
+			super.state(false, "purchaseMoment", "customers.booking.error.date");
+
 		if (!codigo.isEmpty())
 			super.state(false, "locatorCode", "customers.booking.error.repeat-code");
 		if (booking.getFlight() == null)
@@ -92,19 +96,27 @@ public class CustomersBookingCreateService extends AbstractGuiService<Customers,
 	public void unbind(final Booking booking) {
 		Dataset dataset;
 		SelectChoices choices;
-		SelectChoices flightChoices;
+
 		Collection<Flight> vuelos;
 
 		vuelos = this.vuelosFiltrados(booking);
 		Flight flight = booking.getFlight();
 		if (flight != null && !vuelos.contains(flight))
 			flight = null;
+		SelectChoices flightChoices2 = new SelectChoices();
+		flightChoices2.add("0", "----", flight == null); // opción vacía por defecto
+		for (Flight f : vuelos) {
+			String label = f.getTag() + " : " + f.getDepartureCity() + "->" + f.getArrivalCity();
+			String key = Integer.toString(f.getId());
+			boolean isSelected = flight != null && f.equals(flight);
+			flightChoices2.add(key, label, isSelected);
+		}
 
-		flightChoices = SelectChoices.from(vuelos, "tag", flight);
+		//flightChoices = SelectChoices.from(vuelos, "tag", flight);
 		choices = SelectChoices.from(TravelClass.class, booking.getTravelClass());
 		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "travelClass", "lastNibble", "draftMode");
-		dataset.put("vuelo", flightChoices.getSelected() != null ? flightChoices.getSelected().getKey() : "");
-		dataset.put("vuelos", flightChoices);
+		dataset.put("vuelo", flightChoices2.getSelected() != null ? flightChoices2.getSelected().getKey() : "");
+		dataset.put("vuelos", flightChoices2);
 		dataset.put("price", booking.getPrice());
 		dataset.put("travelClasses", choices);
 

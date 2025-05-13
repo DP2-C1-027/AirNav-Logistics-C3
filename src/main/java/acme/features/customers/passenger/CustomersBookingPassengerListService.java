@@ -25,13 +25,22 @@ public class CustomersBookingPassengerListService extends AbstractGuiService<Cus
 	@Override
 	public void authorise() {
 
-		boolean status;
-		int customerId;
-		int passengerId;
+		boolean status = true;
 
-		customerId = super.getRequest().getPrincipal().getActiveRealm().getId();
+		Booking booking;
 
-		status = super.getRequest().getPrincipal().hasRealm(this.repository.findCustomerById(customerId));
+		if (super.getRequest().hasData("bookingId", int.class)) {
+			Integer id;
+			try {
+				id = super.getRequest().getData("bookingId", int.class);
+			} catch (Exception e) {
+				id = null;
+			}
+			booking = id != null ? this.repository.findBookinById(id) : null;
+			Customers customer = booking != null ? booking.getCustomer() : null;
+
+			status = customer == null ? false : super.getRequest().getPrincipal().hasRealm(customer) || booking != null && !booking.isDraftMode();
+		}
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -39,16 +48,14 @@ public class CustomersBookingPassengerListService extends AbstractGuiService<Cus
 	@Override
 	public void load() {
 		Collection<Passenger> passenger;
-		Customers customer;
 
-		customer = (Customers) super.getRequest().getPrincipal().getActiveRealm();
 		int id;
 		Booking booking;
 
 		id = super.getRequest().getData("bookingId", int.class);
 		booking = this.repository.findBookinById(id);
 
-		passenger = this.repository.findPassengersByBookingId(booking.getId(), customer.getId());
+		passenger = this.repository.findPassengersByBookingId(booking.getId(), booking.getCustomer().getId());
 
 		super.getBuffer().addData(passenger);
 	}

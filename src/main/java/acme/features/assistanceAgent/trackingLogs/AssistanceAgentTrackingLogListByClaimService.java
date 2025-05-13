@@ -58,9 +58,12 @@ public class AssistanceAgentTrackingLogListByClaimService extends AbstractGuiSer
 	@Override
 	public void unbind(final TrackingLog trackingLog) {
 		Dataset dataset;
+		int id = super.getRequest().getData("claimId", int.class);
 
-		dataset = super.unbindObject(trackingLog, "resolutionPercentage", "indicator");
-		super.addPayload(dataset, trackingLog, "resolutionPercentage", "indicator");
+		dataset = super.unbindObject(trackingLog, "stepUndergoing", "resolutionPercentage", "indicator", "claim");
+		dataset.put("claim", id);
+
+		super.addPayload(dataset, trackingLog, "stepUndergoing", "resolutionPercentage", "indicator", "claim");
 
 		super.getResponse().addData(dataset);
 	}

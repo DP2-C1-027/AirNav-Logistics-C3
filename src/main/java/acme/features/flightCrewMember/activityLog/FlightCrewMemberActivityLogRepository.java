@@ -13,16 +13,20 @@ import acme.entities.flightAssignment.FlightAssignment;
 @Repository
 public interface FlightCrewMemberActivityLogRepository extends AbstractRepository {
 
-	@Query("select a from FlightAssignment a where a.id = :id")
-	FlightAssignment findFlightAssignmentById(int id);
-
-	@Query("select a from ActivityLog a where a.id = :id")
-	ActivityLog findActivityLogRecordById(int id);
-
-	@Query("select a from ActivityLog a")
-	Collection<ActivityLog> findAllActivityLogRecords();
-
-	@Query("select a from ActivityLog a where a.flightAssignment.id = :flightAssignmentId")
+	// List all the activity logs from a flight assignment Id
+	@Query("SELECT a FROM ActivityLog a WHERE a.flightAssignment.id = :flightAssignmentId")
 	Collection<ActivityLog> findActivityLogsByFlightAssignmentId(int flightAssignmentId);
 
+	// Show an activity log by its id
+	@Query("SELECT a FROM ActivityLog a WHERE a.id = :activityLogId")
+	ActivityLog findActivityLogById(int activityLogId);
+
+	@Query("SELECT a FROM FlightAssignment a WHERE a.id = :id")
+	FlightAssignment findFlightAssignmentById(int id);
+
+	@Query("select a from ActivityLog a where a.flightAssignment.leg.flight.id=:flightId")
+	Collection<ActivityLog> findActivityLogsByFlightId(int flightId);
+
+	@Query("select a from ActivityLog a where a.flightAssignment.leg.id=:legId")
+	Collection<ActivityLog> findActivityLogsByLegId(int legId);
 }

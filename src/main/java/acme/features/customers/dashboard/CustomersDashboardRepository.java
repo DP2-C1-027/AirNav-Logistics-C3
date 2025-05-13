@@ -28,11 +28,8 @@ public interface CustomersDashboardRepository extends AbstractRepository {
 	@Query("select f from Flight f where f.id=:id")
 	Flight findById(int id);
 	//last five destinations
-	@Query("""
-		    SELECT distinct b.flight
-		    FROM Booking b
-		    WHERE b.customer.id = :customerId AND b.flight.draftMode=false
-		""")
+
+	@Query("select distinct b.flight from Booking b where b.customer.id =:customerId and b.flight.draftMode=false")
 	List<Flight> findFlightsByCustomerId(@Param("customerId") int customerId);
 
 	default List<String> find5topFlightsByCustomerId(final int customerId) {
@@ -49,12 +46,12 @@ public interface CustomersDashboardRepository extends AbstractRepository {
 
 	//•	Their number of bookings grouped by travel class
 
-	@Query("select c from Booking c where c.customer.id = :auditorId")
-	Collection<Booking> findPublishedCodeAudits(int auditorId);
+	@Query("select c from Booking c where c.customer.id = :customerId")
+	Collection<Booking> findPublishedBooking(int customerId);
 
 	default Map<TravelClass, Integer> totalTypes(final int customerId) {
 		Map<TravelClass, Integer> result = new EnumMap<>(TravelClass.class);
-		Collection<Booking> codeAudits = this.findPublishedCodeAudits(customerId);
+		Collection<Booking> codeAudits = this.findPublishedBooking(customerId);
 
 		for (TravelClass type : TravelClass.values())
 			result.put(type, 0);

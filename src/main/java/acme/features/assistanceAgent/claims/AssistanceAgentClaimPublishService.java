@@ -12,6 +12,8 @@
 
 package acme.features.assistanceAgent.claims;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
@@ -20,6 +22,7 @@ import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.claims.Claim;
 import acme.entities.claims.ClaimType;
+import acme.entities.legs.Leg;
 import acme.realms.AssistanceAgent;
 
 @GuiService
@@ -37,9 +40,12 @@ public class AssistanceAgentClaimPublishService extends AbstractGuiService<Assis
 	public void authorise() {
 		AssistanceAgent assistance;
 		boolean status;
+		int claimId;
+		Claim claim;
 		assistance = (AssistanceAgent) super.getRequest().getPrincipal().getActiveRealm();
-
-		status = super.getRequest().getPrincipal().hasRealm(assistance);
+		claimId = super.getRequest().getData("id", int.class);
+		claim = this.repository.findOneClaimById(claimId);
+		status = claim != null && claim.isDraftMode() && super.getRequest().getPrincipal().hasRealm(assistance);
 		super.getResponse().setAuthorised(status);
 	}
 
@@ -73,10 +79,14 @@ public class AssistanceAgentClaimPublishService extends AbstractGuiService<Assis
 
 	@Override
 	public void unbind(final Claim claim) {
+		Collection<Leg> legs;
+		legs = this.repository.findAllLegs();
 
-		Dataset dataset = super.unbindObject(claim, "registrationMoment", "passengerEmail", "description", "indicator", "linkedTo");
+		Dataset dataset = super.unbindObject(claim, "registrationMoment", "passengerEmail", "description", "indicator", "type", "linkedTo");
 		SelectChoices statusChoices = SelectChoices.from(ClaimType.class, claim.getType());
-		dataset.put("type", statusChoices);
+		SelectChoices legsChoices = SelectChoices.from(legs, "flightNumber", claim.getLinkedTo());
+		dataset.put("linkedTo", legsChoices);
+		dataset.put("typeChoice", statusChoices);
 
 		super.getResponse().addData(dataset);
 	}

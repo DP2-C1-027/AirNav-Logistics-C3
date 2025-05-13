@@ -16,9 +16,6 @@ public class FlightCrewMemberFlightAssignmentController extends AbstractGuiContr
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private FlightCrewMemberFlightAssignmentListPublishedService	listPublishedService;
-
-	@Autowired
 	private FlightCrewMemberFlightAssignmentListPlannedService		listPlannedService;
 
 	@Autowired
@@ -44,7 +41,6 @@ public class FlightCrewMemberFlightAssignmentController extends AbstractGuiContr
 
 	@PostConstruct
 	protected void initialise() {
-		super.addCustomCommand("list-published", "list", this.listPublishedService);
 		super.addCustomCommand("list-planned", "list", this.listPlannedService);
 		super.addCustomCommand("list-completed", "list", this.listCompletedService);
 		super.addBasicCommand("show", this.showService);

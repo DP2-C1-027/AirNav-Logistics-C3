@@ -23,9 +23,15 @@ user-account-agent-15,true,"UserIdentity{name: 'Lorel14', surname: 'Agent', emai
 user-account-customer-01,true,"UserIdentity{name: 'Lucy', surname: 'Silva', email: 'lucy@acme.com'}",customer1,customer1
 user-account-customer-02,true,"UserIdentity{name: 'Lucay', surname: 'Customer', email: 'lucay@acme.com'}",customer2,customer2
 user-account-customer-03,true,"UserIdentity{name: 'Aluay', surname: 'Silva', email: 'aluay@acme.com'}",customer3,customer3
+user-account-customer-04,true,"UserIdentity{name: 'Maomao', surname: 'Salay Lucc', email: 'maomaoCore@acme.com'}",customer4,customer4
+user-account-customer-05,true,"UserIdentity{name: 'Dora', surname: 'Friqui', email: 'dorafq@acme.com'}",customer5,customer5
 user-account-manager-01,true,"UserIdentity{name: 'Jose', surname: 'Garcia Delgado', email: 'jgl@email.com'}",manager1,manager1
 user-account-manager-02,true,"UserIdentity{name: 'Juan', surname: 'Saler Merito', email: 'jusame@email.com'}",manager2,manager2
 user-account-manager-03,true,"UserIdentity{name: 'Geralt', surname: 'Bardo', email: 'gebardo@email.com'}",manager3,manager3
+user-account-manager-04,true,"UserIdentity{name: 'Jose Manuel', surname: 'Mejias', email: 'jmmejias@email.com'}",manager4,manager4
+user-account-manager-05,true,"UserIdentity{name: 'Dora', surname: 'Rodriguez', email: 'drodr@email.com'}",manager5,manager5
+user-account-manager-06,true,"UserIdentity{name: 'Mari Carmen', surname: 'Jimenez', email: 'mcjimenez@email.com'}",manager6,manager6
+user-account-manager-07,true,"UserIdentity{name: 'Maomao', surname: 'Fernandez', email: 'mmfern@email.com'}",manager7,manager7
 user-account-technician-01,true,"UserIdentity{name: 'Richter', surname: 'Belmont', email: 'richter@email.com'}",technician1,technician1
 user-account-technician-02,true,"UserIdentity{name: 'Maria', surname: 'Renard', email: 'maria@email.com'}",technician2,technician2
 user-account-technician-03,true,"UserIdentity{name: 'Adrian', surname: 'Farenhait Tepes', email: 'adrian@email.com'}",technician3,technician3

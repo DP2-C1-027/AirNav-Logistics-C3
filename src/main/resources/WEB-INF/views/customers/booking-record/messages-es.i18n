@@ -25,3 +25,4 @@ customer.booking-record.create.error.null-passenger = No puede no seleccionar un
 customer.booking-record.create.error.duplicate-booking-passenger= Esta relacion ya existe
 customers.form.error.draft-mode= Reserva publicada no se puede modificar
 customers.booking-record.form.label.delete=Borrar
+customer.booking-record.create.publish.booking= No puede elegir una reserva que ha sido publicada

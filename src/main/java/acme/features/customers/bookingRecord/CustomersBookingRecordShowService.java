@@ -26,11 +26,22 @@ public class CustomersBookingRecordShowService extends AbstractGuiService<Custom
 	@Override
 	public void authorise() {
 		Customers customer;
-		boolean status;
-		customer = (Customers) super.getRequest().getPrincipal().getActiveRealm();
-		int id = super.getRequest().getData("id", int.class);
-		BookingRecord bRecord = this.repository.findBookingRecord(id);
-		status = bRecord != null && super.getRequest().getPrincipal().hasRealm(customer);
+		boolean status = true;
+
+		if (super.getRequest().hasData("id", int.class)) {
+			Integer id;
+			try {
+				id = super.getRequest().getData("id", int.class);
+			} catch (Exception e) {
+				id = null;
+			}
+			BookingRecord bRecord = id != null ? this.repository.findBookingRecord(id) : null;
+			Booking booking = id != null ? this.repository.findOneBookingByBookingRecord(id) : null;
+			Passenger passenger = id != null ? this.repository.findOnePassengerByBookingRecord(id) : null;
+			customer = booking != null ? booking.getCustomer() : null;
+			status = customer == null ? false : super.getRequest().getPrincipal().hasRealm(customer) || bRecord != null && booking != null && !booking.isDraftMode() && passenger != null && !passenger.isDraftMode();
+		}
+
 		super.getResponse().setAuthorised(status);
 
 	}
@@ -49,8 +60,9 @@ public class CustomersBookingRecordShowService extends AbstractGuiService<Custom
 		SelectChoices passengerChoices;
 		SelectChoices bookingChoices;
 
-		Customers customer = (Customers) super.getRequest().getPrincipal().getActiveRealm();
+		Booking boog = this.repository.findOneBookingByBookingRecord(bookingRecord.getId());
 
+		Customers customer = boog.getCustomer();
 		Collection<Passenger> passengers = this.repository.findPassengerByCustomerId(customer.getId());
 		Collection<Booking> bookings = this.repository.findBookingByCustomerId(customer.getId());
 		Collection<Booking> booking = this.repository.findNotPublishBooking(customer.getId());
@@ -62,12 +74,12 @@ public class CustomersBookingRecordShowService extends AbstractGuiService<Custom
 		if (!bookingRecord.getBooking().isDraftMode()) {
 			bookingChoices = SelectChoices.from(bookings, "locatorCode", bookingRecord.getBooking());
 			dataset.put("bookings", bookingChoices);
-			System.out.println("entra aqui");
+
 		} else {
 			bookingChoices = SelectChoices.from(booking, "locatorCode", bookingRecord.getBooking());
 			dataset.put("booking", bookingChoices.getSelected().getKey());
 			dataset.put("bookings", bookingChoices);
-			System.out.println(" no deberia entrar aqui");
+
 		}
 
 		dataset.put("passenger", passengerChoices.getSelected().getKey());

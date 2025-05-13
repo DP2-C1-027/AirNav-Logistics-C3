@@ -29,10 +29,11 @@
     </tr>
     <c:forEach var="item" items="${lastFiveDestinations}">
         <tr>
-            <td>${item}</td>
+            <td><acme:print value = "${item}"/></td>
         </tr>
     </c:forEach>
-
+</table>
+<table class="table table-sm">
 	<tr>
 		<th scope="row">
 			<acme:print code="flight-crew-member.flight-crew-member-dashboard.form.label.legsWithIncidentSeverity3"/>
@@ -57,7 +58,8 @@
 			<acme:print value="${legsWithIncidentSeverity10}"/>
 		</td>
 	</tr>
-	
+</table>
+<table class="table table-sm">	
 	<tr>
         <th scope="row">
             <acme:print code="flight-crew-member.flight-crew-member-dashboard.form.label.lastLegCrewMembers"/>
@@ -65,7 +67,7 @@
     </tr>
     <c:forEach var="item" items="${lastLegCrewMembers}">
         <tr>
-            <td>${item}</td>
+            <td><acme:print value = "${item}"/></td>
         </tr>
     </c:forEach>
 	
@@ -76,7 +78,7 @@
     </tr>
     <c:forEach var="entry" items="${flightAssignmentsGroupedByStatus}">
         <tr>
-            <td>${entry.key}: ${entry.value}</td>
+            <td><acme:print value = "${entry.key}: ${entry.value}"/></td>
         </tr>
     </c:forEach>
     

@@ -12,13 +12,17 @@
 
 package acme.features.assistanceAgent.trackingLogs;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
+import acme.client.components.views.SelectChoices;
+import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
+import acme.entities.claims.Claim;
 import acme.entities.claims.Indicator;
 import acme.entities.claims.TrackingLog;
 import acme.realms.AssistanceAgent;
@@ -44,7 +48,7 @@ public class AssistanceAgentTrackingLogCreateService extends AbstractGuiService<
 		if (status && super.getRequest().hasData("claimId", int.class)) {
 			int claimId = super.getRequest().getData("claimId", int.class);
 
-			List<TrackingLog> previousLogs = this.repository.findTrackingLogsByClaimIdOrderedByDateDesc(claimId);
+			List<TrackingLog> previousLogs = this.repository.findTrackingLogsByClaimIdOrderedByPercentaje(claimId);
 
 			if (!previousLogs.isEmpty()) {
 				TrackingLog lastLog = previousLogs.get(0);
@@ -60,37 +64,51 @@ public class AssistanceAgentTrackingLogCreateService extends AbstractGuiService<
 	@Override
 	public void load() {
 		TrackingLog TrackingLog;
-
 		TrackingLog = new TrackingLog();
+
+		TrackingLog.setLastUpdateMoment(MomentHelper.getCurrentMoment());
+		TrackingLog.setDraftMode(true);
+		int claimId = super.getRequest().getData("claimId", int.class);
+
+		Claim claim = this.repository.findOneClaimById(claimId);
+		TrackingLog.setClaim(claim);
 
 		super.getBuffer().addData(TrackingLog);
 	}
 
 	@Override
 	public void bind(final TrackingLog trackingLog) {
-		super.bindObject(trackingLog, "lastUpdateMoment", "stepUndergoing", "resolutionPercentage", "indicator");
+		super.bindObject(trackingLog, "lastUpdateMoment", "stepUndergoing", "resolutionPercentage", "resolutionDetails", "indicator", "claim");
 
 	}
 
 	@Override
 	public void validate(final TrackingLog trackingLog) {
+		// Validaciones existentes para indicator...
 		if (trackingLog.getIndicator() != null && (trackingLog.getIndicator() == Indicator.ACCEPTED || trackingLog.getIndicator() == Indicator.REJECTED)) {
-
 			super.state(trackingLog.getResolutionPercentage() != null && trackingLog.getResolutionPercentage() == 100, "resolutionPercentage", "assistance-agent.tracking-log.form.error.percentage-not-100");
-
 			super.state(trackingLog.getResolutionDetails() != null && !trackingLog.getResolutionDetails().isEmpty(), "resolutionDetails", "assistance-agent.tracking-log.form.error.resolution-required");
 		}
-		//  porcentaje debe ser >= al último TrackingLog
-		if (trackingLog.getClaim() != null && trackingLog.getClaim().getId() != 0 && !super.getBuffer().getErrors().hasErrors("resolutionPercentage")) {
 
-			// Obtener el último TrackingLog ordenado por fecha descendente
+		// Validación de porcentaje incremental
+		if (trackingLog.getClaim() != null && trackingLog.getClaim().getId() != 0 && !super.getBuffer().getErrors().hasErrors("resolutionPercentage")) {
 			List<TrackingLog> previousLogs = this.repository.findTrackingLogsByClaimIdOrderedByDateDesc(trackingLog.getClaim().getId());
 
 			if (!previousLogs.isEmpty()) {
 				TrackingLog lastLog = previousLogs.get(0);
-
 				super.state(trackingLog.getResolutionPercentage() != null && trackingLog.getResolutionPercentage() >= lastLog.getResolutionPercentage(), "resolutionPercentage", "assistance-agent.tracking-log.form.error.percentage-not-increasing");
 			}
+		}
+
+		// Validación para porcentaje 100% después de publicar
+		int claimId = super.getRequest().getData("claimId", int.class);
+		List<TrackingLog> previousLogs = this.repository.findTrackingLogsByClaimIdOrderedByPercentaje(claimId);
+
+		// Añade esta comprobación
+		if (!previousLogs.isEmpty()) {
+			TrackingLog lastLog = previousLogs.get(0);
+			if (!lastLog.isDraftMode())
+				super.state(trackingLog.getResolutionPercentage() != null && trackingLog.getResolutionPercentage() == 100, "resolutionPercentage", "assistance-agent.tracking-log.form.error.after-publish-percentage-mustbe-100");
 		}
 	}
 
@@ -102,8 +120,17 @@ public class AssistanceAgentTrackingLogCreateService extends AbstractGuiService<
 	@Override
 	public void unbind(final TrackingLog trackingLog) {
 		Dataset dataset;
+		Collection<Claim> claims;
+		AssistanceAgent assistance = (AssistanceAgent) super.getRequest().getPrincipal().getActiveRealm();
 
-		dataset = super.unbindObject(trackingLog, "lastUpdateMoment", "stepUndergoing", "resolutionPercentage", "indicator");
+		claims = this.repository.findAllClaimsByAgent(assistance.getId());
+		dataset = super.unbindObject(trackingLog, "lastUpdateMoment", "stepUndergoing", "resolutionPercentage", "resolutionDetails", "indicator", "claim");
+		SelectChoices claimsChoices = SelectChoices.from(claims, "passengerEmail", trackingLog.getClaim());
+		dataset.put("claim", claimsChoices);
+
+		SelectChoices statusChoices = SelectChoices.from(Indicator.class, trackingLog.getIndicator());
+		dataset.put("indicator", statusChoices);
+
 		super.getResponse().addData(dataset);
 	}
 

@@ -36,9 +36,7 @@ public class AnyAirportListService extends AbstractGuiService<Any, Airport> {
 
 	@Override
 	public void unbind(final Airport airport) {
-		Dataset dataset;
-
-		dataset = super.unbindObject(airport, "name", "codigo", "operationalScope");
+		Dataset dataset = super.unbindObject(airport, "name", "codigo", "operationalScope");
 
 		super.getResponse().addData(dataset);
 

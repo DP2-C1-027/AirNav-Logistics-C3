@@ -9,19 +9,19 @@
 # acepta responsabilidades con respecto a ellas.
 
 # Etiquetas del formulario de detalles del aeropuerto
-administrator.airport.form.title = Detalles del aeropuerto
-administrator.airport.form.label.name = Nombre:
-administrator.airport.form.label.codigo = Código:
-administrator.airport.form.label.operationalScope = Alcance operativo:
-administrator.airport.form.label.city = Ciudad:
-administrator.airport.form.label.country = País:
-administrator.airport.form.label.website = Sitio web:
-administrator.airport.form.label.email = Correo electrónico:
-administrator.airport.form.label.address = Dirección:
-administrator.airport.form.label.phoneNumber = Número de teléfono:
+any.airport.form.title = Detalles del aeropuerto
+any.airport.form.label.name = Nombre:
+any.airport.form.label.codigo = Código:
+any.airport.form.label.operationalScope = Alcance operativo:
+any.airport.form.label.city = Ciudad:
+any.airport.form.label.country = País:
+any.airport.form.label.website = Sitio web:
+any.airport.form.label.email = Correo electrónico:
+any.airport.form.label.address = Dirección:
+any.airport.form.label.phoneNumber = Número de teléfono:
 
 # Etiquetas de la lista de aeropuertos
-administrator.airport.list.title = Lista de aeropuertos
-administrator.airport.list.label.name = Nombre:
-administrator.airport.list.label.codigo = Código:
-administrator.airport.list.label.operationalScope = Alcance operativo:
+any.airport.list.title = Lista de aeropuertos
+any.airport.list.label.name = Nombre:
+any.airport.list.label.codigo = Código:
+any.airport.list.label.operationalScope = Alcance operativo:

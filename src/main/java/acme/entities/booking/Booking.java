@@ -30,6 +30,9 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
+//@Table(indexes = {
+//	@Index(columnList = "locatorCode"), @Index(columnList = "customer_id")
+//})
 public class Booking extends AbstractEntity {
 
 	// Serialisation version --------------------------------------------------

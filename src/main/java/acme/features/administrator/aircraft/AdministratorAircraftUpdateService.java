@@ -42,7 +42,6 @@ public class AdministratorAircraftUpdateService extends AbstractGuiService<Admin
 
 	@Override
 	public void validate(final Aircraft aircraft) {
-		super.state(aircraft.getAirline() != null, "airline", "acme.validation.aircraft.airline");
 
 		Aircraft oldAircraft = this.repository.findAircraftByRegistrationNumber(aircraft.getRegistrationNumber());
 		if (oldAircraft != null) {
@@ -65,9 +64,11 @@ public class AdministratorAircraftUpdateService extends AbstractGuiService<Admin
 
 		SelectChoices statusChoices = SelectChoices.from(Status.class, aircraft.getStatus());
 		dataset.put("statusChoices", statusChoices);
+		dataset.put("status", statusChoices.getSelected().getKey());
 
 		SelectChoices airlinesChoices = SelectChoices.from(this.repository.findAllAirlines(), "name", aircraft.getAirline());
 		dataset.put("airlinesChoices", airlinesChoices);
+		dataset.put("airline", airlinesChoices.getSelected().getKey());
 
 		dataset.put("confirmation", false);
 

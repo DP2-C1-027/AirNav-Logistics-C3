@@ -1,26 +1,35 @@
-# ============= MÓDULO DE REGISTROS DE SEGUIMIENTO =============
-assistance-agent.tracking-log.list.title = TRACKING LOGS
-assistance-agent.tracking-log.form.title =TRACKING LOG
-# Etiquetas de lista para registros de seguimiento
-assistanceAgent.trackingLog.list.title = Gestión de Registros de Seguimiento
-assistanceAgent.trackingLog.list.label.claim = Reclamación
-assistanceAgent.trackingLog.list.label.resolutionPercentage = % Resolución
-assistanceAgent.trackingLog.list.label.lastUpdateMoment = Última Actualización
+# messages-es.i18n
+#
+# Copyright (C) 2012-2025 Rafael Corchuelo.
+#
+# Con el propósito tradicional de fomentar la educación y la investigación, es
+# política del propietario de los derechos de autor permitir el uso no comercial
+# y la redistribución de este software.
 
-# Botones de lista
-assistanceAgent.trackingLog.list.button.create = Crear Nuevo Registro
+### Vista de Lista de Registros ###
+assistanceAgent.trackingLog.list.label.stepUndergoing=Paso Actual
+assistanceAgent.trackingLog.list.label.resolutionPercentage=% Resolución
+assistanceAgent.trackingLog.list.label.indicator=Indicador de Estado
+assistanceAgent.trackingLog.list.button.create=Crear Registro
 
-# Etiquetas de formulario para registros de seguimiento
-assistanceAgent.trackingLog.form.title = Registro de Seguimiento
-assistanceAgent.trackingLog.form.label.lastUpdateMoment = Última Actualización
-assistanceAgent.trackingLog.form.label.stepUndergoing = Paso Actual
-assistanceAgent.trackingLog.form.label.resolutionPercentage = Porcentaje de Resolución
-assistanceAgent.trackingLog.form.label.indicator = Estado
-assistanceAgent.trackingLog.form.label.resolutionDetails = Detalles de Resolución
-assistanceAgent.trackingLog.form.label.claim = Reclamación Relacionada
+### Formulario de Registro ###
+assistanceAgent.trackingLog.form.label.lastUpdateMoment=Última Actualización
+assistanceAgent.trackingLog.form.label.stepUndergoing=Paso Actual
+assistanceAgent.trackingLog.form.label.resolutionPercentage=Porcentaje de Resolución
+assistanceAgent.trackingLog.form.label.indicator=Indicador de Estado
+assistanceAgent.trackingLog.form.label.resolutionDetails=Detalles de Resolución
+assistanceAgent.trackingLog.form.label.claim=Reclamo Relacionado
 
-# Botones de formulario
-assistanceAgent.trackingLog.form.button.create = Crear
-assistanceAgent.trackingLog.form.button.update = Actualizar
-assistanceAgent.trackingLog.form.button.delete = Eliminar
-assistanceAgent.trackingLog.form.button.publish = Publicar
+### Acciones ###
+assistanceAgent.trackingLog.form.button.update=Actualizar
+assistanceAgent.trackingLog.form.button.delete=Eliminar
+assistanceAgent.trackingLog.form.button.publish=Publicar
+assistanceAgent.trackingLog.form.button.create=Crear
+assistanceAgent.claim.form.button.claim=Ver Reclamo
+###Errors
+
+assistance-agent.tracking-log.form.error.percentage-not-100 =A trackingLog only can be completed when percentage is 100
+assistance-agent.tracking-log.form.error.resolution-required=resolution is required
+assistance-agent.tracking-log.form.error.percentage-not-increasing = percentage not increasing
+assistance-agent.tracking-log.form.error.claim-must-be-publish =The claim must be publish
+

@@ -2,6 +2,8 @@
 package acme.entities.systemConfiguration;
 
 import javax.persistence.Entity;
+import javax.persistence.Index;
+import javax.persistence.Table;
 
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
@@ -12,6 +14,9 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
+@Table(indexes = {
+	@Index(columnList = "systemCurrency"), @Index(columnList = "currency")
+})
 public class SystemConfiguration extends AbstractEntity {
 
 	// Serialisation version --------------------------------------------------
@@ -21,7 +26,7 @@ public class SystemConfiguration extends AbstractEntity {
 
 	@Mandatory
 	@Automapped
-	private String				currency			= "EUR";
+	private String				currency;
 
 	@Mandatory
 	@Automapped

@@ -6,12 +6,19 @@ import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
+import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
+import acme.entities.airline.Airline;
+import acme.entities.claims.Claim;
+import acme.entities.flightAssignment.ActivityLog;
+import acme.entities.flightAssignment.FlightAssignment;
 import acme.entities.flights.Flight;
 import acme.entities.legs.Leg;
 import acme.features.airlineManager.legs.AirlineManagerLegsRepository;
-
+import acme.features.assistanceAgent.claims.AssistanceAgentClaimRepository;
+import acme.features.flightCrewMember.activityLog.FlightCrewMemberActivityLogRepository;
+import acme.features.flightCrewMember.flightAssignment.FlightCrewMemberFlightAssignmentRepository;
 import acme.realms.AirlineManager;
 
 @GuiService
@@ -20,11 +27,19 @@ public class AirlineManagerFlightDeleteService extends AbstractGuiService<Airlin
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private AirlineManagerFlightRepository	repository;
+	private AirlineManagerFlightRepository				repository;
 
 	@Autowired
-	private AirlineManagerLegsRepository	legRepository;
+	private AirlineManagerLegsRepository				legRepository;
 
+	@Autowired
+	private AssistanceAgentClaimRepository				claimRepository;
+
+	@Autowired
+	private FlightCrewMemberFlightAssignmentRepository	assignmentRepository;
+
+	@Autowired
+	private FlightCrewMemberActivityLogRepository		activityRepository;
 
 	// AbstractGuiService interface -------------------------------------------
 
@@ -58,7 +73,7 @@ public class AirlineManagerFlightDeleteService extends AbstractGuiService<Airlin
 	@Override
 	public void bind(final Flight flight) {
 
-		super.bindObject(flight, "tag", "indication", "cost", "description");
+		super.bindObject(flight, "tag", "indication", "cost", "description", "airline");
 	}
 
 	@Override
@@ -69,8 +84,19 @@ public class AirlineManagerFlightDeleteService extends AbstractGuiService<Airlin
 	@Override
 	public void perform(final Flight flight) {
 		Collection<Leg> legs;
+		Collection<Claim> claims;
+		Collection<FlightAssignment> assignments;
+		Collection<ActivityLog> activities;
+
 		legs = this.repository.findLegsByFlightId(flight.getId());
-		this.repository.deleteAll(legs);
+		claims = this.claimRepository.findClaimsByFlightId(flight.getId());
+		assignments = this.assignmentRepository.findFlightAssignmentsByFlightId(flight.getId());
+		activities = this.activityRepository.findActivityLogsByFlightId(flight.getId());
+
+		this.claimRepository.deleteAll(claims);
+		this.activityRepository.deleteAll(activities);
+		this.assignmentRepository.deleteAll(assignments);
+		this.legRepository.deleteAll(legs);
 		this.repository.delete(flight);
 	}
 
@@ -78,9 +104,15 @@ public class AirlineManagerFlightDeleteService extends AbstractGuiService<Airlin
 	public void unbind(final Flight flight) {
 
 		Dataset dataset;
+		Collection<Airline> airlines;
+		SelectChoices choices;
 
-		dataset = super.unbindObject(flight, "tag", "indication", "cost", "description");
-
+		dataset = super.unbindObject(flight, "tag", "indication", "cost", "description", "airline", "draftMode");
+		super.addPayload(dataset, flight, "tag", "indication", "cost", "description", "airline", "draftMode");
+		airlines = this.repository.getAllAirlines();
+		choices = SelectChoices.from(airlines, "codigo", flight.getAirline());
+		dataset.put("airline", choices.getSelected().getKey());
+		dataset.put("airlines", choices);
 		super.getResponse().addData(dataset);
 	}
 

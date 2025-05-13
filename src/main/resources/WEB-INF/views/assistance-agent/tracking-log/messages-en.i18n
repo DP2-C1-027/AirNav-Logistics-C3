@@ -1,27 +1,37 @@
-# ============= TRACKING LOG MODULE =============
-assistance-agent.tracking-log.list.title = TRACKING LOGS
-assistance-agent.tracking-log.form.title =TRACKING LOG
+# messages-en.i18n
+#
+# Copyright (C) 2012-2025 Rafael Corchuelo.
+#
+# In keeping with the traditional purpose of furthering education and research, it is
+# the policy of the copyright owner to permit non-commercial use and redistribution of
+# this software.
 
-# List labels for tracking log
-assistanceAgent.trackingLog.list.title = Tracking Logs Management
-assistanceAgent.trackingLog.list.label.claim = Claim
-assistanceAgent.trackingLog.list.label.resolutionPercentage = Resolution %
-assistanceAgent.trackingLog.list.label.lastUpdateMoment = Last Update
+### Tracking Log List View ###
+assistanceAgent.trackingLog.list.label.stepUndergoing=Current Step
+assistanceAgent.trackingLog.list.label.resolutionPercentage=Resolution %
+assistanceAgent.trackingLog.list.label.indicator=Status Indicator
+assistanceAgent.trackingLog.list.button.create=Create Tracking Log
 
-# List buttons
-assistanceAgent.trackingLog.list.button.create = Create New Tracking Log
+### Tracking Log Form ###
+assistanceAgent.trackingLog.form.label.lastUpdateMoment=Last Update
+assistanceAgent.trackingLog.form.label.stepUndergoing=Current Step
+assistanceAgent.trackingLog.form.label.resolutionPercentage=Resolution Percentage
+assistanceAgent.trackingLog.form.label.indicator=Status Indicator
+assistanceAgent.trackingLog.form.label.resolutionDetails=Resolution Details
+assistanceAgent.trackingLog.form.label.claim=Related Claim
 
-# Form labels for tracking log
-assistanceAgent.trackingLog.form.title = Tracking Log
-assistanceAgent.trackingLog.form.label.lastUpdateMoment = Last Update
-assistanceAgent.trackingLog.form.label.stepUndergoing = Current Step
-assistanceAgent.trackingLog.form.label.resolutionPercentage = Resolution Percentage
-assistanceAgent.trackingLog.form.label.indicator = Status
-assistanceAgent.trackingLog.form.label.resolutionDetails = Resolution Details
-assistanceAgent.trackingLog.form.label.claim = Related Claim
+### Tracking Log Actions ###
+assistanceAgent.trackingLog.form.button.update=Update
+assistanceAgent.trackingLog.form.button.delete=Delete
+assistanceAgent.trackingLog.form.button.publish=Publish
+assistanceAgent.trackingLog.form.button.create=Create TrackingLog
+assistanceAgent.claim.form.button.claim=View Claim
 
-# Form buttons
-assistanceAgent.trackingLog.form.button.create = Create
-assistanceAgent.trackingLog.form.button.update = Update
-assistanceAgent.trackingLog.form.button.delete = Delete
-assistanceAgent.trackingLog.form.button.publish = Publish
+###Errors
+
+assistance-agent.tracking-log.form.error.percentage-not-100 =A trackingLog only can be completed when percentage is 100
+assistance-agent.tracking-log.form.error.resolution-required = Resolution is required
+assistance-agent.tracking-log.form.error.percentage-not-increasing = percentage not increasing
+assistance-agent.tracking-log.form.error.claim-must-be-publish = The claim must be publish
+assistance-agent.tracking-log.form.error.after-publish-percentage-mustbe-100 = The tracking log percentaje must be 100 if the tracking log before is publish
+

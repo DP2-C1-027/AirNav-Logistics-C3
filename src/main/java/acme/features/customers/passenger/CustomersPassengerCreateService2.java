@@ -32,31 +32,38 @@ public class CustomersPassengerCreateService2 extends AbstractGuiService<Custome
 
 	@Override
 	public void authorise() {
-		boolean status;
-		Customers customer;
-		int bookingId = super.getRequest().getData("bookingId", int.class);
-		System.out.println(bookingId);
-		Booking booking = this.bookingRepository.findBookingById(bookingId);
-		System.out.println(booking);
-		customer = (Customers) super.getRequest().getPrincipal().getActiveRealm();
-		status = booking.isDraftMode() && super.getRequest().getPrincipal().hasRealm(customer);
+		boolean status = true;
+		if (super.getRequest().hasData("bookingId", int.class)) {
+			Integer bookingId;
+			try {
+				bookingId = super.getRequest().getData("bookingId", int.class);
+			} catch (Exception e) {
+				bookingId = null;
+
+			}
+
+			Booking booking = bookingId != null ? this.bookingRepository.findBookingById(bookingId) : null;
+			Customers customer = booking != null ? booking.getCustomer() : null;
+
+			status = customer == null ? false : booking != null && booking.isDraftMode() && super.getRequest().getPrincipal().hasRealm(customer);
+		}
+
 		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
 	public void load() {
 		Passenger passenger;
-		Customers customer;
+
 		int bookingId = super.getRequest().getData("bookingId", int.class);
 		Booking booking = this.bookingRepository.findBookingById(bookingId);
 
-		customer = (Customers) super.getRequest().getPrincipal().getActiveRealm();
 		Date moment;
 		moment = MomentHelper.getCurrentMoment();
 
 		passenger = new Passenger();
 		passenger.setDateOfBirth(moment);
-		passenger.setCustomer(customer);
+		passenger.setCustomer(booking.getCustomer());
 
 		super.getBuffer().addData(passenger);
 

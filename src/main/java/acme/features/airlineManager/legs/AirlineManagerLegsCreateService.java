@@ -39,6 +39,17 @@ public class AirlineManagerLegsCreateService extends AbstractGuiService<AirlineM
 			AirlineManager manager = flight == null ? null : flight.getAirlineManager();
 			status = manager == null ? false : super.getRequest().getPrincipal().hasRealm(manager);
 		}
+		if (super.getRequest().hasData("duration")) {
+			Integer duration;
+			try {
+				duration = super.getRequest().getData("duration", Integer.class);
+				if (!duration.equals(Integer.valueOf(0)))
+					status = false;
+			} catch (Exception e) {
+				status = false;
+			}
+
+		}
 		super.getResponse().setAuthorised(status);
 	}
 
@@ -51,7 +62,7 @@ public class AirlineManagerLegsCreateService extends AbstractGuiService<AirlineM
 
 		if (super.getRequest().hasData("flightId"))
 			leg.setFlight(this.repository.getFlightById(super.getRequest().getData("flightId", int.class)));
-
+		leg.setDuration(Integer.valueOf(0));
 		super.getBuffer().addData(leg);
 	}
 
@@ -62,19 +73,12 @@ public class AirlineManagerLegsCreateService extends AbstractGuiService<AirlineM
 
 	@Override
 	public void validate(final Leg leg) {
-		boolean status;
-		AirlineManager manager;
-		Leg leg_db;
-		leg_db = this.repository.findLegById(leg.getId());
-		manager = leg_db == null ? null : leg_db.getFlight().getAirlineManager();
-		status = manager != null && super.getRequest().getPrincipal().hasRealm(manager);
-		super.state(status, "flight", "airlineManager.leg.error.unownedLeg");
+		;
 	}
 
 	@Override
 	public void perform(final Leg leg) {
 		assert leg != null;
-
 		this.repository.save(leg);
 	}
 
@@ -112,7 +116,7 @@ public class AirlineManagerLegsCreateService extends AbstractGuiService<AirlineM
 		dataset.put("aircrafts", choicesAircraft);
 		dataset.put("status", choicesStatus.getSelected().getKey());
 		dataset.put("statuses", choicesStatus);
-		super.addPayload(dataset, leg, "flightNumber", "scheduledDeparture", "scheduledArrival", "duration", "status", "draftMode", "flight", "arrivalAirport", "departureAirport", "aircraft");
+		super.addPayload(dataset, leg, "flightNumber", "scheduledDeparture", "scheduledArrival", "status", "draftMode", "flight", "arrivalAirport", "departureAirport", "aircraft");
 
 		super.getResponse().addData(dataset);
 	}

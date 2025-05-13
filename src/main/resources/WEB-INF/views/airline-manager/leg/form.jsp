@@ -7,7 +7,14 @@
 	<acme:input-textbox code="airlineManager.leg.form.label.flightNumber" path="flightNumber"/>
 	<acme:input-moment code="airlineManager.leg.form.label.scheduledDeparture" path="scheduledDeparture"/>
 	<acme:input-moment code="airlineManager.leg.form.label.scheduledArrival" path="scheduledArrival"/>
-	<acme:input-integer code="airlineManager.leg.form.label.duration" path="duration"/>
+	<jstl:choose>
+		<jstl:when test = "${acme:anyOf(_command, 'show|update|delete|publish')}">
+			<acme:input-integer code="airlineManager.leg.form.label.duration" path="duration" readonly = "true"/>
+		</jstl:when>
+		<jstl:when test = "${_command == 'create'}">
+			<acme:hidden-data value = "${duration}" path="duration"/>
+		</jstl:when>
+	</jstl:choose>
 	<acme:input-select code="airlineManager.leg.form.label.status" path="status" choices="${statuses}"/>
 	<acme:input-select code="airlineManager.leg.form.label.departureAirport" path="departureAirport" choices="${departureAirports}"/>
 	<acme:input-select code="airlineManager.leg.form.label.arrivalAirport" path="arrivalAirport" choices="${arrivalAirports}"/>

@@ -43,6 +43,36 @@ public class CustomersBookingRecordDeleteService extends AbstractGuiService<Cust
 			booking = bookingRecordId != null ? this.repository.findOneBookingByBookingRecord(bookingRecordId) : null;
 			customer = booking != null ? booking.getCustomer() : null;
 			status = customer == null ? false : booking != null && passenger != null && booking.isDraftMode() && super.getRequest().getPrincipal().hasRealm(customer);
+			if (super.getRequest().hasData("passenger")) {
+				Integer id;
+				try {
+					id = super.getRequest().getData("passenger", Integer.class);
+					passenger = this.repository.findPassengerById(id);
+
+					if (!passenger.getCustomer().equals(customer))
+						status = false;
+
+				} catch (Exception e) {
+					status = false;
+				}
+			}
+
+			if (super.getRequest().hasData("booking")) {
+				Integer id;
+				try {
+					id = super.getRequest().getData("booking", Integer.class);
+					booking = this.repository.findBookingById(id);
+
+					if (!booking.getCustomer().equals(customer))
+						status = false;
+
+				} catch (Exception e) {
+					status = false;
+					booking = null;
+				}
+				status = booking != null ? status && booking.isDraftMode() : status;
+			}
+
 		}
 
 		super.getResponse().setAuthorised(status);
@@ -100,6 +130,8 @@ public class CustomersBookingRecordDeleteService extends AbstractGuiService<Cust
 		dataset.put("passenger", passengerChoices.getSelected().getKey());
 		dataset.put("passengers", passengerChoices);
 		dataset.put("draftMode", bookingRecord.getBooking().isDraftMode());
+
+		super.addPayload(dataset, bookingRecord, "booking", "passenger");
 
 		super.getResponse().addData(dataset);
 	}

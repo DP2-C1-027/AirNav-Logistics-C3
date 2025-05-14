@@ -25,12 +25,8 @@ public class CustomersBookingListService extends AbstractGuiService<Customers, B
 
 	@Override
 	public void authorise() {
-		Customers customer;
-		boolean status;
-		customer = (Customers) super.getRequest().getPrincipal().getActiveRealm();
 
-		status = super.getRequest().getPrincipal().hasRealm(customer);
-		super.getResponse().setAuthorised(status);
+		super.getResponse().setAuthorised(true);
 
 	}
 
@@ -56,6 +52,7 @@ public class CustomersBookingListService extends AbstractGuiService<Customers, B
 		precioNuevo.setCurrency(moneda);
 		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "travelClass", "lastNibble");
 		dataset.put("price", precioNuevo);
+		super.addPayload(dataset, booking, "locatorCode", "purchaseMoment", "travelClass", "lastNibble", "price");
 		super.getResponse().addData(dataset);
 
 	}

@@ -26,9 +26,57 @@ public class CustomersBookingRecordCreateService extends AbstractGuiService<Cust
 	public void authorise() {
 		Customers customer;
 		boolean status;
+		Booking booking;
+		Passenger passenger;
 		customer = (Customers) super.getRequest().getPrincipal().getActiveRealm();
 
 		status = super.getRequest().getPrincipal().hasRealm(customer);
+		if (super.getRequest().hasData("id")) {
+			Integer id;
+			try {
+				id = super.getRequest().getData("id", Integer.class);
+				if (!id.equals(Integer.valueOf(0)))
+					status = false;
+
+			} catch (Exception e) {
+				status = false;
+
+			}
+		} else if (super.getRequest().getMethod().equals("POST"))
+			status = false;
+
+		if (super.getRequest().hasData("booking")) {
+			Integer id;
+			try {
+				id = super.getRequest().getData("booking", Integer.class);
+				booking = this.repository.findBookingById(id);
+
+				if (!booking.getCustomer().equals(customer))
+					status = false;
+
+			} catch (Exception e) {
+				status = false;
+				booking = null;
+			}
+			status = booking != null ? status && booking.isDraftMode() : status;
+		} else if (super.getRequest().getMethod().equals("POST"))
+			status = false;
+
+		if (super.getRequest().hasData("passenger")) {
+			Integer id;
+			try {
+				id = super.getRequest().getData("passenger", Integer.class);
+				passenger = this.repository.findPassengerById(id);
+
+				if (!passenger.getCustomer().equals(customer))
+					status = false;
+
+			} catch (Exception e) {
+				status = false;
+			}
+		} else if (super.getRequest().getMethod().equals("POST"))
+			status = false;
+
 		super.getResponse().setAuthorised(status);
 
 	}
@@ -67,6 +115,7 @@ public class CustomersBookingRecordCreateService extends AbstractGuiService<Cust
 
 	@Override
 	public void perform(final BookingRecord bookingRecord) {
+
 		this.repository.save(bookingRecord);
 	}
 
@@ -91,6 +140,8 @@ public class CustomersBookingRecordCreateService extends AbstractGuiService<Cust
 		dataset.put("passenger", passengerChoices.getSelected().getKey());
 		dataset.put("passengers", passengerChoices);
 		dataset.put("draftMode", true);
+
+		super.addPayload(dataset, bookingRecord, "booking", "passenger");
 
 		super.getResponse().addData(dataset);
 

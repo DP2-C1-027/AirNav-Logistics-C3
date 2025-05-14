@@ -24,7 +24,7 @@ public class CustomersBookingShowService extends AbstractGuiService<Customers, B
 	// AbstractGuiService interface -------------------------------------------
 	@Override
 	public void authorise() {
-		boolean status = false;
+		boolean status = true;
 
 		Booking booking;
 		Customers customer;
@@ -73,9 +73,10 @@ public class CustomersBookingShowService extends AbstractGuiService<Customers, B
 		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "travelClass", "lastNibble", "draftMode");
 		dataset.put("price", precioNuevo);
 		dataset.put("travelClasses", choices);
-		//f.getTag() + ":" + f.getDepartureCity() + "->" + f.getArrivalCity()
+
 		Flight f = booking.getFlight();
-		dataset.put("vuelo", f.getTag() + " : " + f.getDepartureCity() + "->" + f.getArrivalCity());
+		dataset.put("flight", f.getTag() + " : " + f.getDepartureCity() + "->" + f.getArrivalCity());
+		super.addPayload(dataset, booking, "locatorCode", "purchaseMoment", "travelClass", "lastNibble", "draftMode", "price", "flight");
 
 		super.getResponse().addData(dataset);
 	}

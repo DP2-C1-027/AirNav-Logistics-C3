@@ -56,6 +56,7 @@ public class CustomersBookingRecordListService extends AbstractGuiService<Custom
 		dataset = super.unbindObject(bookingRecord, "booking", "passenger");
 		dataset.put("booking", booking.getLocatorCode());
 		dataset.put("passenger", passenger.getFullName());
+		super.addPayload(dataset, bookingRecord);
 
 		super.getResponse().addData(dataset);
 

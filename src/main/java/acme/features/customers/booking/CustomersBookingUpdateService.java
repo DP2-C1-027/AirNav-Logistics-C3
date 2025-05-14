@@ -45,7 +45,8 @@ public class CustomersBookingUpdateService extends AbstractGuiService<Customers,
 			customer = booking != null ? booking.getCustomer() : null;
 			status = customer == null ? false : booking != null && booking.isDraftMode() && super.getRequest().getPrincipal().hasRealm(customer);
 
-		}
+		} else
+			status = false;
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -81,7 +82,7 @@ public class CustomersBookingUpdateService extends AbstractGuiService<Customers,
 		if (!codigo.isEmpty())
 			super.state(false, "locatorCode", "customers.booking.error.repeat-code");
 		if (booking.getFlight() == null)
-			super.state(false, "vuelo", "customers.booking.error.no-flight");
+			super.state(false, "flight", "customers.booking.error.no-flight");
 		else if (d == null)
 			super.state(false, "purchaseMoment", "customers.booking.error.momentUpdate");
 		else if (!booking.getFlight().getScheduledDeparture().after(d))
@@ -91,6 +92,7 @@ public class CustomersBookingUpdateService extends AbstractGuiService<Customers,
 
 	@Override
 	public void perform(final Booking booking) {
+		assert booking != null;
 		this.repository.save(booking);
 	}
 
@@ -112,7 +114,8 @@ public class CustomersBookingUpdateService extends AbstractGuiService<Customers,
 		dataset.put("travelClasses", choices);
 
 		Flight f = booking.getFlight();
-		dataset.put("vuelo", f.getTag() + " : " + f.getDepartureCity() + "->" + f.getArrivalCity());
+		dataset.put("flight", f.getTag() + " : " + f.getDepartureCity() + "->" + f.getArrivalCity());
+		super.addPayload(dataset, booking, "locatorCode", "purchaseMoment", "travelClass", "lastNibble", "draftMode", "price", "flight");
 
 		super.getResponse().addData(dataset);
 	}

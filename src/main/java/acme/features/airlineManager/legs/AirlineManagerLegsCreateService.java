@@ -28,6 +28,9 @@ public class AirlineManagerLegsCreateService extends AbstractGuiService<AirlineM
 	@Override
 	public void authorise() {
 		boolean status = true;
+		Integer masterId;
+		AirlineManager manager;
+
 		if (super.getRequest().hasData("flightId")) {
 			Integer flightId;
 			try {
@@ -36,9 +39,19 @@ public class AirlineManagerLegsCreateService extends AbstractGuiService<AirlineM
 				flightId = null;
 			}
 			Flight flight = flightId == null ? null : this.repository.getFlightById(flightId);
-			AirlineManager manager = flight == null ? null : flight.getAirlineManager();
+			manager = flight == null ? null : flight.getAirlineManager();
 			status = manager == null ? false : super.getRequest().getPrincipal().hasRealm(manager);
 		}
+		if (super.getRequest().hasData("id")) {
+			try {
+				masterId = super.getRequest().getData("id", Integer.class);
+			} catch (Exception e) {
+				masterId = null;
+			}
+			if (!masterId.equals(Integer.valueOf(0)))
+				status = false;
+		} else if (super.getRequest().getMethod().equals("POST"))
+			status = false;
 		if (super.getRequest().hasData("duration")) {
 			Integer duration;
 			try {
@@ -48,8 +61,8 @@ public class AirlineManagerLegsCreateService extends AbstractGuiService<AirlineM
 			} catch (Exception e) {
 				status = false;
 			}
-
-		}
+		} else if (super.getRequest().getMethod().equals("POST"))
+			status = false;
 		super.getResponse().setAuthorised(status);
 	}
 

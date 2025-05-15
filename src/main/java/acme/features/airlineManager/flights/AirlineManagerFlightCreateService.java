@@ -30,9 +30,9 @@ public class AirlineManagerFlightCreateService extends AbstractGuiService<Airlin
 			try {
 				flightId = super.getRequest().getData("id", Integer.class);
 			} catch (Exception e) {
-				flightId = null;
+				flightId = Integer.valueOf(-1);
 			}
-			if (!flightId.equals(Integer.valueOf(0)))
+			if (flightId == null || !flightId.equals(Integer.valueOf(0)))
 				status = false;
 		} else if (super.getRequest().getMethod().equals("POST"))
 			status = false;

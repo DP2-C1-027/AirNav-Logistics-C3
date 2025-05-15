@@ -34,15 +34,22 @@ public class CustomersBookingCreateService extends AbstractGuiService<Customers,
 		Flight f;
 		customer = (Customers) super.getRequest().getPrincipal().getActiveRealm();
 
-		if (super.getRequest().hasData("flight", int.class)) {
+		if (super.getRequest().hasData("flight")) {
 			Integer flightId;
 			try {
-				flightId = super.getRequest().getData("flight", int.class);
+				flightId = super.getRequest().getData("flight", Integer.class);
+
+				if (!flightId.equals(Integer.valueOf(0))) {
+					f = this.repository.findFlightById(flightId);
+					Date d = f.getScheduledDeparture();
+					Date moment = super.getRequest().getData("purchaseMoment", Date.class);
+					status = super.getRequest().getPrincipal().hasRealm(customer) && !f.isDraftMode() && d.after(moment);
+
+				}
 			} catch (Exception e) {
-				flightId = null;
+				status = false;
+
 			}
-			f = flightId != null ? this.repository.findFlightById(flightId) : null;
-			status = f == null ? false : super.getRequest().getPrincipal().hasRealm(customer) && !f.isDraftMode();
 
 		}
 
@@ -51,12 +58,13 @@ public class CustomersBookingCreateService extends AbstractGuiService<Customers,
 
 			try {
 				id = super.getRequest().getData("id", Integer.class);
+				if (!id.equals(Integer.valueOf(0)))
+					status = false;
 
 			} catch (Exception e) {
-				id = null;
-			}
-			if (!id.equals(Integer.valueOf(0)))
 				status = false;
+			}
+
 		} else if (super.getRequest().getMethod().equals("POST"))
 			status = false;
 
@@ -76,6 +84,7 @@ public class CustomersBookingCreateService extends AbstractGuiService<Customers,
 		booking = new Booking();
 
 		booking.setPurchaseMoment(moment);
+
 		booking.setCustomer(customer);
 		booking.setDraftMode(true);
 

@@ -34,7 +34,7 @@ public class CustomersBookingRecordDeleteService extends AbstractGuiService<Cust
 		if (super.getRequest().hasData("id", int.class)) {
 			Integer bookingRecordId;
 			try {
-				bookingRecordId = super.getRequest().getData("id", int.class);
+				bookingRecordId = super.getRequest().getData("id", Integer.class);
 			} catch (Exception e) {
 				bookingRecordId = null;
 			}
@@ -49,13 +49,14 @@ public class CustomersBookingRecordDeleteService extends AbstractGuiService<Cust
 					id = super.getRequest().getData("passenger", Integer.class);
 					passenger = this.repository.findPassengerById(id);
 
-					if (!passenger.getCustomer().equals(customer))
+					if (!id.equals(Integer.valueOf(0)) && !passenger.getCustomer().equals(customer))
 						status = false;
 
 				} catch (Exception e) {
 					status = false;
 				}
-			}
+			} else if (super.getRequest().getMethod().equals("POST"))
+				status = false;
 
 			if (super.getRequest().hasData("booking")) {
 				Integer id;
@@ -63,7 +64,7 @@ public class CustomersBookingRecordDeleteService extends AbstractGuiService<Cust
 					id = super.getRequest().getData("booking", Integer.class);
 					booking = this.repository.findBookingById(id);
 
-					if (!booking.getCustomer().equals(customer))
+					if (!id.equals(Integer.valueOf(0)) && !booking.getCustomer().equals(customer))
 						status = false;
 
 				} catch (Exception e) {
@@ -71,7 +72,8 @@ public class CustomersBookingRecordDeleteService extends AbstractGuiService<Cust
 					booking = null;
 				}
 				status = booking != null ? status && booking.isDraftMode() : status;
-			}
+			} else if (super.getRequest().getMethod().equals("POST"))
+				status = false;
 
 		}
 
@@ -97,7 +99,6 @@ public class CustomersBookingRecordDeleteService extends AbstractGuiService<Cust
 
 	@Override
 	public void validate(final BookingRecord bookingRecord) {
-		super.state(bookingRecord.getBooking().isDraftMode(), "*", "customers.form.error.draft-mode");
 
 	}
 

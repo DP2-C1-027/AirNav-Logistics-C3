@@ -45,7 +45,7 @@ public interface CustomersBookingRecordRepository extends AbstractRepository {
 	@Query("select b from Booking b where b.customer.id=:id and b.draftMode=true")
 	Collection<Booking> findNotPublishBooking(@Param("id") int id);
 
-	@Query("SELECT COUNT(b) > 0 FROM BookingRecord b WHERE b.booking = :booking AND b.passenger = :passenger AND b.id <> :id")
+	@Query("SELECT COUNT(b) > 0 FROM BookingRecord b WHERE b.booking = :booking AND b.passenger = :passenger AND b.id != :id")
 	boolean existsByBookingAndPassengerExcludingId(@Param("booking") Booking booking, @Param("passenger") Passenger passenger, @Param("id") int id);
 
 }

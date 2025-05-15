@@ -31,27 +31,13 @@ public class CustomersBookingRecordCreateService extends AbstractGuiService<Cust
 		customer = (Customers) super.getRequest().getPrincipal().getActiveRealm();
 
 		status = super.getRequest().getPrincipal().hasRealm(customer);
-		if (super.getRequest().hasData("id")) {
-			Integer id;
-			try {
-				id = super.getRequest().getData("id", Integer.class);
-				if (!id.equals(Integer.valueOf(0)))
-					status = false;
-
-			} catch (Exception e) {
-				status = false;
-
-			}
-		} else if (super.getRequest().getMethod().equals("POST"))
-			status = false;
-
 		if (super.getRequest().hasData("booking")) {
 			Integer id;
 			try {
 				id = super.getRequest().getData("booking", Integer.class);
 				booking = this.repository.findBookingById(id);
 
-				if (!booking.getCustomer().equals(customer))
+				if (!id.equals(Integer.valueOf(0)) && !booking.getCustomer().equals(customer))
 					status = false;
 
 			} catch (Exception e) {
@@ -68,11 +54,25 @@ public class CustomersBookingRecordCreateService extends AbstractGuiService<Cust
 				id = super.getRequest().getData("passenger", Integer.class);
 				passenger = this.repository.findPassengerById(id);
 
-				if (!passenger.getCustomer().equals(customer))
+				if (!id.equals(Integer.valueOf(0)) && !passenger.getCustomer().equals(customer))
 					status = false;
 
 			} catch (Exception e) {
 				status = false;
+			}
+		} else if (super.getRequest().getMethod().equals("POST"))
+			status = false;
+
+		if (super.getRequest().hasData("id")) {
+			Integer id;
+			try {
+				id = super.getRequest().getData("id", Integer.class);
+				if (!id.equals(Integer.valueOf(0)))
+					status = false;
+
+			} catch (Exception e) {
+				status = false;
+
 			}
 		} else if (super.getRequest().getMethod().equals("POST"))
 			status = false;
@@ -106,8 +106,8 @@ public class CustomersBookingRecordCreateService extends AbstractGuiService<Cust
 
 		super.state(booking != null, "booking", "customer.booking-record.create.error.null-booking");
 		super.state(passenger != null, "passenger", "customer.booking-record.create.error.null-passenger");
-		if (booking != null)
-			super.state(booking.isDraftMode(), "booking", "customer.booking-record.create.publish.booking");
+		//if (booking != null)
+		//	super.state(booking.isDraftMode(), "booking", "customer.booking-record.create.publish.booking");
 		boolean exists = this.repository.existsByBookingAndPassenger(booking, passenger);
 		super.state(!exists, "*", "customer.booking-record.create.error.duplicate-booking-passenger");
 

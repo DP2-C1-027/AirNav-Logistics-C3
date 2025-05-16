@@ -34,6 +34,17 @@ public class CustomersBookingCreateService extends AbstractGuiService<Customers,
 		Flight f;
 		customer = (Customers) super.getRequest().getPrincipal().getActiveRealm();
 
+		if (super.getRequest().hasData("travelClass")) {
+			TravelClass valor;
+			try {
+				valor = super.getRequest().getData("travelClass", TravelClass.class);
+
+			} catch (Exception e) {
+				status = false;
+
+			}
+		}
+
 		if (super.getRequest().hasData("flight")) {
 			Integer flightId;
 			try {
@@ -109,10 +120,6 @@ public class CustomersBookingCreateService extends AbstractGuiService<Customers,
 
 		Collection<Booking> codigo = this.repository.findAllBookingLocatorCode(cod);
 		//Date d = booking == null ? null : booking.getPurchaseMoment();
-		//Date moment;
-		//moment = MomentHelper.getCurrentMoment();
-		//if (booking.getPurchaseMoment() != null && booking.getPurchaseMoment().after(moment))
-		//	super.state(false, "purchaseMoment", "customers.booking.error.date");
 
 		if (!codigo.isEmpty())
 			super.state(false, "locatorCode", "customers.booking.error.repeat-code");

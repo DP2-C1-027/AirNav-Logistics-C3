@@ -31,6 +31,17 @@ public class CustomersBookingUpdateService extends AbstractGuiService<Customers,
 
 		Booking booking;
 		Customers customer;
+
+		if (super.getRequest().hasData("travelClass")) {
+			TravelClass valor;
+			try {
+				valor = super.getRequest().getData("travelClass", TravelClass.class);
+
+			} catch (Exception e) {
+				status = false;
+
+			}
+		}
 		if (super.getRequest().hasData("id", int.class)) {
 			Integer bookingId;
 			try {

@@ -30,15 +30,16 @@ public class AirlineManagerLegsCreateService extends AbstractGuiService<AirlineM
 		boolean status = true;
 		Integer masterId;
 		AirlineManager manager;
+		Flight flight;
+		Integer flightId;
 
 		if (super.getRequest().hasData("flightId")) {
-			Integer flightId;
 			try {
 				flightId = super.getRequest().getData("flightId", Integer.class);
 			} catch (Exception e) {
 				flightId = null;
 			}
-			Flight flight = flightId == null ? null : this.repository.getFlightById(flightId);
+			flight = flightId == null ? null : this.repository.getFlightById(flightId);
 			manager = flight == null ? null : flight.getAirlineManager();
 			status = manager == null ? false : super.getRequest().getPrincipal().hasRealm(manager);
 		}
@@ -46,9 +47,9 @@ public class AirlineManagerLegsCreateService extends AbstractGuiService<AirlineM
 			try {
 				masterId = super.getRequest().getData("id", Integer.class);
 			} catch (Exception e) {
-				masterId = null;
+				masterId = Integer.valueOf(-1);
 			}
-			if (!masterId.equals(Integer.valueOf(0)))
+			if (masterId == null || !masterId.equals(Integer.valueOf(0)))
 				status = false;
 		} else if (super.getRequest().getMethod().equals("POST"))
 			status = false;
@@ -61,6 +62,20 @@ public class AirlineManagerLegsCreateService extends AbstractGuiService<AirlineM
 			} catch (Exception e) {
 				status = false;
 			}
+		} else if (super.getRequest().getMethod().equals("POST"))
+			status = false;
+
+		super.getRequest().getDataEntries().forEach((e) -> System.out.println(e.getKey().concat(": ").concat(e.getValue().toString())));
+		if (super.getRequest().hasData("flight")) {
+
+			try {
+				flightId = super.getRequest().getData("flight", Integer.class);
+			} catch (Exception e) {
+				flightId = Integer.valueOf(-1);
+			}
+			flight = flightId == null ? null : this.repository.getFlightById(flightId);
+			manager = flight == null ? null : flight.getAirlineManager();
+			status = manager == null ? flightId != null && flightId.equals(Integer.valueOf(0)) && status : super.getRequest().getPrincipal().hasRealm(manager) && status;
 		} else if (super.getRequest().getMethod().equals("POST"))
 			status = false;
 		super.getResponse().setAuthorised(status);

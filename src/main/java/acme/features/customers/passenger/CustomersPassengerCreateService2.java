@@ -47,6 +47,18 @@ public class CustomersPassengerCreateService2 extends AbstractGuiService<Custome
 
 			status = customer == null ? false : booking != null && booking.isDraftMode() && super.getRequest().getPrincipal().hasRealm(customer);
 		}
+		if (super.getRequest().hasData("id")) {
+			Integer id;
+			try {
+				id = super.getRequest().getData("id", Integer.class);
+				if (!id.equals(Integer.valueOf(0)))
+					status = false;
+
+			} catch (Exception e) {
+				status = false;
+			}
+		} else if (super.getRequest().getMethod().equals("POST"))
+			status = false;
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -64,7 +76,7 @@ public class CustomersPassengerCreateService2 extends AbstractGuiService<Custome
 		passenger = new Passenger();
 		passenger.setDateOfBirth(moment);
 		passenger.setCustomer(booking.getCustomer());
-
+		passenger.setDraftMode(true);
 		super.getBuffer().addData(passenger);
 
 		if (booking != null)
@@ -76,7 +88,6 @@ public class CustomersPassengerCreateService2 extends AbstractGuiService<Custome
 	public void bind(final Passenger passenger) {
 
 		super.bindObject(passenger, "fullName", "email", "passportNumber", "dateOfBirth", "specialNeeds");
-		passenger.setDraftMode(true);
 
 	}
 
@@ -101,6 +112,8 @@ public class CustomersPassengerCreateService2 extends AbstractGuiService<Custome
 		Dataset dataset;
 
 		dataset = super.unbindObject(passenger, "fullName", "email", "passportNumber", "dateOfBirth", "specialNeeds", "draftMode");
+
+		super.addPayload(dataset, passenger, "fullName", "email", "passportNumber", "dateOfBirth", "specialNeeds", "draftMode");
 		super.getResponse().addData(dataset);
 
 	}

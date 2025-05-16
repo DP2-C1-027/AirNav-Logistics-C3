@@ -85,6 +85,7 @@ public class CustomersBookingRecordShowService extends AbstractGuiService<Custom
 		dataset.put("passenger", passengerChoices.getSelected().getKey());
 		dataset.put("passengers", passengerChoices);
 		dataset.put("draftMode", bookingRecord.getBooking().isDraftMode());
+		super.addPayload(dataset, bookingRecord, "booking", "passenger");
 
 		super.getResponse().addData(dataset);
 

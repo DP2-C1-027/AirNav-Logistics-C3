@@ -13,6 +13,7 @@ import acme.client.services.GuiService;
 import acme.entities.booking.Booking;
 import acme.entities.booking.Passenger;
 import acme.entities.booking.TravelClass;
+import acme.entities.flights.Flight;
 import acme.realms.Customers;
 
 @GuiService
@@ -41,7 +42,8 @@ public class CustomersBookingPublishService extends AbstractGuiService<Customers
 			booking = bookingId != null ? this.repository.findBookinById(bookingId) : null;
 			customer = booking == null ? null : booking.getCustomer();
 			status = customer == null ? false : booking != null && booking.isDraftMode() && super.getRequest().getPrincipal().hasRealm(customer);
-		}
+		} else
+			status = false;
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -79,13 +81,13 @@ public class CustomersBookingPublishService extends AbstractGuiService<Customers
 
 		boolean confirmation = p.stream().allMatch(x -> !x.isDraftMode());
 		if (p.isEmpty())
-			//si no tiene pasajeros no se puede publicar
 			super.state(false, "*", "customer.booking.error.noPassenger.message");
-		//confirmation = super.getRequest().getData("confirmation", boolean.class);
+
 		super.state(confirmation, "*", "customer.booking.error.unpublishedPassengers.message");
 	}
 	@Override
 	public void perform(final Booking booking) {
+		assert booking != null;
 		booking.setDraftMode(false);
 		this.repository.save(booking);
 	}
@@ -106,9 +108,9 @@ public class CustomersBookingPublishService extends AbstractGuiService<Customers
 		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "travelClass", "lastNibble", "draftMode");
 		dataset.put("price", precioNuevo);
 		dataset.put("travelClasses", choices);
-
-		dataset.put("vuelo", booking.getFlight().getTag());
-
+		Flight f = booking.getFlight();
+		dataset.put("flight", f.getTag() + " : " + f.getDepartureCity() + "->" + f.getArrivalCity());
+		super.addPayload(dataset, booking, "locatorCode", "purchaseMoment", "travelClass", "lastNibble", "draftMode", "price", "flight");
 		super.getResponse().addData(dataset);
 	}
 

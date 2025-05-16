@@ -29,10 +29,45 @@ public class CustomersBookingCreateService extends AbstractGuiService<Customers,
 
 	@Override
 	public void authorise() {
-		boolean status;
+		boolean status = true;
 		Customers customer;
+		Flight f;
 		customer = (Customers) super.getRequest().getPrincipal().getActiveRealm();
-		status = super.getRequest().getPrincipal().hasRealm(customer);
+
+		if (super.getRequest().hasData("flight")) {
+			Integer flightId;
+			try {
+				flightId = super.getRequest().getData("flight", Integer.class);
+
+				if (!flightId.equals(Integer.valueOf(0))) {
+					f = this.repository.findFlightById(flightId);
+					Date d = f.getScheduledDeparture();
+					Date moment = super.getRequest().getData("purchaseMoment", Date.class);
+					status = super.getRequest().getPrincipal().hasRealm(customer) && !f.isDraftMode() && d.after(moment);
+
+				}
+			} catch (Exception e) {
+				status = false;
+
+			}
+
+		}
+
+		if (super.getRequest().hasData("id")) {
+			Integer id;
+
+			try {
+				id = super.getRequest().getData("id", Integer.class);
+				if (!id.equals(Integer.valueOf(0)))
+					status = false;
+
+			} catch (Exception e) {
+				status = false;
+			}
+
+		} else if (super.getRequest().getMethod().equals("POST"))
+			status = false;
+
 		super.getResponse().setAuthorised(status);
 
 	}
@@ -49,7 +84,9 @@ public class CustomersBookingCreateService extends AbstractGuiService<Customers,
 		booking = new Booking();
 
 		booking.setPurchaseMoment(moment);
+
 		booking.setCustomer(customer);
+		booking.setDraftMode(true);
 
 		super.getBuffer().addData(booking);
 
@@ -57,38 +94,43 @@ public class CustomersBookingCreateService extends AbstractGuiService<Customers,
 
 	@Override
 	public void bind(final Booking booking) {
-		int flightId = super.getRequest().getData("vuelo", int.class);
+		int flightId = super.getRequest().getData("flight", int.class);
 
 		Flight flight = this.repository.findFlightById(flightId);
 		super.bindObject(booking, "locatorCode", "travelClass", "lastNibble");
 		booking.setFlight(flight);
-		booking.setDraftMode(true);
 
 	}
 
 	@Override
 	public void validate(final Booking booking) {
+
 		String cod = booking.getLocatorCode();
+
 		Collection<Booking> codigo = this.repository.findAllBookingLocatorCode(cod);
-		Date d = booking.getPurchaseMoment() == null ? null : booking.getPurchaseMoment();
-		Date moment;
-		moment = MomentHelper.getCurrentMoment();
-		if (booking.getPurchaseMoment() != null && booking.getPurchaseMoment().after(moment))
-			super.state(false, "purchaseMoment", "customers.booking.error.date");
+		//Date d = booking == null ? null : booking.getPurchaseMoment();
+		//Date moment;
+		//moment = MomentHelper.getCurrentMoment();
+		//if (booking.getPurchaseMoment() != null && booking.getPurchaseMoment().after(moment))
+		//	super.state(false, "purchaseMoment", "customers.booking.error.date");
 
 		if (!codigo.isEmpty())
 			super.state(false, "locatorCode", "customers.booking.error.repeat-code");
 		if (booking.getFlight() == null)
-			super.state(false, "vuelo", "customers.booking.error.no-flight");
-		else if (d == null)
-			super.state(false, "purchaseMoment", "customers.booking.error.moment");
-		else if (!booking.getFlight().getScheduledDeparture().after(d))
-			super.state(false, "vuelo", "customers.booking.error.cannotChoseFlight");
+			super.state(false, "flight", "customers.booking.error.no-flight");
+		//if (d == null)
+		//super.state(false, "purchaseMoment", "customers.booking.error.moment");
+		//if (booking.getFlight() != null)
+		//if (booking.getFlight().isDraftMode())
+		//super.state(false, "flight", "customers.booking.error.vuelos-draftmode");
+		//else if (!booking.getFlight().getScheduledDeparture().after(d))
+		//super.state(false, "flight", "customers.booking.error.cannotChoseFlight");
 
 	}
 
 	@Override
 	public void perform(final Booking booking) {
+		assert booking != null;
 		this.repository.save(booking);
 	}
 
@@ -112,13 +154,14 @@ public class CustomersBookingCreateService extends AbstractGuiService<Customers,
 			flightChoices2.add(key, label, isSelected);
 		}
 
-		//flightChoices = SelectChoices.from(vuelos, "tag", flight);
 		choices = SelectChoices.from(TravelClass.class, booking.getTravelClass());
 		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "travelClass", "lastNibble", "draftMode");
-		dataset.put("vuelo", flightChoices2.getSelected() != null ? flightChoices2.getSelected().getKey() : "");
+		dataset.put("flight", flightChoices2.getSelected() != null ? flightChoices2.getSelected().getKey() : "");
 		dataset.put("vuelos", flightChoices2);
 		dataset.put("price", booking.getPrice());
 		dataset.put("travelClasses", choices);
+
+		super.addPayload(dataset, booking, "locatorCode", "purchaseMoment", "travelClass", "lastNibble", "draftMode", "flight", "price");
 
 		super.getResponse().addData(dataset);
 

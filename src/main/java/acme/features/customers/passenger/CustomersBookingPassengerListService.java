@@ -40,7 +40,8 @@ public class CustomersBookingPassengerListService extends AbstractGuiService<Cus
 			Customers customer = booking != null ? booking.getCustomer() : null;
 
 			status = customer == null ? false : super.getRequest().getPrincipal().hasRealm(customer) || booking != null && !booking.isDraftMode();
-		}
+		} else
+			status = false;
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -64,7 +65,8 @@ public class CustomersBookingPassengerListService extends AbstractGuiService<Cus
 	public void unbind(final Passenger passenger) {
 		Dataset dataset;
 
-		dataset = super.unbindObject(passenger, "fullName", "email");
+		dataset = super.unbindObject(passenger, "fullName");
+		super.addPayload(dataset, passenger);
 
 		super.getResponse().addData(dataset);
 	}

@@ -32,7 +32,7 @@ public class CustomersBookingRecordUpdateService extends AbstractGuiService<Cust
 		if (super.getRequest().hasData("id", int.class)) {
 			Integer bookingRecordId;
 			try {
-				bookingRecordId = super.getRequest().getData("id", int.class);
+				bookingRecordId = super.getRequest().getData("id", Integer.class);
 			} catch (Exception e) {
 				bookingRecordId = null;
 			}
@@ -40,6 +40,36 @@ public class CustomersBookingRecordUpdateService extends AbstractGuiService<Cust
 			booking = bookingRecordId != null ? this.repository.findOneBookingByBookingRecord(bookingRecordId) : null;
 			customer = booking != null ? booking.getCustomer() : null;
 			status = customer == null ? false : booking != null && passenger != null && booking.isDraftMode() && super.getRequest().getPrincipal().hasRealm(customer);
+			if (super.getRequest().hasData("passenger")) {
+				Integer id;
+				try {
+					id = super.getRequest().getData("passenger", Integer.class);
+					passenger = this.repository.findPassengerById(id);
+
+					if (!id.equals(Integer.valueOf(0)) && !passenger.getCustomer().equals(customer))
+						status = false;
+
+				} catch (Exception e) {
+					status = false;
+				}
+			}
+
+			if (super.getRequest().hasData("booking")) {
+				Integer id;
+				try {
+					id = super.getRequest().getData("booking", Integer.class);
+					booking = this.repository.findBookingById(id);
+
+					if (!id.equals(Integer.valueOf(0)) && !booking.getCustomer().equals(customer))
+						status = false;
+
+				} catch (Exception e) {
+					status = false;
+					booking = null;
+				}
+				status = booking != null ? status && booking.isDraftMode() : status;
+			}
+
 		}
 
 		super.getResponse().setAuthorised(status);
@@ -89,6 +119,9 @@ public class CustomersBookingRecordUpdateService extends AbstractGuiService<Cust
 	@Override
 	public void unbind(final BookingRecord bookingRecord) {
 		Dataset dataset;
+		BookingRecord bookingRecordd = this.repository.findBookingRecord(bookingRecord.getId());
+		Booking bookingReceived = bookingRecord.getBooking();
+
 		Customers customer = (Customers) super.getRequest().getPrincipal().getActiveRealm();
 
 		Collection<Passenger> passenger = this.repository.findPassengerByCustomerId(customer.getId());
@@ -106,7 +139,8 @@ public class CustomersBookingRecordUpdateService extends AbstractGuiService<Cust
 		dataset.put("bookings", bookingChoices);
 		dataset.put("passenger", passengerChoices.getSelected().getKey());
 		dataset.put("passengers", passengerChoices);
-		dataset.put("draftMode", bookingRecord.getBooking().isDraftMode());
+		dataset.put("draftMode", bookingReceived != null ? bookingReceived.isDraftMode() : bookingRecordd.getBooking().isDraftMode());
+		super.addPayload(dataset, bookingRecord, "booking", "passenger");
 
 		super.getResponse().addData(dataset);
 

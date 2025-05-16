@@ -44,3 +44,5 @@ customers.booking.error.cannotChoseFlight = The flight date cannot be earlier th
 customers.booking.error.moment= Please complete the date before choose a flight
 
 customers.booking.error.purchaseMoment= The purchase date must be prior to the flight date
+
+customers.booking.error.vuelos-draftmode= The flight must be published

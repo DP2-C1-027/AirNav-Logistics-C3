@@ -27,7 +27,7 @@
 	
 	<jstl:choose>
 	<jstl:when test="${_command == 'show' && draftMode == false}">
-	<acme:input-textbox  code="customers.booking.form.label.vuelos" path="vuelo" readonly="true"/>
+	<acme:input-textbox  code="customers.booking.form.label.vuelos" path="flight" readonly="true"/>
 		<acme:button code="customers.bookingPassenger.list.button.passenger" action="/customers/passenger/passengerList?bookingId=${id}"/>
 		
 			
@@ -35,11 +35,11 @@
 		</jstl:when>
 		
 		<jstl:when test="${_command == 'create'}">
-		<acme:input-select  code="customers.booking.form.label.vuelos" path="vuelo" choices="${vuelos}"/>
+		<acme:input-select  code="customers.booking.form.label.vuelos" path="flight" choices="${vuelos}"/>
 		<acme:submit code="customers.booking.form.button.create" action="/customers/booking/create"/>
 		</jstl:when>
 		<jstl:when test="${acme:anyOf(_command, 'show|update|publish|delete') && draftMode == true }">
-		<acme:input-textbox code="customers.booking.form.label.vuelos" path="vuelo" readonly="true"/>
+		<acme:input-textbox code="customers.booking.form.label.vuelos" path="flight" readonly="true"/>
 		<acme:button code="customers.bookingPassenger.list.button.passenger" action="/customers/passenger/passengerList?bookingId=${id}"/>
 		<acme:submit code="customers.booking.form.button.update" action="/customers/booking/update"/>
 		<acme:submit code="customers.booking.form.button.publish" action="/customers/booking/publish"/>

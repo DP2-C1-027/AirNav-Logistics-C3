@@ -13,6 +13,7 @@ import acme.client.services.GuiService;
 import acme.entities.booking.Booking;
 import acme.entities.booking.BookingRecord;
 import acme.entities.booking.TravelClass;
+import acme.entities.flights.Flight;
 import acme.features.customers.bookingRecord.CustomersBookingRecordRepository;
 import acme.realms.Customers;
 
@@ -47,7 +48,8 @@ public class CustomersBookingDeleteService extends AbstractGuiService<Customers,
 			customer = booking != null ? booking.getCustomer() : null;
 
 			status = customer == null ? false : booking != null && booking.isDraftMode() && super.getRequest().getPrincipal().hasRealm(customer);
-		}
+		} else
+			status = false;
 
 		super.getResponse().setAuthorised(status);
 
@@ -74,9 +76,7 @@ public class CustomersBookingDeleteService extends AbstractGuiService<Customers,
 	@Override
 	public void validate(final Booking booking) {
 
-		if (!super.getBuffer().getErrors().hasErrors("draftMode"))
-			super.state(booking.isDraftMode(), "draftMode", "customers.form.error.draft-mode.delete");
-
+		;
 	}
 
 	@Override
@@ -103,6 +103,9 @@ public class CustomersBookingDeleteService extends AbstractGuiService<Customers,
 		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "travelClass", "lastNibble", "draftMode");
 		dataset.put("price", precioNuevo);
 		dataset.put("travelClasses", choices);
+		Flight f = booking.getFlight();
+		dataset.put("vuelo", f.getTag() + " : " + f.getDepartureCity() + "->" + f.getArrivalCity());
+		super.addPayload(dataset, booking, "locatorCode", "purchaseMoment", "travelClass", "lastNibble", "draftMode", "price", "vuelo");
 		super.getResponse().addData(dataset);
 	}
 }

@@ -50,21 +50,27 @@ public class FlightCrewMemberActivityLogUpdateService extends AbstractGuiService
 
 	@Override
 	public void bind(final ActivityLog activityLog) {
+		assert activityLog != null;
+
 		super.bindObject(activityLog, "typeOfIncident", "description", "severityLevel");
 	}
 
 	@Override
 	public void validate(final ActivityLog activityLog) {
-
+		assert activityLog != null;
 	}
 
 	@Override
 	public void perform(final ActivityLog activityLog) {
+		assert activityLog != null;
+
 		this.repository.save(activityLog);
 	}
 
 	@Override
 	public void unbind(final ActivityLog activityLog) {
+		assert activityLog != null;
+
 		Dataset dataset = super.unbindObject(activityLog, "registrationMoment", "typeOfIncident", "description", "severityLevel", "draftMode");
 
 		// Show create if the assignment is completed

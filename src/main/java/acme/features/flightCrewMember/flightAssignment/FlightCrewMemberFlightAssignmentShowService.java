@@ -51,6 +51,8 @@ public class FlightCrewMemberFlightAssignmentShowService extends AbstractGuiServ
 
 	@Override
 	public void unbind(final FlightAssignment flightAssignment) {
+		assert flightAssignment != null;
+
 		Dataset dataset = super.unbindObject(flightAssignment, "duty", "moment", "currentStatus", "remarks", "flightCrewMember", "leg", "draftMode");
 
 		dataset.put("flightCrewMember", flightAssignment.getFlightCrewMember().getIdentity().getFullName());

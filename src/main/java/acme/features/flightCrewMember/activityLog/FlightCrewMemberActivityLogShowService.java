@@ -49,6 +49,8 @@ public class FlightCrewMemberActivityLogShowService extends AbstractGuiService<F
 
 	@Override
 	public void unbind(final ActivityLog activityLog) {
+		assert activityLog != null;
+
 		Dataset dataset = super.unbindObject(activityLog, "registrationMoment", "typeOfIncident", "description", "severityLevel", "draftMode");
 
 		// Show create if the assignment is completed

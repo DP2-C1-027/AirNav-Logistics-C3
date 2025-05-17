@@ -39,7 +39,7 @@ public class FlightAssignment extends AbstractEntity {
 
 	@Mandatory
 	@Automapped
-	@ValidMoment
+	@ValidMoment(past = true)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date				moment;
 
@@ -62,13 +62,13 @@ public class FlightAssignment extends AbstractEntity {
 	// Relationships ----------------------------------------------------------
 
 	@Mandatory
-	@ManyToOne(optional = false)
 	@Valid
+	@ManyToOne(optional = false)
 	private FlightCrewMember	flightCrewMember;
 
 	@Mandatory
-	@ManyToOne(optional = false)
 	@Valid
+	@ManyToOne(optional = false)
 	private Leg					leg;
 
 }

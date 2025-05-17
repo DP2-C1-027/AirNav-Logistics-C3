@@ -51,10 +51,15 @@ public class FlightCrewMemberActivityLogListService extends AbstractGuiService<F
 
 	@Override
 	public void unbind(final ActivityLog activityLog) {
+		assert activityLog != null;
+
 		Dataset dataset = super.unbindObject(activityLog, "registrationMoment", "typeOfIncident", "description", "severityLevel", "draftMode");
 
+		int assignmentId = super.getRequest().getData("assignmentId", int.class);
+		FlightAssignment flightAssignment = this.repository.findFlightAssignmentById(assignmentId);
+
 		// Show create if the assignment is completed
-		if (activityLog.getFlightAssignment().getLeg().getScheduledArrival().before(MomentHelper.getCurrentMoment()))
+		if (flightAssignment.getLeg().getScheduledArrival().before(MomentHelper.getCurrentMoment()))
 			super.getResponse().addGlobal("showAction", true);
 
 		super.getResponse().addData(dataset);
@@ -62,6 +67,15 @@ public class FlightCrewMemberActivityLogListService extends AbstractGuiService<F
 
 	@Override
 	public void unbind(final Collection<ActivityLog> activityLogs) {
+		assert activityLogs != null;
+
+		int assignmentId = super.getRequest().getData("assignmentId", int.class);
+		FlightAssignment flightAssignment = this.repository.findFlightAssignmentById(assignmentId);
+
+		// Show create if the assignment is completed
+		if (flightAssignment.getLeg().getScheduledArrival().before(MomentHelper.getCurrentMoment()))
+			super.getResponse().addGlobal("showAction", true);
+
 		super.getResponse().addGlobal("assignmentId", super.getRequest().getData("assignmentId", int.class));
 	}
 

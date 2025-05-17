@@ -25,7 +25,19 @@ public class AnyFlightAssignmentShowService extends AbstractGuiService<Any, Flig
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+
+		boolean isAuthorised = false;
+
+		try {
+			int flightAssignmentId = super.getRequest().getData("id", int.class);
+			FlightAssignment flightAssignment = this.repository.findFlightAssignmentById(flightAssignmentId);
+			isAuthorised = flightAssignment != null && !flightAssignment.getDraftMode();
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+			e.printStackTrace();
+		}
+
+		super.getResponse().setAuthorised(isAuthorised);
 	}
 
 	@Override
@@ -38,6 +50,8 @@ public class AnyFlightAssignmentShowService extends AbstractGuiService<Any, Flig
 
 	@Override
 	public void unbind(final FlightAssignment completedFlightAssignment) {
+		assert completedFlightAssignment != null;
+
 		Dataset dataset = super.unbindObject(completedFlightAssignment, "duty", "moment", "currentStatus", "remarks", "flightCrewMember", "leg", "draftMode");
 
 		// Duty choices

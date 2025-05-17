@@ -22,7 +22,20 @@ public class FlightCrewMemberVisaRequirementsShowService extends AbstractGuiServ
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+
+		boolean isAuthorised = false;
+
+		try {
+			// Only is allowed to show an activity log if the creator is the flight crew member associated to the flight assignment.
+			int visaRequirementsId = super.getRequest().getData("id", int.class);
+			VisaRequirements visaRequirements = this.repository.findVisaRequirementsById(visaRequirementsId);
+			isAuthorised = visaRequirements != null && super.getRequest().getPrincipal().hasRealmOfType(FlightCrewMember.class);
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+			e.printStackTrace();
+		}
+
+		super.getResponse().setAuthorised(isAuthorised);
 	}
 
 	@Override
@@ -35,6 +48,8 @@ public class FlightCrewMemberVisaRequirementsShowService extends AbstractGuiServ
 
 	@Override
 	public void unbind(final VisaRequirements visaRequirements) {
+		assert visaRequirements != null;
+
 		Dataset dataset = super.unbindObject(visaRequirements, "country", "nationality", "visaRequired", "visaType", "additionalInfo");
 
 		super.getResponse().addData(dataset);

@@ -23,6 +23,7 @@ master.menu.any = Any
 master.menu.any.airport = List airports
 master.menu.any.review = List reviews
 master.menu.any.service = List services
+master.menu.any.list-flight-assignments-published = List flight assignments published
 
 # master.menu.administrator ###################################################
 

@@ -27,13 +27,21 @@ public class FlightCrewMemberFlightAssignmentPublishService extends AbstractGuiS
 
 	@Override
 	public void authorise() {
-		// Only is allowed to publish a flight assignment if the creator is associated.
-		// A flight assignment cannot be published if the assignment is in published mode and not in draft mode.
-		int flightAssignmentId = super.getRequest().getData("id", int.class);
-		FlightAssignment flightAssignment = this.repository.findFlightAssignmentById(flightAssignmentId);
-		boolean status = flightAssignment != null && flightAssignment.getDraftMode() && super.getRequest().getPrincipal().hasRealm(flightAssignment.getFlightCrewMember());
 
-		super.getResponse().setAuthorised(status);
+		boolean isAuthorised = false;
+
+		try {
+			// Only is allowed to publish a flight assignment if the creator is associated.
+			// A flight assignment cannot be published if the assignment is in published mode and not in draft mode.
+			int flightAssignmentId = super.getRequest().getData("id", int.class);
+			FlightAssignment flightAssignment = this.repository.findFlightAssignmentById(flightAssignmentId);
+			isAuthorised = flightAssignment != null && flightAssignment.getDraftMode() && super.getRequest().getPrincipal().hasRealm(flightAssignment.getFlightCrewMember());
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+			e.printStackTrace();
+		}
+
+		super.getResponse().setAuthorised(isAuthorised);
 	}
 
 	@Override
@@ -46,23 +54,14 @@ public class FlightCrewMemberFlightAssignmentPublishService extends AbstractGuiS
 
 	@Override
 	public void bind(final FlightAssignment flightAssignment) {
+		assert flightAssignment != null;
+
 		super.bindObject(flightAssignment, "duty", "currentStatus", "remarks", "leg");
 	}
 
 	@Override
 	public void validate(final FlightAssignment flightAssignment) {
-
-		// Each leg can only have one pilot and one co-pilot
-		if (flightAssignment.getDuty() != null && flightAssignment.getLeg() != null) {
-			boolean isDutyAlreadyAssigned = this.repository.hasDutyAssigned(flightAssignment.getLeg().getId(), flightAssignment.getDuty(), flightAssignment.getId());
-			super.state(!isDutyAlreadyAssigned, "duty", "acme.validation.flightAssignment.duty");
-		}
-
-		// To publish a flight assignment these cannot be linked to legs that have already occurred
-		if (flightAssignment.getLeg() != null) {
-			boolean isLinkedToPastLeg = flightAssignment.getLeg().getScheduledDeparture().before(MomentHelper.getCurrentMoment());
-			super.state(!isLinkedToPastLeg, "leg", "acme.validation.flightAssignment.leg.moment");
-		}
+		assert flightAssignment != null;
 
 		if (flightAssignment.getFlightCrewMember() != null) {
 			// Only flight crew members with an "AVAILABLE" status can be assigned 
@@ -74,16 +73,38 @@ public class FlightCrewMemberFlightAssignmentPublishService extends AbstractGuiS
 			super.state(!isAlreadyAssigned, "flightCrewMember", "acme.validation.flightAssignment.flightCrewMember.multipleLegs");
 		}
 
+		// To publish a flight assignment these cannot be linked to legs that are not published, do not belongs to the flight crew member airline or have already occurred
+		if (flightAssignment.getLeg() != null) {
+			boolean isDraftModeLeg = flightAssignment.getLeg().isDraftMode();
+			super.state(!isDraftModeLeg, "leg", "acme.validation.flightAssignment.leg.draftmode");
+
+			boolean isWrongAirlineLeg = flightAssignment.getLeg().getAircraft().getAirline().equals(flightAssignment.getFlightCrewMember().getAirline());
+			super.state(isWrongAirlineLeg, "leg", "acme.validation.flightAssignment.leg.airline");
+
+			boolean isLinkedToPastLeg = flightAssignment.getLeg().getScheduledDeparture().before(MomentHelper.getCurrentMoment());
+			super.state(!isLinkedToPastLeg, "leg", "acme.validation.flightAssignment.leg.moment");
+		}
+
+		// Each leg can only have one pilot and one co-pilot
+		if (flightAssignment.getDuty() != null && flightAssignment.getLeg() != null) {
+			boolean isDutyAlreadyAssigned = this.repository.hasDutyAssigned(flightAssignment.getLeg().getId(), flightAssignment.getDuty(), flightAssignment.getId());
+			super.state(!isDutyAlreadyAssigned, "duty", "acme.validation.flightAssignment.duty");
+		}
+
 	}
 
 	@Override
 	public void perform(final FlightAssignment flightAssignment) {
+		assert flightAssignment != null;
+
 		flightAssignment.setDraftMode(false);
 		this.repository.save(flightAssignment);
 	}
 
 	@Override
 	public void unbind(final FlightAssignment flightAssignment) {
+		assert flightAssignment != null;
+
 		Dataset dataset = super.unbindObject(flightAssignment, "duty", "moment", "currentStatus", "remarks", "draftMode", "flightCrewMember", "leg");
 
 		dataset.put("flightCrewMember", flightAssignment.getFlightCrewMember().getIdentity().getFullName());

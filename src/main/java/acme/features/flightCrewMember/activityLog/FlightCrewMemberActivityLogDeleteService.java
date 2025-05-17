@@ -23,13 +23,21 @@ public class FlightCrewMemberActivityLogDeleteService extends AbstractGuiService
 
 	@Override
 	public void authorise() {
-		// Only is allowed to delete an activity log if the creator is the flight crew member associated to the flight assignment.
-		// An activity log cannot be deleted if the activity log is published, only in draft mode are allowed.
-		int activityLogId = super.getRequest().getData("id", int.class);
-		ActivityLog activityLog = this.repository.findActivityLogById(activityLogId);
-		boolean status = activityLog != null && activityLog.getDraftMode() && super.getRequest().getPrincipal().hasRealm(activityLog.getFlightAssignment().getFlightCrewMember());
 
-		super.getResponse().setAuthorised(status);
+		boolean isAuthorised = false;
+
+		try {
+			// Only is allowed to delete an activity log if the creator is the flight crew member associated to the flight assignment.
+			// An activity log cannot be deleted if the activity log is published, only in draft mode are allowed.
+			int activityLogId = super.getRequest().getData("id", int.class);
+			ActivityLog activityLog = this.repository.findActivityLogById(activityLogId);
+			isAuthorised = activityLog != null && activityLog.getDraftMode() && super.getRequest().getPrincipal().hasRealm(activityLog.getFlightAssignment().getFlightCrewMember());
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+			e.printStackTrace();
+		}
+
+		super.getResponse().setAuthorised(isAuthorised);
 	}
 
 	@Override
@@ -42,21 +50,25 @@ public class FlightCrewMemberActivityLogDeleteService extends AbstractGuiService
 
 	@Override
 	public void bind(final ActivityLog activityLog) {
-
+		assert activityLog != null;
 	}
 
 	@Override
 	public void validate(final ActivityLog activityLog) {
-
+		assert activityLog != null;
 	}
 
 	@Override
 	public void perform(final ActivityLog activityLog) {
+		assert activityLog != null;
+
 		this.repository.delete(activityLog);
 	}
 
 	@Override
 	public void unbind(final ActivityLog activityLog) {
+		assert activityLog != null;
+
 		Dataset dataset = super.unbindObject(activityLog, "registrationMoment", "typeOfIncident", "description", "severityLevel", "draftMode");
 
 		// Show create if the assignment is completed

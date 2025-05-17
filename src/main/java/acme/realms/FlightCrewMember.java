@@ -7,7 +7,6 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
 import javax.validation.Valid;
-import javax.validation.constraints.Min;
 
 import acme.client.components.basis.AbstractRole;
 import acme.client.components.datatypes.Money;
@@ -18,6 +17,7 @@ import acme.client.components.validation.ValidMoney;
 import acme.constraints.ValidIdentifier;
 import acme.constraints.ValidLongText;
 import acme.constraints.ValidPhoneNumber;
+import acme.constraints.ValidYearsOfExperience;
 import acme.entities.airline.Airline;
 import lombok.Getter;
 import lombok.Setter;
@@ -60,7 +60,7 @@ public class FlightCrewMember extends AbstractRole {
 
 	@Optional
 	@Automapped
-	@Min(0)
+	@ValidYearsOfExperience
 	private Integer				yearsOfExperience;
 
 	// Derived attributes -----------------------------------------------------
@@ -68,8 +68,8 @@ public class FlightCrewMember extends AbstractRole {
 	// Relationships ----------------------------------------------------------
 
 	@Mandatory
-	@ManyToOne(optional = false)
 	@Valid
+	@ManyToOne(optional = false)
 	private Airline				airline;
 
 }

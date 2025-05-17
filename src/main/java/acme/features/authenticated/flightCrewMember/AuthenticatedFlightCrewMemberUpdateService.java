@@ -54,28 +54,28 @@ public class AuthenticatedFlightCrewMemberUpdateService extends AbstractGuiServi
 
 	@Override
 	public void bind(final FlightCrewMember flightCrewMember) {
+		assert flightCrewMember != null;
 
-		super.bindObject(flightCrewMember, "codigo", "phoneNumber", "languageSkills", "availabilityStatus", "salary", "yearsOfExperience", "airline");
+		super.bindObject(flightCrewMember, "phoneNumber", "languageSkills", "availabilityStatus");
 	}
 
 	@Override
 	public void validate(final FlightCrewMember flightCrewMember) {
-
-		String cod = flightCrewMember.getCodigo();
-		Collection<FlightCrewMember> codigo = this.repository.findFlightCrewMemberCode(cod).stream().filter(x -> x.getId() != flightCrewMember.getId()).toList();
-
-		if (!codigo.isEmpty())
-			super.state(false, "codigo", "acme.validation.error.repeat-code");
+		assert flightCrewMember != null;
 
 	}
 
 	@Override
 	public void perform(final FlightCrewMember flightCrewMember) {
+		assert flightCrewMember != null;
+
 		this.repository.save(flightCrewMember);
 	}
 
 	@Override
 	public void unbind(final FlightCrewMember flightCrewMember) {
+		assert flightCrewMember != null;
+
 		Dataset dataset = super.unbindObject(flightCrewMember, "codigo", "phoneNumber", "languageSkills", "availabilityStatus", "salary", "yearsOfExperience", "airline");
 
 		// Status choices

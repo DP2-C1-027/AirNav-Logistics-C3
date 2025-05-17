@@ -28,13 +28,21 @@ public class FlightCrewMemberFlightAssignmentDeleteService extends AbstractGuiSe
 
 	@Override
 	public void authorise() {
-		// Only is allowed to delete an flight assignment if the creator is associated.
-		// A flight assignment cannot be deleted if is published, only in draft mode are allowed.
-		int flightAssignmentId = super.getRequest().getData("id", int.class);
-		FlightAssignment flightAssignment = this.repository.findFlightAssignmentById(flightAssignmentId);
-		boolean status = flightAssignment != null && flightAssignment.getDraftMode() && super.getRequest().getPrincipal().hasRealm(flightAssignment.getFlightCrewMember());
 
-		super.getResponse().setAuthorised(status);
+		boolean isAuthorised = false;
+
+		try {
+			// Only is allowed to delete an flight assignment if the creator is associated.
+			// A flight assignment cannot be deleted if is published, only in draft mode are allowed.
+			int flightAssignmentId = super.getRequest().getData("id", int.class);
+			FlightAssignment flightAssignment = this.repository.findFlightAssignmentById(flightAssignmentId);
+			isAuthorised = flightAssignment != null && flightAssignment.getDraftMode() && super.getRequest().getPrincipal().hasRealm(flightAssignment.getFlightCrewMember());
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+			e.printStackTrace();
+		}
+
+		super.getResponse().setAuthorised(isAuthorised);
 	}
 
 	@Override
@@ -47,16 +55,18 @@ public class FlightCrewMemberFlightAssignmentDeleteService extends AbstractGuiSe
 
 	@Override
 	public void bind(final FlightAssignment flightAssignment) {
-
+		assert flightAssignment != null;
 	}
 
 	@Override
 	public void validate(final FlightAssignment flightAssignment) {
-
+		assert flightAssignment != null;
 	}
 
 	@Override
 	public void perform(final FlightAssignment flightAssignment) {
+		assert flightAssignment != null;
+
 		Collection<ActivityLog> activityLogs = this.repository.findAllActivityLogs(flightAssignment.getId());
 		this.repository.deleteAll(activityLogs);
 		this.repository.delete(flightAssignment);
@@ -64,6 +74,8 @@ public class FlightCrewMemberFlightAssignmentDeleteService extends AbstractGuiSe
 
 	@Override
 	public void unbind(final FlightAssignment flightAssignment) {
+		assert flightAssignment != null;
+
 		Dataset dataset = super.unbindObject(flightAssignment, "duty", "moment", "currentStatus", "remarks", "draftMode", "flightCrewMember", "leg");
 
 		dataset.put("flightCrewMember", flightAssignment.getFlightCrewMember().getIdentity().getFullName());

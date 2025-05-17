@@ -44,8 +44,7 @@
 		<acme:submit code="customers.booking.form.button.update" action="/customers/booking/update"/>
 		<acme:submit code="customers.booking.form.button.publish" action="/customers/booking/publish"/>
 		<acme:submit code="customers.booking.form.button.delete" action="/customers/booking/delete"/>
-		
-		<acme:button code="customers.passenger.form.button.createBooking" action="/customers/passenger/createBooking?bookingId=${id}"/>
+			<acme:button code="customers.passenger.form.button.createBooking" action="/customers/passenger/createBooking?bookingId=${id}"/>
 		</jstl:when>
 	</jstl:choose>
 	

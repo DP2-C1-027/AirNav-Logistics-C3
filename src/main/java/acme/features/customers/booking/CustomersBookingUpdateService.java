@@ -32,16 +32,6 @@ public class CustomersBookingUpdateService extends AbstractGuiService<Customers,
 		Booking booking;
 		Customers customer;
 
-		if (super.getRequest().hasData("travelClass")) {
-			TravelClass valor;
-			try {
-				valor = super.getRequest().getData("travelClass", TravelClass.class);
-
-			} catch (Exception e) {
-				status = false;
-
-			}
-		}
 		if (super.getRequest().hasData("id", int.class)) {
 			Integer bookingId;
 			try {
@@ -53,6 +43,19 @@ public class CustomersBookingUpdateService extends AbstractGuiService<Customers,
 			booking = bookingId != null ? this.repository.findBookinById(bookingId) : null;
 			customer = booking != null ? booking.getCustomer() : null;
 			status = customer == null ? false : booking != null && booking.isDraftMode() && super.getRequest().getPrincipal().hasRealm(customer);
+
+		} else
+			status = false;
+
+		if (super.getRequest().hasData("travelClass")) {
+			TravelClass valor;
+			try {
+				valor = super.getRequest().getData("travelClass", TravelClass.class);
+
+			} catch (Exception e) {
+				status = false;
+
+			}
 
 		} else
 			status = false;
@@ -91,7 +94,7 @@ public class CustomersBookingUpdateService extends AbstractGuiService<Customers,
 
 	@Override
 	public void perform(final Booking booking) {
-		assert booking != null;
+
 		this.repository.save(booking);
 	}
 

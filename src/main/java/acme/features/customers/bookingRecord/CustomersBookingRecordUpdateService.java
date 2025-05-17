@@ -39,7 +39,7 @@ public class CustomersBookingRecordUpdateService extends AbstractGuiService<Cust
 			passenger = bookingRecordId != null ? this.repository.findOnePassengerByBookingRecord(bookingRecordId) : null;
 			booking = bookingRecordId != null ? this.repository.findOneBookingByBookingRecord(bookingRecordId) : null;
 			customer = booking != null ? booking.getCustomer() : null;
-			status = customer == null ? false : booking != null && passenger != null && booking.isDraftMode() && super.getRequest().getPrincipal().hasRealm(customer);
+			status = customer != null && booking != null && passenger != null && booking.isDraftMode() && super.getRequest().getPrincipal().hasRealm(customer);
 			if (super.getRequest().hasData("passenger")) {
 				Integer id;
 				try {
@@ -52,7 +52,8 @@ public class CustomersBookingRecordUpdateService extends AbstractGuiService<Cust
 				} catch (Exception e) {
 					status = false;
 				}
-			}
+			} else
+				status = false;
 
 			if (super.getRequest().hasData("booking")) {
 				Integer id;
@@ -68,9 +69,11 @@ public class CustomersBookingRecordUpdateService extends AbstractGuiService<Cust
 					booking = null;
 				}
 				status = booking != null ? status && booking.isDraftMode() : status;
-			}
+			} else
+				status = false;
 
-		}
+		} else
+			status = false;
 
 		super.getResponse().setAuthorised(status);
 
@@ -102,8 +105,6 @@ public class CustomersBookingRecordUpdateService extends AbstractGuiService<Cust
 
 		super.state(booking != null, "booking", "customer.booking-record.create.error.null-booking");
 		super.state(passenger != null, "passenger", "customer.booking-record.create.error.null-passenger");
-		//if (booking != null)
-		//super.state(booking.isDraftMode(), "booking", "customer.booking-record.create.publish.booking");
 		boolean exists = this.repository.existsByBookingAndPassengerExcludingId(booking, passenger, bookingRecord.getId());
 
 		super.state(!exists, "*", "customer.booking-record.create.error.duplicate-booking-passenger");

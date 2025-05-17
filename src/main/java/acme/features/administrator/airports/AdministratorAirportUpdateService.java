@@ -26,22 +26,34 @@ public class AdministratorAirportUpdateService extends AbstractGuiService<Admini
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+
+		boolean isAuthorised = false;
+
+		try {
+			Integer airportId = super.getRequest().getData("id", Integer.class);
+			if (airportId != null) {
+				Airport airport = this.repository.findAirport(airportId);
+				isAuthorised = airport != null && super.getRequest().getPrincipal().hasRealmOfType(Administrator.class);
+			}
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+			e.printStackTrace();
+		}
+
+		super.getResponse().setAuthorised(isAuthorised);
 	}
 
 	@Override
 	public void load() {
-		Airport airport;
-		int id;
-
-		id = super.getRequest().getData("id", int.class);
-		airport = this.repository.findAirport(id);
+		int id = super.getRequest().getData("id", int.class);
+		Airport airport = this.repository.findAirport(id);
 
 		super.getBuffer().addData(airport);
 	}
 
 	@Override
 	public void bind(final Airport airport) {
+		assert airport != null;
 
 		super.bindObject(airport, "name", "codigo", "city", "country", "website", "email", "address", "phoneNumber");
 
@@ -49,6 +61,8 @@ public class AdministratorAirportUpdateService extends AbstractGuiService<Admini
 
 	@Override
 	public void validate(final Airport airport) {
+		assert airport != null;
+
 		String cod = airport.getCodigo();
 		Collection<Airport> codigos = this.repository.findAllAirportCode(cod).stream().filter(x -> x.getId() != airport.getId()).toList();
 
@@ -64,18 +78,21 @@ public class AdministratorAirportUpdateService extends AbstractGuiService<Admini
 
 	@Override
 	public void perform(final Airport airport) {
+		assert airport != null;
+
 		this.repository.save(airport);
 	}
 
 	@Override
 	public void unbind(final Airport airport) {
-		Dataset dataset;
+		assert airport != null;
+
+		Dataset dataset = super.unbindObject(airport, "name", "codigo", "city", "country", "website", "email", "address", "phoneNumber");
 
 		SelectChoices choices = SelectChoices.from(OperationalScope.class, airport.getOperationalScope());
-
-		dataset = super.unbindObject(airport, "name", "codigo", "city", "country", "website", "email", "address", "phoneNumber");
-		dataset.put("confirmation", false);
 		dataset.put("operationalScope", choices);
+
+		dataset.put("confirmation", false);
 
 		super.getResponse().addData(dataset);
 	}

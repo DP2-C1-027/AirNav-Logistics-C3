@@ -18,31 +18,44 @@ public class AdministratorAirportShowService extends AbstractGuiService<Administ
 	@Autowired
 	private AdministratorAirportRepository repository;
 
-
 	// AbstractGuiService interface -------------------------------------------
+
+
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+
+		boolean isAuthorised = false;
+
+		try {
+			Integer airportId = super.getRequest().getData("id", Integer.class);
+			if (airportId != null) {
+				Airport airport = this.repository.findAirport(airportId);
+				isAuthorised = airport != null && super.getRequest().getPrincipal().hasRealmOfType(Administrator.class);
+			}
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+			e.printStackTrace();
+		}
+
+		super.getResponse().setAuthorised(isAuthorised);
 	}
+
 	@Override
 	public void load() {
-		Airport airport;
-		int id;
-
-		id = super.getRequest().getData("id", int.class);
-		airport = this.repository.findAirport(id);
+		int id = super.getRequest().getData("id", int.class);
+		Airport airport = this.repository.findAirport(id);
 
 		super.getBuffer().addData(airport);
 	}
+
 	@Override
 	public void unbind(final Airport airport) {
-		Dataset dataset;
+		assert airport != null;
 
-		dataset = super.unbindObject(airport, "name", "codigo", "city", "country", "website", "email", "address", "phoneNumber");
+		Dataset dataset = super.unbindObject(airport, "name", "codigo", "city", "country", "website", "email", "address", "phoneNumber");
 
 		SelectChoices choices = SelectChoices.from(OperationalScope.class, airport.getOperationalScope());
 		dataset.put("operationalScope", choices);
-
 
 		super.getResponse().addData(dataset);
 	}

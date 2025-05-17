@@ -27,9 +27,11 @@ public class FlightCrewMemberVisaRequirementsShowService extends AbstractGuiServ
 
 		try {
 			// Only is allowed to show an activity log if the creator is the flight crew member associated to the flight assignment.
-			int visaRequirementsId = super.getRequest().getData("id", int.class);
-			VisaRequirements visaRequirements = this.repository.findVisaRequirementsById(visaRequirementsId);
-			isAuthorised = visaRequirements != null && super.getRequest().getPrincipal().hasRealmOfType(FlightCrewMember.class);
+			Integer visaRequirementsId = super.getRequest().getData("id", Integer.class);
+			if (visaRequirementsId != null) {
+				VisaRequirements visaRequirements = this.repository.findVisaRequirementsById(visaRequirementsId);
+				isAuthorised = visaRequirements != null && super.getRequest().getPrincipal().hasRealmOfType(FlightCrewMember.class);
+			}
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
 			e.printStackTrace();

@@ -29,9 +29,11 @@ public class FlightCrewMemberActivityLogDeleteService extends AbstractGuiService
 		try {
 			// Only is allowed to delete an activity log if the creator is the flight crew member associated to the flight assignment.
 			// An activity log cannot be deleted if the activity log is published, only in draft mode are allowed.
-			int activityLogId = super.getRequest().getData("id", int.class);
-			ActivityLog activityLog = this.repository.findActivityLogById(activityLogId);
-			isAuthorised = activityLog != null && activityLog.getDraftMode() && super.getRequest().getPrincipal().hasRealm(activityLog.getFlightAssignment().getFlightCrewMember());
+			Integer activityLogId = super.getRequest().getData("id", Integer.class);
+			if (activityLogId != null) {
+				ActivityLog activityLog = this.repository.findActivityLogById(activityLogId);
+				isAuthorised = activityLog != null && activityLog.getDraftMode() && super.getRequest().getPrincipal().hasRealm(activityLog.getFlightAssignment().getFlightCrewMember());
+			}
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
 			e.printStackTrace();

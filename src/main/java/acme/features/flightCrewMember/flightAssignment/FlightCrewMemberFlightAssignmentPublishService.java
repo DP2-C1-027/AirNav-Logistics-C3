@@ -33,9 +33,11 @@ public class FlightCrewMemberFlightAssignmentPublishService extends AbstractGuiS
 		try {
 			// Only is allowed to publish a flight assignment if the creator is associated.
 			// A flight assignment cannot be published if the assignment is in published mode and not in draft mode.
-			int flightAssignmentId = super.getRequest().getData("id", int.class);
-			FlightAssignment flightAssignment = this.repository.findFlightAssignmentById(flightAssignmentId);
-			isAuthorised = flightAssignment != null && flightAssignment.getDraftMode() && super.getRequest().getPrincipal().hasRealm(flightAssignment.getFlightCrewMember());
+			Integer flightAssignmentId = super.getRequest().getData("id", Integer.class);
+			if (flightAssignmentId != null) {
+				FlightAssignment flightAssignment = this.repository.findFlightAssignmentById(flightAssignmentId);
+				isAuthorised = flightAssignment != null && flightAssignment.getDraftMode() && super.getRequest().getPrincipal().hasRealm(flightAssignment.getFlightCrewMember());
+			}
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
 			e.printStackTrace();

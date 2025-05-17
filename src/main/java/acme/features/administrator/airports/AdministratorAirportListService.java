@@ -24,23 +24,22 @@ public class AdministratorAirportListService extends AbstractGuiService<Administ
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		boolean status = super.getRequest().getPrincipal().hasRealmOfType(Administrator.class);
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
 	public void load() {
-		Collection<Airport> anouncements;
-
-		anouncements = this.repository.findAllAirport();
+		Collection<Airport> anouncements = this.repository.findAllAirport();
 
 		super.getBuffer().addData(anouncements);
 	}
 
 	@Override
 	public void unbind(final Airport airport) {
-		Dataset dataset;
+		assert airport != null;
 
-		dataset = super.unbindObject(airport, "name", "codigo", "operationalScope");
+		Dataset dataset = super.unbindObject(airport, "name", "codigo", "operationalScope");
 
 		super.getResponse().addData(dataset);
 

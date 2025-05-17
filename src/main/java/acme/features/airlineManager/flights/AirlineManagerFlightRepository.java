@@ -30,4 +30,7 @@ public interface AirlineManagerFlightRepository extends AbstractRepository {
 	@Query("SELECT a FROM Airline a")
 	Collection<Airline> getAllAirlines();
 
+	@Query("SELECT a FROM Airline a WHERE a.id = :airlineId")
+	Airline getAirlineById(int airlineId);
+
 }

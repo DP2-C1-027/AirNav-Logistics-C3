@@ -77,7 +77,7 @@ public class CustomersPassengerCreateService extends AbstractGuiService<Customer
 
 	@Override
 	public void perform(final Passenger passenger) {
-		assert passenger != null;
+
 		this.repository.save(passenger);
 
 	}

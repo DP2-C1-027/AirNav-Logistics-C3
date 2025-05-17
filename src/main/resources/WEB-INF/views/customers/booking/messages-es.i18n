@@ -39,15 +39,7 @@ customers.booking.error.no-flight= seleccione un vuelo
 customer.booking.error.nibble-required= Ultimos numero de la tarjeta es obligatorio para publicar la reserva
 customer.booking.error.unpublishedPassengers.message= Tienes pasajeros sin publicar
 customer.booking.error.noPassenger.message = No hay pasajeros en este reserva
-customers.form.error.draft-mode.delete= No puedes borrarlo
-customers.booking.error.cannotChoseFlight= La fecha del vuelo no puede ser anterior a la fecha de compra
 
 
-customers.booking.error.date= La fecha debe estar entre 01/01/2000 00:00 y la fecha actual
-customers.booking.error.momentUpdate= Por favor elija una fecha anterior a la fecha del vuelo
-
-customers.booking.error.moment= Por favor complete la fecha antes de elegir un vuelo
-customers.booking.error.purchaseMoment= La fecha de compra debe ser anterior a la fecha de vuelo
 
 
-customers.booking.error.vuelos-draftmode= El vuelo debe estar publicado

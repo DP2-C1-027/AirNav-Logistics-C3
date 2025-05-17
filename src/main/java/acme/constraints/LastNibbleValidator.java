@@ -21,6 +21,7 @@ public class LastNibbleValidator extends AbstractValidator<ValidLastNibble, Stri
 			return true;
 
 		// Si el valor está presente, debe tener exactamente 4 caracteres
-		return value.length() == 4;
+		return value.length() == 4 && value.chars().allMatch(Character::isDigit);
+
 	}
 }

@@ -34,7 +34,7 @@ public class CustomersBookingDeleteService extends AbstractGuiService<Customers,
 	public void authorise() {
 
 		boolean status = true;
-
+		Flight f;
 		Booking booking;
 		Customers customer;
 		if (super.getRequest().hasData("id", int.class)) {
@@ -48,6 +48,19 @@ public class CustomersBookingDeleteService extends AbstractGuiService<Customers,
 			customer = booking != null ? booking.getCustomer() : null;
 
 			status = customer == null ? false : booking != null && booking.isDraftMode() && super.getRequest().getPrincipal().hasRealm(customer);
+		} else
+			status = false;
+
+		if (super.getRequest().hasData("travelClass")) {
+			TravelClass valor;
+			try {
+				valor = super.getRequest().getData("travelClass", TravelClass.class);
+
+			} catch (Exception e) {
+				status = false;
+
+			}
+
 		} else
 			status = false;
 

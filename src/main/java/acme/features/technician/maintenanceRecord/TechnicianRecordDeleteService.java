@@ -33,14 +33,23 @@ public class TechnicianRecordDeleteService extends AbstractGuiService<Technician
 	public void authorise() {
 
 		boolean status;
-		int recordId;
+
 		MaintanenceRecord record;
 		Technician tech;
 
-		recordId = super.getRequest().getData("id", int.class);
-		record = this.repository.findRecordById(recordId);
-		tech = record.getTechnician() != null ? record.getTechnician() : null;
-		status = record != null && record.getDraftMode() && super.getRequest().getPrincipal().hasRealm(tech);
+		if (super.getRequest().hasData("id", int.class)) {
+			Integer recordId;
+			try {
+				recordId = super.getRequest().getData("id", int.class);
+			} catch (Exception e) {
+				recordId = null;
+			}
+			record = recordId != null ? this.repository.findRecordById(recordId) : null;
+			tech = record != null ? record.getTechnician() : null;
+
+			status = tech == null ? false : record != null && record.isDraftMode() && super.getRequest().getPrincipal().hasRealm(tech);
+		} else
+			status = false;
 
 		super.getResponse().setAuthorised(status);
 
@@ -66,25 +75,22 @@ public class TechnicianRecordDeleteService extends AbstractGuiService<Technician
 
 	@Override
 	public void validate(final MaintanenceRecord record) {
-
 		if (!super.getBuffer().getErrors().hasErrors("draftMode"))
-			super.state(record.getDraftMode(), "draftMode", "customers.form.error.draft-mode");
-
+			super.state(record.isDraftMode(), "draftMode", "customers.form.error.draft-mode");
 	}
 
 	@Override
 	public void perform(final MaintanenceRecord record) {
-		Collection<InvolvedIn> br;
+		Collection<InvolvedIn> ii;
 
-		br = this.repository.findAllInvolvedInById(record.getId());
-		this.involvedRepository.deleteAll(br);
+		ii = this.repository.findAllInvolvedInById(record.getId());
+		this.involvedRepository.deleteAll(ii);
 		this.repository.delete(record);
 
 	}
 
 	@Override
 	public void unbind(final MaintanenceRecord record) {
-		//no se yo...
 		Dataset dataset;
 		SelectChoices choices;
 		SelectChoices aircraftChoices;

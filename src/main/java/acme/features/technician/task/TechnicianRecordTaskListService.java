@@ -25,12 +25,23 @@ public class TechnicianRecordTaskListService extends AbstractGuiService<Technici
 	@Override
 	public void authorise() {
 
-		boolean status;
-		int technicianId;
+		boolean status = true;
 
-		technicianId = super.getRequest().getPrincipal().getActiveRealm().getId();
+		MaintanenceRecord record;
 
-		status = super.getRequest().getPrincipal().hasRealm(this.repository.findTechnicianById(technicianId));
+		if (super.getRequest().hasData("recordId", int.class)) {
+			Integer id;
+			try {
+				id = super.getRequest().getData("recordId", int.class);
+			} catch (Exception e) {
+				id = null;
+			}
+			record = id != null ? this.repository.findRecordById(id) : null;
+			Technician tech = record != null ? record.getTechnician() : null;
+
+			status = tech == null ? false : super.getRequest().getPrincipal().hasRealm(tech) || record != null && !record.isDraftMode();
+		} else
+			status = false;
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -38,15 +49,14 @@ public class TechnicianRecordTaskListService extends AbstractGuiService<Technici
 	@Override
 	public void load() {
 		Collection<Task> task;
-		Technician tech;
-		tech = (Technician) super.getRequest().getPrincipal().getActiveRealm();
+
 		int id;
-		MaintanenceRecord maintenenceRecord;
+		MaintanenceRecord record;
 
 		id = super.getRequest().getData("recordId", int.class);
-		maintenenceRecord = this.repository.findRecordById(id);
+		record = this.repository.findRecordById(id);
 
-		task = this.repository.findTasksByTechId(maintenenceRecord.getId(), tech.getId());
+		task = this.repository.findTasksByTechId(record.getId(), record.getTechnician().getId());
 
 		super.getBuffer().addData(task);
 	}
@@ -55,6 +65,7 @@ public class TechnicianRecordTaskListService extends AbstractGuiService<Technici
 	public void unbind(final Task task) {
 		Dataset dataset;
 		dataset = super.unbindObject(task, "type", "draftMode", "description", "priority", "estimatedDuration");
+		super.addPayload(dataset, task, "type", "draftMode", "description", "priority", "estimatedDuration");
 		super.getResponse().addData(dataset);
 	}
 }

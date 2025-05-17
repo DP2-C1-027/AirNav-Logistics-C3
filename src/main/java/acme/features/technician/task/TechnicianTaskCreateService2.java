@@ -27,31 +27,50 @@ public class TechnicianTaskCreateService2 extends AbstractGuiService<Technician,
 	// AbstractGuiService interface ------------------------------------------
 
 	InvolvedIn							involved	= new InvolvedIn();
-	//ESTO ERA UN BOOKING RECORD
 
 
 	@Override
 	public void authorise() {
-		boolean status;
-		Technician tech;
+		boolean status = true;
+		if (super.getRequest().hasData("recordId", int.class)) {
+			Integer recordId;
+			try {
+				recordId = super.getRequest().getData("recordId", int.class);
+			} catch (Exception e) {
+				recordId = null;
 
-		tech = (Technician) super.getRequest().getPrincipal().getActiveRealm();
-		status = super.getRequest().getPrincipal().hasRealm(tech);
+			}
+
+			MaintanenceRecord record = recordId != null ? this.recordRepository.findRecordById(recordId) : null;
+			Technician tech = record != null ? record.getTechnician() : null;
+
+			status = tech == null ? false : record != null && record.isDraftMode() && super.getRequest().getPrincipal().hasRealm(tech);
+		}
+		if (super.getRequest().hasData("id")) {
+			Integer id;
+			try {
+				id = super.getRequest().getData("id", Integer.class);
+				if (!id.equals(Integer.valueOf(0)))
+					status = false;
+
+			} catch (Exception e) {
+				status = false;
+			}
+		} else if (super.getRequest().getMethod().equals("POST"))
+			status = false;
+
 		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
 	public void load() {
 		Task task;
-		Technician tech;
 		int recordId = super.getRequest().getData("recordId", int.class);
 		MaintanenceRecord record = this.recordRepository.findRecordById(recordId);
 
-		tech = (Technician) super.getRequest().getPrincipal().getActiveRealm();
-
 		task = new Task();
-		task.setTechnician(tech);
-
+		task.setTechnician(record.getTechnician());
+		task.setDraftMode(true);
 		super.getBuffer().addData(task);
 
 		if (record != null)
@@ -63,7 +82,6 @@ public class TechnicianTaskCreateService2 extends AbstractGuiService<Technician,
 	public void bind(final Task task) {
 
 		super.bindObject(task, "type", "description", "priority", "estimatedDuration");
-		task.setDraftMode(true);
 
 	}
 
@@ -91,6 +109,7 @@ public class TechnicianTaskCreateService2 extends AbstractGuiService<Technician,
 
 		dataset = super.unbindObject(task, "type", "draftMode", "description", "priority", "estimatedDuration");
 		dataset.put("type", choices);
+		super.addPayload(dataset, task, "type", "draftMode", "description", "priority", "estimatedDuration");
 		super.getResponse().addData(dataset);
 
 	}

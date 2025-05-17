@@ -20,4 +20,7 @@ technician.involved-in.form.label.delete = Delete
 
 technician.involved-in.list.label.maintanenceRecord= Maintanence Record:
 technician.involved-in.list.label.task = Task: 
-technician.involved-in.create.error.duplicate-record-task = por fa no te cagues encima
+
+technician.involved-in.create.error.null-record = You must associate a Maintanence Record
+technician.involved-in.create.error.null-task = You must associate a Task
+technician.involved-in.create.error.duplicate-record-task = This entry already exists!

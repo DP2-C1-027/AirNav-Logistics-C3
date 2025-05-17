@@ -18,4 +18,6 @@ public interface AdministratorServiceRepository extends AbstractRepository {
 	@Query("SELECT a FROM Service a")
 	Collection<Service> findAllService();
 
+	@Query("SELECT a FROM Service a WHERE a.promotionCode=:promotionCode")
+	Collection<Service> findByPromotionCode(String promotionCode);
 }

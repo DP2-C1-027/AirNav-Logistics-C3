@@ -1,7 +1,6 @@
 
 package acme.entities.service;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 
 import acme.client.components.basis.AbstractEntity;
@@ -49,7 +48,6 @@ public class Service extends AbstractEntity {
 	@Optional
 	@Automapped
 	@ValidPromotionCode
-	@Column(unique = true)
 	private String				promotionCode;
 
 	@Optional

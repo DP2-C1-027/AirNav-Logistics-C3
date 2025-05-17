@@ -9,14 +9,12 @@ import java.lang.annotation.Target;
 import javax.validation.Constraint;
 import javax.validation.Payload;
 import javax.validation.ReportAsSingleViolation;
-import javax.validation.constraints.Pattern;
 
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = {})
+@Constraint(validatedBy = PromotionCodeValidator.class)
 @ReportAsSingleViolation
 
-@Pattern(regexp = "^$|^[A-Z]{4}-[0-9]{2}$")
 public @interface ValidPromotionCode {
 
 	String message() default "{acme.validation.text.message}";

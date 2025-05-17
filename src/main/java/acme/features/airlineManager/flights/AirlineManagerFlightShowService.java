@@ -35,8 +35,10 @@ public class AirlineManagerFlightShowService extends AbstractGuiService<AirlineM
 			Flight flight = flightId == null ? null : this.repository.findFlightById(flightId);
 			AirlineManager manager = flight == null ? null : flight.getAirlineManager();
 			status = manager == null ? false : super.getRequest().getPrincipal().hasRealm(manager);
+		} else {
+			status = false;
 		}
-		super.getResponse().setAuthorised(status);
+	super.getResponse().setAuthorised(status);
 	}
 
 	@Override

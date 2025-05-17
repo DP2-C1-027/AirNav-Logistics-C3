@@ -23,15 +23,23 @@ public class FlightCrewMemberActivityLogPublishService extends AbstractGuiServic
 
 	@Override
 	public void authorise() {
-		// Only is allowed to publish an activity log if the creator is the flight crew member associated to the flight assignment.
-		// An activity log cannot be published if:
-		// - Activity log should be in draft mode and not published.
-		// - Assignment should be in published mode and not in draft mode.
-		int activityLogId = super.getRequest().getData("id", int.class);
-		ActivityLog activityLog = this.repository.findActivityLogById(activityLogId);
-		boolean status = activityLog != null && activityLog.getDraftMode() && !activityLog.getFlightAssignment().getDraftMode() && super.getRequest().getPrincipal().hasRealm(activityLog.getFlightAssignment().getFlightCrewMember());
 
-		super.getResponse().setAuthorised(status);
+		boolean isAuthorised = false;
+
+		try {
+			// Only is allowed to publish an activity log if the creator is the flight crew member associated to the flight assignment.
+			// An activity log cannot be published if:
+			// - Activity log should be in draft mode and not published.
+			// - Assignment should be in published mode and not in draft mode.
+			int activityLogId = super.getRequest().getData("id", int.class);
+			ActivityLog activityLog = this.repository.findActivityLogById(activityLogId);
+			isAuthorised = activityLog != null && activityLog.getDraftMode() && !activityLog.getFlightAssignment().getDraftMode() && super.getRequest().getPrincipal().hasRealm(activityLog.getFlightAssignment().getFlightCrewMember());
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+			e.printStackTrace();
+		}
+
+		super.getResponse().setAuthorised(isAuthorised);
 	}
 
 	@Override

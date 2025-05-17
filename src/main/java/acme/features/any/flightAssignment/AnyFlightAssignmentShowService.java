@@ -25,7 +25,19 @@ public class AnyFlightAssignmentShowService extends AbstractGuiService<Any, Flig
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+
+		boolean isAuthorised = false;
+
+		try {
+			int flightAssignmentId = super.getRequest().getData("id", int.class);
+			FlightAssignment flightAssignment = this.repository.findFlightAssignmentById(flightAssignmentId);
+			isAuthorised = flightAssignment != null;
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+			e.printStackTrace();
+		}
+
+		super.getResponse().setAuthorised(isAuthorised);
 	}
 
 	@Override

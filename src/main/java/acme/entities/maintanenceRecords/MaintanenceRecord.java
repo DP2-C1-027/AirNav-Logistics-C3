@@ -34,8 +34,9 @@ public class MaintanenceRecord extends AbstractEntity {
 	// Attributes -------------------------------------------------------------
 
 	@Mandatory
+	// HINT: @Valid by default.
 	@Automapped
-	private Boolean					draftMode;
+	private boolean					draftMode;
 
 	@Mandatory
 	@Temporal(TemporalType.TIMESTAMP)

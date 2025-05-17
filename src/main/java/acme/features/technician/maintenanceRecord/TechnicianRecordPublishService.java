@@ -2,11 +2,13 @@
 package acme.features.technician.maintenanceRecord;
 
 import java.util.Collection;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
+import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.aircraft.Aircraft;
@@ -27,15 +29,23 @@ public class TechnicianRecordPublishService extends AbstractGuiService<Technicia
 
 	@Override
 	public void authorise() {
-		boolean status;
-		int recordId;
+		boolean status = true;
+
 		MaintanenceRecord record;
 		Technician tech;
 
-		recordId = super.getRequest().getData("id", int.class);
-		record = this.repository.findRecordById(recordId);
-		tech = record == null ? null : record.getTechnician();
-		status = record != null && record.getDraftMode() && super.getRequest().getPrincipal().hasRealm(tech);
+		if (super.getRequest().hasData("id", int.class)) {
+			Integer recordId;
+			try {
+				recordId = super.getRequest().getData("id", int.class);
+			} catch (Exception e) {
+				recordId = null;
+			}
+			record = recordId != null ? this.repository.findRecordById(recordId) : null;
+			tech = record == null ? null : record.getTechnician();
+			status = tech == null ? false : record != null && record.isDraftMode() && super.getRequest().getPrincipal().hasRealm(tech);
+		} else
+			status = false;
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -64,8 +74,8 @@ public class TechnicianRecordPublishService extends AbstractGuiService<Technicia
 
 		Collection<Task> tasks = this.repository.findTasksByRecordId(record.getId());
 
-		boolean allTasksPublished = tasks.isEmpty() || tasks.stream().allMatch(task -> !task.getDraftMode());
-		boolean atLeastOnePublished = tasks.stream().anyMatch(task -> !task.getDraftMode());
+		boolean allTasksPublished = tasks.isEmpty() || tasks.stream().allMatch(task -> !task.isDraftMode());
+		boolean atLeastOnePublished = tasks.stream().anyMatch(task -> !task.isDraftMode());
 
 		super.state(allTasksPublished, "*", "technician.maintanence-record.error.unpublishedTask.message");
 		super.state(atLeastOnePublished, "*", "technician.maintanence-record.error.noPublishedTasks.message");
@@ -73,6 +83,9 @@ public class TechnicianRecordPublishService extends AbstractGuiService<Technicia
 	}
 	@Override
 	public void perform(final MaintanenceRecord record) {
+		assert record != null;
+		Date ahora = MomentHelper.getCurrentMoment();
+		record.setMaintanenceMoment(ahora);
 		record.setDraftMode(false);
 		this.repository.save(record);
 	}

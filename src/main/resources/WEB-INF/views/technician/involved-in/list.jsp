@@ -1,4 +1,5 @@
 <%--
+<acme:list-column code="technician.involved-in.list.label.task" path="task" width="20%"/>
 - list.jsp
 -
 - Copyright (C) 2012-2025 Rafael Corchuelo.
@@ -16,7 +17,7 @@
 
 <acme:list>
 	<acme:list-column code="technician.involved-in.list.label.maintanenceRecord" path="maintanenceRecord" width="20%"/>
-	<acme:list-column code="technician.involved-in.list.label.task" path="task" width="20%"/>
+
 </acme:list>
 
 <jstl:if test="${_command == 'list'}">

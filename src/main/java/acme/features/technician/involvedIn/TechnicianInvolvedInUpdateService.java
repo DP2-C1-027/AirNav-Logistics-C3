@@ -22,21 +22,59 @@ public class TechnicianInvolvedInUpdateService extends AbstractGuiService<Techni
 	private TechnicianInvolvedInRepository repository;
 
 
-	// AbstractService<Manager, ProjectUserStoryLink> ---------------------------
 	@Override
 	public void authorise() {
 		Technician tech;
-		boolean status;
+		boolean status = true;
 		MaintanenceRecord record;
 		Task task;
+		if (super.getRequest().hasData("id", int.class)) {
+			Integer involvedInId;
+			try {
+				involvedInId = super.getRequest().getData("id", Integer.class);
+			} catch (Exception e) {
+				involvedInId = null;
+			}
+			//el id es 548
+			task = involvedInId != null ? this.repository.findOneTaskByInvolvedIn(involvedInId) : null;
+			record = involvedInId != null ? this.repository.findOneRecordByInvolvedIn(involvedInId) : null;
+			tech = record != null ? record.getTechnician() : null;
+			status = tech == null ? false : record != null && task != null && record.isDraftMode() && super.getRequest().getPrincipal().hasRealm(tech);
+			if (super.getRequest().hasData("task")) {
+				Integer id;
+				try {
+					id = super.getRequest().getData("task", Integer.class);
+					task = this.repository.findTaskById(id);
 
-		tech = (Technician) super.getRequest().getPrincipal().getActiveRealm();
-		int involvedInId = super.getRequest().getData("id", int.class);
-		record = this.repository.findOneRecordByInvolvedIn(involvedInId);
-		task = this.repository.findOneTaskByInvolvedIn(involvedInId);
-		status = record != null && task != null && task.getDraftMode() && super.getRequest().getPrincipal().hasRealm(tech);
-		//no se como mierda funciona lo del draftMode
+					if (!id.equals(Integer.valueOf(0)) && !task.getTechnician().equals(tech))
+						status = false;
+
+				} catch (Exception e) {
+					status = false;
+				}
+			}
+
+			if (super.getRequest().hasData("maintanenceRecord")) {
+				Integer id;
+				try {
+					id = super.getRequest().getData("maintanenceRecord", Integer.class);
+					record = this.repository.findRecordById(id);
+
+					if (!id.equals(Integer.valueOf(0)) && !record.getTechnician().equals(tech))
+						status = false;
+
+				} catch (Exception e) {
+					status = false;
+					record = null;
+				}
+				status = record != null ? status && record.isDraftMode() : status;
+				//mira que esté publicado o no
+			}
+
+		}
+
 		super.getResponse().setAuthorised(status);
+
 	}
 
 	@Override
@@ -91,8 +129,8 @@ public class TechnicianInvolvedInUpdateService extends AbstractGuiService<Techni
 		dataset.put("maintanenceRecord", recordChoices);
 		dataset.put("task", taskChoices);
 
-		dataset.put("draftMode", involved.getMaintanenceRecord().getDraftMode());
-		//no se si es el record o el task lo que tengo que mirar aqui
+		dataset.put("draftMode", involved.getMaintanenceRecord().isDraftMode());
+		super.addPayload(dataset, involved, "maintanenceRecord", "task");
 
 		super.getResponse().addData(dataset);
 

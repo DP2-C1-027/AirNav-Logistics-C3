@@ -25,21 +25,27 @@ public class TechnicianRecordServiceShow extends AbstractGuiService<Technician, 
 
 	@Override
 	public void authorise() {
-		boolean status;
-		int recordId;
+		boolean status = true;
+
 		MaintanenceRecord record;
-		Aircraft a;
 		Technician tech;
+		Aircraft aircraft;
 
-		recordId = super.getRequest().getData("id", int.class);
-		record = this.repository.findRecordById(recordId);
-		//tendria que encontrar el aircraft que tiene asociado para comprobar que existe
-
-		a = this.repository.findAircraftByRecordId(recordId);
-		tech = record == null ? null : record.getTechnician();
-		status = super.getRequest().getPrincipal().hasRealm(tech) || a != null;
+		if (super.getRequest().hasData("id", int.class)) {
+			Integer recordId;
+			try {
+				recordId = super.getRequest().getData("id", int.class);
+			} catch (Exception e) {
+				recordId = null;
+			}
+			record = recordId != null ? this.repository.findRecordById(recordId) : null;
+			aircraft = recordId != null ? this.repository.findAircraftByRecordId(recordId) : null;
+			tech = record == null ? null : record.getTechnician();
+			status = tech == null ? false : super.getRequest().getPrincipal().hasRealm(tech) && aircraft != null || record != null && aircraft != null && !record.isDraftMode();
+		}
 
 		super.getResponse().setAuthorised(status);
+
 	}
 
 	@Override
@@ -70,8 +76,6 @@ public class TechnicianRecordServiceShow extends AbstractGuiService<Technician, 
 		dataset.put("aircraft", aircraftChoices.getSelected().getKey());
 		dataset.put("aircrafts", aircraftChoices);
 		dataset.put("status", choices);
-		// Derived attributes --------------------
-		//no tengo
 		super.getResponse().addData(dataset);
 	}
 

@@ -31,8 +31,9 @@ public class Task extends AbstractEntity {
 	private TaskType			type;
 
 	@Mandatory
+	// HINT: @Valid by default.
 	@Automapped
-	private Boolean				draftMode;
+	private boolean				draftMode;
 
 	@Mandatory
 	@Automapped

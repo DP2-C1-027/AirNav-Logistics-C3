@@ -8,7 +8,6 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import acme.client.repositories.AbstractRepository;
-import acme.entities.booking.Booking;
 import acme.entities.maintanenceRecords.InvolvedIn;
 import acme.entities.maintanenceRecords.MaintanenceRecord;
 import acme.entities.maintanenceRecords.Task;
@@ -18,12 +17,16 @@ public interface TechnicianInvolvedInRepository extends AbstractRepository {
 
 	//encontrar todas las task de 
 	//cambiado
+
+	//encontrar un record en concreto
+	@Query("SELECT f FROM MaintanenceRecord f WHERE f.id=:id")
+	MaintanenceRecord findRecordById(int id);
+
+	@Query("select b from Task b where b.id=:id")
+	Task findTaskById(int id);
+
 	@Query("select b from InvolvedIn b where b.maintanenceRecord.technician.id=:technicianId")
 	Collection<InvolvedIn> findAllInvolvedInByTechnicianId(int technicianId);
-
-	//ESTE NO SE USA¿¿?¿?¿?¿
-	@Query("select b from Booking b where b.id=:id")
-	Booking findBookingById(int id);
 
 	//cambiado
 	@Query("select b.maintanenceRecord from InvolvedIn b where b.id=?1")

@@ -35,7 +35,7 @@ public class TechnicianInvolvedInDeleteService extends AbstractGuiService<Techni
 		int involvedInId = super.getRequest().getData("id", int.class);
 		task = this.repository.findOneTaskByInvolvedIn(involvedInId);
 		record = this.repository.findOneRecordByInvolvedIn(involvedInId);
-		status = record != null && task != null && record.getDraftMode() && super.getRequest().getPrincipal().hasRealm(tech);
+		status = record != null && task != null && record.isDraftMode() && super.getRequest().getPrincipal().hasRealm(tech);
 		super.getResponse().setAuthorised(status);
 
 	}
@@ -59,7 +59,7 @@ public class TechnicianInvolvedInDeleteService extends AbstractGuiService<Techni
 	@Override
 	public void validate(final InvolvedIn involved) {
 		//Mirar esta validacion...
-		super.state(involved.getMaintanenceRecord().getDraftMode(), "*", "customers.form.error.draft-mode");
+		super.state(involved.getMaintanenceRecord().isDraftMode(), "*", "customers.form.error.draft-mode");
 		;
 	}
 
@@ -90,7 +90,7 @@ public class TechnicianInvolvedInDeleteService extends AbstractGuiService<Techni
 		dataset.put("maintanenceRecord", recordChoices);
 		dataset.put("task", taskChoices);
 		//IsDraftMode()
-		dataset.put("draftMode", involved.getMaintanenceRecord().getDraftMode());
+		dataset.put("draftMode", involved.getMaintanenceRecord().isDraftMode());
 
 		super.getResponse().addData(dataset);
 	}

@@ -28,15 +28,25 @@ public class TechnicianRecordUpdateService extends AbstractGuiService<Technician
 
 	@Override
 	public void authorise() {
-		boolean status;
-		int recordId;
+		boolean status = true;
+
 		MaintanenceRecord record;
 		Technician tech;
 
-		recordId = super.getRequest().getData("id", int.class);
-		record = this.repository.findRecordById(recordId);
-		tech = (Technician) super.getRequest().getPrincipal().getActiveRealm();
-		status = record != null && record.getDraftMode() && super.getRequest().getPrincipal().hasRealm(tech);
+		if (super.getRequest().hasData("id", int.class)) {
+			Integer recordId;
+			try {
+				recordId = super.getRequest().getData("id", int.class);
+			} catch (Exception e) {
+				recordId = null;
+			}
+
+			record = recordId != null ? this.repository.findRecordById(recordId) : null;
+			tech = recordId != null ? record.getTechnician() : null;
+			status = tech == null ? false : record != null && record.isDraftMode() && super.getRequest().getPrincipal().hasRealm(tech);
+
+		} else
+			status = false;
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -66,6 +76,7 @@ public class TechnicianRecordUpdateService extends AbstractGuiService<Technician
 
 	@Override
 	public void perform(final MaintanenceRecord record) {
+		assert record != null;
 		Date ahora = MomentHelper.getCurrentMoment();
 		record.setMaintanenceMoment(ahora);
 		this.repository.save(record);

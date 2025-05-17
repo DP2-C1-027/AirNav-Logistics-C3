@@ -5,10 +5,10 @@
 
 <acme:form>
 	<acme:input-textbox code="airlineManager.flight.form.label.tag" path="tag"/>
-	<acme:input-textbox code="airlineManager.flight.form.label.indication" path="indication"/>
 	<acme:input-money code="airlineManager.flight.form.label.cost" path="cost"/>
 	<acme:input-textbox code="airlineManager.flight.form.label.description" path="description"/>
 	<acme:input-select code="airlineManager.flight.form.label.airlines" path="airline" choices="${airlines}"/>
+	<acme:input-checkbox code="airlineManager.flight.form.label.indication" path="indication"/>
 	
 	<jstl:choose>
 				<jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish')  && draftMode == true}">

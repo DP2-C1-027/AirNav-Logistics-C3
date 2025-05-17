@@ -31,27 +31,8 @@ public class CustomersBookingCreateService extends AbstractGuiService<Customers,
 	public void authorise() {
 		boolean status = true;
 		Customers customer;
-		Flight f;
+		Flight flight;
 		customer = (Customers) super.getRequest().getPrincipal().getActiveRealm();
-
-		if (super.getRequest().hasData("flight")) {
-			Integer flightId;
-			try {
-				flightId = super.getRequest().getData("flight", Integer.class);
-
-				if (!flightId.equals(Integer.valueOf(0))) {
-					f = this.repository.findFlightById(flightId);
-					Date d = f.getScheduledDeparture();
-					Date moment = super.getRequest().getData("purchaseMoment", Date.class);
-					status = super.getRequest().getPrincipal().hasRealm(customer) && !f.isDraftMode() && d.after(moment);
-
-				}
-			} catch (Exception e) {
-				status = false;
-
-			}
-
-		}
 
 		if (super.getRequest().hasData("id")) {
 			Integer id;
@@ -63,6 +44,45 @@ public class CustomersBookingCreateService extends AbstractGuiService<Customers,
 
 			} catch (Exception e) {
 				status = false;
+			}
+
+		} else if (super.getRequest().getMethod().equals("POST"))
+			status = false;
+
+		if (super.getRequest().hasData("travelClass")) {
+			TravelClass valor;
+			try {
+				valor = super.getRequest().getData("travelClass", TravelClass.class);
+				System.out.print(valor);
+
+			} catch (Exception e) {
+				status = false;
+
+			}
+
+		} else if (super.getRequest().getMethod().equals("POST"))
+			status = false;
+
+		if (super.getRequest().hasData("flight")) {
+			Integer flightId;
+			try {
+				flightId = super.getRequest().getData("flight", Integer.class);
+
+				if (!flightId.equals(Integer.valueOf(0))) {
+					flight = this.repository.findFlightById(flightId);
+					if (flight == null)
+						status = false;
+					else {
+						Date d = flight.getScheduledDeparture();
+						Date moment = super.getRequest().getData("purchaseMoment", Date.class);
+						status = super.getRequest().getPrincipal().hasRealm(customer) && !flight.isDraftMode() && d.after(moment);
+
+					}
+
+				}
+			} catch (Exception e) {
+				status = false;
+
 			}
 
 		} else if (super.getRequest().getMethod().equals("POST"))
@@ -108,29 +128,17 @@ public class CustomersBookingCreateService extends AbstractGuiService<Customers,
 		String cod = booking.getLocatorCode();
 
 		Collection<Booking> codigo = this.repository.findAllBookingLocatorCode(cod);
-		//Date d = booking == null ? null : booking.getPurchaseMoment();
-		//Date moment;
-		//moment = MomentHelper.getCurrentMoment();
-		//if (booking.getPurchaseMoment() != null && booking.getPurchaseMoment().after(moment))
-		//	super.state(false, "purchaseMoment", "customers.booking.error.date");
 
 		if (!codigo.isEmpty())
 			super.state(false, "locatorCode", "customers.booking.error.repeat-code");
 		if (booking.getFlight() == null)
 			super.state(false, "flight", "customers.booking.error.no-flight");
-		//if (d == null)
-		//super.state(false, "purchaseMoment", "customers.booking.error.moment");
-		//if (booking.getFlight() != null)
-		//if (booking.getFlight().isDraftMode())
-		//super.state(false, "flight", "customers.booking.error.vuelos-draftmode");
-		//else if (!booking.getFlight().getScheduledDeparture().after(d))
-		//super.state(false, "flight", "customers.booking.error.cannotChoseFlight");
 
 	}
 
 	@Override
 	public void perform(final Booking booking) {
-		assert booking != null;
+
 		this.repository.save(booking);
 	}
 

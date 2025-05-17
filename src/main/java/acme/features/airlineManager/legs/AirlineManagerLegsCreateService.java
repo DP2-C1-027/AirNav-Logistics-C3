@@ -2,6 +2,7 @@
 package acme.features.airlineManager.legs;
 
 import java.util.Collection;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -10,6 +11,7 @@ import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.aircraft.Aircraft;
+import acme.entities.airline.Airline;
 import acme.entities.airport.Airport;
 import acme.entities.flights.Flight;
 import acme.entities.legs.Leg;
@@ -65,7 +67,6 @@ public class AirlineManagerLegsCreateService extends AbstractGuiService<AirlineM
 		} else if (super.getRequest().getMethod().equals("POST"))
 			status = false;
 
-		super.getRequest().getDataEntries().forEach((e) -> System.out.println(e.getKey().concat(": ").concat(e.getValue().toString())));
 		if (super.getRequest().hasData("flight")) {
 
 			try {
@@ -101,12 +102,39 @@ public class AirlineManagerLegsCreateService extends AbstractGuiService<AirlineM
 
 	@Override
 	public void validate(final Leg leg) {
-		;
+
+		Aircraft aircraft = leg.getAircraft();
+		Flight flight = leg.getFlight();
+		Airline airlineAircraft;
+		Airline airlineFlight;
+		if (flight == null || aircraft == null) {
+			airlineFlight = null;
+			airlineAircraft = null;
+		} else {
+			airlineFlight = flight.getAirline();
+			airlineAircraft = aircraft.getAirline();
+		}
+		String IATAnumber = leg.getFlightNumber();
+		Date scheduledDeparture = leg.getScheduledDeparture();
+		Date scheduledArrival = leg.getScheduledArrival();
+		Airport arrivalAirport = leg.getArrivalAirport();
+		Airport departureAirport = leg.getDepartureAirport();
+
+		if (airlineFlight == null || airlineAircraft == null || !airlineFlight.equals(airlineAircraft))
+			super.state(flight == null || aircraft == null, "aircraft", "airline-manager.error.wrong-airline");
+		if (IATAnumber == null || airlineFlight == null || !IATAnumber.startsWith(airlineFlight.getCodigo()))
+			super.state(IATAnumber == null || airlineFlight == null, "flightNumber", "airline-manager.error.invalid-flight-number");
+		if (scheduledArrival == null || scheduledDeparture == null || !scheduledArrival.after(scheduledDeparture))
+			super.state(scheduledArrival == null || scheduledDeparture == null, "scheduledArrival", "airline-manager.error.future-departure");
+		if (arrivalAirport == null || departureAirport == null || arrivalAirport.equals(departureAirport))
+			super.state(arrivalAirport == null || departureAirport == null, "arrivalAirport", "airline-manager.error.same-airport");
 	}
 
 	@Override
 	public void perform(final Leg leg) {
 		assert leg != null;
+		Integer duration = Integer.valueOf((int) (leg.getScheduledArrival().getTime() - leg.getScheduledDeparture().getTime()) / (1000 * 60 * 60));
+		leg.setDuration(duration);
 		this.repository.save(leg);
 	}
 

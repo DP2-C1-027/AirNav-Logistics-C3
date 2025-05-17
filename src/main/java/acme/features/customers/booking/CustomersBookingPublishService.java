@@ -45,6 +45,19 @@ public class CustomersBookingPublishService extends AbstractGuiService<Customers
 		} else
 			status = false;
 
+		if (super.getRequest().hasData("travelClass")) {
+			TravelClass valor;
+			try {
+				valor = super.getRequest().getData("travelClass", TravelClass.class);
+
+			} catch (Exception e) {
+				status = false;
+
+			}
+
+		} else
+			status = false;
+
 		super.getResponse().setAuthorised(status);
 	}
 
@@ -87,7 +100,7 @@ public class CustomersBookingPublishService extends AbstractGuiService<Customers
 	}
 	@Override
 	public void perform(final Booking booking) {
-		assert booking != null;
+
 		booking.setDraftMode(false);
 		this.repository.save(booking);
 	}

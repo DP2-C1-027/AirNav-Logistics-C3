@@ -36,6 +36,27 @@ public class AirlineManagerFlightCreateService extends AbstractGuiService<Airlin
 				status = false;
 		} else if (super.getRequest().getMethod().equals("POST"))
 			status = false;
+		if (super.getRequest().hasData("indication"))
+			try {
+				if (super.getRequest().getData("indication", Boolean.class) == null)
+					status = false;
+			} catch (Exception e) {
+				status = false;
+			}
+		else if (super.getRequest().getMethod().equals("POST"))
+			status = false;
+		if (super.getRequest().hasData("airline")) {
+			Integer airlineId;
+			try {
+				airlineId = super.getRequest().getData("airline", Integer.class);
+			} catch (Exception e) {
+				status = false;
+				airlineId = Integer.valueOf(-1);
+			}
+			if (airlineId == null || !airlineId.equals(Integer.valueOf(0)) && this.repository.getAirlineById(airlineId) == null)
+				status = false;
+		} else if (super.getRequest().getMethod().equals("POST"))
+			status = false;
 		super.getResponse().setAuthorised(status);
 	}
 

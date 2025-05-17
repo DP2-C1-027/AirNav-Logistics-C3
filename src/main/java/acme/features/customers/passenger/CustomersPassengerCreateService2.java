@@ -46,7 +46,9 @@ public class CustomersPassengerCreateService2 extends AbstractGuiService<Custome
 			Customers customer = booking != null ? booking.getCustomer() : null;
 
 			status = customer == null ? false : booking != null && booking.isDraftMode() && super.getRequest().getPrincipal().hasRealm(customer);
-		}
+		} else if (super.getRequest().getMethod().equals("POST"))
+			status = false;
+
 		if (super.getRequest().hasData("id")) {
 			Integer id;
 			try {

@@ -42,7 +42,27 @@ public class AirlineManagerFlightPublishService extends AbstractGuiService<Airli
 			status = manager == null ? false : super.getRequest().getPrincipal().hasRealm(manager) && flight.isDraftMode();
 		} else
 			status = false;
-
+		if (super.getRequest().hasData("indication"))
+			try {
+				if (super.getRequest().getData("indication", Boolean.class) == null)
+					status = false;
+			} catch (Exception e) {
+				status = false;
+			}
+		else
+			status = false;
+		if (super.getRequest().hasData("airline")) {
+			Integer airlineId;
+			try {
+				airlineId = super.getRequest().getData("airline", Integer.class);
+			} catch (Exception e) {
+				status = false;
+				airlineId = Integer.valueOf(-1);
+			}
+			if (airlineId == null || !airlineId.equals(Integer.valueOf(0)) && this.repository.getAirlineById(airlineId) == null)
+				status = false;
+		} else
+			status = false;
 		super.getResponse().setAuthorised(status);
 	}
 

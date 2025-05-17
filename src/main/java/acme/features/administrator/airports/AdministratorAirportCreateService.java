@@ -26,20 +26,20 @@ public class AdministratorAirportCreateService extends AbstractGuiService<Admini
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		boolean status = super.getRequest().getPrincipal().hasRealmOfType(Administrator.class);
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
 	public void load() {
-		Airport airport;
-
-		airport = new Airport();
+		Airport airport = new Airport();
 
 		super.getBuffer().addData(airport);
 	}
 
 	@Override
 	public void bind(final Airport airport) {
+		assert airport != null;
 
 		super.bindObject(airport, "name", "codigo", "city", "country", "website", "email", "address", "phoneNumber");
 
@@ -47,6 +47,8 @@ public class AdministratorAirportCreateService extends AbstractGuiService<Admini
 
 	@Override
 	public void validate(final Airport airport) {
+		assert airport != null;
+
 		boolean confirmation;
 		String cod = airport.getCodigo();
 		Collection<Airport> codigos = this.repository.findAllAirportCode(cod);
@@ -59,16 +61,20 @@ public class AdministratorAirportCreateService extends AbstractGuiService<Admini
 
 	@Override
 	public void perform(final Airport airport) {
+		assert airport != null;
+
 		this.repository.save(airport);
 	}
 
 	@Override
 	public void unbind(final Airport airport) {
-		Dataset dataset;
-		SelectChoices choices = SelectChoices.from(OperationalScope.class, airport.getOperationalScope());
+		assert airport != null;
 
-		dataset = super.unbindObject(airport, "name", "codigo", "city", "country", "website", "email", "address", "phoneNumber");
+		Dataset dataset = super.unbindObject(airport, "name", "codigo", "city", "country", "website", "email", "address", "phoneNumber");
+
+		SelectChoices choices = SelectChoices.from(OperationalScope.class, airport.getOperationalScope());
 		dataset.put("operationalScope", choices);
+
 		dataset.put("confirmation", false);
 		dataset.put("readonly", false);
 

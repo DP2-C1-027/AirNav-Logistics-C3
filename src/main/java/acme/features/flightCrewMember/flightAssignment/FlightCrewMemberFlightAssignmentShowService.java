@@ -30,9 +30,11 @@ public class FlightCrewMemberFlightAssignmentShowService extends AbstractGuiServ
 
 		try {
 			// Only is allowed to show a flight assignment if the creator is associated.
-			int flightAssignmentId = super.getRequest().getData("id", int.class);
-			FlightAssignment flightAssignment = this.repository.findFlightAssignmentById(flightAssignmentId);
-			isAuthorised = flightAssignment != null && super.getRequest().getPrincipal().hasRealm(flightAssignment.getFlightCrewMember());
+			Integer flightAssignmentId = super.getRequest().getData("id", Integer.class);
+			if (flightAssignmentId != null) {
+				FlightAssignment flightAssignment = this.repository.findFlightAssignmentById(flightAssignmentId);
+				isAuthorised = flightAssignment != null && super.getRequest().getPrincipal().hasRealm(flightAssignment.getFlightCrewMember());
+			}
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
 			e.printStackTrace();

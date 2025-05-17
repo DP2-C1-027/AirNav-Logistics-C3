@@ -43,7 +43,8 @@ public class AdministratorDashboardShowService extends AbstractGuiService<Admini
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		boolean status = super.getRequest().getPrincipal().hasRealmOfType(Administrator.class);
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
@@ -102,6 +103,8 @@ public class AdministratorDashboardShowService extends AbstractGuiService<Admini
 
 	@Override
 	public void unbind(final AdministratorDashboard administratorDashboard) {
+		assert administratorDashboard != null;
+
 		Dataset dataset = super.unbindObject(administratorDashboard, //
 			"amountAirportsGroupedByOperationalScope", "amountAirlineGroupedByType", // 
 			"ratioAirlinesEmailAndPhone", "ratioActiveAircrafts", //

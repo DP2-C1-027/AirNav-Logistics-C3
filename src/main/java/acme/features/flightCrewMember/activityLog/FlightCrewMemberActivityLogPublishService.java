@@ -31,9 +31,11 @@ public class FlightCrewMemberActivityLogPublishService extends AbstractGuiServic
 			// An activity log cannot be published if:
 			// - Activity log should be in draft mode and not published.
 			// - Assignment should be in published mode and not in draft mode.
-			int activityLogId = super.getRequest().getData("id", int.class);
-			ActivityLog activityLog = this.repository.findActivityLogById(activityLogId);
-			isAuthorised = activityLog != null && activityLog.getDraftMode() && !activityLog.getFlightAssignment().getDraftMode() && super.getRequest().getPrincipal().hasRealm(activityLog.getFlightAssignment().getFlightCrewMember());
+			Integer activityLogId = super.getRequest().getData("id", Integer.class);
+			if (activityLogId != null) {
+				ActivityLog activityLog = this.repository.findActivityLogById(activityLogId);
+				isAuthorised = activityLog != null && activityLog.getDraftMode() && !activityLog.getFlightAssignment().getDraftMode() && super.getRequest().getPrincipal().hasRealm(activityLog.getFlightAssignment().getFlightCrewMember());
+			}
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
 			e.printStackTrace();

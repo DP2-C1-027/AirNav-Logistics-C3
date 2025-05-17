@@ -28,6 +28,19 @@ public class TechnicianTaskCreateService extends AbstractGuiService<Technician, 
 
 		tech = (Technician) super.getRequest().getPrincipal().getActiveRealm();
 		status = super.getRequest().getPrincipal().hasRealm(tech);
+		if (super.getRequest().hasData("id", int.class)) {
+			Integer id;
+			try {
+				id = super.getRequest().getData("id", Integer.class);
+				if (!id.equals(Integer.valueOf(0)))
+					status = false;
+			} catch (Exception e) {
+				status = false;
+			}
+
+		} else if (super.getRequest().getMethod().equals("POST"))
+			status = false;
+
 		super.getResponse().setAuthorised(status);
 	}
 
@@ -60,7 +73,7 @@ public class TechnicianTaskCreateService extends AbstractGuiService<Technician, 
 
 	@Override
 	public void perform(final Task task) {
-
+		assert task != null;
 		this.repository.save(task);
 
 	}
@@ -73,8 +86,8 @@ public class TechnicianTaskCreateService extends AbstractGuiService<Technician, 
 		choices = SelectChoices.from(TaskType.class, task.getType());
 
 		dataset = super.unbindObject(task, "type", "draftMode", "description", "priority", "estimatedDuration");
-		//dataset.put("draftMode", task.getDraftMode());
 		dataset.put("type", choices);
+		super.addPayload(dataset, task, "type", "draftMode", "description", "priority", "estimatedDuration");
 		super.getResponse().addData(dataset);
 
 	}

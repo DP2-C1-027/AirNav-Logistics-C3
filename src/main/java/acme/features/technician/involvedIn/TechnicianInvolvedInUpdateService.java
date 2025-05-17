@@ -22,21 +22,59 @@ public class TechnicianInvolvedInUpdateService extends AbstractGuiService<Techni
 	private TechnicianInvolvedInRepository repository;
 
 
-	// AbstractService<Manager, ProjectUserStoryLink> ---------------------------
 	@Override
 	public void authorise() {
 		Technician tech;
-		boolean status;
+		boolean status = true;
 		MaintanenceRecord record;
 		Task task;
+		if (super.getRequest().hasData("id", int.class)) {
+			Integer involvedInId;
+			try {
+				involvedInId = super.getRequest().getData("id", Integer.class);
+			} catch (Exception e) {
+				involvedInId = null;
+			}
+			//el id es 548
+			task = involvedInId != null ? this.repository.findOneTaskByInvolvedIn(involvedInId) : null;
+			record = involvedInId != null ? this.repository.findOneRecordByInvolvedIn(involvedInId) : null;
+			tech = record != null ? record.getTechnician() : null;
+			status = tech == null ? false : record != null && task != null && record.isDraftMode() && super.getRequest().getPrincipal().hasRealm(tech);
+			if (super.getRequest().hasData("task")) {
+				Integer id;
+				try {
+					id = super.getRequest().getData("task", Integer.class);
+					task = this.repository.findTaskById(id);
 
-		tech = (Technician) super.getRequest().getPrincipal().getActiveRealm();
-		int involvedInId = super.getRequest().getData("id", int.class);
-		record = this.repository.findOneRecordByInvolvedIn(involvedInId);
-		task = this.repository.findOneTaskByInvolvedIn(involvedInId);
-		status = record != null && task != null && task.getDraftMode() && super.getRequest().getPrincipal().hasRealm(tech);
-		//no se como mierda funciona lo del draftMode
+					if (!id.equals(Integer.valueOf(0)) && !task.getTechnician().equals(tech))
+						status = false;
+
+				} catch (Exception e) {
+					status = false;
+				}
+			}
+
+			if (super.getRequest().hasData("maintanenceRecord")) {
+				Integer id;
+				try {
+					id = super.getRequest().getData("maintanenceRecord", Integer.class);
+					record = this.repository.findRecordById(id);
+
+					if (!id.equals(Integer.valueOf(0)) && !record.getTechnician().equals(tech))
+						status = false;
+
+				} catch (Exception e) {
+					status = false;
+					record = null;
+				}
+				status = record != null ? status && record.isDraftMode() : status;
+				//mira que esté publicado o no
+			}
+
+		}
+
 		super.getResponse().setAuthorised(status);
+
 	}
 
 	@Override
@@ -59,12 +97,13 @@ public class TechnicianInvolvedInUpdateService extends AbstractGuiService<Techni
 	public void validate(final InvolvedIn involved) {
 		MaintanenceRecord record = involved.getMaintanenceRecord();
 		Task task = involved.getTask();
-
+		InvolvedIn currentInvolvedIn;
+		currentInvolvedIn = this.repository.findInvolvedIn(involved.getId());
 		super.state(record != null, "*", "technician.involved-in.create.error.null-record");
 		super.state(task != null, "*", "technician.involved-in.create.error.null-task");
-		//boolean exists1 = this.repository.existsByRecordAndTask(record, task);
-		//super.state(!exists1, "*", "technician.involved-in.create.error.duplicate-record-task");
-		;
+		Collection<InvolvedIn> exists = this.repository.findByRecordAndTask(record, task);
+		boolean exists1 = exists.contains(currentInvolvedIn) ? exists.size() > 1 : exists.size() > 0;
+		super.state(!exists1, "*", "technician.involved-in.create.error.duplicate-record-task");
 	}
 
 	@Override
@@ -75,24 +114,23 @@ public class TechnicianInvolvedInUpdateService extends AbstractGuiService<Techni
 	@Override
 	public void unbind(final InvolvedIn involved) {
 		Dataset dataset;
-		Technician tech = (Technician) super.getRequest().getPrincipal().getActiveRealm();
-
-		Collection<MaintanenceRecord> records = this.repository.findRecordByTechnicianId(tech.getId());
-		Collection<Task> tasks = this.repository.findTaskByTechnicianId(tech.getId());
-
 		SelectChoices recordChoices;
 		SelectChoices taskChoices;
+
+		Technician technician = (Technician) super.getRequest().getPrincipal().getActiveRealm();
+
+		Collection<MaintanenceRecord> records = this.repository.findRecordByTechnicianId(technician.getId());
+		Collection<Task> tasks = this.repository.findTaskByTechnicianId(technician.getId());
 
 		recordChoices = SelectChoices.from(records, "maintanenceMoment", involved.getMaintanenceRecord());
 		taskChoices = SelectChoices.from(tasks, "description", involved.getTask());
 
 		dataset = super.unbindObject(involved, "maintanenceRecord", "task");
-		dataset.put("maintanenceRecord", recordChoices.getSelected().getKey());
-		dataset.put("records", recordChoices);
-		dataset.put("task", taskChoices.getSelected().getKey());
-		dataset.put("tasks", taskChoices);
-		MaintanenceRecord record = involved.getMaintanenceRecord();
-		dataset.put("draftMode", record != null ? record.getDraftMode() : false);
+		dataset.put("maintanenceRecord", recordChoices);
+		dataset.put("task", taskChoices);
+
+		dataset.put("draftMode", involved.getMaintanenceRecord().isDraftMode());
+		super.addPayload(dataset, involved, "maintanenceRecord", "task");
 
 		super.getResponse().addData(dataset);
 

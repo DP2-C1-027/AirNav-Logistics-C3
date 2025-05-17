@@ -28,17 +28,56 @@ public class AirlineManagerLegsCreateService extends AbstractGuiService<AirlineM
 	@Override
 	public void authorise() {
 		boolean status = true;
+		Integer masterId;
+		AirlineManager manager;
+		Flight flight;
+		Integer flightId;
+
 		if (super.getRequest().hasData("flightId")) {
-			Integer flightId;
 			try {
 				flightId = super.getRequest().getData("flightId", Integer.class);
 			} catch (Exception e) {
 				flightId = null;
 			}
-			Flight flight = flightId == null ? null : this.repository.getFlightById(flightId);
-			AirlineManager manager = flight == null ? null : flight.getAirlineManager();
+			flight = flightId == null ? null : this.repository.getFlightById(flightId);
+			manager = flight == null ? null : flight.getAirlineManager();
 			status = manager == null ? false : super.getRequest().getPrincipal().hasRealm(manager);
 		}
+		if (super.getRequest().hasData("id")) {
+			try {
+				masterId = super.getRequest().getData("id", Integer.class);
+			} catch (Exception e) {
+				masterId = Integer.valueOf(-1);
+			}
+			if (masterId == null || !masterId.equals(Integer.valueOf(0)))
+				status = false;
+		} else if (super.getRequest().getMethod().equals("POST"))
+			status = false;
+		if (super.getRequest().hasData("duration")) {
+			Integer duration;
+			try {
+				duration = super.getRequest().getData("duration", Integer.class);
+				if (!duration.equals(Integer.valueOf(0)))
+					status = false;
+			} catch (Exception e) {
+				status = false;
+			}
+		} else if (super.getRequest().getMethod().equals("POST"))
+			status = false;
+
+		super.getRequest().getDataEntries().forEach((e) -> System.out.println(e.getKey().concat(": ").concat(e.getValue().toString())));
+		if (super.getRequest().hasData("flight")) {
+
+			try {
+				flightId = super.getRequest().getData("flight", Integer.class);
+			} catch (Exception e) {
+				flightId = Integer.valueOf(-1);
+			}
+			flight = flightId == null ? null : this.repository.getFlightById(flightId);
+			manager = flight == null ? null : flight.getAirlineManager();
+			status = manager == null ? flightId != null && flightId.equals(Integer.valueOf(0)) && status : super.getRequest().getPrincipal().hasRealm(manager) && status;
+		} else if (super.getRequest().getMethod().equals("POST"))
+			status = false;
 		super.getResponse().setAuthorised(status);
 	}
 
@@ -51,7 +90,7 @@ public class AirlineManagerLegsCreateService extends AbstractGuiService<AirlineM
 
 		if (super.getRequest().hasData("flightId"))
 			leg.setFlight(this.repository.getFlightById(super.getRequest().getData("flightId", int.class)));
-
+		leg.setDuration(Integer.valueOf(0));
 		super.getBuffer().addData(leg);
 	}
 
@@ -62,19 +101,12 @@ public class AirlineManagerLegsCreateService extends AbstractGuiService<AirlineM
 
 	@Override
 	public void validate(final Leg leg) {
-		boolean status;
-		AirlineManager manager;
-		Leg leg_db;
-		leg_db = this.repository.findLegById(leg.getId());
-		manager = leg_db == null ? null : leg_db.getFlight().getAirlineManager();
-		status = manager != null && super.getRequest().getPrincipal().hasRealm(manager);
-		super.state(status, "flight", "airlineManager.leg.error.unownedLeg");
+		;
 	}
 
 	@Override
 	public void perform(final Leg leg) {
 		assert leg != null;
-
 		this.repository.save(leg);
 	}
 
@@ -112,7 +144,7 @@ public class AirlineManagerLegsCreateService extends AbstractGuiService<AirlineM
 		dataset.put("aircrafts", choicesAircraft);
 		dataset.put("status", choicesStatus.getSelected().getKey());
 		dataset.put("statuses", choicesStatus);
-		super.addPayload(dataset, leg, "flightNumber", "scheduledDeparture", "scheduledArrival", "duration", "status", "draftMode", "flight", "arrivalAirport", "departureAirport", "aircraft");
+		super.addPayload(dataset, leg, "flightNumber", "scheduledDeparture", "scheduledArrival", "status", "draftMode", "flight", "arrivalAirport", "departureAirport", "aircraft");
 
 		super.getResponse().addData(dataset);
 	}

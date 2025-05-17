@@ -24,7 +24,19 @@ public class AirlineManagerFlightCreateService extends AbstractGuiService<Airlin
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		boolean status = true;
+		if (super.getRequest().hasData("id")) {
+			Integer flightId;
+			try {
+				flightId = super.getRequest().getData("id", Integer.class);
+			} catch (Exception e) {
+				flightId = Integer.valueOf(-1);
+			}
+			if (flightId == null || !flightId.equals(Integer.valueOf(0)))
+				status = false;
+		} else if (super.getRequest().getMethod().equals("POST"))
+			status = false;
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override

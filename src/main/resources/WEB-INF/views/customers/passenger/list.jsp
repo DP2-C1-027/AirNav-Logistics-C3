@@ -18,8 +18,8 @@
 
 
 <acme:list >
-	<acme:list-column code="customers.passenger.list.label.fullName" path="fullName" width="20%"/>
-	<acme:list-column code="customers.passenger.list.label.email" path="email" width="10%"/>
+	<acme:list-column code="customers.passenger.list.label.fullName" path="fullName"/>
+
 	<acme:list-payload path="payload"/>
 </acme:list>
 

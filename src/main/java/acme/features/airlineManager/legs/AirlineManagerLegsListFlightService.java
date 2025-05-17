@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import acme.client.components.models.Dataset;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
+import acme.entities.flights.Flight;
 import acme.entities.legs.Leg;
 import acme.realms.AirlineManager;
 
@@ -20,7 +21,23 @@ public class AirlineManagerLegsListFlightService extends AbstractGuiService<Airl
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		boolean status = true;
+		Integer masterId;
+		Flight flight;
+		AirlineManager manager;
+		if (super.getRequest().hasData("masterId")) {
+			try {
+				masterId = super.getRequest().getData("masterId", Integer.class);
+			} catch (Exception e) {
+				masterId = null;
+			}
+			flight = masterId == null ? null : this.repository.getFlightById(masterId);
+			manager = flight == null ? null : flight.getAirlineManager();
+			status = manager == null ? false : super.getRequest().getPrincipal().hasRealm(manager);
+		} else
+			status = false;
+
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override

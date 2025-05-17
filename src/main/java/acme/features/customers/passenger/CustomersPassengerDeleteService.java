@@ -43,7 +43,8 @@ public class CustomersPassengerDeleteService extends AbstractGuiService<Customer
 			passenger = passengerId != null ? this.repository.findPassengerById(passengerId) : null;
 			customer = passenger != null ? passenger.getCustomer() : null;
 			status = customer == null ? false : passenger != null && passenger.isDraftMode() && super.getRequest().getPrincipal().hasRealm(customer);
-		}
+		} else
+			status = false;
 
 		super.getResponse().setAuthorised(status);
 
@@ -86,7 +87,7 @@ public class CustomersPassengerDeleteService extends AbstractGuiService<Customer
 		Dataset dataset;
 
 		dataset = super.unbindObject(passenger, "fullName", "email", "passportNumber", "dateOfBirth", "specialNeeds", "draftMode");
-
+		super.addPayload(dataset, passenger, "fullName", "email", "passportNumber", "dateOfBirth", "specialNeeds", "draftMode");
 		super.getResponse().addData(dataset);
 	}
 }

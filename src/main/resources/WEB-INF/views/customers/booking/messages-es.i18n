@@ -48,3 +48,6 @@ customers.booking.error.momentUpdate= Por favor elija una fecha anterior a la fe
 
 customers.booking.error.moment= Por favor complete la fecha antes de elegir un vuelo
 customers.booking.error.purchaseMoment= La fecha de compra debe ser anterior a la fecha de vuelo
+
+
+customers.booking.error.vuelos-draftmode= El vuelo debe estar publicado

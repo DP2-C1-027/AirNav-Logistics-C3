@@ -22,14 +22,61 @@ public class TechnicianInvolvedInCreateService extends AbstractGuiService<Techni
 	private TechnicianInvolvedInRepository repository;
 
 
-	// AbstractService<Manager, ProjectUserStoryLink> ---------------------------
 	@Override
 	public void authorise() {
 		Technician tech;
 		boolean status;
+		MaintanenceRecord record;
+		Task task;
 		tech = (Technician) super.getRequest().getPrincipal().getActiveRealm();
 
 		status = super.getRequest().getPrincipal().hasRealm(tech);
+		if (super.getRequest().hasData("record")) {
+			Integer id;
+			try {
+				id = super.getRequest().getData("record", Integer.class);
+				record = this.repository.findRecordById(id);
+
+				if (!id.equals(Integer.valueOf(0)) && !record.getTechnician().equals(tech))
+					status = false;
+
+			} catch (Exception e) {
+				status = false;
+				record = null;
+			}
+			status = record != null ? status && record.isDraftMode() : status;
+		} else if (super.getRequest().getMethod().equals("POST"))
+			status = false;
+
+		if (super.getRequest().hasData("passenger")) {
+			Integer id;
+			try {
+				id = super.getRequest().getData("passenger", Integer.class);
+				task = this.repository.findTaskById(id);
+
+				if (!id.equals(Integer.valueOf(0)) && !task.getTechnician().equals(tech))
+					status = false;
+
+			} catch (Exception e) {
+				status = false;
+			}
+		} else if (super.getRequest().getMethod().equals("POST"))
+			status = false;
+
+		if (super.getRequest().hasData("id")) {
+			Integer id;
+			try {
+				id = super.getRequest().getData("id", Integer.class);
+				if (!id.equals(Integer.valueOf(0)))
+					status = false;
+
+			} catch (Exception e) {
+				status = false;
+
+			}
+		} else if (super.getRequest().getMethod().equals("POST"))
+			status = false;
+
 		super.getResponse().setAuthorised(status);
 
 	}
@@ -58,7 +105,6 @@ public class TechnicianInvolvedInCreateService extends AbstractGuiService<Techni
 		task = involved.getTask();
 
 		super.state(maintanenceRecord != null, "*", "technician.involved-in.create.error.null-record");
-		//Esto habra que crearlo en algun lado?¿?¿?¿
 		super.state(task != null, "*", "technician.involved-in.create.error.null-task");
 
 		boolean exists = this.repository.existsByRecordAndTask(maintanenceRecord, task);
@@ -73,7 +119,6 @@ public class TechnicianInvolvedInCreateService extends AbstractGuiService<Techni
 
 	@Override
 	public void unbind(final InvolvedIn involved) {
-		//Record=booking
 		Dataset dataset;
 
 		Technician tech = (Technician) super.getRequest().getPrincipal().getActiveRealm();
@@ -83,7 +128,6 @@ public class TechnicianInvolvedInCreateService extends AbstractGuiService<Techni
 
 		Collection<Task> tasks = this.repository.findTaskByTechnicianId(tech.getId());
 
-		//puedo hacer un error a la hora de mirar si esta ya asociado o no pero pooco mas
 		Collection<MaintanenceRecord> records = this.repository.findNotPublishRecord(tech.getId(), true);
 
 		taskChoices = SelectChoices.from(tasks, "description", involved.getTask());
@@ -94,6 +138,8 @@ public class TechnicianInvolvedInCreateService extends AbstractGuiService<Techni
 		dataset.put("maintanenceRecord", recordChoices);
 		dataset.put("task", taskChoices);
 		dataset.put("draftMode", true);
+
+		super.addPayload(dataset, involved, "maintanenceRecord", "task");
 		super.getResponse().addData(dataset);
 
 	}

@@ -36,7 +36,7 @@ public class CustomersPassengerCreateService2 extends AbstractGuiService<Custome
 		if (super.getRequest().hasData("bookingId", int.class)) {
 			Integer bookingId;
 			try {
-				bookingId = super.getRequest().getData("bookingId", int.class);
+				bookingId = super.getRequest().getData("bookingId", Integer.class);
 			} catch (Exception e) {
 				bookingId = null;
 
@@ -81,8 +81,7 @@ public class CustomersPassengerCreateService2 extends AbstractGuiService<Custome
 		passenger.setDraftMode(true);
 		super.getBuffer().addData(passenger);
 
-		if (booking != null)
-			this.bookingRecord.setBooking(booking);
+		this.bookingRecord.setBooking(booking);
 
 	}
 

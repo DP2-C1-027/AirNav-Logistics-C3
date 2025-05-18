@@ -53,7 +53,6 @@ public class CustomersBookingCreateService extends AbstractGuiService<Customers,
 			TravelClass valor;
 			try {
 				valor = super.getRequest().getData("travelClass", TravelClass.class);
-				System.out.print(valor);
 
 			} catch (Exception e) {
 				status = false;
@@ -147,15 +146,15 @@ public class CustomersBookingCreateService extends AbstractGuiService<Customers,
 		Dataset dataset;
 		SelectChoices choices;
 
-		Collection<Flight> vuelos;
+		Collection<Flight> vuelosDisponibles;
 
-		vuelos = this.vuelosFiltrados(booking);
+		vuelosDisponibles = this.vuelosFiltrados(booking);
 		Flight flight = booking.getFlight();
-		if (flight != null && !vuelos.contains(flight))
+		if (flight != null && !vuelosDisponibles.contains(flight))
 			flight = null;
 		SelectChoices flightChoices2 = new SelectChoices();
 		flightChoices2.add("0", "----", flight == null); // opción vacía por defecto
-		for (Flight f : vuelos) {
+		for (Flight f : vuelosDisponibles) {
 			String label = f.getTag() + " : " + f.getDepartureCity() + "->" + f.getArrivalCity();
 			String key = Integer.toString(f.getId());
 			boolean isSelected = flight != null && f.equals(flight);

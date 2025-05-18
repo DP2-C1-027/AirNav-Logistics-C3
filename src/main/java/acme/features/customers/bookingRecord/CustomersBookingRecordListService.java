@@ -11,6 +11,7 @@ import acme.client.services.GuiService;
 import acme.entities.booking.Booking;
 import acme.entities.booking.BookingRecord;
 import acme.entities.booking.Passenger;
+import acme.entities.flights.Flight;
 import acme.realms.Customers;
 
 @GuiService
@@ -25,17 +26,39 @@ public class CustomersBookingRecordListService extends AbstractGuiService<Custom
 	@Override
 	public void authorise() {
 
-		super.getResponse().setAuthorised(true);
+		boolean status = true;
+
+		Passenger passenger;
+
+		if (super.getRequest().hasData("passengerId", int.class)) {
+			Integer id;
+			try {
+				id = super.getRequest().getData("passengerId", Integer.class);
+			} catch (Exception e) {
+				id = null;
+			}
+			passenger = id != null ? this.repository.findPassengerById(id) : null;
+			Customers customer = passenger != null ? passenger.getCustomer() : null;
+
+			status = customer == null ? false : super.getRequest().getPrincipal().hasRealm(customer);
+			//|| passenger != null && !passenger.isDraftMode();
+		} else
+			status = false;
+
+		super.getResponse().setAuthorised(status);
 
 	}
 
 	@Override
 	public void load() {
 		Collection<BookingRecord> booking;
-		int customerId;
+		int id;
+		Passenger passenger;
 
-		customerId = super.getRequest().getPrincipal().getActiveRealm().getId();
-		booking = this.repository.findAllBRecordByCustomerId(customerId);
+		id = super.getRequest().getData("passengerId", int.class);
+		passenger = this.repository.findPassengerById(id);
+
+		booking = this.repository.findBookingRecordPassenger(passenger.getId(), passenger.getCustomer().getId());
 
 		super.getBuffer().addData(booking);
 	}
@@ -43,15 +66,16 @@ public class CustomersBookingRecordListService extends AbstractGuiService<Custom
 	@Override
 	public void unbind(final BookingRecord bookingRecord) {
 		Dataset dataset;
-		Passenger passenger;
-		Booking booking;
-		int bookingRecordId = bookingRecord.getId();
-		passenger = this.repository.findOnePassengerByBookingRecord(bookingRecordId);
-		booking = this.repository.findOneBookingByBookingRecord(bookingRecordId);
+
+		Booking booking = bookingRecord.getBooking();
+
+		Flight f = booking.getFlight();
 
 		dataset = super.unbindObject(bookingRecord, "booking", "passenger");
 		dataset.put("booking", booking.getLocatorCode());
-		dataset.put("passenger", passenger.getFullName());
+		dataset.put("travelClass", booking.getTravelClass());
+		dataset.put("flight", f.getTag() + " : " + f.getDepartureCity() + "->" + f.getArrivalCity());
+
 		super.addPayload(dataset, bookingRecord);
 
 		super.getResponse().addData(dataset);

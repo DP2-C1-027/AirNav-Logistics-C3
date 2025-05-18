@@ -34,7 +34,7 @@ public class CustomersBookingDeleteService extends AbstractGuiService<Customers,
 	public void authorise() {
 
 		boolean status = true;
-		Flight f;
+
 		Booking booking;
 		Customers customer;
 		if (super.getRequest().hasData("id", int.class)) {

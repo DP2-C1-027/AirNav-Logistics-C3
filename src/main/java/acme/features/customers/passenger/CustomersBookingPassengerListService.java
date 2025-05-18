@@ -32,14 +32,14 @@ public class CustomersBookingPassengerListService extends AbstractGuiService<Cus
 		if (super.getRequest().hasData("bookingId", int.class)) {
 			Integer id;
 			try {
-				id = super.getRequest().getData("bookingId", int.class);
+				id = super.getRequest().getData("bookingId", Integer.class);
 			} catch (Exception e) {
 				id = null;
 			}
 			booking = id != null ? this.repository.findBookinById(id) : null;
 			Customers customer = booking != null ? booking.getCustomer() : null;
 
-			status = customer == null ? false : super.getRequest().getPrincipal().hasRealm(customer) || booking != null && !booking.isDraftMode();
+			status = customer == null ? false : super.getRequest().getPrincipal().hasRealm(customer); //|| booking != null && !booking.isDraftMode();
 		} else
 			status = false;
 

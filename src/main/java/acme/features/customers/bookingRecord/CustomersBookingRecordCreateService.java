@@ -24,44 +24,40 @@ public class CustomersBookingRecordCreateService extends AbstractGuiService<Cust
 
 	@Override
 	public void authorise() {
-		Customers customer;
-		boolean status;
-		Booking booking;
+
+		boolean status = true;
 		Passenger passenger;
-		customer = (Customers) super.getRequest().getPrincipal().getActiveRealm();
 
-		status = super.getRequest().getPrincipal().hasRealm(customer);
-		if (super.getRequest().hasData("booking")) {
-			Integer id;
+		if (super.getRequest().hasData("bookingId", int.class)) {
+			Integer bookingId;
 			try {
-				id = super.getRequest().getData("booking", Integer.class);
-				booking = this.repository.findBookingById(id);
-
-				if (!id.equals(Integer.valueOf(0)) && !booking.getCustomer().equals(customer))
-					status = false;
-
+				bookingId = super.getRequest().getData("bookingId", Integer.class);
 			} catch (Exception e) {
-				status = false;
-				booking = null;
+				bookingId = null;
+
 			}
-			status = booking != null ? status && booking.isDraftMode() : status;
-		} else if (super.getRequest().getMethod().equals("POST"))
-			status = false;
 
-		if (super.getRequest().hasData("passenger")) {
-			Integer id;
-			try {
-				id = super.getRequest().getData("passenger", Integer.class);
-				passenger = this.repository.findPassengerById(id);
+			Booking booking = bookingId != null ? this.repository.findBookingById(bookingId) : null;
+			Customers customer = booking != null ? booking.getCustomer() : null;
 
-				if (!id.equals(Integer.valueOf(0)) && !passenger.getCustomer().equals(customer))
+			status = customer == null ? false : booking != null && booking.isDraftMode() && super.getRequest().getPrincipal().hasRealm(customer);
+
+			if (super.getRequest().hasData("passenger")) {
+				Integer id;
+				try {
+					id = super.getRequest().getData("passenger", Integer.class);
+					passenger = this.repository.findPassengerById(id);
+
+					if (!id.equals(Integer.valueOf(0)) && !passenger.getCustomer().equals(customer))
+						status = false;
+
+				} catch (Exception e) {
 					status = false;
-
-			} catch (Exception e) {
+				}
+			} else if (super.getRequest().getMethod().equals("POST"))
 				status = false;
-			}
-		} else if (super.getRequest().getMethod().equals("POST"))
-			status = false;
+
+		}
 
 		if (super.getRequest().hasData("id")) {
 			Integer id;
@@ -86,6 +82,9 @@ public class CustomersBookingRecordCreateService extends AbstractGuiService<Cust
 		BookingRecord bookingRecord;
 
 		bookingRecord = new BookingRecord();
+		int bookingId = super.getRequest().getData("bookingId", int.class);
+		Booking booking = this.repository.findBookingById(bookingId);
+		bookingRecord.setBooking(booking);
 
 		super.getBuffer().addData(bookingRecord);
 	}
@@ -93,7 +92,8 @@ public class CustomersBookingRecordCreateService extends AbstractGuiService<Cust
 	@Override
 	public void bind(final BookingRecord bookingRecord) {
 
-		super.bindObject(bookingRecord, "booking", "passenger");
+		super.bindObject(bookingRecord, "passenger");
+
 	}
 
 	@Override
@@ -103,11 +103,7 @@ public class CustomersBookingRecordCreateService extends AbstractGuiService<Cust
 
 		booking = bookingRecord.getBooking();
 		passenger = bookingRecord.getPassenger();
-
-		super.state(booking != null, "booking", "customer.booking-record.create.error.null-booking");
 		super.state(passenger != null, "passenger", "customer.booking-record.create.error.null-passenger");
-		//if (booking != null)
-		//	super.state(booking.isDraftMode(), "booking", "customer.booking-record.create.publish.booking");
 		boolean exists = this.repository.existsByBookingAndPassenger(booking, passenger);
 		super.state(!exists, "*", "customer.booking-record.create.error.duplicate-booking-passenger");
 
@@ -123,20 +119,19 @@ public class CustomersBookingRecordCreateService extends AbstractGuiService<Cust
 	public void unbind(final BookingRecord bookingRecord) {
 		Dataset dataset;
 
-		Customers customer = (Customers) super.getRequest().getPrincipal().getActiveRealm();
+		Booking bookings = bookingRecord.getBooking();
+
+		Customers customer = bookings.getCustomer();
 		Collection<Passenger> passenger = this.repository.findPassengerByCustomerId(customer.getId());
 
-		Collection<Booking> booking = this.repository.findNotPublishBooking(customer.getId());
-
 		SelectChoices passengerChoices;
-		SelectChoices bookingChoices;
 
 		passengerChoices = SelectChoices.from(passenger, "fullName", bookingRecord.getPassenger());
-		bookingChoices = SelectChoices.from(booking, "locatorCode", bookingRecord.getBooking());
 
 		dataset = super.unbindObject(bookingRecord, "booking", "passenger");
-		dataset.put("booking", bookingChoices.getSelected().getKey());
-		dataset.put("bookings", bookingChoices);
+
+		dataset.put("booking", bookings.getLocatorCode());
+
 		dataset.put("passenger", passengerChoices.getSelected().getKey());
 		dataset.put("passengers", passengerChoices);
 		dataset.put("draftMode", true);

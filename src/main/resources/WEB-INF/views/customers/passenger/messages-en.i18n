@@ -21,9 +21,11 @@ customers.passenger.list.label.fullName = Full name:
 customers.passenger.list.label.email = Email:
 
 customers.passenger.form.button.create= Create new passenger
-customers.passenger.form.button.createBooking = Add new passenger
+customers.passenger.form.button.createBooking = Create new passenger
 
 customers.passenger.form.button.update = Update
 customers.passenger.form.button.publish= Publish
 customers.passenger.form.button.delete=Delete
 
+customers.passenger.form.button.createBr= Add new passenger
+customers.passenger.list.button.brecors= Passenger's booking

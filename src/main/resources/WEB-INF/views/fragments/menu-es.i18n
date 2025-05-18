@@ -96,7 +96,7 @@ master.menu.customers.list-my-bookings = Mi lista de reservas
 master.menu.customers.list-my-passengers = Mi lista de pasajeros
 
 master.menu.customers.show-dashboard = Mi dashboard
-master.menu.customers.list-my-bookingRecord = Lista de bookingRecord
+
 
 # master.menu.technicians ##########################################################
 master.menu.technicians = Técnico

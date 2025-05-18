@@ -26,3 +26,6 @@ customers.passenger.form.button.update = Actualizar
 customers.passenger.form.button.publish= Publicar
 
 customers.passenger.form.button.delete=Borrar
+
+customers.passenger.form.button.createBr= Añadir nuevo pasajero
+customers.passenger.list.button.brecors =Reservas del pasajero

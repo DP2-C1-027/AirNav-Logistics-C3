@@ -25,6 +25,10 @@
 	 
 	
 	<jstl:choose>
+		<jstl:when test="${_command == 'show' &&  draftMode == false }">
+			<acme:button code="customers.passenger.list.button.brecors" action="/customers/booking-record/list?passengerId=${id}"/>
+		
+		</jstl:when>
 		<jstl:when test="${_command == 'create'}">
 			<acme:submit code="customers.passenger.form.button.create" action="/customers/passenger/create"/>
 		</jstl:when>
@@ -36,6 +40,10 @@
 			<acme:submit code="customers.passenger.form.button.update" action="/customers/passenger/update"/>
 			<acme:submit code="customers.passenger.form.button.delete" action="/customers/passenger/delete"/>
 			<acme:submit code="customers.passenger.form.button.publish" action="/customers/passenger/publish"/>
+			<acme:button code="customers.passenger.list.button.brecors" action="/customers/booking-record/list?passengerId=${id}"/>
+		
 		</jstl:when>
+		
+		
 	</jstl:choose>
 </acme:form>

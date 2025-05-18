@@ -20,11 +20,11 @@
 
 <acme:list>
 	<acme:list-column code="customers.booking-record.list.label.booking" path="booking" width="20%"/>
-	<acme:list-column code="customers.booking-record.list.label.passenger" path="passenger" width="20%"/>
+	<acme:list-column code="customers.booking-record.list.label.travelClass" path="travelClass" width="20%"/>
+	<acme:list-column code="customers.booking-record.list.label.flight" path="flight" width="20%"/>
+
 </acme:list>
 
-<jstl:if test="${_command == 'list'}">
-	<acme:button code="customers.booking-record.form.label.create" action="/customers/booking-record/create"/>
-</jstl:if>
+
 	
 

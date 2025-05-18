@@ -93,7 +93,7 @@ master.menu.customers = Customer
 master.menu.customers.list-my-bookings = My booking List
 master.menu.customers.list-my-passengers = My passengers List
 master.menu.customers.show-dashboard = My dashboard
-master.menu.customers.list-my-bookingRecord = My bookingRecord List
+
 
 
 # master.menu.technicians ##########################################################

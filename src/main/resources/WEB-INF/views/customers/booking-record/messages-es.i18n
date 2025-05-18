@@ -20,6 +20,9 @@ customers.booking-record.list.label.passenger= Pasajeros:
 customers.booking-record.form.label.create= Crear
 customers.booking-record.form.label.update= Actualizar
 
+customers.booking-record.list.label.travelClass= Clase de viaje
+customers.booking-record.list.label.flight=Vuelo
+
 customer.booking-record.create.error.null-booking= No puede no seleccionar una reserva
 customer.booking-record.create.error.null-passenger = No puede no seleccionar un pasajero
 customer.booking-record.create.error.duplicate-booking-passenger= Esta relacion ya existe

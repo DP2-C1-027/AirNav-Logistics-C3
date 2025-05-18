@@ -18,20 +18,19 @@
 <acme:form>	
 	<jstl:choose>
 		<jstl:when test="${acme:anyOf(_command, 'show|update') && draftMode == true}">
-			<acme:input-select code="customers.booking-record.form.label.booking" path="booking" choices="${bookings}"/>
-			<acme:input-select code="customers.booking-record.form.label.passenger" path="passenger" choices="${passengers}"/>
-			<acme:submit code="customers.booking-record.form.label.update" action="/customers/booking-record/update"/>
+			<acme:input-textbox code="customers.booking-record.form.label.booking" path="booking" readonly="true"/>
+			<acme:input-textbox code="customers.booking-record.form.label.passenger" path="passenger" readonly="true"/>
 			<acme:submit code="customers.booking-record.form.label.delete" action="/customers/booking-record/delete"/>
 			
 		</jstl:when>
 		<jstl:when test="${_command == 'show' && draftMode == false}">
-			<acme:input-select code="customers.booking-record.form.label.booking" path="booking" choices="${bookings}" readonly="true"/>
-			<acme:input-select code="customers.booking-record.form.label.passenger" path="passenger" choices="${passengers}" readonly="true"/>
+			<acme:input-textbox code="customers.booking-record.form.label.booking" path="booking" readonly="true"/>
+			<acme:input-textbox code="customers.booking-record.form.label.passenger" path="passenger" readonly="true"/>
 		</jstl:when>
 		<jstl:when test="${_command == 'create'}">
-			<acme:input-select code="customers.booking-record.form.label.booking" path="booking" choices="${bookings}"/>
+			<acme:input-textbox code="customers.booking-record.form.label.booking" path="booking" readonly="true"/>
 			<acme:input-select code="customers.booking-record.form.label.passenger" path="passenger" choices="${passengers}"/>
-			<acme:submit code="customers.booking-record.form.label.create" action="/customers/booking-record/create"/>
+			<acme:submit code="customers.booking-record.form.label.create" action="/customers/booking-record/create?bookingId=${$request.data.bookingId}"/>
 		</jstl:when>
 	</jstl:choose>
 </acme:form>

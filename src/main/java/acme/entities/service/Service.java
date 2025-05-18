@@ -31,11 +31,6 @@ public class Service extends AbstractEntity {
 	private String				name;
 
 	@Mandatory
-	// HINT: @Valid by default.
-	@Automapped
-	private boolean				draftMode;
-
-	@Mandatory
 	@Automapped
 	@ValidUrl
 	private String				picture;

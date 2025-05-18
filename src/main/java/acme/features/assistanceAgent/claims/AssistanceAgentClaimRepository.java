@@ -13,6 +13,7 @@
 package acme.features.assistanceAgent.claims;
 
 import java.util.Collection;
+import java.util.Date;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -52,9 +53,11 @@ public interface AssistanceAgentClaimRepository extends AbstractRepository {
 	@Query("SELECT l FROM Claim c JOIN Leg l ON c.linkedTo = l.id WHERE c.id = :claimId")
 	Leg findLinkedLegByClaimId(int claimId);
 
-	// esto seguro que hay que filtrar pero ya mas es to much
-	@Query("SELECT l FROM Leg l")
-	Collection<Leg> findAllLegs();
+	@Query("SELECT l FROM Leg l WHERE l.draftMode = false AND l.scheduledArrival < (SELECT c.registrationMoment FROM Claim c WHERE c.id = :claimId)")
+	Collection<Leg> findCompletedLegsByClaimId(int claimId);
+
+	@Query("SELECT l FROM Leg l WHERE l.draftMode = false AND l.scheduledArrival < ( :registrationMoment)")
+	Collection<Leg> findCompletedLegsByRegistrationMoment(Date registrationMoment);
 
 	@Query("SELECT c FROM Claim c WHERE c.linkedTo.flight.id = :flightId")
 	Collection<Claim> findClaimsByFlightId(int flightId);

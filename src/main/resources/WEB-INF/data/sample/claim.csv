@@ -1,19 +1,28 @@
 key,registrationMoment,passengerEmail,description,type,draftMode,key:registeredBy,key:linkedTo
-claim-01,2020/11/01 10:00,passenger1@gmail.com,'' or 'A' = 'A,FLIGHT_ISSUES,True,agent-01,leg-01
-claim-02,2020/11/01 10:00,passenger1@gmail.com,Heathrow AirportHeathrow AirportHeathrow AirportHeathrow AirportHeathrow AirportHeathrow AirportHeathrow AirportHeathrow AirportHeathrow AirportHeathrow AirportHeathrow AirportHeathrow AirportHeathrow AirportHeathrow AirportHeathrow AirportHeathrowww,FLIGHT_ISSUES,True,agent-01,leg-01
-claim-03,2021/06/15 14:30,passenger2@yahoo.com,El equipaje no llegó a destino.,LUGGAGE_ISSUES,True,agent-02,leg-01
-claim-04,2021/07/22 08:45,passenger3@hotmail.com,Vol retardé de 5 heures.,FLIGHT_ISSUES,True,agent-03,leg-01
-claim-05,2021/09/10 20:10,passenger4@gmail.com,荷物が紛失しました。,LUGGAGE_ISSUES,True,agent-04,leg-01
-claim-06,2025/01/01 0:00,passenger5@outlook.com,"Overbooked flight, I was denied boarding.",FLIGHT_ISSUES,True,agent-05,leg-01
-claim-07,2022/02/14 16:50,passenger6@gmail.com,Flug storniert ohne Vorankündigung.,FLIGHT_ISSUES,True,agent-06,leg-02
-claim-08,2022/05/30 10:05,passenger7@yahoo.com,<marquee>Hacked</marquee>,LUGGAGE_ISSUES,True,agent-07,leg-02
-claim-09,2021/08/19 22:20,usuariousuariousuariousuariousuariousuario@example.adipiscing.elit.sed.do.eiusmod.tempor.incididunt.ut.labore.et.dolore.magna.aliqua.Ut.quis.minim.veniam.elit.sed.do.eiusmod.elit.sed.do.eiusaamod.elit.sed.do.eiusmod.quis.minim.veniam.quis.nostrud.com,حقيبتي لم تصل,OTHER_ISSUES,True,agent-08,leg-03
-claim-10,2000/01/01 0:00,passenger9@gmail.com,Le vol a été annulé sans compensation.,FLIGHT_ISSUES,True,agent-09,leg-04
-claim-11,2021/03/05 07:30,passenger10@outlook.com,I received the wrong meal.,SECURITY_INCIDENT,True,agent-10,leg-06
-claim-12,2021/06/25 12:10,passenger11@gmail.com,서비스가 매우 불친절했습니다.,SECURITY_INCIDENT,True,agent-11,leg-01
-claim-13,2021/09/09 15:55,passenger12@yahoo.com,d,FLIGHT_ISSUES,True,agent-12,leg-01
-claim-14,2021/12/01 21:40,passenger13@hotmail.com,Καθυστερημένη πτήση χωρίς ενημέρωση.,FLIGHT_ISSUES,True,agent-13,leg-01
-claim-15,2024/12/07 10:00,a@b.e,Robert'); DROP TABLE claims; --,SECURITY_INCIDENT,True,agent-01,leg-01
-claim-16,2024/12/07 10:00,passenger1@gmail.com,Καθυστερημένη,FLIGHT_ISSUES,True,agent-01,leg-01
-claim-17,2024/12/07 10:00,passenger2@gmail.com,Καθυστερημένη,FLIGHT_ISSUES,True,agent-01,leg-01
-claim-18,2020/11/01 10:00,passenger1@gmail.com,Καθυστερημένη,FLIGHT_ISSUES,True,agent-01,leg-01
+claim-01,2020/11/01 10:00,passenger1@gmail.com,'' or 'A' = 'A,FLIGHT_ISSUES,True,agent-01,leg-17
+claim-02,2020/11/01 10:00,passenger1@gmail.com,Heathrow AirportHeathrow AirportHeathrow AirportHeathrow AirportHeathrow AirportHeathrow AirportHeathrow AirportHeathrow AirportHeathrow AirportHeathrow AirportHeathrow AirportHeathrow AirportHeathrow AirportHeathrow AirportHeathrow AirportHeathrowww,FLIGHT_ISSUES,True,agent-01,leg-17
+claim-03,2021/06/15 14:30,passenger2@yahoo.com,El equipaje no llegó a destino.,LUGGAGE_ISSUES,True,agent-02,leg-17
+claim-04,2021/07/22 08:45,passenger3@hotmail.com,Vol retardé de 5 heures.,FLIGHT_ISSUES,True,agent-02,leg-17
+claim-05,2021/09/10 20:10,passenger4@gmail.com,荷物が紛失しました。,LUGGAGE_ISSUES,True,agent-04,leg-17
+claim-06,2025/01/01 0:00,passenger5@outlook.com,"Overbooked flight, I was denied boarding.",FLIGHT_ISSUES,True,agent-05,leg-17
+claim-07,2022/02/14 16:50,passenger6@gmail.com,Flug storniert ohne Vorankündigung.,FLIGHT_ISSUES,True,agent-06,leg-17
+claim-08,2022/05/30 10:05,passenger7@yahoo.com,<marquee>Hacked</marquee>,LUGGAGE_ISSUES,True,agent-07,leg-17
+claim-09,2021/08/19 22:20,usuariousuariousuariousuariousuariousuario@example.adipiscing.elit.sed.do.eiusmod.tempor.incididunt.ut.labore.et.dolore.magna.aliqua.Ut.quis.minim.veniam.elit.sed.do.eiusmod.elit.sed.do.eiusaamod.elit.sed.do.eiusmod.quis.minim.veniam.quis.nostrud.com,حقيبتي لم تصل,OTHER_ISSUES,True,agent-08,leg-17
+claim-10,2000/01/01 0:00,passenger9@gmail.com,Le vol a été annulé sans compensation.,FLIGHT_ISSUES,True,agent-09,leg-17
+claim-11,2000/01/01 0:01,passenger10@outlook.com,I received the wrong meal.,SECURITY_INCIDENT,True,agent-10,leg-17
+claim-12,2021/06/25 12:10,passenger11@gmail.com,서비스가 매우 불친절했습니다.,SECURITY_INCIDENT,True,agent-11,leg-17
+claim-13,2021/09/09 15:55,passenger12@yahoo.com,d,FLIGHT_ISSUES,True,agent-12,leg-17
+claim-14,2021/12/01 21:40,passenger13@hotmail.com,Καθυστερημένη πτήση χωρίς ενημέρωση.,FLIGHT_ISSUES,True,agent-13,leg-17
+claim-15,2024/12/07 10:00,a@b.e,Robert'); DROP TABLE claims; --,SECURITY_INCIDENT,True,agent-01,leg-17
+claim-16,2024/12/07 10:00,lorem-ipsum@dolor.sit.amet.consectetur.adipiscing.elit.sed.do.eiusmod.tempor.incididunt.ut.labore.et.dolore.magna.aliqua.Ut.enim.ad.minim.veniam.quis.nostrud.exercitation.ullamco.laboris.nisi.ut.aliquip.ex.ea.commodo.consequat.duis.aute.irure.dolor.es.org,Καθυστερημένη,FLIGHT_ISSUES,True,agent-02,leg-17
+claim-17,2024/12/07 10:00,lorem-ipsum@dolor.sit.amet.consectetur.adipiscing.elit.sed.do.eiusmod.tempor.incididunt.ut.labore.et.dolore.magna.aliqua.Ut.enim.ad.minim.veniam.quis.nostrud.exercitation.ullamco.laboris.nisi.ut.aliquip.ex.ea.commodo.consequat.duis.aute.irure.doloris.edu,Καθυστερημένη,FLIGHT_ISSUES,True,agent-02,leg-07
+claim-18,2024/12/31 23:59,passenger1@gmail.com,Καθυστερημένη,FLIGHT_ISSUES,True,agent-01,leg-17
+claim-19,2025/01/01 00:00,a@b.esx,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor",FLIGHT_ISSUES,True,agent-01,leg-07
+claim-20,2020/11/01 10:00,passenger1@gmail.com,BocataLomoYA,FLIGHT_ISSUES,True,agent-01,leg-17
+claim-21,2020/11/01 10:00,passenger1@gmail.com,No TrackingLog,FLIGHT_ISSUES,False,agent-01,leg-17
+claim-22,2020/11/01 10:00,passenger1@gmail.com,Undergoing,FLIGHT_ISSUES,False,agent-01,leg-17
+claim-23,2020/11/01 10:00,passenger1@gmail.com,Accepted sip,FLIGHT_ISSUES,False,agent-01,leg-17
+claim-24,2020/11/01 10:00,passenger1@gmail.com,Rejected Nop,FLIGHT_ISSUES,False,agent-01,leg-17
+claim-25,2020/11/01 10:00,passenger1@gmail.com,Accepted but later Nop,FLIGHT_ISSUES,False,agent-01,leg-17
+claim-26,2020/11/01 10:00,passenger1@gmail.com,Accepted but later Nop But Already,FLIGHT_ISSUES,False,agent-01,leg-17
+

@@ -56,7 +56,8 @@ public class AssistanceAgentTrackingLogCreateService extends AbstractGuiService<
 				status = lastLog.isDraftMode() || lastLog.getResolutionPercentage() != null && lastLog.getResolutionPercentage() == 100;
 			} else
 				status = true;
-		}
+		} else if (super.getRequest().getMethod().equals("POST"))
+			status = false;
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -89,6 +90,8 @@ public class AssistanceAgentTrackingLogCreateService extends AbstractGuiService<
 			super.state(trackingLog.getResolutionPercentage() != null && trackingLog.getResolutionPercentage() == 100, "resolutionPercentage", "assistance-agent.tracking-log.form.error.percentage-not-100");
 			super.state(trackingLog.getResolutionDetails() != null && !trackingLog.getResolutionDetails().isEmpty(), "resolutionDetails", "assistance-agent.tracking-log.form.error.resolution-required");
 		}
+		if (!trackingLog.getResolutionDetails().isEmpty())
+			super.state(trackingLog.getResolutionPercentage() != null && trackingLog.getResolutionPercentage() == 100, "resolutionDetails", "assistance-agent.tracking-log.form.error.resolutionDetails-not-admited");
 
 		// Validación de porcentaje incremental
 		if (trackingLog.getClaim() != null && trackingLog.getClaim().getId() != 0 && !super.getBuffer().getErrors().hasErrors("resolutionPercentage")) {
@@ -104,11 +107,12 @@ public class AssistanceAgentTrackingLogCreateService extends AbstractGuiService<
 		int claimId = super.getRequest().getData("claimId", int.class);
 		List<TrackingLog> previousLogs = this.repository.findTrackingLogsByClaimIdOrderedByPercentaje(claimId);
 
-		// Añade esta comprobación
 		if (!previousLogs.isEmpty()) {
 			TrackingLog lastLog = previousLogs.get(0);
 			if (!lastLog.isDraftMode())
 				super.state(trackingLog.getResolutionPercentage() != null && trackingLog.getResolutionPercentage() == 100, "resolutionPercentage", "assistance-agent.tracking-log.form.error.after-publish-percentage-mustbe-100");
+			super.state(trackingLog.getIndicator() != null && trackingLog.getIndicator() == Indicator.REJECTED, "indicator", "assistance-agent.tracking-log.form.error.after-publish-mustbe-rejected");
+
 		}
 	}
 

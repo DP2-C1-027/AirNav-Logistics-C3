@@ -38,14 +38,22 @@ public class AssistanceAgentClaimPublishService extends AbstractGuiService<Assis
 
 	@Override
 	public void authorise() {
-		AssistanceAgent assistance;
-		boolean status;
-		int claimId;
-		Claim claim;
-		assistance = (AssistanceAgent) super.getRequest().getPrincipal().getActiveRealm();
-		claimId = super.getRequest().getData("id", int.class);
-		claim = this.repository.findOneClaimById(claimId);
-		status = claim != null && claim.isDraftMode() && super.getRequest().getPrincipal().hasRealm(assistance);
+		boolean status = false;
+		AssistanceAgent assistance = (AssistanceAgent) super.getRequest().getPrincipal().getActiveRealm();
+
+		if (super.getRequest().getPrincipal().hasRealm(assistance))
+			if (super.getRequest().hasData("id"))
+				try {
+					int claimId = super.getRequest().getData("id", int.class);
+
+					if (claimId != 0) {
+						Claim claim = this.repository.findOneClaimById(claimId);
+
+						status = claim != null && claim.isDraftMode() && super.getRequest().getPrincipal().hasRealm(assistance);
+					}
+				} catch (Exception e) {
+					status = false;
+				}
 		super.getResponse().setAuthorised(status);
 	}
 
@@ -68,7 +76,12 @@ public class AssistanceAgentClaimPublishService extends AbstractGuiService<Assis
 
 	@Override
 	public void validate(final Claim claim) {
-		;
+		if (!super.getBuffer().getErrors().hasErrors("linkedTo"))
+			if (claim.getId() != 0) {
+				Collection<Leg> validLegs = this.repository.findCompletedLegsByClaimId(claim.getId());
+				boolean isValidLeg = claim.getLinkedTo() != null && validLegs.stream().anyMatch(leg -> Integer.valueOf(leg.getId()).equals(claim.getLinkedTo().getId()));
+				super.state(isValidLeg, "linkedTo", "assistance-agent.claim.form.error.invalid-leg");
+			}
 	}
 
 	@Override
@@ -80,8 +93,7 @@ public class AssistanceAgentClaimPublishService extends AbstractGuiService<Assis
 	@Override
 	public void unbind(final Claim claim) {
 		Collection<Leg> legs;
-		legs = this.repository.findAllLegs();
-
+		legs = this.repository.findCompletedLegsByClaimId(claim.getId());
 		Dataset dataset = super.unbindObject(claim, "registrationMoment", "passengerEmail", "description", "indicator", "type", "linkedTo");
 		SelectChoices statusChoices = SelectChoices.from(ClaimType.class, claim.getType());
 		SelectChoices legsChoices = SelectChoices.from(legs, "flightNumber", claim.getLinkedTo());

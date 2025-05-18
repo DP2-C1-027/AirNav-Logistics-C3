@@ -38,11 +38,22 @@ public class AssistanceAgentClaimShowService extends AbstractGuiService<Assistan
 
 	@Override
 	public void authorise() {
-		AssistanceAgent assistance;
-		boolean status;
-		assistance = (AssistanceAgent) super.getRequest().getPrincipal().getActiveRealm();
+		boolean status = false;
+		AssistanceAgent assistance = (AssistanceAgent) super.getRequest().getPrincipal().getActiveRealm();
 
-		status = super.getRequest().getPrincipal().hasRealm(assistance);
+		if (super.getRequest().getPrincipal().hasRealm(assistance))
+			if (super.getRequest().hasData("id"))
+				try {
+					int claimId = super.getRequest().getData("id", int.class);
+
+					if (claimId != 0) {
+						Claim claim = this.repository.findOneClaimById(claimId);
+
+						status = claim != null && claim.isDraftMode() && super.getRequest().getPrincipal().hasRealm(assistance);
+					}
+				} catch (Exception e) {
+					status = false;
+				}
 		super.getResponse().setAuthorised(status);
 	}
 
@@ -60,7 +71,7 @@ public class AssistanceAgentClaimShowService extends AbstractGuiService<Assistan
 	@Override
 	public void unbind(final Claim claim) {
 		Collection<Leg> legs;
-		legs = this.repository.findAllLegs();
+		legs = this.repository.findCompletedLegsByClaimId(claim.getId());
 
 		Dataset dataset = super.unbindObject(claim, "registrationMoment", "passengerEmail", "description", "indicator", "type", "linkedTo", "draftMode");
 		SelectChoices statusChoices = SelectChoices.from(ClaimType.class, claim.getType());

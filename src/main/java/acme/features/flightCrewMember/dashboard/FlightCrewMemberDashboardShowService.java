@@ -127,8 +127,6 @@ public class FlightCrewMemberDashboardShowService extends AbstractGuiService<Fli
 
 	@Override
 	public void unbind(final FlightCrewMemberDashboard dashboard) {
-		assert dashboard != null;
-
 		Dataset dataset = super.unbindObject(dashboard, //
 			"lastFiveDestinations", "legsWithIncidentSeverity3", // 
 			"legsWithIncidentSeverity7", "legsWithIncidentSeverity10", //

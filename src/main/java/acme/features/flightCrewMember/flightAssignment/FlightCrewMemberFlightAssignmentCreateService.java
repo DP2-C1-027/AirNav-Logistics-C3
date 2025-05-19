@@ -45,27 +45,21 @@ public class FlightCrewMemberFlightAssignmentCreateService extends AbstractGuiSe
 
 	@Override
 	public void bind(final FlightAssignment flightAssignment) {
-		assert flightAssignment != null;
-
 		super.bindObject(flightAssignment, "duty", "currentStatus", "remarks", "leg");
 	}
 
 	@Override
 	public void validate(final FlightAssignment flightAssignment) {
-		assert flightAssignment != null;
+
 	}
 
 	@Override
 	public void perform(final FlightAssignment flightAssignment) {
-		assert flightAssignment != null;
-
 		this.repository.save(flightAssignment);
 	}
 
 	@Override
 	public void unbind(final FlightAssignment flightAssignment) {
-		assert flightAssignment != null;
-
 		Dataset dataset = super.unbindObject(flightAssignment, "duty", "moment", "currentStatus", "remarks", "draftMode", "flightCrewMember", "leg");
 
 		FlightCrewMember flightCrewMember = (FlightCrewMember) super.getRequest().getPrincipal().getActiveRealm();

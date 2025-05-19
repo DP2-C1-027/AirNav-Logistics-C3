@@ -56,15 +56,11 @@ public class FlightCrewMemberFlightAssignmentPublishService extends AbstractGuiS
 
 	@Override
 	public void bind(final FlightAssignment flightAssignment) {
-		assert flightAssignment != null;
-
 		super.bindObject(flightAssignment, "duty", "currentStatus", "remarks", "leg");
 	}
 
 	@Override
 	public void validate(final FlightAssignment flightAssignment) {
-		assert flightAssignment != null;
-
 		if (flightAssignment.getFlightCrewMember() != null) {
 			// Only flight crew members with an "AVAILABLE" status can be assigned 
 			boolean isAvailable = flightAssignment.getFlightCrewMember().getAvailabilityStatus().equals(AvailabilityStatus.AVAILABLE);
@@ -97,16 +93,12 @@ public class FlightCrewMemberFlightAssignmentPublishService extends AbstractGuiS
 
 	@Override
 	public void perform(final FlightAssignment flightAssignment) {
-		assert flightAssignment != null;
-
 		flightAssignment.setDraftMode(false);
 		this.repository.save(flightAssignment);
 	}
 
 	@Override
 	public void unbind(final FlightAssignment flightAssignment) {
-		assert flightAssignment != null;
-
 		Dataset dataset = super.unbindObject(flightAssignment, "duty", "moment", "currentStatus", "remarks", "draftMode", "flightCrewMember", "leg");
 
 		dataset.put("flightCrewMember", flightAssignment.getFlightCrewMember().getIdentity().getFullName());

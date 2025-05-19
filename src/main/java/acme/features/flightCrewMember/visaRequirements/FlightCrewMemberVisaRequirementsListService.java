@@ -54,8 +54,6 @@ public class FlightCrewMemberVisaRequirementsListService extends AbstractGuiServ
 
 	@Override
 	public void unbind(final VisaRequirements visaRequirements) {
-		assert visaRequirements != null;
-
 		Dataset dataset = super.unbindObject(visaRequirements, "country", "nationality", "visaRequired", "visaType", "additionalInfo");
 
 		super.getResponse().addData(dataset);
@@ -63,8 +61,6 @@ public class FlightCrewMemberVisaRequirementsListService extends AbstractGuiServ
 
 	@Override
 	public void unbind(final Collection<VisaRequirements> visaRequirements) {
-		assert visaRequirements != null;
-
 		super.getResponse().addGlobal("assignmentId", super.getRequest().getData("assignmentId", int.class));
 	}
 }

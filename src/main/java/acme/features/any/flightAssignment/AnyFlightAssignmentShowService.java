@@ -52,8 +52,6 @@ public class AnyFlightAssignmentShowService extends AbstractGuiService<Any, Flig
 
 	@Override
 	public void unbind(final FlightAssignment completedFlightAssignment) {
-		assert completedFlightAssignment != null;
-
 		Dataset dataset = super.unbindObject(completedFlightAssignment, "duty", "moment", "currentStatus", "remarks", "flightCrewMember", "leg", "draftMode");
 
 		// Duty choices

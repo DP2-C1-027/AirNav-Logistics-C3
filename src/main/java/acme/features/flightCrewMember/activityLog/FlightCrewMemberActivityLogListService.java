@@ -53,8 +53,6 @@ public class FlightCrewMemberActivityLogListService extends AbstractGuiService<F
 
 	@Override
 	public void unbind(final ActivityLog activityLog) {
-		assert activityLog != null;
-
 		Dataset dataset = super.unbindObject(activityLog, "registrationMoment", "typeOfIncident", "description", "severityLevel", "draftMode");
 
 		int assignmentId = super.getRequest().getData("assignmentId", int.class);
@@ -69,8 +67,6 @@ public class FlightCrewMemberActivityLogListService extends AbstractGuiService<F
 
 	@Override
 	public void unbind(final Collection<ActivityLog> activityLogs) {
-		assert activityLogs != null;
-
 		int assignmentId = super.getRequest().getData("assignmentId", int.class);
 		FlightAssignment flightAssignment = this.repository.findFlightAssignmentById(assignmentId);
 

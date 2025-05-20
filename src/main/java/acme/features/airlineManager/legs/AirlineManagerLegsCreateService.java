@@ -30,50 +30,53 @@ public class AirlineManagerLegsCreateService extends AbstractGuiService<AirlineM
 	@Override
 	public void authorise() {
 		boolean status = true;
-		Integer masterId;
 		AirlineManager manager;
 		Flight flight;
 		Integer flightId;
 
 		if (super.getRequest().hasData("flightId")) {
-			try {
-				flightId = super.getRequest().getData("flightId", Integer.class);
-			} catch (Exception e) {
+			String isInteger;
+			isInteger = super.getRequest().getData("flightId", String.class).trim();
+			if (isInteger != null && isInteger.chars().anyMatch((e) -> e > 47 && e < 58))
+				flightId = Integer.valueOf(isInteger);
+			else
 				flightId = null;
-			}
 			flight = flightId == null ? null : this.repository.getFlightById(flightId);
 			manager = flight == null ? null : flight.getAirlineManager();
 			status = manager == null ? false : super.getRequest().getPrincipal().hasRealm(manager);
 		}
 		if (super.getRequest().hasData("id")) {
-			try {
-				masterId = super.getRequest().getData("id", Integer.class);
-			} catch (Exception e) {
-				masterId = Integer.valueOf(-1);
-			}
-			if (masterId == null || !masterId.equals(Integer.valueOf(0)))
+			Integer legId;
+			String isInteger;
+			isInteger = super.getRequest().getData("id", String.class).trim();
+			if (isInteger != null && isInteger.chars().anyMatch((e) -> e > 47 && e < 58))
+				legId = Integer.valueOf(isInteger);
+			else
+				legId = Integer.valueOf(-1);
+			if (!legId.equals(Integer.valueOf(0)))
 				status = false;
 		} else if (super.getRequest().getMethod().equals("POST"))
 			status = false;
 		if (super.getRequest().hasData("duration")) {
 			Integer duration;
-			try {
-				duration = super.getRequest().getData("duration", Integer.class);
-				if (!duration.equals(Integer.valueOf(0)))
-					status = false;
-			} catch (Exception e) {
+			String isInteger;
+			isInteger = super.getRequest().getData("duration", String.class);
+			if (isInteger != null && isInteger.chars().anyMatch((e) -> e > 47 && e < 58))
+				duration = Integer.valueOf(isInteger);
+			else
+				duration = Integer.valueOf(-1);
+			if (duration == null || !duration.equals(0))
 				status = false;
-			}
 		} else if (super.getRequest().getMethod().equals("POST"))
 			status = false;
 
 		if (super.getRequest().hasData("flight")) {
-
-			try {
-				flightId = super.getRequest().getData("flight", Integer.class);
-			} catch (Exception e) {
-				flightId = Integer.valueOf(-1);
-			}
+			String isInteger;
+			isInteger = super.getRequest().getData("flight", String.class).trim();
+			if (isInteger != null && isInteger.chars().anyMatch((e) -> e > 47 && e < 58))
+				flightId = Integer.valueOf(isInteger);
+			else
+				flightId = null;
 			flight = flightId == null ? null : this.repository.getFlightById(flightId);
 			manager = flight == null ? null : flight.getAirlineManager();
 			status = manager == null ? flightId != null && flightId.equals(Integer.valueOf(0)) && status : super.getRequest().getPrincipal().hasRealm(manager) && status;

@@ -28,40 +28,39 @@ public class AirlineManagerFlightPublishService extends AbstractGuiService<Airli
 	@Override
 	public void authorise() {
 		boolean status = true;
-		Integer masterId;
 		Flight flight;
 		AirlineManager manager;
 		if (super.getRequest().hasData("id")) {
-			try {
-				masterId = super.getRequest().getData("id", Integer.class);
-			} catch (Exception e) {
-				masterId = null;
-			}
-			flight = masterId == null ? null : this.repository.findFlightById(masterId);
+			Integer flightId;
+			String isInteger;
+			isInteger = super.getRequest().getData("id", String.class).trim();
+			if (isInteger != null && isInteger.chars().anyMatch((e) -> e > 47 && e < 58))
+				flightId = Integer.valueOf(isInteger);
+			else
+				flightId = Integer.valueOf(-1);
+			flight = flightId == null ? null : this.repository.findFlightById(flightId);
 			manager = flight == null ? null : flight.getAirlineManager();
 			status = manager == null ? false : super.getRequest().getPrincipal().hasRealm(manager) && flight.isDraftMode();
-		} else
+		} else if (super.getRequest().getMethod().equals("POST"))
 			status = false;
-		if (super.getRequest().hasData("indication"))
-			try {
-				if (super.getRequest().getData("indication", Boolean.class) == null)
-					status = false;
-			} catch (Exception e) {
+		if (super.getRequest().hasData("indication")) {
+			String isBoolean;
+			isBoolean = super.getRequest().getData("indication", String.class);
+			if (isBoolean == null || !(isBoolean.equals("true") || isBoolean.equals("false")))
 				status = false;
-			}
-		else
+		} else if (super.getRequest().getMethod().equals("POST"))
 			status = false;
 		if (super.getRequest().hasData("airline")) {
 			Integer airlineId;
-			try {
-				airlineId = super.getRequest().getData("airline", Integer.class);
-			} catch (Exception e) {
-				status = false;
+			String isInteger;
+			isInteger = super.getRequest().getData("airline", String.class);
+			if (isInteger != null && isInteger.chars().anyMatch((e) -> e > 47 && e < 58))
+				airlineId = Integer.valueOf(isInteger);
+			else
 				airlineId = Integer.valueOf(-1);
-			}
-			if (airlineId == null || !airlineId.equals(Integer.valueOf(0)) && this.repository.getAirlineById(airlineId) == null)
+			if (airlineId == null || !airlineId.equals(0) && this.repository.getAirlineById(airlineId) == null)
 				status = false;
-		} else
+		} else if (super.getRequest().getMethod().equals("POST"))
 			status = false;
 		super.getResponse().setAuthorised(status);
 	}

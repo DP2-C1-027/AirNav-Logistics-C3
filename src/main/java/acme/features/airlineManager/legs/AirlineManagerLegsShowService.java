@@ -34,7 +34,7 @@ public class AirlineManagerLegsShowService extends AbstractGuiService<AirlineMan
 			Integer legId;
 			String isInteger;
 			isInteger = super.getRequest().getData("id", String.class).trim();
-			if (isInteger != null && isInteger.chars().anyMatch((e) -> e > 47 && e < 58))
+			if (isInteger != null && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
 				legId = Integer.valueOf(isInteger);
 			else
 				legId = null;

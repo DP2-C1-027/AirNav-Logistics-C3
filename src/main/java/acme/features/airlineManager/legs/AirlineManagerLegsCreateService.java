@@ -37,7 +37,7 @@ public class AirlineManagerLegsCreateService extends AbstractGuiService<AirlineM
 		if (super.getRequest().hasData("flightId")) {
 			String isInteger;
 			isInteger = super.getRequest().getData("flightId", String.class).trim();
-			if (isInteger != null && isInteger.chars().anyMatch((e) -> e > 47 && e < 58))
+			if (isInteger != null && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
 				flightId = Integer.valueOf(isInteger);
 			else
 				flightId = null;
@@ -49,7 +49,7 @@ public class AirlineManagerLegsCreateService extends AbstractGuiService<AirlineM
 			Integer legId;
 			String isInteger;
 			isInteger = super.getRequest().getData("id", String.class).trim();
-			if (isInteger != null && isInteger.chars().anyMatch((e) -> e > 47 && e < 58))
+			if (isInteger != null && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
 				legId = Integer.valueOf(isInteger);
 			else
 				legId = Integer.valueOf(-1);
@@ -61,7 +61,7 @@ public class AirlineManagerLegsCreateService extends AbstractGuiService<AirlineM
 			Integer duration;
 			String isInteger;
 			isInteger = super.getRequest().getData("duration", String.class);
-			if (isInteger != null && isInteger.chars().anyMatch((e) -> e > 47 && e < 58))
+			if (isInteger != null && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
 				duration = Integer.valueOf(isInteger);
 			else
 				duration = Integer.valueOf(-1);
@@ -73,7 +73,7 @@ public class AirlineManagerLegsCreateService extends AbstractGuiService<AirlineM
 		if (super.getRequest().hasData("flight")) {
 			String isInteger;
 			isInteger = super.getRequest().getData("flight", String.class).trim();
-			if (isInteger != null && isInteger.chars().anyMatch((e) -> e > 47 && e < 58))
+			if (isInteger != null && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
 				flightId = Integer.valueOf(isInteger);
 			else
 				flightId = null;

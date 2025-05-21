@@ -24,11 +24,11 @@ public class AirlineManagerLegsListFlightService extends AbstractGuiService<Airl
 		boolean status = true;
 		Flight flight;
 		AirlineManager manager;
-		if (super.getRequest().hasData("masterId")) {
+		if (super.getRequest().hasData("masterId", int.class)) {
 			Integer flightId;
 			String isInteger;
 			isInteger = super.getRequest().getData("masterId", String.class);
-			if (isInteger != null && isInteger.chars().anyMatch((e) -> e > 47 && e < 58))
+			if (isInteger != null && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
 				flightId = Integer.valueOf(isInteger);
 			else
 				flightId = Integer.valueOf(-1);

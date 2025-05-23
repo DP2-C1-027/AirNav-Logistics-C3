@@ -24,13 +24,15 @@ public class CustomersPassengersShowService extends AbstractGuiService<Customers
 		Customers customer;
 
 		Passenger passenger;
-		if (super.getRequest().hasData("id", int.class)) {
+		if (super.getRequest().hasData("id")) {
 			Integer passengerId;
-			try {
-				passengerId = super.getRequest().getData("id", int.class);
-			} catch (Exception e) {
-				passengerId = null;
-			}
+
+			String isInteger;
+			isInteger = super.getRequest().getData("id", String.class).trim();
+			if (!isInteger.isBlank() && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
+				passengerId = Integer.valueOf(isInteger);
+			else
+				passengerId = Integer.valueOf(-1);
 
 			passenger = passengerId != null ? this.repository.findPassengerById(passengerId) : null;
 			customer = passenger == null ? null : passenger.getCustomer();

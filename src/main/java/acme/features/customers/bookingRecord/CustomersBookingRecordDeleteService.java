@@ -28,13 +28,15 @@ public class CustomersBookingRecordDeleteService extends AbstractGuiService<Cust
 		boolean status = true;
 		Booking booking;
 		Passenger passenger;
-		if (super.getRequest().hasData("id", int.class)) {
+		if (super.getRequest().hasData("id")) {
 			Integer bookingRecordId;
-			try {
-				bookingRecordId = super.getRequest().getData("id", Integer.class);
-			} catch (Exception e) {
-				bookingRecordId = null;
-			}
+
+			String isInteger;
+			isInteger = super.getRequest().getData("id", String.class).trim();
+			if (!isInteger.isBlank() && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
+				bookingRecordId = Integer.valueOf(isInteger);
+			else
+				bookingRecordId = Integer.valueOf(-1);
 
 			passenger = bookingRecordId != null ? this.repository.findOnePassengerByBookingRecord(bookingRecordId) : null;
 			booking = bookingRecordId != null ? this.repository.findOneBookingByBookingRecord(bookingRecordId) : null;

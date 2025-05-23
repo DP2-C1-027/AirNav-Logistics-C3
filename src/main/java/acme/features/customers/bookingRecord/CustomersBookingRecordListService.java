@@ -30,13 +30,16 @@ public class CustomersBookingRecordListService extends AbstractGuiService<Custom
 
 		Passenger passenger;
 
-		if (super.getRequest().hasData("passengerId", int.class)) {
+		if (super.getRequest().hasData("passengerId")) {
 			Integer id;
-			try {
-				id = super.getRequest().getData("passengerId", Integer.class);
-			} catch (Exception e) {
-				id = null;
-			}
+
+			String isInteger;
+			isInteger = super.getRequest().getData("passengerId", String.class).trim();
+			if (!isInteger.isBlank() && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
+				id = Integer.valueOf(isInteger);
+			else
+				id = Integer.valueOf(-1);
+
 			passenger = id != null ? this.repository.findPassengerById(id) : null;
 			Customers customer = passenger != null ? passenger.getCustomer() : null;
 

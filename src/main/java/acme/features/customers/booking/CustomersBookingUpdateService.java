@@ -32,32 +32,20 @@ public class CustomersBookingUpdateService extends AbstractGuiService<Customers,
 		Booking booking;
 		Customers customer;
 
-		if (super.getRequest().hasData("id", int.class)) {
+		if (super.getRequest().hasData("id")) {
 			Integer bookingId;
-			try {
-				bookingId = super.getRequest().getData("id", int.class);
-			} catch (Exception e) {
-				bookingId = null;
-			}
+			String isInteger;
+			isInteger = super.getRequest().getData("id", String.class).trim();
+			if (!isInteger.isBlank() && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
+				bookingId = Integer.valueOf(isInteger);
+			else
+				bookingId = Integer.valueOf(-1);
 
 			booking = bookingId != null ? this.repository.findBookinById(bookingId) : null;
 			customer = booking != null ? booking.getCustomer() : null;
-			status = customer == null ? false : booking != null && booking.isDraftMode() && super.getRequest().getPrincipal().hasRealm(customer);
+			status = customer == null ? false : booking.isDraftMode() && super.getRequest().getPrincipal().hasRealm(customer);
 
-		} else
-			status = false;
-
-		if (super.getRequest().hasData("travelClass")) {
-			TravelClass valor;
-			try {
-				valor = super.getRequest().getData("travelClass", TravelClass.class);
-
-			} catch (Exception e) {
-				status = false;
-
-			}
-
-		} else
+		} else if (super.getRequest().getMethod().equals("POST"))
 			status = false;
 
 		super.getResponse().setAuthorised(status);

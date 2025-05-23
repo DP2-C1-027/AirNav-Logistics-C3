@@ -25,14 +25,14 @@ public class CustomersBookingRecordShowService extends AbstractGuiService<Custom
 		Customers customer;
 		boolean status = true;
 
-		if (super.getRequest().hasData("id", int.class)) {
+		if (super.getRequest().hasData("id")) {
 			Integer id;
-			try {
-				id = super.getRequest().getData("id", Integer.class);
-			} catch (Exception e) {
-				id = null;
-
-			}
+			String isInteger;
+			isInteger = super.getRequest().getData("id", String.class).trim();
+			if (!isInteger.isBlank() && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
+				id = Integer.valueOf(isInteger);
+			else
+				id = Integer.valueOf(-1);
 			BookingRecord bRecord = id != null ? this.repository.findBookingRecord(id) : null;
 			Booking booking = bRecord != null ? this.repository.findOneBookingByBookingRecord(bRecord.getId()) : null;
 			customer = booking != null ? booking.getCustomer() : null;

@@ -33,36 +33,41 @@ public class CustomersPassengerCreateService2 extends AbstractGuiService<Custome
 	@Override
 	public void authorise() {
 		boolean status = true;
-		if (super.getRequest().hasData("bookingId", int.class)) {
-			Integer bookingId;
-			try {
-				bookingId = super.getRequest().getData("bookingId", Integer.class);
-			} catch (Exception e) {
-				bookingId = null;
+		Integer bookingId;
+		if (super.getRequest().hasData("bookingId")) {
+			String isInteger;
+			isInteger = super.getRequest().getData("bookingId", String.class).trim();
 
-			}
+			if (!isInteger.isBlank() && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
+				bookingId = Integer.valueOf(isInteger);
+			else
+				bookingId = null;
 
 			Booking booking = bookingId != null ? this.bookingRepository.findBookingById(bookingId) : null;
 			Customers customer = booking != null ? booking.getCustomer() : null;
 
-			status = customer == null ? false : booking != null && booking.isDraftMode() && super.getRequest().getPrincipal().hasRealm(customer);
+			status = customer == null ? false : booking.isDraftMode() && super.getRequest().getPrincipal().hasRealm(customer);
 		} else if (super.getRequest().getMethod().equals("POST"))
 			status = false;
 
 		if (super.getRequest().hasData("id")) {
 			Integer id;
-			try {
-				id = super.getRequest().getData("id", Integer.class);
-				if (!id.equals(Integer.valueOf(0)))
-					status = false;
+			String isInteger;
+			isInteger = super.getRequest().getData("id", String.class).trim();
 
-			} catch (Exception e) {
+			if (!isInteger.isBlank() && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
+				id = Integer.valueOf(isInteger);
+			else
+				id = Integer.valueOf(-1);
+
+			if (!id.equals(Integer.valueOf(0)))
 				status = false;
-			}
+
 		} else if (super.getRequest().getMethod().equals("POST"))
 			status = false;
 
 		super.getResponse().setAuthorised(status);
+
 	}
 
 	@Override

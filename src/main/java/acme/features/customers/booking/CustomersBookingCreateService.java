@@ -37,50 +37,38 @@ public class CustomersBookingCreateService extends AbstractGuiService<Customers,
 		if (super.getRequest().hasData("id")) {
 			Integer id;
 
-			try {
-				id = super.getRequest().getData("id", Integer.class);
-				if (!id.equals(Integer.valueOf(0)))
-					status = false;
-
-			} catch (Exception e) {
+			String isInteger;
+			isInteger = super.getRequest().getData("id", String.class).trim();
+			if (!isInteger.isBlank() && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
+				id = Integer.valueOf(isInteger);
+			else
+				id = Integer.valueOf(-1);
+			if (!id.equals(Integer.valueOf(0)))
 				status = false;
-			}
-
-		} else if (super.getRequest().getMethod().equals("POST"))
-			status = false;
-
-		if (super.getRequest().hasData("travelClass")) {
-			TravelClass valor;
-			try {
-				valor = super.getRequest().getData("travelClass", TravelClass.class);
-
-			} catch (Exception e) {
-				status = false;
-
-			}
 
 		} else if (super.getRequest().getMethod().equals("POST"))
 			status = false;
 
 		if (super.getRequest().hasData("flight")) {
 			Integer flightId;
-			try {
-				flightId = super.getRequest().getData("flight", Integer.class);
+			String isInteger;
 
-				if (!flightId.equals(Integer.valueOf(0))) {
-					flight = this.repository.findFlightById(flightId);
-					if (flight == null)
-						status = false;
-					else {
-						Date d = flight.getScheduledDeparture();
-						Date moment = super.getRequest().getData("purchaseMoment", Date.class);
-						status = super.getRequest().getPrincipal().hasRealm(customer) && !flight.isDraftMode() && d.after(moment);
+			isInteger = super.getRequest().getData("flight", String.class);
+			if (!isInteger.isBlank() && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
+				flightId = Integer.valueOf(isInteger);
+			else
+				flightId = Integer.valueOf(-1);
 
-					}
+			if (!flightId.equals(Integer.valueOf(0))) {
+				flight = this.repository.findFlightById(flightId);
+				if (flight == null)
+					status = false;
+				else {
+					Date d = flight.getScheduledDeparture();
+					Date moment = super.getRequest().getData("purchaseMoment", Date.class);
+					status = super.getRequest().getPrincipal().hasRealm(customer) && !flight.isDraftMode() && d.after(moment);
 
 				}
-			} catch (Exception e) {
-				status = false;
 
 			}
 

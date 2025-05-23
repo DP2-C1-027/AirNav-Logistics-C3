@@ -27,49 +27,54 @@ public class CustomersBookingRecordCreateService extends AbstractGuiService<Cust
 
 		boolean status = true;
 		Passenger passenger;
+		Customers customer;
 
-		if (super.getRequest().hasData("bookingId", int.class)) {
+		if (super.getRequest().hasData("bookingId")) {
 			Integer bookingId;
-			try {
-				bookingId = super.getRequest().getData("bookingId", Integer.class);
-			} catch (Exception e) {
-				bookingId = null;
-
-			}
+			String isInteger;
+			isInteger = super.getRequest().getData("bookingId", String.class).trim();
+			if (!isInteger.isBlank() && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
+				bookingId = Integer.valueOf(isInteger);
+			else
+				bookingId = Integer.valueOf(-1);
 
 			Booking booking = bookingId != null ? this.repository.findBookingById(bookingId) : null;
-			Customers customer = booking != null ? booking.getCustomer() : null;
+			customer = booking != null ? booking.getCustomer() : null;
 
 			status = customer == null ? false : booking != null && booking.isDraftMode() && super.getRequest().getPrincipal().hasRealm(customer);
 
-			if (super.getRequest().hasData("passenger")) {
-				Integer id;
-				try {
-					id = super.getRequest().getData("passenger", Integer.class);
-					passenger = this.repository.findPassengerById(id);
-
-					if (!id.equals(Integer.valueOf(0)) && !passenger.getCustomer().equals(customer))
-						status = false;
-
-				} catch (Exception e) {
-					status = false;
-				}
-			} else if (super.getRequest().getMethod().equals("POST"))
-				status = false;
-
 		}
+
+		if (super.getRequest().hasData("passenger")) {
+			Integer id;
+
+			String isInteger2;
+			isInteger2 = super.getRequest().getData("passenger", String.class);
+			if (!isInteger2.isBlank() && isInteger2.chars().allMatch((e) -> e > 47 && e < 58))
+				id = Integer.valueOf(isInteger2);
+			else
+				id = null;
+
+			passenger = id == null ? null : this.repository.findPassengerById(id);
+			customer = passenger == null ? null : passenger.getCustomer();
+
+			status = customer == null ? id != null && id.equals(Integer.valueOf(0)) && status : super.getRequest().getPrincipal().hasRealm(customer) && status;
+
+		} else if (super.getRequest().getMethod().equals("POST"))
+			status = false;
 
 		if (super.getRequest().hasData("id")) {
 			Integer id;
-			try {
-				id = super.getRequest().getData("id", Integer.class);
-				if (!id.equals(Integer.valueOf(0)))
-					status = false;
+			String isInteger;
+			isInteger = super.getRequest().getData("id", String.class).trim();
+			if (!isInteger.isBlank() && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
+				id = Integer.valueOf(isInteger);
+			else
+				id = Integer.valueOf(-1);
 
-			} catch (Exception e) {
+			if (!id.equals(Integer.valueOf(0)))
 				status = false;
 
-			}
 		} else if (super.getRequest().getMethod().equals("POST"))
 			status = false;
 

@@ -43,6 +43,12 @@ public class TrackingLog extends AbstractEntity {
 	@Automapped
 	@ValidMoment(past = true)
 	@Temporal(TemporalType.TIMESTAMP)
+	private Date				creationMoment;
+
+	@Mandatory
+	@Automapped
+	@ValidMoment(past = true)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date				lastUpdateMoment;
 
 	@Mandatory

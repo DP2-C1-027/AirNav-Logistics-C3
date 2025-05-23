@@ -1,40 +1,37 @@
-key,lastUpdateMoment,stepUndergoing,resolutionPercentage,indicator,draftMode,resolutionDetails,key:claim
-trackingLog-01,2000/01/01 0:00,Initial Review,0.0,PENDING,True,,claim-01
-trackingLog-02,2020/11/01 10:00,Do,1.0,PENDING,True,,claim-02
-trackingLog-03,2021/06/15 14:30,D,99.0,PENDING,True,,claim-03
-trackingLog-04,2021/07/22 08:45,"Lorem ipsum dolor sit amet, consectetur amycometru",60.0,PENDING,True,,claim-04
-trackingLog-05,2021/09/10 20:10,"Lorem ipsum dolor sit amet, consectetur amycometr",100.0,ACCEPTED,True,"紛失荷物の補償が決定しました。",claim-05
-trackingLog-06,2021/11/03 13:15,Pending Compensation,80.0,PENDING,True,,claim-06
-trackingLog-07,2022/02/14 16:50,<marquee>Hacked</marquee>,100.0,ACCEPTED,True,Heathrow AirportHeathrow AirportHeathrow AirportHeathrow AirportHeathrow AirportHeathrow AirportHeathrow AirportHeathrow AirportHeathrow AirportHeathrow AirportHeathrow AirportHeathrow AirportHeathrow AirportHeathrow AirportHeathrow AirportHeathrowww,claim-07
-trackingLog-08,2022/05/30 10:05,โลเร็ม อิปซัม,10.0,PENDING,True,,claim-08
-trackingLog-09,2025/01/01 0:00,<script>alert(‘Hacked!’);</script>,50.0,PENDING,True,,claim-09
-trackingLog-10,2024/12/31 23:59,Final Decision,100.0,REJECTED,True,"Απόφαση λήφθηκε, η αποζημίωση εγκρίθηκε.",claim-10
-trackingLog-11,2013/03/05 07:30,لوريم إيبسوم,75.0,PENDING,True,,claim-11
-trackingLog-12,2013/06/25 12:10,'' or 'A' = 'A,100.0,ACCEPTED,True,"보상 절차가 진행 중입니다.",claim-12
-trackingLog-13,2013/09/09 15:55,洛伦·伊普森,0.0,PENDING,True,,claim-13
-trackingLog-14,2013/12/01 21:40,Final Decision,100.0,ACCEPTED,True,".",claim-14
-trackingLog-15,2014/02/18 11:30,Heathrow Heathrow AirportHeathrowwHeathrow Airport,100.0,REJECTED,True,"Robert'); DROP TABLE trackingLogs; --",claim-14
-trackingLog-16,2000/01/01 0:01,Initial Review,1.0,PENDING,True,,claim-01
-trackingLog-17,2000/01/01 2:00,Initial Review,20.0,PENDING,True,,claim-01
-trackingLog-18,2000/01/01 3:01,Initial Review,40.0,PENDING,True,,claim-01
-trackingLog-19,2000/01/01 4:00,Initial Review,100.0,ACCEPTED,True,"Initial review completed.",claim-01
-trackingLog-20,2024/12/07 4:00,Initial Review,0.0,PENDING,True,,claim-15
-trackingLog-21,2024/12/07 4:00,Initial Review,10.0,PENDING,True,,claim-15
-trackingLog-22,2024/12/07 4:00,Initial Review,20.0,PENDING,True,,claim-15
-trackingLog-23,2024/12/07 4:00,Initial Review,30.0,PENDING,True,,claim-15
-trackingLog-24,2024/12/07 4:00,Initial Review,100.0,ACCEPTED,True,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor.",claim-16
-trackingLog-25,2024/12/07 4:00,Initial Review,100.0,ACCEPTED,True,<script>alert(‘Hacked!’);</script>,claim-17
-trackingLog-26,2024/12/07 4:00,Initial Review,100.0,ACCEPTED,True,"do",claim-18
-trackingLog-27,2024/12/07 4:00,Initial Review,100.0,ACCEPTED,True,"Initial review completed.",claim-19
-trackingLog-28,2024/12/07 4:00,Initial Review,100.0,ACCEPTED,True,"Initial review completed.",claim-20
-trackingLog-29,2024/12/07 4:00,Initial Review,50.0,PENDING,False,,claim-22
-trackingLog-30,2024/12/07 4:01,Initial Review,0.0,PENDING,False,"Initial review completed.",claim-23
-trackingLog-31,2024/12/07 4:02,Initial Review,50.0,PENDING,False,"Initial review completed.",claim-23
-trackingLog-32,2024/12/07 4:03,Initial Review,100.0,ACCEPTED,False,"Initial review completed.",claim-23
-trackingLog-33,2024/12/07 4:00,Initial Review,100.0,REJECTED,False,"Initial review completed.",claim-24
-trackingLog-34,2024/12/07 4:00,Initial Review,100.0,ACCEPTED,False,"Initial review completed.",claim-25
-trackingLog-35,2024/12/07 4:00,Initial Review,100.0,ACCEPTED,False,"Initial review completed.",claim-26
-trackingLog-36,2024/12/07 4:01,Initial Review,100.0,REJECTED,False,"Rejecteada de manual.",claim-26
-
-
-
+key,creationMoment,lastUpdateMoment,stepUndergoing,resolutionPercentage,indicator,draftMode,resolutionDetails,key:claim
+trackingLog-01,2000/01/01 0:00,2000/01/01 0:00,Initial Review,0.0,PENDING,True,,claim-01
+trackingLog-02,2020/11/01 10:00,2020/11/01 10:00,Do,1.0,PENDING,True,,claim-02
+trackingLog-03,2021/06/15 14:30,2021/06/15 14:30,D,99.0,PENDING,True,,claim-03
+trackingLog-04,2021/07/22 08:45,2021/07/22 08:45,"Lorem ipsum dolor sit amet, consectetur amycometru",60.0,PENDING,True,,claim-04
+trackingLog-05,2021/09/10 20:10,2021/09/10 20:10,"Lorem ipsum dolor sit amet, consectetur amycometr",100.0,ACCEPTED,True,"紛失荷物の補償が決定しました。",claim-05
+trackingLog-06,2021/11/03 13:15,2021/11/03 13:15,Pending Compensation,80.0,PENDING,True,,claim-06
+trackingLog-07,2022/02/14 16:50,2022/02/14 16:50,<marquee>Hacked</marquee>,100.0,ACCEPTED,True,Heathrow AirportHeathrow AirportHeathrow AirportHeathrow AirportHeathrow AirportHeathrow AirportHeathrow AirportHeathrow AirportHeathrow AirportHeathrow AirportHeathrow AirportHeathrow AirportHeathrow AirportHeathrow AirportHeathrow AirportHeathrowww,claim-07
+trackingLog-08,2022/05/30 10:05,2022/05/30 10:05,โลเร็ม อิปซัม,10.0,PENDING,True,,claim-08
+trackingLog-09,2025/01/01 0:00,2025/01/01 0:00,<script>alert(‘Hacked!’);</script>,50.0,PENDING,True,,claim-09
+trackingLog-10,2024/12/31 23:59,2024/12/31 23:59,Final Decision,100.0,REJECTED,True,"Απόφαση λήφθηκε, η αποζημίωση εγκρίθηκε.",claim-10
+trackingLog-11,2013/03/05 07:30,2013/03/05 07:30,لوريم إيبسوم,75.0,PENDING,True,,claim-11
+trackingLog-12,2013/06/25 12:10,2013/06/25 12:10,'' or 'A' = 'A,100.0,ACCEPTED,True,"보상 절차가 진행 중입니다.",claim-12
+trackingLog-13,2012/09/09 15:55,2013/09/09 15:55,洛伦·伊普森,0.0,PENDING,True,,claim-13
+trackingLog-14,2013/12/01 21:40,2013/12/01 21:40,Final Decision,100.0,ACCEPTED,True,".",claim-14
+trackingLog-15,2014/02/18 11:30,2014/02/18 11:30,Heathrow Heathrow AirportHeathrowwHeathrow Airport,100.0,REJECTED,True,"Robert'); DROP TABLE trackingLogs; --",claim-14
+trackingLog-16,2000/01/01 0:01,2000/01/01 0:01,Initial Review,1.0,PENDING,True,,claim-01
+trackingLog-17,2000/01/01 2:00,2000/01/01 2:00,Initial Review,20.0,PENDING,True,,claim-01
+trackingLog-18,2000/01/01 3:01,2000/01/01 3:01,Initial Review,40.0,PENDING,True,,claim-01
+trackingLog-19,2000/01/01 4:00,2000/01/01 4:00,Initial Review,100.0,ACCEPTED,True,"Initial review completed.",claim-01
+trackingLog-20,2024/12/07 4:00,2024/12/07 4:00,Initial Review,0.0,PENDING,True,,claim-15
+trackingLog-21,2024/12/07 4:00,2024/12/07 4:00,Initial Review,10.0,PENDING,True,,claim-15
+trackingLog-22,2024/12/07 4:00,2024/12/07 4:00,Initial Review,20.0,PENDING,True,,claim-15
+trackingLog-23,2024/12/07 4:00,2024/12/07 4:00,Initial Review,30.0,PENDING,True,,claim-15
+trackingLog-24,2024/12/07 4:00,2024/12/07 4:00,Initial Review,100.0,ACCEPTED,True,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor.",claim-16
+trackingLog-25,2024/12/07 4:00,2024/12/07 4:00,Initial Review,100.0,ACCEPTED,True,<script>alert(‘Hacked!’);</script>,claim-17
+trackingLog-26,2024/12/07 4:00,2024/12/07 4:00,Initial Review,100.0,ACCEPTED,True,"do",claim-18
+trackingLog-27,2024/12/07 4:00,2024/12/07 4:00,Initial Review,100.0,ACCEPTED,True,"Initial review completed.",claim-19
+trackingLog-28,2024/12/07 4:00,2024/12/07 4:00,Initial Review,100.0,ACCEPTED,True,"Initial review completed.",claim-20
+trackingLog-29,2024/12/07 4:00,2024/12/07 4:00,Initial Review,50.0,PENDING,False,,claim-22
+trackingLog-30,2024/12/07 4:01,2024/12/07 4:01,Initial Review,0.0,PENDING,False,"Initial review completed.",claim-23
+trackingLog-31,2024/12/07 4:02,2024/12/07 4:02,Initial Review,50.0,PENDING,False,"Initial review completed.",claim-23
+trackingLog-32,2024/12/07 4:03,2024/12/07 4:03,Initial Review,100.0,ACCEPTED,False,"Initial review completed.",claim-23
+trackingLog-33,2024/12/07 4:00,2024/12/07 4:00,Initial Review,100.0,REJECTED,False,"Initial review completed.",claim-24
+trackingLog-34,2024/12/07 4:00,2024/12/07 4:00,Initial Review,100.0,ACCEPTED,False,"Initial review completed.",claim-25
+trackingLog-35,2024/12/07 4:00,2024/12/07 4:00,Initial Review,100.0,ACCEPTED,False,"Initial review completed.",claim-26
+trackingLog-36,2024/12/07 4:01,2024/12/07 4:01,Initial Review,100.0,REJECTED,False,"Rejecteada de manual.",claim-26

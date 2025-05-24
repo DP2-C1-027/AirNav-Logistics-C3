@@ -28,13 +28,13 @@ public class AirlineManagerLegsListFlightService extends AbstractGuiService<Airl
 			Integer flightId;
 			String isInteger;
 			isInteger = super.getRequest().getData("masterId", String.class);
-			if (isInteger != null && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
+			if (!isInteger.isBlank() && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
 				flightId = Integer.valueOf(isInteger);
 			else
 				flightId = Integer.valueOf(-1);
 			flight = flightId == null ? null : this.repository.getFlightById(flightId);
 			manager = flight == null ? null : flight.getAirlineManager();
-			status = manager == null ? false : super.getRequest().getPrincipal().hasRealm(manager) && status;
+			status = manager == null ? false : super.getRequest().getPrincipal().hasRealm(manager);
 
 		} else
 			status = false;
@@ -59,8 +59,10 @@ public class AirlineManagerLegsListFlightService extends AbstractGuiService<Airl
 	public void unbind(final Leg leg) {
 		Dataset dataset;
 
-		dataset = super.unbindObject(leg, "flightNumber", "scheduledDeparture", "scheduledArrival", "departureAirport", "arrivalAirport");
-
+		dataset = super.unbindObject(leg, "flightNumber", "scheduledDeparture", "scheduledArrival");
+		dataset.put("departureAirport", leg.getDepartureAirport().getCodigo());
+		dataset.put("arrivalAirport", leg.getArrivalAirport().getCodigo());
+		dataset.put("flight", leg.getFlight().getTag());
 		super.addPayload(dataset, leg);
 
 		super.getResponse().addData(dataset);

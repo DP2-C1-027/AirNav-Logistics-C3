@@ -31,7 +31,7 @@ public class AirlineManagerFlightShowService extends AbstractGuiService<AirlineM
 			AirlineManager manager;
 			Flight flight;
 			isInteger = super.getRequest().getData("id", String.class).trim();
-			if (isInteger != null && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
+			if (!isInteger.isBlank() && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
 				flightId = Integer.valueOf(isInteger);
 			else
 				flightId = Integer.valueOf(-1);

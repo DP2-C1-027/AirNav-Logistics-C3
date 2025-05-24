@@ -53,7 +53,7 @@ public class AirlineManagerFlightDeleteService extends AbstractGuiService<Airlin
 			Integer flightId;
 			String isInteger;
 			isInteger = super.getRequest().getData("id", String.class).trim();
-			if (isInteger != null && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
+			if (!isInteger.isBlank() && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
 				flightId = Integer.valueOf(isInteger);
 			else
 				flightId = Integer.valueOf(-1);
@@ -65,7 +65,7 @@ public class AirlineManagerFlightDeleteService extends AbstractGuiService<Airlin
 		if (super.getRequest().hasData("indication")) {
 			String isBoolean;
 			isBoolean = super.getRequest().getData("indication", String.class);
-			if (isBoolean == null || !(isBoolean.equals("true") || isBoolean.equals("false")))
+			if (!(isBoolean.equals("true") || isBoolean.equals("false")))
 				status = false;
 		} else
 			status = false;
@@ -73,7 +73,7 @@ public class AirlineManagerFlightDeleteService extends AbstractGuiService<Airlin
 			Integer airlineId;
 			String isInteger;
 			isInteger = super.getRequest().getData("airline", String.class);
-			if (isInteger != null && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
+			if (!isInteger.isBlank() && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
 				airlineId = Integer.valueOf(isInteger);
 			else
 				airlineId = Integer.valueOf(-1);

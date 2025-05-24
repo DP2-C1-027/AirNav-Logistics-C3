@@ -9,9 +9,22 @@ airlineManager.leg.form.label.arrivalAirport = Arrival Airport
 airlineManager.leg.form.label.aircraft = Aircraft
 airlineManager.leg.form.label.flight = Flight
 
+airlineManager.leg.form.button.update = Update leg
+airlineManager.leg.form.button.publish = Publish leg
+airlineManager.leg.form.button.delete = Delete leg
+
 airline-manager.leg.list.title = Leg list
 airlineManager.leg.list.label.flightNumber = Flight Number
 airlineManager.leg.list.label.scheduledDeparture = Scheduled Departure
 airlineManager.leg.list.label.scheduledArrival = Scheduled Arrival
 airlineManager.leg.list.label.departureAirport = Departure Airport
 airlineManager.leg.list.label.arrivalAirport = Arrival Airport
+airlineManager.leg.list.label.flight = Flight tag
+
+airlineManager.leg.form.button.create = Create leg
+
+airline-manager.error.invalid-flight-number = Invalid flight number (first 3 letters must be the same as the aircraft's airline code)
+airline-manager.error.same-airport = Can't land in the same airport that you departed from 
+airline-manager.error.duplicated-code = Duplicated flight number
+airline-manager.error.future-departure = Must take off before landing
+airline-manager.error.aircraft-in-use.message = This aircraft is already scheduled for a leg during the selected timespan

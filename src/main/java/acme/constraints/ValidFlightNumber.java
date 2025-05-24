@@ -19,7 +19,7 @@ import javax.validation.constraints.Pattern;
 @Pattern(regexp = "^[A-Z]{3}\\d{4}$")
 public @interface ValidFlightNumber {
 
-	String message() default "{acme.validation.text.message}";
+	String message() default "{acme.validation.invalidFlightNumber}";
 
 	Class<?>[] groups() default {};
 	Class<? extends Payload>[] payload() default {};

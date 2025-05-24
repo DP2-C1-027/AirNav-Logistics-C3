@@ -44,4 +44,7 @@ public interface AirlineManagerLegsRepository extends AbstractRepository {
 
 	@Query("SELECT l FROM Leg l WHERE l.aircraft.id=:aircraftId AND l.draftMode=0")
 	Collection<Leg> findPublishedLegsByAircraftId(int aircraftId);
+
+	@Query("SELECT count(l)>0 FROM Leg l WHERE l.flightNumber=:IATAnumber")
+	boolean anyLegByIATAnumber(String IATAnumber);
 }

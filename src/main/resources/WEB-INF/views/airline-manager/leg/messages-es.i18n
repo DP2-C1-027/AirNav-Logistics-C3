@@ -9,9 +9,22 @@ airlineManager.leg.form.label.arrivalAirport = Aeropuerto de llegada
 airlineManager.leg.form.label.aircraft = Avión
 airlineManager.leg.form.label.flight = Vuelo
 
+airlineManager.leg.form.button.update = Actualizar tramo
+airlineManager.leg.form.button.publish = Publicar tramo
+airlineManager.leg.form.button.delete = Borrar tramo
+
 airline-manager.leg.list.title = Listado de tramos
 airlineManager.leg.list.label.flightNumber = Número de vuelo
 airlineManager.leg.list.label.scheduledDeparture = Hora de salida
 airlineManager.leg.list.label.scheduledArrival = Hora de llegada
 airlineManager.leg.list.label.departureAirport = Aeropuerto de salida
 airlineManager.leg.list.label.arrivalAirport = Aeropuerto de llegada
+airlineManager.leg.list.label.flight = Tag del vuelo
+
+airlineManager.leg.form.button.create = Crear tramo
+
+airline-manager.error.invalid-flight-number = Número de vuelo inválido (las 3 primeras letras han de coincidir con el código de la aerolínea del avión)
+airline-manager.error.same-airport = No puedes aterrizar en el mismo aeropuerto desde el que despegaste 
+airline-manager.error.duplicated-code = Número de vuelo duplicado
+airline-manager.error.future-departure = El tramo ha de despegar antes de aterrizar
+airline-manager.error.aircraft-in-use.message = Este avión ya tiene un vuelo programado durante el periodo seleccionado

@@ -50,7 +50,7 @@ public class AirlineManagerLegsDeleteService extends AbstractGuiService<AirlineM
 			Integer legId;
 			String isInteger;
 			isInteger = super.getRequest().getData("id", String.class).trim();
-			if (isInteger != null && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
+			if (!isInteger.isBlank() && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
 				legId = Integer.valueOf(isInteger);
 			else
 				legId = null;
@@ -59,29 +59,37 @@ public class AirlineManagerLegsDeleteService extends AbstractGuiService<AirlineM
 			status = manager == null ? false : super.getRequest().getPrincipal().hasRealm(manager) && leg.isDraftMode();
 		} else
 			status = false;
+		if (!status) {
+			super.getResponse().setAuthorised(false);
+			return;
+		}
 		if (super.getRequest().hasData("duration")) {
 			Integer duration;
 			String isInteger;
 			isInteger = super.getRequest().getData("duration", String.class).trim();
-			if (isInteger != null && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
+			if (!isInteger.isBlank() && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
 				duration = Integer.valueOf(isInteger);
 			else
 				duration = null;
-			status = leg != null && duration != null && duration.equals(leg.getDuration()) && status;
+			status = leg != null && duration != null && duration.equals(leg.getDuration());
 		} else
 			status = false;
+		if (!status) {
+			super.getResponse().setAuthorised(false);
+			return;
+		}
 		if (super.getRequest().hasData("flight")) {
 			Integer flightId;
 			String isInteger;
 			Flight flight;
 			isInteger = super.getRequest().getData("flight", String.class);
-			if (isInteger != null && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
+			if (!isInteger.isBlank() && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
 				flightId = Integer.valueOf(isInteger);
 			else
 				flightId = Integer.valueOf(-1);
 			flight = flightId == null ? null : this.repository.getFlightById(flightId);
 			manager = flight == null ? null : leg.getFlight().getAirlineManager();
-			status = manager == null ? flightId != null && flightId.equals(Integer.valueOf(0)) && status : super.getRequest().getPrincipal().hasRealm(manager) && status;
+			status = manager == null ? flightId != null && flightId.equals(Integer.valueOf(0)) : super.getRequest().getPrincipal().hasRealm(manager);
 
 		} else
 			status = false;
@@ -101,7 +109,6 @@ public class AirlineManagerLegsDeleteService extends AbstractGuiService<AirlineM
 
 	@Override
 	public void bind(final Leg leg) {
-
 		super.bindObject(leg, "flightNumber", "scheduledDeparture", "scheduledArrival", "duration", "status", "departureAirport", "arrivalAirport", "aircraft", "flight");
 	}
 

@@ -14,6 +14,7 @@ acme.validation.optional.short-text = El texto debería contener entre 0 y 50 ca
 acme.validation.optional.long-text = El texto debería contener entre 0 y 255 caracteres.
 acme.validation.cargo-weight = El peso debería estar entre 2000 y 50000 kgs.
 acme.validation.capacity = La capacidad debería estar entre 1 y 255 pasajeros.
+acme.validation.invalidFlightNumber = Número de vuelo inválido (debe estar compuesto por 3 letras mayúsculas seguido de 4 números)
 acme.validation.locatorCode= El valor debe contener entre 6 y 8 caracteres, solo letras mayúsculas y números
 acme.validation.lastNibble = Debe tener una longuitud de 4 caracteres y ser números
 acme.validation.passportNumber = El valor debe contener entre 6 y 9 caracteres, solo letras mayúsculas y números

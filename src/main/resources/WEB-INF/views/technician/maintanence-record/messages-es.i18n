@@ -17,6 +17,12 @@ technician.maintanence-record.form.label.estimatedCost = Costo Estimado:
 technician.maintanence-record.form.label.nextMaintanence = Próximo Mantenimiento:
 technician.maintanence-record.form.label.notes = Notas:
 
+technician.maintanence-record.list.label.maintanenceMoment = Momento del Mantenimiento:
+technician.maintanence-record.list.label.status = Estado:
+technician.maintanence-record.list.label.nextMaintanence = Costo Estimado:
+technician.maintanence-record.list.label.notes = Próximo Mantenimiento:
+technician.maintanence-record.list.label.estimatedCost = Notas:
+
 technician.maintanence-record.list.button.create = Crear
 
 technician.maintenance-record.form.button.create = Crear
@@ -26,3 +32,4 @@ technician.maintenance-record.form.button.publish = Publicar
 technician.task.form.button.createRecord = Crear Tarea
 
 technician.maintanence-record.error.no-aircraft = Tiene que tener un aircraf asociado
+technician.maintanence-record.error.noPublishedTasks.message = Hay tareas no publicadas

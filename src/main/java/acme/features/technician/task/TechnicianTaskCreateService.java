@@ -28,15 +28,17 @@ public class TechnicianTaskCreateService extends AbstractGuiService<Technician, 
 
 		tech = (Technician) super.getRequest().getPrincipal().getActiveRealm();
 		status = super.getRequest().getPrincipal().hasRealm(tech);
-		if (super.getRequest().hasData("id", int.class)) {
+		if (super.getRequest().hasData("id")) {
 			Integer id;
-			try {
-				id = super.getRequest().getData("id", Integer.class);
-				if (!id.equals(Integer.valueOf(0)))
-					status = false;
-			} catch (Exception e) {
+			String isInteger;
+			isInteger = super.getRequest().getData("id", String.class).trim();
+
+			if (isInteger != null && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
+				id = Integer.valueOf(isInteger);
+			else
+				id = Integer.valueOf(-1);
+			if (!id.equals(Integer.valueOf(0)))
 				status = false;
-			}
 
 		} else if (super.getRequest().getMethod().equals("POST"))
 			status = false;

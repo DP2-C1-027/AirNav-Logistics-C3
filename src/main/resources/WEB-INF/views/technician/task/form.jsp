@@ -19,9 +19,7 @@
 	<acme:input-textbox code="technician.task.form.label.description" path="description"/>
 	<acme:input-textbox code="technician.task.form.label.priority" path="priority"/>
 	<acme:input-textbox code="technician.task.form.label.estimatedDuration" path="estimatedDuration"/>
-		<acme:input-select  code="technician.task.form.label.type" path="type" choices="${type}"/>
-
-	
+	<acme:input-select  code="technician.task.form.label.type" path="type" choices="${types}"/>
 	 
 	
 	<jstl:choose>
@@ -29,7 +27,7 @@
 			<acme:submit code="technician.task.form.button.create" action="/technician/task/create"/>
 		</jstl:when>
 		<jstl:when test="${_command == 'createRecord'}">
-			<acme:submit code="technician.task.form.button.createRecord" action="/technician/task/createRecord?recordId=${id }"/>
+			<acme:submit code="technician.task.form.button.createRecord" action="/technician/task/createRecord?recordId=${recordId}"/>
 		</jstl:when>
 		
 		<jstl:when test="${acme:anyOf(_command, 'show|update|publish|delete') && draftMode == true }">

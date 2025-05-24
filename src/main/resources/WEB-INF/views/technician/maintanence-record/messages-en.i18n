@@ -12,11 +12,18 @@ technician.maintanence-record.form.title = Maintenance Record details
 technician.maintanence-record.list.title = Maintenance Record list
 
 
-technician.maintanence-record.form.label.status = Status:
+technician.maintenance-record.form.label.aircraft = Aircraft:
+technician.maintenance-record.form.label.status = Status:
 technician.maintanence-record.form.label.estimatedCost = Estimated Cost:
 technician.maintanence-record.form.label.nextMaintanence = Next Maintanence:
 technician.maintanence-record.form.label.notes = Notes:
 technician.maintanence-record.form.label.maintanenceMoment= Maintanence Moment:
+
+technician.maintanence-record.list.label.maintanenceMoment = Maintanence Moment:
+technician.maintanence-record.list.label.status = Status:
+technician.maintanence-record.list.label.nextMaintanence = Estimated Cost:
+technician.maintanence-record.list.label.notes = Next Maintanence:
+technician.maintanence-record.list.label.estimatedCost = Notes:
 
 technician.maintanence-record.list.button.create = Create
 
@@ -28,5 +35,7 @@ technician.maintenance-record.form.button.publish = Publish
 technician.task.form.button.createRecord = Create Task
 
 technician.maintanence-record.error.no-aircraft = It must have an associated aircraft
+
+technician.maintanence-record.error.noPublishedTasks.message = There's no published tasks
 
 

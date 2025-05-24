@@ -32,22 +32,37 @@ public class TechnicianRecordUpdateService extends AbstractGuiService<Technician
 
 		MaintanenceRecord record;
 		Technician tech;
+		Aircraft aircraft;
 
-		if (super.getRequest().hasData("id", int.class)) {
+		if (super.getRequest().hasData("id")) {
 			Integer recordId;
-			try {
-				recordId = super.getRequest().getData("id", int.class);
-			} catch (Exception e) {
-				recordId = null;
-			}
-
+			String isInteger;
+			isInteger = super.getRequest().getData("id", String.class).trim();
+			if (isInteger != null && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
+				recordId = Integer.valueOf(isInteger);
+			else
+				recordId = Integer.valueOf(-1);
 			record = recordId != null ? this.repository.findRecordById(recordId) : null;
 			tech = recordId != null ? record.getTechnician() : null;
 			status = tech == null ? false : record != null && record.isDraftMode() && super.getRequest().getPrincipal().hasRealm(tech);
+		}
 
-		} else
-			status = false;
+		if (super.getRequest().hasData("aircraft")) {
+			Integer aircraftId;
+			String isInteger;
 
+			isInteger = super.getRequest().getData("aircraft", String.class);
+			if (!isInteger.isBlank() && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
+				aircraftId = Integer.valueOf(isInteger);
+			else
+				aircraftId = Integer.valueOf(-1);
+
+			if (!aircraftId.equals(Integer.valueOf(0))) {
+				aircraft = this.repository.findAircraftById(aircraftId);
+				if (aircraft == null)
+					status = false;
+			}
+		}
 		super.getResponse().setAuthorised(status);
 	}
 
@@ -65,7 +80,7 @@ public class TechnicianRecordUpdateService extends AbstractGuiService<Technician
 	@Override
 	public void bind(final MaintanenceRecord record) {
 
-		super.bindObject(record, "status", "nextMaintanence", "estimatedCost", "notes");
+		super.bindObject(record, "status", "nextMaintanence", "estimatedCost", "notes", "aircraft");
 
 	}
 
@@ -76,7 +91,6 @@ public class TechnicianRecordUpdateService extends AbstractGuiService<Technician
 
 	@Override
 	public void perform(final MaintanenceRecord record) {
-		assert record != null;
 		Date ahora = MomentHelper.getCurrentMoment();
 		record.setMaintanenceMoment(ahora);
 		this.repository.save(record);
@@ -94,11 +108,11 @@ public class TechnicianRecordUpdateService extends AbstractGuiService<Technician
 		aircrafts = this.repository.getAllAircraft();
 		aircraftChoices = SelectChoices.from(aircrafts, "registrationNumber", record.getAircraft());
 		choices = SelectChoices.from(StatusMaintanenceRecord.class, record.getStatus());
-		dataset = super.unbindObject(record, "maintanenceMoment", "status", "nextMaintanence", "estimatedCost", "notes", "draftMode");
+		dataset = super.unbindObject(record, "maintanenceMoment", "aircraft", "status", "nextMaintanence", "estimatedCost", "notes", "draftMode");
 		dataset.put("aircraft", aircraftChoices.getSelected().getKey());
 		dataset.put("aircrafts", aircraftChoices);
 		dataset.put("status", choices);
-		super.addPayload(dataset, record, "status", "nextMaintanence", "estimatedCost", "notes");
+		super.addPayload(dataset, record, "status", "nextMaintanence", "estimatedCost", "notes", "aircraft");
 		super.getResponse().addData(dataset);
 	}
 }

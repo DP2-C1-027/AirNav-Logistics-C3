@@ -32,7 +32,7 @@ public class TechnicianRecordTaskListService extends AbstractGuiService<Technici
 		if (super.getRequest().hasData("recordId", int.class)) {
 			Integer id;
 			String isInteger;
-			isInteger = super.getRequest().getData("id", String.class).trim();
+			isInteger = super.getRequest().getData("recordId", String.class).trim();
 			if (isInteger != null && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
 				id = Integer.valueOf(isInteger);
 			else

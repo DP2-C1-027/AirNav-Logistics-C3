@@ -24,6 +24,10 @@
 	<acme:input-textbox code="technician.maintanence-record.form.label.notes" path="notes"/>
 	
 	<jstl:choose>
+	
+		<jstl:when test="${_command == 'show' && draftMode == false}">
+		<acme:button code="technician.task.list.button.task" action="/technician/task/taskList?recordId=${id}"/>
+		</jstl:when>
 		
 		<jstl:when test="${_command == 'create'}">
 

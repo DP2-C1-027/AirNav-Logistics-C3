@@ -96,7 +96,7 @@ public class AirlineManagerFlightCreateService extends AbstractGuiService<Airlin
 		SelectChoices choices;
 		airlines = this.repository.getAllAirlines();
 		choices = SelectChoices.from(airlines, "codigo", flight.getAirline());
-		dataset = super.unbindObject(flight, "tag", "indication", "cost", "description", "airline", "draftMode");
+		dataset = super.unbindObject(flight, "tag", "indication", "cost", "description", "airline", "draftMode", "scheduledDeparture", "scheduledArrival", "departureCity", "arrivalCity", "layovers");
 		super.addPayload(dataset, flight, "tag", "indication", "cost", "description", "airline", "draftMode");
 		dataset.put("airline", choices.getSelected().getKey());
 		dataset.put("airlines", choices);

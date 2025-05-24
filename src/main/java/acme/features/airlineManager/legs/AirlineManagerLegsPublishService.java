@@ -109,14 +109,34 @@ public class AirlineManagerLegsPublishService extends AbstractGuiService<Airline
 		Airport arrivalAirport = leg.getArrivalAirport();
 		Airport departureAirport = leg.getDepartureAirport();
 
-		if (airlineFlight == null || airlineAircraft == null || !airlineFlight.equals(airlineAircraft))
-			super.state(flight == null || aircraft == null, "aircraft", "airline-manager.error.wrong-airline");
-		if (IATAnumber == null || airlineFlight == null || !IATAnumber.startsWith(airlineFlight.getCodigo()))
+		if (IATAnumber == null || airlineFlight == null || !IATAnumber.startsWith(airlineAircraft.getCodigo()))
 			super.state(IATAnumber == null || airlineFlight == null, "flightNumber", "airline-manager.error.invalid-flight-number");
 		if (scheduledArrival == null || scheduledDeparture == null || !scheduledArrival.after(scheduledDeparture))
 			super.state(scheduledArrival == null || scheduledDeparture == null, "scheduledArrival", "airline-manager.error.future-departure");
 		if (arrivalAirport == null || departureAirport == null || arrivalAirport.equals(departureAirport))
 			super.state(arrivalAirport == null || departureAirport == null, "arrivalAirport", "airline-manager.error.same-airport");
+
+		if (flight == null || aircraft == null)
+			return;
+
+		Collection<Leg> publishedLegs;
+		Collection<Leg> aircraftPublishedLegs;
+
+		publishedLegs = this.repository.findPublishedLegsByFlightId(flight.getId());
+		aircraftPublishedLegs = this.repository.findPublishedLegsByAircraftId(aircraft.getId());
+
+		boolean valid;
+
+		if (!publishedLegs.isEmpty()) {
+			valid = publishedLegs.stream().anyMatch((l) -> !(scheduledDeparture.after(l.getScheduledArrival()) || scheduledArrival.before(l.getScheduledDeparture())));
+			super.state(!valid, "*", "airline-manager.error.overlappedLegs.message");
+		}
+
+		if (!aircraftPublishedLegs.isEmpty()) {
+			valid = aircraftPublishedLegs.stream().anyMatch((l) -> !(scheduledDeparture.after(l.getScheduledArrival()) || scheduledArrival.before(l.getScheduledDeparture())));
+			super.state(!valid, "aircraft", "airline-manager.error.aircraft-in-use.message");
+		}
+
 	}
 
 	@Override

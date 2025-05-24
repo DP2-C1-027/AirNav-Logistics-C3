@@ -123,9 +123,7 @@ public class AirlineManagerLegsCreateService extends AbstractGuiService<AirlineM
 		Airport arrivalAirport = leg.getArrivalAirport();
 		Airport departureAirport = leg.getDepartureAirport();
 
-		if (airlineFlight == null || airlineAircraft == null || !airlineFlight.equals(airlineAircraft))
-			super.state(flight == null || aircraft == null, "aircraft", "airline-manager.error.wrong-airline");
-		if (IATAnumber == null || airlineFlight == null || !IATAnumber.startsWith(airlineFlight.getCodigo()))
+		if (IATAnumber == null || airlineFlight == null || !IATAnumber.startsWith(airlineAircraft.getCodigo()))
 			super.state(IATAnumber == null || airlineFlight == null, "flightNumber", "airline-manager.error.invalid-flight-number");
 		if (scheduledArrival == null || scheduledDeparture == null || !scheduledArrival.after(scheduledDeparture))
 			super.state(scheduledArrival == null || scheduledDeparture == null, "scheduledArrival", "airline-manager.error.future-departure");

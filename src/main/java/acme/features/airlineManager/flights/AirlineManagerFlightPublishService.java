@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
+import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.airline.Airline;
@@ -88,9 +89,15 @@ public class AirlineManagerFlightPublishService extends AbstractGuiService<Airli
 		boolean confirmation;
 
 		legs = this.repository.findLegsByFlightId(flight.getId());
-		confirmation = !legs.stream().anyMatch((leg) -> !leg.isDraftMode());
+		if (legs.isEmpty())
+			super.state(false, "*", "airlineManager.flight.error.noLegs");
+		else {
+			confirmation = !legs.stream().anyMatch((leg) -> leg.isDraftMode());
+			super.state(confirmation, "*", "airlineManager.flight.error.unpublishedLegs.message");
+			confirmation = flight.getScheduledDeparture().after(MomentHelper.getCurrentMoment());
+			super.state(confirmation, "*", "airlineManager.flight.error.flightStartsInThePast.message");
+		}
 
-		super.state(confirmation, "*", "airlineManager.flight.error.unpublishedLegs.message");
 	}
 
 	@Override

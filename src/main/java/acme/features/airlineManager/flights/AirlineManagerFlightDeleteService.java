@@ -134,7 +134,7 @@ public class AirlineManagerFlightDeleteService extends AbstractGuiService<Airlin
 		Collection<Airline> airlines;
 		SelectChoices choices;
 
-		dataset = super.unbindObject(flight, "tag", "indication", "cost", "description", "airline", "draftMode");
+		dataset = super.unbindObject(flight, "tag", "indication", "cost", "description", "airline", "draftMode", "scheduledDeparture", "scheduledArrival", "departureCity", "arrivalCity", "layovers");
 		super.addPayload(dataset, flight, "tag", "indication", "cost", "description", "airline", "draftMode");
 		airlines = this.repository.getAllAirlines();
 		choices = SelectChoices.from(airlines, "codigo", flight.getAirline());

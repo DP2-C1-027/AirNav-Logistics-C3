@@ -27,25 +27,24 @@ public class TechnicianRecordServiceShow extends AbstractGuiService<Technician, 
 	public void authorise() {
 		boolean status = true;
 
-		MaintanenceRecord record;
-		Technician tech;
-		Aircraft aircraft;
-
 		if (super.getRequest().hasData("id", int.class)) {
+			MaintanenceRecord record;
+			Technician tech;
+			Aircraft aircraft;
 			Integer recordId;
-			try {
-				recordId = super.getRequest().getData("id", int.class);
-			} catch (Exception e) {
-				recordId = null;
-			}
+			String isInteger;
+			isInteger = super.getRequest().getData("id", String.class).trim();
+			if (isInteger != null && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
+				recordId = Integer.valueOf(isInteger);
+			else
+				recordId = Integer.valueOf(-1);
 			record = recordId != null ? this.repository.findRecordById(recordId) : null;
 			aircraft = recordId != null ? this.repository.findAircraftByRecordId(recordId) : null;
 			tech = record == null ? null : record.getTechnician();
 			status = tech == null ? false : super.getRequest().getPrincipal().hasRealm(tech) && aircraft != null || record != null && aircraft != null && !record.isDraftMode();
-		}
-
+		} else
+			status = false;
 		super.getResponse().setAuthorised(status);
-
 	}
 
 	@Override

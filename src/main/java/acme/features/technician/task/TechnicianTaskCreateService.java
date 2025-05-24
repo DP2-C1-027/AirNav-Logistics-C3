@@ -28,15 +28,17 @@ public class TechnicianTaskCreateService extends AbstractGuiService<Technician, 
 
 		tech = (Technician) super.getRequest().getPrincipal().getActiveRealm();
 		status = super.getRequest().getPrincipal().hasRealm(tech);
-		if (super.getRequest().hasData("id", int.class)) {
+		if (super.getRequest().hasData("id")) {
 			Integer id;
-			try {
-				id = super.getRequest().getData("id", Integer.class);
-				if (!id.equals(Integer.valueOf(0)))
-					status = false;
-			} catch (Exception e) {
+			String isInteger;
+			isInteger = super.getRequest().getData("id", String.class).trim();
+
+			if (isInteger != null && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
+				id = Integer.valueOf(isInteger);
+			else
+				id = Integer.valueOf(-1);
+			if (!id.equals(Integer.valueOf(0)))
 				status = false;
-			}
 
 		} else if (super.getRequest().getMethod().equals("POST"))
 			status = false;
@@ -53,6 +55,7 @@ public class TechnicianTaskCreateService extends AbstractGuiService<Technician, 
 
 		task = new Task();
 		task.setTechnician(tech);
+		task.setDraftMode(true);
 		super.getBuffer().addData(task);
 
 	}
@@ -61,7 +64,6 @@ public class TechnicianTaskCreateService extends AbstractGuiService<Technician, 
 	public void bind(final Task task) {
 
 		super.bindObject(task, "type", "description", "priority", "estimatedDuration");
-		task.setDraftMode(true);
 
 	}
 
@@ -85,9 +87,11 @@ public class TechnicianTaskCreateService extends AbstractGuiService<Technician, 
 		SelectChoices choices;
 		choices = SelectChoices.from(TaskType.class, task.getType());
 
-		dataset = super.unbindObject(task, "type", "draftMode", "description", "priority", "estimatedDuration");
-		dataset.put("type", choices);
-		super.addPayload(dataset, task, "type", "draftMode", "description", "priority", "estimatedDuration");
+		dataset = super.unbindObject(task, "type", "description", "priority", "estimatedDuration");
+		dataset.put("type", choices.getSelected().getKey());
+		dataset.put("types", choices);
+		super.addPayload(dataset, task, "type", "description", "priority", "estimatedDuration");
+
 		super.getResponse().addData(dataset);
 
 	}

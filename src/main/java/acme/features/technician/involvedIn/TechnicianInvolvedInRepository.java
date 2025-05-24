@@ -59,4 +59,7 @@ public interface TechnicianInvolvedInRepository extends AbstractRepository {
 	@Query("SELECT b FROM InvolvedIn b WHERE b.maintanenceRecord = :maintanenceRecord AND b.task = :task")
 	Collection<InvolvedIn> findByRecordAndTask(MaintanenceRecord maintanenceRecord, Task task);
 
+	//si el draftmode en falso = publicado
+	//en true es unpublished
+
 }

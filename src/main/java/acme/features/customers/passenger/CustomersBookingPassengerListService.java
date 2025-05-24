@@ -26,20 +26,21 @@ public class CustomersBookingPassengerListService extends AbstractGuiService<Cus
 	public void authorise() {
 
 		boolean status = true;
-
+		Integer id;
 		Booking booking;
 
-		if (super.getRequest().hasData("bookingId", int.class)) {
-			Integer id;
-			try {
-				id = super.getRequest().getData("bookingId", Integer.class);
-			} catch (Exception e) {
-				id = null;
-			}
+		if (super.getRequest().hasData("bookingId")) {
+
+			String isInteger;
+			isInteger = super.getRequest().getData("bookingId", String.class).trim();
+			if (!isInteger.isBlank() && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
+				id = Integer.valueOf(isInteger);
+			else
+				id = Integer.valueOf(-1);
 			booking = id != null ? this.repository.findBookinById(id) : null;
 			Customers customer = booking != null ? booking.getCustomer() : null;
 
-			status = customer == null ? false : super.getRequest().getPrincipal().hasRealm(customer); //|| booking != null && !booking.isDraftMode();
+			status = customer == null ? false : super.getRequest().getPrincipal().hasRealm(customer) && status; //|| booking != null && !booking.isDraftMode();
 		} else
 			status = false;
 

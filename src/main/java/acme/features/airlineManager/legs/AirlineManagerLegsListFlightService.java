@@ -22,18 +22,20 @@ public class AirlineManagerLegsListFlightService extends AbstractGuiService<Airl
 	@Override
 	public void authorise() {
 		boolean status = true;
-		Integer masterId;
 		Flight flight;
 		AirlineManager manager;
-		if (super.getRequest().hasData("masterId")) {
-			try {
-				masterId = super.getRequest().getData("masterId", Integer.class);
-			} catch (Exception e) {
-				masterId = null;
-			}
-			flight = masterId == null ? null : this.repository.getFlightById(masterId);
+		if (super.getRequest().hasData("masterId", int.class)) {
+			Integer flightId;
+			String isInteger;
+			isInteger = super.getRequest().getData("masterId", String.class);
+			if (isInteger != null && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
+				flightId = Integer.valueOf(isInteger);
+			else
+				flightId = Integer.valueOf(-1);
+			flight = flightId == null ? null : this.repository.getFlightById(flightId);
 			manager = flight == null ? null : flight.getAirlineManager();
-			status = manager == null ? false : super.getRequest().getPrincipal().hasRealm(manager);
+			status = manager == null ? false : super.getRequest().getPrincipal().hasRealm(manager) && status;
+
 		} else
 			status = false;
 

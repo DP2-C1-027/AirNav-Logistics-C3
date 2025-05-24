@@ -27,32 +27,31 @@ public class AirlineManagerFlightCreateService extends AbstractGuiService<Airlin
 		boolean status = true;
 		if (super.getRequest().hasData("id")) {
 			Integer flightId;
-			try {
-				flightId = super.getRequest().getData("id", Integer.class);
-			} catch (Exception e) {
+			String isInteger;
+			isInteger = super.getRequest().getData("id", String.class).trim();
+			if (isInteger != null && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
+				flightId = Integer.valueOf(isInteger);
+			else
 				flightId = Integer.valueOf(-1);
-			}
-			if (flightId == null || !flightId.equals(Integer.valueOf(0)))
+			if (!flightId.equals(Integer.valueOf(0)))
 				status = false;
 		} else if (super.getRequest().getMethod().equals("POST"))
 			status = false;
-		if (super.getRequest().hasData("indication"))
-			try {
-				if (super.getRequest().getData("indication", Boolean.class) == null)
-					status = false;
-			} catch (Exception e) {
+		if (super.getRequest().hasData("indication")) {
+			String isBoolean;
+			isBoolean = super.getRequest().getData("indication", String.class);
+			if (isBoolean == null || !(isBoolean.equals("true") || isBoolean.equals("false")))
 				status = false;
-			}
-		else if (super.getRequest().getMethod().equals("POST"))
+		} else if (super.getRequest().getMethod().equals("POST"))
 			status = false;
 		if (super.getRequest().hasData("airline")) {
 			Integer airlineId;
-			try {
-				airlineId = super.getRequest().getData("airline", Integer.class);
-			} catch (Exception e) {
-				status = false;
+			String isInteger;
+			isInteger = super.getRequest().getData("airline", String.class);
+			if (isInteger != null && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
+				airlineId = Integer.valueOf(isInteger);
+			else
 				airlineId = Integer.valueOf(-1);
-			}
 			if (airlineId == null || !airlineId.equals(Integer.valueOf(0)) && this.repository.getAirlineById(airlineId) == null)
 				status = false;
 		} else if (super.getRequest().getMethod().equals("POST"))

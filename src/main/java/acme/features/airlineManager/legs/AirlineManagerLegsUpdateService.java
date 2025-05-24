@@ -30,30 +30,45 @@ public class AirlineManagerLegsUpdateService extends AbstractGuiService<AirlineM
 	@Override
 	public void authorise() {
 		boolean status = true;
-		Integer masterId;
 		Leg leg = null;
 		AirlineManager manager;
 		if (super.getRequest().hasData("id")) {
-			try {
-				masterId = super.getRequest().getData("id", Integer.class);
-			} catch (Exception e) {
-				masterId = null;
-			}
-			leg = masterId == null ? null : this.repository.findLegById(masterId);
+			Integer legId;
+			String isInteger;
+			isInteger = super.getRequest().getData("id", String.class).trim();
+			if (isInteger != null && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
+				legId = Integer.valueOf(isInteger);
+			else
+				legId = null;
+			leg = legId == null ? null : this.repository.findLegById(legId);
 			manager = leg == null ? null : leg.getFlight().getAirlineManager();
 			status = manager == null ? false : super.getRequest().getPrincipal().hasRealm(manager) && leg.isDraftMode();
 		} else
 			status = false;
-
 		if (super.getRequest().hasData("duration")) {
 			Integer duration;
-			try {
-				duration = super.getRequest().getData("duration", Integer.class);
-				if (leg == null ? true : !duration.equals(leg.getDuration()))
-					status = false;
-			} catch (Exception e) {
-				status = false;
-			}
+			String isInteger;
+			isInteger = super.getRequest().getData("duration", String.class).trim();
+			if (isInteger != null && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
+				duration = Integer.valueOf(isInteger);
+			else
+				duration = null;
+			status = leg != null && duration != null && duration.equals(leg.getDuration()) && status;
+		} else
+			status = false;
+		if (super.getRequest().hasData("flight")) {
+			Integer flightId;
+			String isInteger;
+			Flight flight;
+			isInteger = super.getRequest().getData("flight", String.class);
+			if (isInteger != null && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
+				flightId = Integer.valueOf(isInteger);
+			else
+				flightId = Integer.valueOf(-1);
+			flight = flightId == null ? null : this.repository.getFlightById(flightId);
+			manager = flight == null ? null : leg.getFlight().getAirlineManager();
+			status = manager == null ? flightId != null && flightId.equals(Integer.valueOf(0)) && status : super.getRequest().getPrincipal().hasRealm(manager) && status;
+
 		} else
 			status = false;
 		super.getResponse().setAuthorised(status);

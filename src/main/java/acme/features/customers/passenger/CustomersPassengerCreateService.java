@@ -24,20 +24,23 @@ public class CustomersPassengerCreateService extends AbstractGuiService<Customer
 
 	@Override
 	public void authorise() {
-		boolean status;
+		boolean status = true;
 		Customers customer;
+		Integer id;
 
-		customer = (Customers) super.getRequest().getPrincipal().getActiveRealm();
-		status = super.getRequest().getPrincipal().hasRealm(customer);
-		if (super.getRequest().hasData("id", int.class)) {
-			Integer id;
-			try {
-				id = super.getRequest().getData("id", Integer.class);
-				if (!id.equals(Integer.valueOf(0)))
-					status = false;
-			} catch (Exception e) {
+		//customer = (Customers) super.getRequest().getPrincipal().getActiveRealm();
+		//status = super.getRequest().getPrincipal().hasRealm(customer);
+		if (super.getRequest().hasData("id")) {
+			String isInteger;
+			isInteger = super.getRequest().getData("id", String.class).trim();
+
+			if (!isInteger.isBlank() && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
+				id = Integer.valueOf(isInteger);
+			else
+				id = Integer.valueOf(-1);
+
+			if (!id.equals(Integer.valueOf(0)))
 				status = false;
-			}
 
 		} else if (super.getRequest().getMethod().equals("POST"))
 			status = false;

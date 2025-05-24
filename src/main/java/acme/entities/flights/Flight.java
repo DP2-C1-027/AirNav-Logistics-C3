@@ -129,6 +129,7 @@ public class Flight extends AbstractEntity {
 	@Valid
 	private AirlineManager	airlineManager;
 
+	@Mandatory
 	@ManyToOne(optional = false)
 	@Valid
 	private Airline			airline;

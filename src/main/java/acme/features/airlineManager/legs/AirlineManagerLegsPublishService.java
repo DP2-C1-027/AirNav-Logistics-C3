@@ -104,10 +104,9 @@ public class AirlineManagerLegsPublishService extends AbstractGuiService<Airline
 		Flight flight = leg.getFlight();
 		Airline airlineAircraft;
 		Airline airlineFlight;
-		if (flight == null || aircraft == null) {
-			airlineFlight = null;
-			airlineAircraft = null;
-		} else {
+		if (flight == null || aircraft == null)
+			return;
+		else {
 			airlineFlight = flight.getAirline();
 			airlineAircraft = aircraft.getAirline();
 		}
@@ -116,6 +115,8 @@ public class AirlineManagerLegsPublishService extends AbstractGuiService<Airline
 		Date scheduledArrival = leg.getScheduledArrival();
 		Airport arrivalAirport = leg.getArrivalAirport();
 		Airport departureAirport = leg.getDepartureAirport();
+		if (scheduledArrival == null || scheduledDeparture == null || arrivalAirport == null || departureAirport == null || IATAnumber == null)
+			return;
 
 		if (IATAnumber == null || airlineFlight == null || !IATAnumber.startsWith(airlineAircraft.getCodigo()))
 			super.state(IATAnumber == null || airlineFlight == null, "flightNumber", "airline-manager.error.invalid-flight-number");
@@ -125,9 +126,6 @@ public class AirlineManagerLegsPublishService extends AbstractGuiService<Airline
 			super.state(arrivalAirport == null || departureAirport == null, "arrivalAirport", "airline-manager.error.same-airport");
 		if (IATAnumber != null && !IATAnumber.isBlank() && this.repository.anyLegByIATAnumber(IATAnumber) && !this.repository.findLegById(leg.getId()).getFlightNumber().equals(IATAnumber))
 			super.state(false, "flightNumber", "airline-manager.error.duplicated-code");
-
-		if (flight == null || aircraft == null)
-			return;
 
 		Collection<Leg> publishedLegs;
 		Collection<Leg> aircraftPublishedLegs;
@@ -139,7 +137,15 @@ public class AirlineManagerLegsPublishService extends AbstractGuiService<Airline
 
 		if (!publishedLegs.isEmpty()) {
 			valid = publishedLegs.stream().anyMatch((l) -> !(scheduledDeparture.after(l.getScheduledArrival()) || scheduledArrival.before(l.getScheduledDeparture())));
-			super.state(!valid, "*", "airline-manager.error.overlappedLegs.message");
+			super.state(!valid, "*", "airline-manager.error.overlappedLegs");
+			valid = publishedLegs.stream().anyMatch((l) -> leg.getArrivalAirport().equals(l.getDepartureAirport()) && leg.getScheduledDeparture().after(l.getScheduledDeparture()));
+			super.state(!valid, "*", "airline-manager.error.airportLoopArrival");
+			valid = publishedLegs.stream().anyMatch((l) -> leg.getDepartureAirport().equals(l.getArrivalAirport()) && leg.getScheduledDeparture().before(l.getScheduledDeparture()));
+			super.state(!valid, "*", "airline-manager.error.airportLoopDeparture");
+			valid = publishedLegs.stream().anyMatch((l) -> leg.getDepartureAirport().equals(l.getDepartureAirport()));
+			super.state(!valid, "*", "airline-manager.error.duplicatedDepartureAirport");
+			valid = publishedLegs.stream().anyMatch((l) -> leg.getArrivalAirport().equals(l.getArrivalAirport()));
+			super.state(!valid, "*", "airline-manager.error.duplicatedArrivalAirport");
 		}
 
 		if (!aircraftPublishedLegs.isEmpty()) {

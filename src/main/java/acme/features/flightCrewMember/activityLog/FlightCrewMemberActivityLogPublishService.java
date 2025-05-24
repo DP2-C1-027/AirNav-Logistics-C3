@@ -8,6 +8,7 @@ import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.flightAssignment.ActivityLog;
+import acme.entities.flightAssignment.FlightAssignment;
 import acme.realms.FlightCrewMember;
 
 @GuiService
@@ -26,20 +27,25 @@ public class FlightCrewMemberActivityLogPublishService extends AbstractGuiServic
 
 		boolean isAuthorised = false;
 
-		try {
+		if (super.getRequest().getPrincipal().hasRealmOfType(FlightCrewMember.class))
+
 			// Only is allowed to publish an activity log if the creator is the flight crew member associated to the flight assignment.
 			// An activity log cannot be published if:
 			// - Activity log should be in draft mode and not published.
 			// - Assignment should be in published mode and not in draft mode.
-			Integer activityLogId = super.getRequest().getData("id", Integer.class);
-			if (activityLogId != null) {
-				ActivityLog activityLog = this.repository.findActivityLogById(activityLogId);
-				isAuthorised = activityLog != null && activityLog.getDraftMode() && !activityLog.getFlightAssignment().getDraftMode() && super.getRequest().getPrincipal().hasRealm(activityLog.getFlightAssignment().getFlightCrewMember());
+			if (super.getRequest().getMethod().equals("POST") && super.getRequest().hasData("id")) {
+
+				Integer activityLogId = super.getRequest().getData("id", Integer.class);
+
+				if (activityLogId != null) {
+					ActivityLog activityLog = this.repository.findActivityLogById(activityLogId);
+					FlightAssignment flightAssignment = activityLog.getFlightAssignment();
+					FlightCrewMember flightCrewMember = (FlightCrewMember) super.getRequest().getPrincipal().getActiveRealm();
+
+					isAuthorised = activityLog != null && flightAssignment != null && !flightAssignment.getDraftMode() && activityLog.getFlightAssignment().getFlightCrewMember().equals(flightCrewMember);
+				}
+
 			}
-		} catch (Exception e) {
-			System.err.println(e.getMessage());
-			e.printStackTrace();
-		}
 
 		super.getResponse().setAuthorised(isAuthorised);
 	}

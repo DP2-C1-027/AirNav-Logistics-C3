@@ -29,17 +29,21 @@ public class FlightCrewMemberActivityLogListService extends AbstractGuiService<F
 
 		boolean isAuthorised = false;
 
-		try {
+		if (super.getRequest().getPrincipal().hasRealmOfType(FlightCrewMember.class))
+
 			// Only is allowed to view an activity log list if the creator is the flight crew member associated to the flight assignment.
-			Integer assignmentId = super.getRequest().getData("assignmentId", Integer.class);
-			if (assignmentId != null) {
-				FlightAssignment flightAssignment = this.repository.findFlightAssignmentById(assignmentId);
-				isAuthorised = flightAssignment != null && super.getRequest().getPrincipal().hasRealm(flightAssignment.getFlightCrewMember());
+			if (super.getRequest().getMethod().equals("GET") && super.getRequest().hasData("assignmentId")) {
+
+				Integer assignmentId = super.getRequest().getData("assignmentId", Integer.class);
+
+				if (assignmentId != null) {
+					FlightAssignment flightAssignment = this.repository.findFlightAssignmentById(assignmentId);
+					FlightCrewMember flightCrewMember = (FlightCrewMember) super.getRequest().getPrincipal().getActiveRealm();
+
+					isAuthorised = flightAssignment != null && flightAssignment.getFlightCrewMember().equals(flightCrewMember);
+				}
+
 			}
-		} catch (Exception e) {
-			System.err.println(e.getMessage());
-			e.printStackTrace();
-		}
 
 		super.getResponse().setAuthorised(isAuthorised);
 	}

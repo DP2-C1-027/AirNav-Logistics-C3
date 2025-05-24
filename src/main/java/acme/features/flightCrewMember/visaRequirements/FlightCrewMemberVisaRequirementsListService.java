@@ -28,17 +28,22 @@ public class FlightCrewMemberVisaRequirementsListService extends AbstractGuiServ
 
 		boolean isAuthorised = false;
 
-		try {
-			// Only is allowed to view visa requirements list if the creator is the flight crew member associated to the flight assignment.
-			Integer assignmentId = super.getRequest().getData("assignmentId", Integer.class);
-			if (assignmentId != null) {
-				FlightAssignment flightAssignment = this.repository.findFlightAssignmentById(assignmentId);
-				isAuthorised = flightAssignment != null && super.getRequest().getPrincipal().hasRealm(flightAssignment.getFlightCrewMember());
+		if (super.getRequest().getPrincipal().hasRealmOfType(FlightCrewMember.class))
+
+			// Only is allowed to show visa requirements if the creator is a flight crew member associated to the flight assignment.
+			if (super.getRequest().getMethod().equals("GET") && super.getRequest().hasData("assignmentId")) {
+
+				Integer assignmentId = super.getRequest().getData("assignmentId", Integer.class);
+
+				if (assignmentId != null) {
+
+					FlightAssignment flightAssignment = this.repository.findFlightAssignmentById(assignmentId);
+					FlightCrewMember flightCrewMember = (FlightCrewMember) super.getRequest().getPrincipal().getActiveRealm();
+
+					isAuthorised = flightAssignment != null && flightAssignment.getFlightCrewMember().equals(flightCrewMember);
+				}
+
 			}
-		} catch (Exception e) {
-			System.err.println(e.getMessage());
-			e.printStackTrace();
-		}
 
 		super.getResponse().setAuthorised(isAuthorised);
 	}

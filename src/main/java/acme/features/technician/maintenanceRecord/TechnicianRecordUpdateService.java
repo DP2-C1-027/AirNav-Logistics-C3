@@ -65,7 +65,7 @@ public class TechnicianRecordUpdateService extends AbstractGuiService<Technician
 	@Override
 	public void bind(final MaintanenceRecord record) {
 
-		super.bindObject(record, "maintanenceMoment", "status", "nextMaintanence", "estimatedCost", "notes");
+		super.bindObject(record, "status", "nextMaintanence", "estimatedCost", "notes");
 
 	}
 
@@ -98,7 +98,7 @@ public class TechnicianRecordUpdateService extends AbstractGuiService<Technician
 		dataset.put("aircraft", aircraftChoices.getSelected().getKey());
 		dataset.put("aircrafts", aircraftChoices);
 		dataset.put("status", choices);
-		super.addPayload(dataset, record, "maintanenceMoment", "status", "nextMaintanence", "estimatedCost", "notes");
+		super.addPayload(dataset, record, "status", "nextMaintanence", "estimatedCost", "notes");
 		super.getResponse().addData(dataset);
 	}
 }

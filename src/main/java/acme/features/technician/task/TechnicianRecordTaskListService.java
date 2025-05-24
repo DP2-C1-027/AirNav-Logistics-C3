@@ -31,11 +31,12 @@ public class TechnicianRecordTaskListService extends AbstractGuiService<Technici
 
 		if (super.getRequest().hasData("recordId", int.class)) {
 			Integer id;
-			try {
-				id = super.getRequest().getData("recordId", int.class);
-			} catch (Exception e) {
-				id = null;
-			}
+			String isInteger;
+			isInteger = super.getRequest().getData("id", String.class).trim();
+			if (isInteger != null && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
+				id = Integer.valueOf(isInteger);
+			else
+				id = Integer.valueOf(-1);
 			record = id != null ? this.repository.findRecordById(id) : null;
 			Technician tech = record != null ? record.getTechnician() : null;
 

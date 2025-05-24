@@ -55,6 +55,7 @@ public class TechnicianTaskCreateService extends AbstractGuiService<Technician, 
 
 		task = new Task();
 		task.setTechnician(tech);
+		task.setDraftMode(true);
 		super.getBuffer().addData(task);
 
 	}
@@ -63,7 +64,6 @@ public class TechnicianTaskCreateService extends AbstractGuiService<Technician, 
 	public void bind(final Task task) {
 
 		super.bindObject(task, "type", "description", "priority", "estimatedDuration");
-		task.setDraftMode(true);
 
 	}
 
@@ -87,9 +87,11 @@ public class TechnicianTaskCreateService extends AbstractGuiService<Technician, 
 		SelectChoices choices;
 		choices = SelectChoices.from(TaskType.class, task.getType());
 
-		dataset = super.unbindObject(task, "type", "draftMode", "description", "priority", "estimatedDuration");
-		dataset.put("type", choices);
-		super.addPayload(dataset, task, "type", "draftMode", "description", "priority", "estimatedDuration");
+		dataset = super.unbindObject(task, "type", "description", "priority", "estimatedDuration");
+		dataset.put("type", choices.getSelected().getKey());
+		dataset.put("types", choices);
+		super.addPayload(dataset, task, "type", "description", "priority", "estimatedDuration");
+
 		super.getResponse().addData(dataset);
 
 	}

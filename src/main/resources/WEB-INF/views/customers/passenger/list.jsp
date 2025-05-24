@@ -19,7 +19,6 @@
 
 <acme:list >
 	<acme:list-column code="customers.passenger.list.label.fullName" path="fullName"/>
-
 	<acme:list-payload path="payload"/>
 </acme:list>
 

@@ -21,71 +21,66 @@ public class TechnicianInvolvedInCreateService extends AbstractGuiService<Techni
 	@Autowired
 	private TechnicianInvolvedInRepository repository;
 
-	/*
-	 * @Override
-	 * public void authorise() {
-	 * Technician tech;
-	 * boolean status;
-	 * MaintanenceRecord record;
-	 * Task task;
-	 * String isInteger;
-	 * isInteger = super.getRequest().getData("id", String.class).trim();
-	 * tech = (Technician) super.getRequest().getPrincipal().getActiveRealm();
-	 * 
-	 * status = super.getRequest().getPrincipal().hasRealm(tech);
-	 * //mirar el record
-	 * if (super.getRequest().hasData("record")) {
-	 * Integer id;
-	 * try {
-	 * id = super.getRequest().getData("record", Integer.class);
-	 * record = this.repository.findRecordById(id);
-	 * 
-	 * if (!id.equals(Integer.valueOf(0)) && !record.getTechnician().equals(tech))
-	 * status = false;
-	 * 
-	 * } catch (Exception e) {
-	 * status = false;
-	 * record = null;
-	 * }
-	 * status = record != null ? status && record.isDraftMode() : status;
-	 * } else if (super.getRequest().getMethod().equals("POST"))
-	 * status = false;
-	 * 
-	 * //mirar las task
-	 * if (super.getRequest().hasData("task")) {
-	 * Integer id;
-	 * try {
-	 * id = super.getRequest().getData("task", Integer.class);
-	 * task = this.repository.findTaskById(id);
-	 * 
-	 * if (!id.equals(Integer.valueOf(0)) && !task.getTechnician().equals(tech))
-	 * status = false;
-	 * 
-	 * } catch (Exception e) {
-	 * status = false;
-	 * }
-	 * } else if (super.getRequest().getMethod().equals("POST"))
-	 * status = false;
-	 * 
-	 * if (super.getRequest().hasData("id")) {
-	 * Integer id;
-	 * try {
-	 * id = super.getRequest().getData("id", Integer.class);
-	 * if (!id.equals(Integer.valueOf(0)))
-	 * status = false;
-	 * 
-	 * } catch (Exception e) {
-	 * status = false;
-	 * 
-	 * }
-	 * } else if (super.getRequest().getMethod().equals("POST"))
-	 * status = false;
-	 * 
-	 * super.getResponse().setAuthorised(status);
-	 * 
-	 * }
-	 */
 
+	@Override
+	public void authorise() {
+
+		boolean status = true;
+		Task task;
+		Technician tech;
+
+		if (super.getRequest().hasData("recordId")) {
+			Integer recordId;
+			String isInteger;
+			isInteger = super.getRequest().getData("recordId", String.class).trim();
+			if (!isInteger.isBlank() && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
+				recordId = Integer.valueOf(isInteger);
+			else
+				recordId = Integer.valueOf(-1);
+
+			MaintanenceRecord record = recordId != null ? this.repository.findRecordById(recordId) : null;
+			tech = record != null ? record.getTechnician() : null;
+
+			status = tech == null ? false : record != null && record.isDraftMode() && super.getRequest().getPrincipal().hasRealm(tech);
+
+		}
+
+		if (super.getRequest().hasData("task")) {
+			Integer id;
+
+			String isInteger2;
+			isInteger2 = super.getRequest().getData("task", String.class);
+			if (!isInteger2.isBlank() && isInteger2.chars().allMatch((e) -> e > 47 && e < 58))
+				id = Integer.valueOf(isInteger2);
+			else
+				id = null;
+
+			task = id == null ? null : this.repository.findTaskById(id);
+			tech = task == null ? null : task.getTechnician();
+
+			status = tech == null ? id != null && id.equals(Integer.valueOf(0)) && status : super.getRequest().getPrincipal().hasRealm(tech) && status;
+
+		} else if (super.getRequest().getMethod().equals("POST"))
+			status = false;
+
+		if (super.getRequest().hasData("id")) {
+			Integer id;
+			String isInteger;
+			isInteger = super.getRequest().getData("id", String.class).trim();
+			if (!isInteger.isBlank() && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
+				id = Integer.valueOf(isInteger);
+			else
+				id = Integer.valueOf(-1);
+
+			if (!id.equals(Integer.valueOf(0)))
+				status = false;
+
+		} else if (super.getRequest().getMethod().equals("POST"))
+			status = false;
+
+		super.getResponse().setAuthorised(status);
+
+	}
 
 	@Override
 	public void load() {

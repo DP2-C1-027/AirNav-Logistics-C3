@@ -17,7 +17,7 @@
 
 <acme:list>
 	<acme:list-column code="technician.involved-in.list.label.maintanenceRecord" path="maintanenceRecord" width="20%"/>
-
+	<acme:list-payload path="payload"/>
 </acme:list>
 
 <jstl:if test="${_command == 'list'}">

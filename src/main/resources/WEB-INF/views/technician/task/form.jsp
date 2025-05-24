@@ -20,7 +20,7 @@
 	<acme:input-textbox code="technician.task.form.label.priority" path="priority"/>
 	<acme:input-textbox code="technician.task.form.label.estimatedDuration" path="estimatedDuration"/>
 	<acme:input-select  code="technician.task.form.label.type" path="type" choices="${types}"/>
-	 
+	
 	
 	<jstl:choose>
 		<jstl:when test="${_command == 'create'}">

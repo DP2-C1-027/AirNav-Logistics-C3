@@ -31,7 +31,7 @@ public class AirlineManagerFlightShowService extends AbstractGuiService<AirlineM
 			AirlineManager manager;
 			Flight flight;
 			isInteger = super.getRequest().getData("id", String.class).trim();
-			if (isInteger != null && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
+			if (!isInteger.isBlank() && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
 				flightId = Integer.valueOf(isInteger);
 			else
 				flightId = Integer.valueOf(-1);
@@ -63,7 +63,7 @@ public class AirlineManagerFlightShowService extends AbstractGuiService<AirlineM
 		airlines = this.repository.getAllAirlines();
 		choices = SelectChoices.from(airlines, "codigo", flight.getAirline());
 
-		dataset = super.unbindObject(flight, "tag", "indication", "cost", "description", "airline", "draftMode");
+		dataset = super.unbindObject(flight, "tag", "indication", "cost", "description", "airline", "draftMode", "scheduledDeparture", "scheduledArrival", "departureCity", "arrivalCity", "layovers");
 		dataset.put("airline", choices.getSelected().getKey());
 		dataset.put("airlines", choices);
 		super.addPayload(dataset, flight, "tag", "indication", "cost", "description", "airline", "draftMode");

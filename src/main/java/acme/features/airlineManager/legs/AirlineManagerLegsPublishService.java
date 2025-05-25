@@ -36,7 +36,7 @@ public class AirlineManagerLegsPublishService extends AbstractGuiService<Airline
 			Integer legId;
 			String isInteger;
 			isInteger = super.getRequest().getData("id", String.class).trim();
-			if (isInteger != null && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
+			if (!isInteger.isBlank() && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
 				legId = Integer.valueOf(isInteger);
 			else
 				legId = null;
@@ -45,29 +45,37 @@ public class AirlineManagerLegsPublishService extends AbstractGuiService<Airline
 			status = manager == null ? false : super.getRequest().getPrincipal().hasRealm(manager) && leg.isDraftMode();
 		} else
 			status = false;
+		if (!status) {
+			super.getResponse().setAuthorised(false);
+			return;
+		}
 		if (super.getRequest().hasData("duration")) {
 			Integer duration;
 			String isInteger;
 			isInteger = super.getRequest().getData("duration", String.class).trim();
-			if (isInteger != null && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
+			if (!isInteger.isBlank() && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
 				duration = Integer.valueOf(isInteger);
 			else
 				duration = null;
-			status = leg != null && duration != null && duration.equals(leg.getDuration()) && status;
+			status = leg != null && duration != null && duration.equals(leg.getDuration());
 		} else
 			status = false;
+		if (!status) {
+			super.getResponse().setAuthorised(false);
+			return;
+		}
 		if (super.getRequest().hasData("flight")) {
 			Integer flightId;
 			String isInteger;
 			Flight flight;
 			isInteger = super.getRequest().getData("flight", String.class);
-			if (isInteger != null && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
+			if (!isInteger.isBlank() && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
 				flightId = Integer.valueOf(isInteger);
 			else
 				flightId = Integer.valueOf(-1);
 			flight = flightId == null ? null : this.repository.getFlightById(flightId);
 			manager = flight == null ? null : leg.getFlight().getAirlineManager();
-			status = manager == null ? flightId != null && flightId.equals(Integer.valueOf(0)) && status : super.getRequest().getPrincipal().hasRealm(manager) && status;
+			status = manager == null ? flightId != null && flightId.equals(Integer.valueOf(0)) : super.getRequest().getPrincipal().hasRealm(manager);
 
 		} else
 			status = false;
@@ -96,10 +104,9 @@ public class AirlineManagerLegsPublishService extends AbstractGuiService<Airline
 		Flight flight = leg.getFlight();
 		Airline airlineAircraft;
 		Airline airlineFlight;
-		if (flight == null || aircraft == null) {
-			airlineFlight = null;
-			airlineAircraft = null;
-		} else {
+		if (flight == null || aircraft == null)
+			return;
+		else {
 			airlineFlight = flight.getAirline();
 			airlineAircraft = aircraft.getAirline();
 		}
@@ -108,15 +115,44 @@ public class AirlineManagerLegsPublishService extends AbstractGuiService<Airline
 		Date scheduledArrival = leg.getScheduledArrival();
 		Airport arrivalAirport = leg.getArrivalAirport();
 		Airport departureAirport = leg.getDepartureAirport();
+		if (scheduledArrival == null || scheduledDeparture == null || arrivalAirport == null || departureAirport == null || IATAnumber == null)
+			return;
 
-		if (airlineFlight == null || airlineAircraft == null || !airlineFlight.equals(airlineAircraft))
-			super.state(flight == null || aircraft == null, "aircraft", "airline-manager.error.wrong-airline");
-		if (IATAnumber == null || airlineFlight == null || !IATAnumber.startsWith(airlineFlight.getCodigo()))
+		if (IATAnumber == null || airlineFlight == null || !IATAnumber.startsWith(airlineAircraft.getCodigo()))
 			super.state(IATAnumber == null || airlineFlight == null, "flightNumber", "airline-manager.error.invalid-flight-number");
 		if (scheduledArrival == null || scheduledDeparture == null || !scheduledArrival.after(scheduledDeparture))
 			super.state(scheduledArrival == null || scheduledDeparture == null, "scheduledArrival", "airline-manager.error.future-departure");
 		if (arrivalAirport == null || departureAirport == null || arrivalAirport.equals(departureAirport))
 			super.state(arrivalAirport == null || departureAirport == null, "arrivalAirport", "airline-manager.error.same-airport");
+		if (IATAnumber != null && !IATAnumber.isBlank() && this.repository.anyLegByIATAnumber(IATAnumber) && !this.repository.findLegById(leg.getId()).getFlightNumber().equals(IATAnumber))
+			super.state(false, "flightNumber", "airline-manager.error.duplicated-code");
+
+		Collection<Leg> publishedLegs;
+		Collection<Leg> aircraftPublishedLegs;
+
+		publishedLegs = this.repository.findPublishedLegsByFlightId(flight.getId());
+		aircraftPublishedLegs = this.repository.findPublishedLegsByAircraftId(aircraft.getId());
+
+		boolean valid;
+
+		if (!publishedLegs.isEmpty()) {
+			valid = publishedLegs.stream().anyMatch((l) -> !(scheduledDeparture.after(l.getScheduledArrival()) || scheduledArrival.before(l.getScheduledDeparture())));
+			super.state(!valid, "*", "airline-manager.error.overlappedLegs");
+			valid = publishedLegs.stream().anyMatch((l) -> leg.getArrivalAirport().equals(l.getDepartureAirport()) && leg.getScheduledDeparture().after(l.getScheduledDeparture()));
+			super.state(!valid, "*", "airline-manager.error.airportLoopArrival");
+			valid = publishedLegs.stream().anyMatch((l) -> leg.getDepartureAirport().equals(l.getArrivalAirport()) && leg.getScheduledDeparture().before(l.getScheduledDeparture()));
+			super.state(!valid, "*", "airline-manager.error.airportLoopDeparture");
+			valid = publishedLegs.stream().anyMatch((l) -> leg.getDepartureAirport().equals(l.getDepartureAirport()));
+			super.state(!valid, "*", "airline-manager.error.duplicatedDepartureAirport");
+			valid = publishedLegs.stream().anyMatch((l) -> leg.getArrivalAirport().equals(l.getArrivalAirport()));
+			super.state(!valid, "*", "airline-manager.error.duplicatedArrivalAirport");
+		}
+
+		if (!aircraftPublishedLegs.isEmpty()) {
+			valid = aircraftPublishedLegs.stream().anyMatch((l) -> !(scheduledDeparture.after(l.getScheduledArrival()) || scheduledArrival.before(l.getScheduledDeparture())));
+			super.state(!valid, "aircraft", "airline-manager.error.aircraft-in-use.message");
+		}
+
 	}
 
 	@Override

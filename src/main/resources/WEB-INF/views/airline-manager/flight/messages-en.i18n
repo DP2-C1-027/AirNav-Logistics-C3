@@ -3,10 +3,26 @@ airlineManager.flight.form.label.tag = Tag
 airlineManager.flight.form.label.indication = Indication
 airlineManager.flight.form.label.cost = Cost
 airlineManager.flight.form.label.description = Description
+airlineManager.flight.form.label.airlines = Airlines
+airlineManager.flight.form.label.scheduledDeparture = Departure date
+airlineManager.flight.form.label.scheduledArrival = Arrival date
+airlineManager.flight.form.label.departureCity = Departure city
+airlineManager.flight.form.label.arrivalCity = Arrival city
+airlineManager.flight.form.label.layovers = Number of layovers
+
+airlineManager.flight.form.button.update = Update flight
+airlineManager.flight.form.button.publish = Publish flight
+airlineManager.flight.form.button.delete = Delete flight
+airlineManager.flight.form.button.legs = Flight legs
 
 airline-manager.flight.list.title = Flight list
 airlineManager.flight.list.label.tag = Tag
 airlineManager.flight.list.label.indication = Indication
 airlineManager.flight.list.label.cost = Cost
 airlineManager.flight.list.label.description = Description
-	
+
+airlineManager.flight.list.button.create = Create flight
+
+airline-manager.error.publishedLegs = There's published legs for this flight
+airlineManager.flight.error.unpublishedLegs.message = Some legs haven't been published yet
+

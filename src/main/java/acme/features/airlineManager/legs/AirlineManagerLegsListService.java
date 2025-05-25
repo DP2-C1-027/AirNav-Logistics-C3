@@ -39,7 +39,10 @@ public class AirlineManagerLegsListService extends AbstractGuiService<AirlineMan
 	public void unbind(final Leg leg) {
 		Dataset dataset;
 
-		dataset = super.unbindObject(leg, "flightNumber", "scheduledDeparture", "scheduledArrival", "departureAirport", "arrivalAirport");
+		dataset = super.unbindObject(leg, "flightNumber", "scheduledDeparture", "scheduledArrival");
+		dataset.put("departureAirport", leg.getDepartureAirport().getCodigo());
+		dataset.put("arrivalAirport", leg.getArrivalAirport().getCodigo());
+		dataset.put("flight", leg.getFlight().getTag());
 		super.addPayload(dataset, leg);
 
 		super.getResponse().addData(dataset);

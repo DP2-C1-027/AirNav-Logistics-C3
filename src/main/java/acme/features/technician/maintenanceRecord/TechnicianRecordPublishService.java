@@ -30,23 +30,21 @@ public class TechnicianRecordPublishService extends AbstractGuiService<Technicia
 	@Override
 	public void authorise() {
 		boolean status = true;
-
-		MaintanenceRecord record;
-		Technician tech;
-
 		if (super.getRequest().hasData("id", int.class)) {
 			Integer recordId;
-			try {
-				recordId = super.getRequest().getData("id", int.class);
-			} catch (Exception e) {
-				recordId = null;
-			}
+			MaintanenceRecord record;
+			Technician tech;
+			String isInteger;
+			isInteger = super.getRequest().getData("id", String.class).trim();
+			if (isInteger != null && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
+				recordId = Integer.valueOf(isInteger);
+			else
+				recordId = Integer.valueOf(-1);
 			record = recordId != null ? this.repository.findRecordById(recordId) : null;
 			tech = record == null ? null : record.getTechnician();
 			status = tech == null ? false : record != null && record.isDraftMode() && super.getRequest().getPrincipal().hasRealm(tech);
 		} else
 			status = false;
-
 		super.getResponse().setAuthorised(status);
 	}
 

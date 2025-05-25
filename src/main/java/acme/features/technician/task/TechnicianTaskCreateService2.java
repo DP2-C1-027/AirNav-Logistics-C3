@@ -48,14 +48,17 @@ public class TechnicianTaskCreateService2 extends AbstractGuiService<Technician,
 		}
 		if (super.getRequest().hasData("id")) {
 			Integer id;
-			try {
-				id = super.getRequest().getData("id", Integer.class);
-				if (!id.equals(Integer.valueOf(0)))
-					status = false;
+			String isInteger;
+			isInteger = super.getRequest().getData("id", String.class).trim();
 
-			} catch (Exception e) {
+			if (!isInteger.isBlank() && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
+				id = Integer.valueOf(isInteger);
+			else
+				id = Integer.valueOf(-1);
+
+			if (id != 0)
 				status = false;
-			}
+
 		} else if (super.getRequest().getMethod().equals("POST"))
 			status = false;
 
@@ -72,7 +75,7 @@ public class TechnicianTaskCreateService2 extends AbstractGuiService<Technician,
 		task.setTechnician(record.getTechnician());
 		task.setDraftMode(true);
 		super.getBuffer().addData(task);
-
+		super.getResponse().addGlobal("recordId", recordId);
 		if (record != null)
 			this.involved.setMaintanenceRecord(record);
 
@@ -107,10 +110,11 @@ public class TechnicianTaskCreateService2 extends AbstractGuiService<Technician,
 		SelectChoices choices;
 		choices = SelectChoices.from(TaskType.class, task.getType());
 
-		dataset = super.unbindObject(task, "type", "draftMode", "description", "priority", "estimatedDuration");
-		dataset.put("type", choices);
-		super.addPayload(dataset, task, "type", "draftMode", "description", "priority", "estimatedDuration");
-		super.getResponse().addData(dataset);
+		dataset = super.unbindObject(task, "type", "description", "priority", "estimatedDuration");
+		dataset.put("type", choices.getSelected().getKey());
+		dataset.put("types", choices);
+		super.addPayload(dataset, task, "type", "description", "priority", "estimatedDuration");
 
+		super.getResponse().addData(dataset);
 	}
 }

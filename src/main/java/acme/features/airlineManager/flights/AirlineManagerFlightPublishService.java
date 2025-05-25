@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
+import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.airline.Airline;
@@ -34,7 +35,7 @@ public class AirlineManagerFlightPublishService extends AbstractGuiService<Airli
 			Integer flightId;
 			String isInteger;
 			isInteger = super.getRequest().getData("id", String.class).trim();
-			if (isInteger != null && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
+			if (!isInteger.isBlank() && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
 				flightId = Integer.valueOf(isInteger);
 			else
 				flightId = Integer.valueOf(-1);
@@ -43,18 +44,26 @@ public class AirlineManagerFlightPublishService extends AbstractGuiService<Airli
 			status = manager == null ? false : super.getRequest().getPrincipal().hasRealm(manager) && flight.isDraftMode();
 		} else if (super.getRequest().getMethod().equals("POST"))
 			status = false;
+		if (!status) {
+			super.getResponse().setAuthorised(false);
+			return;
+		}
 		if (super.getRequest().hasData("indication")) {
 			String isBoolean;
 			isBoolean = super.getRequest().getData("indication", String.class);
-			if (isBoolean == null || !(isBoolean.equals("true") || isBoolean.equals("false")))
+			if (!(isBoolean.equals("true") || isBoolean.equals("false")))
 				status = false;
 		} else if (super.getRequest().getMethod().equals("POST"))
 			status = false;
+		if (!status) {
+			super.getResponse().setAuthorised(false);
+			return;
+		}
 		if (super.getRequest().hasData("airline")) {
 			Integer airlineId;
 			String isInteger;
 			isInteger = super.getRequest().getData("airline", String.class);
-			if (isInteger != null && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
+			if (!isInteger.isBlank() && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
 				airlineId = Integer.valueOf(isInteger);
 			else
 				airlineId = Integer.valueOf(-1);
@@ -62,6 +71,7 @@ public class AirlineManagerFlightPublishService extends AbstractGuiService<Airli
 				status = false;
 		} else if (super.getRequest().getMethod().equals("POST"))
 			status = false;
+
 		super.getResponse().setAuthorised(status);
 	}
 
@@ -88,9 +98,15 @@ public class AirlineManagerFlightPublishService extends AbstractGuiService<Airli
 		boolean confirmation;
 
 		legs = this.repository.findLegsByFlightId(flight.getId());
-		confirmation = !legs.stream().anyMatch((leg) -> !leg.isDraftMode());
+		if (legs.isEmpty())
+			super.state(false, "*", "airlineManager.flight.error.noLegs");
+		else {
+			confirmation = !legs.stream().anyMatch((leg) -> leg.isDraftMode());
+			super.state(confirmation, "*", "airlineManager.flight.error.unpublishedLegs.message");
+			confirmation = flight.getScheduledDeparture().after(MomentHelper.getCurrentMoment());
+			super.state(confirmation, "*", "airlineManager.flight.error.flightStartsInThePast.message");
+		}
 
-		super.state(confirmation, "*", "airlineManager.flight.error.unpublishedLegs.message");
 	}
 
 	@Override

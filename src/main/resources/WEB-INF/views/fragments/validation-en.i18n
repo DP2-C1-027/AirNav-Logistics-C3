@@ -15,6 +15,7 @@ acme.validation.optional.short-text = Text should be between 0 and 50 characters
 acme.validation.optional.long-text = Text should be between 0 and 255 characters
 acme.validation.cargo-weight = Weight should be between 2000 and 50000 kgs
 acme.validation.capacity = Capacity should be between 1 and 255 passengers
+acme.validation.invalidFlightNumber = Invalid flight number (must be composed of 3 uppercase letters followed by 4 numbers)
 acme.validation.locatorCode = The value must contain between 6 and 8 characters, only uppercase letters and numbers
 acme.validation.lastNibble = It must be 4 characters long and be numbers
 acme.validation.passportNumber = The value must contain between 6 and 9 characters, only uppercase letters and numbers

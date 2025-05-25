@@ -37,7 +37,7 @@ public class AirlineManagerLegsCreateService extends AbstractGuiService<AirlineM
 		if (super.getRequest().hasData("flightId")) {
 			String isInteger;
 			isInteger = super.getRequest().getData("flightId", String.class).trim();
-			if (isInteger != null && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
+			if (!isInteger.isBlank() && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
 				flightId = Integer.valueOf(isInteger);
 			else
 				flightId = null;
@@ -49,7 +49,7 @@ public class AirlineManagerLegsCreateService extends AbstractGuiService<AirlineM
 			Integer legId;
 			String isInteger;
 			isInteger = super.getRequest().getData("id", String.class).trim();
-			if (isInteger != null && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
+			if (!isInteger.isBlank() && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
 				legId = Integer.valueOf(isInteger);
 			else
 				legId = Integer.valueOf(-1);
@@ -57,11 +57,15 @@ public class AirlineManagerLegsCreateService extends AbstractGuiService<AirlineM
 				status = false;
 		} else if (super.getRequest().getMethod().equals("POST"))
 			status = false;
+		if (!status) {
+			super.getResponse().setAuthorised(false);
+			return;
+		}
 		if (super.getRequest().hasData("duration")) {
 			Integer duration;
 			String isInteger;
 			isInteger = super.getRequest().getData("duration", String.class);
-			if (isInteger != null && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
+			if (!isInteger.isBlank() && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
 				duration = Integer.valueOf(isInteger);
 			else
 				duration = Integer.valueOf(-1);
@@ -69,6 +73,10 @@ public class AirlineManagerLegsCreateService extends AbstractGuiService<AirlineM
 				status = false;
 		} else if (super.getRequest().getMethod().equals("POST"))
 			status = false;
+		if (!status) {
+			super.getResponse().setAuthorised(false);
+			return;
+		}
 
 		if (super.getRequest().hasData("flight")) {
 			String isInteger;
@@ -79,7 +87,7 @@ public class AirlineManagerLegsCreateService extends AbstractGuiService<AirlineM
 				flightId = null;
 			flight = flightId == null ? null : this.repository.getFlightById(flightId);
 			manager = flight == null ? null : flight.getAirlineManager();
-			status = manager == null ? flightId != null && flightId.equals(Integer.valueOf(0)) && status : super.getRequest().getPrincipal().hasRealm(manager) && status;
+			status = manager == null ? flightId != null && flightId.equals(Integer.valueOf(0)) : super.getRequest().getPrincipal().hasRealm(manager);
 		} else if (super.getRequest().getMethod().equals("POST"))
 			status = false;
 		super.getResponse().setAuthorised(status);
@@ -123,14 +131,14 @@ public class AirlineManagerLegsCreateService extends AbstractGuiService<AirlineM
 		Airport arrivalAirport = leg.getArrivalAirport();
 		Airport departureAirport = leg.getDepartureAirport();
 
-		if (airlineFlight == null || airlineAircraft == null || !airlineFlight.equals(airlineAircraft))
-			super.state(flight == null || aircraft == null, "aircraft", "airline-manager.error.wrong-airline");
-		if (IATAnumber == null || airlineFlight == null || !IATAnumber.startsWith(airlineFlight.getCodigo()))
+		if (IATAnumber == null || airlineFlight == null || !IATAnumber.startsWith(airlineAircraft.getCodigo()))
 			super.state(IATAnumber == null || airlineFlight == null, "flightNumber", "airline-manager.error.invalid-flight-number");
 		if (scheduledArrival == null || scheduledDeparture == null || !scheduledArrival.after(scheduledDeparture))
 			super.state(scheduledArrival == null || scheduledDeparture == null, "scheduledArrival", "airline-manager.error.future-departure");
 		if (arrivalAirport == null || departureAirport == null || arrivalAirport.equals(departureAirport))
 			super.state(arrivalAirport == null || departureAirport == null, "arrivalAirport", "airline-manager.error.same-airport");
+		if (IATAnumber != null && !IATAnumber.isBlank() && this.repository.anyLegByIATAnumber(IATAnumber))
+			super.state(false, "flightNumber", "airline-manager.error.duplicated-code");
 	}
 
 	@Override

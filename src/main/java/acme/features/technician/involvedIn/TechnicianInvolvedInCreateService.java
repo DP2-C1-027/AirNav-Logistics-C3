@@ -24,56 +24,57 @@ public class TechnicianInvolvedInCreateService extends AbstractGuiService<Techni
 
 	@Override
 	public void authorise() {
-		Technician tech;
-		boolean status;
-		MaintanenceRecord record;
+
+		boolean status = true;
 		Task task;
-		tech = (Technician) super.getRequest().getPrincipal().getActiveRealm();
+		Technician tech;
 
-		status = super.getRequest().getPrincipal().hasRealm(tech);
-		if (super.getRequest().hasData("record")) {
+		if (super.getRequest().hasData("recordId")) {
+			Integer recordId;
+			String isInteger;
+			isInteger = super.getRequest().getData("recordId", String.class).trim();
+			if (!isInteger.isBlank() && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
+				recordId = Integer.valueOf(isInteger);
+			else
+				recordId = Integer.valueOf(-1);
+
+			MaintanenceRecord record = recordId != null ? this.repository.findRecordById(recordId) : null;
+			tech = record != null ? record.getTechnician() : null;
+
+			status = tech == null ? false : record != null && record.isDraftMode() && super.getRequest().getPrincipal().hasRealm(tech);
+
+		}
+
+		if (super.getRequest().hasData("task")) {
 			Integer id;
-			try {
-				id = super.getRequest().getData("record", Integer.class);
-				record = this.repository.findRecordById(id);
 
-				if (!id.equals(Integer.valueOf(0)) && !record.getTechnician().equals(tech))
-					status = false;
+			String isInteger2;
+			isInteger2 = super.getRequest().getData("task", String.class);
+			if (!isInteger2.isBlank() && isInteger2.chars().allMatch((e) -> e > 47 && e < 58))
+				id = Integer.valueOf(isInteger2);
+			else
+				id = null;
 
-			} catch (Exception e) {
-				status = false;
-				record = null;
-			}
-			status = record != null ? status && record.isDraftMode() : status;
-		} else if (super.getRequest().getMethod().equals("POST"))
-			status = false;
+			task = id == null ? null : this.repository.findTaskById(id);
+			tech = task == null ? null : task.getTechnician();
 
-		if (super.getRequest().hasData("passenger")) {
-			Integer id;
-			try {
-				id = super.getRequest().getData("passenger", Integer.class);
-				task = this.repository.findTaskById(id);
+			status = tech == null ? id != null && id.equals(Integer.valueOf(0)) && status : super.getRequest().getPrincipal().hasRealm(tech) && status;
 
-				if (!id.equals(Integer.valueOf(0)) && !task.getTechnician().equals(tech))
-					status = false;
-
-			} catch (Exception e) {
-				status = false;
-			}
 		} else if (super.getRequest().getMethod().equals("POST"))
 			status = false;
 
 		if (super.getRequest().hasData("id")) {
 			Integer id;
-			try {
-				id = super.getRequest().getData("id", Integer.class);
-				if (!id.equals(Integer.valueOf(0)))
-					status = false;
+			String isInteger;
+			isInteger = super.getRequest().getData("id", String.class).trim();
+			if (!isInteger.isBlank() && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
+				id = Integer.valueOf(isInteger);
+			else
+				id = Integer.valueOf(-1);
 
-			} catch (Exception e) {
+			if (!id.equals(Integer.valueOf(0)))
 				status = false;
 
-			}
 		} else if (super.getRequest().getMethod().equals("POST"))
 			status = false;
 

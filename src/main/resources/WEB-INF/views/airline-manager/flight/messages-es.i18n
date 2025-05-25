@@ -3,10 +3,28 @@ airlineManager.flight.form.label.tag = Tag
 airlineManager.flight.form.label.indication = Indicación
 airlineManager.flight.form.label.cost = Precio
 airlineManager.flight.form.label.description = Descripción
+airlineManager.flight.form.label.airlines = Aerolíneas
+airlineManager.flight.form.label.scheduledDeparture = Fecha de salida
+airlineManager.flight.form.label.scheduledArrival = Fecha de llegada
+airlineManager.flight.form.label.departureCity = Ciudad de salida
+airlineManager.flight.form.label.arrivalCity = Ciudad de llegada
+airlineManager.flight.form.label.layovers = Número de escalas
+
+airlineManager.flight.form.button.update = Actualizar vuelo
+airlineManager.flight.form.button.publish = Publicar vuelo
+airlineManager.flight.form.button.delete = Borrar vuelo
+airlineManager.flight.form.button.legs = Tramos del vuelo
+
 
 airline-manager.flight.list.title = Listado de vuelos
 airlineManager.flight.list.label.tag = Tag
 airlineManager.flight.list.label.indication = Indicación
 airlineManager.flight.list.label.cost = Precio
 airlineManager.flight.list.label.description = Descripción
+
+airlineManager.flight.list.button.create = Crear vuelo
+
+airline-manager.error.publishedLegs = Hay tramos ya publicados para este vuelo
+airlineManager.flight.error.unpublishedLegs.message = Faltan tramos por publicar para este vuelo
+
 	

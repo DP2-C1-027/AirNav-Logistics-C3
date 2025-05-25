@@ -9,6 +9,17 @@
 	<acme:input-textbox code="airlineManager.flight.form.label.description" path="description"/>
 	<acme:input-select code="airlineManager.flight.form.label.airlines" path="airline" choices="${airlines}"/>
 	<acme:input-checkbox code="airlineManager.flight.form.label.indication" path="indication"/>
+	<jstl:choose>
+		<jstl:when test="${!(layovers == null)}">
+			<acme:input-moment code="airlineManager.flight.form.label.scheduledDeparture" path="scheduledArrival" readonly="true"/>
+			<acme:input-moment code="airlineManager.flight.form.label.scheduledArrival" path="scheduledArrival" readonly="true"/>
+			<acme:input-textbox code="airlineManager.flight.form.label.departureCity" path="departureCity" readonly="true"/>
+			<acme:input-textbox code="airlineManager.flight.form.label.arrivalCity" path="arrivalCity" readonly="true"/>
+			<acme:input-integer code="airlineManager.flight.form.label.layovers" path="layovers" readonly="true"/>
+		</jstl:when>
+	</jstl:choose>
+	
+	
 	
 	<jstl:choose>
 				<jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish')  && draftMode == true}">

@@ -9,13 +9,14 @@
 	<acme:list-column code="airlineManager.leg.list.label.flightNumber" path="flightNumber" width="20%" sortable="${false}"/>
 	<acme:list-column code="airlineManager.leg.list.label.departureAirport" path="departureAirport" width="20%" sortable="${false}"/>
 	<acme:list-column code="airlineManager.leg.list.label.arrivalAirport" path="arrivalAirport" width="20%" sortable="${false}"/>
+	<acme:list-column code="airlineManager.leg.list.label.flight" path="flight" width="20%" sortable="${false}"/>
 	<acme:list-payload path="payload"/>
 </acme:list>
 <jstl:choose>
 <jstl:when test="${_command == 'list-flight'}">
-					<acme:button code="airlineManager.flight.form.button.create" action="/airline-manager/leg/create?flightId=${flightId}"/>
+					<acme:button code="airlineManager.leg.form.button.create" action="/airline-manager/leg/create?flightId=${flightId}"/>
 </jstl:when>
 <jstl:when test="${_command == 'list'}">
-					<acme:button code="airlineManager.flight.form.button.create" action="/airline-manager/leg/create"/>
+					<acme:button code="airlineManager.leg.form.button.create" action="/airline-manager/leg/create"/>
 </jstl:when>
 </jstl:choose>

@@ -33,3 +33,4 @@ airline-manager.error.duplicatedDepartureAirport = Ya existe un tramo publicado 
 airline-manager.error.airportLoopDeparture = Publicar este tramo crearía un ciclo de aeropuertos (un tramo ya publicado aterriza en el aeropuerto del que despegas antes de que se complete este tramo)
 airline-manager.error.airportLoopArrival = Publicar este tramo crearía un ciclo de aeropuertos (un tramo ya publicado despega del aeropuerto al que aterrizas antes de que se complete este tramo)
 airline-manager.error.overlappedLegs = Existe un tramo ya publicado con el que coincide temporalmente este tramo
+airline-manager.error.leg-in-the-past = Un tramo tan solo puede empezar en el futuro

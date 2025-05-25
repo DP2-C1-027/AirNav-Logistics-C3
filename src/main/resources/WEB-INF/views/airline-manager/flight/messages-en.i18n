@@ -22,7 +22,11 @@ airlineManager.flight.list.label.cost = Cost
 airlineManager.flight.list.label.description = Description
 
 airlineManager.flight.list.button.create = Create flight
+airlineManager.flight.form.button.create = Create flight
 
 airline-manager.error.publishedLegs = There's published legs for this flight
 airlineManager.flight.error.unpublishedLegs.message = Some legs haven't been published yet
+airlineManager.flight.error.flightStartsInThePast.message = Some leg's dates have already passed; Flight needs to be in the future to be published
+airlineManager.flight.error.noLegs = There's no associated leg for this flight. You need at least one published leg to publish this flight
+
 

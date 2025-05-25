@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
+import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.aircraft.Aircraft;
@@ -122,6 +123,8 @@ public class AirlineManagerLegsPublishService extends AbstractGuiService<Airline
 			super.state(IATAnumber == null || airlineFlight == null, "flightNumber", "airline-manager.error.invalid-flight-number");
 		if (scheduledArrival == null || scheduledDeparture == null || !scheduledArrival.after(scheduledDeparture))
 			super.state(scheduledArrival == null || scheduledDeparture == null, "scheduledArrival", "airline-manager.error.future-departure");
+		if (scheduledDeparture == null || !scheduledDeparture.after(MomentHelper.getCurrentMoment()))
+			super.state(scheduledDeparture == null, "scheduledDeparture", "airline-manager.error.leg-in-the-past");
 		if (arrivalAirport == null || departureAirport == null || arrivalAirport.equals(departureAirport))
 			super.state(arrivalAirport == null || departureAirport == null, "arrivalAirport", "airline-manager.error.same-airport");
 		if (IATAnumber != null && !IATAnumber.isBlank() && this.repository.anyLegByIATAnumber(IATAnumber) && !this.repository.findLegById(leg.getId()).getFlightNumber().equals(IATAnumber))
@@ -159,6 +162,8 @@ public class AirlineManagerLegsPublishService extends AbstractGuiService<Airline
 	public void perform(final Leg leg) {
 		assert leg != null;
 		leg.setDraftMode(false);
+		Integer duration = Integer.valueOf((int) (leg.getScheduledArrival().getTime() - leg.getScheduledDeparture().getTime()) / (1000 * 60 * 60));
+		leg.setDuration(duration);
 		this.repository.save(leg);
 	}
 
@@ -182,7 +187,7 @@ public class AirlineManagerLegsPublishService extends AbstractGuiService<Airline
 		choicesFlight = SelectChoices.from(flights, "tag", leg.getFlight());
 		choicesArrivalAirports = SelectChoices.from(airports, "codigo", leg.getArrivalAirport());
 		choicesDepartureAirports = SelectChoices.from(airports, "codigo", leg.getDepartureAirport());
-		choicesAircraft = SelectChoices.from(aircrafts, "registrationNumber", leg.getAircraft());
+		choicesAircraft = SelectChoices.from(aircrafts, "legString", leg.getAircraft());
 		choicesStatus = SelectChoices.from(LegStatus.class, leg.getStatus());
 
 		dataset = super.unbindObject(leg, "flightNumber", "scheduledDeparture", "scheduledArrival", "duration", "status", "draftMode", "flight", "arrivalAirport", "departureAirport", "aircraft");

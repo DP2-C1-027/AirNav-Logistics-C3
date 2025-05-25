@@ -23,8 +23,11 @@ airlineManager.flight.list.label.cost = Precio
 airlineManager.flight.list.label.description = Descripción
 
 airlineManager.flight.list.button.create = Crear vuelo
+airlineManager.flight.form.button.create = Crear vuelo
 
 airline-manager.error.publishedLegs = Hay tramos ya publicados para este vuelo
 airlineManager.flight.error.unpublishedLegs.message = Faltan tramos por publicar para este vuelo
+airlineManager.flight.error.flightStartsInThePast.message = Algunos tramos ya han ocurrido, todos deben empezar en el futuro para publicar el vuelo
+airlineManager.flight.error.noLegs = No existe ningún tramo asociado a este vuelo. Necesitas mínimo un tramo publicado para publicar el vuelo
 
 	

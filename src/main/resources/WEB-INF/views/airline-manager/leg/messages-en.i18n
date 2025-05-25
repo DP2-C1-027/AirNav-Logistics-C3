@@ -33,3 +33,4 @@ airline-manager.error.duplicatedDepartureAirport = A published leg already depar
 airline-manager.error.airportLoopDeparture = Publishing this leg would cause an airport loop (a published leg lands at your departure airport after this leg concludes)
 airline-manager.error.airportLoopArrival = Publishing this leg would cause an airport loop (a published leg takes off from your arrival airport before this leg concludes)
 airline-manager.error.overlappedLegs = There is at least one leg with which this leg overlapps temporally
+airline-manager.error.leg-in-the-past = A leg can only start in the future

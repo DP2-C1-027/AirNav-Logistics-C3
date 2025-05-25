@@ -39,7 +39,7 @@ public class CustomersPassengerPublishService extends AbstractGuiService<Custome
 			customer = passenger != null ? passenger.getCustomer() : null;
 			status = customer == null ? false : passenger.isDraftMode() && super.getRequest().getPrincipal().hasRealm(customer);
 
-		} else if (super.getRequest().getMethod().equals("POST"))
+		} else
 			status = false;
 
 		super.getResponse().setAuthorised(status);

@@ -64,7 +64,7 @@ public class CustomersBookingRecordCreateService extends AbstractGuiService<Cust
 			passenger = id == null ? null : this.repository.findPassengerById(id);
 			customer = passenger == null ? null : passenger.getCustomer();
 
-			status = customer == null ? id != null && id.equals(Integer.valueOf(0)) && status : super.getRequest().getPrincipal().hasRealm(customer) && status;
+			status = customer == null ? id != null && id.equals(Integer.valueOf(0)) : super.getRequest().getPrincipal().hasRealm(customer);
 
 		} else if (super.getRequest().getMethod().equals("POST"))
 			status = false;

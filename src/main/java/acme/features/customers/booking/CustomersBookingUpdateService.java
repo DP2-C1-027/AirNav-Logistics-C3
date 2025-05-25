@@ -45,7 +45,7 @@ public class CustomersBookingUpdateService extends AbstractGuiService<Customers,
 			customer = booking != null ? booking.getCustomer() : null;
 			status = customer == null ? false : booking.isDraftMode() && super.getRequest().getPrincipal().hasRealm(customer);
 
-		} else if (super.getRequest().getMethod().equals("POST"))
+		} else
 			status = false;
 
 		super.getResponse().setAuthorised(status);

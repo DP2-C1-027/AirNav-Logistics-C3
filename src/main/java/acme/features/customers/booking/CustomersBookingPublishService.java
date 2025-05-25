@@ -43,7 +43,7 @@ public class CustomersBookingPublishService extends AbstractGuiService<Customers
 			booking = bookingId.equals(Integer.valueOf(-1)) ? null : this.repository.findBookinById(bookingId);
 			customer = booking == null ? null : booking.getCustomer();
 			status = customer == null ? false : booking.isDraftMode() && super.getRequest().getPrincipal().hasRealm(customer);
-		} else if (super.getRequest().getMethod().equals("POST"))
+		} else
 			status = false;
 
 		super.getResponse().setAuthorised(status);

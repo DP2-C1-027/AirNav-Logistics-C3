@@ -45,7 +45,7 @@ public class CustomersBookingDeleteService extends AbstractGuiService<Customers,
 				bookingId = Integer.valueOf(isInteger);
 			else
 				bookingId = Integer.valueOf(-1);
-			booking = bookingId != null ? this.repository.findBookinById(bookingId) : null;
+			booking = !bookingId.equals(Integer.valueOf(-1)) ? this.repository.findBookinById(bookingId) : null;
 			customer = booking != null ? booking.getCustomer() : null;
 
 			status = customer == null ? false : booking.isDraftMode() && super.getRequest().getPrincipal().hasRealm(customer);
@@ -105,8 +105,8 @@ public class CustomersBookingDeleteService extends AbstractGuiService<Customers,
 		dataset.put("price", precioNuevo);
 		dataset.put("travelClasses", choices);
 		Flight f = booking.getFlight();
-		dataset.put("vuelo", f.getTag() + " : " + f.getDepartureCity() + "->" + f.getArrivalCity());
-		super.addPayload(dataset, booking, "locatorCode", "purchaseMoment", "travelClass", "lastNibble", "draftMode", "price", "vuelo");
+		dataset.put("flight", f.getTag() + " : " + f.getDepartureCity() + "->" + f.getArrivalCity());
+		super.addPayload(dataset, booking, "locatorCode", "purchaseMoment", "travelClass", "lastNibble", "draftMode", "price", "flight");
 		super.getResponse().addData(dataset);
 	}
 }

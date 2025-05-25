@@ -27,7 +27,7 @@ public class CustomersBookingRecordDeleteService extends AbstractGuiService<Cust
 		Customers customer;
 		boolean status = true;
 		Booking booking;
-		Passenger passenger;
+		//Passenger passenger;
 		if (super.getRequest().hasData("id")) {
 			Integer bookingRecordId;
 
@@ -38,12 +38,13 @@ public class CustomersBookingRecordDeleteService extends AbstractGuiService<Cust
 			else
 				bookingRecordId = Integer.valueOf(-1);
 
-			passenger = bookingRecordId != null ? this.repository.findOnePassengerByBookingRecord(bookingRecordId) : null;
-			booking = bookingRecordId != null ? this.repository.findOneBookingByBookingRecord(bookingRecordId) : null;
+			//passenger = !bookingRecordId.equals(Integer.valueOf(-1)) ? this.repository.findOnePassengerByBookingRecord(bookingRecordId) : null;
+			booking = !bookingRecordId.equals(Integer.valueOf(-1)) ? this.repository.findOneBookingByBookingRecord(bookingRecordId) : null;
 			customer = booking != null ? booking.getCustomer() : null;
-			status = customer == null ? false : booking != null && passenger != null && booking.isDraftMode() && super.getRequest().getPrincipal().hasRealm(customer);
+			status = customer == null ? false : booking.isDraftMode() && super.getRequest().getPrincipal().hasRealm(customer);
 
-		}
+		} else
+			status = false;
 
 		super.getResponse().setAuthorised(status);
 
@@ -83,12 +84,12 @@ public class CustomersBookingRecordDeleteService extends AbstractGuiService<Cust
 
 		Booking boog = this.repository.findOneBookingByBookingRecord(bookingRecord.getId());
 
-		Passenger passemger = bookingRecord.getPassenger();
+		Passenger passenger = bookingRecord.getPassenger();
 
 		dataset = super.unbindObject(bookingRecord, "booking", "passenger");
 
 		dataset.put("booking", boog.getLocatorCode());
-		dataset.put("passenger", passemger.getFullName());
+		dataset.put("passenger", passenger.getFullName());
 
 		dataset.put("draftMode", bookingRecord.getBooking().isDraftMode());
 		super.addPayload(dataset, bookingRecord, "booking", "passenger");

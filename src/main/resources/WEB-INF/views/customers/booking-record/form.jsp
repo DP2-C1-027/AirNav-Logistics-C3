@@ -17,7 +17,7 @@
 
 <acme:form>	
 	<jstl:choose>
-		<jstl:when test="${acme:anyOf(_command, 'show|update') && draftMode == true}">
+		<jstl:when test="${acme:anyOf(_command, 'show|update|delete') && draftMode == true}">
 			<acme:input-textbox code="customers.booking-record.form.label.booking" path="booking" readonly="true"/>
 			<acme:input-textbox code="customers.booking-record.form.label.passenger" path="passenger" readonly="true"/>
 			<acme:submit code="customers.booking-record.form.label.delete" action="/customers/booking-record/delete"/>

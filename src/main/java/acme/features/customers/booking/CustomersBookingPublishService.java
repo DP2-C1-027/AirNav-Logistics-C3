@@ -40,7 +40,7 @@ public class CustomersBookingPublishService extends AbstractGuiService<Customers
 				bookingId = Integer.valueOf(isInteger);
 			else
 				bookingId = Integer.valueOf(-1);
-			booking = bookingId == null ? null : this.repository.findBookinById(bookingId);
+			booking = bookingId.equals(Integer.valueOf(-1)) ? null : this.repository.findBookinById(bookingId);
 			customer = booking == null ? null : booking.getCustomer();
 			status = customer == null ? false : booking.isDraftMode() && super.getRequest().getPrincipal().hasRealm(customer);
 		} else if (super.getRequest().getMethod().equals("POST"))
@@ -69,11 +69,11 @@ public class CustomersBookingPublishService extends AbstractGuiService<Customers
 
 	@Override
 	public void validate(final Booking booking) {
-		boolean isValidNibble = booking.getLastNibble() != null && !booking.getLastNibble().isEmpty();
+		boolean isValidNibble = !booking.getLastNibble().isEmpty();
 
 		super.state(isValidNibble, "lastNibble", "customer.booking.error.nibble-required");
 		String cod = booking.getLocatorCode();
-		Collection<Booking> codigo = this.repository.findAllBookingLocatorCode(cod).stream().filter(x -> x.getId() != booking.getId()).toList();
+		Collection<Booking> codigo = this.repository.findAllBookingLocatorCodeUpdate(cod, booking.getId());
 
 		if (!codigo.isEmpty())
 			super.state(false, "locatorCode", "customers.booking.error.repeat-code");

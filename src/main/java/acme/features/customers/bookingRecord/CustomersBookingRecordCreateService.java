@@ -38,11 +38,17 @@ public class CustomersBookingRecordCreateService extends AbstractGuiService<Cust
 			else
 				bookingId = Integer.valueOf(-1);
 
-			Booking booking = bookingId != null ? this.repository.findBookingById(bookingId) : null;
+			Booking booking = !bookingId.equals(Integer.valueOf(-1)) ? this.repository.findBookingById(bookingId) : null;
 			customer = booking != null ? booking.getCustomer() : null;
 
-			status = customer == null ? false : booking != null && booking.isDraftMode() && super.getRequest().getPrincipal().hasRealm(customer);
+			status = customer == null ? false : booking.isDraftMode() && super.getRequest().getPrincipal().hasRealm(customer);
 
+		} else
+			status = false;
+
+		if (!status) {
+			super.getResponse().setAuthorised(false);
+			return;
 		}
 
 		if (super.getRequest().hasData("passenger")) {
@@ -62,6 +68,11 @@ public class CustomersBookingRecordCreateService extends AbstractGuiService<Cust
 
 		} else if (super.getRequest().getMethod().equals("POST"))
 			status = false;
+
+		if (!status) {
+			super.getResponse().setAuthorised(false);
+			return;
+		}
 
 		if (super.getRequest().hasData("id")) {
 			Integer id;

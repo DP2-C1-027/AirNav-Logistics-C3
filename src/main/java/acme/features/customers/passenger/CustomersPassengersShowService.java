@@ -34,7 +34,7 @@ public class CustomersPassengersShowService extends AbstractGuiService<Customers
 			else
 				passengerId = Integer.valueOf(-1);
 
-			passenger = passengerId != null ? this.repository.findPassengerById(passengerId) : null;
+			passenger = !passengerId.equals(Integer.valueOf(-1)) ? this.repository.findPassengerById(passengerId) : null;
 			customer = passenger == null ? null : passenger.getCustomer();
 			status = customer == null ? false : super.getRequest().getPrincipal().hasRealm(customer);
 			//|| passenger != null && !passenger.isDraftMode();

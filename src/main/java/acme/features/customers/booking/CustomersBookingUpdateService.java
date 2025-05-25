@@ -41,7 +41,7 @@ public class CustomersBookingUpdateService extends AbstractGuiService<Customers,
 			else
 				bookingId = Integer.valueOf(-1);
 
-			booking = bookingId != null ? this.repository.findBookinById(bookingId) : null;
+			booking = !bookingId.equals(Integer.valueOf(-1)) ? this.repository.findBookinById(bookingId) : null;
 			customer = booking != null ? booking.getCustomer() : null;
 			status = customer == null ? false : booking.isDraftMode() && super.getRequest().getPrincipal().hasRealm(customer);
 
@@ -73,7 +73,7 @@ public class CustomersBookingUpdateService extends AbstractGuiService<Customers,
 	public void validate(final Booking booking) {
 		String cod = booking.getLocatorCode();
 
-		Collection<Booking> codigo = this.repository.findAllBookingLocatorCode(cod).stream().filter(x -> x.getId() != booking.getId()).toList();
+		Collection<Booking> codigo = this.repository.findAllBookingLocatorCodeUpdate(cod, booking.getId());
 
 		if (!codigo.isEmpty())
 			super.state(false, "locatorCode", "customers.booking.error.repeat-code");

@@ -28,7 +28,7 @@ public class FlightCrewMemberVisaRequirementsShowService extends AbstractGuiServ
 		if (super.getRequest().getPrincipal().hasRealmOfType(FlightCrewMember.class))
 
 			// Only is allowed to show a visa requirement if the creator is a flight crew member.
-			if (super.getRequest().getMethod().equals("GET") && super.getRequest().hasData("id")) {
+			if (super.getRequest().getMethod().equals("GET") && super.getRequest().getData("id", Integer.class) != null) {
 
 				Integer visaRequirementId = super.getRequest().getData("id", Integer.class);
 

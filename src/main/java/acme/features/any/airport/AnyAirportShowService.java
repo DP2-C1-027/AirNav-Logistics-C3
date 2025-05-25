@@ -23,7 +23,7 @@ public class AnyAirportShowService extends AbstractGuiService<Any, Airport> {
 	public void authorise() {
 		boolean isAuthorised = false;
 
-		if (super.getRequest().getMethod().equals("GET") && super.getRequest().hasData("id")) {
+		if (super.getRequest().getMethod().equals("GET") && super.getRequest().getData("id", Integer.class) != null) {
 
 			Integer airportId = super.getRequest().getData("id", Integer.class);
 

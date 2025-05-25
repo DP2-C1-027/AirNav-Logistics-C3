@@ -25,7 +25,7 @@ public class AnyFlightAssignmentShowService extends AbstractGuiService<Any, Flig
 
 		boolean isAuthorised = false;
 
-		if (super.getRequest().hasData("id")) {
+		if (super.getRequest().getData("id", Integer.class) != null) {
 			Integer flightAssignmentId = super.getRequest().getData("id", Integer.class);
 			if (flightAssignmentId != null) {
 				FlightAssignment flightAssignment = this.repository.findFlightAssignmentById(flightAssignmentId);

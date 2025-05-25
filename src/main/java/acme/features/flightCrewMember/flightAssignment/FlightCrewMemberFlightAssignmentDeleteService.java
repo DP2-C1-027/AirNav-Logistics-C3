@@ -35,7 +35,7 @@ public class FlightCrewMemberFlightAssignmentDeleteService extends AbstractGuiSe
 
 			// Only is allowed to delete an flight assignment if the creator is associated.
 			// A flight assignment cannot be deleted if is published, only in draft mode is allowed.
-			if (super.getRequest().getMethod().equals("POST") && super.getRequest().hasData("id", Integer.class)) {
+			if (super.getRequest().getData("id", Integer.class) != null) {
 
 				Integer flightAssignmentId = super.getRequest().getData("id", Integer.class);
 

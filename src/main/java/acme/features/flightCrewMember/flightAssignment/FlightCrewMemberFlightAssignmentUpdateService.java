@@ -36,7 +36,7 @@ public class FlightCrewMemberFlightAssignmentUpdateService extends AbstractGuiSe
 
 			// Only is allowed to update a flight assignment if the creator is associated.
 			// A flight assignment cannot be updated if is published, only in draft mode are allowed.
-			if (super.getRequest().getMethod().equals("POST") && super.getRequest().hasData("id", Integer.class)) {
+			if (super.getRequest().getMethod().equals("POST") && super.getRequest().getData("id", Integer.class) != null) {
 
 				Integer flightAssignmentId = super.getRequest().getData("id", Integer.class);
 
@@ -63,8 +63,6 @@ public class FlightCrewMemberFlightAssignmentUpdateService extends AbstractGuiSe
 		int flightAssignmentId = super.getRequest().getData("id", int.class);
 		FlightAssignment flightAssignment = this.repository.findFlightAssignmentById(flightAssignmentId);
 
-		flightAssignment.setMoment(MomentHelper.getCurrentMoment());
-
 		super.getBuffer().addData(flightAssignment);
 	}
 
@@ -80,6 +78,7 @@ public class FlightCrewMemberFlightAssignmentUpdateService extends AbstractGuiSe
 
 	@Override
 	public void perform(final FlightAssignment flightAssignment) {
+		flightAssignment.setMoment(MomentHelper.getCurrentMoment());
 		this.repository.save(flightAssignment);
 	}
 

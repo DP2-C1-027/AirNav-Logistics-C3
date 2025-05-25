@@ -37,7 +37,7 @@ public class FlightCrewMemberFlightAssignmentPublishService extends AbstractGuiS
 
 			// Only is allowed to publish a flight assignment if the creator is associated.
 			// A flight assignment cannot be published if the assignment is in published mode and not in draft mode.
-			if (super.getRequest().getMethod().equals("POST") && super.getRequest().hasData("id", Integer.class)) {
+			if (super.getRequest().getMethod().equals("POST") && super.getRequest().getData("id", Integer.class) != null) {
 
 				Integer flightAssignmentId = super.getRequest().getData("id", Integer.class);
 

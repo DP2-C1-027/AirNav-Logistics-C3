@@ -34,7 +34,7 @@ public @interface ValidLongTextOptional {
 
 	// Standard validation properties -----------------------------------------
 
-	String message() default "{acme.validation.optional.short-text}";
+	String message() default "{acme.validation.optional.long-text}";
 
 	Class<?>[] groups() default {};
 	Class<? extends Payload>[] payload() default {};

@@ -68,11 +68,18 @@ public class Aircraft extends AbstractEntity {
 
 	// Derived attributes -----------------------------------------------------
 
+
+	// this is a special toString for easing operations on legs for the users
+	public String getLegString() {
+		return this.getRegistrationNumber().concat(" | ").concat(this.getAirline().getCodigo());
+	}
+
 	// Relationships ----------------------------------------------------------
+
 
 	@Mandatory
 	@ManyToOne(optional = false)
 	@Valid
-	private Airline				airline;
+	private Airline airline;
 
 }

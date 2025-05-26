@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
+import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.aircraft.Aircraft;
@@ -32,7 +33,11 @@ public class AirlineManagerLegsCreateService extends AbstractGuiService<AirlineM
 		boolean status = true;
 		AirlineManager manager;
 		Flight flight;
+		Airport airport;
+		Aircraft aircraft;
 		Integer flightId;
+		Integer airportId;
+		Integer aircraftId;
 
 		if (super.getRequest().hasData("flightId")) {
 			String isInteger;
@@ -40,10 +45,14 @@ public class AirlineManagerLegsCreateService extends AbstractGuiService<AirlineM
 			if (!isInteger.isBlank() && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
 				flightId = Integer.valueOf(isInteger);
 			else
-				flightId = null;
-			flight = flightId == null ? null : this.repository.getFlightById(flightId);
+				flightId = Integer.valueOf(-1);
+			flight = this.repository.getFlightById(flightId);
 			manager = flight == null ? null : flight.getAirlineManager();
-			status = manager == null ? false : super.getRequest().getPrincipal().hasRealm(manager);
+			status = manager == null ? false : super.getRequest().getPrincipal().hasRealm(manager) && flight.isDraftMode();
+		}
+		if (!status) {
+			super.getResponse().setAuthorised(false);
+			return;
 		}
 		if (super.getRequest().hasData("id")) {
 			Integer legId;
@@ -69,7 +78,7 @@ public class AirlineManagerLegsCreateService extends AbstractGuiService<AirlineM
 				duration = Integer.valueOf(isInteger);
 			else
 				duration = Integer.valueOf(-1);
-			if (duration == null || !duration.equals(0))
+			if (!duration.equals(0))
 				status = false;
 		} else if (super.getRequest().getMethod().equals("POST"))
 			status = false;
@@ -81,15 +90,68 @@ public class AirlineManagerLegsCreateService extends AbstractGuiService<AirlineM
 		if (super.getRequest().hasData("flight")) {
 			String isInteger;
 			isInteger = super.getRequest().getData("flight", String.class).trim();
-			if (isInteger != null && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
+			if (!isInteger.isBlank() && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
 				flightId = Integer.valueOf(isInteger);
 			else
-				flightId = null;
-			flight = flightId == null ? null : this.repository.getFlightById(flightId);
+				flightId = Integer.valueOf(-1);
+			flight = this.repository.getFlightById(flightId);
 			manager = flight == null ? null : flight.getAirlineManager();
-			status = manager == null ? flightId != null && flightId.equals(Integer.valueOf(0)) : super.getRequest().getPrincipal().hasRealm(manager);
+			status = manager == null ? flightId.equals(Integer.valueOf(0)) : super.getRequest().getPrincipal().hasRealm(manager) && flight.isDraftMode();
 		} else if (super.getRequest().getMethod().equals("POST"))
 			status = false;
+		if (!status) {
+			super.getResponse().setAuthorised(false);
+			return;
+		}
+
+		if (super.getRequest().hasData("departureAirport")) {
+			String isInteger;
+			isInteger = super.getRequest().getData("departureAirport", String.class).trim();
+			if (!isInteger.isBlank() && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
+				airportId = Integer.valueOf(isInteger);
+			else
+				airportId = Integer.valueOf(-1);
+			airport = this.repository.findAirportById(airportId);
+			status = airport != null || airportId.equals(Integer.valueOf(0));
+		} else if (super.getRequest().getMethod().equals("POST"))
+			status = false;
+		if (!status) {
+			super.getResponse().setAuthorised(false);
+			return;
+		}
+
+		if (super.getRequest().hasData("arrivalAirport")) {
+			String isInteger;
+			isInteger = super.getRequest().getData("arrivalAirport", String.class).trim();
+			if (!isInteger.isBlank() && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
+				airportId = Integer.valueOf(isInteger);
+			else
+				airportId = Integer.valueOf(-1);
+			airport = this.repository.findAirportById(airportId);
+			status = airport != null || airportId.equals(Integer.valueOf(0));
+		} else if (super.getRequest().getMethod().equals("POST"))
+			status = false;
+		if (!status) {
+			super.getResponse().setAuthorised(false);
+			return;
+		}
+
+		if (super.getRequest().hasData("aircraft")) {
+			String isInteger;
+			isInteger = super.getRequest().getData("aircraft", String.class).trim();
+			if (!isInteger.isBlank() && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
+				aircraftId = Integer.valueOf(isInteger);
+			else
+				aircraftId = Integer.valueOf(-1);
+			aircraft = this.repository.findAircraftById(aircraftId);
+			status = aircraft != null || aircraftId.equals(Integer.valueOf(0));
+		} else if (super.getRequest().getMethod().equals("POST"))
+			status = false;
+		if (!status) {
+			super.getResponse().setAuthorised(false);
+			return;
+		}
+
 		super.getResponse().setAuthorised(status);
 	}
 
@@ -117,33 +179,35 @@ public class AirlineManagerLegsCreateService extends AbstractGuiService<AirlineM
 		Aircraft aircraft = leg.getAircraft();
 		Flight flight = leg.getFlight();
 		Airline airlineAircraft;
-		Airline airlineFlight;
-		if (flight == null || aircraft == null) {
-			airlineFlight = null;
-			airlineAircraft = null;
-		} else {
-			airlineFlight = flight.getAirline();
-			airlineAircraft = aircraft.getAirline();
-		}
+
+		if (flight == null || aircraft == null)
+			return;
+
+		airlineAircraft = aircraft.getAirline();
+
 		String IATAnumber = leg.getFlightNumber();
 		Date scheduledDeparture = leg.getScheduledDeparture();
 		Date scheduledArrival = leg.getScheduledArrival();
 		Airport arrivalAirport = leg.getArrivalAirport();
 		Airport departureAirport = leg.getDepartureAirport();
 
-		if (IATAnumber == null || airlineFlight == null || !IATAnumber.startsWith(airlineAircraft.getCodigo()))
-			super.state(IATAnumber == null || airlineFlight == null, "flightNumber", "airline-manager.error.invalid-flight-number");
-		if (scheduledArrival == null || scheduledDeparture == null || !scheduledArrival.after(scheduledDeparture))
-			super.state(scheduledArrival == null || scheduledDeparture == null, "scheduledArrival", "airline-manager.error.future-departure");
-		if (arrivalAirport == null || departureAirport == null || arrivalAirport.equals(departureAirport))
-			super.state(arrivalAirport == null || departureAirport == null, "arrivalAirport", "airline-manager.error.same-airport");
-		if (IATAnumber != null && !IATAnumber.isBlank() && this.repository.anyLegByIATAnumber(IATAnumber))
+		if (scheduledArrival == null || scheduledDeparture == null || arrivalAirport == null || departureAirport == null)
+			return;
+
+		if (!IATAnumber.startsWith(airlineAircraft.getCodigo()))
+			super.state(false, "flightNumber", "airline-manager.error.invalid-flight-number");
+		if (!scheduledArrival.after(scheduledDeparture))
+			super.state(false, "scheduledArrival", "airline-manager.error.future-departure");
+		if (!scheduledDeparture.after(MomentHelper.getCurrentMoment()))
+			super.state(false, "scheduledDeparture", "airline-manager.error.leg-in-the-past");
+		if (arrivalAirport.equals(departureAirport))
+			super.state(false, "arrivalAirport", "airline-manager.error.same-airport");
+		if (this.repository.anyLegByIATAnumber(IATAnumber))
 			super.state(false, "flightNumber", "airline-manager.error.duplicated-code");
 	}
 
 	@Override
 	public void perform(final Leg leg) {
-		assert leg != null;
 		Integer duration = Integer.valueOf((int) (leg.getScheduledArrival().getTime() - leg.getScheduledDeparture().getTime()) / (1000 * 60 * 60));
 		leg.setDuration(duration);
 		this.repository.save(leg);
@@ -163,13 +227,13 @@ public class AirlineManagerLegsCreateService extends AbstractGuiService<AirlineM
 		Dataset dataset;
 
 		airlineManagerId = super.getRequest().getPrincipal().getActiveRealm().getId();
-		flights = this.repository.findFlightsByAirlineManagerId(airlineManagerId);
+		flights = this.repository.findUnpublishedFlightsByAirlineManagerId(airlineManagerId);
 		airports = this.repository.getAllAirports();
 		aircrafts = this.repository.getAllAircrafts();
 		choicesFlight = SelectChoices.from(flights, "tag", leg.getFlight());
 		choicesArrivalAirports = SelectChoices.from(airports, "codigo", leg.getArrivalAirport());
 		choicesDepartureAirports = SelectChoices.from(airports, "codigo", leg.getDepartureAirport());
-		choicesAircraft = SelectChoices.from(aircrafts, "registrationNumber", leg.getAircraft());
+		choicesAircraft = SelectChoices.from(aircrafts, "legString", leg.getAircraft());
 		choicesStatus = SelectChoices.from(LegStatus.class, leg.getStatus());
 
 		dataset = super.unbindObject(leg, "flightNumber", "scheduledDeparture", "scheduledArrival", "duration", "status", "draftMode", "flight", "arrivalAirport", "departureAirport", "aircraft");

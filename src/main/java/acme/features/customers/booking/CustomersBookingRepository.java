@@ -21,6 +21,9 @@ public interface CustomersBookingRepository extends AbstractRepository {
 	@Query("select b from Booking b where b.locatorCode =?1")
 	Collection<Booking> findAllBookingLocatorCode(String locatorCode);
 
+	@Query("select b from Booking b where b.locatorCode = :locatorCode and b.id != :id")
+	Collection<Booking> findAllBookingLocatorCodeUpdate(@Param("locatorCode") String locatorCode, @Param("id") int id);
+
 	//listar los booking de un customer
 
 	@Query("select b from Booking b where b.customer.id = :customerId")

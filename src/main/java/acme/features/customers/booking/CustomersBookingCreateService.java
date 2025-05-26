@@ -30,9 +30,9 @@ public class CustomersBookingCreateService extends AbstractGuiService<Customers,
 	@Override
 	public void authorise() {
 		boolean status = true;
-		Customers customer;
+		//Customers customer;
 		Flight flight;
-		customer = (Customers) super.getRequest().getPrincipal().getActiveRealm();
+		//customer = (Customers) super.getRequest().getPrincipal().getActiveRealm();
 
 		if (super.getRequest().hasData("id")) {
 			Integer id;
@@ -48,6 +48,11 @@ public class CustomersBookingCreateService extends AbstractGuiService<Customers,
 
 		} else if (super.getRequest().getMethod().equals("POST"))
 			status = false;
+
+		if (!status) {
+			super.getResponse().setAuthorised(false);
+			return;
+		}
 
 		if (super.getRequest().hasData("flight")) {
 			Integer flightId;
@@ -66,7 +71,7 @@ public class CustomersBookingCreateService extends AbstractGuiService<Customers,
 				else {
 					Date d = flight.getScheduledDeparture();
 					Date moment = super.getRequest().getData("purchaseMoment", Date.class);
-					status = super.getRequest().getPrincipal().hasRealm(customer) && !flight.isDraftMode() && d.after(moment);
+					status = !flight.isDraftMode() && d.after(moment);
 
 				}
 
@@ -138,8 +143,8 @@ public class CustomersBookingCreateService extends AbstractGuiService<Customers,
 
 		vuelosDisponibles = this.vuelosFiltrados(booking);
 		Flight flight = booking.getFlight();
-		if (flight != null && !vuelosDisponibles.contains(flight))
-			flight = null;
+		//if (flight != null && !vuelosDisponibles.contains(flight))
+		//	flight = null;
 		SelectChoices flightChoices2 = new SelectChoices();
 		flightChoices2.add("0", "----", flight == null); // opción vacía por defecto
 		for (Flight f : vuelosDisponibles) {
@@ -151,7 +156,7 @@ public class CustomersBookingCreateService extends AbstractGuiService<Customers,
 
 		choices = SelectChoices.from(TravelClass.class, booking.getTravelClass());
 		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "travelClass", "lastNibble", "draftMode");
-		dataset.put("flight", flightChoices2.getSelected() != null ? flightChoices2.getSelected().getKey() : "");
+		dataset.put("flight", flightChoices2.getSelected().getKey());
 		dataset.put("vuelos", flightChoices2);
 		dataset.put("price", booking.getPrice());
 		dataset.put("travelClasses", choices);
@@ -163,11 +168,9 @@ public class CustomersBookingCreateService extends AbstractGuiService<Customers,
 	}
 
 	public Collection<Flight> vuelosFiltrados(final Booking booking) {
-		if (booking.getPurchaseMoment() != null) {
-			Collection<Flight> vuelosPublicados = this.repository.getAllFlight();
-			return vuelosPublicados.stream().filter(x -> x.getScheduledDeparture().after(booking.getPurchaseMoment())).toList();
-		} else
-			return this.repository.getAllFlight();
+
+		Collection<Flight> vuelosPublicados = this.repository.getAllFlight();
+		return vuelosPublicados.stream().filter(x -> x.getScheduledDeparture().after(booking.getPurchaseMoment())).toList();
 
 	}
 }

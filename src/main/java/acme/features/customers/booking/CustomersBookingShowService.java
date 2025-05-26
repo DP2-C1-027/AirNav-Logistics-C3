@@ -28,7 +28,7 @@ public class CustomersBookingShowService extends AbstractGuiService<Customers, B
 
 		Booking booking;
 		Customers customer;
-		Flight f;
+		//Flight f;
 		if (super.getRequest().hasData("id")) {
 			Integer bookingId;
 			String isInteger;
@@ -37,10 +37,10 @@ public class CustomersBookingShowService extends AbstractGuiService<Customers, B
 				bookingId = Integer.valueOf(isInteger);
 			else
 				bookingId = Integer.valueOf(-1);
-			booking = bookingId != null ? this.repository.findBookinById(bookingId) : null;
-			f = bookingId != null ? this.repository.findFlightByBookingId(bookingId) : null;
+			booking = !bookingId.equals(Integer.valueOf(-1)) ? this.repository.findBookinById(bookingId) : null;
+			//	f = bookingId != null ? this.repository.findFlightByBookingId(bookingId) : null;
 			customer = booking == null ? null : booking.getCustomer();
-			status = customer == null ? false : super.getRequest().getPrincipal().hasRealm(customer) && f != null;
+			status = customer == null ? false : super.getRequest().getPrincipal().hasRealm(customer);
 			//|| booking != null && f != null && !booking.isDraftMode();
 		} else
 			status = false;

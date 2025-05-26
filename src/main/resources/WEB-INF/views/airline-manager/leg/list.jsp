@@ -13,7 +13,7 @@
 	<acme:list-payload path="payload"/>
 </acme:list>
 <jstl:choose>
-<jstl:when test="${_command == 'list-flight'}">
+<jstl:when test="${_command == 'list-flight' && flightDraftMode==true}">
 					<acme:button code="airlineManager.leg.form.button.create" action="/airline-manager/leg/create?flightId=${flightId}"/>
 </jstl:when>
 <jstl:when test="${_command == 'list'}">

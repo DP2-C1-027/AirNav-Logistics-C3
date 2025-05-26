@@ -39,10 +39,10 @@ public class AirlineManagerFlightPublishService extends AbstractGuiService<Airli
 				flightId = Integer.valueOf(isInteger);
 			else
 				flightId = Integer.valueOf(-1);
-			flight = flightId == null ? null : this.repository.findFlightById(flightId);
+			flight = this.repository.findFlightById(flightId);
 			manager = flight == null ? null : flight.getAirlineManager();
 			status = manager == null ? false : super.getRequest().getPrincipal().hasRealm(manager) && flight.isDraftMode();
-		} else if (super.getRequest().getMethod().equals("POST"))
+		} else
 			status = false;
 		if (!status) {
 			super.getResponse().setAuthorised(false);
@@ -53,7 +53,7 @@ public class AirlineManagerFlightPublishService extends AbstractGuiService<Airli
 			isBoolean = super.getRequest().getData("indication", String.class);
 			if (!(isBoolean.equals("true") || isBoolean.equals("false")))
 				status = false;
-		} else if (super.getRequest().getMethod().equals("POST"))
+		} else
 			status = false;
 		if (!status) {
 			super.getResponse().setAuthorised(false);
@@ -67,9 +67,9 @@ public class AirlineManagerFlightPublishService extends AbstractGuiService<Airli
 				airlineId = Integer.valueOf(isInteger);
 			else
 				airlineId = Integer.valueOf(-1);
-			if (airlineId == null || !airlineId.equals(0) && this.repository.getAirlineById(airlineId) == null)
-				status = false;
-		} else if (super.getRequest().getMethod().equals("POST"))
+			if (!airlineId.equals(0))
+				status = this.repository.getAirlineById(airlineId) != null;
+		} else
 			status = false;
 
 		super.getResponse().setAuthorised(status);

@@ -46,17 +46,25 @@ public class AirlineManagerLegsDeleteService extends AbstractGuiService<AirlineM
 		boolean status = true;
 		Leg leg = null;
 		AirlineManager manager;
+		Aircraft aircraft;
+		Airport airport;
+		Flight flight;
+		Integer duration;
+		Integer legId;
+		Integer flightId;
+		Integer airportId;
+		Integer aircraftId;
+
 		if (super.getRequest().hasData("id")) {
-			Integer legId;
 			String isInteger;
 			isInteger = super.getRequest().getData("id", String.class).trim();
 			if (!isInteger.isBlank() && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
 				legId = Integer.valueOf(isInteger);
 			else
-				legId = null;
-			leg = legId == null ? null : this.repository.findLegById(legId);
+				legId = Integer.valueOf(-1);
+			leg = this.repository.findLegById(legId);
 			manager = leg == null ? null : leg.getFlight().getAirlineManager();
-			status = manager == null ? false : super.getRequest().getPrincipal().hasRealm(manager) && leg.isDraftMode();
+			status = manager != null && super.getRequest().getPrincipal().hasRealm(manager) && leg.isDraftMode();
 		} else
 			status = false;
 		if (!status) {
@@ -64,14 +72,13 @@ public class AirlineManagerLegsDeleteService extends AbstractGuiService<AirlineM
 			return;
 		}
 		if (super.getRequest().hasData("duration")) {
-			Integer duration;
 			String isInteger;
 			isInteger = super.getRequest().getData("duration", String.class).trim();
 			if (!isInteger.isBlank() && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
 				duration = Integer.valueOf(isInteger);
 			else
-				duration = null;
-			status = leg != null && duration != null && duration.equals(leg.getDuration());
+				duration = Integer.valueOf(-1);
+			status = duration.equals(leg.getDuration());
 		} else
 			status = false;
 		if (!status) {
@@ -79,18 +86,63 @@ public class AirlineManagerLegsDeleteService extends AbstractGuiService<AirlineM
 			return;
 		}
 		if (super.getRequest().hasData("flight")) {
-			Integer flightId;
 			String isInteger;
-			Flight flight;
 			isInteger = super.getRequest().getData("flight", String.class);
 			if (!isInteger.isBlank() && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
 				flightId = Integer.valueOf(isInteger);
 			else
 				flightId = Integer.valueOf(-1);
-			flight = flightId == null ? null : this.repository.getFlightById(flightId);
-			manager = flight == null ? null : leg.getFlight().getAirlineManager();
-			status = manager == null ? flightId != null && flightId.equals(Integer.valueOf(0)) : super.getRequest().getPrincipal().hasRealm(manager);
+			flight = this.repository.getFlightById(flightId);
+			manager = flight == null ? null : flight.getAirlineManager();
+			status = manager == null ? flightId.equals(Integer.valueOf(0)) : super.getRequest().getPrincipal().hasRealm(manager) && flight.isDraftMode();
+		} else
+			status = false;
+		if (!status) {
+			super.getResponse().setAuthorised(false);
+			return;
+		}
 
+		if (super.getRequest().hasData("departureAirport")) {
+			String isInteger;
+			isInteger = super.getRequest().getData("departureAirport", String.class).trim();
+			if (!isInteger.isBlank() && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
+				airportId = Integer.valueOf(isInteger);
+			else
+				airportId = Integer.valueOf(-1);
+			airport = this.repository.findAirportById(airportId);
+			status = airport != null || airportId.equals(Integer.valueOf(0));
+		} else
+			status = false;
+		if (!status) {
+			super.getResponse().setAuthorised(false);
+			return;
+		}
+
+		if (super.getRequest().hasData("arrivalAirport")) {
+			String isInteger;
+			isInteger = super.getRequest().getData("arrivalAirport", String.class).trim();
+			if (!isInteger.isBlank() && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
+				airportId = Integer.valueOf(isInteger);
+			else
+				airportId = Integer.valueOf(-1);
+			airport = this.repository.findAirportById(airportId);
+			status = airport != null || airportId.equals(Integer.valueOf(0));
+		} else
+			status = false;
+		if (!status) {
+			super.getResponse().setAuthorised(false);
+			return;
+		}
+
+		if (super.getRequest().hasData("aircraft")) {
+			String isInteger;
+			isInteger = super.getRequest().getData("aircraft", String.class).trim();
+			if (!isInteger.isBlank() && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
+				aircraftId = Integer.valueOf(isInteger);
+			else
+				aircraftId = Integer.valueOf(-1);
+			aircraft = this.repository.findAircraftById(aircraftId);
+			status = aircraft != null || aircraftId.equals(Integer.valueOf(0));
 		} else
 			status = false;
 		super.getResponse().setAuthorised(status);
@@ -148,7 +200,7 @@ public class AirlineManagerLegsDeleteService extends AbstractGuiService<AirlineM
 		Dataset dataset;
 
 		airlineManagerId = super.getRequest().getPrincipal().getActiveRealm().getId();
-		flights = this.repository.findFlightsByAirlineManagerId(airlineManagerId);
+		flights = this.repository.findUnpublishedFlightsByAirlineManagerId(airlineManagerId);
 		airports = this.repository.getAllAirports();
 		aircrafts = this.repository.getAllAircrafts();
 		choicesFlight = SelectChoices.from(flights, "tag", leg.getFlight());

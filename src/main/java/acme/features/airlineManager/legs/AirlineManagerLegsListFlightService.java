@@ -32,7 +32,7 @@ public class AirlineManagerLegsListFlightService extends AbstractGuiService<Airl
 				flightId = Integer.valueOf(isInteger);
 			else
 				flightId = Integer.valueOf(-1);
-			flight = flightId == null ? null : this.repository.getFlightById(flightId);
+			flight = this.repository.getFlightById(flightId);
 			manager = flight == null ? null : flight.getAirlineManager();
 			status = manager == null ? false : super.getRequest().getPrincipal().hasRealm(manager);
 
@@ -45,13 +45,16 @@ public class AirlineManagerLegsListFlightService extends AbstractGuiService<Airl
 	@Override
 	public void load() {
 		Collection<Leg> legs;
+		Flight flight;
 		int flightId;
 
 		flightId = super.getRequest().getData("masterId", int.class);
 
+		flight = this.repository.getFlightById(flightId);
 		legs = this.repository.findLegsByFlightId(flightId);
 
 		super.getBuffer().addData(legs);
+		super.getResponse().addGlobal("flightDraftMode", flight.isDraftMode());
 		super.getResponse().addGlobal("flightId", flightId);
 	}
 

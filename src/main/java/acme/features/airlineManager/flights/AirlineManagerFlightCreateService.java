@@ -60,8 +60,8 @@ public class AirlineManagerFlightCreateService extends AbstractGuiService<Airlin
 				airlineId = Integer.valueOf(isInteger);
 			else
 				airlineId = Integer.valueOf(-1);
-			if (airlineId == null || !airlineId.equals(Integer.valueOf(0)) && this.repository.getAirlineById(airlineId) == null)
-				status = false;
+			if (!airlineId.equals(Integer.valueOf(0)))
+				status = this.repository.getAirlineById(airlineId) != null;
 		} else if (super.getRequest().getMethod().equals("POST"))
 			status = false;
 		super.getResponse().setAuthorised(status);
@@ -92,8 +92,6 @@ public class AirlineManagerFlightCreateService extends AbstractGuiService<Airlin
 
 	@Override
 	public void perform(final Flight flight) {
-		assert flight != null;
-
 		this.repository.save(flight);
 	}
 

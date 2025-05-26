@@ -57,11 +57,15 @@ public class AirlineManagerFlightDeleteService extends AbstractGuiService<Airlin
 				flightId = Integer.valueOf(isInteger);
 			else
 				flightId = Integer.valueOf(-1);
-			flight = flightId == null ? null : this.repository.findFlightById(flightId);
+			flight = this.repository.findFlightById(flightId);
 			manager = flight == null ? null : flight.getAirlineManager();
 			status = manager == null ? false : super.getRequest().getPrincipal().hasRealm(manager) && flight.isDraftMode();
 		} else
 			status = false;
+		if (!status) {
+			super.getResponse().setAuthorised(false);
+			return;
+		}
 		if (super.getRequest().hasData("indication")) {
 			String isBoolean;
 			isBoolean = super.getRequest().getData("indication", String.class);
@@ -69,6 +73,10 @@ public class AirlineManagerFlightDeleteService extends AbstractGuiService<Airlin
 				status = false;
 		} else
 			status = false;
+		if (!status) {
+			super.getResponse().setAuthorised(false);
+			return;
+		}
 		if (super.getRequest().hasData("airline")) {
 			Integer airlineId;
 			String isInteger;
@@ -77,10 +85,11 @@ public class AirlineManagerFlightDeleteService extends AbstractGuiService<Airlin
 				airlineId = Integer.valueOf(isInteger);
 			else
 				airlineId = Integer.valueOf(-1);
-			if (airlineId == null || !airlineId.equals(Integer.valueOf(0)) && this.repository.getAirlineById(airlineId) == null)
-				status = false;
+			if (!airlineId.equals(Integer.valueOf(0)))
+				status = this.repository.getAirlineById(airlineId) != null;
 		} else
 			status = false;
+
 		super.getResponse().setAuthorised(status);
 	}
 

@@ -2,6 +2,7 @@
 package acme.features.airlineManager.legs;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -33,7 +34,7 @@ public class AirlineManagerLegsShowService extends AbstractGuiService<AirlineMan
 		if (super.getRequest().hasData("id")) {
 			Integer legId;
 			String isInteger;
-			isInteger = super.getRequest().getData("id", String.class).trim();
+			isInteger = super.getRequest().getData("id", String.class);
 			if (!isInteger.isBlank() && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
 				legId = Integer.valueOf(isInteger);
 			else
@@ -71,7 +72,10 @@ public class AirlineManagerLegsShowService extends AbstractGuiService<AirlineMan
 		Dataset dataset;
 
 		airlineManagerId = super.getRequest().getPrincipal().getActiveRealm().getId();
-		flights = this.repository.findFlightsByAirlineManagerId(airlineManagerId);
+		if (leg.isDraftMode())
+			flights = this.repository.findUnpublishedFlightsByAirlineManagerId(airlineManagerId);
+		else
+			flights = List.of(leg.getFlight());
 		airports = this.repository.getAllAirports();
 		aircrafts = this.repository.getAllAircrafts();
 		choicesFlight = SelectChoices.from(flights, "tag", leg.getFlight());

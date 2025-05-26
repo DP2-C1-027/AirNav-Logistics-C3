@@ -35,7 +35,7 @@ public class AirlineManagerFlightShowService extends AbstractGuiService<AirlineM
 				flightId = Integer.valueOf(isInteger);
 			else
 				flightId = Integer.valueOf(-1);
-			flight = flightId == null ? null : this.repository.findFlightById(flightId);
+			flight = this.repository.findFlightById(flightId);
 			manager = flight == null ? null : flight.getAirlineManager();
 			status = manager == null ? false : super.getRequest().getPrincipal().hasRealm(manager);
 		} else

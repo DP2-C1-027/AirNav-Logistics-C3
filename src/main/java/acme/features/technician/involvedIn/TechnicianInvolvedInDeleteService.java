@@ -27,15 +27,67 @@ public class TechnicianInvolvedInDeleteService extends AbstractGuiService<Techni
 	@Override
 	public void authorise() {
 
-		Technician tech;
-		boolean status;
-		MaintanenceRecord record;
+		boolean status = true;
 		Task task;
-		tech = (Technician) super.getRequest().getPrincipal().getActiveRealm();
-		int involvedInId = super.getRequest().getData("id", int.class);
-		task = this.repository.findOneTaskByInvolvedIn(involvedInId);
-		record = this.repository.findOneRecordByInvolvedIn(involvedInId);
-		status = record != null && task != null && record.isDraftMode() && super.getRequest().getPrincipal().hasRealm(tech);
+		Technician tech;
+
+		if (super.getRequest().hasData("maintanenceRecord")) {
+			Integer recordId;
+			String isInteger;
+			isInteger = super.getRequest().getData("maintanenceRecord", String.class).trim();
+			if (!isInteger.isBlank() && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
+				recordId = Integer.valueOf(isInteger);
+			else
+				recordId = Integer.valueOf(-1);
+
+			MaintanenceRecord record = this.repository.findRecordById(recordId);
+			tech = record != null ? record.getTechnician() : null;
+			status = tech == null ? recordId != null && recordId.equals(Integer.valueOf(0)) : super.getRequest().getPrincipal().hasRealm(tech);
+
+		} else
+			status = false;
+
+		if (!status) {
+			super.getResponse().setAuthorised(false);
+			return;
+		}
+
+		if (super.getRequest().hasData("task")) {
+			Integer id;
+			String isInteger2;
+			isInteger2 = super.getRequest().getData("task", String.class);
+			if (!isInteger2.isBlank() && isInteger2.chars().allMatch((e) -> e > 47 && e < 58))
+				id = Integer.valueOf(isInteger2);
+			else
+				id = Integer.valueOf(-1);
+
+			task = this.repository.findTaskById(id);
+			tech = task == null ? null : task.getTechnician();
+			status = tech == null ? id != null && id.equals(Integer.valueOf(0)) : super.getRequest().getPrincipal().hasRealm(tech);
+		} else
+			status = false;
+
+		if (!status) {
+			super.getResponse().setAuthorised(false);
+			return;
+		}
+
+		if (super.getRequest().hasData("id")) {
+			Integer id;
+			String isInteger;
+			InvolvedIn involvedIn;
+			isInteger = super.getRequest().getData("id", String.class).trim();
+			if (!isInteger.isBlank() && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
+				id = Integer.valueOf(isInteger);
+			else
+				id = Integer.valueOf(-1);
+			involvedIn = this.repository.findInvolvedIn(id);
+			tech = involvedIn == null ? null : involvedIn.getTask().getTechnician();
+			status = tech != null && super.getRequest().getPrincipal().hasRealm(tech) && involvedIn.getMaintanenceRecord().isDraftMode();
+
+		} else
+			status = false;
+
 		super.getResponse().setAuthorised(status);
 
 	}
@@ -59,7 +111,8 @@ public class TechnicianInvolvedInDeleteService extends AbstractGuiService<Techni
 	@Override
 	public void validate(final InvolvedIn involved) {
 		//Mirar esta validacion...
-		super.state(involved.getMaintanenceRecord().isDraftMode(), "*", "customers.form.error.draft-mode");
+		InvolvedIn involvedInDB = this.repository.findInvolvedIn(involved.getId());
+		super.state(involvedInDB.getMaintanenceRecord().isDraftMode(), "*", "customers.form.error.draft-mode");
 		;
 	}
 
@@ -77,14 +130,16 @@ public class TechnicianInvolvedInDeleteService extends AbstractGuiService<Techni
 
 		Collection<Task> task = this.repository.findTaskByTechnicianId(tech.getId());
 
-		Collection<MaintanenceRecord> record = this.repository.findNotPublishRecord(tech.getId(), true);
+		Collection<MaintanenceRecord> records;
+
+		records = this.repository.findNotPublishRecord(tech.getId(), true);
 
 		SelectChoices taskChoices;
 		SelectChoices recordChoices;
 
 		taskChoices = SelectChoices.from(task, "description", involved.getTask());
 
-		recordChoices = SelectChoices.from(record, "maintanenceMoment", involved.getMaintanenceRecord());
+		recordChoices = SelectChoices.from(records, "maintanenceMoment", involved.getMaintanenceRecord());
 
 		dataset = super.unbindObject(involved, "maintanenceRecord", "task");
 		dataset.put("maintanenceRecord", recordChoices);

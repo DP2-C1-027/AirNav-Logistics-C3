@@ -17,14 +17,14 @@
 
 <acme:form>
 	<jstl:choose>
-		<jstl:when test="${acme:anyOf(_command, 'show|update') && draftMode == true}">
+		<jstl:when test="${acme:anyOf(_command, 'show|update|delete') && draftMode == true}">
 			<acme:input-select code="technician.involved-in.form.label.maintanenceRecord" path="maintanenceRecord" choices="${maintanenceRecord}"/>
 			<acme:input-select code="technician.involved-in.form.label.task" path="task" choices="${task}"/>
 			<acme:submit code="technician.involved-in.form.label.update" action="/technician/involved-in/update"/>
 			<acme:submit code="technician.involved-in.form.label.delete" action="/technician/involved-in/delete"/>
 			
 		</jstl:when>
-		<jstl:when test="${_command == 'show' && draftMode == false}">
+		<jstl:when test="${acme:anyOf(_command, 'show') && draftMode == false}">
 			<acme:input-select code="technician.involved-in.form.label.maintanenceRecord" path="maintanenceRecord" choices="${maintanenceRecord}" readonly="true"/>
 			<acme:input-select code="technician.involved-in.form.label.task" path="task" choices="${task}" readonly="true"/>
 		</jstl:when>

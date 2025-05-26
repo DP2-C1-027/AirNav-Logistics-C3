@@ -38,13 +38,13 @@ public class TechnicianRecordUpdateService extends AbstractGuiService<Technician
 			Integer recordId;
 			String isInteger;
 			isInteger = super.getRequest().getData("id", String.class).trim();
-			if (isInteger != null && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
+			if (!isInteger.isBlank() && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
 				recordId = Integer.valueOf(isInteger);
 			else
-				recordId = Integer.valueOf(-1);
+				recordId = null;
 			record = recordId != null ? this.repository.findRecordById(recordId) : null;
-			tech = recordId != null ? record.getTechnician() : null;
-			status = tech == null ? false : record != null && record.isDraftMode() && super.getRequest().getPrincipal().hasRealm(tech);
+			tech = record != null ? record.getTechnician() : null;
+			status = tech != null && record.isDraftMode() && super.getRequest().getPrincipal().hasRealm(tech);
 		}
 
 		if (super.getRequest().hasData("aircraft")) {
@@ -62,7 +62,8 @@ public class TechnicianRecordUpdateService extends AbstractGuiService<Technician
 				if (aircraft == null)
 					status = false;
 			}
-		}
+		} else
+			status = false;
 		super.getResponse().setAuthorised(status);
 	}
 

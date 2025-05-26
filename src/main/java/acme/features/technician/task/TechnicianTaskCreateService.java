@@ -33,7 +33,7 @@ public class TechnicianTaskCreateService extends AbstractGuiService<Technician, 
 			String isInteger;
 			isInteger = super.getRequest().getData("id", String.class).trim();
 
-			if (isInteger != null && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
+			if (!isInteger.isBlank() && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
 				id = Integer.valueOf(isInteger);
 			else
 				id = Integer.valueOf(-1);
@@ -75,7 +75,6 @@ public class TechnicianTaskCreateService extends AbstractGuiService<Technician, 
 
 	@Override
 	public void perform(final Task task) {
-		assert task != null;
 		this.repository.save(task);
 
 	}

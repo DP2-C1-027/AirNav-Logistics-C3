@@ -36,13 +36,13 @@ public class TechnicianRecordPublishService extends AbstractGuiService<Technicia
 			Technician tech;
 			String isInteger;
 			isInteger = super.getRequest().getData("id", String.class).trim();
-			if (isInteger != null && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
+			if (!isInteger.isBlank() && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
 				recordId = Integer.valueOf(isInteger);
 			else
-				recordId = Integer.valueOf(-1);
+				recordId = null;
 			record = recordId != null ? this.repository.findRecordById(recordId) : null;
 			tech = record == null ? null : record.getTechnician();
-			status = tech == null ? false : record != null && record.isDraftMode() && super.getRequest().getPrincipal().hasRealm(tech);
+			status = tech != null && record.isDraftMode() && super.getRequest().getPrincipal().hasRealm(tech);
 		} else
 			status = false;
 		super.getResponse().setAuthorised(status);
@@ -73,15 +73,14 @@ public class TechnicianRecordPublishService extends AbstractGuiService<Technicia
 		Collection<Task> tasks = this.repository.findTasksByRecordId(record.getId());
 
 		boolean allTasksPublished = tasks.isEmpty() || tasks.stream().allMatch(task -> !task.isDraftMode());
-		boolean atLeastOnePublished = tasks.stream().anyMatch(task -> !task.isDraftMode());
+		boolean atLeastOneTask = tasks.size() > 0;
 
 		super.state(allTasksPublished, "*", "technician.maintanence-record.error.unpublishedTask.message");
-		super.state(atLeastOnePublished, "*", "technician.maintanence-record.error.noPublishedTasks.message");
+		super.state(atLeastOneTask, "*", "technician.maintanence-record.error.noPublishedTasks.message");
 
 	}
 	@Override
 	public void perform(final MaintanenceRecord record) {
-		assert record != null;
 		Date ahora = MomentHelper.getCurrentMoment();
 		record.setMaintanenceMoment(ahora);
 		record.setDraftMode(false);

@@ -24,23 +24,21 @@ public class TechnicianRecordTaskListService extends AbstractGuiService<Technici
 
 	@Override
 	public void authorise() {
-
 		boolean status = true;
+		Technician tech;
 
 		MaintanenceRecord record;
-
 		if (super.getRequest().hasData("recordId", int.class)) {
-			Integer id;
+			Integer recordId;
 			String isInteger;
 			isInteger = super.getRequest().getData("recordId", String.class).trim();
-			if (isInteger != null && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
-				id = Integer.valueOf(isInteger);
+			if (!isInteger.isBlank() && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
+				recordId = Integer.valueOf(isInteger);
 			else
-				id = Integer.valueOf(-1);
-			record = id != null ? this.repository.findRecordById(id) : null;
-			Technician tech = record != null ? record.getTechnician() : null;
-
-			status = tech == null ? false : super.getRequest().getPrincipal().hasRealm(tech) || record != null && !record.isDraftMode();
+				recordId = null;
+			record = recordId != null ? this.repository.findRecordById(recordId) : null;
+			tech = record != null ? record.getTechnician() : null;
+			status = tech != null && super.getRequest().getPrincipal().hasRealm(tech);
 		} else
 			status = false;
 

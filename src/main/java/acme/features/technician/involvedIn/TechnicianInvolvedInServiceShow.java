@@ -2,6 +2,7 @@
 package acme.features.technician.involvedIn;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -36,11 +37,11 @@ public class TechnicianInvolvedInServiceShow extends AbstractGuiService<Technici
 				id = null;
 			}
 			InvolvedIn bRecord = id != null ? this.repository.findInvolvedIn(id) : null;
-			MaintanenceRecord record = id != null ? this.repository.findOneRecordByInvolvedIn(id) : null;
-			Task task = id != null ? this.repository.findOneTaskByInvolvedIn(id) : null;
+			MaintanenceRecord record = bRecord != null ? bRecord.getMaintanenceRecord() : null;
 			tech = record != null ? record.getTechnician() : null;
-			status = tech == null ? false : super.getRequest().getPrincipal().hasRealm(tech) || bRecord != null && tech != null && !record.isDraftMode() && task != null && !task.isDraftMode();
-		}
+			status = tech != null && super.getRequest().getPrincipal().hasRealm(tech);
+		} else
+			status = false;
 
 		super.getResponse().setAuthorised(status);
 
@@ -51,6 +52,7 @@ public class TechnicianInvolvedInServiceShow extends AbstractGuiService<Technici
 		int id = super.getRequest().getData("id", int.class);
 		InvolvedIn involved = this.repository.findInvolvedIn(id);
 
+		super.getResponse().addGlobal("draftMode", involved.getMaintanenceRecord().isDraftMode());
 		super.getBuffer().addData(involved);
 	}
 
@@ -62,7 +64,13 @@ public class TechnicianInvolvedInServiceShow extends AbstractGuiService<Technici
 
 		Technician technician = (Technician) super.getRequest().getPrincipal().getActiveRealm();
 
-		Collection<MaintanenceRecord> records = this.repository.findRecordByTechnicianId(technician.getId());
+		Collection<MaintanenceRecord> records;
+
+		if (involved.getMaintanenceRecord().isDraftMode())
+			records = this.repository.findNotPublishRecord(technician.getId(), true);
+		else
+			records = List.of(involved.getMaintanenceRecord());
+
 		Collection<Task> tasks = this.repository.findTaskByTechnicianId(technician.getId());
 
 		recordChoices = SelectChoices.from(records, "maintanenceMoment", involved.getMaintanenceRecord());

@@ -39,33 +39,34 @@ public class TechnicianRecordCreateService extends AbstractGuiService<Technician
 			String isInteger;
 			isInteger = super.getRequest().getData("id", String.class).trim();
 
-			if (isInteger != null && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
+			if (!isInteger.isBlank() && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
 				id = Integer.valueOf(isInteger);
 			else
 				id = Integer.valueOf(-1);
 			if (!id.equals(Integer.valueOf(0)))
 				status = false;
 
+			if (super.getRequest().hasData("aircraft")) {
+				Integer aircraftId;
+				String isInteger2;
+
+				isInteger2 = super.getRequest().getData("aircraft", String.class);
+				if (!isInteger2.isBlank() && isInteger2.chars().allMatch((e) -> e > 47 && e < 58))
+					aircraftId = Integer.valueOf(isInteger2);
+				else
+					aircraftId = Integer.valueOf(-1);
+
+				if (!aircraftId.equals(Integer.valueOf(0))) {
+					aircraft = this.repository.findAircraftById(aircraftId);
+					if (aircraft == null)
+						status = false;
+				}
+			} else
+				status = false;
+
 		} else if (super.getRequest().getMethod().equals("POST"))
 			status = false;
 
-		if (super.getRequest().hasData("aircraft")) {
-			Integer aircraftId;
-			String isInteger;
-
-			isInteger = super.getRequest().getData("aircraft", String.class);
-			if (!isInteger.isBlank() && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
-				aircraftId = Integer.valueOf(isInteger);
-			else
-				aircraftId = Integer.valueOf(-1);
-
-			if (!aircraftId.equals(Integer.valueOf(0))) {
-				aircraft = this.repository.findAircraftById(aircraftId);
-				if (aircraft == null)
-					status = false;
-			}
-		} else if (super.getRequest().getMethod().equals("POST"))
-			status = false;
 		super.getResponse().setAuthorised(status);
 	}
 
@@ -106,7 +107,7 @@ public class TechnicianRecordCreateService extends AbstractGuiService<Technician
 
 	@Override
 	public void perform(final MaintanenceRecord record) {
-		assert record != null;
+		//assert record != null;
 		this.repository.save(record);
 	}
 

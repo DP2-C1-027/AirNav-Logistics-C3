@@ -29,20 +29,25 @@ public class TechnicianInvolvedInCreateService extends AbstractGuiService<Techni
 		Task task;
 		Technician tech;
 
-		if (super.getRequest().hasData("recordId")) {
+		if (super.getRequest().hasData("maintanenceRecord")) {
 			Integer recordId;
 			String isInteger;
-			isInteger = super.getRequest().getData("recordId", String.class).trim();
+			isInteger = super.getRequest().getData("maintanenceRecord", String.class).trim();
 			if (!isInteger.isBlank() && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
 				recordId = Integer.valueOf(isInteger);
 			else
 				recordId = Integer.valueOf(-1);
 
-			MaintanenceRecord record = recordId != null ? this.repository.findRecordById(recordId) : null;
+			MaintanenceRecord record = this.repository.findRecordById(recordId);
 			tech = record != null ? record.getTechnician() : null;
+			status = tech == null ? recordId.equals(Integer.valueOf(0)) : super.getRequest().getPrincipal().hasRealm(tech) && record.isDraftMode();
 
-			status = tech == null ? false : record != null && record.isDraftMode() && super.getRequest().getPrincipal().hasRealm(tech);
+		} else if (super.getRequest().getMethod().equals("POST"))
+			status = false;
 
+		if (!status) {
+			super.getResponse().setAuthorised(false);
+			return;
 		}
 
 		if (super.getRequest().hasData("task")) {
@@ -53,15 +58,18 @@ public class TechnicianInvolvedInCreateService extends AbstractGuiService<Techni
 			if (!isInteger2.isBlank() && isInteger2.chars().allMatch((e) -> e > 47 && e < 58))
 				id = Integer.valueOf(isInteger2);
 			else
-				id = null;
+				id = Integer.valueOf(-1);
 
-			task = id == null ? null : this.repository.findTaskById(id);
+			task = this.repository.findTaskById(id);
 			tech = task == null ? null : task.getTechnician();
-
-			status = tech == null ? id != null && id.equals(Integer.valueOf(0)) && status : super.getRequest().getPrincipal().hasRealm(tech) && status;
-
+			status = tech == null ? id.equals(Integer.valueOf(0)) : super.getRequest().getPrincipal().hasRealm(tech);
 		} else if (super.getRequest().getMethod().equals("POST"))
 			status = false;
+
+		if (!status) {
+			super.getResponse().setAuthorised(false);
+			return;
+		}
 
 		if (super.getRequest().hasData("id")) {
 			Integer id;

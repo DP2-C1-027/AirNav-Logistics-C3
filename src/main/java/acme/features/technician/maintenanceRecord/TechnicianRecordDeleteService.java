@@ -40,14 +40,14 @@ public class TechnicianRecordDeleteService extends AbstractGuiService<Technician
 			Technician tech;
 			String isInteger;
 			isInteger = super.getRequest().getData("id", String.class).trim();
-			if (isInteger != null && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
+			if (!isInteger.isBlank() && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
 				recordId = Integer.valueOf(isInteger);
 			else
-				recordId = Integer.valueOf(-1);
+				recordId = null;
 			record = recordId != null ? this.repository.findRecordById(recordId) : null;
 			tech = record != null ? record.getTechnician() : null;
 
-			status = tech == null ? false : record != null && record.isDraftMode() && super.getRequest().getPrincipal().hasRealm(tech);
+			status = tech != null && record.isDraftMode() && super.getRequest().getPrincipal().hasRealm(tech);
 		} else
 			status = false;
 
@@ -106,7 +106,6 @@ public class TechnicianRecordDeleteService extends AbstractGuiService<Technician
 		dataset.put("aircrafts", aircraftChoices);
 		dataset.put("status", choices);
 		// Derived attributes --------------------
-		//no tengo
 		super.getResponse().addData(dataset);
 	}
 }

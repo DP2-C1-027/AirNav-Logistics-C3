@@ -30,16 +30,15 @@ public class TechnicianTaskPublishService extends AbstractGuiService<Technician,
 
 		if (super.getRequest().hasData("id", int.class)) {
 			Integer taskId;
-			try {
-				taskId = super.getRequest().getData("id", int.class);
-			} catch (Exception e) {
+			String isInteger;
+			isInteger = super.getRequest().getData("id", String.class).trim();
+			if (!isInteger.isBlank() && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
+				taskId = Integer.valueOf(isInteger);
+			else
 				taskId = null;
-			}
-
 			task = taskId != null ? this.repository.findTaskById(taskId) : null;
 			tech = task != null ? task.getTechnician() : null;
-			status = tech == null ? false : task != null && task.isDraftMode() && super.getRequest().getPrincipal().hasRealm(tech);
-
+			status = tech != null && task.isDraftMode() && super.getRequest().getPrincipal().hasRealm(tech);
 		} else
 			status = false;
 
@@ -81,8 +80,10 @@ public class TechnicianTaskPublishService extends AbstractGuiService<Technician,
 		choices = SelectChoices.from(TaskType.class, task.getType());
 
 		dataset = super.unbindObject(task, "type", "draftMode", "description", "priority", "estimatedDuration");
-		dataset.put("type", choices);
+		dataset.put("type", choices.getSelected().getKey());
+		dataset.put("types", choices);
 		super.addPayload(dataset, task, "type", "draftMode", "description", "priority", "estimatedDuration");
+
 		super.getResponse().addData(dataset);
 	}
 }

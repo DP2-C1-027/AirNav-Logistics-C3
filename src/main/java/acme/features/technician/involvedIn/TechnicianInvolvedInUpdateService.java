@@ -24,54 +24,67 @@ public class TechnicianInvolvedInUpdateService extends AbstractGuiService<Techni
 
 	@Override
 	public void authorise() {
-		Technician tech;
+
 		boolean status = true;
-		MaintanenceRecord record;
 		Task task;
-		if (super.getRequest().hasData("id", int.class)) {
-			Integer involvedInId;
-			try {
-				involvedInId = super.getRequest().getData("id", Integer.class);
-			} catch (Exception e) {
-				involvedInId = null;
-			}
-			//el id es 548
-			task = involvedInId != null ? this.repository.findOneTaskByInvolvedIn(involvedInId) : null;
-			record = involvedInId != null ? this.repository.findOneRecordByInvolvedIn(involvedInId) : null;
+		Technician tech;
+
+		if (super.getRequest().hasData("maintanenceRecord")) {
+			Integer recordId;
+			String isInteger;
+			isInteger = super.getRequest().getData("maintanenceRecord", String.class).trim();
+			if (!isInteger.isBlank() && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
+				recordId = Integer.valueOf(isInteger);
+			else
+				recordId = Integer.valueOf(-1);
+
+			MaintanenceRecord record = this.repository.findRecordById(recordId);
 			tech = record != null ? record.getTechnician() : null;
-			status = tech == null ? false : record != null && task != null && record.isDraftMode() && super.getRequest().getPrincipal().hasRealm(tech);
-			if (super.getRequest().hasData("task")) {
-				Integer id;
-				try {
-					id = super.getRequest().getData("task", Integer.class);
-					task = this.repository.findTaskById(id);
+			status = tech == null ? recordId.equals(Integer.valueOf(0)) : super.getRequest().getPrincipal().hasRealm(tech);
 
-					if (!id.equals(Integer.valueOf(0)) && !task.getTechnician().equals(tech))
-						status = false;
+		} else
+			status = false;
 
-				} catch (Exception e) {
-					status = false;
-				}
-			}
-
-			if (super.getRequest().hasData("maintanenceRecord")) {
-				Integer id;
-				try {
-					id = super.getRequest().getData("maintanenceRecord", Integer.class);
-					record = this.repository.findRecordById(id);
-
-					if (!id.equals(Integer.valueOf(0)) && !record.getTechnician().equals(tech))
-						status = false;
-
-				} catch (Exception e) {
-					status = false;
-					record = null;
-				}
-				status = record != null ? status && record.isDraftMode() : status;
-				//mira que esté publicado o no
-			}
-
+		if (!status) {
+			super.getResponse().setAuthorised(false);
+			return;
 		}
+
+		if (super.getRequest().hasData("task")) {
+			Integer id;
+			String isInteger2;
+			isInteger2 = super.getRequest().getData("task", String.class);
+			if (!isInteger2.isBlank() && isInteger2.chars().allMatch((e) -> e > 47 && e < 58))
+				id = Integer.valueOf(isInteger2);
+			else
+				id = Integer.valueOf(-1);
+
+			task = this.repository.findTaskById(id);
+			tech = task == null ? null : task.getTechnician();
+			status = tech == null ? id.equals(Integer.valueOf(0)) : super.getRequest().getPrincipal().hasRealm(tech);
+		} else
+			status = false;
+
+		if (!status) {
+			super.getResponse().setAuthorised(false);
+			return;
+		}
+
+		if (super.getRequest().hasData("id")) {
+			Integer id;
+			String isInteger;
+			InvolvedIn involvedIn;
+			isInteger = super.getRequest().getData("id", String.class).trim();
+			if (!isInteger.isBlank() && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
+				id = Integer.valueOf(isInteger);
+			else
+				id = Integer.valueOf(-1);
+			involvedIn = this.repository.findInvolvedIn(id);
+			tech = involvedIn == null ? null : involvedIn.getTask().getTechnician();
+			status = tech != null && involvedIn.getMaintanenceRecord().isDraftMode() && super.getRequest().getPrincipal().hasRealm(tech);
+
+		} else
+			status = false;
 
 		super.getResponse().setAuthorised(status);
 
@@ -95,15 +108,17 @@ public class TechnicianInvolvedInUpdateService extends AbstractGuiService<Techni
 
 	@Override
 	public void validate(final InvolvedIn involved) {
-		MaintanenceRecord record = involved.getMaintanenceRecord();
-		Task task = involved.getTask();
-		InvolvedIn currentInvolvedIn;
-		currentInvolvedIn = this.repository.findInvolvedIn(involved.getId());
-		super.state(record != null, "*", "technician.involved-in.create.error.null-record");
+		MaintanenceRecord maintanenceRecord;
+		Task task;
+
+		maintanenceRecord = involved.getMaintanenceRecord();
+		task = involved.getTask();
+
+		super.state(maintanenceRecord != null, "*", "technician.involved-in.create.error.null-record");
 		super.state(task != null, "*", "technician.involved-in.create.error.null-task");
-		Collection<InvolvedIn> exists = this.repository.findByRecordAndTask(record, task);
-		boolean exists1 = exists.contains(currentInvolvedIn) ? exists.size() > 1 : exists.size() > 0;
-		super.state(!exists1, "*", "technician.involved-in.create.error.duplicate-record-task");
+
+		boolean exists = this.repository.existsByRecordAndTask(maintanenceRecord, task);
+		super.state(!exists, "*", "technician.involved-in.create.error.duplicate-record-task");
 	}
 
 	@Override
@@ -114,24 +129,27 @@ public class TechnicianInvolvedInUpdateService extends AbstractGuiService<Techni
 	@Override
 	public void unbind(final InvolvedIn involved) {
 		Dataset dataset;
+
+		Technician tech = (Technician) super.getRequest().getPrincipal().getActiveRealm();
+
 		SelectChoices recordChoices;
 		SelectChoices taskChoices;
+		InvolvedIn involvedDB = this.repository.findInvolvedIn(involved.getId());
+		Collection<Task> tasks = this.repository.findTaskByTechnicianId(tech.getId());
+		Collection<MaintanenceRecord> records;
 
-		Technician technician = (Technician) super.getRequest().getPrincipal().getActiveRealm();
+		records = this.repository.findNotPublishRecord(tech.getId(), true);
 
-		Collection<MaintanenceRecord> records = this.repository.findRecordByTechnicianId(technician.getId());
-		Collection<Task> tasks = this.repository.findTaskByTechnicianId(technician.getId());
+		taskChoices = SelectChoices.from(tasks, "description", involved.getTask());
 
 		recordChoices = SelectChoices.from(records, "maintanenceMoment", involved.getMaintanenceRecord());
-		taskChoices = SelectChoices.from(tasks, "description", involved.getTask());
 
 		dataset = super.unbindObject(involved, "maintanenceRecord", "task");
 		dataset.put("maintanenceRecord", recordChoices);
 		dataset.put("task", taskChoices);
+		dataset.put("draftMode", true);
 
-		dataset.put("draftMode", involved.getMaintanenceRecord().isDraftMode());
 		super.addPayload(dataset, involved, "maintanenceRecord", "task");
-
 		super.getResponse().addData(dataset);
 
 	}

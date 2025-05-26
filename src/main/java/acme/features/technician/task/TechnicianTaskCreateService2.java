@@ -43,9 +43,9 @@ public class TechnicianTaskCreateService2 extends AbstractGuiService<Technician,
 
 			MaintanenceRecord record = recordId != null ? this.recordRepository.findRecordById(recordId) : null;
 			Technician tech = record != null ? record.getTechnician() : null;
-
-			status = tech == null ? false : record != null && record.isDraftMode() && super.getRequest().getPrincipal().hasRealm(tech);
-		}
+			status = tech != null && record.isDraftMode() && super.getRequest().getPrincipal().hasRealm(tech);
+		} else
+			status = false;
 		if (super.getRequest().hasData("id")) {
 			Integer id;
 			String isInteger;
@@ -76,8 +76,7 @@ public class TechnicianTaskCreateService2 extends AbstractGuiService<Technician,
 		task.setDraftMode(true);
 		super.getBuffer().addData(task);
 		super.getResponse().addGlobal("recordId", recordId);
-		if (record != null)
-			this.involved.setMaintanenceRecord(record);
+		this.involved.setMaintanenceRecord(record);
 
 	}
 

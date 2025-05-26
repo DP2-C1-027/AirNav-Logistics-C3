@@ -20,8 +20,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import acme.client.repositories.AbstractRepository;
+import acme.entities.flightAssignment.CurrentStatus;
 import acme.entities.flightAssignment.FlightAssignment;
-import acme.realms.FlightCrewMember;
 
 @Repository
 public interface FlightCrewMemberDashboardRepository extends AbstractRepository {
@@ -32,14 +32,14 @@ public interface FlightCrewMemberDashboardRepository extends AbstractRepository 
 	@Query("SELECT COUNT(DISTINCT a.flightAssignment.leg) FROM ActivityLog a WHERE a.severityLevel BETWEEN :innerRange AND :outerRange")
 	Integer countLegsWithSeverity(int innerRange, int outerRange);
 
-	@Query("SELECT f FROM FlightAssignment f JOIN f.leg l WHERE f.flightCrewMember.id = :flightCrewMemberId ORDER BY l.scheduledArrival ASC")
-	List<FlightAssignment> findFlightAssignment(int flightCrewMemberId);
+	@Query("SELECT f FROM FlightAssignment f JOIN f.leg l WHERE f.flightCrewMember.id = :flightCrewMemberId ORDER BY l.scheduledArrival DESC")
+	List<FlightAssignment> findFlightAssignment(int flightCrewMemberId, Pageable pageable);
 
-	@Query("SELECT DISTINCT fa.flightCrewMember FROM FlightAssignment fa WHERE fa.leg.id = :legId")
-	List<FlightCrewMember> findCrewMembersInLastLeg(int legId);
+	@Query("SELECT DISTINCT fa.flightCrewMember.userAccount.username FROM FlightAssignment fa WHERE fa.leg.id = :legId")
+	List<String> findCrewMembersInLastLeg(int legId);
 
-	@Query("SELECT f.currentStatus, COUNT(f) FROM FlightAssignment f WHERE f.flightCrewMember.id = :flightCrewMemberId GROUP BY f.currentStatus")
-	List<Object[]> countFlightAssignmentsGroupedByStatus(int flightCrewMemberId);
+	@Query("SELECT COUNT(f) FROM FlightAssignment f WHERE f.flightCrewMember.id = :flightCrewMemberId AND f.currentStatus = :status")
+	int countFlightAssignmentsByStatus(int flightCrewMemberId, CurrentStatus status);
 
 	@Query("SELECT COUNT(f) FROM FlightAssignment f WHERE f.moment >= :moment AND f.flightCrewMember.id = :crewMemberId")
 	Integer countFlightAssignmentsLastYear(Date moment, int crewMemberId);

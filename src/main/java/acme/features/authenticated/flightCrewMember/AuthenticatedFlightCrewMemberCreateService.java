@@ -61,15 +61,11 @@ public class AuthenticatedFlightCrewMemberCreateService extends AbstractGuiServi
 
 	@Override
 	public void bind(final FlightCrewMember flightCrewMember) {
-		assert flightCrewMember != null;
-
 		super.bindObject(flightCrewMember, "codigo", "phoneNumber", "languageSkills", "availabilityStatus", "salary", "yearsOfExperience", "airline");
 	}
 
 	@Override
 	public void validate(final FlightCrewMember flightCrewMember) {
-		assert flightCrewMember != null;
-
 		String cod = flightCrewMember.getCodigo();
 		if (cod.matches("^[A-Z]{2,3}\\d{6}$")) {
 			Collection<FlightCrewMember> codigo = this.repository.findFlightCrewMemberCode(cod);
@@ -81,15 +77,11 @@ public class AuthenticatedFlightCrewMemberCreateService extends AbstractGuiServi
 
 	@Override
 	public void perform(final FlightCrewMember flightCrewMember) {
-		assert flightCrewMember != null;
-
 		this.repository.save(flightCrewMember);
 	}
 
 	@Override
 	public void unbind(final FlightCrewMember flightCrewMember) {
-		assert flightCrewMember != null;
-
 		Dataset dataset = super.unbindObject(flightCrewMember, "codigo", "phoneNumber", "languageSkills", "availabilityStatus", "salary", "yearsOfExperience", "airline");
 
 		// Status choices

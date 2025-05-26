@@ -25,17 +25,19 @@ public class FlightCrewMemberVisaRequirementsShowService extends AbstractGuiServ
 
 		boolean isAuthorised = false;
 
-		try {
-			// Only is allowed to show an activity log if the creator is the flight crew member associated to the flight assignment.
-			Integer visaRequirementsId = super.getRequest().getData("id", Integer.class);
-			if (visaRequirementsId != null) {
-				VisaRequirements visaRequirements = this.repository.findVisaRequirementsById(visaRequirementsId);
-				isAuthorised = visaRequirements != null && super.getRequest().getPrincipal().hasRealmOfType(FlightCrewMember.class);
+		if (super.getRequest().getPrincipal().hasRealmOfType(FlightCrewMember.class))
+
+			// Only is allowed to show a visa requirement if the creator is a flight crew member.
+			if (super.getRequest().getMethod().equals("GET") && super.getRequest().getData("id", Integer.class) != null) {
+
+				Integer visaRequirementId = super.getRequest().getData("id", Integer.class);
+
+				if (visaRequirementId != null) {
+					VisaRequirements visaRequirements = this.repository.findVisaRequirementsById(visaRequirementId);
+
+					isAuthorised = visaRequirements != null;
+				}
 			}
-		} catch (Exception e) {
-			System.err.println(e.getMessage());
-			e.printStackTrace();
-		}
 
 		super.getResponse().setAuthorised(isAuthorised);
 	}
@@ -50,8 +52,6 @@ public class FlightCrewMemberVisaRequirementsShowService extends AbstractGuiServ
 
 	@Override
 	public void unbind(final VisaRequirements visaRequirements) {
-		assert visaRequirements != null;
-
 		Dataset dataset = super.unbindObject(visaRequirements, "country", "nationality", "visaRequired", "visaType", "additionalInfo");
 
 		super.getResponse().addData(dataset);

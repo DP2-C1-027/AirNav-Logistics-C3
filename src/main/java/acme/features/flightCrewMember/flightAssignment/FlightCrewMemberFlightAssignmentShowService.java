@@ -28,19 +28,25 @@ public class FlightCrewMemberFlightAssignmentShowService extends AbstractGuiServ
 
 		boolean isAuthorised = false;
 
-		try {
-			// Only is allowed to show a flight assignment if the creator is associated.
-			Integer flightAssignmentId = super.getRequest().getData("id", Integer.class);
-			if (flightAssignmentId != null) {
-				FlightAssignment flightAssignment = this.repository.findFlightAssignmentById(flightAssignmentId);
-				isAuthorised = flightAssignment != null && super.getRequest().getPrincipal().hasRealm(flightAssignment.getFlightCrewMember());
+		if (super.getRequest().getPrincipal().hasRealmOfType(FlightCrewMember.class))
+
+			// Only is allowed to show a flight assignment if the creator is a flight crew member associated.
+			if (super.getRequest().getMethod().equals("GET") && super.getRequest().getData("id", Integer.class) != null) {
+
+				Integer flightAssignmentId = super.getRequest().getData("id", Integer.class);
+
+				if (flightAssignmentId != null) {
+
+					FlightAssignment flightAssignment = this.repository.findFlightAssignmentById(flightAssignmentId);
+					FlightCrewMember flightCrewMember = (FlightCrewMember) super.getRequest().getPrincipal().getActiveRealm();
+
+					isAuthorised = flightAssignment != null && flightAssignment.getFlightCrewMember().equals(flightCrewMember);
+				}
+
 			}
-		} catch (Exception e) {
-			System.err.println(e.getMessage());
-			e.printStackTrace();
-		}
 
 		super.getResponse().setAuthorised(isAuthorised);
+
 	}
 
 	@Override
@@ -53,8 +59,6 @@ public class FlightCrewMemberFlightAssignmentShowService extends AbstractGuiServ
 
 	@Override
 	public void unbind(final FlightAssignment flightAssignment) {
-		assert flightAssignment != null;
-
 		Dataset dataset = super.unbindObject(flightAssignment, "duty", "moment", "currentStatus", "remarks", "flightCrewMember", "leg", "draftMode");
 
 		dataset.put("flightCrewMember", flightAssignment.getFlightCrewMember().getIdentity().getFullName());

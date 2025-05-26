@@ -28,17 +28,22 @@ public class FlightCrewMemberVisaRequirementsListService extends AbstractGuiServ
 
 		boolean isAuthorised = false;
 
-		try {
-			// Only is allowed to view visa requirements list if the creator is the flight crew member associated to the flight assignment.
-			Integer assignmentId = super.getRequest().getData("assignmentId", Integer.class);
-			if (assignmentId != null) {
-				FlightAssignment flightAssignment = this.repository.findFlightAssignmentById(assignmentId);
-				isAuthorised = flightAssignment != null && super.getRequest().getPrincipal().hasRealm(flightAssignment.getFlightCrewMember());
+		if (super.getRequest().getPrincipal().hasRealmOfType(FlightCrewMember.class))
+
+			// Only is allowed to show visa requirements if the creator is a flight crew member associated to the flight assignment.
+			if (super.getRequest().getMethod().equals("GET") && super.getRequest().getData("assignmentId", Integer.class) != null) {
+
+				Integer assignmentId = super.getRequest().getData("assignmentId", Integer.class);
+
+				if (assignmentId != null) {
+
+					FlightAssignment flightAssignment = this.repository.findFlightAssignmentById(assignmentId);
+					FlightCrewMember flightCrewMember = (FlightCrewMember) super.getRequest().getPrincipal().getActiveRealm();
+
+					isAuthorised = flightAssignment != null && flightAssignment.getFlightCrewMember().equals(flightCrewMember);
+				}
+
 			}
-		} catch (Exception e) {
-			System.err.println(e.getMessage());
-			e.printStackTrace();
-		}
 
 		super.getResponse().setAuthorised(isAuthorised);
 	}
@@ -54,8 +59,6 @@ public class FlightCrewMemberVisaRequirementsListService extends AbstractGuiServ
 
 	@Override
 	public void unbind(final VisaRequirements visaRequirements) {
-		assert visaRequirements != null;
-
 		Dataset dataset = super.unbindObject(visaRequirements, "country", "nationality", "visaRequired", "visaType", "additionalInfo");
 
 		super.getResponse().addData(dataset);
@@ -63,8 +66,6 @@ public class FlightCrewMemberVisaRequirementsListService extends AbstractGuiServ
 
 	@Override
 	public void unbind(final Collection<VisaRequirements> visaRequirements) {
-		assert visaRequirements != null;
-
 		super.getResponse().addGlobal("assignmentId", super.getRequest().getData("assignmentId", int.class));
 	}
 }

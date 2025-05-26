@@ -1,26 +1,26 @@
 key,registrationMoment,typeOfIncident,description,severityLevel,draftMode,key:flightAssignment
-activity-log-01,2024/08/22 07:45,Cabin Pressure Drop,"Cabin pressure dropped briefly during ascent, issue resolved by crew.",5,true,flight-assignment-09
-activity-log-02,2024/08/22 07:45,Unplanned Detour,"Flight diverted due to unexpected turbulence over the planned route.",2,true,flight-assignment-09
-activity-log-03,2024/08/22 07:45,Passenger Illness,"Passenger fell ill mid-flight, emergency landing was considered but not needed.",4,true,flight-assignment-09
-activity-log-04,2024/08/22 07:45,Weather Delay,"Severe weather conditions at the destination caused a delay in arrival.",3,true,flight-assignment-09
-activity-log-05,2024/08/22 07:45,Avionics Malfunction,"Minor avionics malfunction detected, issue resolved after brief troubleshooting.",4,true,flight-assignment-09
-activity-log-06,2024/08/22 07:45,Emergency Evacuation Drill,"Conducted emergency evacuation drill, no issues reported.",5,true,flight-assignment-09
-activity-log-07,2024/08/22 07:45,Runway Closure,"Runway closure at the departure airport caused a delay in takeoff.",3,true,flight-assignment-09
-activity-log-08,2024/08/22 07:45,Fuel Contamination,"Fuel contamination detected, aircraft grounded until refueling inspection.",2,true,flight-assignment-09
-activity-log-09,2024/08/22 07:45,Minor Turbulence,"Encountered minor turbulence, no risk to flight stability, continued as planned.",4,true,flight-assignment-09
+activity-log-01,2024/08/22 07:45,Cabin Pressure Drop,"Cabin pressure dropped briefly during ascent, issue resolved by crew.",5,true,flight-assignment-05
+activity-log-02,2024/08/22 07:45,Unplanned Detour,"Flight diverted due to unexpected turbulence over the planned route.",2,true,flight-assignment-05
+activity-log-03,2024/08/22 07:45,Passenger Illness,"Passenger fell ill mid-flight, emergency landing was considered but not needed.",4,true,flight-assignment-05
+activity-log-04,2024/08/22 07:45,Weather Delay,"Severe weather conditions at the destination caused a delay in arrival.",3,true,flight-assignment-05
+activity-log-05,2024/08/22 07:45,Avionics Malfunction,"Minor avionics malfunction detected, issue resolved after brief troubleshooting.",4,true,flight-assignment-05
+activity-log-06,2024/08/22 07:45,Emergency Evacuation Drill,"Conducted emergency evacuation drill, no issues reported.",5,true,flight-assignment-06
+activity-log-07,2024/08/22 07:45,Runway Closure,"Runway closure at the departure airport caused a delay in takeoff.",3,true,flight-assignment-06
+activity-log-08,2024/08/22 07:45,Fuel Contamination,"Fuel contamination detected, aircraft grounded until refueling inspection.",2,true,flight-assignment-06
+activity-log-09,2024/08/22 07:45,Minor Turbulence,"Encountered minor turbulence, no risk to flight stability, continued as planned.",4,true,flight-assignment-06
 activity-log-10,2025/01/01 00:00,Autopilot Failure,"Autopilot malfunction during cruise, resolved manually by the flight crew.",3,true,flight-assignment-09
-activity-log-11,2025/01/01 00:00,Medical Emergency,"Medical emergency onboard, treated by flight crew with no landing required.",5,true,flight-assignment-09
-activity-log-12,2025/01/01 00:00,Weather Diversion,"Flight diverted to an alternate airport due to poor visibility at the destination.",2,true,flight-assignment-09
-activity-log-13,2024/08/22 07:45,Seatbelt Warning,"Seatbelt sign malfunctioning, maintenance requested before next flight leg.",4,true,flight-assignment-10
-activity-log-14,2024/08/22 07:45,Engine Surge,"Engine surge detected, precautionary measures taken, flight continued safely.",3,true,flight-assignment-10
-activity-log-15,2024/08/22 07:45,Bird Strike,"Bird strike during takeoff, engine inspection required upon landing.",4,true,flight-assignment-10
-activity-log-16,2024/08/22 07:45,Lightning Strike,"Aircraft struck by lightning mid-flight, systems checked and no major damage found.",3,true,flight-assignment-10
-activity-log-17,2025/01/01 00:00,Fuel Leak,"Small fuel leak detected after landing, aircraft taken out of service for maintenance.",5,true,flight-assignment-10
-activity-log-18,2025/01/01 00:00,Brake System Warning,"Brake system alert triggered during taxiing, engineers cleared aircraft after inspection.",2,true,flight-assignment-10
-activity-log-19,2025/01/01 00:00,Passenger Disturbance,"Unruly passenger caused disruption, crew intervened and authorities were alerted.",3,true,flight-assignment-13
-activity-log-20,2024/08/31 11:15,Strong Crosswinds,"Severe crosswinds during landing approach, pilot executed go-around maneuver.",4,true,flight-assignment-14
-activity-log-21,2024/08/31 11:15,Technical Glitch,"Minor system glitch in the navigation display, resolved before departure.",2,true,flight-assignment-15
-activity-log-22,2024/08/31 11:15,Cargo Shift,"Unsecured cargo caused imbalance warning, crew adjusted before takeoff.",3,true,flight-assignment-15
-activity-log-23,2025/01/01 00:00,Oxygen Mask Deployment,"Oxygen masks deployed unexpectedly, investigation required before next flight.",5,true,flight-assignment-16
-activity-log-24,2024/09/27 11:15,Delayed Pushback,"Pushback delayed due to ground crew miscommunication, minor schedule impact.",1,true,flight-assignment-17
+activity-log-11,2025/01/01 00:00,Medical Emergency,"Medical emergency onboard, treated by flight crew with no landing required.",5,false,flight-assignment-09
+activity-log-12,2025/01/01 00:00,Weather Diversion,"Flight diverted to an alternate airport due to poor visibility at the destination.",2,false,flight-assignment-09
+activity-log-13,2024/08/22 07:45,Seatbelt Warning,"Seatbelt sign malfunctioning, maintenance requested before next flight leg.",4,false,flight-assignment-05
+activity-log-14,2024/08/22 07:45,Engine Surge,"Engine surge detected, precautionary measures taken, flight continued safely.",3,false,flight-assignment-05
+activity-log-15,2024/08/22 07:45,Bird Strike,"Bird strike during takeoff, engine inspection required upon landing.",4,false,flight-assignment-05
+activity-log-16,2025/01/01 00:00,Lightning Strike,"Aircraft struck by lightning mid-flight, systems checked and no major damage found.",3,true,flight-assignment-11
+activity-log-17,2025/01/01 00:00,Fuel Leak,"Small fuel leak detected after landing, aircraft taken out of service for maintenance.",5,false,flight-assignment-11
+activity-log-18,2025/01/01 00:00,Brake System Warning,"Brake system alert triggered during taxiing, engineers cleared aircraft after inspection.",2,false,flight-assignment-11
+activity-log-19,2025/01/01 00:00,Passenger Disturbance,"Unruly passenger caused disruption, crew intervened and authorities were alerted.",3,true,flight-assignment-11
+activity-log-20,2025/01/01 00:00,Strong Crosswinds,"Severe crosswinds during landing approach, pilot executed go-around maneuver.",4,true,flight-assignment-11
+activity-log-21,2025/01/01 00:00,Technical Glitch,"Minor system glitch in the navigation display, resolved before departure.",2,true,flight-assignment-11
+activity-log-22,2025/01/01 00:00,Cargo Shift,"Unsecured cargo caused imbalance warning, crew adjusted before takeoff.",3,true,flight-assignment-11
+activity-log-23,2025/01/01 00:00,Oxygen Mask Deployment,"Oxygen masks deployed unexpectedly, investigation required before next flight.",5,true,flight-assignment-11
+activity-log-24,2025/01/01 00:00,Delayed Pushback,"Pushback delayed due to ground crew miscommunication, minor schedule impact.",1,true,flight-assignment-11
 

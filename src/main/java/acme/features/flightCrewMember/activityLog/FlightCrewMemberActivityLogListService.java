@@ -29,17 +29,21 @@ public class FlightCrewMemberActivityLogListService extends AbstractGuiService<F
 
 		boolean isAuthorised = false;
 
-		try {
+		if (super.getRequest().getPrincipal().hasRealmOfType(FlightCrewMember.class))
+
 			// Only is allowed to view an activity log list if the creator is the flight crew member associated to the flight assignment.
-			Integer assignmentId = super.getRequest().getData("assignmentId", Integer.class);
-			if (assignmentId != null) {
+			if (super.getRequest().getMethod().equals("GET") && super.getRequest().getData("assignmentId", Integer.class) != null) {
+
+				Integer assignmentId = super.getRequest().getData("assignmentId", Integer.class);
 				FlightAssignment flightAssignment = this.repository.findFlightAssignmentById(assignmentId);
-				isAuthorised = flightAssignment != null && super.getRequest().getPrincipal().hasRealm(flightAssignment.getFlightCrewMember());
+
+				if (flightAssignment != null) {
+					FlightCrewMember flightCrewMember = (FlightCrewMember) super.getRequest().getPrincipal().getActiveRealm();
+
+					isAuthorised = flightAssignment.getFlightCrewMember().equals(flightCrewMember);
+				}
+
 			}
-		} catch (Exception e) {
-			System.err.println(e.getMessage());
-			e.printStackTrace();
-		}
 
 		super.getResponse().setAuthorised(isAuthorised);
 	}
@@ -53,8 +57,6 @@ public class FlightCrewMemberActivityLogListService extends AbstractGuiService<F
 
 	@Override
 	public void unbind(final ActivityLog activityLog) {
-		assert activityLog != null;
-
 		Dataset dataset = super.unbindObject(activityLog, "registrationMoment", "typeOfIncident", "description", "severityLevel", "draftMode");
 
 		int assignmentId = super.getRequest().getData("assignmentId", int.class);
@@ -69,8 +71,6 @@ public class FlightCrewMemberActivityLogListService extends AbstractGuiService<F
 
 	@Override
 	public void unbind(final Collection<ActivityLog> activityLogs) {
-		assert activityLogs != null;
-
 		int assignmentId = super.getRequest().getData("assignmentId", int.class);
 		FlightAssignment flightAssignment = this.repository.findFlightAssignmentById(assignmentId);
 

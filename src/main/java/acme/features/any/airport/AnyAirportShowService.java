@@ -21,18 +21,19 @@ public class AnyAirportShowService extends AbstractGuiService<Any, Airport> {
 
 	@Override
 	public void authorise() {
-
 		boolean isAuthorised = false;
 
-		try {
+		if (super.getRequest().getMethod().equals("GET") && super.getRequest().getData("id", Integer.class) != null) {
+
 			Integer airportId = super.getRequest().getData("id", Integer.class);
+
 			if (airportId != null) {
+
 				Airport airport = this.repository.findAirport(airportId);
+
 				isAuthorised = airport != null;
 			}
-		} catch (Exception e) {
-			System.err.println(e.getMessage());
-			e.printStackTrace();
+
 		}
 
 		super.getResponse().setAuthorised(isAuthorised);
@@ -48,8 +49,6 @@ public class AnyAirportShowService extends AbstractGuiService<Any, Airport> {
 
 	@Override
 	public void unbind(final Airport airport) {
-		assert airport != null;
-
 		Dataset dataset = super.unbindObject(airport, "name", "codigo", "operationalScope", "city", "country", "website", "email", "address", "phoneNumber");
 
 		super.getResponse().addData(dataset);

@@ -8,6 +8,7 @@ import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.flightAssignment.ActivityLog;
+import acme.entities.flightAssignment.FlightAssignment;
 import acme.realms.FlightCrewMember;
 
 @GuiService
@@ -26,17 +27,22 @@ public class FlightCrewMemberActivityLogShowService extends AbstractGuiService<F
 
 		boolean isAuthorised = false;
 
-		try {
+		if (super.getRequest().getPrincipal().hasRealmOfType(FlightCrewMember.class))
+
 			// Only is allowed to show an activity log if the creator is the flight crew member associated to the flight assignment.
-			Integer activityLogId = super.getRequest().getData("id", Integer.class);
-			if (activityLogId != null) {
+			if (super.getRequest().getMethod().equals("GET") && super.getRequest().getData("id", Integer.class) != null) {
+
+				Integer activityLogId = super.getRequest().getData("id", Integer.class);
 				ActivityLog activityLog = this.repository.findActivityLogById(activityLogId);
-				isAuthorised = activityLog != null && super.getRequest().getPrincipal().hasRealm(activityLog.getFlightAssignment().getFlightCrewMember());
+
+				if (activityLog != null) {
+					FlightAssignment flightAssignment = activityLog.getFlightAssignment();
+					FlightCrewMember flightCrewMember = (FlightCrewMember) super.getRequest().getPrincipal().getActiveRealm();
+
+					isAuthorised = flightAssignment != null && !flightAssignment.getDraftMode() && activityLog.getFlightAssignment().getFlightCrewMember().equals(flightCrewMember);
+				}
+
 			}
-		} catch (Exception e) {
-			System.err.println(e.getMessage());
-			e.printStackTrace();
-		}
 
 		super.getResponse().setAuthorised(isAuthorised);
 	}
@@ -51,8 +57,6 @@ public class FlightCrewMemberActivityLogShowService extends AbstractGuiService<F
 
 	@Override
 	public void unbind(final ActivityLog activityLog) {
-		assert activityLog != null;
-
 		Dataset dataset = super.unbindObject(activityLog, "registrationMoment", "typeOfIncident", "description", "severityLevel", "draftMode");
 
 		// Show create if the assignment is completed

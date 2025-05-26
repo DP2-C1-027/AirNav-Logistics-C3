@@ -28,7 +28,6 @@ acme.validation.registrationNumber = The registration number entered is already 
 acme.validation.severityLevel = The severity level should be between 0 and 10
 acme.validation.flightAssignment.duty = Each leg can only have one pilot and one co-pilot
 acme.validation.flightAssignment.leg.draftmode = The assignment cannot be linked to legs in draft mode
-acme.validation.flightAssignment.leg.airline = The assignment cannot be linked to legs of other airlines
 acme.validation.flightAssignment.leg.moment = The assignment cannot be linked to legs that have already occurred
 acme.validation.flightAssignment.flightCrewMember.available = The flight crew member is not available to be assigned
 acme.validation.flightAssignment.flightCrewMember.multipleLegs = The flight crew member is already assigned to another leg

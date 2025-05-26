@@ -36,8 +36,6 @@ public class AnyAirportListService extends AbstractGuiService<Any, Airport> {
 
 	@Override
 	public void unbind(final Airport airport) {
-		assert airport != null;
-
 		Dataset dataset = super.unbindObject(airport, "name", "codigo", "operationalScope");
 
 		super.getResponse().addData(dataset);

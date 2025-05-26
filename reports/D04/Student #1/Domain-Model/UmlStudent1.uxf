@@ -88,7 +88,7 @@ Leg
 + stepUndergoing: String {Mandatory, ValidLongText, Automapped}
 + scheduledDeparture: Date {Mandatory, ValidMoment, Temporal(TemporalType.TIMESTAMP), Automapped}
 + scheduledArrival: Date {Mandatory, ValidMoment, Temporal(TemporalType.TIMESTAMP), Automapped}
-+ duration: Integer {Mandatory, Min(0), Automapped}
+- duration: Integer {Mandatory, Min(0), Automapped}
 + status: LegStatus {Mandatory, Enumerated(EnumType.STRING), Automapped}
 
 --
@@ -210,36 +210,6 @@ bg=green
     <additional_attributes>130.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>258</x>
-      <y>486</y>
-      <w>102</w>
-      <h>36</h>
-    </coordinates>
-    <panel_attributes>&lt;  managed by
-lt=&lt;-x
-m1=1
-m2=*
-bg=green
-
-</panel_attributes>
-    <additional_attributes>10.0;20.0;150.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>180</x>
-      <y>486</y>
-      <w>84</w>
-      <h>24</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;Role&gt;&gt;
-AirlineManager
-bg=pink</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
     <id>UMLNote</id>
     <coordinates>
       <x>108</x>
@@ -287,31 +257,6 @@ bg=#f3fdff</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>126</x>
-      <y>402</y>
-      <w>174</w>
-      <h>42</h>
-    </coordinates>
-    <panel_attributes>+ The airlineManager assigned to the leg
-must be the same as the one assigned to the
-parent Flight.
-bg=orange</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>210</x>
-      <y>438</y>
-      <w>18</w>
-      <h>60</h>
-    </coordinates>
-    <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLNote</id>
-    <coordinates>
       <x>864</x>
       <y>546</y>
       <w>174</w>
@@ -332,5 +277,28 @@ bg=orange</panel_attributes>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>282</x>
+      <y>492</y>
+      <w>78</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;110.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>114</x>
+      <y>474</y>
+      <w>174</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>+ Legs belong to airlineManagers through Flight
+bg=orange</panel_attributes>
+    <additional_attributes/>
   </element>
 </diagram>

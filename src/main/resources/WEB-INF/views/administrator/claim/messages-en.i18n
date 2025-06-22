@@ -12,28 +12,31 @@
 # List labels for claim
 assistance-agent.claim.list.title = Claims
 assistance-agent.claim.form.title = Claim
-assistanceAgent.claim.list.title = Claims Management
-assistanceAgent.claim.list.label.passengerEmail = Passenger Email
-assistanceAgent.claim.list.label.description = Description
-assistanceAgent.claim.list.label.indicator = Status
+administrator.claim.list.title = Claims Management
+administrator.claim.list.label.passengerEmail = Passenger Email
+administrator.claim.list.label.description = Description
+administrator.claim.list.label.indicator = Status
 
 # List buttons
-assistanceAgent.claim.list.button.create = Create New Claim
+administrator.claim.list.button.create = Create New Claim
 
 # Form labels for claim
-assistanceAgent.claim.form.label.registrationMoment = Registration Date
-assistanceAgent.claim.form.label.description = Description
-assistanceAgent.claim.form.label.type = Claim Type
-assistanceAgent.claim.form.label.indicator = Status
-assistanceAgent.claim.form.label.registeredBy = Registered By
-assistanceAgent.claim.form.label.passengerEmail = Passenger Email
-assistanceAgent.claim.form.label.linkedTo = Linked To
+administrator.claim.form.label.registrationMoment = Registration Date
+administrator.claim.form.label.description = Description
+administrator.claim.form.label.type = Claim Type
+administrator.claim.form.label.indicator = Status
+administrator.claim.form.label.registeredBy = Registered By
+administrator.claim.form.label.passengerEmail = Passenger Email
+administrator.claim.form.label.linkedTo = Linked To
 
 # Form buttons
-assistanceAgent.claim.form.button.create = Create
-assistanceAgent.claim.form.button.update = Update
-assistanceAgent.claim.form.button.delete = Delete
-assistanceAgent.claim.form.button.publish = Publish
+administrator.claim.form.button.create = Create
+administrator.claim.form.button.update = Update
+administrator.claim.form.button.delete = Delete
+administrator.claim.form.button.publish = Publish
+
+administrator.trackingLog.form.button.trackingLog = Tracking Log of Claim
+administrator.leg.form.button.leg = Leg linked
 
 # ============= COMMON =============
 # Common buttons (existing)

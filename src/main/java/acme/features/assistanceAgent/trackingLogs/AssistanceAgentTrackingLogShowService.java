@@ -38,23 +38,29 @@ public class AssistanceAgentTrackingLogShowService extends AbstractGuiService<As
 
 	@Override
 	public void authorise() {
-		boolean status = false;
-		AssistanceAgent assistance = (AssistanceAgent) super.getRequest().getPrincipal().getActiveRealm();
+		boolean status = true;
 
-		if (super.getRequest().getPrincipal().hasRealm(assistance))
-			if (super.getRequest().hasData("id"))
-				try {
-					int trackingLogId = super.getRequest().getData("id", int.class);
+		if (super.getRequest().hasData("id")) {
+			AssistanceAgent assistance = (AssistanceAgent) super.getRequest().getPrincipal().getActiveRealm();
+			Integer trackingLogId;
+			String isInteger;
+			isInteger = super.getRequest().getData("id", String.class);
+			if (isInteger != null && !isInteger.isBlank() && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
+				trackingLogId = Integer.valueOf(isInteger);
+			else
+				trackingLogId = Integer.valueOf(-1);
 
-					if (trackingLogId != 0) {
-						TrackingLog trackingLog = this.repository.findOneTrackingLogById(trackingLogId);
+			if (trackingLogId == null || this.repository.findClaimByTrackingLogId(trackingLogId) == null)
+				status = false;
 
-						status = trackingLog != null && trackingLog.isDraftMode() && super.getRequest().getPrincipal().hasRealm(assistance);
-					}
-				} catch (Exception e) {
-					status = false;
-				}
+			if (status && !super.getRequest().getPrincipal().hasRealm(assistance) && this.repository.findClaimByTrackingLogId(trackingLogId).getRegisteredBy().equals(assistance))
+				status = false;
+
+		} else
+			status = false;
+
 		super.getResponse().setAuthorised(status);
+
 	}
 
 	@Override
@@ -75,7 +81,7 @@ public class AssistanceAgentTrackingLogShowService extends AbstractGuiService<As
 		AssistanceAgent assistance = (AssistanceAgent) super.getRequest().getPrincipal().getActiveRealm();
 
 		claims = this.repository.findAllClaimsByAgent(assistance.getId());
-		dataset = super.unbindObject(trackingLog, "lastUpdateMoment", "stepUndergoing", "resolutionPercentage", "indicator", "draftMode", "claim");
+		dataset = super.unbindObject(trackingLog, "creationMoment", "lastUpdateMoment", "stepUndergoing", "resolutionPercentage", "indicator", "draftMode", "claim");
 
 		SelectChoices claimsChoices = SelectChoices.from(claims, "passengerEmail", trackingLog.getClaim());
 		dataset.put("claim", claimsChoices);

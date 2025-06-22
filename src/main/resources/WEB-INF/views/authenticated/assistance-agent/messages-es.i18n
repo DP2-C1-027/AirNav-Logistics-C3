@@ -17,4 +17,5 @@ authenticated.assistanceAgent.form.label.airline=Aerolínea
 ### Botones del Formulario ###
 authenticated.assistanceAgent.form.button.create=Registrar Agente
 authenticated.assistanceAgent.form.button.update=Actualizar Agente
+authenticated.consassistanceAgentumer.form.button.update=Actualizar Agente
 

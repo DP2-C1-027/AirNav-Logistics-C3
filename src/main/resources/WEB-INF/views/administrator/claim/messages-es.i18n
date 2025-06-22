@@ -11,28 +11,31 @@
 # Etiquetas de lista para reclamaciones
 assistance-agent.claim.list.title = Reclamaciones
 assistance-agent.claim.form.title = Reclamación
-assistanceAgent.claim.list.title = Gestión de Reclamaciones
-assistanceAgent.claim.list.label.passengerEmail = Email del Pasajero
-assistanceAgent.claim.list.label.description = Descripción
-assistanceAgent.claim.list.label.indicator = Estado
+administrator.claim.list.title = Gestión de Reclamaciones
+administrator.claim.list.label.passengerEmail = Email del Pasajero
+administrator.claim.list.label.description = Descripción
+administrator.claim.list.label.indicator = Estado
 
 # Botones de lista
-assistanceAgent.claim.list.button.create = Crear Nueva Reclamación
+administrator.claim.list.button.create = Crear Nueva Reclamación
 
 # Etiquetas de formulario para reclamaciones
-assistanceAgent.claim.form.label.registrationMoment = Fecha de Registro
-assistanceAgent.claim.form.label.description = Descripción
-assistanceAgent.claim.form.label.type = Tipo de Reclamación
-assistanceAgent.claim.form.label.indicator = Estado
-assistanceAgent.claim.form.label.registeredBy = Registrado Por
-assistanceAgent.claim.form.label.passengerEmail = Email del Pasajero
-assistanceAgent.claim.form.label.linkedTo = Vinculado A
+administrator.claim.form.label.registrationMoment = Fecha de Registro
+administrator.claim.form.label.description = Descripción
+administrator.claim.form.label.type = Tipo de Reclamación
+administrator.claim.form.label.indicator = Estado
+administrator.claim.form.label.registeredBy = Registrado Por
+administrator.claim.form.label.passengerEmail = Email del Pasajero
+administrator.claim.form.label.linkedTo = Vinculado A
 
 # Botones de formulario
-assistanceAgent.claim.form.button.create = Crear
-assistanceAgent.claim.form.button.update = Actualizar
-assistanceAgent.claim.form.button.delete = Eliminar
-assistanceAgent.claim.form.button.publish = Publicar
+administrator.claim.form.button.create = Crear
+administrator.claim.form.button.update = Actualizar
+administrator.claim.form.button.delete = Eliminar
+administrator.claim.form.button.publish = Publicar
+
+administrator.trackingLog.form.button.trackingLog = Registro de reclamación
+administrator.leg.form.button.leg = Vuelo vinculado
 
 # ============= COMÚN =============
 # Botones comunes (existentes)

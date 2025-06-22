@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
+import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.claims.Claim;
@@ -39,22 +40,27 @@ public class AssistanceAgentTrackingLogUpdateService extends AbstractGuiService<
 
 	@Override
 	public void authorise() {
-		boolean status = false;
-		AssistanceAgent assistance = (AssistanceAgent) super.getRequest().getPrincipal().getActiveRealm();
+		boolean status = true;
+		TrackingLog trackingLog;
+		AssistanceAgent assistance;
+		Claim claim;
+		if (super.getRequest().hasData("id")) {
+			Integer trackingLogId;
+			String isInteger;
+			isInteger = super.getRequest().getData("id", String.class).trim();
+			if (!isInteger.isBlank() && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
+				trackingLogId = Integer.valueOf(isInteger);
+			else
+				trackingLogId = Integer.valueOf(-1);
 
-		if (super.getRequest().getPrincipal().hasRealm(assistance))
-			if (super.getRequest().hasData("id"))
-				try {
-					int trackingLogId = super.getRequest().getData("id", int.class);
+			trackingLog = !trackingLogId.equals(Integer.valueOf(-1)) ? this.repository.findOneTrackingLogById(trackingLogId) : null;
+			claim = trackingLog != null ? this.repository.findClaimByTrackingLogId(trackingLogId) : null;
+			assistance = claim != null ? claim.getRegisteredBy() : null;
+			status = assistance == null ? false : trackingLog.isDraftMode() && super.getRequest().getPrincipal().hasRealm(assistance);
 
-					if (trackingLogId != 0) {
-						TrackingLog trackingLog = this.repository.findOneTrackingLogById(trackingLogId);
+		} else
+			status = false;
 
-						status = trackingLog != null && trackingLog.isDraftMode() && super.getRequest().getPrincipal().hasRealm(assistance);
-					}
-				} catch (Exception e) {
-					status = false;
-				}
 		super.getResponse().setAuthorised(status);
 	}
 
@@ -90,7 +96,7 @@ public class AssistanceAgentTrackingLogUpdateService extends AbstractGuiService<
 		if (trackingLog.getClaim() != null && trackingLog.getClaim().getId() != 0 && !super.getBuffer().getErrors().hasErrors("resolutionPercentage")) {
 
 			// Obtener el último TrackingLog ordenado por fecha descendente
-			List<TrackingLog> previousLogs = this.repository.findTrackingLogsByClaimIdOrderedByDateDesc(trackingLog.getClaim().getId());
+			List<TrackingLog> previousLogs = this.repository.findTrackingLogsByClaimIdOrderedByCreationDate(trackingLog.getClaim().getId());
 
 			if (!previousLogs.isEmpty()) {
 				TrackingLog lastLog = previousLogs.get(0);
@@ -102,6 +108,7 @@ public class AssistanceAgentTrackingLogUpdateService extends AbstractGuiService<
 
 	@Override
 	public void perform(final TrackingLog TrackingLog) {
+		TrackingLog.setLastUpdateMoment(MomentHelper.getCurrentMoment());
 		this.repository.save(TrackingLog);
 	}
 
@@ -112,7 +119,7 @@ public class AssistanceAgentTrackingLogUpdateService extends AbstractGuiService<
 		AssistanceAgent assistance = (AssistanceAgent) super.getRequest().getPrincipal().getActiveRealm();
 
 		claims = this.repository.findAllClaimsByAgent(assistance.getId());
-		dataset = super.unbindObject(trackingLog, "lastUpdateMoment", "stepUndergoing", "resolutionPercentage", "indicator");
+		dataset = super.unbindObject(trackingLog, "lastUpdateMoment", "stepUndergoing", "draftMode", "resolutionPercentage", "indicator");
 
 		SelectChoices claimsChoices = SelectChoices.from(claims, "passengerEmail", trackingLog.getClaim());
 		dataset.put("claim", claimsChoices);

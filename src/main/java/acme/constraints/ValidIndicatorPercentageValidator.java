@@ -13,20 +13,22 @@ public class ValidIndicatorPercentageValidator extends AbstractValidator<ValidIn
 
 	@Override
 	public boolean isValid(final TrackingLog trackingLog, final ConstraintValidatorContext context) {
+		if (trackingLog.getResolutionPercentage() != null) {
+			Double percentage = trackingLog.getResolutionPercentage();
+			Indicator indicator = trackingLog.getIndicator();
 
-		Double percentage = trackingLog.getResolutionPercentage();
-		Indicator indicator = trackingLog.getIndicator();
-
-		if (percentage == 100.0) {
-			if (indicator != Indicator.ACCEPTED && indicator != Indicator.REJECTED) {
-				this.state(context, false, "indicator", "acme.validation.tracking.indicator.must.be.accepted.or.rejected");
+			if (percentage == 100.0) {
+				if (indicator != Indicator.ACCEPTED && indicator != Indicator.REJECTED) {
+					this.state(context, false, "indicator", "acme.validation.tracking.indicator.must.be.accepted.or.rejected");
+					return false;
+				}
+			} else if (indicator != Indicator.PENDING) {
+				this.state(context, false, "indicator", "acme.validation.tracking.indicator.must.be.pending");
 				return false;
 			}
-		} else if (indicator != Indicator.PENDING) {
-			this.state(context, false, "indicator", "acme.validation.tracking.indicator.must.be.pending");
-			return false;
-		}
 
-		return true;
+			return true;
+		}
+		return false;
 	}
 }

@@ -40,23 +40,52 @@ public class AssistanceAgentTrackingLogCreateService extends AbstractGuiService<
 
 	@Override
 	public void authorise() {
-		boolean status;
+		boolean status = true;
 		AssistanceAgent assistance = (AssistanceAgent) super.getRequest().getPrincipal().getActiveRealm();
+		Claim claim;
 
 		status = super.getRequest().getPrincipal().hasRealm(assistance);
 
-		if (status && super.getRequest().hasData("claimId", int.class)) {
-			int claimId = super.getRequest().getData("claimId", int.class);
+		if (super.getRequest().hasData("id")) {
 
-			List<TrackingLog> previousLogs = this.repository.findTrackingLogsByClaimIdOrderedByPercentaje(claimId);
+			Integer trackingLogId;
+			String isInteger;
+			isInteger = super.getRequest().getData("id", String.class).trim();
+			if (!isInteger.isBlank() && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
+				trackingLogId = Integer.valueOf(isInteger);
+			else
+				trackingLogId = Integer.valueOf(-1);
 
-			if (!previousLogs.isEmpty()) {
+			status = super.getRequest().getPrincipal().hasRealm(assistance);
+			if (!trackingLogId.equals(Integer.valueOf(0)))
+				status = false;
+		}
+
+		if (super.getRequest().hasData("claimId")) {
+			Integer claimId;
+			String isIntegerClaim;
+			isIntegerClaim = super.getRequest().getData("claimId", String.class).trim();
+			if (!isIntegerClaim.isBlank() && isIntegerClaim.chars().allMatch((e) -> e > 47 && e < 58))
+				claimId = Integer.valueOf(isIntegerClaim);
+			else
+				claimId = Integer.valueOf(-1);
+
+			if (claimId.equals(Integer.valueOf(-1)))
+				status = false;
+			if (!claimId.equals(Integer.valueOf(-1))) {
+				claim = claimId != null ? this.repository.findOneClaimById(claimId) : null;
+				status = claim != null;
+			}
+
+			List<TrackingLog> previousLogs = !claimId.equals(Integer.valueOf(-1)) ? this.repository.findTrackingLogsByClaimIdOrderedByPercentaje(claimId) : null;
+			if (previousLogs != null && !previousLogs.isEmpty()) {
 				TrackingLog lastLog = previousLogs.get(0);
+				status = lastLog.isDraftMode() || lastLog.getResolutionPercentage() != null && lastLog.getResolutionPercentage() == 100 && lastLog.getIndicator() == Indicator.ACCEPTED;
+			}
 
-				status = lastLog.isDraftMode() || lastLog.getResolutionPercentage() != null && lastLog.getResolutionPercentage() == 100;
-			} else
-				status = true;
-		} else if (super.getRequest().getMethod().equals("POST"))
+		}
+
+		else if (super.getRequest().getMethod().equals("POST"))
 			status = false;
 
 		super.getResponse().setAuthorised(status);
@@ -68,6 +97,8 @@ public class AssistanceAgentTrackingLogCreateService extends AbstractGuiService<
 		TrackingLog = new TrackingLog();
 
 		TrackingLog.setLastUpdateMoment(MomentHelper.getCurrentMoment());
+		TrackingLog.setCreationMoment(MomentHelper.getCurrentMoment());
+
 		TrackingLog.setDraftMode(true);
 		int claimId = super.getRequest().getData("claimId", int.class);
 
@@ -79,23 +110,24 @@ public class AssistanceAgentTrackingLogCreateService extends AbstractGuiService<
 
 	@Override
 	public void bind(final TrackingLog trackingLog) {
-		super.bindObject(trackingLog, "lastUpdateMoment", "stepUndergoing", "resolutionPercentage", "resolutionDetails", "indicator", "claim");
+		super.bindObject(trackingLog, "creationMoment", "lastUpdateMoment", "stepUndergoing", "resolutionPercentage", "resolutionDetails", "indicator", "claim");
 
 	}
 
 	@Override
 	public void validate(final TrackingLog trackingLog) {
+
 		// Validaciones existentes para indicator...
 		if (trackingLog.getIndicator() != null && (trackingLog.getIndicator() == Indicator.ACCEPTED || trackingLog.getIndicator() == Indicator.REJECTED)) {
 			super.state(trackingLog.getResolutionPercentage() != null && trackingLog.getResolutionPercentage() == 100, "resolutionPercentage", "assistance-agent.tracking-log.form.error.percentage-not-100");
 			super.state(trackingLog.getResolutionDetails() != null && !trackingLog.getResolutionDetails().isEmpty(), "resolutionDetails", "assistance-agent.tracking-log.form.error.resolution-required");
 		}
-		if (!trackingLog.getResolutionDetails().isEmpty())
+		if (!trackingLog.getResolutionDetails().isEmpty() && trackingLog.getResolutionDetails() != null)
 			super.state(trackingLog.getResolutionPercentage() != null && trackingLog.getResolutionPercentage() == 100, "resolutionDetails", "assistance-agent.tracking-log.form.error.resolutionDetails-not-admited");
 
 		// Validación de porcentaje incremental
-		if (trackingLog.getClaim() != null && trackingLog.getClaim().getId() != 0 && !super.getBuffer().getErrors().hasErrors("resolutionPercentage")) {
-			List<TrackingLog> previousLogs = this.repository.findTrackingLogsByClaimIdOrderedByDateDesc(trackingLog.getClaim().getId());
+		if (!trackingLog.getResolutionDetails().isEmpty() && trackingLog.getClaim() != null && trackingLog.getClaim().getId() != 0 && !super.getBuffer().getErrors().hasErrors("resolutionPercentage")) {
+			List<TrackingLog> previousLogs = this.repository.findTrackingLogsByClaimIdOrderedByCreationDate(trackingLog.getClaim().getId());
 
 			if (!previousLogs.isEmpty()) {
 				TrackingLog lastLog = previousLogs.get(0);
@@ -105,9 +137,9 @@ public class AssistanceAgentTrackingLogCreateService extends AbstractGuiService<
 
 		// Validación para porcentaje 100% después de publicar
 		int claimId = super.getRequest().getData("claimId", int.class);
-		List<TrackingLog> previousLogs = this.repository.findTrackingLogsByClaimIdOrderedByPercentaje(claimId);
+		List<TrackingLog> previousLogs = this.repository.findTrackingLogsByClaimIdOrderedByCreationDate(claimId);
 
-		if (!previousLogs.isEmpty()) {
+		if (!previousLogs.isEmpty() && !trackingLog.getResolutionDetails().isEmpty()) {
 			TrackingLog lastLog = previousLogs.get(0);
 			if (!lastLog.isDraftMode())
 				super.state(trackingLog.getResolutionPercentage() != null && trackingLog.getResolutionPercentage() == 100, "resolutionPercentage", "assistance-agent.tracking-log.form.error.after-publish-percentage-mustbe-100");
@@ -128,7 +160,8 @@ public class AssistanceAgentTrackingLogCreateService extends AbstractGuiService<
 		AssistanceAgent assistance = (AssistanceAgent) super.getRequest().getPrincipal().getActiveRealm();
 
 		claims = this.repository.findAllClaimsByAgent(assistance.getId());
-		dataset = super.unbindObject(trackingLog, "lastUpdateMoment", "stepUndergoing", "resolutionPercentage", "resolutionDetails", "indicator", "claim");
+		dataset = super.unbindObject(trackingLog, "creationMoment", "lastUpdateMoment", "stepUndergoing", "resolutionPercentage", "resolutionDetails", "indicator", "claim");
+
 		SelectChoices claimsChoices = SelectChoices.from(claims, "passengerEmail", trackingLog.getClaim());
 		dataset.put("claim", claimsChoices);
 

@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import acme.client.components.models.Dataset;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
+import acme.entities.claims.Claim;
 import acme.entities.legs.Leg;
 import acme.realms.AssistanceAgent;
 
@@ -33,11 +34,25 @@ public class AssistanceAgentLegShowService extends AbstractGuiService<Assistance
 
 	@Override
 	public void authorise() {
-		AssistanceAgent assistance;
-		boolean status;
-		assistance = (AssistanceAgent) super.getRequest().getPrincipal().getActiveRealm();
+		boolean status = true;
 
-		status = super.getRequest().getPrincipal().hasRealm(assistance);
+		if (super.getRequest().hasData("id")) {
+			AssistanceAgent assistance = (AssistanceAgent) super.getRequest().getPrincipal().getActiveRealm();
+
+			Integer claimId;
+			String isInteger;
+
+			isInteger = super.getRequest().getData("id", String.class).trim();
+			if (!isInteger.isBlank() && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
+				claimId = Integer.valueOf(isInteger);
+			else
+				claimId = Integer.valueOf(-1);
+
+			Claim claim = claimId != null ? this.repository.findOneClaimById(claimId) : null;
+			status = claim != null && super.getRequest().getPrincipal().hasRealm(assistance) && claim.getRegisteredBy().equals(assistance);
+		} else
+			status = false;
+
 		super.getResponse().setAuthorised(status);
 	}
 

@@ -17,4 +17,4 @@ authenticated.assistanceAgent.form.label.airline=Airline
 ### Assistance Agent Form Buttons ###
 authenticated.assistanceAgent.form.button.create=Register Agent
 authenticated.assistanceAgent.form.button.update=Update Agent
-
+authenticated.consassistanceAgentumer.form.button.update =Update Agent

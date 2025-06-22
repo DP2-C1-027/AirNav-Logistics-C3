@@ -1,4 +1,4 @@
-<%--
+º<%--
 - form.jsp
 -
 - Copyright (C) 2012-2025 Rafael Corchuelo.
@@ -18,7 +18,7 @@
 
 
 <acme:form >
-	<acme:input-textbox code="assistanceAgent.claim.form.label.registrationMoment" path="registrationMoment"/>
+	<acme:input-textbox code="assistanceAgent.claim.form.label.registrationMoment" path="registrationMoment" readonly="true"/>
 	<acme:input-textbox code="assistanceAgent.claim.form.label.description" path="description"/>
 	<acme:input-select code="assistanceAgent.claim.form.label.type" path="type"  choices="${typeChoice}"  />
 	<acme:input-textbox code="assistanceAgent.claim.form.label.indicator" path="indicator" readonly="true"/>
@@ -38,7 +38,7 @@
 					<acme:button code="assistanceAgent.trackingLog.form.button.trackingLog" action="/assistance-agent/tracking-log/listByClaim?claimId=${id}"/>
 					<acme:button code="assistanceAgent.leg.form.button.leg" action="/assistance-agent/leg/show?id=${id}"/>
 				</jstl:when>
-				<jstl:when test="${_command == 'create'}">
+				<jstl:when test="${acme:anyOf(_command, 'create')  }">
 					<acme:submit code="assistanceAgent.claim.form.button.create" action="/assistance-agent/claim/create"/>
 				</jstl:when>
 						

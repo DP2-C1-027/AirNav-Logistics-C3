@@ -38,23 +38,36 @@ public class AssistanceAgentClaimPublishService extends AbstractGuiService<Assis
 
 	@Override
 	public void authorise() {
-		boolean status = false;
-		AssistanceAgent assistance = (AssistanceAgent) super.getRequest().getPrincipal().getActiveRealm();
 
-		if (super.getRequest().getPrincipal().hasRealm(assistance))
-			if (super.getRequest().hasData("id"))
+		boolean status = true;
+
+		if (super.getRequest().hasData("id")) {
+			AssistanceAgent assistance = (AssistanceAgent) super.getRequest().getPrincipal().getActiveRealm();
+			Integer claimId;
+			String isInteger;
+			isInteger = super.getRequest().getData("id", String.class);
+			if (isInteger != null && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
+				claimId = Integer.valueOf(isInteger);
+			else
+				claimId = Integer.valueOf(-1);
+
+			if (claimId == null || !claimId.equals(Integer.valueOf(0)) && this.repository.findOneClaimById(claimId) == null)
+				status = false;
+			else
 				try {
-					int claimId = super.getRequest().getData("id", int.class);
+					Claim claim = this.repository.findOneClaimById(claimId);
 
-					if (claimId != 0) {
-						Claim claim = this.repository.findOneClaimById(claimId);
+					status = claim.getRegisteredBy().equals(assistance) && claim.isDraftMode();
 
-						status = claim != null && claim.isDraftMode() && super.getRequest().getPrincipal().hasRealm(assistance);
-					}
-				} catch (Exception e) {
+				} catch (NumberFormatException e) {
 					status = false;
 				}
+
+		} else
+			status = false;
+
 		super.getResponse().setAuthorised(status);
+
 	}
 
 	@Override
@@ -94,7 +107,7 @@ public class AssistanceAgentClaimPublishService extends AbstractGuiService<Assis
 	public void unbind(final Claim claim) {
 		Collection<Leg> legs;
 		legs = this.repository.findCompletedLegsByClaimId(claim.getId());
-		Dataset dataset = super.unbindObject(claim, "registrationMoment", "passengerEmail", "description", "indicator", "type", "linkedTo");
+		Dataset dataset = super.unbindObject(claim, "registrationMoment", "passengerEmail", "description", "draftMode", "indicator", "type", "linkedTo");
 		SelectChoices statusChoices = SelectChoices.from(ClaimType.class, claim.getType());
 		SelectChoices legsChoices = SelectChoices.from(legs, "flightNumber", claim.getLinkedTo());
 		dataset.put("linkedTo", legsChoices);

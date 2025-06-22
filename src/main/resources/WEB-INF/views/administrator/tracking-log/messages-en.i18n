@@ -3,25 +3,26 @@ assistance-agent.tracking-log.list.title = TRACKING LOGS
 assistance-agent.tracking-log.form.title =TRACKING LOG
 
 # List labels for tracking log
-assistanceAgent.trackingLog.list.title = Tracking Logs Management
-assistanceAgent.trackingLog.list.label.claim = Claim
-assistanceAgent.trackingLog.list.label.resolutionPercentage = Resolution %
-assistanceAgent.trackingLog.list.label.lastUpdateMoment = Last Update
+administrator.trackingLog.list.title = Tracking Logs Management
+administrator.trackingLog.list.label.claim = Claim
+administrator.trackingLog.list.label.resolutionPercentage = Resolution %
+administrator.trackingLog.list.label.lastUpdateMoment = Last Update
 
 # List buttons
-assistanceAgent.trackingLog.list.button.create = Create New Tracking Log
+administrator.trackingLog.list.button.create = Create New Tracking Log
 
 # Form labels for tracking log
-assistanceAgent.trackingLog.form.title = Tracking Log
-assistanceAgent.trackingLog.form.label.lastUpdateMoment = Last Update
-assistanceAgent.trackingLog.form.label.stepUndergoing = Current Step
-assistanceAgent.trackingLog.form.label.resolutionPercentage = Resolution Percentage
-assistanceAgent.trackingLog.form.label.indicator = Status
-assistanceAgent.trackingLog.form.label.resolutionDetails = Resolution Details
-assistanceAgent.trackingLog.form.label.claim = Related Claim
+administrator.trackingLog.form.title = Tracking Log
+administrator.trackingLog.form.label.lastUpdateMoment = Last Update
+administrator.trackingLog.form.label.stepUndergoing = Current Step
+administrator.trackingLog.form.label.resolutionPercentage = Resolution Percentage
+administrator.trackingLog.form.label.indicator = Status
+administrator.trackingLog.form.label.resolutionDetails = Resolution Details
+administrator.trackingLog.form.label.claim = Related Claim
+administrator.trackingLog.list.label.claim =Claim
 
 # Form buttons
-assistanceAgent.trackingLog.form.button.create = Create
-assistanceAgent.trackingLog.form.button.update = Update
-assistanceAgent.trackingLog.form.button.delete = Delete
-assistanceAgent.trackingLog.form.button.publish = Publish
+administrator.trackingLog.form.button.create = Create
+administrator.trackingLog.form.button.update = Update
+administrator.trackingLog.form.button.delete = Delete
+administrator.trackingLog.form.button.publish = Publish

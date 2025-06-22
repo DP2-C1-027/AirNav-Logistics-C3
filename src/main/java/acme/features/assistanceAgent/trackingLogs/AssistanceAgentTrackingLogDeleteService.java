@@ -38,22 +38,27 @@ public class AssistanceAgentTrackingLogDeleteService extends AbstractGuiService<
 
 	@Override
 	public void authorise() {
-		boolean status = false;
-		AssistanceAgent assistance = (AssistanceAgent) super.getRequest().getPrincipal().getActiveRealm();
+		boolean status = true;
+		TrackingLog trackingLog;
+		AssistanceAgent assistance;
+		Claim claim;
+		if (super.getRequest().hasData("id")) {
+			Integer trackingLogId;
+			String isInteger;
+			isInteger = super.getRequest().getData("id", String.class).trim();
+			if (!isInteger.isBlank() && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
+				trackingLogId = Integer.valueOf(isInteger);
+			else
+				trackingLogId = Integer.valueOf(-1);
 
-		if (super.getRequest().getPrincipal().hasRealm(assistance))
-			if (super.getRequest().hasData("id"))
-				try {
-					int trackingLogId = super.getRequest().getData("id", int.class);
+			trackingLog = !trackingLogId.equals(Integer.valueOf(-1)) ? this.repository.findOneTrackingLogById(trackingLogId) : null;
+			claim = trackingLog != null ? this.repository.findClaimByTrackingLogId(trackingLogId) : null;
+			assistance = claim != null ? claim.getRegisteredBy() : null;
+			status = assistance == null ? false : trackingLog.isDraftMode() && super.getRequest().getPrincipal().hasRealm(assistance);
 
-					if (trackingLogId != 0) {
-						TrackingLog trackingLog = this.repository.findOneTrackingLogById(trackingLogId);
+		} else
+			status = false;
 
-						status = trackingLog != null && trackingLog.isDraftMode() && super.getRequest().getPrincipal().hasRealm(assistance);
-					}
-				} catch (Exception e) {
-					status = false;
-				}
 		super.getResponse().setAuthorised(status);
 	}
 

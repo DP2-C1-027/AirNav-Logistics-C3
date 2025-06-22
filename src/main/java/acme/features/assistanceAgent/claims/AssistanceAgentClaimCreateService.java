@@ -39,25 +39,31 @@ public class AssistanceAgentClaimCreateService extends AbstractGuiService<Assist
 
 	@Override
 	public void authorise() {
-		boolean status = false;
-		AssistanceAgent assistance = (AssistanceAgent) super.getRequest().getPrincipal().getActiveRealm();
+		boolean status = true;
 
-		if (super.getRequest().getPrincipal().hasRealm(assistance))
-			if (super.getRequest().hasData("id"))
-				try {
-					int claimId = super.getRequest().getData("id", int.class);
+		if (super.getRequest().hasData("id")) {
+			AssistanceAgent assistance = (AssistanceAgent) super.getRequest().getPrincipal().getActiveRealm();
 
-					if (claimId != 0) {
-						Claim claim = this.repository.findOneClaimById(claimId);
+			Integer claimId;
+			String isInteger;
 
-						status = claim != null && claim.isDraftMode() && super.getRequest().getPrincipal().hasRealm(assistance);
-					}
-				} catch (Exception e) {
-					status = false;
-				}
-			else if (super.getRequest().getMethod().equals("POST"))
+			isInteger = super.getRequest().getData("id", String.class).trim();
+			if (!isInteger.isBlank() && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
+				claimId = Integer.valueOf(isInteger);
+			else
+				claimId = Integer.valueOf(-1);
+
+			status = super.getRequest().getPrincipal().hasRealm(assistance);
+
+			if (!claimId.equals(Integer.valueOf(0)))
 				status = false;
+		}
+
+		else if (super.getRequest().getMethod().equals("POST"))
+			status = false;
+
 		super.getResponse().setAuthorised(status);
+
 	}
 
 	@Override

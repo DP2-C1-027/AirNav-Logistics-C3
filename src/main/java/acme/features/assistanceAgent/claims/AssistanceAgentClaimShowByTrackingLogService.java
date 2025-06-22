@@ -38,23 +38,29 @@ public class AssistanceAgentClaimShowByTrackingLogService extends AbstractGuiSer
 
 	@Override
 	public void authorise() {
-		boolean status = false;
-		AssistanceAgent assistance = (AssistanceAgent) super.getRequest().getPrincipal().getActiveRealm();
+		boolean status = true;
 
-		if (super.getRequest().getPrincipal().hasRealm(assistance))
-			if (super.getRequest().hasData("id"))
-				try {
-					int claimId = super.getRequest().getData("id", int.class);
+		if (super.getRequest().hasData("trackingLogId")) {
+			AssistanceAgent assistance = (AssistanceAgent) super.getRequest().getPrincipal().getActiveRealm();
+			Integer trackingLogId;
+			String isInteger;
+			isInteger = super.getRequest().getData("trackingLogId", String.class);
+			if (isInteger != null && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
+				trackingLogId = Integer.valueOf(isInteger);
+			else
+				trackingLogId = Integer.valueOf(-1);
 
-					if (claimId != 0) {
-						Claim claim = this.repository.findOneClaimById(claimId);
+			if (trackingLogId == null || !trackingLogId.equals(Integer.valueOf(0)) && this.repository.findClaimByTrackingLogId(trackingLogId) == null)
+				status = false;
 
-						status = claim != null && claim.isDraftMode() && super.getRequest().getPrincipal().hasRealm(assistance);
-					}
-				} catch (Exception e) {
-					status = false;
-				}
+			if (status && !super.getRequest().getPrincipal().hasRealm(assistance) && this.repository.findClaimByTrackingLogId(trackingLogId).getRegisteredBy().equals(assistance))
+				status = false;
+
+		} else
+			status = false;
+
 		super.getResponse().setAuthorised(status);
+
 	}
 
 	@Override
@@ -71,7 +77,6 @@ public class AssistanceAgentClaimShowByTrackingLogService extends AbstractGuiSer
 	@Override
 	public void unbind(final Claim claim) {
 		Collection<Leg> legs;
-		int claimId = super.getRequest().getData("claimId", int.class);
 		legs = this.repository.findCompletedLegsByClaimId(claim.getId());
 		Dataset dataset = super.unbindObject(claim, "registrationMoment", "passengerEmail", "description", "indicator", "type", "linkedTo", "draftMode");
 		SelectChoices statusChoices = SelectChoices.from(ClaimType.class, claim.getType());

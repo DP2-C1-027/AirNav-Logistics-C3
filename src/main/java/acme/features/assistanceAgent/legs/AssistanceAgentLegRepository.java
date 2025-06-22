@@ -16,6 +16,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import acme.client.repositories.AbstractRepository;
+import acme.entities.claims.Claim;
 import acme.entities.legs.Leg;
 
 @Repository
@@ -23,4 +24,8 @@ public interface AssistanceAgentLegRepository extends AbstractRepository {
 
 	@Query("SELECT l FROM Claim c JOIN Leg l ON c.linkedTo = l.id WHERE c.id = :claimId")
 	Leg findLinkedLegByClaimId(int claimId);
+
+	@Query("SELECT c FROM Claim c WHERE c.id = :id")
+	Claim findOneClaimById(int id);
+
 }

@@ -35,12 +35,29 @@ public class AssistanceAgentTrackingLogListByClaimService extends AbstractGuiSer
 
 	@Override
 	public void authorise() {
-		AssistanceAgent assistance;
-		boolean status;
-		assistance = (AssistanceAgent) super.getRequest().getPrincipal().getActiveRealm();
+		boolean status = true;
 
-		status = super.getRequest().getPrincipal().hasRealm(assistance);
+		if (super.getRequest().hasData("claimId")) {
+			AssistanceAgent assistance = (AssistanceAgent) super.getRequest().getPrincipal().getActiveRealm();
+			Integer claimId;
+			String isInteger;
+			isInteger = super.getRequest().getData("claimId", String.class);
+			if (isInteger != null && !isInteger.isBlank() && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
+				claimId = Integer.valueOf(isInteger);
+			else
+				claimId = Integer.valueOf(-1);
+
+			if (claimId == null || this.repository.findOneClaimById(claimId) == null)
+				status = false;
+
+			if (status && !super.getRequest().getPrincipal().hasRealm(assistance) && this.repository.findOneClaimById(claimId).getRegisteredBy().equals(assistance))
+				status = false;
+
+		} else
+			status = false;
+
 		super.getResponse().setAuthorised(status);
+
 	}
 
 	@Override

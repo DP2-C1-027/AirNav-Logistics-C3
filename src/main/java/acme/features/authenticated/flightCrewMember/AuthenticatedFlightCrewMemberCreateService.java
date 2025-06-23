@@ -25,8 +25,8 @@ import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.airline.Airline;
 import acme.features.authenticated.GeneratorValidCode;
-import acme.realms.AvailabilityStatus;
-import acme.realms.FlightCrewMember;
+import acme.realms.flightcrewmember.AvailabilityStatus;
+import acme.realms.flightcrewmember.FlightCrewMember;
 
 @GuiService
 public class AuthenticatedFlightCrewMemberCreateService extends AbstractGuiService<Authenticated, FlightCrewMember> {
@@ -66,13 +66,7 @@ public class AuthenticatedFlightCrewMemberCreateService extends AbstractGuiServi
 
 	@Override
 	public void validate(final FlightCrewMember flightCrewMember) {
-		String cod = flightCrewMember.getCodigo();
-		if (cod.matches("^[A-Z]{2,3}\\d{6}$")) {
-			Collection<FlightCrewMember> codigo = this.repository.findFlightCrewMemberCode(cod);
-			if (!codigo.isEmpty())
-				super.state(false, "codigo", "acme.validation.error.repeat-code");
-		} else
-			super.state(false, "codigo", "acme.validation.error.pattern-code");
+
 	}
 
 	@Override

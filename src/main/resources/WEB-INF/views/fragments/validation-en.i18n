@@ -8,6 +8,8 @@
 # purposes.  The copyright owner does not offer any warranties or representations, nor do
 # they accept any liabilities with respect to them.
 
+acme.validation.identifier.mismatch = The identifier must start with your initials (2 or 3 uppercase letters) and contain exactly 6 numeric digits
+acme.validation.identifier.duplicated = An employee with that identifier already exists
 
 acme.validation.short-text = Text should be between 1 and 50 characters
 acme.validation.long-text = Text should be between 1 and 255 characters
@@ -25,11 +27,10 @@ acme.validation.phoneNumberOptional = The value must be empty or contain between
 acme.validation.emailOptional = The email must contain between 0 and 255 characters
 acme.validation.IATAcode = The value must contain exactly 3 uppercase letters
 acme.validation.registrationNumber = The registration number entered is already in use
+acme.validation.yearsOfExperience = The years of experience should be between 0 and 120
 acme.validation.severityLevel = The severity level should be between 0 and 10
 acme.validation.flightAssignment.duty = Each leg can only have one pilot and one co-pilot
 acme.validation.flightAssignment.leg.draftmode = The assignment cannot be linked to legs in draft mode
 acme.validation.flightAssignment.leg.moment = The assignment cannot be linked to legs that have already occurred
 acme.validation.flightAssignment.flightCrewMember.available = The flight crew member is not available to be assigned
 acme.validation.flightAssignment.flightCrewMember.multipleLegs = The flight crew member is already assigned to another leg
-acme.validation.identifier.mismatch = The identifier must start with your initials (2 or 3 uppercase letters) and contain exactly 6 numeric digits
-acme.validation.identifier.notnull = It cannot be null

@@ -1,11 +1,13 @@
 
-package acme.realms;
+package acme.realms.flightcrewmember;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.Index;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.validation.Valid;
 
 import acme.client.components.basis.AbstractRole;
@@ -14,6 +16,7 @@ import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoney;
+import acme.constraints.ValidFlightCrewMember;
 import acme.constraints.ValidIdentifier;
 import acme.constraints.ValidLongText;
 import acme.constraints.ValidPhoneNumber;
@@ -25,7 +28,10 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@ValidIdentifier
+@ValidFlightCrewMember
+@Table(indexes = {
+	@Index(name = "idx_flightcrewmember_useraccount", columnList = "user_account_id"), @Index(name = "idx_flightcrewmember_codigo", columnList = "codigo", unique = true)
+})
 public class FlightCrewMember extends AbstractRole {
 
 	// Serialisation version --------------------------------------------------
@@ -34,7 +40,7 @@ public class FlightCrewMember extends AbstractRole {
 	// Attributes -------------------------------------------------------------
 
 	@Mandatory
-	@Automapped
+	@ValidIdentifier
 	@Column(unique = true)
 	private String				codigo;
 

@@ -20,7 +20,7 @@ import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoment;
 import acme.constraints.ValidLongText;
 import acme.entities.legs.Leg;
-import acme.realms.FlightCrewMember;
+import acme.realms.flightcrewmember.FlightCrewMember;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -28,8 +28,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Table(name = "flight_assignment", indexes = {
-	@Index(name = "idx_fa_crew_moment", columnList = "flight_crew_member_id, moment"), @Index(name = "idx_fa_leg_duty", columnList = "leg_id, duty"), @Index(name = "idx_fa_leg_duty_draft", columnList = "leg_id, duty, draftMode, id"),
-	@Index(name = "idx_fa_crew_moment_draft", columnList = "flight_crew_member_id, moment, draftMode")
+	@Index(name = "idx_fa_crew_draft", columnList = "flight_crew_member_id, draftMode"), @Index(name = "idx_fa_leg_duty", columnList = "leg_id, duty"), @Index(name = "idx_fa_leg_duty_draft", columnList = "leg_id, duty, draftMode")
 })
 public class FlightAssignment extends AbstractEntity {
 
@@ -44,7 +43,6 @@ public class FlightAssignment extends AbstractEntity {
 	private Duty				duty;
 
 	@Mandatory
-	@Automapped
 	@ValidMoment(past = true)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date				moment;

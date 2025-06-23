@@ -8,16 +8,22 @@ import java.lang.annotation.Target;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
+import javax.validation.ReportAsSingleViolation;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 
-@Target(ElementType.TYPE)
+@Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
+@Constraint(validatedBy = {})
+@ReportAsSingleViolation
 
-@Constraint(validatedBy = IdentifierValidator.class)
-
+@NotBlank
+@Pattern(regexp = "^[A-Z]{2,3}\\d{6}$")
 public @interface ValidIdentifier {
+	// Standard validation properties -----------------------------------------
 
-	String message() default "";
+	String message() default "{acme.validation.identifier.mismatch}";
+
 	Class<?>[] groups() default {};
 	Class<? extends Payload>[] payload() default {};
-
 }

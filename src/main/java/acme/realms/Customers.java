@@ -9,7 +9,6 @@ import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.constraints.ValidEarnedPoints;
-import acme.constraints.ValidIdentifier;
 import acme.constraints.ValidLongText;
 import acme.constraints.ValidPhoneNumber;
 import acme.constraints.ValidShortText;
@@ -19,7 +18,6 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@ValidIdentifier
 public class Customers extends AbstractRole {
 
 	// Serialisation version --------------------------------------------------

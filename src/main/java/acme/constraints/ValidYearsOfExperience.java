@@ -29,7 +29,7 @@ public @interface ValidYearsOfExperience {
 
 	// Standard validation properties -----------------------------------------
 
-	String message() default "{acme.validation.severityLevel}";
+	String message() default "{acme.validation.yearsOfExperience}";
 	Class<?>[] groups() default {};
 	Class<? extends Payload>[] payload() default {};
 

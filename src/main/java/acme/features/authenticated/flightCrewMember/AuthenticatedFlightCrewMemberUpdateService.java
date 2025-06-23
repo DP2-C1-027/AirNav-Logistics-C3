@@ -23,8 +23,8 @@ import acme.client.helpers.PrincipalHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.airline.Airline;
-import acme.realms.AvailabilityStatus;
-import acme.realms.FlightCrewMember;
+import acme.realms.flightcrewmember.AvailabilityStatus;
+import acme.realms.flightcrewmember.FlightCrewMember;
 
 @GuiService
 public class AuthenticatedFlightCrewMemberUpdateService extends AbstractGuiService<Authenticated, FlightCrewMember> {

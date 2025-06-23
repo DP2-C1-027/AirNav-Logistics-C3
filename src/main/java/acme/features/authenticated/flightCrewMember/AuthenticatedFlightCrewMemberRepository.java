@@ -20,7 +20,7 @@ import org.springframework.stereotype.Repository;
 import acme.client.components.principals.UserAccount;
 import acme.client.repositories.AbstractRepository;
 import acme.entities.airline.Airline;
-import acme.realms.FlightCrewMember;
+import acme.realms.flightcrewmember.FlightCrewMember;
 
 @Repository
 public interface AuthenticatedFlightCrewMemberRepository extends AbstractRepository {

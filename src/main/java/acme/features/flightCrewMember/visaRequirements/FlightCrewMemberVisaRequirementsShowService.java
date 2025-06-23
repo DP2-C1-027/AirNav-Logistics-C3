@@ -7,7 +7,7 @@ import acme.client.components.models.Dataset;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.visaRequirements.VisaRequirements;
-import acme.realms.FlightCrewMember;
+import acme.realms.flightcrewmember.FlightCrewMember;
 
 @GuiService
 public class FlightCrewMemberVisaRequirementsShowService extends AbstractGuiService<FlightCrewMember, VisaRequirements> {

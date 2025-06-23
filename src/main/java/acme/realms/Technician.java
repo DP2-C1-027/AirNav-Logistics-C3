@@ -20,7 +20,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@ValidIdentifier
 public class Technician extends AbstractRole {
 
 	// Serialisation version --------------------------------------------------
@@ -30,6 +29,7 @@ public class Technician extends AbstractRole {
 
 	@Mandatory
 	@Automapped
+	@ValidIdentifier
 	@Column(unique = true)
 	private String				codigo;
 

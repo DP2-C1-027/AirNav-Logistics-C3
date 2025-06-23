@@ -1,6 +1,8 @@
 
 package acme.features.authenticated;
 
+import java.util.Random;
+
 import acme.client.components.basis.AbstractRole;
 import acme.client.components.principals.DefaultUserIdentity;
 
@@ -25,8 +27,12 @@ public class GeneratorValidCode {
 			if (codePrefix.length() == 2)
 				initials += surname.substring(1, 2).toUpperCase();
 
-		//dejo q el cliente añade el numero
-		return initials;
+		StringBuilder numbers = new StringBuilder();
+		Random random = new Random();
+		for (int i = 0; i < 6; i++)
+			numbers.append(random.nextInt(10));
+
+		return initials + numbers;
 	}
 
 }

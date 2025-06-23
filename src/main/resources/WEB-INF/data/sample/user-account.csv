@@ -71,5 +71,5 @@ user-account-flight-crew-member-01,true,"UserIdentity{name: 'Axel', surname: 'M�
 user-account-flight-crew-member-02,true,"UserIdentity{name: 'Zoë', surname: 'Lukaszewski', email: 'zoeluk@email.com'}",member2,member2
 user-account-flight-crew-member-03,true,"UserIdentity{name: 'Iñigo', surname: 'Ostergård', email: 'inigoost@email.com'}",member3,member3
 user-account-flight-crew-member-04,true,"UserIdentity{name: 'Maëlle', surname: 'Cerný', email: 'maellec@email.com'}",member4,member4
-user-account-flight-crew-member-05,true,"UserIdentity{name: 'Tórbjörn', surname: 'Sebestić', email: 'torbjseb@email.com'}",member5,member5
+user-account-flight-crew-member-05,true,"UserIdentity{name: 'Tórbjörn', surname: 'Sebestić', email: 'torbjseb@email.com'}",member,member
 

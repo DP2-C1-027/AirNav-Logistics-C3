@@ -31,7 +31,7 @@ import acme.datatypes.Statistics;
 import acme.entities.flightAssignment.CurrentStatus;
 import acme.entities.flightAssignment.FlightAssignment;
 import acme.forms.FlightCrewMemberDashboard;
-import acme.realms.FlightCrewMember;
+import acme.realms.flightcrewmember.FlightCrewMember;
 
 @GuiService
 public class FlightCrewMemberDashboardShowService extends AbstractGuiService<FlightCrewMember, FlightCrewMemberDashboard> {

@@ -8,6 +8,9 @@
 # purposes.  The copyright owner does not offer any warranties or representations, nor do
 # they accept any liabilities with respect to them.
 
+acme.validation.identifier.mismatch = El identificador debe comentar con tus iniciales (2 o 3 letras mayúsculas) y contener exactamente 6 dígitos
+acme.validation.identifier.duplicated = Ya existe un empleado con ese identificador
+
 acme.validation.short-text = El texto debería contener entre 1 y 50 caracteres.
 acme.validation.long-text = El texto debería contener entre 1 y 255 caracteres.
 acme.validation.optional.short-text = El texto debería contener entre 0 y 50 caracteres.
@@ -24,11 +27,10 @@ acme.validation.phoneNumberOptional =El valor debe estar vacío o contener entre
 acme.validation.emailOptional= El correo debe contener entre 0 y 255 caracteres
 acme.validation.IATAcode = El valor debe contener exactamente 3 letras mayúsculas
 acme.validation.registrationNumber = El número de registro introducido ya está en uso
+acme.validation.yearsOfExperience = Los años de experiencia deben estar entre 0 y 120
 acme.validation.severityLevel = El nivel de severidad debería estar entre 0 y 10
 acme.validation.flightAssignment.duty = Cada tramo debe contener solo un piloto y un copiloto
 acme.validation.flightAssignment.leg.draftmode = La asignación no puede ser realizada para tramos que estén en modo edición
 acme.validation.flightAssignment.leg.moment = La asignación no puede ser realizada para tramos que ocurren en el pasado
 acme.validation.flightAssignment.flightCrewMember.available = El miembro de tripulación no está disponible para ser asignado
 acme.validation.flightAssignment.flightCrewMember.multipleLegs = El miembro de tripulación ya está asignado a otro tramo en este momento
-acme.validation.identifier.mismatch = El identificador debe comenzar con tus iniciales (2 o 3 letras mayúsculas) y contener exactamente 6 dígitos numéricos
-acme.validation.identifier.notnull = El codigo no puede ser nulo

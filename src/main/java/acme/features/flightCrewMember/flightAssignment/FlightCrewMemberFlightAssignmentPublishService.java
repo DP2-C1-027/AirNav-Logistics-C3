@@ -14,8 +14,8 @@ import acme.entities.flightAssignment.CurrentStatus;
 import acme.entities.flightAssignment.Duty;
 import acme.entities.flightAssignment.FlightAssignment;
 import acme.entities.legs.Leg;
-import acme.realms.AvailabilityStatus;
-import acme.realms.FlightCrewMember;
+import acme.realms.flightcrewmember.AvailabilityStatus;
+import acme.realms.flightcrewmember.FlightCrewMember;
 
 @GuiService
 public class FlightCrewMemberFlightAssignmentPublishService extends AbstractGuiService<FlightCrewMember, FlightAssignment> {
@@ -80,7 +80,7 @@ public class FlightCrewMemberFlightAssignmentPublishService extends AbstractGuiS
 			super.state(isAvailable, "flightCrewMember", "acme.validation.flightAssignment.flightCrewMember.available");
 
 			// Cannot be assigned to multiple legs simultaneously
-			boolean isAlreadyAssigned = this.repository.hasFlightCrewMemberLegAssociated(flightAssignment.getFlightCrewMember().getId(), MomentHelper.getCurrentMoment());
+			boolean isAlreadyAssigned = this.repository.hasConflictingFlightAssignment(flightAssignment.getFlightCrewMember().getId(), flightAssignment.getLeg().getScheduledDeparture(), flightAssignment.getLeg().getScheduledArrival());
 			super.state(!isAlreadyAssigned, "flightCrewMember", "acme.validation.flightAssignment.flightCrewMember.multipleLegs");
 		}
 

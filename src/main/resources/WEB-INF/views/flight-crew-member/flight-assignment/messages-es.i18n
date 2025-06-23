@@ -10,13 +10,15 @@
 
 flight-crew-member.flight-assignment.form.title = Detalles de la asignación de vuelo
 flight-crew-member.flight-assignment.list.title = Lista de asignaciones de vuelo
+flight-crew-member.flight-assignment.form.title.flight-crew-member = Detalles del miembro de tripulación
+flight-crew-member.flight-assignment.form.title.leg = Detalles del tramo
 
 flight-crew-member.flight-assignment.form.label.duty = Tareas: 
 flight-crew-member.flight-assignment.form.label.moment = Fecha:
 flight-crew-member.flight-assignment.form.label.currentStatus = Estado Actual:
 flight-crew-member.flight-assignment.form.label.remarks = Observaciones:
 flight-crew-member.flight-assignment.form.label.flightCrewMember = Miembro de tripulación:
-flight-crew-member.flight-assignment.form.label.leg = Código de tramo:
+flight-crew-member.flight-assignment.form.label.leg = Tramos:
 
 flight-crew-member.flight-assignment.form.button.activity-log = Mostrar logs de actividad
 flight-crew-member.flight-assignment.form.button.visa-requirements = Mostrar requisitos de visado

@@ -43,7 +43,7 @@ public class FlightCrewMemberFlightAssignmentCreateService extends AbstractGuiSe
 				FlightCrewMember flightCrewMember = (FlightCrewMember) super.getRequest().getPrincipal().getActiveRealm();
 
 				// Only is allowed to create a flight assignment if the leg selected is between the options shown.
-				Collection<Leg> legs = this.repository.findAllLegsByAirlineId(flightCrewMember.getAirline().getId());
+				Collection<Leg> legs = this.repository.findAllLegsByAirlineId(MomentHelper.getCurrentMoment(), flightCrewMember.getAirline().getId());
 				Leg legSelected = super.getRequest().getData("leg", Leg.class);
 
 				isAuthorised = (legSelected == null || legs.contains(legSelected)) && super.getRequest().getData("id", Integer.class).equals(0);
@@ -102,9 +102,16 @@ public class FlightCrewMemberFlightAssignmentCreateService extends AbstractGuiSe
 		dataset.put("status", statusChoices.getSelected().getKey());
 
 		// Leg choices
-		SelectChoices legChoices = SelectChoices.from(this.repository.findAllLegsByAirlineId(flightCrewMember.getAirline().getId()), "flightNumber", flightAssignment.getLeg());
+		SelectChoices legChoices = new SelectChoices();
+		Collection<Leg> legs = this.repository.findAllLegsByAirlineId(MomentHelper.getCurrentMoment(), flightCrewMember.getAirline().getId());
+		for (Leg legChoice : legs) {
+			String key = Integer.toString(legChoice.getId());
+			String label = legChoice.getFlightNumber() + " (" + legChoice.getScheduledDeparture() + " - " + legChoice.getScheduledArrival() + ") ";
+			boolean isSelected = legChoice.equals(flightAssignment.getLeg());
+			legChoices.add(key, label, isSelected);
+		}
+
 		dataset.put("legChoices", legChoices);
-		dataset.put("leg", legChoices.getSelected().getKey());
 
 		super.getResponse().addData(dataset);
 	}

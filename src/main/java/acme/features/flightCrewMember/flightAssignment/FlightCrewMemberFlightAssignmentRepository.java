@@ -32,8 +32,8 @@ public interface FlightCrewMemberFlightAssignmentRepository extends AbstractRepo
 	Collection<FlightAssignment> findAllPublishedFlightAssignments();
 
 	// Show all the legs in the select choices
-	@Query("SELECT l FROM Leg l WHERE l.aircraft.airline.id = :airlineId AND l.draftMode = false")
-	Collection<Leg> findAllLegsByAirlineId(int airlineId);
+	@Query("SELECT l FROM Leg l WHERE l.aircraft.airline.id = :airlineId AND l.scheduledDeparture > :moment AND l.draftMode = false AND l.flight.draftMode = false ORDER BY l.scheduledDeparture ASC")
+	Collection<Leg> findAllLegsByAirlineId(Date moment, int airlineId);
 
 	// Find all the activity logs to remove the flight assignment
 	@Query("SELECT a FROM ActivityLog a WHERE a.flightAssignment.id = :flightAssignmentId")

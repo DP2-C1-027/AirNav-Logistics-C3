@@ -45,7 +45,6 @@ public class AssistanceAgent extends AbstractRole {
 	private String				spokenLanguages;
 
 	@Mandatory
-	@Automapped
 	@ValidMoment(past = true)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date				moment;

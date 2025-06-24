@@ -25,7 +25,6 @@
 	<acme:input-textbox code="administrator.airport.form.label.country" path="country"/>
 	<acme:input-url code="administrator.airport.form.label.website" path="website"/>
 	<acme:input-email code="administrator.airport.form.label.email" path="email" />
-	<acme:input-textbox code="administrator.airport.form.label.address" path="address"/>
 	<acme:input-textbox code="administrator.airport.form.label.phoneNumber" path="phoneNumber"/>
 
 	<jstl:choose>

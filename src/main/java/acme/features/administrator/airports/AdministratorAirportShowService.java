@@ -50,7 +50,7 @@ public class AdministratorAirportShowService extends AbstractGuiService<Administ
 
 	@Override
 	public void unbind(final Airport airport) {
-		Dataset dataset = super.unbindObject(airport, "name", "codigo", "city", "country", "website", "email", "address", "phoneNumber");
+		Dataset dataset = super.unbindObject(airport, "name", "codigo", "city", "country", "website", "email", "phoneNumber");
 
 		SelectChoices choices = SelectChoices.from(OperationalScope.class, airport.getOperationalScope());
 		dataset.put("operationalScope", choices);

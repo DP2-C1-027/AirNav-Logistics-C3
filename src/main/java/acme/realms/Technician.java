@@ -4,7 +4,6 @@ package acme.realms;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.validation.Valid;
-import javax.validation.constraints.Max;
 
 import acme.client.components.basis.AbstractRole;
 import acme.client.components.mappings.Automapped;
@@ -14,12 +13,15 @@ import acme.constraints.ValidIdentifier;
 import acme.constraints.ValidLongTextOptional;
 import acme.constraints.ValidPhoneNumber;
 import acme.constraints.ValidShortText;
+import acme.constraints.ValidTechnician;
+import acme.constraints.ValidYearsOfExperience;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
 @Entity
+@ValidTechnician
 public class Technician extends AbstractRole {
 
 	// Serialisation version --------------------------------------------------
@@ -28,7 +30,6 @@ public class Technician extends AbstractRole {
 	// Attributes -------------------------------------------------------------
 
 	@Mandatory
-	@Automapped
 	@ValidIdentifier
 	@Column(unique = true)
 	private String				codigo;
@@ -50,8 +51,7 @@ public class Technician extends AbstractRole {
 
 	@Mandatory
 	@Automapped
-	@Max(120)
-	@Valid
+	@ValidYearsOfExperience
 	private Integer				yearsOfExperience;
 
 	@Optional

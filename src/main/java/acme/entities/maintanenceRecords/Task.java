@@ -2,6 +2,8 @@
 package acme.entities.maintanenceRecords;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Index;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -21,7 +23,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @Table(indexes = {
-	@Index(columnList = "draftMode")
+	@Index(columnList = "draftMode"),//
+	@Index(columnList = "draftMode, technician_id")
 })
 public class Task extends AbstractEntity {
 
@@ -32,11 +35,10 @@ public class Task extends AbstractEntity {
 
 	@Mandatory
 	@Automapped
-	@Valid
+	@Enumerated(EnumType.STRING)
 	private TaskType			type;
 
 	@Mandatory
-	// HINT: @Valid by default.
 	@Automapped
 	private boolean				draftMode;
 
@@ -49,12 +51,10 @@ public class Task extends AbstractEntity {
 	@Automapped
 	@Min(0)
 	@Max(10)
-	@Valid
 	private Integer				priority;
 
 	@Mandatory
 	@Automapped
-	@Valid
 	@Min(1)
 	@Max(1000)
 	private Integer				estimatedDuration;

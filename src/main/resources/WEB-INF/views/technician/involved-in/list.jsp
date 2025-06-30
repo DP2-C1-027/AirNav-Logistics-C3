@@ -17,6 +17,7 @@
 
 <acme:list>
 	<acme:list-column code="technician.involved-in.list.label.maintanenceRecord" path="maintanenceRecord" width="20%"/>
+		<acme:list-column code="technician.involved-in.list.label.tasks" path="task" width="20%"/>
 	<acme:list-payload path="payload"/>
 </acme:list>
 

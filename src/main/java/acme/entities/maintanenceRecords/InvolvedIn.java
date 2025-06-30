@@ -16,7 +16,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @Table(indexes = {
-	@Index(columnList = "maintanence_record_id")
+	@Index(columnList = "maintanence_record_id"), //
+	@Index(columnList = "task_id"),//                                 // 
+	@Index(columnList = "task_id, maintanence_record_id")
 })
 public class InvolvedIn extends AbstractEntity {
 
@@ -29,12 +31,12 @@ public class InvolvedIn extends AbstractEntity {
 
 	// Relationships ----------------------------------------------------------
 
-	@ManyToOne(optional = false)
+	@ManyToOne
 	@Mandatory
 	@Valid
 	private MaintanenceRecord	maintanenceRecord;
 
-	@ManyToOne(optional = false)
+	@ManyToOne
 	@Mandatory
 	@Valid
 	private Task				task;

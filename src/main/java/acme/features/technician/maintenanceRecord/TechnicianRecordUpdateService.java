@@ -54,14 +54,24 @@ public class TechnicianRecordUpdateService extends AbstractGuiService<Technician
 			isInteger = super.getRequest().getData("aircraft", String.class);
 			if (!isInteger.isBlank() && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
 				aircraftId = Integer.valueOf(isInteger);
-			else
+			else {
 				aircraftId = Integer.valueOf(-1);
-
+				status = false;
+			}
 			if (!aircraftId.equals(Integer.valueOf(0))) {
 				aircraft = this.repository.findAircraftById(aircraftId);
 				if (aircraft == null)
 					status = false;
 			}
+
+			if (status != false)
+				if (super.getRequest().hasData("maintanenceMoment")) {
+					Integer recordId = Integer.valueOf(super.getRequest().getData("id", String.class).trim());
+					Date fechaFormulario = super.getRequest().getData("maintanenceMoment", Date.class);
+					Date fechaBD = this.repository.findRecordById(recordId).getMaintanenceMoment();
+					if (!fechaFormulario.equals(fechaBD))
+						status = false;
+				}
 		} else
 			status = false;
 		super.getResponse().setAuthorised(status);
@@ -104,8 +114,6 @@ public class TechnicianRecordUpdateService extends AbstractGuiService<Technician
 		SelectChoices choices;
 		SelectChoices aircraftChoices;
 		Collection<Aircraft> aircrafts;
-		Date ahora = MomentHelper.getCurrentMoment();
-		record.setMaintanenceMoment(ahora);
 		aircrafts = this.repository.getAllAircraft();
 		aircraftChoices = SelectChoices.from(aircrafts, "registrationNumber", record.getAircraft());
 		choices = SelectChoices.from(StatusMaintanenceRecord.class, record.getStatus());

@@ -34,3 +34,4 @@ acme.validation.flightAssignment.leg.draftmode = La asignación no puede ser rea
 acme.validation.flightAssignment.leg.moment = La asignación no puede ser realizada para tramos que ocurren en el pasado
 acme.validation.flightAssignment.flightCrewMember.available = El miembro de tripulación no está disponible para ser asignado
 acme.validation.flightAssignment.flightCrewMember.multipleLegs = El miembro de tripulación ya está asignado a otro tramo en este momento
+acme.validation.validNextInspection = La fecha actual tiene que ser anterior a la próxima fecha de registro

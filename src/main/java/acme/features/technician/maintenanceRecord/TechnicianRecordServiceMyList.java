@@ -12,7 +12,7 @@ import acme.entities.maintanenceRecords.MaintanenceRecord;
 import acme.realms.Technician;
 
 @GuiService
-public class TechnicianRecordServiceList extends AbstractGuiService<Technician, MaintanenceRecord> {
+public class TechnicianRecordServiceMyList extends AbstractGuiService<Technician, MaintanenceRecord> {
 
 	@Autowired
 	private TechnicianRecordRepository repository;
@@ -27,7 +27,6 @@ public class TechnicianRecordServiceList extends AbstractGuiService<Technician, 
 
 		status = super.getRequest().getPrincipal().hasRealm(technician);
 		super.getResponse().setAuthorised(status);
-
 	}
 
 	@Override

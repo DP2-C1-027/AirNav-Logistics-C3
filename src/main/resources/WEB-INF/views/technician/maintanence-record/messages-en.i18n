@@ -11,7 +11,6 @@
 technician.maintanence-record.form.title = Maintenance Record details
 technician.maintanence-record.list.title = Maintenance Record list
 
-
 technician.maintenance-record.form.label.aircraft = Aircraft:
 technician.maintenance-record.form.label.status = Status:
 technician.maintanence-record.form.label.estimatedCost = Estimated Cost:
@@ -37,6 +36,7 @@ technician.task.form.button.createRecord = Create Task
 
 technician.maintanence-record.error.no-aircraft = It must have an associated aircraft
 
-technician.maintanence-record.error.noPublishedTasks.message = There's no published tasks
+technician.maintanence-record.error.noPublishedTasks.message = There's no tasks associated to this record
+technician.maintanence-record.error.unpublishedTask.message = There's unpublished tasks
 
 

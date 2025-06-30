@@ -12,7 +12,7 @@ import acme.entities.maintanenceRecords.Task;
 import acme.realms.Technician;
 
 @GuiService
-public class TechnicianTaskListService extends AbstractGuiService<Technician, Task> {
+public class TechnicianTaskMyListService extends AbstractGuiService<Technician, Task> {
 	// Internal state ---------------------------------------------------------
 
 	@Autowired

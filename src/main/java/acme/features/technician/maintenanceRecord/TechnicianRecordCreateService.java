@@ -48,19 +48,28 @@ public class TechnicianRecordCreateService extends AbstractGuiService<Technician
 
 			if (super.getRequest().hasData("aircraft")) {
 				Integer aircraftId;
-				String isInteger2;
+				String isInteger1;
 
-				isInteger2 = super.getRequest().getData("aircraft", String.class);
-				if (!isInteger2.isBlank() && isInteger2.chars().allMatch((e) -> e > 47 && e < 58))
-					aircraftId = Integer.valueOf(isInteger2);
-				else
+				isInteger1 = super.getRequest().getData("aircraft", String.class);
+				if (!isInteger1.isBlank() && isInteger1.chars().allMatch((e) -> e > 47 && e < 58))
+					aircraftId = Integer.valueOf(isInteger1);
+				else {
 					aircraftId = Integer.valueOf(-1);
-
+					status = false;
+				}
 				if (!aircraftId.equals(Integer.valueOf(0))) {
 					aircraft = this.repository.findAircraftById(aircraftId);
 					if (aircraft == null)
 						status = false;
 				}
+				//comprobacion de la manipulacion de la fecha
+				if (status != false)
+					if (super.getRequest().hasData("maintanenceMoment")) {
+						Date fechaFormulario = super.getRequest().getData("maintanenceMoment", Date.class);
+						Date fechaBD = MomentHelper.getCurrentMoment();
+						if (!fechaFormulario.equals(fechaBD))
+							status = false;
+					}
 			} else
 				status = false;
 
@@ -107,7 +116,8 @@ public class TechnicianRecordCreateService extends AbstractGuiService<Technician
 
 	@Override
 	public void perform(final MaintanenceRecord record) {
-		//assert record != null;
+		Date ahora = MomentHelper.getCurrentMoment();
+		record.setMaintanenceMoment(ahora);
 		this.repository.save(record);
 	}
 

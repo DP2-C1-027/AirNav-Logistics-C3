@@ -1,7 +1,6 @@
 
 package acme.constraints;
 
-import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -10,24 +9,15 @@ import java.lang.annotation.Target;
 import javax.validation.Constraint;
 import javax.validation.Payload;
 import javax.validation.ReportAsSingleViolation;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-@Documented
-
-@Constraint(validatedBy = {})
+@Constraint(validatedBy = ValidNextInspectionValidator.class)
 @ReportAsSingleViolation
 
-@Min(0)
-@Max(120)
+public @interface ValidNextInspection {
 
-public @interface ValidYearsOfExperience {
-
-	// Standard validation properties -----------------------------------------
-
-	String message() default "{acme.validation.yearsOfExperience}";
+	String message() default "{acme.validation.validNextInspection}";
 	Class<?>[] groups() default {};
 	Class<? extends Payload>[] payload() default {};
 

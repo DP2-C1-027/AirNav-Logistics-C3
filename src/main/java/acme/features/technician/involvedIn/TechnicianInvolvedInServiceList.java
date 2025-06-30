@@ -40,6 +40,8 @@ public class TechnicianInvolvedInServiceList extends AbstractGuiService<Technici
 
 		technicianId = super.getRequest().getPrincipal().getActiveRealm().getId();
 		involved = this.repository.findAllInvolvedInByTechnicianId(technicianId);
+		//solo puede cambiar aquellos que sean los suyos (MR)
+		//con todas las tasks que estén guardadas en la base de datos
 
 		super.getBuffer().addData(involved);
 	}
@@ -56,7 +58,7 @@ public class TechnicianInvolvedInServiceList extends AbstractGuiService<Technici
 
 		dataset = super.unbindObject(involved, "maintanenceRecord", "task");
 		dataset.put("maintanenceRecord", record.getMaintanenceMoment());
-		dataset.put("task", task.getDescription());
+		dataset.put("task", task.getType());
 
 		super.getResponse().addData(dataset);
 

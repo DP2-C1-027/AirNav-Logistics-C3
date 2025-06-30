@@ -40,6 +40,7 @@ public class TechnicianInvolvedInCreateService extends AbstractGuiService<Techni
 
 			MaintanenceRecord record = this.repository.findRecordById(recordId);
 			tech = record != null ? record.getTechnician() : null;
+			//aqui miro tb que no esté publicado
 			status = tech == null ? recordId.equals(Integer.valueOf(0)) : super.getRequest().getPrincipal().hasRealm(tech) && record.isDraftMode();
 
 		} else if (super.getRequest().getMethod().equals("POST"))
@@ -135,7 +136,9 @@ public class TechnicianInvolvedInCreateService extends AbstractGuiService<Techni
 		SelectChoices recordChoices;
 		SelectChoices taskChoices;
 
-		Collection<Task> tasks = this.repository.findTaskByTechnicianId(tech.getId());
+		//aqui estarian todas las tasks que existen en el sistema
+		//solo puede hacerlo sobre sus maintanenceRecords
+		Collection<Task> tasks = this.repository.findAllTasks();
 
 		Collection<MaintanenceRecord> records = this.repository.findNotPublishRecord(tech.getId(), true);
 

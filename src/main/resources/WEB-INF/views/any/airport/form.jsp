@@ -25,6 +25,5 @@
 	<acme:input-textbox code="any.airport.form.label.country" path="country" readonly = "true"/>
 	<acme:input-url code="any.airport.form.label.website" path="website" readonly = "true"/>
 	<acme:input-email code="any.airport.form.label.email" path="email" readonly = "true"/>
-	<acme:input-textbox code="any.airport.form.label.address" path="address" readonly = "true"/>
 	<acme:input-textbox code="any.airport.form.label.phoneNumber" path="phoneNumber" readonly = "true"/>
 </acme:form>

@@ -47,7 +47,7 @@ public class FlightCrewMemberFlightAssignmentPublishService extends AbstractGuiS
 					FlightCrewMember flightCrewMember = (FlightCrewMember) super.getRequest().getPrincipal().getActiveRealm();
 
 					// Only is allowed to publish a flight assignment if the leg selected is between the options shown.
-					Collection<Leg> legs = this.repository.findAllLegsByAirlineId(flightCrewMember.getAirline().getId());
+					Collection<Leg> legs = this.repository.findAllLegsByAirlineId(MomentHelper.getCurrentMoment(), flightCrewMember.getAirline().getId());
 					Leg legSelected = super.getRequest().getData("leg", Leg.class);
 
 					isAuthorised = flightAssignment != null && flightAssignment.getDraftMode() && flightAssignment.getFlightCrewMember().equals(flightCrewMember) && (legSelected == null || legs.contains(legSelected));
@@ -84,15 +84,6 @@ public class FlightCrewMemberFlightAssignmentPublishService extends AbstractGuiS
 			super.state(!isAlreadyAssigned, "flightCrewMember", "acme.validation.flightAssignment.flightCrewMember.multipleLegs");
 		}
 
-		// To publish a flight assignment these cannot be linked to legs that are not published, do not belongs to the flight crew member airline or have already occurred
-		if (flightAssignment.getLeg() != null) {
-			boolean isDraftModeLeg = flightAssignment.getLeg().isDraftMode();
-			super.state(!isDraftModeLeg, "leg", "acme.validation.flightAssignment.leg.draftmode");
-
-			boolean isLinkedToPastLeg = flightAssignment.getLeg().getScheduledDeparture().before(MomentHelper.getCurrentMoment());
-			super.state(!isLinkedToPastLeg, "leg", "acme.validation.flightAssignment.leg.moment");
-		}
-
 		// Each leg can only have one pilot and one co-pilot
 		if (flightAssignment.getDuty() != null && flightAssignment.getLeg() != null) {
 			boolean isDutyAlreadyAssigned = this.repository.hasDutyAssigned(flightAssignment.getLeg().getId(), flightAssignment.getDuty(), flightAssignment.getId());
@@ -104,6 +95,7 @@ public class FlightCrewMemberFlightAssignmentPublishService extends AbstractGuiS
 	@Override
 	public void perform(final FlightAssignment flightAssignment) {
 		flightAssignment.setDraftMode(false);
+		flightAssignment.setMoment(MomentHelper.getCurrentMoment());
 		this.repository.save(flightAssignment);
 	}
 
@@ -111,7 +103,8 @@ public class FlightCrewMemberFlightAssignmentPublishService extends AbstractGuiS
 	public void unbind(final FlightAssignment flightAssignment) {
 		Dataset dataset = super.unbindObject(flightAssignment, "duty", "moment", "currentStatus", "remarks", "draftMode", "flightCrewMember", "leg");
 
-		dataset.put("flightCrewMember", flightAssignment.getFlightCrewMember().getIdentity().getFullName());
+		FlightCrewMember flightCrewMember = flightAssignment.getFlightCrewMember();
+		Leg leg = flightAssignment.getLeg();
 
 		// Duty choices
 		SelectChoices dutyChoices = SelectChoices.from(Duty.class, flightAssignment.getDuty());
@@ -124,9 +117,38 @@ public class FlightCrewMemberFlightAssignmentPublishService extends AbstractGuiS
 		dataset.put("status", statusChoices.getSelected().getKey());
 
 		// Leg choices
-		SelectChoices legChoices = SelectChoices.from(this.repository.findAllLegsByAirlineId(flightAssignment.getFlightCrewMember().getAirline().getId()), "flightNumber", flightAssignment.getLeg());
+		SelectChoices legChoices = new SelectChoices();
+		Collection<Leg> legs = this.repository.findAllLegsByAirlineId(MomentHelper.getCurrentMoment(), flightCrewMember.getAirline().getId());
+		for (Leg legChoice : legs) {
+			String key = Integer.toString(legChoice.getId());
+			String label = legChoice.getFlightNumber() + " (" + legChoice.getScheduledDeparture() + " - " + legChoice.getScheduledArrival() + ") ";
+			boolean isSelected = legChoice.equals(flightAssignment.getLeg());
+			legChoices.add(key, label, isSelected);
+		}
+
 		dataset.put("legChoices", legChoices);
-		dataset.put("leg", legChoices.getSelected().getKey());
+
+		// Flight Crew Member details
+		dataset.put("flightCrewMember", flightCrewMember.getIdentity().getFullName());
+		dataset.put("codigo", flightCrewMember.getCodigo());
+		dataset.put("phoneNumber", flightCrewMember.getPhoneNumber());
+		dataset.put("languageSkills", flightCrewMember.getLanguageSkills());
+		dataset.put("availabilityStatus", flightCrewMember.getAvailabilityStatus());
+		dataset.put("salary", flightCrewMember.getSalary());
+		dataset.put("yearsOfExperience", flightCrewMember.getYearsOfExperience());
+		dataset.put("airline", flightCrewMember.getAirline().getName());
+
+		// Leg details
+		dataset.put("flightNumber", leg.getFlightNumber());
+		dataset.put("scheduledDeparture", leg.getScheduledDeparture());
+		dataset.put("scheduledArrival", leg.getScheduledArrival());
+		dataset.put("status", leg.getStatus());
+		dataset.put("duration", leg.getDuration());
+		dataset.put("departureAirport", leg.getDepartureAirport().getName());
+		dataset.put("arrivalAirport", leg.getArrivalAirport().getName());
+		dataset.put("aircraft", leg.getAircraft().getRegistrationNumber());
+		dataset.put("flight", leg.getFlight().getTag());
+		dataset.put("legAirline", leg.getAircraft().getAirline().getName());
 
 		super.getResponse().addData(dataset);
 	}

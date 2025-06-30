@@ -8,6 +8,8 @@ import acme.client.components.principals.Any;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.flightAssignment.FlightAssignment;
+import acme.entities.legs.Leg;
+import acme.realms.flightcrewmember.FlightCrewMember;
 
 @GuiService
 public class AnyFlightAssignmentShowService extends AbstractGuiService<Any, FlightAssignment> {
@@ -48,10 +50,33 @@ public class AnyFlightAssignmentShowService extends AbstractGuiService<Any, Flig
 	public void unbind(final FlightAssignment completedFlightAssignment) {
 		Dataset dataset = super.unbindObject(completedFlightAssignment, "duty", "moment", "currentStatus", "remarks", "flightCrewMember", "leg", "draftMode");
 
-		dataset.put("flightCrewMember", completedFlightAssignment.getFlightCrewMember().getIdentity().getFullName());
+		FlightCrewMember flightcrewMember = completedFlightAssignment.getFlightCrewMember();
+		Leg leg = completedFlightAssignment.getLeg();
 
 		// Leg choices
 		dataset.put("leg", completedFlightAssignment.getLeg().getFlightNumber());
+
+		// Flight Crew Member details
+		dataset.put("flightCrewMember", flightcrewMember.getIdentity().getFullName());
+		dataset.put("codigo", flightcrewMember.getCodigo());
+		dataset.put("phoneNumber", flightcrewMember.getPhoneNumber());
+		dataset.put("languageSkills", flightcrewMember.getLanguageSkills());
+		dataset.put("availabilityStatus", flightcrewMember.getAvailabilityStatus());
+		dataset.put("salary", flightcrewMember.getSalary());
+		dataset.put("yearsOfExperience", flightcrewMember.getYearsOfExperience());
+		dataset.put("airline", flightcrewMember.getAirline().getName());
+
+		// Leg details
+		dataset.put("flightNumber", leg.getFlightNumber());
+		dataset.put("scheduledDeparture", leg.getScheduledDeparture());
+		dataset.put("scheduledArrival", leg.getScheduledArrival());
+		dataset.put("status", leg.getStatus());
+		dataset.put("duration", leg.getDuration());
+		dataset.put("departureAirport", leg.getDepartureAirport().getName());
+		dataset.put("arrivalAirport", leg.getArrivalAirport().getName());
+		dataset.put("aircraft", leg.getAircraft().getRegistrationNumber());
+		dataset.put("flight", leg.getFlight().getTag());
+		dataset.put("legAirline", leg.getAircraft().getAirline().getName());
 
 		super.getResponse().addData(dataset);
 	}

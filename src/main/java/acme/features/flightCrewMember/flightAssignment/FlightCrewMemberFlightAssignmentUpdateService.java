@@ -46,7 +46,7 @@ public class FlightCrewMemberFlightAssignmentUpdateService extends AbstractGuiSe
 					FlightCrewMember flightCrewMember = (FlightCrewMember) super.getRequest().getPrincipal().getActiveRealm();
 
 					// Only is allowed to update a flight assignment if the leg selected is between the options shown.
-					Collection<Leg> legs = this.repository.findAllLegsByAirlineId(flightCrewMember.getAirline().getId());
+					Collection<Leg> legs = this.repository.findAllLegsByAirlineId(MomentHelper.getCurrentMoment(), flightCrewMember.getAirline().getId());
 					Leg legSelected = super.getRequest().getData("leg", Leg.class);
 
 					isAuthorised = flightAssignment != null && flightAssignment.getDraftMode() && flightAssignment.getFlightCrewMember().equals(flightCrewMember) && (legSelected == null || legs.contains(legSelected));
@@ -86,7 +86,8 @@ public class FlightCrewMemberFlightAssignmentUpdateService extends AbstractGuiSe
 	public void unbind(final FlightAssignment flightAssignment) {
 		Dataset dataset = super.unbindObject(flightAssignment, "duty", "moment", "currentStatus", "remarks", "draftMode", "flightCrewMember", "leg");
 
-		dataset.put("flightCrewMember", flightAssignment.getFlightCrewMember().getIdentity().getFullName());
+		FlightCrewMember flightCrewMember = flightAssignment.getFlightCrewMember();
+		Leg leg = flightAssignment.getLeg();
 
 		// Duty choices
 		SelectChoices dutyChoices = SelectChoices.from(Duty.class, flightAssignment.getDuty());
@@ -99,9 +100,38 @@ public class FlightCrewMemberFlightAssignmentUpdateService extends AbstractGuiSe
 		dataset.put("status", statusChoices.getSelected().getKey());
 
 		// Leg choices
-		SelectChoices legChoices = SelectChoices.from(this.repository.findAllLegsByAirlineId(flightAssignment.getFlightCrewMember().getAirline().getId()), "flightNumber", flightAssignment.getLeg());
+		SelectChoices legChoices = new SelectChoices();
+		Collection<Leg> legs = this.repository.findAllLegsByAirlineId(MomentHelper.getCurrentMoment(), flightCrewMember.getAirline().getId());
+		for (Leg legChoice : legs) {
+			String key = Integer.toString(legChoice.getId());
+			String label = legChoice.getFlightNumber() + " (" + legChoice.getScheduledDeparture() + " - " + legChoice.getScheduledArrival() + ") ";
+			boolean isSelected = legChoice.equals(flightAssignment.getLeg());
+			legChoices.add(key, label, isSelected);
+		}
+
 		dataset.put("legChoices", legChoices);
-		dataset.put("leg", legChoices.getSelected().getKey());
+
+		// Flight Crew Member details
+		dataset.put("flightCrewMember", flightCrewMember.getIdentity().getFullName());
+		dataset.put("codigo", flightCrewMember.getCodigo());
+		dataset.put("phoneNumber", flightCrewMember.getPhoneNumber());
+		dataset.put("languageSkills", flightCrewMember.getLanguageSkills());
+		dataset.put("availabilityStatus", flightCrewMember.getAvailabilityStatus());
+		dataset.put("salary", flightCrewMember.getSalary());
+		dataset.put("yearsOfExperience", flightCrewMember.getYearsOfExperience());
+		dataset.put("airline", flightCrewMember.getAirline().getName());
+
+		// Leg details
+		dataset.put("flightNumber", leg.getFlightNumber());
+		dataset.put("scheduledDeparture", leg.getScheduledDeparture());
+		dataset.put("scheduledArrival", leg.getScheduledArrival());
+		dataset.put("status", leg.getStatus());
+		dataset.put("duration", leg.getDuration());
+		dataset.put("departureAirport", leg.getDepartureAirport().getName());
+		dataset.put("arrivalAirport", leg.getArrivalAirport().getName());
+		dataset.put("aircraft", leg.getAircraft().getRegistrationNumber());
+		dataset.put("flight", leg.getFlight().getTag());
+		dataset.put("legAirline", leg.getAircraft().getAirline().getName());
 
 		super.getResponse().addData(dataset);
 	}

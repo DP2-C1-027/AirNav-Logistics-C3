@@ -17,7 +17,6 @@ import acme.constraints.ValidEmailOptional;
 import acme.constraints.ValidIATAcode;
 import acme.constraints.ValidPhoneNumberOptional;
 import acme.constraints.ValidShortText;
-import acme.constraints.ValidShortTextOptional;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -70,11 +69,6 @@ public class Airport extends AbstractEntity {
 	@Automapped
 	@ValidEmailOptional
 	private String				email;
-
-	@Optional
-	@Automapped
-	@ValidShortTextOptional
-	private String				address;
 
 	@Optional
 	@Automapped

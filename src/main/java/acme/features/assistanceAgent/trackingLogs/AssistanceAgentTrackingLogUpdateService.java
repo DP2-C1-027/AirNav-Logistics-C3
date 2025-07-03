@@ -12,7 +12,6 @@
 
 package acme.features.assistanceAgent.trackingLogs;
 
-import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,7 +76,7 @@ public class AssistanceAgentTrackingLogUpdateService extends AbstractGuiService<
 
 	@Override
 	public void bind(final TrackingLog TrackingLog) {
-		super.bindObject(TrackingLog, "lastUpdateMoment", "stepUndergoing", "resolutionPercentage", "indicator", "claim");
+		super.bindObject(TrackingLog, "stepUndergoing", "resolutionPercentage", "resolutionDetails", "indicator");
 	}
 
 	@Override
@@ -115,14 +114,13 @@ public class AssistanceAgentTrackingLogUpdateService extends AbstractGuiService<
 	@Override
 	public void unbind(final TrackingLog trackingLog) {
 		Dataset dataset;
-		Collection<Claim> claims;
-		AssistanceAgent assistance = (AssistanceAgent) super.getRequest().getPrincipal().getActiveRealm();
 
-		claims = this.repository.findAllClaimsByAgent(assistance.getId());
-		dataset = super.unbindObject(trackingLog, "lastUpdateMoment", "stepUndergoing", "draftMode", "resolutionPercentage", "indicator");
+		dataset = super.unbindObject(trackingLog, "creationMoment", "lastUpdateMoment", "stepUndergoing", "draftMode", "resolutionPercentage", "indicator", "claim");
 
-		SelectChoices claimsChoices = SelectChoices.from(claims, "passengerEmail", trackingLog.getClaim());
-		dataset.put("claim", claimsChoices);
+		if (trackingLog.getClaim() != null)
+			dataset.put("claimId", trackingLog.getClaim().getId());
+		else
+			dataset.put("claimId", 0);
 
 		SelectChoices statusChoices = SelectChoices.from(Indicator.class, trackingLog.getIndicator());
 		dataset.put("indicator", statusChoices);

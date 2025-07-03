@@ -13,6 +13,7 @@ assistanceAgent.trackingLog.list.label.indicator=Indicador de Estado
 assistanceAgent.trackingLog.list.button.create=Crear Registro
 
 ### Formulario de Registro ###
+assistanceAgent.trackingLog.form.label.creationMoment=Fecha de Creación
 assistanceAgent.trackingLog.form.label.lastUpdateMoment=Última Actualización
 assistanceAgent.trackingLog.form.label.stepUndergoing=Paso Actual
 assistanceAgent.trackingLog.form.label.resolutionPercentage=Porcentaje de Resolución

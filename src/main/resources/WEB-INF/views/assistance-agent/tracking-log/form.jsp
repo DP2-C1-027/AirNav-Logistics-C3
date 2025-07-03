@@ -18,13 +18,14 @@
 
 
 <acme:form >
-	<acme:input-textbox code="assistanceAgent.trackingLog.form.label.lastUpdateMoment" path="creationMoment" readonly="true"/>
+	<acme:input-textbox code="assistanceAgent.trackingLog.form.label.creationMoment" path="creationMoment" readonly="true"/>
 	<acme:input-textbox code="assistanceAgent.trackingLog.form.label.lastUpdateMoment" path="lastUpdateMoment" readonly="true"/>
 	<acme:input-textbox code="assistanceAgent.trackingLog.form.label.stepUndergoing" path="stepUndergoing"/>
 	<acme:input-textbox code="assistanceAgent.trackingLog.form.label.resolutionPercentage" path="resolutionPercentage"/>
 	<acme:input-select code="assistanceAgent.trackingLog.form.label.indicator" path="indicator" choices="${indicator}" />
 	<acme:input-textbox code="assistanceAgent.trackingLog.form.label.resolutionDetails" path="resolutionDetails"/>
-	<acme:input-select code="assistanceAgent.trackingLog.form.label.claim" path="claim" choices="${claim}"/>
+	<acme:input-textbox code="assistanceAgent.trackingLog.form.label.claim" path="claim" readonly="true"/>
+
 
 
 	<jstl:choose>
@@ -38,7 +39,7 @@
 					<acme:button code="assistanceAgent.claim.form.button.claim" action="/assistance-agent/claim/showByTrackingLog?trackingLogId=${id}"/>
 				</jstl:when>
 				<jstl:when test="${acme:anyOf(_command, 'create')}">
-					<acme:submit code="assistanceAgent.trackingLog.form.button.create" action="/assistance-agent/tracking-log/create?claimId=${id}"/>
+					<acme:submit code="assistanceAgent.trackingLog.form.button.create" action="/assistance-agent/tracking-log/create?claimId=${claim.id}"/>
 				</jstl:when>		
 		</jstl:choose>	
 </acme:form>

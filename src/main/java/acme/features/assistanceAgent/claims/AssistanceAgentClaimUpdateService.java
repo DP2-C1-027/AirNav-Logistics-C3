@@ -83,7 +83,7 @@ public class AssistanceAgentClaimUpdateService extends AbstractGuiService<Assist
 
 	@Override
 	public void bind(final Claim claim) {
-		super.bindObject(claim, "passengerEmail", "description", "indicator", "linkedTo");
+		super.bindObject(claim, "passengerEmail", "description", "linkedTo");
 
 	}
 

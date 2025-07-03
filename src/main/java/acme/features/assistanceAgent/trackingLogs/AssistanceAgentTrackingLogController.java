@@ -16,9 +16,6 @@ public class AssistanceAgentTrackingLogController extends AbstractGuiController<
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private AssistanceAgentTrackingLogListService			listService;
-
-	@Autowired
 	private AssistanceAgentTrackingLogListByClaimService	listByClaimService;
 	@Autowired
 	private AssistanceAgentTrackingLogShowService			showService;
@@ -41,7 +38,6 @@ public class AssistanceAgentTrackingLogController extends AbstractGuiController<
 	@PostConstruct
 	protected void initialise() {
 
-		super.addBasicCommand("list", this.listService);
 		super.addCustomCommand("listByClaim", "list", this.listByClaimService);
 
 		super.addBasicCommand("create", this.createService);

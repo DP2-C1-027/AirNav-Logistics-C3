@@ -13,6 +13,7 @@ assistanceAgent.trackingLog.list.label.indicator=Status Indicator
 assistanceAgent.trackingLog.list.button.create=Create Tracking Log
 
 ### Tracking Log Form ###
+assistanceAgent.trackingLog.form.label.creationMoment=Creation Moment
 assistanceAgent.trackingLog.form.label.lastUpdateMoment=Last Update
 assistanceAgent.trackingLog.form.label.stepUndergoing=Current Step
 assistanceAgent.trackingLog.form.label.resolutionPercentage=Resolution Percentage

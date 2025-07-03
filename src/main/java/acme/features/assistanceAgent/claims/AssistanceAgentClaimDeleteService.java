@@ -51,12 +51,12 @@ public class AssistanceAgentClaimDeleteService extends AbstractGuiService<Assist
 			Integer claimId;
 			String isInteger;
 			isInteger = super.getRequest().getData("id", String.class);
-			if (isInteger != null && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
+			if (isInteger != null && !isInteger.isBlank() && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
 				claimId = Integer.valueOf(isInteger);
 			else
 				claimId = Integer.valueOf(-1);
 
-			if (claimId == null || !claimId.equals(Integer.valueOf(0)) && this.repository.findOneClaimById(claimId) == null)
+			if (claimId == null || claimId.equals(Integer.valueOf(0)) || !claimId.equals(Integer.valueOf(0)) && this.repository.findOneClaimById(claimId) == null)
 				status = false;
 			else
 				try {

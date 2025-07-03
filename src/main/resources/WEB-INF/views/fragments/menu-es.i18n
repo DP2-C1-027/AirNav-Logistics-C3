@@ -101,7 +101,9 @@ master.menu.customers.show-dashboard = Mi dashboard
 # master.menu.technicians ##########################################################
 master.menu.technicians = Técnico
 master.menu.technicians.list-my-maintenance-records = Mis registros de mantenimiento
+master.menu.technicians.list-my-maintenance-records-published = Registros de mantenimiento publicados
 master.menu.technicians.list-my-tasks = Mis tareas
+master.menu.technicians.list-my-tasks-published = Tareas publicadas
 master.menu.technicians.list-my-involved-in = Mis participaciones
 
 # master.menu.dashboards ########################################################

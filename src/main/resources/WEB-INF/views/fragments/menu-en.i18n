@@ -98,7 +98,9 @@ master.menu.customers.show-dashboard = My dashboard
 
 # master.menu.technicians ##########################################################
 master.menu.technicians = Technician
-master.menu.technicians.list-my-maintenance-records = My records
+master.menu.technicians.list-my-maintenance-records = My Records
+master.menu.technicians.list-my-maintenance-records-published = Published Records
+master.menu.technicians.list-my-tasks-published=Published Tasks
 master.menu.technicians.list-my-tasks = My tasks
 master.menu.technicians.list-my-involved-in = My involved in
 

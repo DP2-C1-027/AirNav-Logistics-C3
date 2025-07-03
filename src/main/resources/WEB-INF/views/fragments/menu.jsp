@@ -94,7 +94,9 @@
 		
 		</acme:menu-option>
 			<acme:menu-option code="master.menu.technicians" access="hasRealm('Technician')">
+			<acme:menu-suboption code="master.menu.technicians.list-my-maintenance-records-published" action="/technician/maintanence-record/publishList"/>
 			<acme:menu-suboption code="master.menu.technicians.list-my-maintenance-records" action="/technician/maintanence-record/list"/>
+			<acme:menu-suboption code="master.menu.technicians.list-my-tasks-published" action="/technician/task/publishList"/>
 			<acme:menu-suboption code="master.menu.technicians.list-my-tasks" action="/technician/task/list"/>
 			<acme:menu-suboption code="master.menu.technicians.list-my-involved-in" action="/technician/involved-in/list"/>
 		</acme:menu-option>

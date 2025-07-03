@@ -40,10 +40,10 @@ public class TechnicianInvolvedInCreateService extends AbstractGuiService<Techni
 
 			MaintanenceRecord record = this.repository.findRecordById(recordId);
 			tech = record != null ? record.getTechnician() : null;
-			status = tech == null ? recordId.equals(Integer.valueOf(0)) : super.getRequest().getPrincipal().hasRealm(tech) && record.isDraftMode();
+			//aqui miro tb que no esté publicado
+			status = record == null ? recordId.equals(Integer.valueOf(0)) : super.getRequest().getPrincipal().hasRealm(tech) && record.isDraftMode();
 
-		} else if (super.getRequest().getMethod().equals("POST"))
-			status = false;
+		}
 
 		if (!status) {
 			super.getResponse().setAuthorised(false);
@@ -62,7 +62,7 @@ public class TechnicianInvolvedInCreateService extends AbstractGuiService<Techni
 
 			task = this.repository.findTaskById(id);
 			tech = task == null ? null : task.getTechnician();
-			status = tech == null ? id.equals(Integer.valueOf(0)) : super.getRequest().getPrincipal().hasRealm(tech);
+			status = task == null ? id.equals(Integer.valueOf(0)) : super.getRequest().getPrincipal().hasRealm(tech) || !task.isDraftMode();
 		} else if (super.getRequest().getMethod().equals("POST"))
 			status = false;
 
@@ -135,7 +135,11 @@ public class TechnicianInvolvedInCreateService extends AbstractGuiService<Techni
 		SelectChoices recordChoices;
 		SelectChoices taskChoices;
 
-		Collection<Task> tasks = this.repository.findTaskByTechnicianId(tech.getId());
+		//aqui estarian todas las tasks que existen en el sistema
+		//solo puede hacerlo sobre sus maintanenceRecords
+		Collection<Task> tasks = this.repository.findAllTasksPossible(tech.getId());
+		//probar a añadir una task que no sea de el y que no este publicada
+		//y con una que esté publicada, no deberia dejarme editar ninguna de las dos...
 
 		Collection<MaintanenceRecord> records = this.repository.findNotPublishRecord(tech.getId(), true);
 

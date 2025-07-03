@@ -30,10 +30,13 @@ public class TechnicianRecordPublishService extends AbstractGuiService<Technicia
 	@Override
 	public void authorise() {
 		boolean status = true;
-		if (super.getRequest().hasData("id", int.class)) {
+
+		MaintanenceRecord record;
+		Technician tech;
+		Aircraft aircraft;
+
+		if (super.getRequest().hasData("id")) {
 			Integer recordId;
-			MaintanenceRecord record;
-			Technician tech;
 			String isInteger;
 			isInteger = super.getRequest().getData("id", String.class).trim();
 			if (!isInteger.isBlank() && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
@@ -41,8 +44,33 @@ public class TechnicianRecordPublishService extends AbstractGuiService<Technicia
 			else
 				recordId = null;
 			record = recordId != null ? this.repository.findRecordById(recordId) : null;
-			tech = record == null ? null : record.getTechnician();
+			tech = record != null ? record.getTechnician() : null;
 			status = tech != null && record.isDraftMode() && super.getRequest().getPrincipal().hasRealm(tech);
+
+			if (super.getRequest().hasData("aircraft")) {
+				Integer aircraftId;
+
+				isInteger = super.getRequest().getData("aircraft", String.class);
+				if (!isInteger.isBlank() && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
+					aircraftId = Integer.valueOf(isInteger);
+				else {
+					aircraftId = Integer.valueOf(-1);
+					status = false;
+				}
+				if (!aircraftId.equals(Integer.valueOf(0))) {
+					aircraft = this.repository.findAircraftById(aircraftId);
+					if (aircraft == null)
+						status = false;
+				}
+
+				if (status != false)
+					if (super.getRequest().hasData("maintanenceMoment")) {
+						Date fechaFormulario = super.getRequest().getData("maintanenceMoment", Date.class);
+						Date fechaBD = this.repository.findRecordById(recordId).getMaintanenceMoment();
+						if (!fechaFormulario.equals(fechaBD))
+							status = false;
+					}
+			}
 		} else
 			status = false;
 		super.getResponse().setAuthorised(status);
@@ -62,7 +90,7 @@ public class TechnicianRecordPublishService extends AbstractGuiService<Technicia
 	@Override
 	public void bind(final MaintanenceRecord record) {
 
-		super.bindObject(record, "maintanenceMoment", "status", "nextMaintanence", "estimatedCost", "notes");
+		super.bindObject(record, "status", "nextMaintanence", "estimatedCost", "notes", "aircraft");
 
 	}
 
@@ -72,8 +100,8 @@ public class TechnicianRecordPublishService extends AbstractGuiService<Technicia
 
 		Collection<Task> tasks = this.repository.findTasksByRecordId(record.getId());
 
-		boolean allTasksPublished = tasks.isEmpty() || tasks.stream().allMatch(task -> !task.isDraftMode());
-		boolean atLeastOneTask = tasks.size() > 0;
+		boolean allTasksPublished = tasks.stream().allMatch(task -> !task.isDraftMode());
+		boolean atLeastOneTask = !tasks.isEmpty();
 
 		super.state(allTasksPublished, "*", "technician.maintanence-record.error.unpublishedTask.message");
 		super.state(atLeastOneTask, "*", "technician.maintanence-record.error.noPublishedTasks.message");

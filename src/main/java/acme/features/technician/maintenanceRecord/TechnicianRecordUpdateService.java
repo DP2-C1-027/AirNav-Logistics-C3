@@ -45,22 +45,30 @@ public class TechnicianRecordUpdateService extends AbstractGuiService<Technician
 			record = recordId != null ? this.repository.findRecordById(recordId) : null;
 			tech = record != null ? record.getTechnician() : null;
 			status = tech != null && record.isDraftMode() && super.getRequest().getPrincipal().hasRealm(tech);
-		}
 
-		if (super.getRequest().hasData("aircraft")) {
-			Integer aircraftId;
-			String isInteger;
+			if (super.getRequest().hasData("aircraft")) {
+				Integer aircraftId;
 
-			isInteger = super.getRequest().getData("aircraft", String.class);
-			if (!isInteger.isBlank() && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
-				aircraftId = Integer.valueOf(isInteger);
-			else
-				aircraftId = Integer.valueOf(-1);
-
-			if (!aircraftId.equals(Integer.valueOf(0))) {
-				aircraft = this.repository.findAircraftById(aircraftId);
-				if (aircraft == null)
+				isInteger = super.getRequest().getData("aircraft", String.class);
+				if (!isInteger.isBlank() && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
+					aircraftId = Integer.valueOf(isInteger);
+				else {
+					aircraftId = Integer.valueOf(-1);
 					status = false;
+				}
+				if (!aircraftId.equals(Integer.valueOf(0))) {
+					aircraft = this.repository.findAircraftById(aircraftId);
+					if (aircraft == null)
+						status = false;
+				}
+
+				if (status != false)
+					if (super.getRequest().hasData("maintanenceMoment")) {
+						Date fechaFormulario = super.getRequest().getData("maintanenceMoment", Date.class);
+						Date fechaBD = this.repository.findRecordById(recordId).getMaintanenceMoment();
+						if (!fechaFormulario.equals(fechaBD))
+							status = false;
+					}
 			}
 		} else
 			status = false;
@@ -104,8 +112,6 @@ public class TechnicianRecordUpdateService extends AbstractGuiService<Technician
 		SelectChoices choices;
 		SelectChoices aircraftChoices;
 		Collection<Aircraft> aircrafts;
-		Date ahora = MomentHelper.getCurrentMoment();
-		record.setMaintanenceMoment(ahora);
 		aircrafts = this.repository.getAllAircraft();
 		aircraftChoices = SelectChoices.from(aircrafts, "registrationNumber", record.getAircraft());
 		choices = SelectChoices.from(StatusMaintanenceRecord.class, record.getStatus());

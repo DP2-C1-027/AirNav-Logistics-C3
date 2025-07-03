@@ -2,7 +2,6 @@
 package acme.features.technician.involvedIn;
 
 import java.util.Collection;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -66,10 +65,7 @@ public class TechnicianInvolvedInServiceShow extends AbstractGuiService<Technici
 
 		Collection<MaintanenceRecord> records;
 
-		if (involved.getMaintanenceRecord().isDraftMode())
-			records = this.repository.findNotPublishRecord(technician.getId(), true);
-		else
-			records = List.of(involved.getMaintanenceRecord());
+		records = this.repository.findNotPublishRecord(technician.getId(), true);
 
 		Collection<Task> tasks = this.repository.findTaskByTechnicianId(technician.getId());
 

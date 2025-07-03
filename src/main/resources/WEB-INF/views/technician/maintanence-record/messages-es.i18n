@@ -33,4 +33,5 @@ technician.maintenance-record.form.button.publish = Publicar
 technician.task.form.button.createRecord = Crear Tarea
 
 technician.maintanence-record.error.no-aircraft = Tiene que tener un aircraf asociado
-technician.maintanence-record.error.noPublishedTasks.message = Hay tareas no publicadas
+technician.maintanence-record.error.noPublishedTasks.message = No hay tareas asociadas a este registro
+technician.maintanence-record.error.unpublishedTask.message = Hay tareas que no han sido publicados

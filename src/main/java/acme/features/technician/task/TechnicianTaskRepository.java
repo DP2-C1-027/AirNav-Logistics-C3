@@ -26,6 +26,9 @@ public interface TechnicianTaskRepository extends AbstractRepository {
 	@Query("select p from Task p where p.technician.id=:technicianId")
 	Collection<Task> findTasksByTechnicianId(@Param("technicianId") int technicianId);
 
+	@Query("select p from Task p where p.draftMode=0")
+	Collection<Task> findPublishedTasks();
+
 	@Query("select br from InvolvedIn br where br.task.id=:id")
 	Collection<InvolvedIn> findAllInvolvedInById(int id);
 
@@ -35,8 +38,8 @@ public interface TechnicianTaskRepository extends AbstractRepository {
 	@Query("Select c from Technician c where c.id=:id")
 	Technician findTechnicianById(final int id);
 
-	@Query("select b.task from InvolvedIn b  WHERE b.maintanenceRecord.id = :recordId and b.task.technician.id =:id")
-	Collection<Task> findTasksByTechId(@Param("recordId") int recordId, @Param("id") int id);
+	@Query("select b.task from InvolvedIn b  WHERE b.maintanenceRecord.id = :recordId")
+	Collection<Task> findTasksByTechId(@Param("recordId") int recordId);
 
 	@Query("SELECT b from Task b WHERE b.id=:id")
 	Task findTaskById(final int id);

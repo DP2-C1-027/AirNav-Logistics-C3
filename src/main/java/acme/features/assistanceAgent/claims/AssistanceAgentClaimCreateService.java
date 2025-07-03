@@ -83,7 +83,7 @@ public class AssistanceAgentClaimCreateService extends AbstractGuiService<Assist
 	public void bind(final Claim claim) {
 		claim.setDraftMode(true);
 
-		super.bindObject(claim, "registrationMoment", "passengerEmail", "description", "indicator", "linkedTo", "type");
+		super.bindObject(claim, "passengerEmail", "description", "linkedTo", "type");
 
 	}
 

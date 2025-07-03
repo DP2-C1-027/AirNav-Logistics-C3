@@ -12,7 +12,6 @@
 
 package acme.features.assistanceAgent.trackingLogs;
 
-import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,6 +59,7 @@ public class AssistanceAgentTrackingLogCreateService extends AbstractGuiService<
 			if (!trackingLogId.equals(Integer.valueOf(0)))
 				status = false;
 		}
+		// aqui hay algo mal que me peta la peticion
 
 		if (super.getRequest().hasData("claimId")) {
 			Integer claimId;
@@ -72,9 +72,11 @@ public class AssistanceAgentTrackingLogCreateService extends AbstractGuiService<
 
 			if (claimId.equals(Integer.valueOf(-1)))
 				status = false;
+
 			if (!claimId.equals(Integer.valueOf(-1))) {
 				claim = claimId != null ? this.repository.findOneClaimById(claimId) : null;
-				status = claim != null;
+				if (claim == null)
+					status = false;
 			}
 
 			List<TrackingLog> previousLogs = !claimId.equals(Integer.valueOf(-1)) ? this.repository.findTrackingLogsByClaimIdOrderedByPercentaje(claimId) : null;
@@ -110,12 +112,23 @@ public class AssistanceAgentTrackingLogCreateService extends AbstractGuiService<
 
 	@Override
 	public void bind(final TrackingLog trackingLog) {
-		super.bindObject(trackingLog, "creationMoment", "lastUpdateMoment", "stepUndergoing", "resolutionPercentage", "resolutionDetails", "indicator", "claim");
+		super.bindObject(trackingLog, "stepUndergoing", "resolutionPercentage", "resolutionDetails", "indicator");
 
 	}
 
 	@Override
 	public void validate(final TrackingLog trackingLog) {
+
+		// Validación de claim no nulo (seguridad crítica)
+		super.state(trackingLog.getClaim() != null, "claim", "assistance-agent.tracking-log.form.error.claim-required");
+
+		super.state(trackingLog.getClaim() instanceof Claim, "claim", "assistance-agent.tracking-log.form.error.claim-required");
+
+		// Validación de ownership del claim
+		if (trackingLog.getClaim() != null) {
+			AssistanceAgent agent = (AssistanceAgent) super.getRequest().getPrincipal().getActiveRealm();
+			super.state(trackingLog.getClaim().getRegisteredBy().equals(agent), "claim", "assistance-agent.tracking-log.form.error.claim-ownership");
+		}
 
 		// Validaciones existentes para indicator...
 		if (trackingLog.getIndicator() != null && (trackingLog.getIndicator() == Indicator.ACCEPTED || trackingLog.getIndicator() == Indicator.REJECTED)) {
@@ -156,14 +169,14 @@ public class AssistanceAgentTrackingLogCreateService extends AbstractGuiService<
 	@Override
 	public void unbind(final TrackingLog trackingLog) {
 		Dataset dataset;
-		Collection<Claim> claims;
 		AssistanceAgent assistance = (AssistanceAgent) super.getRequest().getPrincipal().getActiveRealm();
 
-		claims = this.repository.findAllClaimsByAgent(assistance.getId());
 		dataset = super.unbindObject(trackingLog, "creationMoment", "lastUpdateMoment", "stepUndergoing", "resolutionPercentage", "resolutionDetails", "indicator", "claim");
 
-		SelectChoices claimsChoices = SelectChoices.from(claims, "passengerEmail", trackingLog.getClaim());
-		dataset.put("claim", claimsChoices);
+		if (trackingLog.getClaim() != null)
+			dataset.put("claimId", trackingLog.getClaim().getId());
+		else
+			dataset.put("claimId", 0);
 
 		SelectChoices statusChoices = SelectChoices.from(Indicator.class, trackingLog.getIndicator());
 		dataset.put("indicator", statusChoices);

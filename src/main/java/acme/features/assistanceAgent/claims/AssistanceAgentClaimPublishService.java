@@ -83,7 +83,7 @@ public class AssistanceAgentClaimPublishService extends AbstractGuiService<Assis
 
 	@Override
 	public void bind(final Claim claim) {
-		super.bindObject(claim, "registrationMoment", "passengerEmail", "description", "indicator", "linkedTo");
+		super.bindObject(claim, "passengerEmail", "description", "linkedTo");
 
 	}
 
@@ -105,13 +105,14 @@ public class AssistanceAgentClaimPublishService extends AbstractGuiService<Assis
 
 	@Override
 	public void unbind(final Claim claim) {
+		Dataset dataset;
 		Collection<Leg> legs;
-		legs = this.repository.findCompletedLegsByClaimId(claim.getId());
-		Dataset dataset = super.unbindObject(claim, "registrationMoment", "passengerEmail", "description", "draftMode", "indicator", "type", "linkedTo");
-		SelectChoices statusChoices = SelectChoices.from(ClaimType.class, claim.getType());
+		legs = this.repository.findCompletedLegsByRegistrationMoment(claim.getRegistrationMoment());
+		dataset = super.unbindObject(claim, "registrationMoment", "passengerEmail", "description", "indicator", "type");
 		SelectChoices legsChoices = SelectChoices.from(legs, "flightNumber", claim.getLinkedTo());
-		dataset.put("linkedTo", legsChoices);
+		SelectChoices statusChoices = SelectChoices.from(ClaimType.class, claim.getType());
 		dataset.put("typeChoice", statusChoices);
+		dataset.put("linkedTo", legsChoices);
 
 		super.getResponse().addData(dataset);
 	}

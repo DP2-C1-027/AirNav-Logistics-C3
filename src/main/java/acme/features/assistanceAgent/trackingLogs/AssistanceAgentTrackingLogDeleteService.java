@@ -12,8 +12,6 @@
 
 package acme.features.assistanceAgent.trackingLogs;
 
-import java.util.Collection;
-
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
@@ -75,7 +73,7 @@ public class AssistanceAgentTrackingLogDeleteService extends AbstractGuiService<
 
 	@Override
 	public void bind(final TrackingLog trackingLog) {
-		super.bindObject(trackingLog, "lastUpdateMoment", "stepUndergoing", "resolutionPercentage", "indicator");
+		super.bindObject(trackingLog, "stepUndergoing", "resolutionPercentage", "resolutionDetails", "indicator");
 	}
 
 	@Override
@@ -91,14 +89,13 @@ public class AssistanceAgentTrackingLogDeleteService extends AbstractGuiService<
 	@Override
 	public void unbind(final TrackingLog trackingLog) {
 		Dataset dataset;
-		Collection<Claim> claims;
-		AssistanceAgent assistance = (AssistanceAgent) super.getRequest().getPrincipal().getActiveRealm();
 
-		claims = this.repository.findAllClaimsByAgent(assistance.getId());
 		dataset = super.unbindObject(trackingLog, "lastUpdateMoment", "stepUndergoing", "resolutionPercentage", "indicator");
 
-		SelectChoices claimsChoices = SelectChoices.from(claims, "passengerEmail", trackingLog.getClaim());
-		dataset.put("claim", claimsChoices);
+		if (trackingLog.getClaim() != null)
+			dataset.put("claimId", trackingLog.getClaim().getId());
+		else
+			dataset.put("claimId", 0);
 
 		SelectChoices statusChoices = SelectChoices.from(Indicator.class, trackingLog.getIndicator());
 		dataset.put("indicator", statusChoices);

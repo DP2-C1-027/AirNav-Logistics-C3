@@ -103,6 +103,7 @@ public class FlightCrewMemberFlightAssignmentCreateService extends AbstractGuiSe
 
 		// Leg choices
 		SelectChoices legChoices = new SelectChoices();
+		legChoices.add("0", "---", flightAssignment.getLeg() == null);
 		Collection<Leg> legs = this.repository.findAllLegsByAirlineId(MomentHelper.getCurrentMoment(), flightCrewMember.getAirline().getId());
 		for (Leg legChoice : legs) {
 			String key = Integer.toString(legChoice.getId());

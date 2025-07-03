@@ -14,6 +14,7 @@ import acme.entities.flightAssignment.CurrentStatus;
 import acme.entities.flightAssignment.Duty;
 import acme.entities.flightAssignment.FlightAssignment;
 import acme.entities.legs.Leg;
+import acme.realms.flightcrewmember.AvailabilityStatus;
 import acme.realms.flightcrewmember.FlightCrewMember;
 
 @GuiService
@@ -73,7 +74,11 @@ public class FlightCrewMemberFlightAssignmentUpdateService extends AbstractGuiSe
 
 	@Override
 	public void validate(final FlightAssignment flightAssignment) {
-
+		if (flightAssignment.getFlightCrewMember() != null) {
+			// Only flight crew members with an "AVAILABLE" status can be assigned 
+			boolean isAvailable = flightAssignment.getFlightCrewMember().getAvailabilityStatus().equals(AvailabilityStatus.AVAILABLE);
+			super.state(isAvailable, "flightCrewMember", "acme.validation.flightAssignment.flightCrewMember.available");
+		}
 	}
 
 	@Override
@@ -101,11 +106,12 @@ public class FlightCrewMemberFlightAssignmentUpdateService extends AbstractGuiSe
 
 		// Leg choices
 		SelectChoices legChoices = new SelectChoices();
+		legChoices.add("0", "---", leg == null);
 		Collection<Leg> legs = this.repository.findAllLegsByAirlineId(MomentHelper.getCurrentMoment(), flightCrewMember.getAirline().getId());
 		for (Leg legChoice : legs) {
 			String key = Integer.toString(legChoice.getId());
 			String label = legChoice.getFlightNumber() + " (" + legChoice.getScheduledDeparture() + " - " + legChoice.getScheduledArrival() + ") ";
-			boolean isSelected = legChoice.equals(flightAssignment.getLeg());
+			boolean isSelected = legChoice.equals(leg);
 			legChoices.add(key, label, isSelected);
 		}
 
@@ -122,16 +128,17 @@ public class FlightCrewMemberFlightAssignmentUpdateService extends AbstractGuiSe
 		dataset.put("airline", flightCrewMember.getAirline().getName());
 
 		// Leg details
-		dataset.put("flightNumber", leg.getFlightNumber());
-		dataset.put("scheduledDeparture", leg.getScheduledDeparture());
-		dataset.put("scheduledArrival", leg.getScheduledArrival());
-		dataset.put("status", leg.getStatus());
-		dataset.put("duration", leg.getDuration());
-		dataset.put("departureAirport", leg.getDepartureAirport().getName());
-		dataset.put("arrivalAirport", leg.getArrivalAirport().getName());
-		dataset.put("aircraft", leg.getAircraft().getRegistrationNumber());
-		dataset.put("flight", leg.getFlight().getTag());
-		dataset.put("legAirline", leg.getAircraft().getAirline().getName());
+		Leg originalLeg = this.repository.findFlightAssignmentById(flightAssignment.getId()).getLeg();
+		dataset.put("flightNumber", originalLeg.getFlightNumber());
+		dataset.put("scheduledDeparture", originalLeg.getScheduledDeparture());
+		dataset.put("scheduledArrival", originalLeg.getScheduledArrival());
+		dataset.put("status", originalLeg.getStatus());
+		dataset.put("duration", originalLeg.getDuration());
+		dataset.put("departureAirport", originalLeg.getDepartureAirport().getName());
+		dataset.put("arrivalAirport", originalLeg.getArrivalAirport().getName());
+		dataset.put("aircraft", originalLeg.getAircraft().getRegistrationNumber());
+		dataset.put("flight", originalLeg.getFlight().getTag());
+		dataset.put("legAirline", originalLeg.getAircraft().getAirline().getName());
 
 		super.getResponse().addData(dataset);
 	}

@@ -18,6 +18,7 @@ import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoment;
+import acme.constraints.ValidFlightAssignment;
 import acme.constraints.ValidLongText;
 import acme.entities.legs.Leg;
 import acme.realms.flightcrewmember.FlightCrewMember;
@@ -27,8 +28,9 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
+@ValidFlightAssignment
 @Table(name = "flight_assignment", indexes = {
-	@Index(name = "idx_fa_crew_draft", columnList = "flight_crew_member_id, draftMode"), @Index(name = "idx_fa_leg_duty", columnList = "leg_id, duty"), @Index(name = "idx_fa_leg_duty_draft", columnList = "leg_id, duty, draftMode")
+	@Index(name = "idx_fa_crew_draft", columnList = "flight_crew_member_id, draftMode"), @Index(name = "idx_fa_leg_duty", columnList = "leg_id, duty")
 })
 public class FlightAssignment extends AbstractEntity {
 

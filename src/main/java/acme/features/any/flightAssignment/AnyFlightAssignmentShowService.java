@@ -27,11 +27,11 @@ public class AnyFlightAssignmentShowService extends AbstractGuiService<Any, Flig
 
 		boolean isAuthorised = false;
 
-		if (super.getRequest().getData("id", Integer.class) != null) {
+		if (super.getRequest().getMethod().equals("GET") && super.getRequest().getData("id", Integer.class) != null) {
 			Integer flightAssignmentId = super.getRequest().getData("id", Integer.class);
 			if (flightAssignmentId != null) {
 				FlightAssignment flightAssignment = this.repository.findFlightAssignmentById(flightAssignmentId);
-				isAuthorised = flightAssignment != null && !flightAssignment.getDraftMode();
+				isAuthorised = flightAssignment != null && !flightAssignment.getDraftMode() && !flightAssignment.getLeg().isDraftMode();
 			}
 		}
 
@@ -52,9 +52,6 @@ public class AnyFlightAssignmentShowService extends AbstractGuiService<Any, Flig
 
 		FlightCrewMember flightcrewMember = completedFlightAssignment.getFlightCrewMember();
 		Leg leg = completedFlightAssignment.getLeg();
-
-		// Leg choices
-		dataset.put("leg", completedFlightAssignment.getLeg().getFlightNumber());
 
 		// Flight Crew Member details
 		dataset.put("flightCrewMember", flightcrewMember.getIdentity().getFullName());

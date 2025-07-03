@@ -16,6 +16,9 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <acme:form >
+	<jstl:if test="${acme:anyOf(_command, 'show|update|publish|delete')}">
+		<acme:input-moment code="flight-crew-member.activity-log.form.label.registrationMoment" path="registrationMoment" readonly="true" placeholder = "acme.placeholders.form.activityLog.registrationMoment"/>
+	</jstl:if>
 	<acme:input-textbox code="flight-crew-member.activity-log.form.label.typeOfIncident" path="typeOfIncident" readonly="draftMode" placeholder = "acme.placeholders.form.activityLog.typeOfIncident"/>
 	<acme:input-textarea code="flight-crew-member.activity-log.form.label.description" path="description" readonly="draftMode" placeholder = "acme.placeholders.form.activityLog.description"/>
 	<acme:input-integer code="flight-crew-member.activity-log.form.label.severityLevel" path="severityLevel" readonly="draftMode" placeholder = "acme.placeholders.form.activityLog.severityLevel"/>

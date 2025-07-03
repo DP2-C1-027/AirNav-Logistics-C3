@@ -12,9 +12,11 @@
 
 master.menu.anonymous = Anónimo
 master.menu.anonymous.favourite-link = Enlace favorito
-master.menu.anonymous.mannizcob = 45808774L: Niza, Manuel Jesus
 master.menu.anonymous.nico = 49167809L: Gomez, Nicolas
+master.menu.anonymous.mannizcob = 45808774L: Niza, Manuel Jesus
+master.menu.anonymous.norapfr= 25740745L: Peñaloza Friqui,Nora
 master.menu.anonymous.HHV4884-ETSII= 77936901K: Campos Díez, Lucía
+master.menu.anonymous.jose= 29589177E: García de Tejada Delgado, José
 
 # master.menu.any #######################################################
 master.menu.any = Any

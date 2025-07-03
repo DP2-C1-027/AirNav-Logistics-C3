@@ -74,11 +74,9 @@ public class FlightCrewMemberFlightAssignmentPublishService extends AbstractGuiS
 
 	@Override
 	public void validate(final FlightAssignment flightAssignment) {
-		if (flightAssignment.getFlightCrewMember() != null) {
-			// Only flight crew members with an "AVAILABLE" status can be assigned 
-			boolean isAvailable = flightAssignment.getFlightCrewMember().getAvailabilityStatus().equals(AvailabilityStatus.AVAILABLE);
-			super.state(isAvailable, "flightCrewMember", "acme.validation.flightAssignment.flightCrewMember.available");
-		}
+		// Only flight crew members with an "AVAILABLE" status can be assigned 
+		boolean isAvailable = flightAssignment.getFlightCrewMember().getAvailabilityStatus().equals(AvailabilityStatus.AVAILABLE);
+		super.state(isAvailable, "flightCrewMember", "acme.validation.flightAssignment.flightCrewMember.available");
 	}
 
 	@Override

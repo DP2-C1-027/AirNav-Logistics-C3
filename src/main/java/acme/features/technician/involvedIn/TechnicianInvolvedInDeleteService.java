@@ -119,32 +119,4 @@ public class TechnicianInvolvedInDeleteService extends AbstractGuiService<Techni
 
 	}
 
-	/*
-	 * @Override
-	 * public void unbind(final InvolvedIn involved) {
-	 * Dataset dataset;
-	 * Technician tech = (Technician) super.getRequest().getPrincipal().getActiveRealm();
-	 * 
-	 * Collection<Task> task = this.repository.findTaskByTechnicianId(tech.getId());
-	 * 
-	 * Collection<MaintanenceRecord> records;
-	 * 
-	 * records = this.repository.findNotPublishRecord(tech.getId(), true);
-	 * 
-	 * SelectChoices taskChoices;
-	 * SelectChoices recordChoices;
-	 * 
-	 * taskChoices = SelectChoices.from(task, "description", involved.getTask());
-	 * 
-	 * recordChoices = SelectChoices.from(records, "maintanenceMoment", involved.getMaintanenceRecord());
-	 * 
-	 * dataset = super.unbindObject(involved, "maintanenceRecord", "task");
-	 * dataset.put("maintanenceRecord", recordChoices);
-	 * dataset.put("task", taskChoices);
-	 * //IsDraftMode()
-	 * dataset.put("draftMode", involved.getMaintanenceRecord().isDraftMode());
-	 * 
-	 * super.getResponse().addData(dataset);
-	 * }
-	 */
 }

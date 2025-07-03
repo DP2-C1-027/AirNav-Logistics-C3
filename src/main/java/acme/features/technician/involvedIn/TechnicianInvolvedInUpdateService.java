@@ -40,7 +40,7 @@ public class TechnicianInvolvedInUpdateService extends AbstractGuiService<Techni
 
 			MaintanenceRecord record = this.repository.findRecordById(recordId);
 			tech = record != null ? record.getTechnician() : null;
-			status = tech == null ? recordId.equals(Integer.valueOf(0)) : super.getRequest().getPrincipal().hasRealm(tech) && record.isDraftMode();
+			status = record == null ? recordId.equals(Integer.valueOf(0)) : super.getRequest().getPrincipal().hasRealm(tech) && record.isDraftMode();
 
 		} else
 			status = false;
@@ -61,7 +61,7 @@ public class TechnicianInvolvedInUpdateService extends AbstractGuiService<Techni
 
 			task = this.repository.findTaskById(id);
 			tech = task == null ? null : task.getTechnician();
-			status = tech == null ? id.equals(Integer.valueOf(0)) : super.getRequest().getPrincipal().hasRealm(tech);
+			status = task == null ? id.equals(Integer.valueOf(0)) : super.getRequest().getPrincipal().hasRealm(tech) || !task.isDraftMode();
 		} else
 			status = false;
 
@@ -136,7 +136,7 @@ public class TechnicianInvolvedInUpdateService extends AbstractGuiService<Techni
 		SelectChoices taskChoices;
 		InvolvedIn involvedDB = this.repository.findInvolvedIn(involved.getId());
 		//tienen que ser todas las tasks de la BD
-		Collection<Task> tasks = this.repository.findAllTasks();
+		Collection<Task> tasks = this.repository.findAllTasksPossible(tech.getId());
 		Collection<MaintanenceRecord> records;
 
 		records = this.repository.findNotPublishRecord(tech.getId(), true);

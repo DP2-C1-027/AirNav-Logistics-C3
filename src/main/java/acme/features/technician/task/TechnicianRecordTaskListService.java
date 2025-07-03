@@ -55,7 +55,7 @@ public class TechnicianRecordTaskListService extends AbstractGuiService<Technici
 		id = super.getRequest().getData("recordId", int.class);
 		record = this.repository.findRecordById(id);
 
-		task = this.repository.findTasksByTechId(record.getId(), record.getTechnician().getId());
+		task = this.repository.findTasksByTechId(record.getId());
 
 		super.getBuffer().addData(task);
 	}

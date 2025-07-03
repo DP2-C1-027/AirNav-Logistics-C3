@@ -41,8 +41,8 @@ public interface TechnicianInvolvedInRepository extends AbstractRepository {
 	Collection<Task> findTaskByTechnicianId(int id);
 
 	//encontrar todas las tasks de la BD
-	@Query("select b from Task b")
-	Collection<Task> findAllTasks();
+	@Query("select b from Task b where b.technician.id=:id OR b.draftMode=false")
+	Collection<Task> findAllTasksPossible(int id);
 
 	//encontrar el record con el tecnico
 	@Query("select b from MaintanenceRecord b where b.technician.id=:id")

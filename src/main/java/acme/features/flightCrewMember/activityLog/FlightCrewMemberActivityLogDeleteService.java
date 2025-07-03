@@ -73,7 +73,7 @@ public class FlightCrewMemberActivityLogDeleteService extends AbstractGuiService
 
 	@Override
 	public void unbind(final ActivityLog activityLog) {
-		Dataset dataset = super.unbindObject(activityLog, "registrationMoment", "typeOfIncident", "description", "severityLevel", "draftMode");
+		Dataset dataset = super.unbindObject(activityLog, "typeOfIncident", "description", "severityLevel", "draftMode");
 
 		// Show create if the assignment is completed
 		if (activityLog.getFlightAssignment().getLeg().getScheduledArrival().before(MomentHelper.getCurrentMoment()))

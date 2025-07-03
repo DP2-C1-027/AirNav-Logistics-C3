@@ -25,6 +25,7 @@ public class FlightCrewMemberFlightAssignmentListPlannedService extends Abstract
 
 	@Override
 	public void authorise() {
+		// Only flight crew members can access this list
 		boolean status = super.getRequest().getPrincipal().hasRealmOfType(FlightCrewMember.class);
 		super.getResponse().setAuthorised(status);
 	}
@@ -35,17 +36,18 @@ public class FlightCrewMemberFlightAssignmentListPlannedService extends Abstract
 		Collection<FlightAssignment> plannedFlightAssignments = this.repository.findAllPlannedFlightAssignments(MomentHelper.getCurrentMoment(), flightCrewMember.getId());
 
 		super.getBuffer().addData(plannedFlightAssignments);
+
+		// Enable the create button in the list of planned flight assignments
+		super.getResponse().addGlobal("showCreate", true);
 	}
 
 	@Override
 	public void unbind(final FlightAssignment plannedFlightAssignments) {
-
 		Dataset dataset = super.unbindObject(plannedFlightAssignments, "duty", "moment", "currentStatus", "remarks", "draftMode", "leg");
 
 		dataset.put("leg", plannedFlightAssignments.getLeg().getFlightNumber());
 
 		super.addPayload(dataset, plannedFlightAssignments, "duty", "moment", "currentStatus", "remarks", "draftMode", "leg");
 		super.getResponse().addData(dataset);
-
 	}
 }

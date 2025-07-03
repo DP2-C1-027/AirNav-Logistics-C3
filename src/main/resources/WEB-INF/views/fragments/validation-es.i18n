@@ -31,5 +31,8 @@ acme.validation.yearsOfExperience = Los años de experiencia deben estar entre 0
 acme.validation.severityLevel = El nivel de severidad debería estar entre 0 y 10
 acme.validation.flightAssignment.duty = Cada tramo debe contener solo un piloto y un copiloto
 acme.validation.flightAssignment.flightCrewMember.available = El miembro de tripulación no está disponible para ser asignado
-acme.validation.flightAssignment.flightCrewMember.multipleLegs = El miembro de tripulación ya está asignado a otro tramo en este momento
-acme.validation.validNextInspection = La fecha actual tiene que ser anterior a la próxima fecha de registro
+
+acme.validation.flightAssignment.flightCrewMember.multipleLegs = El miembro de la tripulación ya ha sido asignado a otro tramo en ese lapso de tiempo
+acme.validation.flightAssignment.legPublished = La asignación de vuelo no puede asignarse a un tramo en modo borrador
+acme.validation.flightAssignment.createdBeforeLegStart = La asignación del vuelo contiene una fecha que no coincide con la fecha de salida del tramo
+

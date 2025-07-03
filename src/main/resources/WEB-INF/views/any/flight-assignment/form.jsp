@@ -20,7 +20,7 @@
 	<acme:input-textbox code="flight-crew-member.flight-assignment.form.label.duty" path="duty" readonly="true"/>
 	<acme:input-textbox code="flight-crew-member.flight-assignment.form.label.currentStatus" path="currentStatus" readonly="true"/>
 	<acme:input-textarea code="flight-crew-member.flight-assignment.form.label.remarks" path="remarks" readonly="true" placeholder = "acme.placeholders.form.flightAssignment.remarks"/>
-	<acme:input-textbox code="flight-crew-member.flight-assignment.form.label.leg" path="leg" readonly="true" />
+
 	<h2>
 		<acme:print code="flight-crew-member.flight-assignment.form.title.flight-crew-member"/>
 	</h2>

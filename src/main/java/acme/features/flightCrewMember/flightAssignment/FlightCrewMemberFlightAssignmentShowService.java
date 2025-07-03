@@ -80,11 +80,12 @@ public class FlightCrewMemberFlightAssignmentShowService extends AbstractGuiServ
 
 		// Leg choices
 		SelectChoices legChoices = new SelectChoices();
+		legChoices.add("0", "---", leg == null);
 		Collection<Leg> legs = this.repository.findAllLegsByAirlineId(MomentHelper.getCurrentMoment(), flightCrewMember.getAirline().getId());
 		for (Leg legChoice : legs) {
 			String key = Integer.toString(legChoice.getId());
 			String label = legChoice.getFlightNumber() + " (" + legChoice.getScheduledDeparture() + " - " + legChoice.getScheduledArrival() + ") ";
-			boolean isSelected = legChoice.equals(flightAssignment.getLeg());
+			boolean isSelected = legChoice.equals(leg);
 			legChoices.add(key, label, isSelected);
 		}
 
@@ -111,6 +112,10 @@ public class FlightCrewMemberFlightAssignmentShowService extends AbstractGuiServ
 		dataset.put("aircraft", leg.getAircraft().getRegistrationNumber());
 		dataset.put("flight", leg.getFlight().getTag());
 		dataset.put("legAirline", leg.getAircraft().getAirline().getName());
+
+		// Show activity logs if the assignment is related with completed legs
+		if (flightAssignment.getLeg().getScheduledArrival().before(MomentHelper.getCurrentMoment()))
+			super.getResponse().addGlobal("showActivityLogs", true);
 
 		super.getResponse().addData(dataset);
 	}

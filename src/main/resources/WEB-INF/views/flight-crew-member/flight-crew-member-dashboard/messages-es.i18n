@@ -20,8 +20,8 @@ flight-crew-member.flight-crew-member-dashboard.form.label.lastLegCrewMembers = 
 flight-crew-member.flight-crew-member-dashboard.form.label.flightAssignmentsGroupedByStatus = Cantidad de asignaciones de vuelo agroupadas por su estado:
 
 flight-crew-member.flight-crew-member-dashboard.form.label.review-count = Número de asignaciones de vuelo (Último año):
-flight-crew-member.flight-crew-member-dashboard.form.label.review-average = Media de asignaciones de vuelo (Último año):
-flight-crew-member.flight-crew-member-dashboard.form.label.review-min = Mínimo número de asignaciones de vuelo (Último año):
-flight-crew-member.flight-crew-member-dashboard.form.label.review-max = Máximo número de asignaciones de vuelo (Último año):
-flight-crew-member.flight-crew-member-dashboard.form.label.review-deviation = Desviación de asignaciones de vuelo (Último año):
+flight-crew-member.flight-crew-member-dashboard.form.label.review-average = Media de asignaciones de vuelo (En los últimos 12 meses, año pasado):
+flight-crew-member.flight-crew-member-dashboard.form.label.review-min = Mínimo número de asignaciones de vuelo (Por mes, año pasado):
+flight-crew-member.flight-crew-member-dashboard.form.label.review-max = Máximo número de asignaciones de vuelo (Por mes, año pasado):
+flight-crew-member.flight-crew-member-dashboard.form.label.review-deviation = Desviación de asignaciones de vuelo (Por mes, año pasado):
 

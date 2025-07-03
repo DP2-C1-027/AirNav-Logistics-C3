@@ -78,18 +78,7 @@ public class FlightCrewMemberFlightAssignmentPublishService extends AbstractGuiS
 			// Only flight crew members with an "AVAILABLE" status can be assigned 
 			boolean isAvailable = flightAssignment.getFlightCrewMember().getAvailabilityStatus().equals(AvailabilityStatus.AVAILABLE);
 			super.state(isAvailable, "flightCrewMember", "acme.validation.flightAssignment.flightCrewMember.available");
-
-			// Cannot be assigned to multiple legs simultaneously
-			boolean isAlreadyAssigned = this.repository.hasConflictingFlightAssignment(flightAssignment.getFlightCrewMember().getId(), flightAssignment.getLeg().getScheduledDeparture(), flightAssignment.getLeg().getScheduledArrival());
-			super.state(!isAlreadyAssigned, "flightCrewMember", "acme.validation.flightAssignment.flightCrewMember.multipleLegs");
 		}
-
-		// Each leg can only have one pilot and one co-pilot
-		if (flightAssignment.getDuty() != null && flightAssignment.getLeg() != null) {
-			boolean isDutyAlreadyAssigned = this.repository.hasDutyAssigned(flightAssignment.getLeg().getId(), flightAssignment.getDuty(), flightAssignment.getId());
-			super.state(!isDutyAlreadyAssigned, "duty", "acme.validation.flightAssignment.duty");
-		}
-
 	}
 
 	@Override
@@ -118,11 +107,12 @@ public class FlightCrewMemberFlightAssignmentPublishService extends AbstractGuiS
 
 		// Leg choices
 		SelectChoices legChoices = new SelectChoices();
+		legChoices.add("0", "---", leg == null);
 		Collection<Leg> legs = this.repository.findAllLegsByAirlineId(MomentHelper.getCurrentMoment(), flightCrewMember.getAirline().getId());
 		for (Leg legChoice : legs) {
 			String key = Integer.toString(legChoice.getId());
 			String label = legChoice.getFlightNumber() + " (" + legChoice.getScheduledDeparture() + " - " + legChoice.getScheduledArrival() + ") ";
-			boolean isSelected = legChoice.equals(flightAssignment.getLeg());
+			boolean isSelected = legChoice.equals(leg);
 			legChoices.add(key, label, isSelected);
 		}
 
@@ -139,16 +129,17 @@ public class FlightCrewMemberFlightAssignmentPublishService extends AbstractGuiS
 		dataset.put("airline", flightCrewMember.getAirline().getName());
 
 		// Leg details
-		dataset.put("flightNumber", leg.getFlightNumber());
-		dataset.put("scheduledDeparture", leg.getScheduledDeparture());
-		dataset.put("scheduledArrival", leg.getScheduledArrival());
-		dataset.put("status", leg.getStatus());
-		dataset.put("duration", leg.getDuration());
-		dataset.put("departureAirport", leg.getDepartureAirport().getName());
-		dataset.put("arrivalAirport", leg.getArrivalAirport().getName());
-		dataset.put("aircraft", leg.getAircraft().getRegistrationNumber());
-		dataset.put("flight", leg.getFlight().getTag());
-		dataset.put("legAirline", leg.getAircraft().getAirline().getName());
+		Leg originalLeg = this.repository.findFlightAssignmentById(flightAssignment.getId()).getLeg();
+		dataset.put("flightNumber", originalLeg.getFlightNumber());
+		dataset.put("scheduledDeparture", originalLeg.getScheduledDeparture());
+		dataset.put("scheduledArrival", originalLeg.getScheduledArrival());
+		dataset.put("status", originalLeg.getStatus());
+		dataset.put("duration", originalLeg.getDuration());
+		dataset.put("departureAirport", originalLeg.getDepartureAirport().getName());
+		dataset.put("arrivalAirport", originalLeg.getArrivalAirport().getName());
+		dataset.put("aircraft", originalLeg.getAircraft().getRegistrationNumber());
+		dataset.put("flight", originalLeg.getFlight().getTag());
+		dataset.put("legAirline", originalLeg.getAircraft().getAirline().getName());
 
 		super.getResponse().addData(dataset);
 	}

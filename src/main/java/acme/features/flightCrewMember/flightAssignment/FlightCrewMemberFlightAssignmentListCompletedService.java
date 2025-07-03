@@ -25,6 +25,7 @@ public class FlightCrewMemberFlightAssignmentListCompletedService extends Abstra
 
 	@Override
 	public void authorise() {
+		// Only flight crew members can access this list
 		boolean status = super.getRequest().getPrincipal().hasRealmOfType(FlightCrewMember.class);
 		super.getResponse().setAuthorised(status);
 	}
@@ -35,6 +36,9 @@ public class FlightCrewMemberFlightAssignmentListCompletedService extends Abstra
 		Collection<FlightAssignment> completedFlightAssignments = this.repository.findAllCompletedFlightAssignments(MomentHelper.getCurrentMoment(), flightCrewMember.getId());
 
 		super.getBuffer().addData(completedFlightAssignments);
+
+		// Disable the create button in the list of completed flight assignments
+		super.getResponse().addGlobal("showCreate", false);
 	}
 
 	@Override
@@ -45,6 +49,5 @@ public class FlightCrewMemberFlightAssignmentListCompletedService extends Abstra
 
 		super.addPayload(dataset, completedFlightAssignments, "duty", "moment", "currentStatus", "remarks", "draftMode", "leg");
 		super.getResponse().addData(dataset);
-
 	}
 }

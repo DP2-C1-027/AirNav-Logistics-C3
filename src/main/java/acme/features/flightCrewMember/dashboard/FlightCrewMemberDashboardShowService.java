@@ -12,9 +12,10 @@
 
 package acme.features.flightCrewMember.dashboard;
 
-import java.time.temporal.ChronoUnit;
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -60,14 +61,15 @@ public class FlightCrewMemberDashboardShowService extends AbstractGuiService<Fli
 		List<String> lastFiveDestinations = this.repository.findLastFiveDestinations(flightCrewMemberId, PageRequest.of(0, 5));
 
 		//	The number of legs that have an activity log record with an incident severity rang-ing from 0 up to 3, 4 up to 7, and 8 up to 10
-		Integer legsWithIncidentSeverity3 = this.repository.countLegsWithSeverity(0, 3);
-		Integer legsWithIncidentSeverity7 = this.repository.countLegsWithSeverity(4, 7);
-		Integer legsWithIncidentSeverity10 = this.repository.countLegsWithSeverity(8, 10);
+		Integer legsWithIncidentSeverity3 = this.repository.countLegsWithSeverity(flightCrewMemberId, 0, 3);
+		Integer legsWithIncidentSeverity7 = this.repository.countLegsWithSeverity(flightCrewMemberId, 4, 7);
+		Integer legsWithIncidentSeverity10 = this.repository.countLegsWithSeverity(flightCrewMemberId, 8, 10);
 
 		//	The crew members who were assigned with him or her in their last leg.  
 		List<FlightAssignment> lastAssignmentList = this.repository.findFlightAssignment(flightCrewMemberId, PageRequest.of(0, 1));
 		FlightAssignment lastAssignment = !lastAssignmentList.isEmpty() ? lastAssignmentList.get(0) : null;
-		List<String> lastLegMembers = lastAssignment != null ? this.repository.findCrewMembersInLastLeg(lastAssignment.getLeg().getId()) : List.of(flightCrewMember.getIdentity().getFullName());
+		List<String> lastLegMembers = lastAssignment != null ? this.repository.findCrewMembersInLastLeg(lastAssignment.getLeg().getId(), PageRequest.of(0, 5)).stream().map(x -> x.getIdentity().getFullName()).toList()
+			: List.of(flightCrewMember.getIdentity().getFullName());
 
 		//	Their flight assignments grouped by their statuses.
 		Map<CurrentStatus, Integer> flightAssignmentsGroupedByStatus = new HashMap<>();
@@ -76,23 +78,22 @@ public class FlightCrewMemberDashboardShowService extends AbstractGuiService<Fli
 
 		//	Minimum, maximum, average and deviation of flight assignments in the last month
 		Statistics flightAssignmentsStatsLastMonth = new Statistics();
-		Calendar calendar = Calendar.getInstance();
-
-		Date dateMinus1Year = MomentHelper.deltaFromCurrentMoment(-1, ChronoUnit.YEARS);
-		calendar.setTime(dateMinus1Year);
+		Date currentDate = MomentHelper.getCurrentMoment();
+		Instant instant = currentDate.toInstant();
+		ZonedDateTime zonedDateTime = instant.atZone(ZoneId.systemDefault());
+		int lastYear = zonedDateTime.getYear() - 1;
 
 		// Count of flight assignments last year
-		Integer count = this.repository.countFlightAssignmentsLastYear(MomentHelper.deltaFromCurrentMoment(-1, ChronoUnit.YEARS), flightCrewMemberId);
+		Integer count = this.repository.countFlightAssignmentsLastYear(lastYear, flightCrewMemberId);
 
 		// Average of flight assignments per month
 		double average = (double) count / 12;
 
 		// Query each month to search the amount of flight assignments
-		int year = calendar.get(Calendar.YEAR);
 		Integer countPerMonth = 0;
 		List<Integer> assignmentsPerMonth = new ArrayList<>();
 		for (int month = 1; month <= 12; month++) {
-			countPerMonth = this.repository.countFlightAssignmentsPerMonthAndYear(flightCrewMemberId, year, month);
+			countPerMonth = this.repository.countFlightAssignmentsPerMonthAndYear(flightCrewMemberId, lastYear, month);
 			assignmentsPerMonth.add(countPerMonth != null ? countPerMonth : 0);
 		}
 

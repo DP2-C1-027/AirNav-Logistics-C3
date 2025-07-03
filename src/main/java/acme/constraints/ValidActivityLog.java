@@ -13,11 +13,11 @@ import javax.validation.ReportAsSingleViolation;
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = {
-	FlightCrewMemberValidator.class
+	ActivityLogValidator.class
 })
 @ReportAsSingleViolation
 
-public @interface ValidFlightCrewMember {
+public @interface ValidActivityLog {
 
 	String message() default "";
 	Class<?>[] groups() default {};

@@ -15,6 +15,7 @@ import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.ValidMoment;
+import acme.constraints.ValidActivityLog;
 import acme.constraints.ValidLongText;
 import acme.constraints.ValidSeverityLevel;
 import acme.constraints.ValidShortText;
@@ -24,9 +25,9 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
+@ValidActivityLog
 @Table(name = "activity_log", indexes = {
-	@Index(name = "idx_activity_log_flight_assignment", columnList = "flight_assignment_id"), @Index(name = "idx_activity_log_severity", columnList = "severityLevel"),
-	@Index(name = "idx_activity_log_fa_severity", columnList = "flight_assignment_id, severityLevel")
+	@Index(name = "idx_activity_log_flight_assignment", columnList = "flight_assignment_id"), @Index(name = "idx_activity_log_fa_severity", columnList = "flight_assignment_id, severityLevel")
 })
 public class ActivityLog extends AbstractEntity {
 

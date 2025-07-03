@@ -31,4 +31,6 @@ acme.validation.yearsOfExperience = The years of experience should be between 0 
 acme.validation.severityLevel = The severity level should be between 0 and 10
 acme.validation.flightAssignment.duty = Each leg can only have one pilot and one co-pilot
 acme.validation.flightAssignment.flightCrewMember.available = The flight crew member is not available to be assigned
-acme.validation.flightAssignment.flightCrewMember.multipleLegs = The flight crew member is already assigned to another leg
+acme.validation.flightAssignment.flightCrewMember.multipleLegs = The flight crew member has already been assigned to another leg in that time frame
+acme.validation.flightAssignment.legPublished = The flight assignment cannot be assigned to a leg in draft mode
+acme.validation.flightAssignment.createdBeforeLegStart = The flight assignment contains a date not in accordance with the leg departure date

@@ -105,6 +105,7 @@ master.menu.technicians.list-my-maintenance-records-published = Registros de man
 master.menu.technicians.list-my-tasks = Mis tareas
 master.menu.technicians.list-my-tasks-published = Tareas publicadas
 master.menu.technicians.list-my-involved-in = Mis participaciones
+master.menu.technician.dashboard = Dashboard
 
 # master.menu.dashboards ########################################################
 master.menu.dashboards = Panel de control

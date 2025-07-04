@@ -44,9 +44,10 @@ public class FlightCrewMemberFlightAssignmentCreateService extends AbstractGuiSe
 
 				// Only is allowed to create a flight assignment if the leg selected is between the options shown.
 				Collection<Leg> legs = this.repository.findAllLegsByAirlineId(MomentHelper.getCurrentMoment(), flightCrewMember.getAirline().getId());
-				Leg legSelected = super.getRequest().getData("leg", Leg.class);
+				int legId = super.getRequest().getData("leg", Integer.class);
+				Leg legSelected = this.repository.findLegById(legId);
 
-				isAuthorised = (legSelected == null || legs.contains(legSelected)) && super.getRequest().getData("id", Integer.class).equals(0);
+				isAuthorised = (legSelected != null && legs.contains(legSelected) || legId == 0) && super.getRequest().getData("id", Integer.class).equals(0);
 
 			}
 

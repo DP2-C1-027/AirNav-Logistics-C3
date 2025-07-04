@@ -10,8 +10,8 @@ bg=RED</help_text>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>504</x>
-      <y>21</y>
+      <x>371</x>
+      <y>154</y>
       <w>392</w>
       <h>112</h>
     </coordinates>
@@ -30,10 +30,10 @@ bg=#f3fdff</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>728</x>
-      <y>196</y>
-      <w>189</w>
-      <h>63</h>
+      <x>455</x>
+      <y>497</y>
+      <w>182</w>
+      <h>70</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Constraint&gt;&gt;
 ValidPhoneNumber
@@ -45,10 +45,10 @@ bg=RED</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>728</x>
-      <y>476</y>
-      <w>189</w>
-      <h>63</h>
+      <x>735</x>
+      <y>406</y>
+      <w>168</w>
+      <h>70</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Constraint&gt;&gt;
 ValidShortText
@@ -61,10 +61,10 @@ bg=RED</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>728</x>
-      <y>385</y>
-      <w>189</w>
-      <h>63</h>
+      <x>735</x>
+      <y>497</y>
+      <w>168</w>
+      <h>70</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Constraint&gt;&gt;
 ValidLongText
@@ -76,8 +76,8 @@ bg=RED</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>504</x>
-      <y>196</y>
+      <x>266</x>
+      <y>406</y>
       <w>168</w>
       <h>70</h>
     </coordinates>
@@ -93,16 +93,114 @@ bg=RED</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>728</x>
-      <y>287</y>
-      <w>189</w>
-      <h>63</h>
+      <x>455</x>
+      <y>406</y>
+      <w>182</w>
+      <h>70</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Constraint&gt;&gt;
 ValidIdentifier
 --
 + NotBlank
 + Pattern(regexp = "^[A-Z]{2,3}\\d{6}$")
+bg=RED</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>735</x>
+      <y>315</y>
+      <w>168</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Constraint&gt;&gt;
+ValidMoment (Framework)
+
+--
++ past = true
+bg=RED</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>77</x>
+      <y>315</y>
+      <w>168</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Class Constraint&gt;&gt;
+ValidFlightAssignment
+
+--
+
+bg=RED</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>266</x>
+      <y>315</y>
+      <w>168</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Class Constraint&gt;&gt;
+ValidActivityLog
+
+--
+
+bg=RED</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>455</x>
+      <y>315</y>
+      <w>182</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Class Constraint&gt;&gt;
+ValidFlightCrewMember
+
+--
+
+bg=RED</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>455</x>
+      <y>588</y>
+      <w>182</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Constraint&gt;&gt;
+ValidYearsOfExperience
+
+--
++ Min(0)
++ Max(120)
+bg=RED</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>455</x>
+      <y>679</y>
+      <w>182</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Constraint&gt;&gt;
+ValidMoney (Framework)
+
+--
++ Min = 0.00 EUR
++ Max = 1000000.00 EUR
 bg=RED</panel_attributes>
     <additional_attributes/>
   </element>

@@ -4,8 +4,8 @@
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>288</x>
-      <y>0</y>
+      <x>450</x>
+      <y>72</y>
       <w>513</w>
       <h>144</h>
     </coordinates>
@@ -24,8 +24,8 @@ bg=#f3fdff</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>0</x>
-      <y>504</y>
+      <x>162</x>
+      <y>576</y>
       <w>135</w>
       <h>54</h>
     </coordinates>
@@ -38,8 +38,8 @@ bg=green</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>0</x>
-      <y>252</y>
+      <x>162</x>
+      <y>324</y>
       <w>126</w>
       <h>54</h>
     </coordinates>
@@ -51,8 +51,8 @@ bg=green</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>270</x>
-      <y>252</y>
+      <x>432</x>
+      <y>324</y>
       <w>567</w>
       <h>117</h>
     </coordinates>
@@ -60,9 +60,9 @@ bg=green</panel_attributes>
 FlightAssignment
 --
 + duty: Duty {Mandatory, Enumerated(EnumType.STRING), Automapped}
-+ moment: Date {Mandatory, ValidMoment, Temporal(TemporalType.TIMESTAMP), Automapped}
++ moment: Date {Mandatory, ValidMoment, Temporal(TemporalType.TIMESTAMP)}
 + currentStatus: CurrentStatus {Mandatory, Enumerated(EnumType.STRING), Automapped}
-+ remarks: String {Mandatory, ValidLongText, Automapped}
++ remarks: String {Optional, ValidLongText, Automapped}
 + draftMode: Boolean {Mandatory, Automapped}
 bg=green</panel_attributes>
     <additional_attributes/>
@@ -70,8 +70,8 @@ bg=green</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>117</x>
-      <y>252</y>
+      <x>279</x>
+      <y>324</y>
       <w>171</w>
       <h>54</h>
     </coordinates>
@@ -87,15 +87,15 @@ bg=green
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>963</x>
-      <y>252</y>
+      <x>1125</x>
+      <y>324</y>
       <w>639</w>
       <h>117</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 ActivityLog
 --
-+ registrationMoment: Date {Mandatory, ValidMoment, Temporal(TemporalType.TIMESTAMP), Automapped}
++ registrationMoment: Date {Mandatory, ValidMoment, Temporal(TemporalType.TIMESTAMP)}
 + typeOfIncident: String {Mandatory, ValidShortText, Automapped}
 + description: String {Mandatory, ValidLongText, Automapped}
 + severityLevel: Integer {Mandatory, ValidSeverityLevel, Automapped}
@@ -106,8 +106,8 @@ bg=green</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>828</x>
-      <y>252</y>
+      <x>990</x>
+      <y>324</y>
       <w>153</w>
       <h>54</h>
     </coordinates>
@@ -123,8 +123,8 @@ bg=green
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>126</x>
-      <y>513</y>
+      <x>288</x>
+      <y>585</y>
       <w>162</w>
       <h>72</h>
     </coordinates>
@@ -141,28 +141,28 @@ bg=green
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>270</x>
-      <y>459</y>
+      <x>432</x>
+      <y>531</y>
       <w>567</w>
       <h>144</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Role&gt;&gt;
 FlightCrewMember
 --
-+ code: String {Mandatory, ValidIdentifier, Automapped, Column(unique = true)}
++ code: String {Mandatory, ValidIdentifier, Column(unique = true)}
 + phoneNumber: String {Mandatory, ValidPhoneNumber, Automapped}
 + languageSkills: String {Mandatory, ValidLongText, Automapped}
 + availabilityStatus: AvailabilityStatus {Mandatory, Enumerated(EnumType.STRING), Automapped}
 + salary: Money {Mandatory, ValidMoney, Automapped}
-+ yearsOfExperience: Integer {Optional, Min(0), Automapped}
++ yearsOfExperience: Integer {Optional, ValidYearsOfExperience, Automapped}
 bg=pink</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>540</x>
-      <y>360</y>
+      <x>702</x>
+      <y>432</y>
       <w>81</w>
       <h>117</h>
     </coordinates>
@@ -179,8 +179,8 @@ bg=green
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>270</x>
-      <y>684</y>
+      <x>432</x>
+      <y>756</y>
       <w>567</w>
       <h>117</h>
     </coordinates>

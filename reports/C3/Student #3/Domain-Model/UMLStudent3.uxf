@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1">
+  <zoom_level>9</zoom_level>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>450</x>
+      <y>72</y>
+      <w>513</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>entities.uxf
+
+Copyright (C) 2012-2025 Rafael Corchuelo.
+
+In keeping with the traditional purpose of furthering education and research, it is
+the policy of the copyright owner to permit non-commercial use and redistribution of
+this software. It has been tested carefully, but it is not guaranteed for any particular
+purposes. The copyright owner does not offer any warranties or representations, nor do
+they accept any liabilities with respect to them.
+bg=#f3fdff</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>162</x>
+      <y>576</y>
+      <w>135</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Entity&gt;&gt;
+Airlane
+
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>162</x>
+      <y>324</y>
+      <w>126</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Entity&gt;&gt;
+Leg
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>432</x>
+      <y>324</y>
+      <w>567</w>
+      <h>117</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Entity&gt;&gt;
+FlightAssignment
+--
++ duty: Duty {Mandatory, Enumerated(EnumType.STRING), Automapped}
++ moment: Date {Mandatory, ValidMoment, Temporal(TemporalType.TIMESTAMP)}
++ currentStatus: CurrentStatus {Mandatory, Enumerated(EnumType.STRING), Automapped}
++ remarks: String {Optional, ValidLongText, Automapped}
++ draftMode: Boolean {Mandatory, Automapped}
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>279</x>
+      <y>324</y>
+      <w>171</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>&lt; belong to
+lt=&lt;-x
+m1=1
+m2=*
+bg=green
+
+</panel_attributes>
+    <additional_attributes>10.0;20.0;170.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1125</x>
+      <y>324</y>
+      <w>639</w>
+      <h>117</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Entity&gt;&gt;
+ActivityLog
+--
++ registrationMoment: Date {Mandatory, ValidMoment, Temporal(TemporalType.TIMESTAMP)}
++ typeOfIncident: String {Mandatory, ValidShortText, Automapped}
++ description: String {Mandatory, ValidLongText, Automapped}
++ severityLevel: Integer {Mandatory, ValidSeverityLevel, Automapped}
++ draftMode: Boolean {Mandatory, Automapped}
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>990</x>
+      <y>324</y>
+      <w>153</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>&lt; records
+lt=&lt;-x
+m1=1
+m2=*
+bg=green
+
+</panel_attributes>
+    <additional_attributes>10.0;20.0;150.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>288</x>
+      <y>585</y>
+      <w>162</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>&lt; working for
+  
+lt=&lt;-x
+m1=1
+m2=*
+bg=green
+
+</panel_attributes>
+    <additional_attributes>10.0;20.0;160.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>432</x>
+      <y>531</y>
+      <w>567</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Role&gt;&gt;
+FlightCrewMember
+--
++ code: String {Mandatory, ValidIdentifier, Column(unique = true)}
++ phoneNumber: String {Mandatory, ValidPhoneNumber, Automapped}
++ languageSkills: String {Mandatory, ValidLongText, Automapped}
++ availabilityStatus: AvailabilityStatus {Mandatory, Enumerated(EnumType.STRING), Automapped}
++ salary: Money {Mandatory, ValidMoney, Automapped}
++ yearsOfExperience: Integer {Optional, ValidYearsOfExperience, Automapped}
+bg=pink</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>702</x>
+      <y>432</y>
+      <w>81</w>
+      <h>117</h>
+    </coordinates>
+    <panel_attributes> allocates
+ v
+lt=&lt;-x
+m1=1
+m2=*
+bg=green
+
+</panel_attributes>
+    <additional_attributes>10.0;110.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>432</x>
+      <y>756</y>
+      <w>567</w>
+      <h>117</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Entity&gt;&gt;
+VisaRequirements
+--
++ country: String {Mandatory, ValidShortText, Automapped}
++ nationality: String {Mandatory, ValidShortText, Automapped}
++ visaRequired: Boolean {Mandatory, Automapped}
++ visaType: String {Mandatory, ValidShortText, Automapped}
++ additionalInfo: String {Mandatory, ValidLongText, Automapped}
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

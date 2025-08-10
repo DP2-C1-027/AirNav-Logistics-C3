@@ -15,6 +15,8 @@
 25.3.0 this is the third version of AirNav-Logistics
 25.4.0 this is the fourth version of AirNav-Logistics
 25.5.0 this is the fifth version of AirNav-Logistics
+25.6.0 this is the sixth version of AirNav-Logistics
+25.7.0 this is the seventh version of AirNav-Logistics
 
 ** Year 2025
 

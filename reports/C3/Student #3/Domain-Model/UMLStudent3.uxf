@@ -5,7 +5,7 @@
     <id>UMLNote</id>
     <coordinates>
       <x>450</x>
-      <y>72</y>
+      <y>27</y>
       <w>513</w>
       <h>144</h>
     </coordinates>
@@ -25,7 +25,7 @@ bg=#f3fdff</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>162</x>
-      <y>576</y>
+      <y>531</y>
       <w>135</w>
       <h>54</h>
     </coordinates>
@@ -39,7 +39,7 @@ bg=green</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>162</x>
-      <y>324</y>
+      <y>279</y>
       <w>126</w>
       <h>54</h>
     </coordinates>
@@ -52,7 +52,7 @@ bg=green</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>432</x>
-      <y>324</y>
+      <y>279</y>
       <w>567</w>
       <h>117</h>
     </coordinates>
@@ -62,7 +62,7 @@ FlightAssignment
 + duty: Duty {Mandatory, Enumerated(EnumType.STRING), Automapped}
 + moment: Date {Mandatory, ValidMoment, Temporal(TemporalType.TIMESTAMP)}
 + currentStatus: CurrentStatus {Mandatory, Enumerated(EnumType.STRING), Automapped}
-+ remarks: String {Optional, ValidLongText, Automapped}
++ remarks: String {Optional, ValidLongTextOptional, Automapped}
 + draftMode: Boolean {Mandatory, Automapped}
 bg=green</panel_attributes>
     <additional_attributes/>
@@ -71,7 +71,7 @@ bg=green</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>279</x>
-      <y>324</y>
+      <y>279</y>
       <w>171</w>
       <h>54</h>
     </coordinates>
@@ -88,7 +88,7 @@ bg=green
     <id>UMLClass</id>
     <coordinates>
       <x>1125</x>
-      <y>324</y>
+      <y>279</y>
       <w>639</w>
       <h>117</h>
     </coordinates>
@@ -107,7 +107,7 @@ bg=green</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>990</x>
-      <y>324</y>
+      <y>279</y>
       <w>153</w>
       <h>54</h>
     </coordinates>
@@ -124,7 +124,7 @@ bg=green
     <id>Relation</id>
     <coordinates>
       <x>288</x>
-      <y>585</y>
+      <y>540</y>
       <w>162</w>
       <h>72</h>
     </coordinates>
@@ -142,7 +142,7 @@ bg=green
     <id>UMLClass</id>
     <coordinates>
       <x>432</x>
-      <y>531</y>
+      <y>486</y>
       <w>567</w>
       <h>144</h>
     </coordinates>
@@ -162,7 +162,7 @@ bg=pink</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>702</x>
-      <y>432</y>
+      <y>387</y>
       <w>81</w>
       <h>117</h>
     </coordinates>
@@ -180,7 +180,7 @@ bg=green
     <id>UMLClass</id>
     <coordinates>
       <x>432</x>
-      <y>756</y>
+      <y>711</y>
       <w>567</w>
       <h>117</h>
     </coordinates>

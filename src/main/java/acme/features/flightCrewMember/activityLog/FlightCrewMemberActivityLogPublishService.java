@@ -42,7 +42,7 @@ public class FlightCrewMemberActivityLogPublishService extends AbstractGuiServic
 					FlightAssignment flightAssignment = activityLog.getFlightAssignment();
 					FlightCrewMember flightCrewMember = (FlightCrewMember) super.getRequest().getPrincipal().getActiveRealm();
 
-					isAuthorised = flightAssignment != null && activityLog.getDraftMode() && !flightAssignment.getDraftMode() && activityLog.getFlightAssignment().getFlightCrewMember().equals(flightCrewMember);
+					isAuthorised = flightAssignment != null && !flightAssignment.getDraftMode() && activityLog.getFlightAssignment().getFlightCrewMember().equals(flightCrewMember) && activityLog.getDraftMode();
 				}
 
 			}

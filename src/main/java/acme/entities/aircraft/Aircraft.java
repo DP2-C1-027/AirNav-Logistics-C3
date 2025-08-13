@@ -42,7 +42,6 @@ public class Aircraft extends AbstractEntity {
 
 	@Mandatory
 	@ValidShortText
-	@Automapped
 	@Column(unique = true)
 	private String				registrationNumber;
 

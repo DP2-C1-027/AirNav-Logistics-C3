@@ -25,7 +25,6 @@ public class CustomersPassengerCreateService extends AbstractGuiService<Customer
 	@Override
 	public void authorise() {
 		boolean status = true;
-		Customers customer;
 		Integer id;
 
 		//customer = (Customers) super.getRequest().getPrincipal().getActiveRealm();

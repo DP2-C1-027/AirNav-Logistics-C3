@@ -27,7 +27,18 @@ public class AdministratorAirlineCreateService extends AbstractGuiService<Admini
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		boolean isAuthorised = false;
+
+		if (super.getRequest().getPrincipal().hasRealmOfType(Administrator.class)) {
+			if (super.getRequest().getMethod().equals("GET"))
+				isAuthorised = true;
+
+			// Only is allowed to create an airline if post method include a valid airline.
+			if (super.getRequest().getMethod().equals("POST") && super.getRequest().getData("id", Integer.class) != null)
+				isAuthorised = super.getRequest().getData("id", Integer.class).equals(0);
+		}
+
+		super.getResponse().setAuthorised(isAuthorised);
 	}
 
 	@Override

@@ -134,7 +134,6 @@ public class TechnicianInvolvedInUpdateService extends AbstractGuiService<Techni
 
 		SelectChoices recordChoices;
 		SelectChoices taskChoices;
-		InvolvedIn involvedDB = this.repository.findInvolvedIn(involved.getId());
 		//tienen que ser todas las tasks de la BD
 		Collection<Task> tasks = this.repository.findAllTasksPossible(tech.getId());
 		Collection<MaintanenceRecord> records;

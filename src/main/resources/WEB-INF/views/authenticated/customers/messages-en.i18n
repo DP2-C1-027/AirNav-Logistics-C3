@@ -19,7 +19,3 @@ authenticated.customers.form.label.earnedPoints = Earned Points:
 
 authenticated.customers.form.button.create= Create
 authenticated.customers.form.button.update= Update
-
-
-acme.validation.error.repeat-code = existing code
-acme.validation.error.pattern-code = Incorrect pattern

@@ -23,10 +23,10 @@ any.review.list.label.moment=Fecha
 any.review.list.label.subject=Asunto
 
 # Botones del formulario
-any.review.form.button.create=Crear reseña
+any.review.form.button.create=Crear
 
 # Botones del listado
-any.review.list.button.create=Nueva reseña
+any.review.list.button.create=Crear
 
 # Información adicional
 any.review.list.payload=Información adicional

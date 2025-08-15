@@ -21,7 +21,8 @@ public class AdministratorSystemConfigurationShowService extends AbstractGuiServ
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		boolean isAuthorised = super.getRequest().getPrincipal().hasRealmOfType(Administrator.class);
+		super.getResponse().setAuthorised(isAuthorised);
 	}
 
 	@Override

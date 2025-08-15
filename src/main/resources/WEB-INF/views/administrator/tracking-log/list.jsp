@@ -16,9 +16,9 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <acme:list>
-	<acme:list-column code="administrator.trackingLog.list.label.claim" path="claim" width="10%"/>
-	<acme:list-column code="administrator.trackingLog.list.label.resolutionPercentage" path="resolutionPercentage" width="20%"/>
-	<acme:list-column code="administrator.trackingLog.list.label.lastUpdateMoment"  path="lastUpdateMoment" width="20%"/>
+	<acme:list-column code="administrator.tracking-log.list.label.claim" path="claim" width="10%"/>
+	<acme:list-column code="administrator.tracking-log.list.label.resolutionPercentage" path="resolutionPercentage" width="20%"/>
+	<acme:list-column code="administrator.tracking-log.list.label.lastUpdateMoment"  path="lastUpdateMoment" width="20%"/>
 	
 	<acme:list-payload path="payload"/>
 </acme:list>

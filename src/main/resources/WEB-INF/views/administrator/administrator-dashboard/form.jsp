@@ -60,6 +60,14 @@
 			<acme:print value="${ratioActiveAircrafts}"/>
 		</td>
 	</tr>
+		<tr>
+		<th scope="row">
+			<acme:print code="administrator.administrator-dashboard.form.label.ratio-inactive-aircrafts"/>
+		</th>
+		<td>
+			<acme:print value="${ratioInactiveAircrafts}"/>
+		</td>
+	</tr>
 	<tr>
 		<th scope="row">
 			<acme:print code="administrator.administrator-dashboard.form.label.ratio-high-score-reviews"/>

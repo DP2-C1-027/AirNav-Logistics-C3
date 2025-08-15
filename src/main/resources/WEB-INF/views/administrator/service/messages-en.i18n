@@ -7,3 +7,25 @@
 # this software. It has been tested carefully, but it is not guaranteed for any particular
 # purposes.  The copyright owner does not offer any warranties or representations, nor do
 # they accept any liabilities with respect to them.
+
+# Form labels for service details
+administrator.service.form.title = Service details
+administrator.service.form.label.name = Name
+administrator.service.form.label.money = Discount
+administrator.service.form.label.averageDwellTime = Average dwell time
+administrator.service.form.label.promotionCode = Promotion code
+administrator.service.form.label.picture = Picture
+administrator.service.form.label.confirmation = Confirmation
+administrator.service.form.button.create = Create
+administrator.service.form.button.update = Update
+administrator.service.form.button.delete = Delete
+
+# List labels for service list
+administrator.service.list.title = Services
+administrator.service.list.label.name = Name
+administrator.service.list.label.money = Discount
+administrator.service.list.label.averageDwellTime = Average dwell time
+administrator.service.list.label.promotionCode = Promotion code
+administrator.service.list.label.picture = Picture
+administrator.service.list.label.confirmation = Confirmation
+administrator.service.list.button.create = Create

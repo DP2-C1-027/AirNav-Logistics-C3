@@ -25,10 +25,10 @@ any.review.list.label.moment=Date
 any.review.list.label.subject=Subject
 
 # Review Form Buttons
-any.review.form.button.create=Create Review
+any.review.form.button.create=Create
 
 # Review List Buttons
-any.review.list.button.create=Create New Review
+any.review.list.button.create=Create
 
 # Payload
 any.review.list.payload=Additional Information

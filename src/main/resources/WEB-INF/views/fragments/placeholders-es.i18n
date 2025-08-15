@@ -8,6 +8,19 @@
 # purposes.  The copyright owner does not offer any warranties or representations, nor do
 # they accept any liabilities with respect to them.
 
+acme.placeholders.form.airport.name = Aeropuerto Internacional John F. Kennedy
+acme.placeholders.form.airport.codigo = JFK
+acme.placeholders.form.airport.city = Nueva York
+acme.placeholders.form.airport.country = Estados Unidos
+acme.placeholders.form.airport.website = www.jfkairport.com
+acme.placeholders.form.airport.email = info@jfkairport.com
+acme.placeholders.form.airport.phoneNumber = +17 182444444
+acme.placeholders.form.airline.name = American Airlines
+acme.placeholders.form.airline.codigo = AAX
+acme.placeholders.form.airline.website = www.aax.com
+acme.placeholders.form.airline.foundationMoment = 1930/10/05 10:30
+acme.placeholders.form.airline.email = contact@aa.com
+acme.placeholders.form.airline.phoneNumber = +18 004337300
 acme.placeholders.form.aircraft.model = Iberia
 acme.placeholders.form.aircraft.registrationNumber = AH244
 acme.placeholders.form.aircraft.capacity = 210
@@ -25,7 +38,6 @@ acme.placeholders.form.flightCrewMember.salary = 46000.0EUR
 acme.placeholders.form.technician.codigo = RB123456
 acme.placeholders.form.flightCrewMember.yearsOfExperience = 6
 
-acme.placeholders.form.airline.codigo=DAL
 acme.placeholders.form.customer.codigo=ACC123456
 acme.placeholder.customer.booking.code= ADCD1235
 acme.placeholder.customer.booking.nibble=1234

@@ -19,6 +19,3 @@ authenticated.technician.form.label.certifications = Certificaciones:
 
 authenticated.technician.form.button.create = Crear
 authenticated.technician.form.button.update = Actualizar
-
-acme.validation.error.repeat-code = Código existente
-acme.validation.error.pattern-code = Patrón incorrecto

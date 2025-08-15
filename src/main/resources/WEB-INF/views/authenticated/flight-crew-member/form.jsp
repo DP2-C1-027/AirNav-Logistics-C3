@@ -20,7 +20,7 @@
 	<acme:input-textbox code="authenticated.flight-crew-member.form.label.phoneNumber" path="phoneNumber" placeholder = "acme.placeholders.form.flightCrewMember.phoneNumber"/>
 	<acme:input-textarea code="authenticated.flight-crew-member.form.label.languageSkills" path="languageSkills" placeholder = "acme.placeholders.form.flightCrewMember.languageSkills"/>
 	<acme:input-select code="authenticated.flight-crew-member.form.label.availabilityStatus" path="availabilityStatus" choices = "${statusChoices}"/>
-	<acme:input-textbox code="authenticated.flight-crew-member.form.label.salary" path="salary" readonly = "${readOnly}" placeholder = "acme.placeholders.form.flightCrewMember.salary"/>
+	<acme:input-money code="authenticated.flight-crew-member.form.label.salary" path="salary" readonly = "${readOnly}" placeholder = "acme.placeholders.form.flightCrewMember.salary"/>
 	<acme:input-textbox code="authenticated.flight-crew-member.form.label.yearsOfExperience" path="yearsOfExperience" readonly = "${readOnly}" placeholder = "acme.placeholders.form.flightCrewMember.yearsOfExperience"/>
 	<acme:input-select code="authenticated.flight-crew-member.form.label.airline" path="airline" choices = "${airlineChoices}" readonly = "${readOnly}"/>
 	<jstl:if test="${_command == 'create'}">

@@ -22,7 +22,19 @@ public class AdministratorServiceUpdateService extends AbstractGuiService<Admini
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+
+		boolean isAuthorised = false;
+
+		if (super.getRequest().getPrincipal().hasRealmOfType(Administrator.class)) {
+			Integer serviceId = super.getRequest().getData("id", Integer.class);
+
+			if (serviceId != null) {
+				Service service = this.repository.findService(serviceId);
+				isAuthorised = service != null;
+			}
+		}
+
+		super.getResponse().setAuthorised(isAuthorised);
 	}
 
 	@Override

@@ -20,23 +20,22 @@ public class AdministratorDashboard extends AbstractForm {
 
 	// Attributes -------------------------------------------------------------
 
-	// amount of airports grouped by operational scope
-
+	// Amount of airports grouped by operational scope
 	private Map<OperationalScope, Integer>	amountAirportsGroupedByOperationalScope;
 
-	// amount of airlines grouped by type
-
+	// Amount of airlines grouped by type
 	private Map<AirlineType, Integer>		amountAirlineGroupedByType;
 
-	// ratio of all airlines with both an email and phone number
+	// Ratio of all airlines with both an email and phone number
 	private Double							ratioAirlinesEmailAndPhone;
 
-	// ratio of active and nonActive aircrafts
+	// Ratio of active and nonActive aircrafts
 	private Double							ratioActiveAircrafts;
+	private Double							ratioInactiveAircrafts;
 
-	// ratio of all reviews with a score above 5.00
+	// Ratio of all reviews with a score above 5.00
 	private Double							ratioHighScoreReviews;
 
-	// count, average, minimum, maximum, and deviation of the number of reviews posted over the last 10 weeks
+	// Count, Average, Minimum, Maximum, and deviation of the number of reviews posted over the last 10 weeks
 	private Statistics						adminReviews;
 }

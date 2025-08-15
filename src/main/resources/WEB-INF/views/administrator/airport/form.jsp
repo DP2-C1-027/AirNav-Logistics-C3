@@ -18,14 +18,14 @@
 
 
 <acme:form >
-	<acme:input-textbox code="administrator.airport.form.label.name" path="name"/>
-	<acme:input-textbox code="administrator.airport.form.label.codigo" path="codigo"/>
-	<acme:input-select code="administrator.airport.form.label.operationalScope" path="operationalScope" choices="${operationalScope}" />
-	<acme:input-textbox code="administrator.airport.form.label.city" path="city"/>
-	<acme:input-textbox code="administrator.airport.form.label.country" path="country"/>
-	<acme:input-url code="administrator.airport.form.label.website" path="website"/>
-	<acme:input-email code="administrator.airport.form.label.email" path="email" />
-	<acme:input-textbox code="administrator.airport.form.label.phoneNumber" path="phoneNumber"/>
+	<acme:input-textbox code="administrator.airport.form.label.name" path="name" placeholder = "acme.placeholders.form.airport.name"/>
+	<acme:input-textbox code="administrator.airport.form.label.codigo" path="codigo" placeholder = "acme.placeholders.form.airport.codigo"/>
+	<acme:input-select code="administrator.airport.form.label.operationalScope" path="operationalScope" choices="${operationalScope}"/>
+	<acme:input-textbox code="administrator.airport.form.label.city" path="city" placeholder = "acme.placeholders.form.airport.city"/>
+	<acme:input-textbox code="administrator.airport.form.label.country" path="country" placeholder = "acme.placeholders.form.airport.country"/>
+	<acme:input-url code="administrator.airport.form.label.website" path="website" placeholder = "acme.placeholders.form.airport.website"/>
+	<acme:input-email code="administrator.airport.form.label.email" path="email" placeholder = "acme.placeholders.form.airport.email"/>
+	<acme:input-textbox code="administrator.airport.form.label.phoneNumber" path="phoneNumber" placeholder = "acme.placeholders.form.airport.phoneNumber"/>
 
 	<jstl:choose>
 				<jstl:when test="${acme:anyOf(_command, 'show|update')}">

@@ -36,3 +36,5 @@ acme.validation.flightAssignment.flightCrewMember.multipleLegs = The flight crew
 acme.validation.flightAssignment.legPublished = The flight assignment cannot be assigned to a leg in draft mode
 acme.validation.flightAssignment.createdBeforeLegStart = The flight assignment contains a date not in accordance with the leg departure date
 
+acme.validation.error.repeat-code = existing code
+acme.validation.error.pattern-code = Incorrect pattern

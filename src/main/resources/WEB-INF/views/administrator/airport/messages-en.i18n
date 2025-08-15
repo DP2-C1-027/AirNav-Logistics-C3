@@ -32,7 +32,7 @@ administrator.airport.form.button.create=Create
 administrator.airport.form.button.update=Update
 
 # List buttons
-administrator.airport.list.button.create=Create Airport
+administrator.airport.list.button.create=Create
 
 # Payload (if needed)
 administrator.airport.list.payload=Payload

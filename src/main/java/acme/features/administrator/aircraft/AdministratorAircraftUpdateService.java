@@ -27,15 +27,13 @@ public class AdministratorAircraftUpdateService extends AbstractGuiService<Admin
 
 		boolean isAuthorised = false;
 
-		try {
+		if (super.getRequest().getPrincipal().hasRealmOfType(Administrator.class)) {
 			Integer aircraftId = super.getRequest().getData("id", Integer.class);
+
 			if (aircraftId != null) {
 				Aircraft aircraft = this.repository.findAircraftById(aircraftId);
-				isAuthorised = aircraft != null && super.getRequest().getPrincipal().hasRealmOfType(Administrator.class);
+				isAuthorised = aircraft != null;
 			}
-		} catch (Exception e) {
-			System.err.println(e.getMessage());
-			e.printStackTrace();
 		}
 
 		super.getResponse().setAuthorised(isAuthorised);
@@ -57,11 +55,10 @@ public class AdministratorAircraftUpdateService extends AbstractGuiService<Admin
 	@Override
 	public void validate(final Aircraft aircraft) {
 
-		Aircraft oldAircraft = this.repository.findAircraftByRegistrationNumber(aircraft.getRegistrationNumber());
-		if (oldAircraft != null) {
-			boolean idMatch = oldAircraft.getId() == aircraft.getId();
-			super.state(idMatch, "registrationNumber", "acme.validation.registrationNumber");
-		}
+		// Check if the code related with an aircraft is already used by another aircraft
+		Aircraft existingAircraft = this.repository.findAircraftCode(aircraft.getRegistrationNumber());
+		boolean uniqueAircraft = existingAircraft == null || existingAircraft.equals(aircraft);
+		super.state(uniqueAircraft, "registrationNumber", "acme.validation.registrationNumber");
 
 		boolean confirmation = super.getRequest().getData("confirmation", boolean.class);
 		super.state(confirmation, "confirmation", "acme.validation.confirmation.message");

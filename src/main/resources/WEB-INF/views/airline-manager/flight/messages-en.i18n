@@ -1,32 +1,32 @@
 airline-manager.flight.form.title = Flight
-airlineManager.flight.form.label.tag = Tag
-airlineManager.flight.form.label.indication = Indication
-airlineManager.flight.form.label.cost = Cost
-airlineManager.flight.form.label.description = Description
-airlineManager.flight.form.label.airlines = Airlines
-airlineManager.flight.form.label.scheduledDeparture = Departure date
-airlineManager.flight.form.label.scheduledArrival = Arrival date
-airlineManager.flight.form.label.departureCity = Departure city
-airlineManager.flight.form.label.arrivalCity = Arrival city
-airlineManager.flight.form.label.layovers = Number of layovers
+airline-manager.flight.form.label.tag = Tag
+airline-manager.flight.form.label.indication = Indication
+airline-manager.flight.form.label.cost = Cost
+airline-manager.flight.form.label.description = Description
+airline-manager.flight.form.label.airlines = Airlines
+airline-manager.flight.form.label.scheduledDeparture = Departure date
+airline-manager.flight.form.label.scheduledArrival = Arrival date
+airline-manager.flight.form.label.departureCity = Departure city
+airline-manager.flight.form.label.arrivalCity = Arrival city
+airline-manager.flight.form.label.layovers = Number of layovers
 
-airlineManager.flight.form.button.update = Update flight
-airlineManager.flight.form.button.publish = Publish flight
-airlineManager.flight.form.button.delete = Delete flight
-airlineManager.flight.form.button.legs = Flight legs
+airline-manager.flight.form.button.update = Update flight
+airline-manager.flight.form.button.publish = Publish flight
+airline-manager.flight.form.button.delete = Delete flight
+airline-manager.flight.form.button.legs = Flight legs
 
 airline-manager.flight.list.title = Flight list
-airlineManager.flight.list.label.tag = Tag
-airlineManager.flight.list.label.indication = Indication
-airlineManager.flight.list.label.cost = Cost
-airlineManager.flight.list.label.description = Description
+airline-manager.flight.list.label.tag = Tag
+airline-manager.flight.list.label.indication = Indication
+airline-manager.flight.list.label.cost = Cost
+airline-manager.flight.list.label.description = Description
 
-airlineManager.flight.list.button.create = Create flight
-airlineManager.flight.form.button.create = Create flight
+airline-manager.flight.list.button.create = Create flight
+airline-manager.flight.form.button.create = Create flight
 
 airline-manager.error.publishedLegs = There's published legs for this flight
-airlineManager.flight.error.unpublishedLegs.message = Some legs haven't been published yet
-airlineManager.flight.error.flightStartsInThePast.message = Some leg's dates have already passed; Flight needs to be in the future to be published
-airlineManager.flight.error.noLegs = There's no associated leg for this flight. You need at least one published leg to publish this flight
+airline-manager.flight.error.unpublishedLegs.message = Some legs haven't been published yet
+airline-manager.flight.error.flightStartsInThePast.message = Some leg's dates have already passed; Flight needs to be in the future to be published
+airline-manager.flight.error.noLegs = There's no associated leg for this flight. You need at least one published leg to publish this flight
 
 

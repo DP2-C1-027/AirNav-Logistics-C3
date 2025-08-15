@@ -13,6 +13,7 @@
 package acme.features.administrator.dashboard;
 
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -49,52 +50,57 @@ public class AdministratorDashboardShowService extends AbstractGuiService<Admini
 
 	@Override
 	public void load() {
-		AdministratorDashboard dashboard;
-		// Obtener los resultados de las consultas
-		List<Object[]> airportsResult = this.repository.getAmountAirportsGroupedByOperationalScope();
-		List<Object[]> airlinesResult = this.repository.getAmountAirlineGroupedByType();
+		AdministratorDashboard dashboard = new AdministratorDashboard();
 
-		// Crear Mapas para almacenar los resultados procesados
-		Map<OperationalScope, Integer> amountAirportsGroupedByOperationalScope = new HashMap<>();
-		Map<AirlineType, Integer> amountAirlineGroupedByType = new HashMap<>();
+		// Amount of airports grouped by operational scope
+		Map<OperationalScope, Integer> airportsGroupedByOperationalScope = new HashMap<>();
+		for (OperationalScope op : OperationalScope.values())
+			airportsGroupedByOperationalScope.put(op, this.repository.countAirportsByOperationalScope(op));
 
-		// Procesar los resultados de los aeropuertos
-		for (Object[] result : airportsResult) {
-			OperationalScope operationalScope = (OperationalScope) result[0];
-			Integer count = ((Long) result[1]).intValue();
-			amountAirportsGroupedByOperationalScope.put(operationalScope, count);
-		}
+		// Amount of airlines grouped by type
+		Map<AirlineType, Integer> airlinesGroupedByAirlineType = new HashMap<>();
+		for (AirlineType type : AirlineType.values())
+			airlinesGroupedByAirlineType.put(type, this.repository.countAirlinesByType(type));
 
-		// Procesar los resultados de las aerolíneas
-		for (Object[] result : airlinesResult) {
-			AirlineType airlineType = (AirlineType) result[0];
-			Integer count = ((Long) result[1]).intValue();
-			amountAirlineGroupedByType.put(airlineType, count);
-		}
-
+		// Ratio of all airlines with both an email and phone number
 		Double ratioAirlinesEmailAndPhone = this.repository.getRatioAirlinesWithEmailAndPhone();
+
+		// Ratio of active and nonActive aircrafts
 		Double ratioActiveAircrafts = this.repository.getRatioActiveAircrafts();
+		Double ratioInactiveAircrafts = this.repository.getRatioInactiveAircrafts();
+
+		// Ratio of all reviews with a score above 5.00
 		Double ratioHighScoreReviews = this.repository.getRatioHighScoreReviews();
 
+		// Count, Average, Minimum, Maximum, and deviation of the number of reviews posted over the last 10 weeks
 		Statistics adminReviews = new Statistics();
 		Date dateMinus70Days = MomentHelper.deltaFromCurrentMoment(-70, ChronoUnit.DAYS);
 		Integer count = this.repository.countReviewsLast10Weeks(dateMinus70Days);
-		Double average = this.repository.averageReviewScoreLast10Weeks(dateMinus70Days);
-		Double min = this.repository.minReviewScoreLast10Weeks(dateMinus70Days);
-		Double max = this.repository.maxReviewScoreLast10Weeks(dateMinus70Days);
-		Double deviation = this.repository.deviationReviewScoreLast10Weeks(dateMinus70Days);
+		Double average = (double) count / 70;
+
+		Integer countPerDay = 0;
+		List<Integer> reviewsPerDay = new ArrayList<>();
+		for (int day = 69; day >= 0; day--) {
+			Date dayDate = MomentHelper.deltaFromCurrentMoment(-day, ChronoUnit.DAYS);
+			countPerDay = this.repository.countReviewsPerDay(dayDate);
+			reviewsPerDay.add(countPerDay != null ? countPerDay : 0);
+		}
+
+		Integer min = reviewsPerDay.stream().min(Integer::compareTo).orElse(0);
+		Integer max = reviewsPerDay.stream().max(Integer::compareTo).orElse(0);
+		double deviation = Math.sqrt(reviewsPerDay.stream().mapToDouble(n -> Math.pow(n - average, 2)).average().orElse(0.0));
 
 		adminReviews.setCount(count);
 		adminReviews.setAverage(average);
-		adminReviews.setMin(min);
-		adminReviews.setMax(max);
+		adminReviews.setMin(min.doubleValue());
+		adminReviews.setMax(max.doubleValue());
 		adminReviews.setDeviation(deviation);
 
-		dashboard = new AdministratorDashboard();
-		dashboard.setAmountAirportsGroupedByOperationalScope(amountAirportsGroupedByOperationalScope);
-		dashboard.setAmountAirlineGroupedByType(amountAirlineGroupedByType);
+		dashboard.setAmountAirportsGroupedByOperationalScope(airportsGroupedByOperationalScope);
+		dashboard.setAmountAirlineGroupedByType(airlinesGroupedByAirlineType);
 		dashboard.setRatioAirlinesEmailAndPhone(ratioAirlinesEmailAndPhone);
 		dashboard.setRatioActiveAircrafts(ratioActiveAircrafts);
+		dashboard.setRatioInactiveAircrafts(ratioInactiveAircrafts);
 		dashboard.setRatioHighScoreReviews(ratioHighScoreReviews);
 		dashboard.setAdminReviews(adminReviews);
 
@@ -105,7 +111,7 @@ public class AdministratorDashboardShowService extends AbstractGuiService<Admini
 	public void unbind(final AdministratorDashboard administratorDashboard) {
 		Dataset dataset = super.unbindObject(administratorDashboard, //
 			"amountAirportsGroupedByOperationalScope", "amountAirlineGroupedByType", // 
-			"ratioAirlinesEmailAndPhone", "ratioActiveAircrafts", //
+			"ratioAirlinesEmailAndPhone", "ratioActiveAircrafts", "ratioInactiveAircrafts",//
 			"ratioHighScoreReviews", "adminReviews");
 
 		super.getResponse().addData(dataset);

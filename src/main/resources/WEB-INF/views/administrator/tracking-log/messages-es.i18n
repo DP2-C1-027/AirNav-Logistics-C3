@@ -2,26 +2,25 @@
 assistance-agent.tracking-log.list.title = TRACKING LOGS
 assistance-agent.tracking-log.form.title =TRACKING LOG
 # Etiquetas de lista para registros de seguimiento
-administrator.trackingLog.list.title = Gestión de Registros de Seguimiento
-administrator.trackingLog.list.label.claim = Reclamación
-administrator.trackingLog.list.label.resolutionPercentage = % Resolución
-administrator.trackingLog.list.label.lastUpdateMoment = Última Actualización
+administrator.tracking-log.list.title = Gestión de Registros de Seguimiento
+administrator.tracking-log.list.label.claim = Reclamación
+administrator.tracking-log.list.label.resolutionPercentage = % Resolución
+administrator.tracking-log.list.label.lastUpdateMoment = Última Actualización
 
 # Botones de lista
-administrator.trackingLog.list.button.create = Crear Nuevo Registro
+administrator.tracking-log.list.button.create = Crear Nuevo Registro
 
 # Etiquetas de formulario para registros de seguimiento
-administrator.trackingLog.form.title = Registro de Seguimiento
-administrator.trackingLog.form.label.lastUpdateMoment = Última Actualización
-administrator.trackingLog.form.label.stepUndergoing = Paso Actual
-administrator.trackingLog.form.label.resolutionPercentage = Porcentaje de Resolución
-administrator.trackingLog.form.label.indicator = Estado
-administrator.trackingLog.form.label.resolutionDetails = Detalles de Resolución
-administrator.trackingLog.form.label.claim = Reclamación Relacionada
-administrator.trackingLog.list.label.claim =Reclamación
+administrator.tracking-log.form.title = Registro de Seguimiento
+administrator.tracking-log.form.label.lastUpdateMoment = Última Actualización
+administrator.tracking-log.form.label.stepUndergoing = Paso Actual
+administrator.tracking-log.form.label.resolutionPercentage = Porcentaje de Resolución
+administrator.tracking-log.form.label.indicator = Estado
+administrator.tracking-log.form.label.resolutionDetails = Detalles de Resolución
+administrator.tracking-log.form.label.claim = Reclamación Relacionada
 
 # Botones de formulario
-administrator.trackingLog.form.button.create = Crear
-administrator.trackingLog.form.button.update = Actualizar
-administrator.trackingLog.form.button.delete = Eliminar
-administrator.trackingLog.form.button.publish = Publicar
+administrator.tracking-log.form.button.create = Crear
+administrator.tracking-log.form.button.update = Actualizar
+administrator.tracking-log.form.button.delete = Eliminar
+administrator.tracking-log.form.button.publish = Publicar

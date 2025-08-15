@@ -32,9 +32,11 @@ master.menu.administrator.show-administrator-dashboard = Mostrar panel de contro
 master.menu.administrator.list-user-accounts = Ver cuentas de usuario
 master.menu.administrator.list-airline = Ver aerolineas
 master.menu.administrator.list-airport = Ver aeropuertos
-master.menu.administrator.list-record = Ver registros
-master.menu.administrator.list-booking = Ver reservas
 master.menu.administrator.list-aircraft = Ver aviones
+master.menu.administrator.list-claim = Ver reclamaciones
+master.menu.administrator.list-booking = Ver reservas
+master.menu.administrator.list-service = Ver servicios
+master.menu.administrator.list-flight = Ver vuelos
 master.menu.administrator.system-configuration= Sistema de configuracion
 
 master.menu.administrator.populate-db-initial = Poblar BD (inicial)
@@ -79,6 +81,9 @@ master.menu.user-account.become-flight-crew-member = Hazte tripulante de vuelo
 master.menu.user-account.flight-crew-member-profile = Perfil de tripulante de vuelo
 master.menu.user-account.become-technician = Hazte tripulante de vuelo
 master.menu.user-account.technician-profile = Perfil de tripulante de vuelo
+master.menu.user-account.become-airline-manager = Hazte administrador de aerolinea
+master.menu.user-account.become-assistance-agent = Hazte agente de asistencia
+master.menu.user-account.assistance-agent-profile = Perfil de agente de asistencia
 
 # master.menu.AssistanceAgent ##########################################################
 
@@ -86,17 +91,13 @@ master.menu.assistanceAgent = Agente de Asistencia
 master.menu.assistanceAgent.list-my-claims =Mis reclamaciones completadas
 master.menu.assistanceAgent.list-my-claimsUndergoing =Mis reclamaciones en proceso
 master.menu.assistanceAgent.list-my-trackingLogs =Mis regitros de reclamaciones 
-master.menu.user-account.become-assistance-agent=Convertirse en Agente de Asistencia
-master.menu.user-account.assistance-agent-profile=Perfil de Agente de Asistencia
 master.menu.assistanceAgent.show-dashboard=Mostrar Panel de Control
 
 # master.menu.customers ##########################################################
 master.menu.customers = Cliente
 master.menu.customers.list-my-bookings = Mi lista de reservas
 master.menu.customers.list-my-passengers = Mi lista de pasajeros
-
 master.menu.customers.show-dashboard = Mi dashboard
-
 
 # master.menu.technicians ##########################################################
 master.menu.technicians = Técnico

@@ -52,10 +52,10 @@ public class AdministratorAircraftCreateService extends AbstractGuiService<Admin
 
 	@Override
 	public void validate(final Aircraft aircraft) {
-
-		String registrationNumber = super.getRequest().getData("registrationNumber", String.class);
-		boolean registrationNumberMatch = this.repository.findAllAircrafts().stream().noneMatch(x -> x.getRegistrationNumber().equals(registrationNumber));
-		super.state(registrationNumberMatch, "registrationNumber", "acme.validation.registrationNumber");
+		// Check if the code related with an aircraft is already used by another aircraft
+		Aircraft existingAircraft = this.repository.findAircraftCode(aircraft.getRegistrationNumber());
+		boolean uniqueAircraft = existingAircraft == null || existingAircraft.equals(aircraft);
+		super.state(uniqueAircraft, "registrationNumber", "acme.validation.registrationNumber");
 
 		boolean confirmation = super.getRequest().getData("confirmation", boolean.class);
 		super.state(confirmation, "confirmation", "acme.validation.confirmation.message");

@@ -1,8 +1,6 @@
 
 package acme.features.administrator.airports;
 
-import java.util.Collection;
-
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
@@ -29,15 +27,13 @@ public class AdministratorAirportUpdateService extends AbstractGuiService<Admini
 
 		boolean isAuthorised = false;
 
-		try {
+		if (super.getRequest().getPrincipal().hasRealmOfType(Administrator.class)) {
 			Integer airportId = super.getRequest().getData("id", Integer.class);
+
 			if (airportId != null) {
 				Airport airport = this.repository.findAirport(airportId);
-				isAuthorised = airport != null && super.getRequest().getPrincipal().hasRealmOfType(Administrator.class);
+				isAuthorised = airport != null;
 			}
-		} catch (Exception e) {
-			System.err.println(e.getMessage());
-			e.printStackTrace();
 		}
 
 		super.getResponse().setAuthorised(isAuthorised);
@@ -59,17 +55,13 @@ public class AdministratorAirportUpdateService extends AbstractGuiService<Admini
 
 	@Override
 	public void validate(final Airport airport) {
-		String cod = airport.getCodigo();
-		Collection<Airport> codigos = this.repository.findAllAirportCode(cod).stream().filter(x -> x.getId() != airport.getId()).toList();
+		// Check if the code related with an airport is already used by another airport
+		Airport existingAirport = this.repository.findAirportCode(airport.getCodigo());
+		boolean uniqueAirport = existingAirport == null || existingAirport.equals(airport);
+		super.state(uniqueAirport, "codigo", "customers.booking.error.repeat-code");
 
-		if (!codigos.isEmpty())
-			super.state(false, "codigo", "customers.booking.error.repeat-code");
-		{
-			boolean confirmation;
-
-			confirmation = super.getRequest().getData("confirmation", boolean.class);
-			super.state(confirmation, "confirmation", "acme.validation.confirmation.message");
-		}
+		boolean confirmation = super.getRequest().getData("confirmation", boolean.class);
+		super.state(confirmation, "confirmation", "acme.validation.confirmation.message");
 	}
 
 	@Override

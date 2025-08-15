@@ -36,3 +36,5 @@ acme.validation.flightAssignment.flightCrewMember.multipleLegs = El miembro de l
 acme.validation.flightAssignment.legPublished = La asignación de vuelo no puede asignarse a un tramo en modo borrador
 acme.validation.flightAssignment.createdBeforeLegStart = La asignación del vuelo contiene una fecha que no coincide con la fecha de salida del tramo
 
+acme.validation.error.repeat-code = Codigo existente
+acme.validation.error.pattern-code = Patron incorrecto.

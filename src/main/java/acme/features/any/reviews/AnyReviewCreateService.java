@@ -22,7 +22,16 @@ public class AnyReviewCreateService extends AbstractGuiService<Any, Review> {
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		boolean isAuthorised = false;
+
+		if (super.getRequest().getMethod().equals("GET"))
+			isAuthorised = true;
+
+		// Only is allowed to create a review if post method include a valid review.
+		if (super.getRequest().getMethod().equals("POST") && super.getRequest().getData("id", Integer.class) != null)
+			isAuthorised = super.getRequest().getData("id", Integer.class).equals(0);
+
+		super.getResponse().setAuthorised(isAuthorised);
 	}
 
 	@Override

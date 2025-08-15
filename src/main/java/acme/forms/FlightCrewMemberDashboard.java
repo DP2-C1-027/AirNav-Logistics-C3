@@ -34,6 +34,6 @@ public class FlightCrewMemberDashboard extends AbstractForm {
 	//	Their flight assignments grouped by their statuses.
 	private Map<CurrentStatus, Integer>	flightAssignmentsGroupedByStatus;
 
-	//	Minimum, maximum, average and deviation of flight assignments in the last month
+	//	Count, Average, Minimum, maximum, and deviation of flight assignments in the last month
 	private Statistics					flightAssignmentsStatsLastMonth;
 }

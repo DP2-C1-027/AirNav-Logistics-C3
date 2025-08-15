@@ -20,7 +20,16 @@ public class AnyServiceShowService extends AbstractGuiService<Any, Service> {
 	// AbstractGuiService interface -------------------------------------------
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+
+		boolean isAuthorised = false;
+
+		if (super.getRequest().getMethod().equals("GET") && super.getRequest().getData("id", Integer.class) != null) {
+			Integer serviceId = super.getRequest().getData("id", Integer.class);
+			Service service = this.repository.findServiceById(serviceId);
+			isAuthorised = service != null;
+		}
+
+		super.getResponse().setAuthorised(isAuthorised);
 	}
 
 	@Override

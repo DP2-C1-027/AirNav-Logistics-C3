@@ -1,27 +1,27 @@
 airline-manager.leg.form.title = Tramo
-airlineManager.leg.form.label.flightNumber = Número de vuelo
-airlineManager.leg.form.label.scheduledDeparture = Hora de salida
-airlineManager.leg.form.label.scheduledArrival = Hora de llegada
-airlineManager.leg.form.label.duration = Duración
-airlineManager.leg.form.label.status = Estado
-airlineManager.leg.form.label.departureAirport = Aeropuerto de salida
-airlineManager.leg.form.label.arrivalAirport = Aeropuerto de llegada
-airlineManager.leg.form.label.aircraft = Avión
-airlineManager.leg.form.label.flight = Vuelo
+airline-manager.leg.form.label.flightNumber = Número de vuelo
+airline-manager.leg.form.label.scheduledDeparture = Hora de salida
+airline-manager.leg.form.label.scheduledArrival = Hora de llegada
+airline-manager.leg.form.label.duration = Duración
+airline-manager.leg.form.label.status = Estado
+airline-manager.leg.form.label.departureAirport = Aeropuerto de salida
+airline-manager.leg.form.label.arrivalAirport = Aeropuerto de llegada
+airline-manager.leg.form.label.aircraft = Avión
+airline-manager.leg.form.label.flight = Vuelo
 
-airlineManager.leg.form.button.update = Actualizar tramo
-airlineManager.leg.form.button.publish = Publicar tramo
-airlineManager.leg.form.button.delete = Borrar tramo
+airline-manager.leg.form.button.update = Actualizar tramo
+airline-manager.leg.form.button.publish = Publicar tramo
+airline-manager.leg.form.button.delete = Borrar tramo
 
 airline-manager.leg.list.title = Listado de tramos
-airlineManager.leg.list.label.flightNumber = Número de vuelo
-airlineManager.leg.list.label.scheduledDeparture = Hora de salida
-airlineManager.leg.list.label.scheduledArrival = Hora de llegada
-airlineManager.leg.list.label.departureAirport = Aeropuerto de salida
-airlineManager.leg.list.label.arrivalAirport = Aeropuerto de llegada
-airlineManager.leg.list.label.flight = Tag del vuelo
+airline-manager.leg.list.label.flightNumber = Número de vuelo
+airline-manager.leg.list.label.scheduledDeparture = Hora de salida
+airline-manager.leg.list.label.scheduledArrival = Hora de llegada
+airline-manager.leg.list.label.departureAirport = Aeropuerto de salida
+airline-manager.leg.list.label.arrivalAirport = Aeropuerto de llegada
+airline-manager.leg.list.label.flight = Tag del vuelo
 
-airlineManager.leg.form.button.create = Crear tramo
+airline-manager.leg.form.button.create = Crear tramo
 
 airline-manager.error.invalid-flight-number = Número de vuelo inválido (las 3 primeras letras han de coincidir con el código de la aerolínea del avión)
 airline-manager.error.same-airport = No puedes aterrizar en el mismo aeropuerto desde el que despegaste 

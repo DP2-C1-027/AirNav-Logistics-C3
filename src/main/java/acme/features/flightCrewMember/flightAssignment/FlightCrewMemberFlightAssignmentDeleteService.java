@@ -10,7 +10,6 @@ import acme.client.components.views.SelectChoices;
 import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
-import acme.entities.flightAssignment.ActivityLog;
 import acme.entities.flightAssignment.CurrentStatus;
 import acme.entities.flightAssignment.Duty;
 import acme.entities.flightAssignment.FlightAssignment;
@@ -41,13 +40,10 @@ public class FlightCrewMemberFlightAssignmentDeleteService extends AbstractGuiSe
 
 				Integer flightAssignmentId = super.getRequest().getData("id", Integer.class);
 
-				if (flightAssignmentId != null) {
+				FlightAssignment flightAssignment = this.repository.findFlightAssignmentById(flightAssignmentId);
+				FlightCrewMember flightCrewMember = (FlightCrewMember) super.getRequest().getPrincipal().getActiveRealm();
 
-					FlightAssignment flightAssignment = this.repository.findFlightAssignmentById(flightAssignmentId);
-					FlightCrewMember flightCrewMember = (FlightCrewMember) super.getRequest().getPrincipal().getActiveRealm();
-
-					isAuthorised = flightAssignment != null && flightAssignment.getDraftMode() && flightAssignment.getFlightCrewMember().equals(flightCrewMember);
-				}
+				isAuthorised = flightAssignment != null && flightAssignment.getDraftMode() && flightAssignment.getFlightCrewMember().equals(flightCrewMember);
 
 			}
 
@@ -74,8 +70,7 @@ public class FlightCrewMemberFlightAssignmentDeleteService extends AbstractGuiSe
 
 	@Override
 	public void perform(final FlightAssignment flightAssignment) {
-		Collection<ActivityLog> activityLogs = this.repository.findAllActivityLogs(flightAssignment.getId());
-		this.repository.deleteAll(activityLogs);
+		// You cannot delete activity logs associated due that you cannot delete a published flight assignment.
 		this.repository.delete(flightAssignment);
 	}
 

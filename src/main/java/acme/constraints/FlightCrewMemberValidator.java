@@ -47,6 +47,9 @@ public class FlightCrewMemberValidator extends AbstractValidator<ValidFlightCrew
 	}
 
 	private boolean initialsMatchCrewMember(final String code, final String name, final String surname) {
+		if (!code.matches("^[A-Z]{2,3}\\d{6}$") || name.isEmpty() || surname.isEmpty())
+			return false;
+
 		// Get from original string a substring form with the letters part
 		String lettersPart = code.substring(0, code.length() - 6);
 

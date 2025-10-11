@@ -36,23 +36,19 @@ public class FlightCrewMemberFlightAssignmentUpdateService extends AbstractGuiSe
 
 			// Only is allowed to update a flight assignment if the creator is associated.
 			// A flight assignment cannot be updated if is published, only in draft mode are allowed.
-			if (super.getRequest().getMethod().equals("POST") && super.getRequest().getData("id", Integer.class) != null) {
+			if (super.getRequest().getMethod().equals("POST") && super.getRequest().getData("id", Integer.class) != null && super.getRequest().getData("leg", Integer.class) != null) {
 
 				Integer flightAssignmentId = super.getRequest().getData("id", Integer.class);
 
-				if (flightAssignmentId != null) {
+				FlightAssignment flightAssignment = this.repository.findFlightAssignmentById(flightAssignmentId);
+				FlightCrewMember flightCrewMember = (FlightCrewMember) super.getRequest().getPrincipal().getActiveRealm();
 
-					FlightAssignment flightAssignment = this.repository.findFlightAssignmentById(flightAssignmentId);
-					FlightCrewMember flightCrewMember = (FlightCrewMember) super.getRequest().getPrincipal().getActiveRealm();
+				// Only is allowed to update a flight assignment if the leg selected is between the options shown.
+				Collection<Leg> legs = this.repository.findAllLegsByAirlineId(MomentHelper.getCurrentMoment(), flightCrewMember.getAirline().getId());
+				Integer legId = super.getRequest().getData("leg", Integer.class);
+				Leg legSelected = this.repository.findLegById(legId);
 
-					// Only is allowed to update a flight assignment if the leg selected is between the options shown.
-					Collection<Leg> legs = this.repository.findAllLegsByAirlineId(MomentHelper.getCurrentMoment(), flightCrewMember.getAirline().getId());
-					int legId = super.getRequest().getData("leg", Integer.class);
-					Leg legSelected = this.repository.findLegById(legId);
-
-					isAuthorised = flightAssignment != null && flightAssignment.getDraftMode() && flightAssignment.getFlightCrewMember().equals(flightCrewMember) && (legSelected != null && legs.contains(legSelected) || legId == 0);
-
-				}
+				isAuthorised = flightAssignment != null && flightAssignment.getDraftMode() && flightAssignment.getFlightCrewMember().equals(flightCrewMember) && (legSelected != null && legs.contains(legSelected) || legId == 0);
 
 			}
 
@@ -79,6 +75,7 @@ public class FlightCrewMemberFlightAssignmentUpdateService extends AbstractGuiSe
 
 	@Override
 	public void perform(final FlightAssignment flightAssignment) {
+		// Update with the current moment
 		flightAssignment.setMoment(MomentHelper.getCurrentMoment());
 		this.repository.save(flightAssignment);
 	}

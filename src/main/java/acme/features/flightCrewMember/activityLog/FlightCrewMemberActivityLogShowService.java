@@ -35,12 +35,11 @@ public class FlightCrewMemberActivityLogShowService extends AbstractGuiService<F
 				Integer activityLogId = super.getRequest().getData("id", Integer.class);
 				ActivityLog activityLog = this.repository.findActivityLogById(activityLogId);
 
-				if (activityLog != null) {
-					FlightAssignment flightAssignment = activityLog.getFlightAssignment();
-					FlightCrewMember flightCrewMember = (FlightCrewMember) super.getRequest().getPrincipal().getActiveRealm();
+				FlightAssignment flightAssignment = activityLog.getFlightAssignment();
+				FlightCrewMember flightCrewMember = (FlightCrewMember) super.getRequest().getPrincipal().getActiveRealm();
 
-					isAuthorised = flightAssignment != null && !flightAssignment.getDraftMode() && activityLog.getFlightAssignment().getFlightCrewMember().equals(flightCrewMember);
-				}
+				isAuthorised = activityLog != null && flightAssignment != null && !flightAssignment.getDraftMode() && flightAssignment.getLeg().getScheduledArrival().before(MomentHelper.getCurrentMoment())
+					&& activityLog.getFlightAssignment().getFlightCrewMember().equals(flightCrewMember);
 
 			}
 
@@ -58,13 +57,6 @@ public class FlightCrewMemberActivityLogShowService extends AbstractGuiService<F
 	@Override
 	public void unbind(final ActivityLog activityLog) {
 		Dataset dataset = super.unbindObject(activityLog, "registrationMoment", "typeOfIncident", "description", "severityLevel", "draftMode");
-
-		// Show create if the assignment is completed
-		if (activityLog.getFlightAssignment().getLeg().getScheduledArrival().before(MomentHelper.getCurrentMoment()))
-			super.getResponse().addGlobal("showAction", true);
-
-		boolean draftModeFlightAssignment = this.repository.findFlightAssignmentById(activityLog.getFlightAssignment().getId()).getDraftMode();
-		dataset.put("draftModeFlightAssignment", draftModeFlightAssignment);
 
 		super.getResponse().addData(dataset);
 	}

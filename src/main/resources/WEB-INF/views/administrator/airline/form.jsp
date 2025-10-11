@@ -16,13 +16,13 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <acme:form>
-	<acme:input-textbox code="administrator.airline.form.label.name" path="name"/>
+	<acme:input-textbox code="administrator.airline.form.label.name" path="name" placeholder = "acme.placeholders.form.airline.name"/>
 	<acme:input-textbox code="administrator.airline.form.label.codigo" path="codigo" placeholder = "acme.placeholders.form.airline.codigo"/>
-	<acme:input-url code="administrator.airline.form.label.website" path="website"/>
+	<acme:input-url code="administrator.airline.form.label.website" path="website" placeholder = "acme.placeholders.form.airline.website"/>
 	<acme:input-select code="administrator.airline.form.label.type" path="type" choices="${types}"/>
-	<acme:input-moment  code="administrator.airline.form.label.foundationMoment" path="foundationMoment"/>
-	<acme:input-email code="administrator.airline.form.label.email" path="email"/>
-	<acme:input-textbox code="administrator.airline.form.label.phoneNumber" path="phoneNumber"/>
+	<acme:input-moment  code="administrator.airline.form.label.foundationMoment" path="foundationMoment" placeholder = "acme.placeholders.form.airline.foundationMoment"/>
+	<acme:input-email code="administrator.airline.form.label.email" path="email" placeholder = "acme.placeholders.form.airline.email"/>
+	<acme:input-textbox code="administrator.airline.form.label.phoneNumber" path="phoneNumber" placeholder = "acme.placeholders.form.airline.phoneNumber"/>
 	
 	<jstl:choose>
 		<jstl:when test="${_command == 'create'}">

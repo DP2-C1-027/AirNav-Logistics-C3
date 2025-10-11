@@ -16,11 +16,12 @@ administrator.administrator-dashboard.form.label.amount-airports-grouped-operati
 administrator.administrator-dashboard.form.label.amount-airlines-grouped-type = Cantidad de aerolíneas por tipo:
 administrator.administrator-dashboard.form.label.ratio-airlines-email-phone = Proporción de aerolíneas con email y teléfono:
 administrator.administrator-dashboard.form.label.ratio-active-aircrafts = Proporción de aviones activos:
+administrator.administrator-dashboard.form.label.ratio-inactive-aircrafts = Proporción de aviones inactivos:
 administrator.administrator-dashboard.form.label.ratio-high-score-reviews = Proporción de reseñas con alta puntuación:
 
 administrator.administrator-dashboard.form.label.review-count = Número de reseñas (Últimas 10 Semanas):
-administrator.administrator-dashboard.form.label.review-average = Puntuación media de reseñas (Últimas 10 Semanas):
-administrator.administrator-dashboard.form.label.review-min = Puntuación mínima de reseñas (Últimas 10 Semanas):
-administrator.administrator-dashboard.form.label.review-max = Puntuación máxima de reseñas (Últimas 10 Semanas):
-administrator.administrator-dashboard.form.label.review-deviation = Desviación de puntuaciones de reseñas (Últimas 10 Semanas):
+administrator.administrator-dashboard.form.label.review-average = Número medio de reseñas (Últimas 10 Semanas):
+administrator.administrator-dashboard.form.label.review-min = Número mínimo de reseñas (Últimas 10 Semanas):
+administrator.administrator-dashboard.form.label.review-max = Número máximo de reseñas (Últimas 10 Semanas):
+administrator.administrator-dashboard.form.label.review-deviation = Desviación del número de reseñas (Últimas 10 Semanas):
 

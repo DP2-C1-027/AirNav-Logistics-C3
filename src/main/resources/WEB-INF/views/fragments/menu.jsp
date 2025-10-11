@@ -39,34 +39,29 @@
 			<acme:menu-suboption code="master.menu.administrator.list-user-accounts" action="/administrator/user-account/list"/>
 			<acme:menu-suboption code="master.menu.administrator.system-configuration" action="/administrator/system-configuration/show" />
 			<acme:menu-separator/>
-			<acme:menu-suboption code="master.menu.administrator.list-booking" action="/administrator/booking/list"/>
-			<acme:menu-separator/>
-			<acme:menu-separator/>
-			<acme:menu-suboption code="master.menu.administrator.list-record" action="/administrator/maintanence-record/list"/>
-			<acme:menu-separator/>
-			<acme:menu-suboption code="master.menu.administrator.claim" action="/administrator/claim/list"/>
-			<acme:menu-separator/>
 			<acme:menu-suboption code="master.menu.administrator.list-airline" action="/administrator/airline/list"/>
 			<acme:menu-suboption code="master.menu.administrator.list-airport" action="/administrator/airport/list"/>
 			<acme:menu-suboption code="master.menu.administrator.list-aircraft" action="/administrator/aircraft/list"/>
 			<acme:menu-separator/>
-			<acme:menu-suboption code="master.menu.administrator.pruebapruebaprueba" action="/administrator/service/list"/>		
+			<acme:menu-suboption code="master.menu.administrator.list-booking" action="/administrator/booking/list"/>
+			<acme:menu-separator/>
+			<acme:menu-suboption code="master.menu.administrator.list-claim" action="/administrator/claim/list"/>
+			<acme:menu-separator/>
+			<acme:menu-suboption code="master.menu.administrator.list-service" action="/administrator/service/list"/>		
 			<acme:menu-separator/>
 			<acme:menu-suboption code="master.menu.administrator.populate-db-initial" action="/administrator/system/populate-initial"/>
 			<acme:menu-suboption code="master.menu.administrator.populate-db-sample" action="/administrator/system/populate-sample"/>			
 			<acme:menu-separator/>
 			<acme:menu-suboption code="master.menu.administrator.shut-system-down" action="/administrator/system/shut-down"/>
-			
-			<acme:menu-suboption code="master.menu.airlineManager.prueba" action="/administrator/flight/list" />
 		</acme:menu-option>
 
 		<acme:menu-option code="master.menu.provider" access="hasRealm('Provider')">
 			<acme:menu-suboption code="master.menu.provider.favourite-link" action="http://www.example.com/"/>
 		</acme:menu-option>
 		
-		<acme:menu-option code="master.menu.airlineManager" access="hasRealm('AirlineManager')">
-			<acme:menu-suboption code="master.menu.airlineManager.list-my-flights" action="/airline-manager/flight/list" />
-			<acme:menu-suboption code="master.menu.airlineManager.list-my-legs" action="/airline-manager/leg/list" />
+		<acme:menu-option code="master.menu.airline-manager" access="hasRealm('AirlineManager')">
+			<acme:menu-suboption code="master.menu.airline-manager.list-my-flights" action="/airline-manager/flight/list" />
+			<acme:menu-suboption code="master.menu.airline-manager.list-my-legs" action="/airline-manager/leg/list" />
 		</acme:menu-option>
 		
 		<acme:menu-option code="master.menu.assistanceAgent" access="hasRealm('AssistanceAgent')">

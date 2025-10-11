@@ -33,7 +33,7 @@ administrator.airport.form.button.create=Crear
 administrator.airport.form.button.update=Actualizar
 
 # Botones de la lista
-administrator.airport.list.button.create=Crear aeropuerto
+administrator.airport.list.button.create=Crear
 
 # Payload (si es necesario)
 administrator.airport.list.payload=Contenido adicional

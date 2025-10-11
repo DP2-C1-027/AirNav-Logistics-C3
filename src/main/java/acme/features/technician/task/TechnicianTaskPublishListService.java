@@ -33,11 +33,7 @@ public class TechnicianTaskPublishListService extends AbstractGuiService<Technic
 
 	@Override
 	public void load() {
-		Collection<Task> task;
-		int technicianId;
-
-		technicianId = super.getRequest().getPrincipal().getActiveRealm().getId();
-		task = this.repository.findPublishedTasks();
+		Collection<Task> task = this.repository.findPublishedTasks();
 
 		super.getBuffer().addData(task);
 	}

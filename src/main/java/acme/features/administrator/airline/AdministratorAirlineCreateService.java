@@ -1,7 +1,6 @@
 
 package acme.features.administrator.airline;
 
-import java.util.Collection;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +26,18 @@ public class AdministratorAirlineCreateService extends AbstractGuiService<Admini
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		boolean isAuthorised = false;
+
+		if (super.getRequest().getPrincipal().hasRealmOfType(Administrator.class)) {
+			if (super.getRequest().getMethod().equals("GET"))
+				isAuthorised = true;
+
+			// Only is allowed to create an airline if post method include a valid airline.
+			if (super.getRequest().getMethod().equals("POST") && super.getRequest().getData("id", Integer.class) != null)
+				isAuthorised = super.getRequest().getData("id", Integer.class).equals(0);
+		}
+
+		super.getResponse().setAuthorised(isAuthorised);
 	}
 
 	@Override
@@ -51,13 +61,12 @@ public class AdministratorAirlineCreateService extends AbstractGuiService<Admini
 
 	@Override
 	public void validate(final Airline airline) {
-		boolean confirmation;
-		String cod = airline.getCodigo();
-		Collection<Airline> codigos = this.repository.findAllAirlineCode(cod);
-		if (!codigos.isEmpty())
-			super.state(false, "codigo", "customers.booking.error.repeat-code");
+		// Check if the code related with an airline is already used by another airline
+		Airline existingAirline = this.repository.findAirlineCode(airline.getCodigo());
+		boolean uniqueAirline = existingAirline == null || existingAirline.equals(airline);
+		super.state(uniqueAirline, "codigo", "customers.booking.error.repeat-code");
 
-		confirmation = super.getRequest().getData("confirmation", boolean.class);
+		boolean confirmation = super.getRequest().getData("confirmation", boolean.class);
 		super.state(confirmation, "confirmation", "acme.validation.confirmation.message");
 	}
 

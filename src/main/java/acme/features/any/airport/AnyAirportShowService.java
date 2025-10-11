@@ -24,13 +24,9 @@ public class AnyAirportShowService extends AbstractGuiService<Any, Airport> {
 		boolean isAuthorised = false;
 
 		if (super.getRequest().getMethod().equals("GET") && super.getRequest().getData("id", Integer.class) != null) {
-
 			Integer airportId = super.getRequest().getData("id", Integer.class);
-
 			if (airportId != null) {
-
 				Airport airport = this.repository.findAirport(airportId);
-
 				isAuthorised = airport != null;
 			}
 

@@ -44,7 +44,6 @@ public class Airline extends AbstractEntity {
 	private String				name;
 
 	@Mandatory
-	@Automapped
 	@ValidIATAcode
 	@Column(unique = true)
 	private String				codigo;
@@ -60,7 +59,6 @@ public class Airline extends AbstractEntity {
 	private AirlineType			type;
 
 	@Mandatory
-	@Automapped
 	@ValidMoment(past = true)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date				foundationMoment;

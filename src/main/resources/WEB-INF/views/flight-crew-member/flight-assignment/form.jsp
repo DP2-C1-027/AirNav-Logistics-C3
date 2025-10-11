@@ -34,7 +34,7 @@
 			<acme:input-textbox code="authenticated.flight-crew-member.form.label.phoneNumber" path="phoneNumber" readonly="true"/>
 			<acme:input-textbox code="authenticated.flight-crew-member.form.label.languageSkills" path="languageSkills" readonly="true"/>
 			<acme:input-textbox code="authenticated.flight-crew-member.form.label.availabilityStatus" path="availabilityStatus" readonly="true"/>
-			<acme:input-textbox code="authenticated.flight-crew-member.form.label.salary" path="salary" readonly="true"/>
+			<acme:input-money code="authenticated.flight-crew-member.form.label.salary" path="salary" readonly="true"/>
 			<acme:input-integer code="authenticated.flight-crew-member.form.label.yearsOfExperience" path="yearsOfExperience" readonly="true"/>
 			<acme:input-textbox code="authenticated.flight-crew-member.form.label.airline" path="airline" readonly="true"/>
 				

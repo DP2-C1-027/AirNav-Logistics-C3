@@ -16,10 +16,11 @@ administrator.administrator-dashboard.form.label.amount-airports-grouped-operati
 administrator.administrator-dashboard.form.label.amount-airlines-grouped-type = Amount of airlines by type:
 administrator.administrator-dashboard.form.label.ratio-airlines-email-phone = Ratio of airlines with email and phone:
 administrator.administrator-dashboard.form.label.ratio-active-aircrafts = Ratio of active aircrafts:
+administrator.administrator-dashboard.form.label.ratio-inactive-aircrafts = Ratio of inactive aircrafts:
 administrator.administrator-dashboard.form.label.ratio-high-score-reviews = Ratio of high score reviews:
 
 administrator.administrator-dashboard.form.label.review-count = Number of reviews (Last 10 Weeks):
-administrator.administrator-dashboard.form.label.review-average = Average review score (Last 10 Weeks):
-administrator.administrator-dashboard.form.label.review-min = Minimum review score (Last 10 Weeks):
-administrator.administrator-dashboard.form.label.review-max = Maximum review score (Last 10 Weeks):
-administrator.administrator-dashboard.form.label.review-deviation = Deviation of review scores (Last 10 Weeks):
+administrator.administrator-dashboard.form.label.review-average = Average number of reviews (Last 10 Weeks):
+administrator.administrator-dashboard.form.label.review-min = Minimum number of reviews (Last 10 Weeks):
+administrator.administrator-dashboard.form.label.review-max = Maximum number of reviews (Last 10 Weeks):
+administrator.administrator-dashboard.form.label.review-deviation = Deviation number of reviews (Last 10 Weeks):

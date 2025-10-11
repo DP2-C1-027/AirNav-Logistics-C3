@@ -30,7 +30,6 @@ public class TechnicianRecordServiceShow extends AbstractGuiService<Technician, 
 		if (super.getRequest().hasData("id", int.class)) {
 			MaintanenceRecord record;
 			Technician tech;
-			Aircraft aircraft;
 			Integer recordId;
 			String isInteger;
 			isInteger = super.getRequest().getData("id", String.class).trim();
@@ -39,7 +38,6 @@ public class TechnicianRecordServiceShow extends AbstractGuiService<Technician, 
 			else
 				recordId = null;
 			record = recordId != null ? this.repository.findRecordById(recordId) : null;
-			aircraft = recordId != null ? this.repository.findAircraftByRecordId(recordId) : null;
 			tech = record == null ? null : record.getTechnician();
 			status = tech != null && super.getRequest().getPrincipal().hasRealm(tech);
 		} else

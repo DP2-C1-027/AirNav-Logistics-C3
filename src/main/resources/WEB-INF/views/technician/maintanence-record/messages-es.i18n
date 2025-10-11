@@ -22,7 +22,6 @@ technician.maintanence-record.list.label.status = Estado:
 technician.maintanence-record.list.label.nextMaintanence = Costo Estimado:
 technician.maintanence-record.list.label.notes = Próximo Mantenimiento:
 technician.maintanence-record.list.label.estimatedCost = Notas:
-technician.task.form.label.type = Tipo
 
 technician.maintanence-record.list.button.create = Crear
 

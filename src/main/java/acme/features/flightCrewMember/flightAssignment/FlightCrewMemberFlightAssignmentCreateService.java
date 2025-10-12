@@ -32,14 +32,13 @@ public class FlightCrewMemberFlightAssignmentCreateService extends AbstractGuiSe
 
 		boolean isAuthorised = false;
 
-		if (super.getRequest().getPrincipal().hasRealmOfType(FlightCrewMember.class)) {
-
+		if (super.getRequest().getPrincipal().hasRealmOfType(FlightCrewMember.class))
 			// All the flight crew members can access this view.
 			if (super.getRequest().getMethod().equals("GET"))
 				isAuthorised = true;
 
 			// Only is allowed to create a flight assignment if post method include a valid flight assignment and leg selected.
-			if (super.getRequest().getMethod().equals("POST") && super.getRequest().getData("id", Integer.class) != null && super.getRequest().getData("leg", Integer.class) != null) {
+			else if (super.getRequest().getMethod().equals("POST") && super.getRequest().getData("id", Integer.class) != null && super.getRequest().getData("leg", Integer.class) != null) {
 
 				FlightCrewMember flightCrewMember = (FlightCrewMember) super.getRequest().getPrincipal().getActiveRealm();
 
@@ -52,8 +51,6 @@ public class FlightCrewMemberFlightAssignmentCreateService extends AbstractGuiSe
 				isAuthorised = (legSelected != null && legs.contains(legSelected) || legId == 0) && super.getRequest().getData("id", Integer.class).equals(0);
 
 			}
-
-		}
 
 		super.getResponse().setAuthorised(isAuthorised);
 	}

@@ -27,7 +27,7 @@ import lombok.Setter;
 @Setter
 @ValidActivityLog
 @Table(name = "activity_log", indexes = {
-	@Index(name = "idx_activity_log_flight_assignment", columnList = "flight_assignment_id"), @Index(name = "idx_activity_log_fa_severity", columnList = "flight_assignment_id, severityLevel")
+	@Index(name = "idx_activity_log_flight_assignment", columnList = "flight_assignment_id")
 })
 public class ActivityLog extends AbstractEntity {
 

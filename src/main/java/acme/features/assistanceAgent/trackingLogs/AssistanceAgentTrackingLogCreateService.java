@@ -45,20 +45,6 @@ public class AssistanceAgentTrackingLogCreateService extends AbstractGuiService<
 
 		status = super.getRequest().getPrincipal().hasRealm(assistance);
 
-		if (super.getRequest().hasData("id")) {
-
-			Integer trackingLogId;
-			String isInteger;
-			isInteger = super.getRequest().getData("id", String.class).trim();
-			if (!isInteger.isBlank() && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
-				trackingLogId = Integer.valueOf(isInteger);
-			else
-				trackingLogId = Integer.valueOf(-1);
-
-			status = super.getRequest().getPrincipal().hasRealm(assistance);
-			if (!trackingLogId.equals(Integer.valueOf(0)))
-				status = false;
-		}
 		// aqui hay algo mal que me peta la peticion
 
 		if (super.getRequest().hasData("claimId")) {
@@ -107,10 +93,12 @@ public class AssistanceAgentTrackingLogCreateService extends AbstractGuiService<
 		TrackingLog.setCreationMoment(MomentHelper.getCurrentMoment());
 
 		TrackingLog.setDraftMode(true);
-		int claimId = super.getRequest().getData("claimId", int.class);
 
-		Claim claim = this.repository.findOneClaimById(claimId);
-		TrackingLog.setClaim(claim);
+		if (super.getRequest().hasData("claimId")) {
+			int claimId = super.getRequest().getData("claimId", int.class);
+			Claim claim = this.repository.findOneClaimById(claimId);
+			TrackingLog.setClaim(claim);
+		}
 
 		super.getBuffer().addData(TrackingLog);
 	}
@@ -154,15 +142,18 @@ public class AssistanceAgentTrackingLogCreateService extends AbstractGuiService<
 		}
 
 		// Validación para porcentaje 100% después de publicar
-		int claimId = super.getRequest().getData("claimId", int.class);
-		List<TrackingLog> previousLogs = this.repository.findTrackingLogsByClaimIdOrderedByCreationDate(claimId);
+		if (super.getRequest().hasData("claimId")) {
 
-		if (!previousLogs.isEmpty() && !trackingLog.getResolutionDetails().isEmpty()) {
-			TrackingLog lastLog = previousLogs.get(0);
-			if (!lastLog.isDraftMode())
-				super.state(trackingLog.getResolutionPercentage() != null && trackingLog.getResolutionPercentage() == 100, "resolutionPercentage", "assistance-agent.tracking-log.form.error.after-publish-percentage-mustbe-100");
-			super.state(trackingLog.getIndicator() != null && trackingLog.getIndicator() == Indicator.REJECTED, "indicator", "assistance-agent.tracking-log.form.error.after-publish-mustbe-rejected");
+			int claimId = super.getRequest().getData("claimId", int.class);
+			List<TrackingLog> previousLogs = this.repository.findTrackingLogsByClaimIdOrderedByCreationDate(claimId);
 
+			if (!previousLogs.isEmpty() && !trackingLog.getResolutionDetails().isEmpty()) {
+				TrackingLog lastLog = previousLogs.get(0);
+				if (!lastLog.isDraftMode())
+					super.state(trackingLog.getResolutionPercentage() != null && trackingLog.getResolutionPercentage() == 100, "resolutionPercentage", "assistance-agent.tracking-log.form.error.after-publish-percentage-mustbe-100");
+				super.state(trackingLog.getIndicator() != null && trackingLog.getIndicator() == Indicator.REJECTED, "indicator", "assistance-agent.tracking-log.form.error.after-publish-mustbe-rejected");
+
+			}
 		}
 	}
 

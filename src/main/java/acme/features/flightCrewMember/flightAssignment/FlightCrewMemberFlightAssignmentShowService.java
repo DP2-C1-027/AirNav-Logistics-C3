@@ -39,14 +39,10 @@ public class FlightCrewMemberFlightAssignmentShowService extends AbstractGuiServ
 
 				Integer flightAssignmentId = super.getRequest().getData("id", Integer.class);
 
-				if (flightAssignmentId != null) {
+				FlightAssignment flightAssignment = this.repository.findFlightAssignmentById(flightAssignmentId);
+				FlightCrewMember flightCrewMember = (FlightCrewMember) super.getRequest().getPrincipal().getActiveRealm();
 
-					FlightAssignment flightAssignment = this.repository.findFlightAssignmentById(flightAssignmentId);
-					FlightCrewMember flightCrewMember = (FlightCrewMember) super.getRequest().getPrincipal().getActiveRealm();
-
-					isAuthorised = flightAssignment != null && flightAssignment.getFlightCrewMember().equals(flightCrewMember);
-				}
-
+				isAuthorised = flightAssignment != null && flightAssignment.getFlightCrewMember().equals(flightCrewMember);
 			}
 
 		super.getResponse().setAuthorised(isAuthorised);
@@ -114,7 +110,7 @@ public class FlightCrewMemberFlightAssignmentShowService extends AbstractGuiServ
 		dataset.put("legAirline", leg.getAircraft().getAirline().getName());
 
 		// Show activity logs if the assignment is related with completed legs
-		if (flightAssignment.getLeg().getScheduledArrival().before(MomentHelper.getCurrentMoment()))
+		if (flightAssignment.getLeg().getScheduledArrival().before(MomentHelper.getCurrentMoment()) && !flightAssignment.getDraftMode())
 			super.getResponse().addGlobal("showActivityLogs", true);
 
 		super.getResponse().addData(dataset);

@@ -31,17 +31,15 @@ public class FlightCrewMemberActivityLogListService extends AbstractGuiService<F
 
 		if (super.getRequest().getPrincipal().hasRealmOfType(FlightCrewMember.class))
 
-			// Only is allowed to view an activity log list if the creator is the flight crew member associated to the flight assignment.
+			// Only is allowed to view an activity log list if the creator is the flight crew member associated to a flight assignment with a completed leg.
 			if (super.getRequest().getMethod().equals("GET") && super.getRequest().getData("assignmentId", Integer.class) != null) {
 
 				Integer assignmentId = super.getRequest().getData("assignmentId", Integer.class);
 				FlightAssignment flightAssignment = this.repository.findFlightAssignmentById(assignmentId);
 
-				if (flightAssignment != null) {
-					FlightCrewMember flightCrewMember = (FlightCrewMember) super.getRequest().getPrincipal().getActiveRealm();
+				FlightCrewMember flightCrewMember = (FlightCrewMember) super.getRequest().getPrincipal().getActiveRealm();
 
-					isAuthorised = flightAssignment.getFlightCrewMember().equals(flightCrewMember);
-				}
+				isAuthorised = flightAssignment != null && flightAssignment.getLeg().getScheduledArrival().before(MomentHelper.getCurrentMoment()) && !flightAssignment.getDraftMode() && flightAssignment.getFlightCrewMember().equals(flightCrewMember);
 
 			}
 
@@ -59,24 +57,11 @@ public class FlightCrewMemberActivityLogListService extends AbstractGuiService<F
 	public void unbind(final ActivityLog activityLog) {
 		Dataset dataset = super.unbindObject(activityLog, "registrationMoment", "typeOfIncident", "description", "severityLevel", "draftMode");
 
-		int assignmentId = super.getRequest().getData("assignmentId", int.class);
-		FlightAssignment flightAssignment = this.repository.findFlightAssignmentById(assignmentId);
-
-		// Show create if the assignment is published and the leg is finished
-		if (flightAssignment.getLeg().getScheduledArrival().before(MomentHelper.getCurrentMoment()) && !flightAssignment.getDraftMode())
-			super.getResponse().addGlobal("showAction", true);
-
 		super.getResponse().addData(dataset);
 	}
 
 	@Override
 	public void unbind(final Collection<ActivityLog> activityLogs) {
-		int assignmentId = super.getRequest().getData("assignmentId", int.class);
-		FlightAssignment flightAssignment = this.repository.findFlightAssignmentById(assignmentId);
-
-		// Show create if the assignment is published and the leg is finished
-		if (flightAssignment.getLeg().getScheduledArrival().before(MomentHelper.getCurrentMoment()) && !flightAssignment.getDraftMode())
-			super.getResponse().addGlobal("showAction", true);
 
 		super.getResponse().addGlobal("assignmentId", super.getRequest().getData("assignmentId", int.class));
 	}

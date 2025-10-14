@@ -38,3 +38,4 @@ acme.validation.flightAssignment.createdBeforeLegStart = The flight assignment c
 
 acme.validation.error.repeat-code = existing code
 acme.validation.error.pattern-code = Incorrect pattern
+acme.validation.promotion-code.duplicate-message = The promotion code must include 4 letters and 2 digits from current year

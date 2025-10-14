@@ -36,7 +36,7 @@ And follow the guideline in the theory/lab materials to get this project up and 
 
 Usage
 1. Access the application in your browser at:
- http://localhost:8080/Acme-ANS-D01-25.1.0
+ http://localhost:8080/Acme-ANS-C3
 2. Register a new user or log in.
 3. Manage charter flights, passengers, crew, and incidents via the control panel.
 

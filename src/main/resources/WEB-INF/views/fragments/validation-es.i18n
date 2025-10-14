@@ -38,3 +38,4 @@ acme.validation.flightAssignment.createdBeforeLegStart = La asignación del vuel
 
 acme.validation.error.repeat-code = Codigo existente
 acme.validation.error.pattern-code = Patron incorrecto.
+acme.validation.promotion-code.duplicate-message = El código de promoción debe incluir 4 letras y 2 dígitos que corresponden a la fecha actual

@@ -45,7 +45,7 @@ public class AssistanceAgentClaimShowByTrackingLogService extends AbstractGuiSer
 			Integer trackingLogId;
 			String isInteger;
 			isInteger = super.getRequest().getData("trackingLogId", String.class);
-			if (isInteger != null && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
+			if (isInteger != null && !isInteger.isBlank() && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
 				trackingLogId = Integer.valueOf(isInteger);
 			else
 				trackingLogId = Integer.valueOf(-1);
@@ -53,9 +53,14 @@ public class AssistanceAgentClaimShowByTrackingLogService extends AbstractGuiSer
 			if (trackingLogId == null || !trackingLogId.equals(Integer.valueOf(0)) && this.repository.findClaimByTrackingLogId(trackingLogId) == null)
 				status = false;
 
-			if (status && !super.getRequest().getPrincipal().hasRealm(assistance) && this.repository.findClaimByTrackingLogId(trackingLogId).getRegisteredBy().equals(assistance))
+			Claim claim = this.repository.findClaimByTrackingLogId(trackingLogId);
+			if (claim == null)
 				status = false;
-
+			else if (status) {
+				Claim claim2 = this.repository.findOneClaimById(claim.getId());
+				if (claim2.isDraftMode() && !claim2.getRegisteredBy().equals(assistance))
+					status = false;
+			}
 		} else
 			status = false;
 

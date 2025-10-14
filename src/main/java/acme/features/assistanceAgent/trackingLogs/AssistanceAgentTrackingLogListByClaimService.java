@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import acme.client.components.models.Dataset;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
+import acme.entities.claims.Claim;
 import acme.entities.claims.TrackingLog;
 import acme.realms.AssistanceAgent;
 
@@ -35,6 +36,7 @@ public class AssistanceAgentTrackingLogListByClaimService extends AbstractGuiSer
 
 	@Override
 	public void authorise() {
+
 		boolean status = true;
 
 		if (super.getRequest().hasData("claimId")) {
@@ -47,11 +49,17 @@ public class AssistanceAgentTrackingLogListByClaimService extends AbstractGuiSer
 			else
 				claimId = Integer.valueOf(-1);
 
-			if (claimId == null || this.repository.findOneClaimById(claimId) == null)
+			if (claimId == null || claimId.equals(Integer.valueOf(0)) || !claimId.equals(Integer.valueOf(0)) && this.repository.findOneClaimById(claimId) == null)
 				status = false;
+			else
+				try {
+					Claim claim = this.repository.findOneClaimById(claimId);
 
-			if (status && !super.getRequest().getPrincipal().hasRealm(assistance) && this.repository.findOneClaimById(claimId).getRegisteredBy().equals(assistance))
-				status = false;
+					status = assistance == null ? false : claim.getRegisteredBy().equals(assistance) || !claim.isDraftMode();
+
+				} catch (NumberFormatException e) {
+					status = false;
+				}
 
 		} else
 			status = false;

@@ -18,6 +18,7 @@ import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
+import acme.entities.claims.Claim;
 import acme.entities.claims.Indicator;
 import acme.entities.claims.TrackingLog;
 import acme.realms.AssistanceAgent;
@@ -36,28 +37,27 @@ public class AssistanceAgentTrackingLogShowService extends AbstractGuiService<As
 	@Override
 	public void authorise() {
 		boolean status = true;
-
+		TrackingLog trackingLog;
+		AssistanceAgent assistance;
+		Claim claim;
 		if (super.getRequest().hasData("id")) {
-			AssistanceAgent assistance = (AssistanceAgent) super.getRequest().getPrincipal().getActiveRealm();
 			Integer trackingLogId;
 			String isInteger;
-			isInteger = super.getRequest().getData("id", String.class);
-			if (isInteger != null && !isInteger.isBlank() && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
+			isInteger = super.getRequest().getData("id", String.class).trim();
+			if (!isInteger.isBlank() && isInteger.chars().allMatch((e) -> e > 47 && e < 58))
 				trackingLogId = Integer.valueOf(isInteger);
 			else
 				trackingLogId = Integer.valueOf(-1);
 
-			if (trackingLogId == null || this.repository.findClaimByTrackingLogId(trackingLogId) == null)
-				status = false;
-
-			if (status && !super.getRequest().getPrincipal().hasRealm(assistance) && this.repository.findClaimByTrackingLogId(trackingLogId).getRegisteredBy().equals(assistance))
-				status = false;
+			trackingLog = !trackingLogId.equals(Integer.valueOf(-1)) ? this.repository.findOneTrackingLogById(trackingLogId) : null;
+			claim = trackingLog != null ? this.repository.findClaimByTrackingLogId(trackingLogId) : null;
+			assistance = claim != null ? claim.getRegisteredBy() : null;
+			status = assistance == null ? false : !trackingLog.isDraftMode() || super.getRequest().getPrincipal().hasRealm(assistance);
 
 		} else
 			status = false;
 
 		super.getResponse().setAuthorised(status);
-
 	}
 
 	@Override

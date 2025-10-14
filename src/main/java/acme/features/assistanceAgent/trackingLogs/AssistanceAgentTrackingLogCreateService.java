@@ -79,10 +79,15 @@ public class AssistanceAgentTrackingLogCreateService extends AbstractGuiService<
 					status = false;
 			}
 
+			Claim claim2 = status ? this.repository.findOneClaimById(claimId) : null;
+			if (claim2 == null || !claim2.getRegisteredBy().equals(assistance))
+				status = false;
+
 			List<TrackingLog> previousLogs = !claimId.equals(Integer.valueOf(-1)) ? this.repository.findTrackingLogsByClaimIdOrderedByPercentaje(claimId) : null;
 			if (previousLogs != null && !previousLogs.isEmpty()) {
 				TrackingLog lastLog = previousLogs.get(0);
-				status = lastLog.isDraftMode() || lastLog.getResolutionPercentage() != null && lastLog.getResolutionPercentage() == 100 && lastLog.getIndicator() == Indicator.ACCEPTED;
+				if (!(lastLog.isDraftMode() || lastLog.getResolutionPercentage() != null && lastLog.getResolutionPercentage() == 100 && lastLog.getIndicator() == Indicator.ACCEPTED))
+					status = false;
 			}
 
 		}

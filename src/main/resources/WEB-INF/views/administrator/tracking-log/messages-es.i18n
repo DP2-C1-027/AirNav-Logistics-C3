@@ -7,20 +7,5 @@ administrator.tracking-log.list.label.claim = Reclamación
 administrator.tracking-log.list.label.resolutionPercentage = % Resolución
 administrator.tracking-log.list.label.lastUpdateMoment = Última Actualización
 
-# Botones de lista
-administrator.tracking-log.list.button.create = Crear Nuevo Registro
-
 # Etiquetas de formulario para registros de seguimiento
 administrator.tracking-log.form.title = Registro de Seguimiento
-administrator.tracking-log.form.label.lastUpdateMoment = Última Actualización
-administrator.tracking-log.form.label.stepUndergoing = Paso Actual
-administrator.tracking-log.form.label.resolutionPercentage = Porcentaje de Resolución
-administrator.tracking-log.form.label.indicator = Estado
-administrator.tracking-log.form.label.resolutionDetails = Detalles de Resolución
-administrator.tracking-log.form.label.claim = Reclamación Relacionada
-
-# Botones de formulario
-administrator.tracking-log.form.button.create = Crear
-administrator.tracking-log.form.button.update = Actualizar
-administrator.tracking-log.form.button.delete = Eliminar
-administrator.tracking-log.form.button.publish = Publicar

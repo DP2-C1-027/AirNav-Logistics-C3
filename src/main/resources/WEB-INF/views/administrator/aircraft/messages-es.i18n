@@ -22,7 +22,6 @@ administrator.aircraft.form.label.airline = Aerolinea
 
 administrator.aircraft.form.button.create = Crear
 administrator.aircraft.form.button.update = Actualizar
-administrator.aircraft.form.button.disable = Deshabilitar
 
 administrator.aircraft.list.label.model = Modelo: 
 administrator.aircraft.list.label.registrationNumber = Número de registro:

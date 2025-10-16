@@ -18,8 +18,7 @@ customers.passenger.form.label.dateOfBirth = Fecha de nacimiento:
 customers.passenger.form.label.specialNeeds = Necesidades especiales:
 
 
-customers.passenger.list.label.fullName =  Nombre completo: 
-customers.passenger.list.label.email = Email:
+customers.passenger.list.label.fullName =  Nombre completo:
 customers.passenger.form.button.create= Crear nuevo pasajero
 customers.passenger.form.button.createBooking = Crear nuevo pasajero
 customers.passenger.form.button.update = Actualizar

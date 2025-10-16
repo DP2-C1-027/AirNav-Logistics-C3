@@ -15,15 +15,12 @@ customers.booking-record.form.label.booking= Booking:
 customers.booking-record.form.label.passenger=Passenger:
 
 customers.booking-record.list.label.booking = Booking:
-customers.booking-record.list.label.passenger= Passenger:
 
 customers.booking-record.list.label.travelClass= TravelClass
 customers.booking-record.list.label.flight= Flight
 
 customers.booking-record.form.label.create= Create
-customers.booking-record.form.label.update= Update
-
-customer.booking-record.create.error.null-booking = You cannot leave the booking unselected.  
+  
 customer.booking-record.create.error.null-passenger = You cannot leave the passenger unselected.  
 customer.booking-record.create.error.duplicate-booking-passenger = This relationship already exists.  
 

@@ -16,28 +16,13 @@ administrator.claim.list.label.passengerEmail = Email del Pasajero
 administrator.claim.list.label.description = Descripción
 administrator.claim.list.label.indicator = Estado
 
-# Botones de lista
-administrator.claim.list.button.create = Crear Nueva Reclamación
-
 # Etiquetas de formulario para reclamaciones
 administrator.claim.form.label.registrationMoment = Fecha de Registro
 administrator.claim.form.label.description = Descripción
 administrator.claim.form.label.type = Tipo de Reclamación
 administrator.claim.form.label.indicator = Estado
-administrator.claim.form.label.registeredBy = Registrado Por
 administrator.claim.form.label.passengerEmail = Email del Pasajero
 administrator.claim.form.label.linkedTo = Vinculado A
 
-# Botones de formulario
-administrator.claim.form.button.create = Crear
-administrator.claim.form.button.update = Actualizar
-administrator.claim.form.button.delete = Eliminar
-administrator.claim.form.button.publish = Publicar
-
 administrator.trackingLog.form.button.trackingLog = Registro de reclamación
 administrator.leg.form.button.leg = Vuelo vinculado
-
-# ============= COMÚN =============
-# Botones comunes (existentes)
-authenticated.provider.booking.form.button.create = Registrar
-authenticated.provider.booking.form.button.update = Actualizar

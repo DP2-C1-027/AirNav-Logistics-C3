@@ -31,6 +31,7 @@ acme.placeholders.form.flightAssignment.remarks = Awaiting final confirmation fo
 acme.placeholders.form.activityLog.typeOfIncident = Medical Emergency
 acme.placeholders.form.activityLog.description = Medical emergency onboard, treated by flight crew with no landing required
 acme.placeholders.form.activityLog.severityLevel = 5
+acme.placeholders.form.activityLog.registrationMoment = 2025/10/05 10:30
 acme.placeholders.form.flightCrewMember.codigo = ZL000002
 acme.placeholders.form.flightCrewMember.phoneNumber = +41795556677
 acme.placeholders.form.flightCrewMember.languageSkills = English, Czech, Italian

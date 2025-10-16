@@ -17,7 +17,6 @@ any.airport.form.label.city = City:
 any.airport.form.label.country = Country:
 any.airport.form.label.website = Website:
 any.airport.form.label.email = Email:
-any.airport.form.label.address = Address:
 any.airport.form.label.phoneNumber = Phone Number:
 
 # List labels for airport list

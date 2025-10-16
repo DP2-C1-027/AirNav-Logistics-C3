@@ -9,7 +9,6 @@
 # they accept any liabilities with respect to them.
 
 flight-crew-member.flight-crew-member-dashboard.form.title = Flight Crew Member Dashboard
-flight-crew-member.flight-crew-member-dashboard.form.title.general-indicators = General Indicators
 flight-crew-member.flight-crew-member-dashboard.form.title.review-statistics = Statistics
 
 flight-crew-member.flight-crew-member-dashboard.form.label.lastFiveDestinations = Last five destinations to which I have been assigned:

@@ -12,7 +12,6 @@
 
 
 technician.technician-dashboard.form.title =Technician Dashboard
-technician.dashboard.form.label.maintenanceStatus=Estado de Mantenimiento
 technician.dashboard.form.label.nearestInspectionDue=Próxima Inspección Programada
 technician.dashboard.form.label.averageEstimatedCost=Costo Estimado Promedio
 technician.dashboard.form.label.deviationEstimatedCost=Desviación del Costo Estimado

@@ -18,7 +18,6 @@ administrator.airport.form.label.city=Ciudad
 administrator.airport.form.label.country=País
 administrator.airport.form.label.website=Sitio web
 administrator.airport.form.label.email=Correo electrónico
-administrator.airport.form.label.address=Dirección
 administrator.airport.form.label.phoneNumber=Número de teléfono
 administrator.airport.form.label.confirmation=Confirmación
 
@@ -34,6 +33,3 @@ administrator.airport.form.button.update=Actualizar
 
 # Botones de la lista
 administrator.airport.list.button.create=Crear
-
-# Payload (si es necesario)
-administrator.airport.list.payload=Contenido adicional

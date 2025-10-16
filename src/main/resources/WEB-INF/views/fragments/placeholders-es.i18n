@@ -31,6 +31,7 @@ acme.placeholders.form.flightAssignment.remarks = Esperando la confirmación fin
 acme.placeholders.form.activityLog.typeOfIncident = Emergencia médica
 acme.placeholders.form.activityLog.description = Emergencia médica abordo, tratamiento realizado por tripulante de vuelo
 acme.placeholders.form.activityLog.severityLevel = 2
+acme.placeholders.form.activityLog.registrationMoment = 2025/10/05 10:30
 acme.placeholders.form.flightCrewMember.codigo = ZL000002
 acme.placeholders.form.flightCrewMember.phoneNumber = +41795556677
 acme.placeholders.form.flightCrewMember.languageSkills = English, Czech, Italian

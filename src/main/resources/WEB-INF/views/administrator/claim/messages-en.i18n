@@ -17,28 +17,13 @@ administrator.claim.list.label.passengerEmail = Passenger Email
 administrator.claim.list.label.description = Description
 administrator.claim.list.label.indicator = Status
 
-# List buttons
-administrator.claim.list.button.create = Create New Claim
-
 # Form labels for claim
 administrator.claim.form.label.registrationMoment = Registration Date
 administrator.claim.form.label.description = Description
 administrator.claim.form.label.type = Claim Type
 administrator.claim.form.label.indicator = Status
-administrator.claim.form.label.registeredBy = Registered By
 administrator.claim.form.label.passengerEmail = Passenger Email
 administrator.claim.form.label.linkedTo = Linked To
 
-# Form buttons
-administrator.claim.form.button.create = Create
-administrator.claim.form.button.update = Update
-administrator.claim.form.button.delete = Delete
-administrator.claim.form.button.publish = Publish
-
 administrator.trackingLog.form.button.trackingLog = Tracking Log of Claim
 administrator.leg.form.button.leg = Leg linked
-
-# ============= COMMON =============
-# Common buttons (existing)
-authenticated.provider.booking.form.button.create = Register
-authenticated.provider.booking.form.button.update = Update

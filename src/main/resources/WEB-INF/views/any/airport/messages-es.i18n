@@ -17,7 +17,6 @@ any.airport.form.label.city = Ciudad:
 any.airport.form.label.country = País:
 any.airport.form.label.website = Sitio web:
 any.airport.form.label.email = Correo electrónico:
-any.airport.form.label.address = Dirección:
 any.airport.form.label.phoneNumber = Número de teléfono:
 
 # Etiquetas de la lista de aeropuertos

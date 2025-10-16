@@ -10,26 +10,3 @@
 
 any.flight-assignment.form.title = Flight Assignment details
 any.flight-assignment.list.title = Flight Assignments list
-
-any.flight-assignment.form.label.duty = Duty: 
-any.flight-assignment.form.label.moment = Moment:
-any.flight-assignment.form.label.currentStatus = Current Status:
-any.flight-assignment.form.label.remarks = Remarks:
-any.flight-assignment.form.label.flightCrewMember = Flight Crew Member:
-any.flight-assignment.form.label.leg = Leg code:
-
-any.flight-assignment.form.button.activity-log = Show activity logs
-any.flight-assignment.form.button.visa-requirements = Show visa requirements
-any.flight-assignment.form.button.create = Create
-any.flight-assignment.form.button.update = Update
-any.flight-assignment.form.button.publish = Publish
-any.flight-assignment.form.button.delete = Delete
-
-any.flight-assignment.list.label.duty = Duty: 
-any.flight-assignment.list.label.moment = Moment:
-any.flight-assignment.list.label.currentStatus = Current Status:
-any.flight-assignment.list.label.remarks = Remarks:
-any.flight-assignment.list.label.leg = Flight Number:
-any.flight-assignment.list.label.draftMode = Draft mode:
-
-any.flight-assignment.list.button.create = Create

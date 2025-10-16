@@ -9,7 +9,6 @@
 # they accept any liabilities with respect to them.
 
 flight-crew-member.flight-crew-member-dashboard.form.title = Panel de control de tripulante de vuelo
-flight-crew-member.flight-crew-member-dashboard.form.title.general-indicators = Indicadores Generales
 flight-crew-member.flight-crew-member-dashboard.form.title.review-statistics = Estadísticas
 
 flight-crew-member.flight-crew-member-dashboard.form.label.lastFiveDestinations = Últimos 5 destinos a los que he sido asignado:

@@ -8,20 +8,5 @@ administrator.tracking-log.list.label.claim = Claim
 administrator.tracking-log.list.label.resolutionPercentage = Resolution %
 administrator.tracking-log.list.label.lastUpdateMoment = Last Update
 
-# List buttons
-administrator.tracking-log.list.button.create = Create New Tracking Log
-
 # Form labels for tracking log
 administrator.tracking-log.form.title = Tracking Log
-administrator.tracking-log.form.label.lastUpdateMoment = Last Update
-administrator.tracking-log.form.label.stepUndergoing = Current Step
-administrator.tracking-log.form.label.resolutionPercentage = Resolution Percentage
-administrator.tracking-log.form.label.indicator = Status
-administrator.tracking-log.form.label.resolutionDetails = Resolution Details
-administrator.tracking-log.form.label.claim = Related Claim
-
-# Form buttons
-administrator.tracking-log.form.button.create = Create
-administrator.tracking-log.form.button.update = Update
-administrator.tracking-log.form.button.delete = Delete
-administrator.tracking-log.form.button.publish = Publish

@@ -12,7 +12,8 @@ technician.maintanence-record.form.title = Detalles del Registro de Mantenimient
 technician.maintanence-record.list.title = Lista de Registros de Mantenimiento
 
 technician.maintanence-record.form.label.maintanenceMoment = Momento del Mantenimiento:
-technician.maintanence-record.form.label.status = Estado:
+technician.maintenance-record.form.label.aircraft = Avión:
+technician.maintenance-record.form.label.status = Estado:
 technician.maintanence-record.form.label.estimatedCost = Costo Estimado:
 technician.maintanence-record.form.label.nextMaintanence = Próximo Mantenimiento:
 technician.maintanence-record.form.label.notes = Notas:
@@ -29,6 +30,7 @@ technician.maintenance-record.form.button.create = Crear
 technician.task.list.button.task = Lista de Tareas
 technician.maintenance-record.form.button.update = Actualizar
 technician.maintenance-record.form.button.publish = Publicar
+technician.maintenance-record.form.button.delete = Eliminar
 technician.task.form.button.createRecord = Crear Tarea
 
 technician.maintanence-record.error.no-aircraft = Tiene que tener un aircraf asociado

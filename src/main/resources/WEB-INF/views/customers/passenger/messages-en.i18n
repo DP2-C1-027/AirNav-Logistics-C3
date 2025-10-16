@@ -17,8 +17,7 @@ customers.passenger.form.label.passportNumber = Passport Number:
 customers.passenger.form.label.dateOfBirth = Date of birth:
 customers.passenger.form.label.specialNeeds = Special Needs:
 
-customers.passenger.list.label.fullName = Full name: 
-customers.passenger.list.label.email = Email:
+customers.passenger.list.label.fullName = Full name:
 
 customers.passenger.form.button.create= Create new passenger
 customers.passenger.form.button.createBooking = Create new passenger

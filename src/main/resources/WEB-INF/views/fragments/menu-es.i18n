@@ -36,7 +36,6 @@ master.menu.administrator.list-aircraft = Ver aviones
 master.menu.administrator.list-claim = Ver reclamaciones
 master.menu.administrator.list-booking = Ver reservas
 master.menu.administrator.list-service = Ver servicios
-master.menu.administrator.list-flight = Ver vuelos
 master.menu.administrator.system-configuration= Sistema de configuracion
 
 master.menu.administrator.populate-db-initial = Poblar BD (inicial)
@@ -57,9 +56,10 @@ master.menu.flightCrewMember.list-flight-assignments-completed = Asignaciones co
 
 # master.menu.airlineManager #################################################
 
-master.menu.airlineManager = Gerente de aerolínea
-master.menu.airlineManager.list-my-flights = Listar mis vuelos
-master.menu.airlineManager.list-my-legs = Listar mis tramos
+master.menu.airline-manager = Gerente de aerolínea
+master.menu.airline-manager.list-my-flights = Listar mis vuelos
+master.menu.airline-manager.list-my-legs = Listar mis tramos
+master.menu.user-account.airline-manager-profile = Perfil de gerente de aerolínea
 
 
 # master.menu.consumer ##########################################################
@@ -106,7 +106,6 @@ master.menu.technicians.list-my-maintenance-records-published = Registros de man
 master.menu.technicians.list-my-tasks = Mis tareas
 master.menu.technicians.list-my-tasks-published = Tareas publicadas
 master.menu.technicians.list-my-involved-in = Mis participaciones
-master.menu.technician.dashboard = Dashboard
 
 # master.menu.dashboards ########################################################
 master.menu.dashboards = Panel de control

@@ -27,5 +27,4 @@ administrator.service.list.label.money = Discount
 administrator.service.list.label.averageDwellTime = Average dwell time
 administrator.service.list.label.promotionCode = Promotion code
 administrator.service.list.label.picture = Picture
-administrator.service.list.label.confirmation = Confirmation
 administrator.service.list.button.create = Create

@@ -36,7 +36,6 @@ master.menu.administrator.list-aircraft = List aircrafts
 master.menu.administrator.list-booking = List bookings
 master.menu.administrator.list-claim = List claims
 master.menu.administrator.list-service = List services
-master.menu.administrator.list-flight = List flights
 master.menu.administrator.system-configuration= System Configuration
 
 master.menu.administrator.populate-db-initial = Populate DB (initial)
@@ -59,6 +58,7 @@ master.menu.flightCrewMember.list-flight-assignments-completed = Flight Assignme
 master.menu.airline-manager = Airline Manager
 master.menu.airline-manager.list-my-flights = List my flights
 master.menu.airline-manager.list-my-legs = List my legs
+master.menu.user-account.airline-manager-profile = Airline Manager Profile
 
 # master.menu.consumer ##########################################################
 
@@ -104,7 +104,6 @@ master.menu.technicians.list-my-maintenance-records-published = Published Record
 master.menu.technicians.list-my-tasks-published=Published Tasks
 master.menu.technicians.list-my-tasks = My tasks
 master.menu.technicians.list-my-involved-in = My involved in
-master.menu.technician.dashboard = Dashboard
 
 # master.menu.dashboards ########################################################
 master.menu.dashboards = Dashboards
